@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 export default function ObserveComponent({ content }: { content: any }) {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLAnchorElement | null>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,7 +27,8 @@ export default function ObserveComponent({ content }: { content: any }) {
   }, []);
 
   return (
-    <div
+    <a
+      ref={ref}
       className={`
         ${
           visible
@@ -35,9 +36,8 @@ export default function ObserveComponent({ content }: { content: any }) {
             : 'w-full text-3xl  opacity-10 transition-all duration-500'
         }
       `}
-      ref={ref}
     >
       {content}
-    </div>
+    </a>
   );
 }
