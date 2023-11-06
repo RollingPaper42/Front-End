@@ -1,7 +1,7 @@
 'use client';
 
 import axios from 'axios';
-import { content } from '@/types/ content';
+import { content } from '@/types/content';
 import { useEffect, useState } from 'react';
 import ObserveComponent from '@/component/ObserveComponent';
 
@@ -9,7 +9,7 @@ export default function Home() {
   const [text, setTextState] = useState<content[]>([]);
   useEffect(() => {
     axios
-      .get('/api/text', { withCredentials: true })
+      .get('/api/text')
       .then((data) => {
         setTextState(data.data.data);
       })
