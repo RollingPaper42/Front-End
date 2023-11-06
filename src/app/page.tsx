@@ -1,16 +1,28 @@
 'use client';
 
-import { textState } from '@/recoil/atom';
-import { useRecoilState } from 'recoil';
+import axios from 'axios';
+import { content } from '@/types/content';
+import { useEffect, useState } from 'react';
+import ObserveComponent from '@/component/ObserveComponent';
 
 export default function Home() {
-  const [text, setTextState] = useRecoilState(textState);
+  const [text, setTextState] = useState<content[]>([]);
+  useEffect(() => {
+    axios
+      .get('/api/text')
+      .then((data) => {
+        setTextState(data.data.data);
+      })
+      .catch((error) => {});
+  }, []);
+
   return (
-    <div
-      className='font-bold underline text-center'
-      onClick={() => setTextState('text clicked')}
-    >
-      hi this is first project {text}
+    <div className=" bg-lime-300">
+      <div className=" p-5">
+        {text.map((item) => {
+          return <ObserveComponent content={item.content}></ObserveComponent>;
+        })}
+      </div>
     </div>
   );
 }
