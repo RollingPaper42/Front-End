@@ -11,7 +11,9 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <RecoilRoot>{children}</RecoilRoot>
+        <div className="m-auto h-full max-w-[calc(100vh*0.6)]">
+          <RecoilRoot>{children}</RecoilRoot>
+        </div>
       </body>
     </html>
   );
