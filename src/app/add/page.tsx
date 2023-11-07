@@ -21,10 +21,12 @@ export default function Add() {
 
   return (
     <>
-      <div id="title">스트링캣을 이어서 작성</div>
+      <div id="title" className="content-center justify-center text-center">
+        스트링캣을 이어서 작성
+      </div>
       <textarea
         id="message"
-        className=" m-1 h-fit w-full rounded-lg bg-slate-200 p-2 text-lg outline-none"
+        className=" m-1 h-fit w-96 rounded-lg bg-slate-200 p-2 text-lg outline-none"
         placeholder="내용을 입력해주세요"
         maxLength={1000}
         rows={5}
@@ -64,7 +66,7 @@ export default function Add() {
       <button
         type="button"
         id="done"
-        className="h-10 w-40 bg-slate-200"
+        className="h-10 w-40 rounded-md bg-slate-200 "
         onClick={() => setIsDone(true)}
       >
         작성 완료
