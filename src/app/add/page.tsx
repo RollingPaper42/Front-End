@@ -1,23 +1,36 @@
 'use client';
+// import { axiosInstance } from '@/utils/axios';
 import { useState } from 'react';
 
-// export interface stringMessage {
-//   message: string;
-//   photo: string;
-//   writer: string;
-//   id: number | null;
-// }
+interface id {
+  personal_id: number | null;
+  group_id: number | null;
+}
 
-// export interface id {
-//     personal_id: number | null;
-//     group_id: number | null;
-//   }
-
-export default function Add() {
+export default function Add(props: id) {
   const [message, setMessage] = useState<string>('');
   const [photo, setPhoto] = useState<string>(''); // 아직 어떤식으로 넘겨줄지 미정
   const [writer, setWriter] = useState<string>('');
-  const [isDone, setIsDone] = useState<boolean>(false);
+
+  function handleConfirm() {
+    if (message === '') {
+      alert('이어 쓸 스트링을 입력해주세요');
+    } else if (writer === '') {
+      alert('작성자명을 입력해주세요');
+    }
+    //const { isConfirmed } = await useConfirm('작성한 글을 이어붙이시겠습니까?');
+    const isConfirmed = true;
+    if (isConfirmed) {
+      const data = {
+        id: props.personal_id,
+        message: message,
+        photo: photo,
+        writer: writer,
+      };
+      // send post api
+      // axiosInstance.post('/add', data);
+    }
+  }
 
   return (
     <>
@@ -30,13 +43,15 @@ export default function Add() {
         placeholder="내용을 입력해주세요"
         maxLength={1000}
         rows={5}
+        onChange={(e) => {
+          setMessage(e.currentTarget.value);
+        }}
         onKeyDown={(e) => {
-          if (e.currentTarget.value.length > 1000) {
-            e.preventDefault();
+          if (e.currentTarget.value.length >= 1000) {
             alert('최대 1000자까지 입력 가능합니다.');
+            e.preventDefault();
             e.currentTarget.value = e.currentTarget.value.slice(0, 1000);
           }
-          setMessage(e.currentTarget.value);
         }}
       />
       <form>
@@ -59,7 +74,7 @@ export default function Add() {
         className="m-1 h-10 w-40 rounded-md bg-slate-200 px-2 outline-none"
         placeholder="익명"
         // maxLength={8}
-        onKeyDown={(e) => {
+        onChange={(e) => {
           setWriter(e.currentTarget.value);
         }}
       />
@@ -67,24 +82,10 @@ export default function Add() {
         type="button"
         id="done"
         className="h-10 w-40 rounded-md bg-slate-200 "
-        onClick={() => setIsDone(true)}
+        onClick={handleConfirm}
       >
         작성 완료
       </button>
-      {isDone && (
-        <div className="fixed left-1/3 top-1/4 h-40 w-40 bg-slate-400">
-          모달창
-          <br />
-          <button
-            type="button"
-            onClick={() => {
-              setIsDone(false);
-            }}
-          >
-            닫기
-          </button>
-        </div>
-      )}
     </>
   );
 }
