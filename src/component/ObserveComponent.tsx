@@ -13,8 +13,8 @@ export default function ObserveComponent({ content }: { content: any }) {
         });
       },
       {
-        rootMargin: '-40%',
-        threshold: 0.1,
+        rootMargin: '-51% -40% -40%',
+        threshold: 0.15,
       },
     );
     if (ref.current) {

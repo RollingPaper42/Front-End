@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import ObserveComponent from '@/component/ObserveComponent';
 import { axiosInstance } from '@/utils/axios';
 import Link from 'next/link';
@@ -10,7 +10,7 @@ export default function Home(props: any) {
   const [data, setData] = useState<any>([]);
   useEffect(() => {
     axiosInstance
-      .get('/api/text')
+      .get(`/api/text`)
       .then((data) => {
         setTitle(data.data.personalData.strcatTitle);
         setData(data.data.personalData.strcatData);
@@ -19,10 +19,10 @@ export default function Home(props: any) {
   }, []);
 
   return (
-    <div className=" bg-lime-300">
+    <div className="bg-lime-300">
       <div className="p-5">
         <p>{props.params.id}</p>
-        <span className="black  text-lg">{title}</span>
+        <span className="black text-6xl ">{title}</span>
       </div>
       <div className=" p-5">
         {data.map((item: any) => {
@@ -35,10 +35,10 @@ export default function Home(props: any) {
         })}
       </div>
       <button className=" bg-white p-6">
-        <Link href={`strcat/add`}>공유하기</Link>
+        <Link href={`../strcat/add`}>공유하기</Link>
       </button>
       <button className=" bg-white p-6">
-        <Link href={`strcat/export`}>내보내기</Link>
+        <Link href={`../strcat/export`}>내보내기</Link>
       </button>
     </div>
   );
