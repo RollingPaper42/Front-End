@@ -1,13 +1,16 @@
 'use client';
 // import { axiosInstance } from '@/utils/axios';
 import { useState } from 'react';
-import { id } from '@/types/id';
 
-export default function Add(props: id) {
+export default function Add() {
   const [message, setMessage] = useState<string>('');
   const [photo, setPhoto] = useState<string>(''); // 아직 어떤식으로 넘겨줄지 미정
   const [writer, setWriter] = useState<string>('');
 
+  // if (personal_id === null && group_id === null) {
+  //   alert('유효하지 않은 접속입니다.');
+  //   // redirect 해야함
+  // }
   function handleConfirm() {
     if (message === '') {
       alert('이어 쓸 스트링을 입력해주세요');
@@ -18,7 +21,7 @@ export default function Add(props: id) {
     const isConfirmed = true;
     if (isConfirmed) {
       const data = {
-        id: props.personal_id,
+        id: 1, // 실제 id값은 어떻게 할지?
         message: message,
         photo: photo,
         writer: writer,
