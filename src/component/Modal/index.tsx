@@ -16,7 +16,7 @@ export default function Modal() {
         className="fixed top-0 flex h-full w-full max-w-[calc(100vh*0.6)] items-center justify-center bg-slate-400 opacity-50"
         onClick={onClickBackground}
       >
-        {modal.modalProps}
+        {modal.modalComponent}
       </div>
     )
   );
