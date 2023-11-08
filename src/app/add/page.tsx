@@ -1,11 +1,7 @@
 'use client';
 // import { axiosInstance } from '@/utils/axios';
 import { useState } from 'react';
-
-interface id {
-  personal_id: number | null;
-  group_id: number | null;
-}
+import { id } from '@/types/id';
 
 export default function Add(props: id) {
   const [message, setMessage] = useState<string>('');
