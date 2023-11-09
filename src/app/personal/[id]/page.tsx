@@ -21,10 +21,9 @@ export default function Home(props: any) {
   return (
     <div className="bg-lime-300">
       <div className="p-5">
-        <p>{props.params.id}</p>
         <span className="black text-6xl ">{title}</span>
       </div>
-      <div className=" p-5">
+      <div className=" p-5 py-[50%]">
         {data.map((item: any) => {
           return (
             <ObserveComponent
