@@ -9,12 +9,13 @@ export default function ObserveComponent({ content }: { content: any }) {
         entries.forEach(({ target, isIntersecting }) => {
           if (target === ref.current) {
             setVisible(isIntersecting);
+            console.log(target);
           }
         });
       },
       {
-        rootMargin: '-51% -40% -40%',
-        threshold: 0.15,
+        rootMargin: '-48% 0%',
+        threshold: 0.02,
       },
     );
     if (ref.current) {
