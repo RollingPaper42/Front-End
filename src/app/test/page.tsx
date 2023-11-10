@@ -9,11 +9,11 @@ export default function Test() {
   const [modal, setModal] = useRecoilState(modalState);
 
   const onClickModal = () => {
-    setModal({ modalComponent: <Error content="에러 메시지" /> });
+    setModal({ modalComponent: <Error content="에러 메시지 글" /> });
   };
 
   const onCLickConfirm = async () => {
-    const result = await useConfirm('are you sure?', setModal);
+    const result = await useConfirm('컨펌 메시지 글', setModal);
     console.log(result);
   };
 
