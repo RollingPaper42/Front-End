@@ -1,17 +1,17 @@
 'use client';
+import useInput from '@/hooks/useInput';
 // import { axiosInstance } from '@/utils/axios';
-import { useState } from 'react';
 
 export default function Add() {
-  const [message, setMessage] = useState<string>('');
-  const [photo, setPhoto] = useState<string>(''); // 아직 어떤식으로 넘겨줄지 미정
-  const [writer, setWriter] = useState<string>('');
+  const [message, , handleMessage] = useInput('');
+  const [photo, setPhoto] = useInput(''); // 아직 어떤식으로 넘겨줄지 미정
+  const [writer, , handleWriter] = useInput('');
 
   // if (personal_id === null && group_id === null) {
   //   alert('유효하지 않은 접속입니다.');
   //   // redirect 해야함
   // }
-  function handleConfirm() {
+  const handleConfirm = () => {
     if (message === '') {
       alert('이어 쓸 스트링을 입력해주세요');
     } else if (writer === '') {
@@ -29,7 +29,7 @@ export default function Add() {
       // send post api
       // axiosInstance.post('/add', data);
     }
-  }
+  };
 
   return (
     <>
@@ -38,13 +38,12 @@ export default function Add() {
       </div>
       <textarea
         id="message"
+        value={message}
         className=" m-1 h-fit w-96 rounded-lg bg-slate-200 p-2 text-lg outline-none"
         placeholder="내용을 입력해주세요"
         maxLength={1000}
         rows={5}
-        onChange={(e) => {
-          setMessage(e.currentTarget.value);
-        }}
+        onChange={handleMessage}
         onKeyDown={(e) => {
           if (e.currentTarget.value.length >= 1000) {
             alert('최대 1000자까지 입력 가능합니다.');
@@ -70,12 +69,11 @@ export default function Add() {
       <input
         type="text"
         id="writer"
+        value={writer}
         className="m-1 h-10 w-40 rounded-md bg-slate-200 px-2 outline-none"
         placeholder="익명"
         // maxLength={8}
-        onChange={(e) => {
-          setWriter(e.currentTarget.value);
-        }}
+        onChange={handleWriter}
       />
       <button
         type="button"
