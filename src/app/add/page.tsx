@@ -1,18 +1,18 @@
 'use client';
 import useInput from '@/hooks/useInput';
-// import { axiosInstance } from '@/utils/axios';
+import { axiosInstance } from '@/utils/axios';
 
-export default function Add() {
-  const [message, , handleMessage] = useInput('');
+export default function Add(id: { id: string }) {
+  const [text, , handleText] = useInput('');
   const [photo, setPhoto] = useInput(''); // 아직 어떤식으로 넘겨줄지 미정
   const [writer, , handleWriter] = useInput('');
 
-  // if (personal_id === null && group_id === null) {
-  //   alert('유효하지 않은 접속입니다.');
-  //   // redirect 해야함
-  // }
+  if (id === null || id === undefined) {
+    alert('유효하지 않은 접속입니다.');
+    // redirect 해야함 -> 어디로?
+  }
   const handleConfirm = () => {
-    if (message === '') {
+    if (text === '') {
       alert('이어 쓸 스트링을 입력해주세요');
     } else if (writer === '') {
       alert('작성자명을 입력해주세요');
@@ -21,13 +21,20 @@ export default function Add() {
     const isConfirmed = true;
     if (isConfirmed) {
       const data = {
-        id: 1, // 실제 id값은 어떻게 할지?
-        message: message,
+        text: text,
         photo: photo,
         writer: writer,
       };
-      // send post api
-      // axiosInstance.post('/add', data);
+      axiosInstance
+        .post(`/board/${id}/content`, data)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          if (err.response.status === 406) {
+            alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
+          }
+        });
     }
   };
 
@@ -38,12 +45,12 @@ export default function Add() {
       </div>
       <textarea
         id="message"
-        value={message}
+        value={text}
         className=" m-1 h-fit w-96 rounded-lg bg-slate-200 p-2 text-lg outline-none"
         placeholder="내용을 입력해주세요"
         maxLength={1000}
         rows={5}
-        onChange={handleMessage}
+        onChange={handleText}
         onKeyDown={(e) => {
           if (e.currentTarget.value.length >= 1000) {
             alert('최대 1000자까지 입력 가능합니다.');
