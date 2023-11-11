@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image'
+
 export default function login(){
     return (
         <div className="m-6">
@@ -17,23 +18,32 @@ export default function login(){
                 </div>
             </div>
             <div className="h-96 my-20"></div>
-            <button className="bg-yellow-300 rounded-lg h-12 w-full flex flex-row">
-                <Image 
-                src="/kakao.png"
-                width={20}
-                height={20}
-                alt="kakao"
-                className="basis-1/12 w-full h-full ml-16" />
-                <div className="basis-6/12 h-full w-full mt-3 text-left">카카오로 시작하기</div>
+            <button className= "bg-yellow-300 mt-3 rounded-lg w-full h-12 flex flex-row justify-center ">
+                <div className=" basis-3/12"></div>
+                <div className="basis-52 justify-center items-center flex flex-row">
+                    <Image 
+                    src="/kakao.png"
+                    width={48}
+                    height={48}
+                    alt="kakao"
+                    className="basis-13 h-12"/>
+                    <div className= "basis-32 text-left h-full">카카오로 시작하기</div>
+                </div>
+                <div className="basis-3/12"></div>
             </button>
-            <button className="bg-neutral-200 mt-3 rounded-lg h-12 w-full flex flex-row">
-                <Image 
-                src="/Google.png"
-                width={20}
-                height={20}
-                alt="kakao"
-                className="basis-1/12 w-full h-full ml-16" />
-                <div className="basis-6/12 h-full mt-3 text-left">구글로 시작하기</div>
+            <button className="bg-neutral-200 mt-3 rounded-lg w-full h-12 flex flex-row justify-center ">
+                <div className=" basis-3/12"></div>
+                <div className="basis-52 justify-center items-center flex flex-row">
+                    <Image 
+                    src="/Google.png"
+                    width={48}
+                    height={48}
+                    alt="kakao"
+                    className="basis-13 h-12"/>
+                    <div className= "basis-32 text-left h-full">구글로 시작하기</div>
+                </div>
+                <div className="basis-3/12"></div>
+
             </button>
         </div>
     )
