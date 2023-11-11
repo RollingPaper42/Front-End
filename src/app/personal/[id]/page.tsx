@@ -5,7 +5,7 @@ import ObserveComponent from '@/component/ObserveComponent';
 import { axiosInstance } from '@/utils/axios';
 import Link from 'next/link';
 
-export default function Home(props: any) {
+export default function Home() {
   const [title, setTitle] = useState<string>('');
   const [data, setData] = useState<any>([]);
   const [idx, setIdx] = useState<number>(0);
@@ -13,7 +13,6 @@ export default function Home(props: any) {
     axiosInstance
       .get(`/api/text`)
       .then((data) => {
-        //console.log(data.data.titleData);
         setTitle(data.data.titleData.strcatTitle);
         setData(data.data.data);
       })
@@ -21,11 +20,14 @@ export default function Home(props: any) {
   }, []);
 
   return (
-    <div className="bg-lime-300">
-      <div className="p-5">
-        <span className="black text-6xl ">{title}</span>
+    <div className=" bg-lime-300 p-[24px]">
+      <div>
+        <h1 className="black text-6xl ">{title}</h1>
       </div>
-      <div className="px-[24px] py-[50%]">
+      <button className=" fixed bottom-5  w-full  bg-[#007afe]">
+        <Link href={`../strcat/add`}>글 작성</Link>
+      </button>
+      <div className="py-[50%]">
         {data.map((item: any) => {
           return (
             <ObserveComponent
@@ -38,12 +40,6 @@ export default function Home(props: any) {
           );
         })}
       </div>
-      <button className=" bg-white p-6">
-        <Link href={`../strcat/add`}>공유하기</Link>
-      </button>
-      <button className=" bg-white p-6">
-        <Link href={`../strcat/export`}>내보내기</Link>
-      </button>
     </div>
   );
 }

@@ -9,15 +9,13 @@ export default function ObserveComponent({
 }: {
   content: any;
   idx: number;
-  setIdx: any;
+  setIdx: Dispatch<SetStateAction<number>>;
   id: number;
 }) {
   const ref = useRef<HTMLHeadingElement | null>(null);
-  const [visible, setVisible] = useState(false);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        //console.log(entries);
         entries.forEach(({ target, isIntersecting }) => {
           if (target === ref.current && isIntersecting) {
             setIdx(() => id);
