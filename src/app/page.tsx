@@ -20,7 +20,12 @@ export default function Home() {
     <div className=" bg-lime-300">
       <div className=" p-5">
         {text.map((item) => {
-          return <ObserveComponent content={item.content}></ObserveComponent>;
+          return (
+            <ObserveComponent
+              key={item.id}
+              content={item.content}
+            ></ObserveComponent>
+          );
         })}
       </div>
     </div>

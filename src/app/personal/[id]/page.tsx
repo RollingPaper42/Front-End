@@ -8,12 +8,14 @@ import Link from 'next/link';
 export default function Home(props: any) {
   const [title, setTitle] = useState<string>('');
   const [data, setData] = useState<any>([]);
+  const [idx, setIdx] = useState<number>(0);
   useEffect(() => {
     axiosInstance
       .get(`/api/text`)
       .then((data) => {
-        setTitle(data.data.personalData.strcatTitle);
-        setData(data.data.personalData.strcatData);
+        //console.log(data.data.titleData);
+        setTitle(data.data.titleData.strcatTitle);
+        setData(data.data.data);
       })
       .catch((error) => {});
   }, []);
@@ -23,12 +25,15 @@ export default function Home(props: any) {
       <div className="p-5">
         <span className="black text-6xl ">{title}</span>
       </div>
-      <div className=" p-5 py-[50%]">
+      <div className="px-[24px] py-[50%]">
         {data.map((item: any) => {
           return (
             <ObserveComponent
               key={item.id}
+              id={item.id}
               content={item.content}
+              idx={idx}
+              setIdx={setIdx}
             ></ObserveComponent>
           );
         })}
