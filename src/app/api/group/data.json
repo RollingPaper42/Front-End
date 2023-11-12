@@ -15,52 +15,50 @@
       }
     ]
   },
-  "contentData": {
-    "boards": [
-      {
-        "id": 1,
-        "title": "소중한 인연",
-        "backgroundColor": "#87CEEB",
-        "content": [
-          {
-            "id": 1,
-            "text": "안녕하세요! 어떻게 지내세요?",
-            "nickname": "친구1",
-            "photo": "https://example.com/photo1.jpg"
-          },
-          {
-            "id": 2,
-            "text": "오랜만에 연락해서 기뻐요.",
-            "nickname": "친구2",
-            "photo": "https://example.com/photo2.jpg"
-          },
-          {
-            "id": 3,
-            "text": "요즘에는 어떤 일이 있었나요?",
-            "nickname": "친구3",
-            "photo": "https://example.com/photo3.jpg"
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "title": "감사의 마음",
-        "backgroundColor": "#90EE90",
-        "content": [
-          {
-            "id": 4,
-            "text": "저는 최근에 새로운 취미를 찾아냈어요.",
-            "nickname": "친구4",
-            "photo": "https://example.com/photo4.jpg"
-          },
-          {
-            "id": 5,
-            "text": "그리고 좋은 소식이 있어서 공유하고 싶어졌어요.",
-            "nickname": "친구5",
-            "photo": "https://example.com/photo5.jpg"
-          }
-        ]
-      }
-    ]
-  }
+  "contentData": [
+    {
+      "id": 1,
+      "title": "소중한 인연",
+      "backgroundColor": "#87CEEB",
+      "content": [
+        {
+          "id": 1,
+          "text": "안녕하세요! 어떻게 지내세요? 오랜만에 편지를 쓰게 되어 기뻐요. 요즘 저는 새로운 취미를 찾아냈어요. 그림 그리기인데, 정말 재미있어서 시간 가는 줄 몰라요. 당신은 최근에 어떤 새로운 일이 있었나요? 소식 들려주세요!",
+          "nickname": "친구1",
+          "photo": "https://example.com/photo1.jpg"
+        },
+        {
+          "id": 2,
+          "text": "친애하는 친구, 오늘은 특별한 날이라서 편지를 써봅니다. 지난 주에는 새로운 도시를 여행했어요. 다양한 문화와 음식을 즐길 수 있어 너무 즐거웠어요. 당신도 함께하면 더 좋았을 텐데, 다음에는 함께 여행하자고 생각 중이에요!",
+          "nickname": "친구2",
+          "photo": "https://example.com/photo2.jpg"
+        },
+        {
+          "id": 3,
+          "text": "안녕하세요! 최근에 읽은 책을 추천하려고 편지를 씁니다. 작은 아씨들이라는 소설인데, 매우 감동적이에요. 주인공들의 용기와 열정에 감동받아 책을 다 읽는 데 한 번도 지루함을 느끼지 않았어요. 읽어보시면 어떨까요?",
+          "nickname": "친구3",
+          "photo": "https://example.com/photo3.jpg"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "감사의 마음",
+      "backgroundColor": "#90EE90",
+      "content": [
+        {
+          "id": 4,
+          "text": "친애하는 친구, 오랜만에 소식을 전해봅니다. 요즘은 날씨가 좋아서 야외 활동이 즐겁고, 새로운 친구들과의 만남도 있어 기분이 좋아졌어요. 너도 주변에서 좋은 일이 있었으면 좋겠어. 함께 나눌 수 있는 소중한 순간들이 많아지길 바래!",
+          "nickname": "친구4",
+          "photo": "https://example.com/photo4.jpg"
+        },
+        {
+          "id": 5,
+          "text": "안녕하세요! 이번 달은 바쁜 달이었어요. 업무가 많아져서 힘들기도 했지만, 동시에 새로운 도전을 할 기회가 있어서 기대가 돼요. 당신은 어떤 도전을 하고 있나요? 서로의 이야기를 공유하면 더 격려받을 것 같아서 이렇게 편지를 씁니다.",
+          "nickname": "친구5",
+          "photo": "https://example.com/photo5.jpg"
+        }
+      ]
+    }
+  ]
 }
