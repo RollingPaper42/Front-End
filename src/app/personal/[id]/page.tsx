@@ -20,14 +20,16 @@ export default function Home() {
   }, []);
 
   return (
-    <div className=" bg-lime-300 p-[24px]">
+    <div className=" w-full p-[24px]">
       <div>
         <h1 className="black text-6xl ">{title}</h1>
       </div>
-      <button className=" fixed bottom-5  w-full  bg-[#007afe]">
-        <Link href={`../strcat/add`}>글 작성</Link>
-      </button>
-      <div className="py-[50%]">
+      <div className="fixed bottom-5 left-[50%]  mx-0  w-full max-w-[calc(100vh*0.6)] -translate-x-[50%] p-[24px] ">
+        <button className=" z-50 h-[48px] w-full bg-[#007afe]   text-[18px]  font-semibold text-white  opacity-100">
+          <Link href={`../strcat/add`}>글 작성</Link>
+        </button>
+      </div>
+      <div className="z-0 py-[50%]">
         {data.map((item: any) => {
           return (
             <ObserveComponent
