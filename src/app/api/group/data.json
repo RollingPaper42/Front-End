@@ -1,0 +1,66 @@
+{
+  "titleData": {
+    "title": "친애하는 친구에게",
+    "backgroundColor": "#FFDAB9",
+    "boards": [
+      {
+        "id": 1,
+        "title": "소중한 인연",
+        "backgroundColor": "#87CEEB"
+      },
+      {
+        "id": 2,
+        "title": "감사의 마음",
+        "backgroundColor": "#90EE90"
+      }
+    ]
+  },
+  "contentData": {
+    "boards": [
+      {
+        "id": 1,
+        "title": "소중한 인연",
+        "backgroundColor": "#87CEEB",
+        "content": [
+          {
+            "id": 1,
+            "text": "안녕하세요! 어떻게 지내세요?",
+            "nickname": "친구1",
+            "photo": "https://example.com/photo1.jpg"
+          },
+          {
+            "id": 2,
+            "text": "오랜만에 연락해서 기뻐요.",
+            "nickname": "친구2",
+            "photo": "https://example.com/photo2.jpg"
+          },
+          {
+            "id": 3,
+            "text": "요즘에는 어떤 일이 있었나요?",
+            "nickname": "친구3",
+            "photo": "https://example.com/photo3.jpg"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "감사의 마음",
+        "backgroundColor": "#90EE90",
+        "content": [
+          {
+            "id": 4,
+            "text": "저는 최근에 새로운 취미를 찾아냈어요.",
+            "nickname": "친구4",
+            "photo": "https://example.com/photo4.jpg"
+          },
+          {
+            "id": 5,
+            "text": "그리고 좋은 소식이 있어서 공유하고 싶어졌어요.",
+            "nickname": "친구5",
+            "photo": "https://example.com/photo5.jpg"
+          }
+        ]
+      }
+    ]
+  }
+}
