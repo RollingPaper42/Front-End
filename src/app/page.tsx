@@ -1,6 +1,7 @@
 'use client';
 
 import Link from "next/link";
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -16,7 +17,15 @@ export default function Home() {
             </div>
         <div className="text-xl mt-5 font-FiraCode">스트링캣은 문자열을 끝없이 늘려 스크롤을 만들 수 있는 신개념 롤링페이퍼 서비스 입니다.</div>
         <div className="text-xl font-FiraCode">소중한 사람에게 스트링캣을 남겨보세요!</div>
-        <div className="h-60"></div>
+        <div className="h-60 flex flex-row justify-center items-center relative z-10">
+                <Image
+                    src="/strcatImage.png"
+                    width={170}
+                    height={100}
+                    alt="strcatImage"
+                    className='absolute opacity-10'
+                    />
+        </div>
         <div className="text-2xl text-slate-400">
           <Link legacyBehavior href="/create">
             <a className="m-1 bg-indigo-400 text-slate-900	">스트링캣 만들기</a>

@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export default function login(){
     return (
-        <div className="m-6">
+        <div className="m-6 relative">
             <div className="text-4xl mt-3 font-FiraCode font-semibold">strcat(*,*)</div>
             <div className="text-3xl mt-2 w-80 flex flex-row">
                 <div className="basis-2/12 font-FiraCode font-semibold">
@@ -17,7 +17,15 @@ export default function login(){
                      로그인
                 </div>
             </div>
-            <div className="h-96 my-20"></div>
+            <div className="h-96 my-20 flex flex-row justify-center items-center relative z-10">
+                <Image
+                    src="/strcatImage.png"
+                    width={170}
+                    height={100}
+                    alt="strcatImage"
+                    className='absolute opacity-10'
+                    />
+            </div>
             <button className= "bg-yellow-300 mt-3 rounded-lg w-full h-12 flex flex-row justify-center ">
                 <div className=" basis-3/12"></div>
                 <div className="basis-52 justify-center items-center flex flex-row">
@@ -35,7 +43,7 @@ export default function login(){
                 <div className=" basis-3/12"></div>
                 <div className="basis-52 justify-center items-center flex flex-row">
                     <Image 
-                    src="/Google.png"
+                    src="/google.png"
                     width={48}
                     height={48}
                     alt="kakao"
