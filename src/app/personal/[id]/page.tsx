@@ -1,13 +1,14 @@
 'use client';
 
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ObserveComponent from '@/component/ObserveComponent';
 import { axiosInstance } from '@/utils/axios';
 import Link from 'next/link';
+import { content } from '@/types/content';
 
 export default function Home() {
   const [title, setTitle] = useState<string>('');
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<content>([]);
   const [idx, setIdx] = useState<number>(0);
   useEffect(() => {
     axiosInstance
@@ -30,7 +31,7 @@ export default function Home() {
         </button>
       </div>
       <div className="z-0 py-[50%]">
-        {data.map((item: any) => {
+        {data.map((item: content) => {
           return (
             <ObserveComponent
               key={item.id}

@@ -1,17 +1,19 @@
 import { Span } from 'next/dist/trace';
 import { useEffect, useRef, useState } from 'react';
 
+interface ObserveProps {
+  content: string;
+  idx: number;
+  setIdx: Dispatch<SetStateAction<number>>;
+  id: number;
+}
+
 export default function ObserveComponent({
   content,
   idx,
   setIdx,
   id,
-}: {
-  content: any;
-  idx: number;
-  setIdx: Dispatch<SetStateAction<number>>;
-  id: number;
-}) {
+}: ObserveProps) {
   const ref = useRef<HTMLHeadingElement | null>(null);
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -30,7 +32,6 @@ export default function ObserveComponent({
     if (ref.current) {
       observer.observe(ref.current);
     }
-    console.log(observer.takeRecords);
     return () => {
       observer.disconnect();
     };
