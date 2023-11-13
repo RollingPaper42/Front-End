@@ -1,6 +1,7 @@
 'use client';
 
 import { modalState } from '@/recoil/modal';
+import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
 export default function Modal() {
@@ -14,6 +15,17 @@ export default function Modal() {
   const onClickClose = () => {
     setModal(null);
   };
+
+  useEffect(() => {
+    const modalClose = () => {
+      setModal(null);
+    };
+    window.addEventListener('popstate', modalClose);
+    return () => {
+      window.removeEventListener('popstate', modalClose);
+    };
+  }, []);
+
   return (
     modal && (
       <div
