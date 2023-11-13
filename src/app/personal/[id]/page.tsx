@@ -5,11 +5,11 @@ import ObserveComponent from '@/component/ObserveComponent';
 import { axiosInstance } from '@/utils/axios';
 import Link from 'next/link';
 import { content } from '@/types/content';
+import StrcatComponent from '@/component/StrcatComponent';
 
 export default function Home() {
   const [title, setTitle] = useState<string>('');
   const [data, setData] = useState<content>([]);
-  const [idx, setIdx] = useState<number>(0);
   useEffect(() => {
     axiosInstance
       .get(`/api/text`)
@@ -22,26 +22,11 @@ export default function Home() {
 
   return (
     <div className=" w-full p-[24px]">
-      <div>
-        <h1 className="black text-6xl ">{title}</h1>
-      </div>
+      <StrcatComponent title={title} data={data}></StrcatComponent>
       <div className="fixed bottom-5 left-[50%]  mx-0  w-full max-w-[calc(100vh*0.6)] -translate-x-[50%] p-[24px] ">
         <button className=" z-50 h-[48px] w-full bg-[#007afe]   text-[18px]  font-semibold text-white  opacity-100">
           <Link href={`../strcat/add`}>글 작성</Link>
         </button>
-      </div>
-      <div className="z-0 py-[50%]">
-        {data.map((item: content) => {
-          return (
-            <ObserveComponent
-              key={item.id}
-              id={item.id}
-              content={item.content}
-              idx={idx}
-              setIdx={setIdx}
-            ></ObserveComponent>
-          );
-        })}
       </div>
     </div>
   );

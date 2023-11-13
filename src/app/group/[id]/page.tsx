@@ -5,12 +5,12 @@ import ObserveComponent from '@/component/ObserveComponent';
 import { axiosInstance } from '@/utils/axios';
 import Link from 'next/link';
 import { content } from '@/types/content';
+import StrcatComponent from '@/component/StrcatComponent';
 
 export default function Home() {
   const [titleData, setTitleData] = useState({});
   const [boardsTitle, setBoardsTitle] = useState([]);
   const [boardsConetent, setBoardsContent] = useState([]);
-  const [idx, setIdx] = useState(0);
   const ref = useRef();
   useEffect(() => {
     axiosInstance
@@ -42,22 +42,27 @@ export default function Home() {
       <div>
         {boardsConetent.map((boards) => {
           return (
-            <div key={boards.id}>
-              <p>{boards.title}</p>
-              <div className="z-0 py-[10%]">
-                {boards.content.map((item: content) => {
-                  return (
-                    <ObserveComponent
-                      key={item.id}
-                      id={item.id}
-                      content={item.text}
-                      idx={idx}
-                      setIdx={setIdx}
-                    ></ObserveComponent>
-                  );
-                })}
-              </div>
-            </div>
+            <StrcatComponent
+              key={boards.id}
+              title={boards.title}
+              data={boards.content}
+            ></StrcatComponent>
+            // <div key={boards.id}>
+            //   <p>{boards.title}</p>
+            //   <div className="z-0 py-[10%]">
+            //     {boards.content.map((item: content) => {
+            //       return (
+            //         <ObserveComponent
+            //           key={item.id}
+            //           id={item.id}
+            //           content={item.text}
+            //           idx={idx}
+            //           setIdx={setIdx}
+            //         ></ObserveComponent>
+            //       );
+            //     })}
+            //   </div>
+            // </div>
           );
         })}
       </div>
