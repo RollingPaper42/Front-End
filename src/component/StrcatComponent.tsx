@@ -21,7 +21,7 @@ export default function StrcatComponent({
             <ObserveComponent
               key={item.id}
               id={item.id}
-              content={item.content}
+              content={item.text}
               idx={idx}
               setIdx={setIdx}
             ></ObserveComponent>
