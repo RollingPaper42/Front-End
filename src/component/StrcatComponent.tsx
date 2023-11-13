@@ -7,7 +7,7 @@ export default function StrcatComponent({
   data,
 }: {
   title: string;
-  data: content;
+  data: content[];
 }) {
   const [idx, setIdx] = useState(0);
   return (
