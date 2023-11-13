@@ -13,9 +13,9 @@ export default function StrcatComponent({
   return (
     <div>
       <div>
-        <h1 className="black text-6xl ">{title}</h1>
+        <h1 className="black text-[28px] ">{title}</h1>
       </div>
-      <div className="z-0 py-[50%]">
+      <div className="z-0 pb-[70%] pt-[60%] text-justify ">
         {data.map((item: content) => {
           return (
             <ObserveComponent
