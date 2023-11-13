@@ -1,14 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { axiosInstance } from '@/utils/axios';
 import StrcatComponent from '@/component/StrcatComponent';
-import { content } from '@/types/content';
+import { board } from '@/types/boards';
 
 export default function Home() {
-  const [titleData, setTitleData] = useState({});
-  const [boardsTitle, setBoardsTitle] = useState([]);
-  const [boardsConetent, setBoardsContent] = useState([]);
+  const [title, setTitle] = useState<string | null>();
+  const [boardsTitle, setBoardsTitle] = useState<board[]>([]);
+  const [boardsConetent, setBoardsContent] = useState<board[]>([]);
   // const onHandleClick = (
   //   elementRef: MutableRefObject<HTMLDivElement | null>,
   // ) => {
@@ -25,7 +25,7 @@ export default function Home() {
     axiosInstance
       .get(`/api/group`)
       .then((data) => {
-        setTitleData(data.data.titleData);
+        setTitle(data.data.titleData.title);
         setBoardsTitle(data.data.titleData.boards);
         setBoardsContent(data.data.contentData);
       })
@@ -34,10 +34,10 @@ export default function Home() {
   return (
     <div className=" w-full p-[24px]">
       <div className="mb-[20px]">
-        <h1 className="black text-4xl ">{titleData.title}</h1>
+        <h1 className="black text-4xl ">{title}</h1>
       </div>
       <div>
-        {boardsTitle.map((item: { id: number; title: string }) => {
+        {boardsTitle.map((item: board) => {
           return (
             <div key={item.id} className="my-[32px]">
               <p className=" cursor-pointer text-xl">{item.title}</p>
