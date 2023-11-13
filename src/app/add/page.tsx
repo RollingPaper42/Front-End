@@ -48,12 +48,20 @@ export default function Add() {
     textarea.style.height = 'auto';
     textarea.style.height = `${textarea.scrollHeight}px`;
   };
+  const onKeyDownMessage = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.currentTarget.value.length >= 1000) {
+      alert('최대 1000자까지 입력 가능합니다.');
+      e.preventDefault();
+      e.currentTarget.value = e.currentTarget.value.slice(0, 1000);
+    }
+  };
   return (
     <>
       <div id="title" className="content-center justify-center text-center">
         스트링캣을 이어서 작성
       </div>
             onChange={(e) => onChangeResize(e)}
+            onKeyDown={(e) => onKeyDownMessage(e)}
     </>
   );
 }
