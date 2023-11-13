@@ -42,58 +42,18 @@ export default function Add() {
     }
   };
 
+  const onChangeResize = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    handleText(e);
+    const textarea: HTMLTextAreaElement = e.target;
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  };
   return (
     <>
       <div id="title" className="content-center justify-center text-center">
         스트링캣을 이어서 작성
       </div>
-      <textarea
-        id="message"
-        value={text}
-        className=" m-1 h-fit w-96 rounded-lg bg-slate-200 p-2 text-lg outline-none"
-        placeholder="내용을 입력해주세요"
-        maxLength={1000}
-        rows={5}
-        onChange={handleText}
-        onKeyDown={(e) => {
-          if (e.currentTarget.value.length >= 1000) {
-            alert('최대 1000자까지 입력 가능합니다.');
-            e.preventDefault();
-            e.currentTarget.value = e.currentTarget.value.slice(0, 1000);
-          }
-        }}
-      />
-      <form>
-        <label
-          className="photo-label text-md mx-3 my-1 inline-block cursor-pointer"
-          htmlFor="photoImg"
-        >
-          사진 선택
-        </label>
-        <input
-          className="photo-input hidden"
-          type="file"
-          accept="image/*"
-          id="photoImg"
-        />
-      </form>
-      <input
-        type="text"
-        id="writer"
-        value={writer}
-        className="m-1 h-10 w-40 rounded-md bg-slate-200 px-2 outline-none"
-        placeholder="익명"
-        // maxLength={8}
-        onChange={handleWriter}
-      />
-      <button
-        type="button"
-        id="done"
-        className="h-10 w-40 rounded-md bg-slate-200 "
-        onClick={handleConfirm}
-      >
-        작성 완료
-      </button>
+            onChange={(e) => onChangeResize(e)}
     </>
   );
 }
