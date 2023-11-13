@@ -1,5 +1,4 @@
-import { Span } from 'next/dist/trace';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, Dispatch, SetStateAction } from 'react';
 
 interface ObserveProps {
   content: string;
@@ -35,7 +34,7 @@ export default function ObserveComponent({
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [id, setIdx]);
 
   return (
     <span
