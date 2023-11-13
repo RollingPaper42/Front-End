@@ -10,18 +10,20 @@ export default function Add() {
   const [text, , handleText] = useInput('');
   const [photo, setPhoto] = useInput(''); // 아직 어떤식으로 넘겨줄지 미정
   const [writer, , handleWriter] = useInput('');
+  // const [modal, setModal] = useRecoilState(modalState);
 
   if (id === null || id === undefined) {
     alert('유효하지 않은 접속입니다.');
-    // redirect 해야함 -> 어디로?
+    // redirect 해야함 -> main으로?
   }
-  const handleConfirm = () => {
+
+  const onClickConfirm = () => {
     if (text === '') {
       alert('이어 쓸 스트링을 입력해주세요');
     } else if (writer === '') {
       alert('작성자명을 입력해주세요');
     }
-    //const { isConfirmed } = await useConfirm('작성한 글을 이어붙이시겠습니까?');
+    //const isConfirmed = await useConfirm('작성한 글을 이어붙이시겠습니까?', setModal);
     const isConfirmed = true;
     if (isConfirmed) {
       const data = {
@@ -57,11 +59,57 @@ export default function Add() {
   };
   return (
     <>
-      <div id="title" className="content-center justify-center text-center">
-        스트링캣을 이어서 작성
+      <div id="title" className="pl-2">
+        strcat(*,*)
       </div>
+      <div className="mt-10 flex flex-col items-center justify-center">
+        <div className="w-80">
+          <textarea
+            id="message"
+            value={text}
+            rows={1}
+            className="max-h-96 w-full resize-none bg-[#FAFAFA] text-xl font-semibold outline-none placeholder:text-[#CACACA]"
+            placeholder="내용을 입력해주세요"
+            maxLength={1000}
             onChange={(e) => onChangeResize(e)}
             onKeyDown={(e) => onKeyDownMessage(e)}
+          />
+          <div className="text-right">{text.length}/1000</div>
+        </div>
+        <div className="mt-2 flex w-80 justify-end">
+          <input
+            type="text"
+            id="writer"
+            value={writer}
+            className="h-8 w-20 bg-[#FAFAFA] px-2 text-center outline-none placeholder:text-[#CACACA]"
+            placeholder="익명"
+            // maxLength={8}
+            onChange={handleWriter}
+          />
+        </div>
+        <form>
+          <label
+            className="photo-label text-md mx-3 my-1 inline-block cursor-pointer"
+            htmlFor="photoImg"
+          >
+            사진 선택
+          </label>
+          <input
+            className="photo-input hidden"
+            type="file"
+            accept="image/*"
+            id="photoImg"
+          />
+        </form>
+        <button
+          type="button"
+          id="done"
+          className="fixed bottom-8 h-12 w-80 bg-[#CCCCCC] text-xl text-white"
+          onClick={onClickConfirm}
+        >
+          완료
+        </button>
+      </div>
     </>
   );
 }
