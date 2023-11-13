@@ -17,7 +17,7 @@ export default function Add() {
     // redirect 해야함 -> main으로?
   }
 
-  const onClickConfirm = () => {
+  const handleClick = () => {
     if (text === '') {
       alert('이어 쓸 스트링을 입력해주세요');
     } else if (writer === '') {
@@ -44,19 +44,21 @@ export default function Add() {
     }
   };
 
-  const onChangeResize = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChangeResize = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     handleText(e);
     const textarea: HTMLTextAreaElement = e.target;
     textarea.style.height = 'auto';
     textarea.style.height = `${textarea.scrollHeight}px`;
   };
-  const onKeyDownMessage = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.currentTarget.value.length >= 1000) {
       alert('최대 1000자까지 입력 가능합니다.');
       e.preventDefault();
       e.currentTarget.value = e.currentTarget.value.slice(0, 1000);
     }
   };
+
   return (
     <>
       <div id="title" className="pl-2">
@@ -71,8 +73,8 @@ export default function Add() {
             className="max-h-96 w-full resize-none bg-[#FAFAFA] text-xl font-semibold outline-none placeholder:text-[#CACACA]"
             placeholder="내용을 입력해주세요"
             maxLength={1000}
-            onChange={(e) => onChangeResize(e)}
-            onKeyDown={(e) => onKeyDownMessage(e)}
+            onChange={(e) => handleChangeResize(e)}
+            onKeyDown={(e) => handleKeyDown(e)}
           />
           <div className="text-right">{text.length}/1000</div>
         </div>
@@ -105,7 +107,7 @@ export default function Add() {
           type="button"
           id="done"
           className="fixed bottom-8 h-12 w-80 bg-[#CCCCCC] text-xl text-white"
-          onClick={onClickConfirm}
+          onClick={handleClick}
         >
           완료
         </button>
