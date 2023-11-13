@@ -5,8 +5,8 @@ import { useConfirm } from '@/hooks/useConfirm';
 import { modalState } from '@/recoil/modal';
 import { useRecoilState } from 'recoil';
 
-export default function Test() {
-  const [modal, setModal] = useRecoilState(modalState);
+export default function Modal() {
+  const [, setModal] = useRecoilState(modalState);
 
   const onClickModal = () => {
     setModal({ modalComponent: <Error content="에러 메시지 글" /> });
