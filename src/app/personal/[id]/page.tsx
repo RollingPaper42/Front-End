@@ -12,10 +12,11 @@ export default function Home() {
   const [data, setData] = useState<content>([]);
   useEffect(() => {
     axiosInstance
-      .get(`/api/text`)
+      .get(`/api/personal`)
       .then((data) => {
-        setTitle(data.data.titleData.strcatTitle);
-        setData(data.data.data);
+        console.log(data);
+        setTitle(data.data.board.title);
+        setData(data.data.board.content);
       })
       .catch((error) => {});
   }, []);
