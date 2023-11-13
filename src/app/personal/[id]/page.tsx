@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import ObserveComponent from '@/component/ObserveComponent';
 import { axiosInstance } from '@/utils/axios';
 import Link from 'next/link';
 import { content } from '@/types/content';
@@ -14,7 +13,6 @@ export default function Home() {
     axiosInstance
       .get(`/api/personal`)
       .then((data) => {
-        console.log(data);
         setTitle(data.data.board.title);
         setData(data.data.board.content);
       })
