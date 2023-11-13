@@ -17,8 +17,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className=" bg-lime-300">
-      <div className=" p-5">
+    <div className="bg-lime-300">
+      <div className="p-5">
         {text.map((item) => {
           return (
             <ObserveComponent
