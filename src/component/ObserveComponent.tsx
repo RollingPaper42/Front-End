@@ -42,8 +42,8 @@ export default function ObserveComponent({
       className={`
         ${
           idx === id
-            ? 'font-s w-full text-3xl opacity-100 duration-500'
-            : 'w-full text-3xl  opacity-10 transition-all duration-500'
+            ? 'font-s w-full text-3xl text-[20px] opacity-100 duration-500'
+            : 'w-full text-3xl text-[20px]  opacity-10 transition-all duration-500'
         }
       `}
     >
