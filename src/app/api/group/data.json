@@ -5,12 +5,12 @@
     "boards": [
       {
         "id": 1,
-        "title": "소중한 인연",
+        "title": "소중한 인연을 지켜줘",
         "backgroundColor": "#87CEEB"
       },
       {
         "id": 2,
-        "title": "감사의 마음",
+        "title": "감사의 마음을 전해줘",
         "backgroundColor": "#90EE90"
       }
     ]
