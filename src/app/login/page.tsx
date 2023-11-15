@@ -10,7 +10,7 @@ export default function login(){
                 <StrcatHeader/>
                 <div className="text-3xl mt-2 w-80 flex flex-row">
                     <div className="basis-2/12">
-                        //
+                        {`//`}
                     </div>
                     <div className="basis-5/12">
                         스트링캣
