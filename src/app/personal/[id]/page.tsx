@@ -5,6 +5,7 @@ import { axiosInstance } from '@/utils/axios';
 import Link from 'next/link';
 import { content } from '@/types/content';
 import StrcatComponent from '@/component/StrcatComponent';
+import Add from '@/app/add/Add';
 
 export default function Home() {
   const [title, setTitle] = useState<string>('');
@@ -27,6 +28,7 @@ export default function Home() {
           <Link href={`../strcat/add`}>글 작성</Link>
         </button>
       </div>
+      <Add id="1" />
     </div>
   );
 }

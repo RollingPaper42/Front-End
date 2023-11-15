@@ -1,19 +1,19 @@
 'use client';
 import useInput from '@/hooks/useInput';
 import { axiosInstance } from '@/utils/axios';
-import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+// import { useRecoilState } from 'recoil';
 
-export default function Add() {
-  const searchParams = useSearchParams();
-  const id = searchParams.get('id');
-
+export default function Add({ id }: { id: string }) {
   const [text, , handleText] = useInput('');
   const [photo, setPhoto] = useInput(''); // 아직 어떤식으로 넘겨줄지 미정
   const [writer, , handleWriter] = useInput('');
+  const router = useRouter();
   // const [modal, setModal] = useRecoilState(modalState);
 
   if (id === null || id === undefined) {
     alert('유효하지 않은 접속입니다.');
+    router.push('/');
     // redirect 해야함 -> main으로?
   }
 
