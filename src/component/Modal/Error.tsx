@@ -4,12 +4,12 @@ interface Props {
 
 export default function Error({ content }: Props) {
   return (
-    <div className="flex h-[100%] w-[100%] flex-col bg-green-700">
+    <div className="flex h-full w-full flex-col bg-green-700">
       <div className="flex h-[70%] items-center justify-center p-10 text-center text-2xl">
         {content}
       </div>
       <div className="flex h-[30%] justify-center">
-        <button className="h-[80%] w-[90%] bg-amber-200 text-3xl">
+        <button className="h-[80%] basis-4/5 bg-amber-200 text-3xl">
           돌아가기
         </button>
       </div>
