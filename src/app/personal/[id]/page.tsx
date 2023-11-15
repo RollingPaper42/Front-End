@@ -8,7 +8,7 @@ import StrcatComponent from '@/component/StrcatComponent';
 
 export default function Home() {
   const [title, setTitle] = useState<string>('');
-  const [data, setData] = useState<content[]>([]);
+  const [data, setData] = useState<content[] | undefined>(undefined);
   useEffect(() => {
     axiosInstance
       .get(`/api/personal`)
