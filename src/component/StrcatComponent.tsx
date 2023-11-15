@@ -2,23 +2,21 @@ import { content } from '@/types/content';
 import ObserveComponent from './ObserveComponent';
 import { forwardRef, useState } from 'react';
 
-const StrcatComponent = forwardRef(function StrcatComponent(
+const StrcatComponent = forwardRef<
+  HTMLDivElement,
   {
-    title,
-    data,
-  }: {
     title: string;
     data: content[];
-  },
-  ref,
-) {
+  }
+>(function StrcatComponent({ title, data }, ref) {
   const [idx, setIdx] = useState(0);
+
   return (
     <div>
       <div ref={ref}>
         <h1 className="black text-[28px] ">{title}</h1>
       </div>
-      <div className="z-0 pb-[70%] pt-[60%] text-justify">
+      <div className="z-0 pb-[70%] pt-[80%] text-justify">
         {data.map((item: content) => {
           return (
             <ObserveComponent
