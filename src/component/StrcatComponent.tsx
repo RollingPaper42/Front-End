@@ -25,16 +25,14 @@ const StrcatComponent = forwardRef<
         <h1 className="black text-[28px] ">{title}</h1>
       </div>
       <div className="z-0 pb-[70%] pt-[80%] text-justify">
-        {data.map((item: content) => {
+        {data.map((content: content) => {
           return (
             <ObserveComponent
-              key={item.id}
-              id={item.id}
-              content={item.text}
+              key={content.id}
               idx={idx}
               setIdx={setIdx}
-              photo={item.photo}
               setImg={setImg}
+              content={content}
             ></ObserveComponent>
           );
         })}

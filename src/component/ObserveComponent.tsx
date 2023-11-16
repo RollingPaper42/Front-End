@@ -1,11 +1,10 @@
+import { content } from '@/types/content';
 import { useEffect, useRef, Dispatch, SetStateAction } from 'react';
 
 interface ObserveProps {
-  content: string;
+  content: content;
   idx: number;
   setIdx: Dispatch<SetStateAction<number>>;
-  id: number;
-  photo: string;
   setImg: any;
 }
 
@@ -13,18 +12,17 @@ export default function ObserveComponent({
   content,
   idx,
   setIdx,
-  id,
-  photo,
   setImg,
 }: ObserveProps) {
   const ref = useRef<HTMLHeadingElement | null>(null);
   useEffect(() => {
+    console.log(content);
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(({ target, isIntersecting }) => {
           if (target === ref.current && isIntersecting) {
-            setIdx(() => id);
-            setImg(() => photo);
+            setIdx(() => content.id);
+            setImg(() => content.photo);
           }
         });
       },
@@ -39,20 +37,20 @@ export default function ObserveComponent({
     return () => {
       observer.disconnect();
     };
-  }, [id, setIdx]);
+  }, [content, setIdx, setImg]);
 
   return (
     <span
       ref={ref}
       className={`
         ${
-          idx === id
+          idx === content.id
             ? ' w-full text-[20px] opacity-100 duration-500'
             : 'w-full  text-[20px] opacity-10 transition-all duration-500'
         }
       `}
     >
-      {content}
+      {content.text}
     </span>
   );
 }
