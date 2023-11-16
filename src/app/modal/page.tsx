@@ -1,20 +1,19 @@
 'use client';
 
 import Error from '@/component/Modal/Error';
+import useModal from '@/hooks/useModal';
 import { modalState } from '@/recoil/modal';
 import { confirm } from '@/utils/confirm';
 import { useRecoilState } from 'recoil';
 
 export default function Modal() {
-  const [, setModal] = useRecoilState(modalState);
-
+  const [setModal, closeModal] = useModal(<Error content="에러 메시지 글" />);
   const handleModal = () => {
-    setModal({ modalComponent: <Error content="에러 메시지 글" /> });
+    setModal();
   };
 
   const handleConfirm = async () => {
     const result = await confirm('컨펌 메시지 글', setModal);
-    // console.log(result);
   };
 
   return (
@@ -24,6 +23,111 @@ export default function Modal() {
       </div>
       <div>
         <button onClick={handleConfirm}>Confirm Click</button>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
+        <div>hi</div>
       </div>
     </div>
   );
