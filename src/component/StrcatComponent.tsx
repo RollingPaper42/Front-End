@@ -14,7 +14,7 @@ const StrcatComponent = forwardRef<
   }
 >(function StrcatComponent({ title, data }, ref) {
   const [idx, setIdx] = useState(0);
-  const [, setModal] = useRecoilState(modalState);
+  const [modal, setModal] = useRecoilState(modalState);
   const [img, setImg] = useState('');
 
   if (!data) return null;
@@ -38,7 +38,7 @@ const StrcatComponent = forwardRef<
         })}
       </div>
       <div className="fixed top-[100px] h-24 w-24">
-        {img.length !== 0 && (
+        {img.length !== 0 && !modal && (
           <Image
             src={img}
             alt="사진"
