@@ -10,7 +10,7 @@ export default function login(){
                 <StrcatHeader/>
                 <div className="text-3xl mt-2 w-80 flex flex-row">
                     <div className="basis-2/12">
-                        //
+                        {'//'}
                     </div>
                     <div className="basis-5/12">
                         스트링캣
@@ -20,7 +20,7 @@ export default function login(){
                     </div>
                 </div>
             </div>
-            <div className="h-96 my-20 flex flex-row justify-center items-center relative z-10">
+            <div className="h-96 my-20 flex flex-row justify-center items-center relative -z-10">
                 {/* <Image
                     src="/strcatImage.png"
                     width={170}

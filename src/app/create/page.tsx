@@ -1,22 +1,35 @@
 'use client';
 
+import Link from "next/link";
 import { useState } from "react";
+import Image from 'next/image'
+
 export default function Create (){
-    const bgcolor = "#ffffff"
+    const bgcolor = "black"
     const [color, SetColor] = useState(bgcolor);
     return (
-        <div className={` ${color} + "m-6 h-full"`}>
-            <div className="mt-5">롤링페이퍼 배경을 선택해주세요.</div>
-            <div className="h-96 my-20"></div>
-            <div className="h-20"></div>
-            <div className="flex flex-row w-full">   
-             <button className="bg-lime-400 mt-20 basis-1/4" onClick={() => SetColor('bg-lime-400')}>1</button>
-                <button className="bg-orange-500 mt-20 basis-1/4" onClick={() => SetColor('bg-orange-500')}>2</button>
-                <button className="bg-amber-300 mt-20 basis-1/4" onClick={() => SetColor('bg-amber-300')}>3</button>
-                <button className="bg-cyan-300 mt-20 basis-1/4" onClick={() => SetColor('bg-cyan-300')}>4</button>
+        <div className={`bg-${color}`}>
+                <div className="flex flex-row w-full h-14 justify-center content-center items-center">
+                    <div className="basis-1/4">
+                        <Link href="/">
+                            <Image
+                                src="/backpage.png"
+                                width={24}
+                                height={24}
+                                alt="backpagebutton"
+                                >
+                            </Image>
+                        </Link>
+                    </div>
+                    <div className="basis-2/4 text-white">스트링캣 만들기</div>
+                    <div className="basis-1/4"></div>
+                </div>
+                <div className="flex flex-row w-full">   
+                    <button className="bg-black mt-20 basis-1/4" onClick={() => SetColor('black')}> 1</button>
+                    <button className="bg-white mt-20 basis-1/4" onClick={() => SetColor('white')}>2 </button>
+                    <button className="bg-green mt-20 basis-1/4" onClick={() => SetColor('green')}> 3</button>
+                 <button className="bg-pink mt-20 basis-1/4" onClick={() => SetColor('pink')}>4 </button>
+                </div>
             </div>
-            <div></div>
-        </div>
-
     )
 }

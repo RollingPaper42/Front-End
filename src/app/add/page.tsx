@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 export default function Add() {
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
+  console.log(searchParams);
 
   const [text, , handleText] = useInput('');
   const [photo, setPhoto] = useInput(''); // 아직 어떤식으로 넘겨줄지 미정

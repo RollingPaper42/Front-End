@@ -8,10 +8,10 @@ export default function Home() {
   return (
     <div className="m-6">
       <div className="font-FiraCode font-semibold">
-        <StrcatHeader/>
+      <StrcatHeader/>
         <div className="text-3xl mt-2 flex flex-row">
           <div className="basis-1/12">
-            //
+            {'//'}
           </div>
           <div className="basis-4/6">
             스트링캣

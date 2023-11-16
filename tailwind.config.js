@@ -9,7 +9,14 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        'white':'#ffffff',
+        'black':'#212121',
+        'green':'#00ffff',
+        'pink' : '#ff00ff',
+      },
+    },
     fontFamily: {
       FiraCode: ["FiraCode"],
     },
