@@ -9,7 +9,7 @@ export default function login() {
       <div className="font-FiraCode font-semibold">
         <StrcatHeader />
         <div className="mt-2 flex w-80 flex-row text-3xl">
-          <div className="basis-2/12">//</div>
+          <div className="basis-2/12">{`//`}</div>
           <div className="basis-5/12">스트링캣</div>
           <div className="basis-3.5/12 bg-red-300">로그인</div>
         </div>

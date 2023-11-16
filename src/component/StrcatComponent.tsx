@@ -15,6 +15,7 @@ const StrcatComponent = forwardRef<
 >(function StrcatComponent({ title, data }, ref) {
   const [idx, setIdx] = useState(0);
   const [, setModal] = useRecoilState(modalState);
+  const [img, setImg] = useState('');
 
   if (!data) return null;
 
@@ -32,19 +33,23 @@ const StrcatComponent = forwardRef<
               content={item.text}
               idx={idx}
               setIdx={setIdx}
+              photo={item.photo}
+              setImg={setImg}
             ></ObserveComponent>
           );
         })}
       </div>
       <div className="fixed top-[100px] h-24 w-24">
-        <Image
-          src={data[idx].photo}
-          alt="사진"
-          fill
-          onClick={() => {
-            setModal({ modalComponent: <Photo photo={data[idx].photo} /> });
-          }}
-        />
+        {img.length !== 0 && (
+          <Image
+            src={img}
+            alt="사진"
+            fill
+            onClick={() => {
+              setModal({ modalComponent: <Photo photo={img} /> });
+            }}
+          />
+        )}
       </div>
     </div>
   );

@@ -5,6 +5,8 @@ interface ObserveProps {
   idx: number;
   setIdx: Dispatch<SetStateAction<number>>;
   id: number;
+  photo: string;
+  setImg: any;
 }
 
 export default function ObserveComponent({
@@ -12,6 +14,8 @@ export default function ObserveComponent({
   idx,
   setIdx,
   id,
+  photo,
+  setImg,
 }: ObserveProps) {
   const ref = useRef<HTMLHeadingElement | null>(null);
   useEffect(() => {
@@ -20,6 +24,7 @@ export default function ObserveComponent({
         entries.forEach(({ target, isIntersecting }) => {
           if (target === ref.current && isIntersecting) {
             setIdx(() => id);
+            setImg(() => photo);
           }
         });
       },
