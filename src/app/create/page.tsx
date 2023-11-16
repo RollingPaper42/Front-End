@@ -2,10 +2,15 @@
 
 import Link from "next/link";
 import { useState } from "react";
+<<<<<<< HEAD
 import Image from 'next/image'
 
 export default function Create (){
     const bgcolor = "black"
+=======
+export default function Create (){
+    const bgcolor = "#ffffff"
+>>>>>>> ede92a944387d74d8ed62872d5fff69fc1526c44
     const [color, SetColor] = useState(bgcolor);
     return (
         <div className={`bg-${color}`}>
