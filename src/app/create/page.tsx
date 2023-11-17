@@ -2,7 +2,7 @@
 
 import StrcatHeader from "@/component/StrcatHeader";
 import { useState } from "react";
-export default function create (){
+export default function Create (){
     const bgcolor = "#ffffff"
     const [color, SetColor] = useState(bgcolor);
     return (
