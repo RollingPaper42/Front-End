@@ -11,10 +11,11 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        'white':'#ffffff',
-        'black':'#212121',
-        'green':'#00ffff',
+        'white' : '#ffffff',
+        'black' : '#212121',
+        'green' : '#00ffff',
         'pink' : '#ff00ff',
+        'buttonColor' : '#8F38FF',
       },
     },
     fontFamily: {
