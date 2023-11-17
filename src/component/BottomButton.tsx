@@ -1,14 +1,16 @@
+interface BottomButtonProps {
+  name: string;
+  width: string;
+  onClickHandler: () => void;
+  disabled: boolean;
+}
+
 export default function BottomButton({
   name,
   width,
   onClickHandler,
   disabled,
-}: {
-  name: string;
-  width: string;
-  onClickHandler: () => void;
-  disabled: boolean;
-}) {
+}: BottomButtonProps) {
   return (
     <button
       disabled={disabled}
