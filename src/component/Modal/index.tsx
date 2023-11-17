@@ -16,7 +16,7 @@ export default function Modal() {
     return () => {
       window.removeEventListener('popstate', handleClose);
     };
-  }, []);
+  });
 
   return (
     modal && (

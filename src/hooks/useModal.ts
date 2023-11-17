@@ -1,21 +1,22 @@
 import { modalState } from '@/recoil/modal';
-import { useRecoilState } from 'recoil';
+import { modalComponent } from '@/types/modalComponent';
+import { SetterOrUpdater, useRecoilState } from 'recoil';
 
-const useModal = (modalComponent: JSX.Element): [() => void, () => void] => {
-  const [, setModalRecoil] = useRecoilState(modalState);
+const useModal = (): [(modalComponent: JSX.Element) => void, () => void] => {
+  const [, setModal] = useRecoilState(modalState);
 
-  const setModal = () => {
-    console.log('hi');
-    setModalRecoil({ modalComponent: modalComponent });
+  const openModal = (modalComponent: JSX.Element) => {
+    if (!modalComponent) return;
+    setModal({ modalComponent: modalComponent });
     document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
-    setModalRecoil(null);
+    setModal(null);
     document.body.style.overflow = 'auto';
   };
 
-  return [setModal, closeModal];
+  return [openModal, closeModal];
 };
 
 export default useModal;

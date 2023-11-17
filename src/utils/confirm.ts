@@ -1,24 +1,25 @@
+import { SetterOrUpdater } from 'recoil';
 import Confirm from '@/component/Modal/Confirm';
 import { modalComponent } from '@/types/modalComponent';
-import { SetterOrUpdater } from 'recoil';
 
 export const confirm = (
   content: string,
-  setModal: SetterOrUpdater<modalComponent | null>,
+  openModal: (modalComponent: JSX.Element) => void,
+  closeModal: () => void,
 ): Promise<boolean> => {
   return new Promise((resolve) => {
-    setModal({
-      modalComponent: Confirm({
+    openModal(
+      Confirm({
         content: content,
         yes: () => {
-          setModal(null);
+          closeModal();
           resolve(true);
         },
         no: () => {
-          setModal(null);
+          closeModal();
           resolve(false);
         },
       }),
-    });
+    );
   });
 };
