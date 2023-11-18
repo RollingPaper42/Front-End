@@ -1,4 +1,5 @@
 'use client';
+import BottomButton from '@/component/BottomButton';
 import useInput from '@/hooks/useInput';
 import { axiosInstance } from '@/utils/axios';
 import { useRouter } from 'next/navigation';
@@ -89,28 +90,24 @@ export default function Add({ id }: { id: string }) {
             onChange={handleWriter}
           />
         </div>
-        <form>
-          <label
-            className="photo-label text-md mx-3 my-1 inline-block cursor-pointer"
-            htmlFor="photoImg"
-          >
-            사진 선택
-          </label>
-          <input
-            className="photo-input hidden"
-            type="file"
-            accept="image/*"
-            id="photoImg"
-          />
+        <BottomButton
+          name="취소"
+          width="basis-1/5"
+          onClickHandler={() => setIsAdd(false)}
+          disabled={false}
+        />
         </form>
-        <button
-          type="button"
-          id="done"
-          className="fixed bottom-8 h-12 w-80 bg-[#CCCCCC] text-xl text-white"
-          onClick={handleClick}
-        >
-          완료
-        </button>
+        <BottomButton
+          name="완료"
+          width="basis-3/5"
+          onClickHandler={handleClick}
+          disabled={
+            text === '' ||
+            writer === '' ||
+            text.length > 1000 ||
+            writer.length > 10
+          }
+        />
       </div>
     </>
   );
