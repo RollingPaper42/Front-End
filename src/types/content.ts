@@ -1,4 +1,6 @@
 export interface content {
   id: number;
-  content: string;
+  text: string;
+  nicknae: string;
+  photo: string;
 }

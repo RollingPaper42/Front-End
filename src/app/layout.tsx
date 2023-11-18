@@ -2,6 +2,7 @@
 
 import { RecoilRoot } from 'recoil';
 import './globals.css';
+import Modal from '@/component/Modal';
 
 export default function RootLayout({
   children,
@@ -12,7 +13,10 @@ export default function RootLayout({
     <html>
       <body>
         <div className="m-auto h-full max-w-[calc(100vh*0.6)]">
-          <RecoilRoot>{children}</RecoilRoot>
+          <RecoilRoot>
+            <Modal />
+            {children}
+          </RecoilRoot>
         </div>
       </body>
     </html>
