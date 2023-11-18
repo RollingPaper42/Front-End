@@ -2,13 +2,15 @@
 
 import { useEffect, useState } from 'react';
 import { axiosInstance } from '@/utils/axios';
-import Link from 'next/link';
 import { content } from '@/types/content';
 import StrcatComponent from '@/component/StrcatComponent';
+import Add from '@/component/Add';
+import BottomButton from '@/component/BottomButton';
 
 export default function Home() {
   const [title, setTitle] = useState<string>('');
   const [data, setData] = useState<content[]>([]);
+  const [isAdd, setIsAdd] = useState<boolean>(false);
   useEffect(() => {
     axiosInstance
       .get(`/api/personal`)
@@ -19,14 +21,25 @@ export default function Home() {
       .catch((error) => {});
   }, []);
 
+  const handleClick = () => {
+    setIsAdd(true);
+  };
+
   return (
-    <div className=" w-full p-[24px]">
+    <div className="w-full p-[24px] text-justify">
       <StrcatComponent title={title} data={data}></StrcatComponent>
-      <div className="fixed bottom-5 left-[50%]  mx-0  w-full max-w-[calc(100vh*0.6)] -translate-x-[50%] p-[24px] ">
-        <button className=" z-50 h-[48px] w-full bg-[#007afe]   text-[18px]  font-semibold text-white  opacity-100">
-          <Link href={`../strcat/add`}>글 작성</Link>
-        </button>
-      </div>
+      {isAdd ? (
+        <Add id="1" setIsAdd={setIsAdd} />
+      ) : (
+        <div className="sticky bottom-5 w-full">
+          <BottomButton
+            name="글 작성"
+            width="w-full"
+            onClickHandler={handleClick}
+            disabled={false}
+          />
+        </div>
+      )}
     </div>
   );
 }
