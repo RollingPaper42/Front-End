@@ -77,6 +77,7 @@ export default function Add({ id, setIsAdd }: AddProps) {
   };
 
   return (
+    <div className="inline w-full">
       <div
         id="text"
         contentEditable="true"
@@ -99,16 +100,28 @@ export default function Add({ id, setIsAdd }: AddProps) {
           {text.length}/1000자
         </div>
       )}
+      <div className="z-10 w-full">
+        <div className="m-2 flex w-80 items-center">
+          From :
           <input
             type="text"
             id="writer"
             value={writer}
-            className="h-8 w-20 bg-[#FAFAFA] px-2 text-center outline-none placeholder:text-[#CACACA]"
-            placeholder="익명"
-            // maxLength={8}
+            className="h-8 w-[180px] px-2 outline-none placeholder:text-[#CACACA]"
+            placeholder="10글자 제한"
+            maxLength={11}
             onChange={handleWriter}
           />
+          <div
+            className={`text-right ${
+              writer.length > 10 ? 'text-red-600' : 'text-[#CACACA]'
+            }`}
+          >
+            {writer.length}/10자
+          </div>
         </div>
+      </div>
+      <div className="sticky bottom-5 flex w-full flex-row">
         <BottomButton
           name="취소"
           width="basis-1/5"
@@ -151,6 +164,6 @@ export default function Add({ id, setIsAdd }: AddProps) {
           }
         />
       </div>
-    </>
+    </div>
   );
 }
