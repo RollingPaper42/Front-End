@@ -3,14 +3,15 @@ import BottomButton from '@/component/BottomButton';
 import useInput from '@/hooks/useInput';
 import { axiosInstance } from '@/utils/axios';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 // import { useRecoilState } from 'recoil';
 
-export default function Add({ id }: { id: string }) {
-  const [text, , handleText] = useInput('');
-  const [photo, setPhoto] = useInput(''); // 아직 어떤식으로 넘겨줄지 미정
+  const [text, setText] = useInput('');
+  const [imgFile, setImgFile] = useInput('');
   const [writer, , handleWriter] = useInput('');
   const router = useRouter();
   // const [modal, setModal] = useRecoilState(modalState);
+  const imgRef = useRef<HTMLInputElement>(null);
 
   if (id === null || id === undefined) {
     alert('유효하지 않은 접속입니다.');
@@ -29,7 +30,7 @@ export default function Add({ id }: { id: string }) {
     if (isConfirmed) {
       const data = {
         text: text,
-        photo: photo,
+        photo: imgFile,
         writer: writer,
       };
       axiosInstance
@@ -56,6 +57,15 @@ export default function Add({ id }: { id: string }) {
     }
   };
 
+  // 이미지 업로드 input의 onChange
+  const saveImgFile = () => {
+    if (!imgRef.current?.files) return;
+    const file = imgRef.current.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImgFile(reader.result as string);
+    };
   };
 
   return (
@@ -97,6 +107,29 @@ export default function Add({ id }: { id: string }) {
           onClickHandler={() => setIsAdd(false)}
           disabled={false}
         />
+        <form className="mx-2 flex basis-1/5 items-center justify-center rounded-lg bg-[#CCCCCC]">
+          {imgFile ? (
+            <>
+              <Image width={63} height={63} src={imgFile} alt="프로필 이미지" />
+              <div className="top-0 z-10 h-full" onClick={() => setImgFile('')}>
+                x
+              </div>
+            </>
+          ) : (
+            <>
+              <label className="img-label text-xl text-white" htmlFor="imgFile">
+                사진
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                id="imgFile"
+                onChange={saveImgFile}
+                ref={imgRef}
+                className="img-input hidden"
+              />
+            </>
+          )}
         </form>
         <BottomButton
           name="완료"
