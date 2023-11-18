@@ -17,7 +17,7 @@ const StrcatComponent = forwardRef<
       <div ref={ref}>
         <h1 className="black pb-[60%] text-[28px] ">{title}</h1>
       </div>
-      <div className=" z-0 inline pb-[70%] pt-[80%]">
+      <div className="inline pb-[70%] pt-[80%]">
         {data.map((content: content) => {
           return (
             <ObserveComponent
