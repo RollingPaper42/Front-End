@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState, useRef, MutableRefObject } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { axiosInstance } from '@/utils/axios';
 import StrcatComponent from '@/component/StrcatComponent';
 import { board } from '@/types/boards';
+import PhotoComponent from '@/component/PhotoComponent';
 
 export default function Home() {
   const [title, setTitle] = useState<string | null>();
@@ -60,12 +61,14 @@ export default function Home() {
                 }
               }}
               key={board.id}
+              boardId={board.id}
               title={board.title}
               data={board.content}
             ></StrcatComponent>
           );
         })}
       </div>
+      <PhotoComponent></PhotoComponent>
     </div>
   );
 }

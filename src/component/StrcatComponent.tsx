@@ -1,22 +1,15 @@
 import { content } from '@/types/content';
 import ObserveComponent from './ObserveComponent';
-import { forwardRef, useState } from 'react';
-import Image from 'next/image';
-import { useRecoilState } from 'recoil';
-import { modalState } from '@/recoil/modal';
-import Photo from './Modal/Photo';
+import { forwardRef, useEffect, useState } from 'react';
 
 const StrcatComponent = forwardRef<
   HTMLDivElement,
   {
     title: string;
     data: content[] | undefined;
+    boardId: number;
   }
->(function StrcatComponent({ title, data }, ref) {
-  const [idx, setIdx] = useState(0);
-  const [modal, setModal] = useRecoilState(modalState);
-  const [img, setImg] = useState('');
-
+>(function StrcatComponent({ title, data, boardId }, ref) {
   if (!data) return null;
 
   return (
@@ -29,25 +22,11 @@ const StrcatComponent = forwardRef<
           return (
             <ObserveComponent
               key={content.id}
-              idx={idx}
-              setIdx={setIdx}
-              setImg={setImg}
               content={content}
+              boardId={boardId}
             ></ObserveComponent>
           );
         })}
-      </div>
-      <div className="fixed top-[100px] h-24 w-24">
-        {img.length !== 0 && !modal && (
-          <Image
-            src={img}
-            alt="사진"
-            fill
-            onClick={() => {
-              setModal({ modalComponent: <Photo photo={img} /> });
-            }}
-          />
-        )}
       </div>
     </div>
   );

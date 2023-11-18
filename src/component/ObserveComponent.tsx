@@ -1,28 +1,25 @@
 import { content } from '@/types/content';
 import { useEffect, useRef, Dispatch, SetStateAction } from 'react';
-
+import { useRecoilState } from 'recoil';
+import { observeState } from '@/recoil/observe';
 interface ObserveProps {
   content: content;
-  idx: number;
-  setIdx: Dispatch<SetStateAction<number>>;
-  setImg: any;
+  boardId: number;
 }
 
-export default function ObserveComponent({
-  content,
-  idx,
-  setIdx,
-  setImg,
-}: ObserveProps) {
+export default function ObserveComponent({ content, boardId }: ObserveProps) {
   const ref = useRef<HTMLHeadingElement | null>(null);
+  const [observe, setObserve] = useRecoilState(observeState);
   useEffect(() => {
-    console.log(content);
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(({ target, isIntersecting }) => {
           if (target === ref.current && isIntersecting) {
-            setIdx(() => content.id);
-            setImg(() => content.photo);
+            setObserve(() => ({
+              boardId: boardId,
+              contentId: content.id,
+              photo: content.photo,
+            }));
           }
         });
       },
@@ -37,18 +34,18 @@ export default function ObserveComponent({
     return () => {
       observer.disconnect();
     };
-  }, [content, setIdx, setImg]);
+  }, []);
 
   return (
     <span
       ref={ref}
       className={`
-        ${
-          idx === content.id
-            ? ' w-full text-[20px] opacity-100 duration-500'
-            : 'w-full  text-[20px] opacity-10 transition-all duration-500'
-        }
-      `}
+      ${
+        observe.boardId === boardId && observe.contentId === content.id
+          ? '  w-full scale-110 text-[16px] transition-all duration-500 '
+          : '  w-full scale-100  text-[16px] opacity-10 transition-all duration-500'
+      }
+    `}
     >
       {content.text}
     </span>
