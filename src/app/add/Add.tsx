@@ -3,9 +3,16 @@ import BottomButton from '@/component/BottomButton';
 import useInput from '@/hooks/useInput';
 import { axiosInstance } from '@/utils/axios';
 import { useRouter } from 'next/navigation';
+import { Dispatch, SetStateAction, useRef } from 'react';
 import Image from 'next/image';
 // import { useRecoilState } from 'recoil';
 
+interface AddProps {
+  id: string;
+  setIsAdd: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function Add({ id, setIsAdd }: AddProps) {
   const [text, setText] = useInput('');
   const [imgFile, setImgFile] = useInput('');
   const [writer, , handleWriter] = useInput('');
@@ -33,6 +40,7 @@ import Image from 'next/image';
         photo: imgFile,
         writer: writer,
       };
+
       axiosInstance
         .post(`/board/${id}/content`, data)
         .then((res) => {
