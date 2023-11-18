@@ -6,5 +6,6 @@ export const observeState = atom({
     boardId: 0,
     contentId: 0,
     photo: '',
+    writer: '',
   },
 });

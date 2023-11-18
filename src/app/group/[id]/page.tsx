@@ -31,7 +31,7 @@ export default function Home() {
       .catch((error) => {});
   }, []);
   return (
-    <div className=" w-full p-[24px]">
+    <div className=" relative w-full p-[24px]">
       <div className="mb-[20px]">
         <h1 className="black text-4xl ">{title}</h1>
       </div>
@@ -48,7 +48,7 @@ export default function Home() {
           );
         })}
       </div>
-      <div>
+      <div className=" text-justify">
         {boardsConetent.map((board) => {
           return (
             <StrcatComponent

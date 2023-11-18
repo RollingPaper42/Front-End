@@ -1,6 +1,6 @@
 export interface content {
   id: number;
   text: string;
-  nickname: string;
+  writer: string;
   photo: string;
 }

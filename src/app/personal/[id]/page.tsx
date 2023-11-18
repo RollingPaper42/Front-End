@@ -23,17 +23,12 @@ export default function Home() {
   }, []);
 
   return (
-    <div className=" w-full p-[24px]">
+    <div className=" relative w-full p-[24px] text-justify">
       <StrcatComponent
         boardId={boardId}
         title={title}
         data={data}
       ></StrcatComponent>
-      <div className="fixed bottom-5 left-[50%]  mx-0  w-full max-w-[calc(100vh*0.6)] -translate-x-[50%] p-[24px] ">
-        <button className=" z-50 h-[48px] w-full bg-[#007afe]   text-[18px]  font-semibold text-white  opacity-100">
-          <Link href={`../strcat/add`}>글 작성</Link>
-        </button>
-      </div>
       <PhotoComponent></PhotoComponent>
     </div>
   );

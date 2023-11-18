@@ -19,6 +19,7 @@ export default function ObserveComponent({ content, boardId }: ObserveProps) {
               boardId: boardId,
               contentId: content.id,
               photo: content.photo,
+              writer: content.writer,
             }));
           }
         });
@@ -37,17 +38,20 @@ export default function ObserveComponent({ content, boardId }: ObserveProps) {
   }, []);
 
   return (
-    <span
+    <div
       ref={ref}
       className={`
       ${
         observe.boardId === boardId && observe.contentId === content.id
-          ? '  w-full scale-110 text-[16px] transition-all duration-500 '
-          : '  w-full scale-100  text-[16px] opacity-10 transition-all duration-500'
+          ? 'inline  w-full scale-110 text-[16px] transition-all duration-500 '
+          : 'inline  w-full scale-100  text-[16px] opacity-10 transition-all duration-500'
       }
     `}
     >
       {content.text}
-    </span>
+      {observe.boardId === boardId && observe.contentId === content.id && (
+        <div className="absolute  right-[24px]  mt-[-8px] bg-slate-600 text-white">{`From: ${observe.writer}`}</div>
+      )}
+    </div>
   );
 }
