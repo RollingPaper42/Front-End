@@ -45,41 +45,42 @@ export default function Add({ id }: { id: string }) {
     }
   };
 
-  const handleChangeResize = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    handleText(e);
-    const textarea: HTMLTextAreaElement = e.target;
-    textarea.style.height = 'auto';
-    textarea.style.height = `${textarea.scrollHeight}px`;
+  const focusText = () => {
+    const textDiv = document.getElementById('text');
+    textDiv?.focus();
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.currentTarget.value.length >= 1000) {
-      alert('최대 1000자까지 입력 가능합니다.');
+  const handleInputText = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter') {
       e.preventDefault();
-      e.currentTarget.value = e.currentTarget.value.slice(0, 1000);
     }
   };
 
+  };
+
   return (
-    <>
-      <div id="title" className="pl-2">
-        strcat(*,*)
-      </div>
-      <div className="mt-10 flex flex-col items-center justify-center">
-        <div className="w-80">
-          <textarea
-            id="message"
-            value={text}
-            rows={1}
-            className="max-h-96 w-full resize-none bg-[#FAFAFA] text-xl font-semibold outline-none placeholder:text-[#CACACA]"
-            placeholder="내용을 입력해주세요"
-            maxLength={1000}
-            onChange={(e) => handleChangeResize(e)}
-            onKeyDown={(e) => handleKeyDown(e)}
-          />
-          <div className="text-right">{text.length}/1000</div>
+      <div
+        id="text"
+        contentEditable="true"
+        suppressContentEditableWarning
+        onInput={(e) => setText(e.currentTarget.innerText)}
+        onKeyDown={(e) => handleInputText(e)}
+        className="bottom-[200px] ml-5 inline w-full text-justify text-[20px] text-purple-700 outline-none"
+      />
+      {text === '' && (
+        <div className="inline text-[20px] text-purple-200" onClick={focusText}>
+          20자 이상 내용을 입력해주세요
         </div>
-        <div className="mt-2 flex w-80 justify-end">
+      )}
+      {text?.length > 900 && (
+        <div
+          className={`text-right ${
+            text.length > 1000 ? 'text-red-600' : 'text-black'
+          }`}
+        >
+          {text.length}/1000자
+        </div>
+      )}
           <input
             type="text"
             id="writer"
