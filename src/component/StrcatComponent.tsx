@@ -13,11 +13,12 @@ const StrcatComponent = forwardRef<
   if (!data) return null;
 
   return (
-    <div>
+    <div className="inline">
       <div ref={ref}>
-        <h1 className="black pb-[60%] text-[28px] ">{title}</h1>
+        <h1 className="black pb-[60%] text-[28px]">{title}</h1>
+        {/* 솔님 기준으로 pb-변경하기*/}
       </div>
-      <div className="inline pb-[70%] pt-[80%]">
+      <div className="z-0 inline ">
         {data.map((content: content) => {
           return (
             <ObserveComponent

@@ -2,15 +2,17 @@
 
 import { useEffect, useState } from 'react';
 import { axiosInstance } from '@/utils/axios';
-import Link from 'next/link';
 import { content } from '@/types/content';
 import StrcatComponent from '@/component/StrcatComponent';
+import Add from '@/component/Add';
+import BottomButton from '@/component/BottomButton';
 import PhotoComponent from '@/component/PhotoComponent';
 
 export default function Home() {
   const [title, setTitle] = useState<string>('');
   const [boardId, setBoardId] = useState(0);
   const [data, setData] = useState<content[] | undefined>(undefined);
+  const [isAdd, setIsAdd] = useState<boolean>(false);
   useEffect(() => {
     axiosInstance
       .get(`/api/personal`)
@@ -22,13 +24,29 @@ export default function Home() {
       .catch((error) => {});
   }, []);
 
+  const handleClick = () => {
+    setIsAdd(true);
+  };
+
   return (
-    <div className=" relative w-full p-[24px] text-justify">
+    <div className=" relative w-full p-[24px] pb-[60%] text-justify">
       <StrcatComponent
         boardId={boardId}
         title={title}
         data={data}
       ></StrcatComponent>
+      {isAdd ? (
+        <Add id="1" setIsAdd={setIsAdd} />
+      ) : (
+        <div className="sticky bottom-5 w-full">
+          <BottomButton
+            name="글 작성"
+            width="w-full"
+            onClickHandler={handleClick}
+            disabled={false}
+          />
+        </div>
+      )}
       <PhotoComponent></PhotoComponent>
     </div>
   );
