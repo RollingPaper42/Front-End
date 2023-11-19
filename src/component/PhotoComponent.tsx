@@ -5,22 +5,22 @@ import { observeState } from '@/recoil/observe';
 import useModal from '@/hooks/useModal';
 
 export default function PhotoComponent() {
-  const [openModal, closeModal] = useModal();
+  const [openModal] = useModal();
   const [observe] = useRecoilState(observeState);
   return (
-    <div className=" max-h-[100px] max-w-[312px]">
-      <div className="fixed top-[100px] h-24 w-24">
-        {observe.photo.length !== 0 && (
-          <Image
-            src={observe.photo}
-            alt="사진"
-            fill
-            onClick={() => {
-              openModal(<Photo photo={observe.photo} />);
-            }}
-          />
-        )}
-      </div>
+    <div className="fixed top-[100px] h-[100px] max-w-[312px]">
+      {observe.photo.length !== 0 && (
+        <Image
+          src={observe.photo}
+          alt="사진"
+          width={innerWidth}
+          height={innerHeight}
+          className="h-[100px] w-auto max-w-[312px] "
+          onClick={() => {
+            openModal(<Photo photo={observe.photo} />);
+          }}
+        />
+      )}
     </div>
   );
 }
