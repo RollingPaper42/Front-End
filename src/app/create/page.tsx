@@ -6,31 +6,22 @@ import Image from 'next/image';
 import useInput from '@/hooks/useInput';
 import { axiosInstance } from '@/utils/axios';
 import { useSearchParams } from 'next/navigation';
+import { useRecoilState } from 'recoil';
+import { calm, cyan, green, strcat, themeState } from '@/recoil/theme';
 
 export default function Create() {
-  const BgInitColor = 'black';
-  const FontInitColor = 'white';
-  const ErrorInitColor = 'black';
-  const [BgColor, SetBgColor] = useState(BgInitColor);
-  const [FontColor, SetFontColor] = useState(FontInitColor);
-  const theme = (BgColor: string, FontColor: string): undefined => {
-    SetBgColor(BgColor);
-    SetFontColor(FontColor);
-  };
+  const ErrorInitColor = 'slate-400';
+  const [Theme, setTheme] = useRecoilState(themeState);
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
-  console.log(searchParams);
-
+  const handleThemeChange = (newTheme: themeState) => {
+    setTheme(newTheme);
+  };
+  const [buttonState, SetButtonState] = useState('/DisabledButton.png');
   const [text, , handleText] = useInput('');
   const [title, , handleTitle] = useInput('');
   const [ErrorFontColor, SetErrorFontColor] = useState(ErrorInitColor);
   const [TextErrorFontColor, SetTextErrorFontColor] = useState(ErrorInitColor);
-  // const [modal, setModal] = useRecoilState(modalState);
-
-  // if (id === null || id === undefined) {
-  //   alert('유효하지 않은 접속입니다.');
-  //   // redirect 해야함 -> main으로?
-  // }
 
   const handleClick = () => {
     if (text === '') {
@@ -38,7 +29,7 @@ export default function Create() {
     } else if (title === '') {
       alert('작성자명을 입력해주세요');
     }
-    //const isConfirmed = await useConfirm('작성한 글을 이어붙이시겠습니까?', setModal);
+
     const isConfirmed = true;
     if (isConfirmed) {
       const data = {
@@ -63,7 +54,6 @@ export default function Create() {
     const byteLength = new TextEncoder().encode(inputTitle).length;
 
     if (byteLength <= 60) {
-      // UTF-8에서는 20글자의 한글 문자열이 60바이트를 차지하므로 60바이트 이하로 제한
       handleTitle(e);
     }
   };
@@ -73,12 +63,14 @@ export default function Create() {
     SetErrorFontColor: React.Dispatch<React.SetStateAction<string>>,
     title: string,
   ) => {
+    SetButtonState('/ActivateButton.png');
+    if (title.length == 0) SetButtonState('/DisabledButton.png');
     if (title.length >= 20 && e.key !== 'Backspace' && e.key !== 'Delete') {
       e.preventDefault();
       e.currentTarget.value = e.currentTarget.value.slice(0, 20);
       SetErrorFontColor('red-600');
     } else {
-      SetErrorFontColor(FontColor);
+      SetErrorFontColor('slate-400');
     }
   };
   const handleChangeResize = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -87,7 +79,6 @@ export default function Create() {
     textarea.style.height = 'auto';
     textarea.style.height = `${textarea.scrollHeight}px`;
     if (byteLength <= 3000) {
-      // UTF-8에서는 20글자의 한글 문자열이 60바이트를 차지하므로 60바이트 이하로 제한
       handleText(e);
     }
   };
@@ -102,24 +93,32 @@ export default function Create() {
       e.currentTarget.value = e.currentTarget.value.slice(0, 1000);
       SetTextErrorFontColor('red-600');
     } else {
-      SetTextErrorFontColor(FontColor);
+      SetTextErrorFontColor('slate-400');
     }
   };
+  console.log(Theme);
+
   return (
-    <div className={`bg-${BgColor}`}>
+    <div className={`${Theme.BgColor} flex h-full flex-col`}>
       <div className="flex h-14 w-full flex-row content-center items-center justify-center">
-        <div className="basis-1/4">
+        <div className=" basis-8"></div>
+        <div className="basis-2/12">
           <Link href="/">
             <Image
               src="/backpage.png"
               width={24}
               height={24}
               alt="backpagebutton"
-            ></Image>
+              className="mt-4"
+            />
           </Link>
         </div>
-        <div className={`basis-2/4 text-${FontColor}`}>스트링캣 만들기</div>
-        <div className="basis-1/4"></div>
+        <div
+          className={`basis-8/12 text-center ${Theme.DefaultFontColor}  mt-4`}
+        >
+          스트링캣 만들기
+        </div>
+        <div className="basis-3/12"></div>
       </div>
       <>
         <div className="mt-10 flex flex-col items-center justify-center">
@@ -127,8 +126,8 @@ export default function Create() {
             <input
               id="titleMessage"
               value={title}
-              className={`max-h-96 w-full resize-none bg-${BgColor} text-xl text-${FontColor} font-semibold outline-none placeholder:text-${FontColor}`}
-              placeholder="제목을 입력해주세요"
+              className={`max-h-96 w-full resize-none ${Theme.BgColor} text-xl ${Theme.DefaultFontColor} outline-none placeholder:${Theme.DefaultFontColor}`}
+              placeholder="제목을 입력해주세요."
               maxLength={20}
               onChange={(e) => handleChangeResizeTitle(e)}
               onKeyDown={(e) => handleKeyDownTitle(e, SetErrorFontColor, title)}
@@ -141,12 +140,12 @@ export default function Create() {
       </>
       <>
         <div className="mt-10 flex flex-col items-center justify-center">
-          <span className="w-80">
+          <span className="h-80 w-80">
             <textarea
               id="message"
               value={text}
-              className={`max-h-96 w-full resize-none bg-${BgColor} text-xl text-${FontColor} font-semibold outline-none placeholder:text-${FontColor}`}
-              placeholder="텍스트를 입력해주세요"
+              className={` max-h-80 w-full resize-none ${Theme.BgColor} text-l ${Theme.FontColor1}  outline-none ${Theme.PlaceholderColor} placeholder:opacity-50`}
+              placeholder="내용을 입력해보세요! 스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요."
               maxLength={1000}
               onChange={(e2) => handleChangeResize(e2)}
               onKeyDown={(e2) => handleKeyDown(e2, SetTextErrorFontColor, text)}
@@ -158,35 +157,69 @@ export default function Create() {
         </div>
       </>
 
-      <div className="flex w-full flex-row">
-        <button
-          className="mt-20 basis-1/4 bg-black"
-          onClick={() => theme('black', 'white')}
-        >
-          1
-        </button>
-        <button
-          className="mt-20 basis-1/4 bg-white"
-          onClick={() => theme('white', 'black')}
-        >
-          2
-        </button>
-        <button
-          className="mt-20 basis-1/4 bg-green"
-          onClick={() => theme('green', 'white')}
-        >
-          3
-        </button>
-        <button
-          className="mt-20 basis-1/4 bg-pink"
-          onClick={() => theme('pink', 'white')}
-        >
-          4
-        </button>
+      <div className="flex w-full flex-row items-center justify-center">
+        <div className="basis-8"></div>
+        <Image
+          src="/strcatButton.png"
+          width={52}
+          height={52}
+          alt="strcatButton"
+          className="mt-20 basis-14 "
+          onClick={() => handleThemeChange(strcat)}
+        />
+        <div className="basis-8"></div>
+        <Image
+          src="/CalmButton.png"
+          width={52}
+          height={52}
+          alt="CalmButton"
+          className="mt-20 basis-14"
+          onClick={() => handleThemeChange(calm)}
+        />
+        <div className="basis-8"></div>
+        <Image
+          src="/GreenButton.png"
+          width={52}
+          height={52}
+          alt="GreenButton"
+          className="mt-20 basis-14"
+          onClick={() => handleThemeChange(green)}
+        />
+        <div className="basis-8"></div>
+        <Image
+          src="/CyanButton.png"
+          width={52}
+          height={52}
+          alt="CyanButton"
+          className="mt-20 basis-14"
+          onClick={() => handleThemeChange(cyan)}
+        />
+        <div className="basis-8"></div>
       </div>
-      <div className="flex flex-row items-center justify-center">
-        <button className="h-12 w-96 bg-buttonColor">완료</button>
+      <div className="flex w-full flex-row items-center justify-center">
+        <div className=" mt-9 basis-8"></div>
+        <div className={`basis-14 text-center ${Theme.DefaultFontColor} `}>
+          strcat
+        </div>
+        <div className="basis-8"></div>
+        <div className={`basis-14 text-center ${Theme.DefaultFontColor} `}>
+          Calm
+        </div>
+        <div className="basis-8"></div>
+        <div className={`basis-14 text-center ${Theme.DefaultFontColor} `}>
+          green
+        </div>
+        <div className="basis-8"></div>
+        <div className={`basis-14 text-center ${Theme.DefaultFontColor} `}>
+          Cyan
+        </div>
+        <div className="basis-8"></div>
       </div>
+      <div className=" h-8"></div>
+      <div className="flex w-full flex-row items-center justify-center">
+        <Image src={`${buttonState}`} width={312} height={42} alt="Button" />
+      </div>
+      <div className=" h-11"></div>
     </div>
   );
 }

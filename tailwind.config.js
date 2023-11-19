@@ -10,16 +10,17 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors:{
-        'white' : '#ffffff',
-        'black' : '#212121',
-        'green' : '#00ffff',
-        'pink' : '#ff00ff',
-        'buttonColor' : '#8F38FF',
+      colors: {
+        'my-white': '#F0EEEA',
+        'my-black': '#212121',
+        'my-green': '#7CED43',
+        'my-blue': '#557FE4',
+        'my-yellow': '#FBFF36',
+        'my-buttonColor': '#8F38FF',
       },
     },
     fontFamily: {
-      FiraCode: ["FiraCode"],
+      FiraCode: ['FiraCode'],
     },
   },
   plugins: [],
