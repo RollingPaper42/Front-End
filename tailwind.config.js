@@ -9,9 +9,19 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        slide: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        slide: 'slide 0.7s',
+      },
+    },
     fontFamily: {
-      FiraCode: ["FiraCode"],
+      FiraCode: ['FiraCode'],
     },
   },
   plugins: [],

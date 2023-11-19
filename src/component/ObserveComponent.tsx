@@ -43,14 +43,14 @@ export default function ObserveComponent({ content, boardId }: ObserveProps) {
       className={`
       ${
         observe.boardId === boardId && observe.contentId === content.id
-          ? 'inline  w-full text-[16px] transition-all duration-500 '
+          ? 'inline  w-full text-[16px] transition-all duration-500'
           : 'inline  w-full  text-[16px] opacity-10 transition-all duration-500'
       }
     `}
     >
       {content.text}
       {observe.boardId === boardId && observe.contentId === content.id && (
-        <div className="absolute  right-[24px]  mt-[-8px] bg-slate-600 text-white">{`From: ${observe.writer}`}</div>
+        <div className=" animate-slide absolute  right-[24px] mt-[-8px] bg-slate-600 text-white">{`From: ${observe.writer}`}</div>
       )}
     </div>
   );

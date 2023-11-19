@@ -1,13 +1,11 @@
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
-import { modalState } from '@/recoil/modal';
 import Photo from './Modal/Photo';
 import { observeState } from '@/recoil/observe';
 import useModal from '@/hooks/useModal';
 
 export default function PhotoComponent() {
   const [openModal, closeModal] = useModal();
-  //const [modal, setModal] = useRecoilState(modalState);
   const [observe] = useRecoilState(observeState);
   return (
     <div className=" max-h-[100px] max-w-[312px]">
