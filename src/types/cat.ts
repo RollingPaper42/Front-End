@@ -7,7 +7,9 @@ export const catAction = {
 };
 
 export interface cat {
-  catAction: typeof catAction;
+  catAction: string;
+  top: number;
   left: number;
-  right: number;
+  width: number;
+  height: number;
 }

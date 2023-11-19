@@ -2,12 +2,14 @@ import { cat, catAction } from '@/types/cat';
 import { atom } from 'recoil';
 
 const defaultCat: cat = {
-  catAction: catAction.exit,
-  left: 100,
-  right: 200,
+  catAction: catAction.none,
+  top: 0,
+  left: 0,
+  width: 0,
+  height: 0,
 };
 
-export const catState = atom<cat | undefined>({
+export const catState = atom<cat>({
   key: 'catState',
-  default: undefined,
+  default: defaultCat,
 });
