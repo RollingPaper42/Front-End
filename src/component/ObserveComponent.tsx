@@ -25,7 +25,7 @@ export default function ObserveComponent({ content, boardId }: ObserveProps) {
         });
       },
       {
-        rootMargin: '-48% 0px -48% 0px',
+        rootMargin: '-48% 0% -48% 0%',
         threshold: 0.01,
       },
     );
@@ -35,7 +35,7 @@ export default function ObserveComponent({ content, boardId }: ObserveProps) {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [boardId, content, setObserve]);
 
   return (
     <div
