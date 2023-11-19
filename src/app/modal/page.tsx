@@ -17,6 +17,16 @@ export default function Modal() {
     );
   };
 
+  const handleCat = () => {
+    const div = document.getElementById('catdiv');
+    if (div === null) return;
+    const divTop = div.getBoundingClientRect().top;
+    const divBottom = div.getBoundingClientRect().bottom;
+    const divLeft = div.getBoundingClientRect().left;
+    const divRight = div.getBoundingClientRect().right;
+    console.log(divTop, divRight, divBottom, divLeft);
+  };
+
   return (
     <div className="h-full w-full bg-green-200">
       <div>
@@ -24,6 +34,9 @@ export default function Modal() {
       </div>
       <div>
         <button onClick={handleConfirm}>Confirm Click</button>
+      </div>
+      <div id="catdiv">
+        <button onClick={handleCat}>handleCat</button>
       </div>
     </div>
   );
