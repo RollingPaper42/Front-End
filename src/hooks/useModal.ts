@@ -1,6 +1,5 @@
 import { modalState } from '@/recoil/modal';
-import { modalComponent } from '@/types/modalComponent';
-import { SetterOrUpdater, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 const useModal = (): [(modalComponent: JSX.Element) => void, () => void] => {
   const [, setModal] = useRecoilState(modalState);
