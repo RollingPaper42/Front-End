@@ -29,12 +29,8 @@ export default function Home() {
   };
 
   return (
-    <div className=" relative w-full p-[24px] pb-[60%] text-justify">
-      <StrcatComponent
-        boardId={boardId}
-        title={title}
-        data={data}
-      ></StrcatComponent>
+    <div className=" relative w-full p-[24px] text-justify">
+      <StrcatComponent boardId={boardId} title={title} data={data} />
       {isAdd ? (
         <Add id="1" setIsAdd={setIsAdd} />
       ) : (
@@ -47,7 +43,7 @@ export default function Home() {
           />
         </div>
       )}
-      <PhotoComponent></PhotoComponent>
+      <PhotoComponent />
     </div>
   );
 }

@@ -2,16 +2,15 @@
 
 import StrcatHeader from "@/component/StrcatHeader";
 import Link from "next/link";
-// import Image from 'next/image';
 
 export default function Home() {
   return (
     <div className="m-6">
       <div className="font-FiraCode font-semibold">
-        <StrcatHeader/>
+      <StrcatHeader/>
         <div className="text-3xl mt-2 flex flex-row">
           <div className="basis-1/12">
-            {`//`}
+            {'//'}
           </div>
           <div className="basis-4/6">
             스트링캣
@@ -23,13 +22,6 @@ export default function Home() {
         <div>소중한 사람에게 스트링캣을 남겨보세요!</div>
       </div>
         <div className="h-60 flex flex-row justify-center items-center relative z-10">
-                {/* <Image
-                    src="/strcatImage.png"
-                    width={170}
-                    height={100}
-                    alt="strcatImage"
-                    className='absolute opacity-10 backdrop-opacity-0'
-                    /> */}
         </div>
         <div className="text-2xl text-slate-400">
           <Link legacyBehavior href="/create">
