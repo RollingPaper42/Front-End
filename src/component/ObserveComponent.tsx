@@ -1,30 +1,31 @@
+import { content } from '@/types/content';
 import { useEffect, useRef, Dispatch, SetStateAction } from 'react';
-
+import { useRecoilState } from 'recoil';
+import { observeState } from '@/recoil/observe';
 interface ObserveProps {
-  content: string;
-  idx: number;
-  setIdx: Dispatch<SetStateAction<number>>;
-  id: number;
+  content: content;
+  boardId: number;
 }
 
-export default function ObserveComponent({
-  content,
-  idx,
-  setIdx,
-  id,
-}: ObserveProps) {
+export default function ObserveComponent({ content, boardId }: ObserveProps) {
   const ref = useRef<HTMLHeadingElement | null>(null);
+  const [observe, setObserve] = useRecoilState(observeState);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(({ target, isIntersecting }) => {
           if (target === ref.current && isIntersecting) {
-            setIdx(() => id);
+            setObserve(() => ({
+              boardId: boardId,
+              contentId: content.id,
+              photo: content.photo,
+              writer: content.writer,
+            }));
           }
         });
       },
       {
-        rootMargin: '-48% 0px -48% 0px',
+        rootMargin: '-48% 0% -48% 0%',
         threshold: 0.01,
       },
     );
@@ -34,20 +35,23 @@ export default function ObserveComponent({
     return () => {
       observer.disconnect();
     };
-  }, [id, setIdx]);
+  }, [boardId, content, setObserve]);
 
   return (
-    <span
+    <div
       ref={ref}
       className={`
-        ${
-          idx === id
-            ? ' w-full text-[20px] opacity-100 duration-500'
-            : 'w-full  text-[20px] opacity-10 transition-all duration-500'
-        }
-      `}
+      ${
+        observe.boardId === boardId && observe.contentId === content.id
+          ? 'inline  w-full text-[16px] transition-all duration-500'
+          : 'inline  w-full  text-[16px] opacity-10 transition-all duration-500'
+      }
+    `}
     >
-      {content}
-    </span>
+      {content.text}
+      {observe.boardId === boardId && observe.contentId === content.id && (
+        <div className=" animate-slide absolute  right-[24px] mt-[-8px] bg-slate-600 text-white">{`From: ${observe.writer}`}</div>
+      )}
+    </div>
   );
 }
