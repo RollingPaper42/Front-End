@@ -68,7 +68,7 @@ export default function Home() {
           );
         })}
       </div>
-      <PhotoComponent></PhotoComponent>
+      <PhotoComponent />
     </div>
   );
 }
