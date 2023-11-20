@@ -8,6 +8,7 @@ import { axiosInstance } from '@/utils/axios';
 import { useSearchParams } from 'next/navigation';
 import { useRecoilState } from 'recoil';
 import { calm, cyan, green, strcat, themeState } from '@/recoil/theme';
+import ThemeChange from '@/component/ThemeChange';
 
 export default function Create() {
   const ErrorInitColor = 'slate-400';
@@ -27,7 +28,7 @@ export default function Create() {
     if (text === '') {
       alert('이어 쓸 스트링을 입력해주세요');
     } else if (title === '') {
-      alert('작성자명을 입력해주세요');
+      alert('제목을 입력해주세요');
     }
 
     const isConfirmed = true;
@@ -49,7 +50,7 @@ export default function Create() {
     }
   };
 
-  const handleChangeResizeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputTitle = e.currentTarget.value;
     const byteLength = new TextEncoder().encode(inputTitle).length;
 
@@ -60,7 +61,6 @@ export default function Create() {
 
   const handleKeyDownTitle = (
     e: React.KeyboardEvent<HTMLInputElement>,
-    SetErrorFontColor: React.Dispatch<React.SetStateAction<string>>,
     title: string,
   ) => {
     SetButtonState('/ActivateButton.png');
@@ -73,7 +73,7 @@ export default function Create() {
       SetErrorFontColor('slate-400');
     }
   };
-  const handleChangeResize = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const textarea: HTMLTextAreaElement = e.target;
     const byteLength = new TextEncoder().encode(e.currentTarget.value).length;
     textarea.style.height = 'auto';
@@ -85,7 +85,6 @@ export default function Create() {
 
   const handleKeyDown = (
     e: React.KeyboardEvent<HTMLTextAreaElement>,
-    SetTextErrorFontColor: React.Dispatch<React.SetStateAction<string>>,
     text: string,
   ) => {
     if (text.length >= 1000 && e.key !== 'Backspace' && e.key !== 'Delete') {
@@ -126,11 +125,11 @@ export default function Create() {
             <input
               id="titleMessage"
               value={title}
-              className={`max-h-96 w-full resize-none ${Theme.BgColor} text-xl ${Theme.DefaultFontColor} outline-none placeholder:${Theme.DefaultFontColor}`}
+              className={` max-h-96 w-full ${Theme.BgColor} text-xl ${Theme.DefaultFontColor} outline-none placeholder:${Theme.DefaultFontColor}`}
               placeholder="제목을 입력해주세요."
               maxLength={20}
-              onChange={(e) => handleChangeResizeTitle(e)}
-              onKeyDown={(e) => handleKeyDownTitle(e, SetErrorFontColor, title)}
+              onChange={(e) => handleChangeTitle(e)}
+              onKeyDown={(e) => handleKeyDownTitle(e, title)}
             />
             <div className={`text-right text-${ErrorFontColor}`}>
               {title.length}/20
@@ -144,11 +143,11 @@ export default function Create() {
             <textarea
               id="message"
               value={text}
-              className={` max-h-80 w-full resize-none ${Theme.BgColor} text-l ${Theme.FontColor1}  outline-none ${Theme.PlaceholderColor} placeholder:opacity-50`}
+              className={` max-h-80 w-full ${Theme.BgColor} text-lg ${Theme.FontColor1}  outline-none ${Theme.PlaceholderColor} placeholder:opacity-50`}
               placeholder="내용을 입력해보세요! 스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요."
               maxLength={1000}
-              onChange={(e2) => handleChangeResize(e2)}
-              onKeyDown={(e2) => handleKeyDown(e2, SetTextErrorFontColor, text)}
+              onChange={(e2) => handleChange(e2)}
+              onKeyDown={(e2) => handleKeyDown(e2, text)}
             />
             <div className={`text-right text-${TextErrorFontColor}`}>
               {text.length}/1000
@@ -156,65 +155,7 @@ export default function Create() {
           </span>
         </div>
       </>
-
-      <div className="flex w-full flex-row items-center justify-center">
-        <div className="basis-8"></div>
-        <Image
-          src="/strcatButton.png"
-          width={52}
-          height={52}
-          alt="strcatButton"
-          className="mt-20 basis-14 "
-          onClick={() => handleThemeChange(strcat)}
-        />
-        <div className="basis-8"></div>
-        <Image
-          src="/CalmButton.png"
-          width={52}
-          height={52}
-          alt="CalmButton"
-          className="mt-20 basis-14"
-          onClick={() => handleThemeChange(calm)}
-        />
-        <div className="basis-8"></div>
-        <Image
-          src="/GreenButton.png"
-          width={52}
-          height={52}
-          alt="GreenButton"
-          className="mt-20 basis-14"
-          onClick={() => handleThemeChange(green)}
-        />
-        <div className="basis-8"></div>
-        <Image
-          src="/CyanButton.png"
-          width={52}
-          height={52}
-          alt="CyanButton"
-          className="mt-20 basis-14"
-          onClick={() => handleThemeChange(cyan)}
-        />
-        <div className="basis-8"></div>
-      </div>
-      <div className="flex w-full flex-row items-center justify-center">
-        <div className=" mt-9 basis-8"></div>
-        <div className={`basis-14 text-center ${Theme.DefaultFontColor} `}>
-          strcat
-        </div>
-        <div className="basis-8"></div>
-        <div className={`basis-14 text-center ${Theme.DefaultFontColor} `}>
-          Calm
-        </div>
-        <div className="basis-8"></div>
-        <div className={`basis-14 text-center ${Theme.DefaultFontColor} `}>
-          green
-        </div>
-        <div className="basis-8"></div>
-        <div className={`basis-14 text-center ${Theme.DefaultFontColor} `}>
-          Cyan
-        </div>
-        <div className="basis-8"></div>
-      </div>
+      <ThemeChange />
       <div className=" h-8"></div>
       <div className="flex w-full flex-row items-center justify-center">
         <Image src={`${buttonState}`} width={312} height={42} alt="Button" />

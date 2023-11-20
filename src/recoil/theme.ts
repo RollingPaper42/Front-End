@@ -9,32 +9,32 @@ export interface themeState {
 }
 
 export const strcat: themeState = {
-  DefaultFontColor: 'text-my-white',
-  FontColor1: 'text-my-green',
-  FontColor2: 'text-my-blue',
-  PlaceholderColor: 'placeholder-my-green',
-  BgColor: 'bg-my-black',
+  DefaultFontColor: 'text-strcat-white',
+  FontColor1: 'text-strcat-green',
+  FontColor2: 'text-strcat-blue',
+  PlaceholderColor: 'placeholder-strcat-green',
+  BgColor: 'bg-strcat-black',
 };
 export const calm: themeState = {
-  DefaultFontColor: 'text-my-black',
-  FontColor1: 'text-my-green',
-  FontColor2: 'text-my-blue',
-  PlaceholderColor: 'placeholder-my-green',
-  BgColor: 'bg-my-white',
+  DefaultFontColor: 'text-strcat-black',
+  FontColor1: 'text-strcat-green',
+  FontColor2: 'text-strcat-blue',
+  PlaceholderColor: 'placeholder-strcat-green',
+  BgColor: 'bg-strcat-white',
 };
 export const green: themeState = {
-  DefaultFontColor: 'text-my-white',
-  FontColor1: 'text-my-blue',
-  FontColor2: 'text-my-yellow',
-  PlaceholderColor: 'placeholder-my-blue',
-  BgColor: 'bg-my-black',
+  DefaultFontColor: 'text-strcat-white',
+  FontColor1: 'text-strcat-blue',
+  FontColor2: 'text-strcat-yellow',
+  PlaceholderColor: 'placeholder-strcat-blue',
+  BgColor: 'bg-strcat-black',
 };
 export const cyan: themeState = {
-  DefaultFontColor: 'text-my-white',
-  FontColor1: 'text-my-yellow',
-  FontColor2: 'text-my-green',
-  PlaceholderColor: 'placeholder-my-yellow',
-  BgColor: 'bg-my-black',
+  DefaultFontColor: 'text-strcat-white',
+  FontColor1: 'text-strcat-yellow',
+  FontColor2: 'text-strcat-green',
+  PlaceholderColor: 'placeholder-strcat-yellow',
+  BgColor: 'bg-strcat-black',
 };
 
 export const themeState = atom<themeState>({
