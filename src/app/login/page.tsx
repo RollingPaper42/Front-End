@@ -20,7 +20,7 @@ export default function login(){
                     </div>
                 </div>
             </div>
-            <div className="h-96 my-20 flex flex-row justify-center items-center relative z-10">
+            <div className="h-96 my-20 flex flex-row justify-center items-center relative -z-10">
                 {/* <Image
                     src="/strcatImage.png"
                     width={170}
