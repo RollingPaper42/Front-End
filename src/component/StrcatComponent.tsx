@@ -10,23 +10,22 @@ const StrcatComponent = forwardRef<
     boardId: number;
   }
 >(function StrcatComponent({ title, data, boardId }, ref) {
-  if (!data) return null;
-
   return (
     <div className="inline">
       <div ref={ref}>
         <h1 className="black pb-[60%] text-[28px]">{title}</h1>
       </div>
       <div className="z-0 inline ">
-        {data.map((content: content) => {
-          return (
-            <ObserveComponent
-              key={content.id}
-              content={content}
-              boardId={boardId}
-            ></ObserveComponent>
-          );
-        })}
+        {data &&
+          data.map((content: content) => {
+            return (
+              <ObserveComponent
+                key={content.id}
+                content={content}
+                boardId={boardId}
+              ></ObserveComponent>
+            );
+          })}
       </div>
     </div>
   );

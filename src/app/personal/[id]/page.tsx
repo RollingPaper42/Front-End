@@ -15,11 +15,12 @@ export default function Home() {
   const [isAdd, setIsAdd] = useState<boolean>(false);
   useEffect(() => {
     axiosInstance
-      .get(`/api/personal`)
+      .get(`/boards/Vvs_JTGorbxqVWXr6aH0cg==/contents`)
       .then((data) => {
-        setBoardId(data.data.board.id);
-        setTitle(data.data.board.title);
-        setData(data.data.board.content);
+        //console.log(data.data);
+        setBoardId(data.data.id);
+        setTitle(data.data.title);
+        setData(data.data.contents);
       })
       .catch((error) => {});
   }, []);
@@ -32,7 +33,7 @@ export default function Home() {
     <div className=" relative w-full p-[24px] text-justify">
       <StrcatComponent boardId={boardId} title={title} data={data} />
       {isAdd ? (
-        <Add id="1" setIsAdd={setIsAdd} />
+        <Add id="Vvs_JTGorbxqVWXr6aH0cg==" setIsAdd={setIsAdd} />
       ) : (
         <div className="sticky bottom-5 w-full">
           <BottomButton
