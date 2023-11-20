@@ -30,11 +30,7 @@ export default function Home() {
 
   return (
     <div className=" relative w-full p-[24px] pb-[60%] text-justify">
-      <StrcatComponent
-        boardId={boardId}
-        title={title}
-        data={data}
-      ></StrcatComponent>
+      <StrcatComponent boardId={boardId} title={title} data={data} />
       {isAdd ? (
         <Add id="1" setIsAdd={setIsAdd} />
       ) : (

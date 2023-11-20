@@ -64,7 +64,7 @@ export default function Home() {
               boardId={board.id}
               title={board.title}
               data={board.content}
-            ></StrcatComponent>
+            />
           );
         })}
       </div>
