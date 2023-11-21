@@ -31,44 +31,48 @@ export default function Home() {
       .catch((error) => {});
   }, []);
   return (
-    <div className=" relative w-full p-[24px]">
-      <div className="mb-[20px]">
-        <h1 className="black text-4xl ">{title}</h1>
+    <>
+      <Drawer />
+      <StrcatHeader />
+      <div className=" relative w-full p-[24px]">
+        <div className="mb-[20px]">
+          <h1 className="black text-4xl ">{title}</h1>
+        </div>
+        <div>
+          {boardsTitle.map((board: board) => {
+            return (
+              <div
+                key={board.id}
+                className="my-[32px]"
+                onClick={() => scrollToId(board.id)}
+              >
+                <p className=" cursor-pointer text-xl">{board.title}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className=" text-justify">
+          {boardsConetent.map((board) => {
+            return (
+              <StrcatComponent
+                ref={(node) => {
+                  const map = getMap();
+                  if (node) {
+                    map.set(board.id, node);
+                  } else {
+                    map.delete(board.id);
+                  }
+                }}
+                key={board.id}
+                boardId={board.id}
+                title={board.title}
+                data={board.content}
+              />
+            );
+          })}
+        </div>
+        <PhotoComponent />
       </div>
-      <div>
-        {boardsTitle.map((board: board) => {
-          return (
-            <div
-              key={board.id}
-              className="my-[32px]"
-              onClick={() => scrollToId(board.id)}
-            >
-              <p className=" cursor-pointer text-xl">{board.title}</p>
-            </div>
-          );
-        })}
-      </div>
-      <div className=" text-justify">
-        {boardsConetent.map((board) => {
-          return (
-            <StrcatComponent
-              ref={(node) => {
-                const map = getMap();
-                if (node) {
-                  map.set(board.id, node);
-                } else {
-                  map.delete(board.id);
-                }
-              }}
-              key={board.id}
-              boardId={board.id}
-              title={board.title}
-              data={board.content}
-            />
-          );
-        })}
-      </div>
-      <PhotoComponent />
-    </div>
+    </>
   );
 }
