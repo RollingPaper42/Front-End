@@ -9,7 +9,7 @@ export default function PhotoComponent() {
   const [observe] = useRecoilState(observeState);
   return (
     <div className="fixed top-[100px] h-[100px] max-w-[312px]">
-      {observe.photo.length !== 0 && (
+      {observe.photo && observe.photo.length !== 0 && (
         <Image
           src={observe.photo}
           alt="사진"

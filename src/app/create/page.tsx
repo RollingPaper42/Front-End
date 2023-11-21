@@ -34,11 +34,11 @@ export default function Create() {
     const isConfirmed = true;
     if (isConfirmed) {
       const data = {
-        text: text,
+        backgroundColor: Theme.BgColor,
         title: title,
       };
       axiosInstance
-        .post(`/board/${id}/content`, data)
+        .post(`/boards`, data)
         .then((res) => {
           console.log(res);
         })
@@ -95,7 +95,7 @@ export default function Create() {
       SetTextErrorFontColor('slate-400');
     }
   };
-  console.log(Theme);
+  //console.log(Theme);
 
   return (
     <div className={`${Theme.BgColor} flex h-full flex-col`}>
@@ -158,7 +158,13 @@ export default function Create() {
       <ThemeChange />
       <div className=" h-8"></div>
       <div className="flex w-full flex-row items-center justify-center">
-        <Image src={`${buttonState}`} width={312} height={42} alt="Button" />
+        <Image
+          src={`${buttonState}`}
+          width={312}
+          height={42}
+          alt="Button"
+          onClick={handleClick}
+        />
       </div>
       <div className=" h-11"></div>
     </div>
