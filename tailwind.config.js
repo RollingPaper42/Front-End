@@ -14,7 +14,7 @@ module.exports = {
         'strcat-white': '#F0EEEA',
         'strcat-black': '#212121',
         'strcat-green': '#7CED43',
-        'strcat-blue': '#557FE4',
+        'strcat-blue': '#6CD8ED',
         'strcat-yellow': '#FBFF36',
         'strcat-buttonColor': '#8F38FF',
       },

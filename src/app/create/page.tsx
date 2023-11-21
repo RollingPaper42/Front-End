@@ -7,7 +7,7 @@ import useInput from '@/hooks/useInput';
 import { axiosInstance } from '@/utils/axios';
 import { useSearchParams } from 'next/navigation';
 import { useRecoilState } from 'recoil';
-import { calm, cyan, green, strcat, themeState } from '@/recoil/theme';
+import { themeState } from '@/recoil/theme';
 import ThemeChange from '@/component/ThemeChange';
 
 export default function Create() {
@@ -15,26 +15,18 @@ export default function Create() {
   const [Theme, setTheme] = useRecoilState(themeState);
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
-  const handleThemeChange = (newTheme: themeState) => {
-    setTheme(newTheme);
-  };
   const [buttonState, SetButtonState] = useState('/DisabledButton.png');
-  const [text, , handleText] = useInput('');
   const [title, , handleTitle] = useInput('');
   const [ErrorFontColor, SetErrorFontColor] = useState(ErrorInitColor);
-  const [TextErrorFontColor, SetTextErrorFontColor] = useState(ErrorInitColor);
 
   const handleClick = () => {
-    if (text === '') {
-      alert('이어 쓸 스트링을 입력해주세요');
-    } else if (title === '') {
+    if (title === '') {
       alert('제목을 입력해주세요');
     }
 
     const isConfirmed = true;
     if (isConfirmed) {
       const data = {
-        text: text,
         title: title,
       };
       axiosInstance
@@ -73,29 +65,6 @@ export default function Create() {
       SetErrorFontColor('slate-400');
     }
   };
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const textarea: HTMLTextAreaElement = e.target;
-    const byteLength = new TextEncoder().encode(e.currentTarget.value).length;
-    textarea.style.height = 'auto';
-    textarea.style.height = `${textarea.scrollHeight}px`;
-    if (byteLength <= 3000) {
-      handleText(e);
-    }
-  };
-
-  const handleKeyDown = (
-    e: React.KeyboardEvent<HTMLTextAreaElement>,
-    text: string,
-  ) => {
-    if (text.length >= 1000 && e.key !== 'Backspace' && e.key !== 'Delete') {
-      e.preventDefault();
-      e.currentTarget.value = e.currentTarget.value.slice(0, 1000);
-      SetTextErrorFontColor('red-600');
-    } else {
-      SetTextErrorFontColor('slate-400');
-    }
-  };
-  console.log(Theme);
 
   return (
     <div className={`${Theme.BgColor} flex h-full flex-col`}>
@@ -135,24 +104,6 @@ export default function Create() {
               {title.length}/20
             </div>
           </div>
-        </div>
-      </>
-      <>
-        <div className="mt-10 flex flex-col items-center justify-center">
-          <span className="h-80 w-80">
-            <textarea
-              id="message"
-              value={text}
-              className={` max-h-80 w-full ${Theme.BgColor} text-lg ${Theme.FontColor1}  outline-none ${Theme.PlaceholderColor} placeholder:opacity-50`}
-              placeholder="내용을 입력해보세요! 스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요."
-              maxLength={1000}
-              onChange={(e2) => handleChange(e2)}
-              onKeyDown={(e2) => handleKeyDown(e2, text)}
-            />
-            <div className={`text-right text-${TextErrorFontColor}`}>
-              {text.length}/1000
-            </div>
-          </span>
         </div>
       </>
       <ThemeChange />
