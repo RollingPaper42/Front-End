@@ -27,10 +27,14 @@ export default function Create() {
     const isConfirmed = true;
     if (isConfirmed) {
       const data = {
+<<<<<<< HEAD
+=======
+        backgroundColor: Theme.BgColor,
+>>>>>>> 955a208a527ac0c176897cdb2a219e92baca34a2
         title: title,
       };
       axiosInstance
-        .post(`/board/${id}/content`, data)
+        .post(`/boards`, data)
         .then((res) => {
           console.log(res);
         })
@@ -65,6 +69,32 @@ export default function Create() {
       SetErrorFontColor('slate-400');
     }
   };
+<<<<<<< HEAD
+=======
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const textarea: HTMLTextAreaElement = e.target;
+    const byteLength = new TextEncoder().encode(e.currentTarget.value).length;
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+    if (byteLength <= 3000) {
+      handleText(e);
+    }
+  };
+
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLTextAreaElement>,
+    text: string,
+  ) => {
+    if (text.length >= 1000 && e.key !== 'Backspace' && e.key !== 'Delete') {
+      e.preventDefault();
+      e.currentTarget.value = e.currentTarget.value.slice(0, 1000);
+      SetTextErrorFontColor('red-600');
+    } else {
+      SetTextErrorFontColor('slate-400');
+    }
+  };
+  //console.log(Theme);
+>>>>>>> 955a208a527ac0c176897cdb2a219e92baca34a2
 
   return (
     <div className={`${Theme.BgColor} flex h-full flex-col`}>
@@ -109,7 +139,13 @@ export default function Create() {
       <ThemeChange />
       <div className=" h-8"></div>
       <div className="flex w-full flex-row items-center justify-center">
-        <Image src={`${buttonState}`} width={312} height={42} alt="Button" />
+        <Image
+          src={`${buttonState}`}
+          width={312}
+          height={42}
+          alt="Button"
+          onClick={handleClick}
+        />
       </div>
       <div className=" h-11"></div>
     </div>
