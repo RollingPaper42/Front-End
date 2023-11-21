@@ -1,12 +1,50 @@
 import { drawerState } from '@/recoil/drawer';
 import { useRecoilState } from 'recoil';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { axiosInstance } from '@/utils/axios';
+
+interface Board {
+  id: string;
+  title: string;
+}
 
 export default function Drawer() {
   const [drawer] = useRecoilState(drawerState);
   const [dropList, setDropList] = useState(false);
   const [groupDropList, setGroupDropList] = useState(false);
+  const [personalList, setPersonalList] = useState<Board[]>([]);
+  const [groupList, setGroupList] = useState<Board[]>([]);
+
+  useEffect(() => {
+    axiosInstance
+      .get('/users/boards')
+      .then((res) => {
+        console.log(res.data.data);
+        setPersonalList(res.data.data);
+      })
+      .catch((err) => {
+        //401 406 500
+        console.log(err);
+      });
+    axiosInstance
+      .get('/users/board-groups')
+      .then((res) => {
+        setGroupList(res.data);
+      })
+      .catch((err) => {
+        //401 406 500
+        console.log(err);
+      });
+  }, []);
+
+  const truncateTitle = (title: string) => {
+    if (title.length <= 17) {
+      return title;
+    } else {
+      return title.substring(0, 17) + '...';
+    }
+  };
 
   return (
     drawer && (
@@ -43,26 +81,24 @@ export default function Drawer() {
           </div>
           {dropList && (
             <div className="flex w-full flex-col px-[24px]">
-              <div className="flex h-[53px] items-center justify-between">
-                내 스트링캣 1
-                <Image
-                  src="/CheckSmall.svg"
-                  width={24}
-                  height={24}
-                  alt="check"
-                  className="ml-[12px]"
-                />
-              </div>
-              <div className="flex h-[53px] items-center justify-between">
-                내 스트링캣 2
-                <Image
-                  src="/CheckSmall.svg"
-                  width={24}
-                  height={24}
-                  alt="check"
-                  className="ml-[12px]"
-                />
-              </div>
+              {personalList &&
+                personalList.map((personal: Board) => {
+                  return (
+                    <div
+                      key={personal.id}
+                      className="flex h-[53px] items-center justify-between"
+                    >
+                      {truncateTitle(personal.title)}
+                      <Image
+                        src="/CheckSmall.svg"
+                        width={24}
+                        height={24}
+                        alt="check"
+                        className="ml-[12px]"
+                      />
+                    </div>
+                  );
+                })}
             </div>
           )}
           <div className="flex h-[53px] w-full items-center justify-between px-[24px] text-white">
@@ -87,19 +123,24 @@ export default function Drawer() {
           </div>
           {groupDropList && (
             <div className="flex w-full flex-col px-[24px]">
-              <div className="flex h-[53px] items-center justify-between">
-                그룹 스트링캣 2
-                <Image
-                  src="/CheckSmall.svg"
-                  width={24}
-                  height={24}
-                  alt="check"
-                  className="ml-[12px]"
-                />
-              </div>
-              <div className="flex h-[53px] items-center justify-between">
-                그룹 스트링캣 2
-              </div>
+              {groupList &&
+                groupList.map((group: Board) => {
+                  return (
+                    <div
+                      key={group.id}
+                      className="flex h-[53px] items-center justify-between"
+                    >
+                      {truncateTitle(group.title)}
+                      <Image
+                        src="/CheckSmall.svg"
+                        width={24}
+                        height={24}
+                        alt="check"
+                        className="ml-[12px]"
+                      />
+                    </div>
+                  );
+                })}
             </div>
           )}
           <div className="absolute  bottom-0 w-full">
