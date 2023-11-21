@@ -5,6 +5,8 @@ import { axiosInstance } from '@/utils/axios';
 import StrcatComponent from '@/component/StrcatComponent';
 import { board } from '@/types/boards';
 import PhotoComponent from '@/component/PhotoComponent';
+import Drawer from '@/component/Drawer';
+import StrcatHeader from '@/component/StrcatHeader';
 
 export default function Home() {
   const [title, setTitle] = useState<string | null>();
