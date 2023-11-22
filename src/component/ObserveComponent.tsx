@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { observeState } from '@/recoil/observe';
 import React from 'react';
+import { themeState } from '@/recoil/theme';
 interface ObserveProps {
   content: content;
   boardId: number;
@@ -11,6 +12,7 @@ interface ObserveProps {
 const ObserveComponent = ({ content, boardId }: ObserveProps) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [observe, setObserve] = useRecoilState(observeState);
+  const [theme] = useRecoilState(themeState);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -45,15 +47,17 @@ const ObserveComponent = ({ content, boardId }: ObserveProps) => {
         className={`
       ${
         observe.boardId === boardId && observe.contentId === content.id
-          ? 'inline  w-full  text-[22px] opacity-100 transition-all duration-500'
-          : 'inline  w-full  text-[22px] opacity-10 transition-all duration-500'
+          ? `${theme.FontColor1} ' duration-500' inline  w-full text-[22px] opacity-100 transition-all`
+          : `${theme.DefaultFontColor} ' duration-500'  inline  w-full text-[22px] opacity-30 transition-all`
       }
     `}
       >
         {content.text}
       </div>
       {observe.boardId === boardId && observe.contentId === content.id && (
-        <div className="absolute right-[24px]  mt-[1px] animate-slide bg-slate-600 px-1 text-white">{`From: ${observe.writer}`}</div>
+        <div
+          className={`bg-strcat-green absolute right-[24px] mt-[1px]  animate-slide px-1 text-white`}
+        >{`From: ${observe.writer}`}</div>
       )}
     </div>
   );
