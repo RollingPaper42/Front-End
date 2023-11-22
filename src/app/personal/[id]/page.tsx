@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { axiosInstance } from '@/utils/axios';
 import { content } from '@/types/content';
 import StrcatComponent from '@/component/StrcatComponent';
@@ -17,7 +17,18 @@ export default function Home() {
   const [data, setData] = useState<content[] | undefined>(undefined);
   const [isAdd, setIsAdd] = useState<boolean>(false);
   const [theme] = useRecoilState(themeState);
+  const itemsRef = useRef(new Map());
   const params = useParams();
+  const scrollToId = (itemId: number) => {
+    const map = getMap();
+    const node = map.get(itemId);
+    const height = node.offsetHeight;
+    const offset = node.offsetTop + height - 500; // 하단의 여백을 500만큼 줬으므로 그만큼 빼준다.
+    window.scrollTo({ top: offset, behavior: 'smooth' });
+  };
+  const getMap = () => {
+    return itemsRef.current;
+  };
   useEffect(() => {
     axiosInstance
       .get(`/api/personal`)
@@ -32,6 +43,7 @@ export default function Home() {
 
   const handleClick = () => {
     setIsAdd(true);
+    scrollToId(boardId);
   };
 
   return (
@@ -39,6 +51,14 @@ export default function Home() {
       className={`relative w-full  p-[24px] text-justify ${theme.BgColor} pb-[500px]`}
     >
       <StrcatComponent
+        ref={(node) => {
+          const map = getMap();
+          if (node) {
+            map.set(boardId, node);
+          } else {
+            map.delete(boardId);
+          }
+        }}
         boardId={boardId}
         title={title}
         data={data}

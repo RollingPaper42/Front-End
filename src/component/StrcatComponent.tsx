@@ -16,8 +16,8 @@ const StrcatComponent = forwardRef<
 >(function StrcatComponent({ title, data, boardId, isAdd }, ref) {
   const [theme] = useRecoilState(themeState);
   return (
-    <div className={`inline font-FiraCode`}>
-      <div ref={ref} className="h-[200px]">
+    <div ref={ref} className={`inline font-FiraCode`}>
+      <div className="h-[200px]">
         <h1 className={` text-[28px] ${theme.DefaultFontColor} `}>{title}</h1>
       </div>
       <div className={`z-0 inline`}>
