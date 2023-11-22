@@ -12,14 +12,9 @@ export default function StrcatHeader() {
   // login을 api요청 확인 후 변경
 
   return (
-    <div className="flex h-[56px] flex-row items-center">
+    <div className="flex h-[56px] flex-row items-center bg-black px-[24px]">
       <Link href="/">
-        <Image
-          src="/StrcatHeader.png"
-          width={128}
-          height={25}
-          alt="StrcatHeader"
-        />
+        <Image src="/Logo.svg" width={128} height={25} alt="logo" />
       </Link>
       <div className="basis-4/6"></div>
       {isLogin ? (
@@ -32,12 +27,18 @@ export default function StrcatHeader() {
         />
       ) : (
         <Link href="/login">
+          <div className="relative h-[34px] w-[74px]">
           <Image
-            src="/LoginButton.png"
+              src="/LoginButton.svg"
             width={74}
             height={34}
-            alt="StrcatHeader"
+              alt="login"
+              className="absolute inset-0"
           />
+            <span className="absolute inset-0 flex items-center justify-center text-white">
+              로그인
+            </span>
+          </div>
         </Link>
       )}
     </div>
