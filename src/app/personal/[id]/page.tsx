@@ -15,9 +15,10 @@ export default function Home() {
   const [isAdd, setIsAdd] = useState<boolean>(false);
   useEffect(() => {
     axiosInstance
-      .get(`/boards/Vvs_JTGorbxqVWXr6aH0cg==/contents`)
+      .get(`/api/personal`)
+      //.get(`/boards/Vvs_JTGorbxqVWXr6aH0cg==/contents`)
       .then((data) => {
-        //console.log(data.data);
+        console.log(data.data);
         setBoardId(data.data.id);
         setTitle(data.data.title);
         setData(data.data.contents);
@@ -44,7 +45,7 @@ export default function Home() {
           />
         </div>
       )}
-      <PhotoComponent />
+      {/* <PhotoComponent /> */}
     </div>
   );
 }

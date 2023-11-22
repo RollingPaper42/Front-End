@@ -1,69 +1,61 @@
 {
-  "board": {
-    "id": 1,
-    "title": "Sample Board",
-    "backgroundColor": "#ffffff",
-    "content": [
-      {
-        "id": 1,
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n",
-        "writer": "User1",
-        "photo": "/Google.png"
-      },
-      {
-        "id": 2,
-        "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "writer": "User2",
-        "photo": "/kakao.png"
-      },
-      {
-        "id": 3,
-        "text": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-        "writer": "User3",
-        "photo": "/strcatImage.png"
-      },
-      {
-        "id": 4,
-        "text": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
-        "writer": "User4",
-        "photo": "/mario.png"
-      },
-      {
-        "id": 5,
-        "text": "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
-        "writer": "User5",
-        "photo": ""
-      },
-      {
-        "id": 6,
-        "text": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?",
-        "writer": "User6",
-        "photo": "/Google.png"
-      },
-      {
-        "id": 7,
-        "text": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
-        "writer": "User7",
-        "photo": "/kakao.png"
-      },
-      {
-        "id": 8,
-        "text": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
-        "writer": "User8",
-        "photo": ""
-      },
-      {
-        "id": 9,
-        "text": "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.",
-        "writer": "User9",
-        "photo": ""
-      },
-      {
-        "id": 10,
-        "text": "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.",
-        "writer": "User10",
-        "photo": ""
-      }
-    ]
-  }
+  "id": 1,
+  "title": "Sample Board",
+  "backgroundColor": "#ffffff",
+  "contents": [
+    {
+      "id": 1,
+      "text": "즐거운 순간을 함께하며 행복한 기억 만들기를 기대해요.n",
+      "writer": "영일이삼사오육칠팔구",
+      "photo": "/Google.png"
+    },
+    {
+      "id": 2,
+      "text": "봄바람 속에 햇살이 미소 짓도록. 따뜻한 날 되세요.",
+      "writer": "User2",
+      "photo": "/kakao.png"
+    },
+    {
+      "id": 3,
+      "text": "마음 가는 대로 꿈 펼쳐보세요. 가능성은 무한합니다.",
+      "writer": "User3",
+      "photo": "/strcatImage.png"
+    },
+    {
+      "id": 4,
+      "text": "지친 하루 뒤에 찾아오는 평화로운 밤 되길 바랍니다.",
+      "writer": "User4",
+      "photo": "/mario.png"
+    },
+    {
+      "id": 5,
+      "text": "소소한 행복에 감사하며 강한 마음으로 살아갑시다.",
+      "writer": "User5",
+      "photo": ""
+    },
+    {
+      "id": 6,
+      "text": "작은 기쁨이 큰 행복을 만들어냅니다. 즐거운 순간들!",
+      "writer": "User6",
+      "photo": "/Google.png"
+    },
+    {
+      "id": 7,
+      "text": "마음 가는 대로 여유롭게 휴식 취하며 힐링하세요.",
+      "writer": "User7",
+      "photo": "/kakao.png"
+    },
+    {
+      "id": 8,
+      "text": "간만에 소중한 사람들과 얼굴 마주하는 특별한 순간.",
+      "writer": "User8",
+      "photo": ""
+    },
+    {
+      "id": 9,
+      "text": "어제보다 나은 오늘을 만들어가며 행복한 하루 되세요.",
+      "writer": "User10",
+      "photo": ""
+    }
+  ]
 }

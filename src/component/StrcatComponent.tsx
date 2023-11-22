@@ -1,6 +1,7 @@
 import { content } from '@/types/content';
 import ObserveComponent from './ObserveComponent';
 import { forwardRef, useEffect, useState } from 'react';
+import React from 'react';
 
 const StrcatComponent = forwardRef<
   HTMLDivElement,
@@ -13,9 +14,9 @@ const StrcatComponent = forwardRef<
   return (
     <div className="inline">
       <div ref={ref}>
-        <h1 className="black pb-[60%] text-[28px]">{title}</h1>
+        <h1 className="black pb-[300px] text-[28px]">{title}</h1>
       </div>
-      <div className="z-0 inline ">
+      <div className="z-0 inline pb-[500px]">
         {data &&
           data.map((content: content) => {
             return (
@@ -31,4 +32,4 @@ const StrcatComponent = forwardRef<
   );
 });
 
-export default StrcatComponent;
+export default React.memo(StrcatComponent);

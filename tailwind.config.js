@@ -20,12 +20,12 @@ module.exports = {
       },
       keyframes: {
         slide: {
-          '0%': { transform: 'translateX(100%)' },
+          '0%': { transform: 'translateX(20px)' },
           '100%': { transform: 'translateX(0)' },
         },
       },
       animation: {
-        slide: 'slide 0.7s',
+        slide: 'slide 0.7s linear',
       },
     },
     fontFamily: {

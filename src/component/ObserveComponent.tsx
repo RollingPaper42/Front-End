@@ -1,20 +1,21 @@
 import { content } from '@/types/content';
-import { useEffect, useRef, Dispatch, SetStateAction } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { observeState } from '@/recoil/observe';
+import React from 'react';
 interface ObserveProps {
   content: content;
   boardId: number;
 }
 
-export default function ObserveComponent({ content, boardId }: ObserveProps) {
+const ObserveComponent = ({ content, boardId }: ObserveProps) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [observe, setObserve] = useRecoilState(observeState);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(({ target, isIntersecting }) => {
-          if (target === ref.current && isIntersecting) {
+        entries.forEach(({ isIntersecting }) => {
+          if (isIntersecting) {
             setObserve(() => ({
               boardId: boardId,
               contentId: content.id,
@@ -25,8 +26,8 @@ export default function ObserveComponent({ content, boardId }: ObserveProps) {
         });
       },
       {
-        rootMargin: '-48% 0% -48% 0%',
-        threshold: 0.01,
+        rootMargin: '-30% 0% -67% 0%',
+        threshold: 0.12,
       },
     );
     if (ref.current) {
@@ -35,23 +36,27 @@ export default function ObserveComponent({ content, boardId }: ObserveProps) {
     return () => {
       observer.disconnect();
     };
-  }, [boardId, content, setObserve]);
+  }, []);
 
   return (
-    <div
-      ref={ref}
-      className={`
+    <div className="inline">
+      <div
+        ref={ref}
+        className={`
       ${
         observe.boardId === boardId && observe.contentId === content.id
-          ? 'inline  w-full text-[16px] transition-all duration-500'
-          : 'inline  w-full  text-[16px] opacity-10 transition-all duration-500'
+          ? 'inline  w-full  text-[22px] opacity-100 transition-all duration-500'
+          : 'inline  w-full  text-[22px] opacity-10 transition-all duration-500'
       }
     `}
-    >
-      {content.text}
+      >
+        {content.text}
+      </div>
       {observe.boardId === boardId && observe.contentId === content.id && (
-        <div className=" animate-slide absolute  right-[24px] mt-[-8px] bg-slate-600 text-white">{`From: ${observe.writer}`}</div>
+        <div className="absolute right-[24px]  mt-[1px] animate-slide bg-slate-600 px-1 text-white">{`From: ${observe.writer}`}</div>
       )}
     </div>
   );
-}
+};
+
+export default React.memo(ObserveComponent);
