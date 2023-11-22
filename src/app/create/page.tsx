@@ -5,32 +5,31 @@ import { useState } from 'react';
 import Image from 'next/image';
 import useInput from '@/hooks/useInput';
 import { axiosInstance } from '@/utils/axios';
-import { useSearchParams } from 'next/navigation';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 import ThemeChange from '@/component/ThemeChange';
-import Confirm from '@/component/Modal/Confirm';
 import { link } from 'fs';
+import useModal from '@/hooks/useModal';
+import Confirm from '@/component/Modal/Confirm';
+import { useRouter } from 'next/router';
 
 export default function Create() {
   const ErrorInitColor = 'slate-400';
   const [Theme, setTheme] = useRecoilState(themeState);
   const [linkURL, setLinkURL] = useState('');
-  const searchParams = useSearchParams();
-  const [modalState, setModalState] = useState(false);
   const [buttonState, SetButtonState] = useState('/DisabledButton.png');
   const [title, , handleTitle] = useInput('');
   const [ErrorFontColor, SetErrorFontColor] = useState(ErrorInitColor);
-  const openModal = () => {
-    setModalState(true);
+  const [openModal, closeModal] = useModal();
+
+  const handleConfirm = async () => {
+    openModal(<Confirm content="확인" yes={handleClick} no={closeModal} />);
   };
-  const closeModal = () => {
-    setModalState(false);
-  };
+
   const handleClick = () => {
+    const router = useRouter();
     const isConfirmed = true;
     if (isConfirmed) {
-      openModal();
       const data = {
         backgroundColor: Theme,
         title: title,
@@ -39,6 +38,7 @@ export default function Create() {
         .post(`/boards`, data)
         .then((data) => {
           setLinkURL(data.data.link);
+          router.push('/board');
         })
         .catch((err) => {
           if (err.response.status === 406) {
@@ -120,7 +120,7 @@ export default function Create() {
           width={312}
           height={42}
           alt="Button"
-          onClick={handleClick}
+          onClick={handleConfirm}
         />
       </div>
       <div className=" h-11"></div>
