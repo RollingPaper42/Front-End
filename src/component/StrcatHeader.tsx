@@ -1,15 +1,25 @@
 'use client';
 
-import useInput from '@/hooks/useInput';
 import { drawerState } from '@/recoil/drawer';
+import { axiosInstance } from '@/utils/axios';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 export default function StrcatHeader() {
-  const [isLogin, setIsLogin] = useInput(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [, setDrawer] = useRecoilState(drawerState);
   // login을 api요청 확인 후 변경
+
+  useEffect(() => {
+    axiosInstance
+      .get('/islogin')
+      .then((res) => {
+        setIsLogin(res.data.data);
+      })
+      .catch((err) => {});
+  }, []);
 
   return (
     <div className="flex h-[56px] flex-row items-center bg-black px-[24px]">
@@ -28,13 +38,13 @@ export default function StrcatHeader() {
       ) : (
         <Link href="/login">
           <div className="relative h-[34px] w-[74px]">
-          <Image
+            <Image
               src="/LoginButton.svg"
-            width={74}
-            height={34}
+              width={74}
+              height={34}
               alt="login"
               className="absolute inset-0"
-          />
+            />
             <span className="absolute inset-0 flex items-center justify-center text-white">
               로그인
             </span>
