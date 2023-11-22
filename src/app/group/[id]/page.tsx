@@ -5,11 +5,14 @@ import { axiosInstance } from '@/utils/axios';
 import StrcatComponent from '@/component/StrcatComponent';
 import { board } from '@/types/boards';
 import PhotoComponent from '@/component/PhotoComponent';
+import { useRecoilState } from 'recoil';
+import { themeState } from '@/recoil/theme';
 
 export default function Home() {
   const [title, setTitle] = useState<string | null>();
   const [boardsTitle, setBoardsTitle] = useState<board[]>([]);
   const [boardsConetent, setBoardsContent] = useState<board[]>([]);
+  const [theme] = useRecoilState(themeState);
   const itemsRef = useRef(new Map());
   const scrollToId = (itemId: number) => {
     const map = getMap();
@@ -31,9 +34,9 @@ export default function Home() {
       .catch((error) => {});
   }, []);
   return (
-    <div className=" relative w-full p-[24px]">
+    <div className={`relative w-full p-[24px] ${theme.BgColor}`}>
       <div className="mb-[20px]">
-        <h1 className="black text-4xl ">{title}</h1>
+        <h1 className={`${theme.DefaultFontColor} text-4xl`}>{title}</h1>
       </div>
       <div>
         {boardsTitle.map((board: board) => {
@@ -43,12 +46,14 @@ export default function Home() {
               className="my-[32px]"
               onClick={() => scrollToId(board.id)}
             >
-              <p className=" cursor-pointer text-xl">{board.title}</p>
+              <p className={`cursor-pointer text-xl ${theme.DefaultFontColor}`}>
+                {board.title}
+              </p>
             </div>
           );
         })}
       </div>
-      <div className=" text-justify">
+      <div className=" mb-[500px] text-justify">
         {boardsConetent.map((board) => {
           return (
             <StrcatComponent

@@ -38,7 +38,12 @@ export default function Home() {
     <div
       className={`relative w-full  p-[24px] text-justify ${theme.BgColor} pb-[500px]`}
     >
-      <StrcatComponent boardId={boardId} title={title} data={data} />
+      <StrcatComponent
+        boardId={boardId}
+        title={title}
+        data={data}
+        isAdd={isAdd}
+      />
       {isAdd ? (
         <Add id="Vvs_JTGorbxqVWXr6aH0cg==" setIsAdd={setIsAdd} />
       ) : (
@@ -51,7 +56,7 @@ export default function Home() {
           />
         </div>
       )}
-      <PhotoComponent />
+      {!isAdd && <PhotoComponent />}
     </div>
   );
 }

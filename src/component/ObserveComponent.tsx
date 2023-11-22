@@ -7,9 +7,10 @@ import { themeState } from '@/recoil/theme';
 interface ObserveProps {
   content: content;
   boardId: number;
+  isAdd: boolean;
 }
 
-const ObserveComponent = ({ content, boardId }: ObserveProps) => {
+const ObserveComponent = ({ content, boardId, isAdd }: ObserveProps) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [observe, setObserve] = useRecoilState(observeState);
   const [theme] = useRecoilState(themeState);
@@ -30,7 +31,7 @@ const ObserveComponent = ({ content, boardId }: ObserveProps) => {
         });
       },
       {
-        rootMargin: '-30% 0% -67% 0%',
+        rootMargin: '-30% 0% -65% 0%',
         threshold: ratio,
       },
     );
@@ -48,7 +49,9 @@ const ObserveComponent = ({ content, boardId }: ObserveProps) => {
         ref={ref}
         className={`
       ${
-        observe.boardId === boardId && observe.contentId === content.id
+        !isAdd &&
+        observe.boardId === boardId &&
+        observe.contentId === content.id
           ? `${theme.FontColor1} ' duration-500' inline  w-full text-[22px] opacity-100 transition-all`
           : `${theme.DefaultFontColor} ' duration-500'  inline  w-full text-[22px] opacity-30 transition-all`
       }
@@ -56,11 +59,13 @@ const ObserveComponent = ({ content, boardId }: ObserveProps) => {
       >
         {content.text}
       </div>
-      {observe.boardId === boardId && observe.contentId === content.id && (
-        <div
-          className={`bg-strcat-green absolute right-[24px] mt-[1px]  animate-slide px-1 text-white`}
-        >{`From: ${observe.writer}`}</div>
-      )}
+      {!isAdd &&
+        observe.boardId === boardId &&
+        observe.contentId === content.id && (
+          <div
+            className={`bg-strcat-green absolute right-[24px] mt-[1px]  animate-slide px-1 text-white`}
+          >{`From: ${observe.writer}`}</div>
+        )}
     </div>
   );
 };
