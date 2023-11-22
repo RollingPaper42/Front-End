@@ -123,11 +123,6 @@ export default function Create() {
           onClick={handleClick}
         />
       </div>
-      <Confirm
-        content="여기서 완료하면 더이상 내용을 수정할 수 없습니다.완료하시겠습니까?"
-        yes={() => openModal()}
-        no={() => closeModal()}
-      />
       <div className=" h-11"></div>
     </div>
   );
