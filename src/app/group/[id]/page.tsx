@@ -17,7 +17,7 @@ export default function Home() {
   const scrollToId = (itemId: number) => {
     const map = getMap();
     const node = map.get(itemId);
-    const offset = node.offsetTop;
+    const offset = node.offsetTop + 56; // 헤더의 높이만큼 내려오지 않는 문제가 생겨서 헤더의 높이만큼 추가해줬습니다.
     window.scrollTo({ top: offset, behavior: 'smooth' });
   };
   const getMap = () => {
