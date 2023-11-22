@@ -21,7 +21,6 @@ export default function Drawer() {
     axiosInstance
       .get('/users/boards')
       .then((res) => {
-        console.log(res.data.data);
         setPersonalList(res.data.data);
       })
       .catch((err) => {
@@ -51,8 +50,8 @@ export default function Drawer() {
             className="m-[24px]"
           />
         </div>
-        <div className="flex flex-col items-center px-[24px] text-white">
-          <div className="flex h-[53px] w-full items-center justify-between">
+        <div className="flex flex-col items-center text-white">
+          <div className="flex h-[53px] w-full items-center justify-between px-[24px]">
             <DrawerItem
               title="내 스트링캣"
               alt="personalStrCat"
@@ -74,7 +73,7 @@ export default function Drawer() {
               )}
             </div>
           )}
-          <div className="flex h-[53px] w-full items-center justify-between">
+          <div className="flex h-[53px] w-full items-center justify-between px-[24px]">
             <DrawerItem
               title="그룹 스트링캣"
               alt="groupStrCat"
