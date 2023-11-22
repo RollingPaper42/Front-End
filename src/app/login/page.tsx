@@ -1,19 +1,33 @@
 'use client';
 
+import { axiosInstance } from '@/utils/axios';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+axiosInstance;
 
 export default function login() {
+  // useEffect(() => {
+  //   const router = useRouter();
+  //   axiosInstance
+  //     .get(`/login/check`)
+  //     .then((data) => {
+  //       if (data.data.login) router.push('/main');
+  //     })
+  //     .catch((error) => {});
+  // }, []);
+
   const onClickOAuthKakao = () => {
-    location.href = `http://${process.env.NEXT_PUBLIC_BACK_SERVER}:8080/oauth2/authorization/kakao`;
+    location.href = `http://rolling-eb-env.eba-pppydmmc.ap-northeast-2.elasticbeanstalk.com/oauth2/authorization/kakao`;
   };
+
   const onClickOAuthGoogle = () => {
-    location.href = `http://${process.env.NEXT_PUBLIC_BACK_SERVER}:8080/oauth2/authorization/google`;
+    location.href = `http://rolling-eb-env.eba-pppydmmc.ap-northeast-2.elasticbeanstalk.com/oauth2/authorization/google`;
   };
   return (
     <div className="bg-strcat-black h-full">
       <div className="mx-6">
         <div>
-          ㄴ
           <div className="mt-6 flex w-80 flex-row text-3xl">
             <div className="text-strcat-white text-xl">
               로그인하고 스트링캣을 생성해보세요.

@@ -15,15 +15,8 @@ export default function Home() {
     axiosInstance
       .get(`/boards/Vvs_JTGorbxqVWXr6aH0cg==/contents`)
       .then((data) => {
-<<<<<<< HEAD
         setTitle(data.data.board.title);
         setData(data.data.board.content);
-=======
-        //console.log(data.data);
-        setBoardId(data.data.id);
-        setTitle(data.data.title);
-        setData(data.data.contents);
->>>>>>> 955a208a527ac0c176897cdb2a219e92baca34a2
       })
       .catch((error) => {});
   }, []);

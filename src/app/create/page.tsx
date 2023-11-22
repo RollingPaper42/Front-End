@@ -9,34 +9,36 @@ import { useSearchParams } from 'next/navigation';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 import ThemeChange from '@/component/ThemeChange';
+import Confirm from '@/component/Modal/Confirm';
+import { link } from 'fs';
 
 export default function Create() {
   const ErrorInitColor = 'slate-400';
   const [Theme, setTheme] = useRecoilState(themeState);
+  const [linkURL, setLinkURL] = useState('');
   const searchParams = useSearchParams();
-  const id = searchParams.get('id');
+  const [modalState, setModalState] = useState(false);
   const [buttonState, SetButtonState] = useState('/DisabledButton.png');
   const [title, , handleTitle] = useInput('');
   const [ErrorFontColor, SetErrorFontColor] = useState(ErrorInitColor);
-
+  const openModal = () => {
+    setModalState(true);
+  };
+  const closeModal = () => {
+    setModalState(false);
+  };
   const handleClick = () => {
-    if (title === '') {
-      alert('제목을 입력해주세요');
-    }
-
     const isConfirmed = true;
     if (isConfirmed) {
+      openModal();
       const data = {
-<<<<<<< HEAD
-=======
-        backgroundColor: Theme.BgColor,
->>>>>>> 955a208a527ac0c176897cdb2a219e92baca34a2
+        backgroundColor: Theme,
         title: title,
       };
       axiosInstance
         .post(`/boards`, data)
-        .then((res) => {
-          console.log(res);
+        .then((data) => {
+          setLinkURL(data.data.link);
         })
         .catch((err) => {
           if (err.response.status === 406) {
@@ -69,32 +71,6 @@ export default function Create() {
       SetErrorFontColor('slate-400');
     }
   };
-<<<<<<< HEAD
-=======
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const textarea: HTMLTextAreaElement = e.target;
-    const byteLength = new TextEncoder().encode(e.currentTarget.value).length;
-    textarea.style.height = 'auto';
-    textarea.style.height = `${textarea.scrollHeight}px`;
-    if (byteLength <= 3000) {
-      handleText(e);
-    }
-  };
-
-  const handleKeyDown = (
-    e: React.KeyboardEvent<HTMLTextAreaElement>,
-    text: string,
-  ) => {
-    if (text.length >= 1000 && e.key !== 'Backspace' && e.key !== 'Delete') {
-      e.preventDefault();
-      e.currentTarget.value = e.currentTarget.value.slice(0, 1000);
-      SetTextErrorFontColor('red-600');
-    } else {
-      SetTextErrorFontColor('slate-400');
-    }
-  };
-  //console.log(Theme);
->>>>>>> 955a208a527ac0c176897cdb2a219e92baca34a2
 
   return (
     <div className={`${Theme.BgColor} flex h-full flex-col`}>
@@ -147,6 +123,11 @@ export default function Create() {
           onClick={handleClick}
         />
       </div>
+      <Confirm
+        content="여기서 완료하면 더이상 내용을 수정할 수 없습니다.완료하시겠습니까?"
+        yes={() => openModal()}
+        no={() => closeModal()}
+      />
       <div className=" h-11"></div>
     </div>
   );
