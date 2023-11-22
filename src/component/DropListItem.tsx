@@ -5,7 +5,13 @@ interface Board {
   title: string;
 }
 
-export default function DropListItem({ list }: { list: Board[] }) {
+export default function DropListItem({
+  list,
+  category,
+}: {
+  list: Board[];
+  category: string;
+}) {
   const truncateTitle = (title: string) => {
     if (title.length <= 17) {
       return title;
@@ -19,6 +25,7 @@ export default function DropListItem({ list }: { list: Board[] }) {
       <div
         key={item.id}
         className="flex h-[53px] w-full items-center justify-between"
+        onClick={() => (location.href = `/${category}/${item.id}`)}
       >
         {truncateTitle(item.title)}
         <Image src="/CheckSmall.svg" width={24} height={24} alt="check" />

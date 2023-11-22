@@ -52,7 +52,7 @@ export default function Drawer() {
           />
         </div>
         <div className="flex flex-col items-center px-[24px] text-white">
-          <div className="flex h-[53px] w-full items-center justify-between text-white">
+          <div className="flex h-[53px] w-full items-center justify-between">
             <DrawerItem
               title="내 스트링캣"
               alt="personalStrCat"
@@ -69,10 +69,12 @@ export default function Drawer() {
           </div>
           {dropList && (
             <div className="flex w-full flex-col">
-              {personalList && <DropListItem list={personalList} />}
+              {personalList && (
+                <DropListItem list={personalList} category="personal" />
+              )}
             </div>
           )}
-          <div className="flex h-[53px] w-full items-center justify-between text-white">
+          <div className="flex h-[53px] w-full items-center justify-between">
             <DrawerItem
               title="그룹 스트링캣"
               alt="groupStrCat"
@@ -86,7 +88,7 @@ export default function Drawer() {
               onClick={() => setGroupDropList(!groupDropList)}
             />
           </div>
-          {groupDropList && <DropListItem list={groupList} />}
+          {groupDropList && <DropListItem list={groupList} category="group" />}
           <div className="absolute bottom-0 w-full px-[24px]">
             <div className="h-[53px] w-full">
               <DrawerItem
