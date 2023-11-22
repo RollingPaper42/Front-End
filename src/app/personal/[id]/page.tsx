@@ -20,8 +20,8 @@ export default function Home() {
   const params = useParams();
   useEffect(() => {
     axiosInstance
-      //.get(`/api/personal`)
-      .get(`/boards/${params.id}/contents`)
+      .get(`/api/personal`)
+      //.get(`/boards/${params.id}/contents`)
       .then((data) => {
         setBoardId(data.data.id);
         setTitle(data.data.title);

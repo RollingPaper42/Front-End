@@ -14,9 +14,11 @@ const ObserveComponent = ({ content, boardId }: ObserveProps) => {
   const [observe, setObserve] = useRecoilState(observeState);
   const [theme] = useRecoilState(themeState);
   useEffect(() => {
+    let ratio = 0.01;
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(({ isIntersecting }) => {
+        entries.forEach(({ isIntersecting, boundingClientRect }) => {
+          ratio = 10 / boundingClientRect.height;
           if (isIntersecting) {
             setObserve(() => ({
               boardId: boardId,
@@ -29,7 +31,7 @@ const ObserveComponent = ({ content, boardId }: ObserveProps) => {
       },
       {
         rootMargin: '-30% 0% -67% 0%',
-        threshold: 0.12,
+        threshold: ratio,
       },
     );
     if (ref.current) {
