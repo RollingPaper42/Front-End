@@ -12,8 +12,9 @@ export default function Modal() {
   const [openModal, closeModal] = useModal();
   const [, setCat] = useRecoilState(catState);
 
-  const handleConfirm = async () => {
-    const result = await confirm('컨펌 메시지 글', openModal, closeModal);
+  const handleConfirm = () => {
+    openModal;
+    confirm('컨펌 메시지 글', openModal, closeModal);
   };
 
   const handleError = () => {
