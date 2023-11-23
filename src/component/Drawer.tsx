@@ -20,7 +20,7 @@ export default function Drawer() {
 
   useEffect(() => {
     axiosInstance
-      .get('/users/boards')
+      .get('/api/users')
       .then((res) => {
         setPersonalList(res.data.data);
       })
@@ -29,7 +29,7 @@ export default function Drawer() {
         console.log(err);
       });
     axiosInstance
-      .get('/users/board-groups')
+      .get('/api/users')
       .then((res) => {
         setGroupList(res.data.data);
       })
