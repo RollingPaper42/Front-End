@@ -12,6 +12,7 @@ export default function Home() {
   const [title, setTitle] = useState<string | null>();
   const [boardsTitle, setBoardsTitle] = useState<board[]>([]);
   const [boardsConetent, setBoardsContent] = useState<board[]>([]);
+  const [isAdd, setIsAdd] = useState(false);
   const [theme] = useRecoilState(themeState);
   const itemsRef = useRef(new Map());
   const scrollToId = (itemId: number) => {
