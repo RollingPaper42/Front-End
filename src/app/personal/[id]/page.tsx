@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { axiosInstance } from '@/utils/axios';
 import { content } from '@/types/content';
-import StrcatComponent from '@/component/StrcatComponent';
+import StrcatBoard from '@/component/StrcatBoard';
 import Add from '@/component/Add';
 import BottomButton from '@/component/BottomButton';
-import PhotoComponent from '@/component/PhotoComponent';
+import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 import { useParams } from 'next/navigation';
@@ -50,7 +50,7 @@ export default function Home() {
     <div
       className={`relative w-full  p-[24px] text-justify ${theme.BgColor} pb-[500px]`}
     >
-      <StrcatComponent
+      <StrcatBoard
         ref={(node) => {
           const map = getMap();
           if (node) {
@@ -76,7 +76,7 @@ export default function Home() {
           />
         </div>
       )}
-      {!isAdd && <PhotoComponent />}
+      {!isAdd && <ContentPhoto />}
     </div>
   );
 }

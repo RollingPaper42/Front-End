@@ -2,9 +2,9 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { axiosInstance } from '@/utils/axios';
-import StrcatComponent from '@/component/StrcatComponent';
+import StrcatBoard from '@/component/StrcatBoard';
 import { board } from '@/types/boards';
-import PhotoComponent from '@/component/PhotoComponent';
+import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 
@@ -57,7 +57,7 @@ export default function Home() {
       <div className=" mb-[500px] text-justify">
         {boardsConetent.map((board) => {
           return (
-            <StrcatComponent
+            <StrcatBoard
               isAdd={isAdd} //그룹페이지에서 글작성버튼은 설정되지않은 상태인데, 타입에러 방지를 위해 일단 추가하였습니다
               ref={(node) => {
                 const map = getMap();
@@ -75,7 +75,7 @@ export default function Home() {
           );
         })}
       </div>
-      <PhotoComponent />
+      <ContentPhoto />
     </div>
   );
 }

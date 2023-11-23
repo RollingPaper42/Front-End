@@ -4,13 +4,13 @@ import { useRecoilState } from 'recoil';
 import { observeState } from '@/recoil/observe';
 import React from 'react';
 import { themeState } from '@/recoil/theme';
-interface ObserveProps {
+interface props {
   content: content;
   boardId: number;
   isAdd: boolean;
 }
 
-const ObserveComponent = ({ content, boardId, isAdd }: ObserveProps) => {
+const ObserveContent = ({ content, boardId, isAdd }: props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [observe, setObserve] = useRecoilState(observeState);
   const [theme] = useRecoilState(themeState);
@@ -70,4 +70,4 @@ const ObserveComponent = ({ content, boardId, isAdd }: ObserveProps) => {
   );
 };
 
-export default React.memo(ObserveComponent);
+export default React.memo(ObserveContent);

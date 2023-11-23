@@ -1,11 +1,11 @@
 import { content } from '@/types/content';
-import ObserveComponent from './ObserveComponent';
-import { forwardRef, useEffect, useState } from 'react';
+import ObserveContent from './ObserveContent';
+import { forwardRef } from 'react';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 
-const StrcatComponent = forwardRef<
+const StrcatBoard = forwardRef<
   HTMLDivElement,
   {
     title: string;
@@ -13,7 +13,7 @@ const StrcatComponent = forwardRef<
     boardId: number;
     isAdd: boolean;
   }
->(function StrcatComponent({ title, data, boardId, isAdd }, ref) {
+>(function StrcatBoard({ title, data, boardId, isAdd }, ref) {
   const [theme] = useRecoilState(themeState);
   return (
     <div ref={ref} className={`inline font-FiraCode`}>
@@ -24,12 +24,12 @@ const StrcatComponent = forwardRef<
         {data &&
           data.map((content: content) => {
             return (
-              <ObserveComponent
+              <ObserveContent
                 isAdd={isAdd}
                 key={content.id}
                 content={content}
                 boardId={boardId}
-              ></ObserveComponent>
+              />
             );
           })}
       </div>
@@ -38,4 +38,4 @@ const StrcatComponent = forwardRef<
   );
 });
 
-export default React.memo(StrcatComponent);
+export default React.memo(StrcatBoard);
