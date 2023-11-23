@@ -10,6 +10,7 @@ interface Board {
   id: string;
   title: string;
 }
+
 export default function Drawer() {
   const [drawer] = useRecoilState(drawerState);
   const [dropList, setDropList] = useState(false);

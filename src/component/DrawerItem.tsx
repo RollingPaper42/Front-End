@@ -1,12 +1,12 @@
 import Image from 'next/image';
 
-interface DrawerItmeProps {
+interface Props {
   title: string;
   icon: string;
   alt: string;
 }
 
-export default function DrawerItem({ title, icon, alt }: DrawerItmeProps) {
+export default function DrawerItem({ title, icon, alt }: Props) {
   return (
     <div className="flex items-center">
       <Image

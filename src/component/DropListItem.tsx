@@ -8,13 +8,12 @@ interface Board {
   title: string;
 }
 
-export default function DropListItem({
-  list,
-  category,
-}: {
+interface Props {
   list: Board[];
   category: string;
-}) {
+}
+
+export default function DropListItem({ list, category }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const [, setDrawer] = useRecoilState(drawerState);
