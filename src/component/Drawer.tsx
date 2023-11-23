@@ -1,12 +1,43 @@
 import { drawerState } from '@/recoil/drawer';
 import { useRecoilState } from 'recoil';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { axiosInstance } from '@/utils/axios';
+import DropListItem from './DropListItem';
+import DrawerItem from './DrawerItem';
+
+interface Board {
+  id: string;
+  title: string;
+}
 
 export default function Drawer() {
   const [drawer] = useRecoilState(drawerState);
   const [dropList, setDropList] = useState(false);
   const [groupDropList, setGroupDropList] = useState(false);
+  const [personalList, setPersonalList] = useState<Board[]>([]);
+  const [groupList, setGroupList] = useState<Board[]>([]);
+
+  useEffect(() => {
+    axiosInstance
+      .get('/users/boards')
+      .then((res) => {
+        setPersonalList(res.data.data);
+      })
+      .catch((err) => {
+        //401 406 500
+        console.log(err);
+      });
+    axiosInstance
+      .get('/users/board-groups')
+      .then((res) => {
+        setGroupList(res.data.data);
+      })
+      .catch((err) => {
+        //401 406 500
+        console.log(err);
+      });
+  }, []);
 
   return (
     drawer && (
@@ -21,17 +52,12 @@ export default function Drawer() {
           />
         </div>
         <div className="flex flex-col items-center text-white">
-          <div className="flex h-[53px] w-full items-center justify-between px-[24px] text-white">
-            <div className="flex items-center">
-              <Image
-                src="/StrCatIcon.svg"
-                width={24}
-                height={24}
-                alt="personalStrCat"
-                className="mr-[12px]"
-              />
-              내 스트링캣
-            </div>
+          <div className="flex h-[53px] w-full items-center justify-between px-[24px]">
+            <DrawerItem
+              title="내 스트링캣"
+              alt="personalStrCat"
+              icon="/StrCatIcon.svg"
+            />
             <Image
               src={dropList ? '/ListDownButton.svg' : '/ListUpButton.svg'}
               width={24}
@@ -42,96 +68,48 @@ export default function Drawer() {
             />
           </div>
           {dropList && (
-            <div className="flex w-full flex-col px-[24px]">
-              <div className="flex h-[53px] items-center justify-between">
-                내 스트링캣 1
-                <Image
-                  src="/CheckSmall.svg"
-                  width={24}
-                  height={24}
-                  alt="check"
-                  className="ml-[12px]"
-                />
-              </div>
-              <div className="flex h-[53px] items-center justify-between">
-                내 스트링캣 2
-                <Image
-                  src="/CheckSmall.svg"
-                  width={24}
-                  height={24}
-                  alt="check"
-                  className="ml-[12px]"
-                />
-              </div>
+            <div className="flex w-full flex-col">
+              {personalList && (
+                <DropListItem list={personalList} category="personal" />
+              )}
             </div>
           )}
-          <div className="flex h-[53px] w-full items-center justify-between px-[24px] text-white">
-            <div className="flex items-center">
-              <Image
-                src="/StrCatIcon.svg"
-                width={24}
-                height={24}
-                alt="groupStrCat"
-                className="mr-[12px]"
-              />
-              그룹 스트링캣
-            </div>
+          <div className="flex h-[53px] w-full items-center justify-between px-[24px]">
+            <DrawerItem
+              title="그룹 스트링캣"
+              alt="groupStrCat"
+              icon="/StrCatIcon.svg"
+            />
             <Image
-              src={dropList ? '/ListDownButton.svg' : '/ListUpButton.svg'}
+              src={groupDropList ? '/ListDownButton.svg' : '/ListUpButton.svg'}
               width={24}
               height={24}
-              alt="dropList"
-              className="ml-[12px]"
+              alt="groupDropList"
               onClick={() => setGroupDropList(!groupDropList)}
             />
           </div>
-          {groupDropList && (
-            <div className="flex w-full flex-col px-[24px]">
-              <div className="flex h-[53px] items-center justify-between">
-                그룹 스트링캣 2
-                <Image
-                  src="/CheckSmall.svg"
-                  width={24}
-                  height={24}
-                  alt="check"
-                  className="ml-[12px]"
-                />
-              </div>
-              <div className="flex h-[53px] items-center justify-between">
-                그룹 스트링캣 2
-              </div>
-            </div>
-          )}
-          <div className="absolute  bottom-0 w-full">
-            <div className="flex h-[53px] w-full items-center pl-[24px]">
-              <Image
-                src="/VersionIcon.svg"
-                width={24}
-                height={24}
+          {groupDropList && <DropListItem list={groupList} category="group" />}
+          <div className="absolute bottom-0 w-full px-[24px]">
+            <div className="h-[53px] w-full">
+              <DrawerItem
+                title="버전 정보?"
                 alt="version"
-                className="mr-[12px]"
+                icon="/VersionIcon.svg"
               />
-              버전 정보?
             </div>
-            <div className="flex h-[53px] w-full items-center pl-[24px]">
-              <Image
-                src="/NotifyIcon.svg"
-                width={24}
-                height={24}
+            <div className="h-[53px] w-full">
+              <DrawerItem
+                title="Man Strcat"
                 alt="notify"
-                className="mr-[12px]"
+                icon="/NotifyIcon.svg"
               />
-              Man Strcat
             </div>
-            <div className="flex h-[53px] w-full items-center pl-[24px] text-white">
-              <Image
-                src="/LogoutIcon.svg"
-                width={24}
-                height={24}
+            <div className="h-[53px] w-full">
+              <DrawerItem
+                title="로그아웃"
                 alt="logout"
-                className="mr-[12px]"
+                icon="/LogoutIcon.svg"
               />
-              로그아웃
             </div>
           </div>
         </div>
