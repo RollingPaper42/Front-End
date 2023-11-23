@@ -14,7 +14,7 @@ export default function StrcatHeader() {
 
   useEffect(() => {
     axiosInstance
-      .get('/islogin')
+      .get('/api/login')
       .then((res) => {
         setIsLogin(res.data.data);
       })
