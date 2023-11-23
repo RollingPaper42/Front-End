@@ -29,6 +29,7 @@ module.exports = {
       },
     },
     fontFamily: {
+      sans: ['Noto Sans KR', 'DotGothic16'],
       FiraCode: ['FiraCode'],
     },
   },
