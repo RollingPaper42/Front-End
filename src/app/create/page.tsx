@@ -4,50 +4,45 @@ import Link from 'next/link';
 import { useState } from 'react';
 import Image from 'next/image';
 import useInput from '@/hooks/useInput';
-import { axiosInstance } from '@/utils/axios';
-import { useSearchParams } from 'next/navigation';
 import { useRecoilState } from 'recoil';
-import { calm, cyan, green, strcat, themeState } from '@/recoil/theme';
+import { themeState } from '@/recoil/theme';
 import ThemeChange from '@/component/ThemeChange';
+import useModal from '@/hooks/useModal';
+import Confirm from '@/component/Modal/Confirm';
+import { useRouter } from 'next/navigation';
 
 export default function Create() {
   const ErrorInitColor = 'slate-400';
   const [Theme, setTheme] = useRecoilState(themeState);
-  const searchParams = useSearchParams();
-  const id = searchParams.get('id');
-  const handleThemeChange = (newTheme: themeState) => {
-    setTheme(newTheme);
-  };
+  const [linkURL, setLinkURL] = useState('');
   const [buttonState, SetButtonState] = useState('/DisabledButton.png');
-  const [text, , handleText] = useInput('');
   const [title, , handleTitle] = useInput('');
   const [ErrorFontColor, SetErrorFontColor] = useState(ErrorInitColor);
-  const [TextErrorFontColor, SetTextErrorFontColor] = useState(ErrorInitColor);
+  const [openModal, closeModal] = useModal();
+  const router = useRouter();
+
+  const handleConfirm = async () => {
+    openModal(<Confirm content="확인" yes={handleClick} no={closeModal} />);
+  };
 
   const handleClick = () => {
-    if (text === '') {
-      alert('이어 쓸 스트링을 입력해주세요');
-    } else if (title === '') {
-      alert('제목을 입력해주세요');
-    }
-
-    const isConfirmed = true;
-    if (isConfirmed) {
-      const data = {
-        backgroundColor: Theme.BgColor,
-        title: title,
-      };
-      axiosInstance
-        .post(`/boards`, data)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          if (err.response.status === 406) {
-            alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
-          }
-        });
-    }
+    // const data = {
+    //   backgroundColor: Theme,
+    //   title: title,
+    // };
+    // axiosInstance
+    //   .post(`/boards`, data)
+    //   .then((data) => {
+    //     setLinkURL(data.data.link);
+    //     router.push(data.data);
+    //   })
+    //   .catch((err) => {
+    //     if (err.response.status === 406) {
+    //       alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
+    //     }
+    //   });
+    router.push('/');
+    closeModal();
   };
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,29 +68,6 @@ export default function Create() {
       SetErrorFontColor('slate-400');
     }
   };
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const textarea: HTMLTextAreaElement = e.target;
-    const byteLength = new TextEncoder().encode(e.currentTarget.value).length;
-    textarea.style.height = 'auto';
-    textarea.style.height = `${textarea.scrollHeight}px`;
-    if (byteLength <= 3000) {
-      handleText(e);
-    }
-  };
-
-  const handleKeyDown = (
-    e: React.KeyboardEvent<HTMLTextAreaElement>,
-    text: string,
-  ) => {
-    if (text.length >= 1000 && e.key !== 'Backspace' && e.key !== 'Delete') {
-      e.preventDefault();
-      e.currentTarget.value = e.currentTarget.value.slice(0, 1000);
-      SetTextErrorFontColor('red-600');
-    } else {
-      SetTextErrorFontColor('slate-400');
-    }
-  };
-  //console.log(Theme);
 
   return (
     <div className={`${Theme.BgColor} flex h-full flex-col`}>
@@ -137,24 +109,6 @@ export default function Create() {
           </div>
         </div>
       </>
-      <>
-        <div className="mt-10 flex flex-col items-center justify-center">
-          <span className="h-80 w-80">
-            <textarea
-              id="message"
-              value={text}
-              className={` max-h-80 w-full ${Theme.BgColor} text-lg ${Theme.FontColor1}  outline-none ${Theme.PlaceholderColor} placeholder:opacity-50`}
-              placeholder="내용을 입력해보세요! 스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요."
-              maxLength={1000}
-              onChange={(e2) => handleChange(e2)}
-              onKeyDown={(e2) => handleKeyDown(e2, text)}
-            />
-            <div className={`text-right text-${TextErrorFontColor}`}>
-              {text.length}/1000
-            </div>
-          </span>
-        </div>
-      </>
       <ThemeChange />
       <div className=" h-8"></div>
       <div className="flex w-full flex-row items-center justify-center">
@@ -163,7 +117,7 @@ export default function Create() {
           width={312}
           height={42}
           alt="Button"
-          onClick={handleClick}
+          onClick={handleConfirm}
         />
       </div>
       <div className=" h-11"></div>
