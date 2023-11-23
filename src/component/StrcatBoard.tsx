@@ -5,15 +5,17 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 
-const StrcatBoard = forwardRef<
-  HTMLDivElement,
-  {
-    title: string;
-    data: content[] | undefined;
-    boardId: number;
-    isAdd: boolean;
-  }
->(function StrcatBoard({ title, data, boardId, isAdd }, ref) {
+interface props {
+  title: string;
+  data: content[] | undefined;
+  boardId: number;
+  isAdd: boolean;
+}
+
+const StrcatBoard = forwardRef<HTMLDivElement, props>(function StrcatBoard(
+  { title, data, boardId, isAdd },
+  ref,
+) {
   const [theme] = useRecoilState(themeState);
   return (
     <div ref={ref} className={`inline font-FiraCode`}>
