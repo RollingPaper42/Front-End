@@ -12,7 +12,7 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <div className="font-sans max-w-[calc(100vh*0.6)]} m-auto h-full">
+        <div className="font-sans m-auto h-full max-w-[calc(100vh*0.6)]">
           <RecoilRoot>
             <Modal />
             {children}
