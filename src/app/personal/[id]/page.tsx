@@ -65,7 +65,7 @@ export default function Home() {
         isAdd={isAdd}
       />
       {isAdd ? (
-        <Add id="Vvs_JTGorbxqVWXr6aH0cg==" setIsAdd={setIsAdd} />
+        <Add id={`${params.id}`} setIsAdd={setIsAdd} />
       ) : (
         <div className="sticky bottom-5 w-full">
           <BottomButton
