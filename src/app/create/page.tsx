@@ -11,7 +11,7 @@ import ThemeChange from '@/component/ThemeChange';
 import { link } from 'fs';
 import useModal from '@/hooks/useModal';
 import Confirm from '@/component/Modal/Confirm';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export default function Create() {
   const ErrorInitColor = 'slate-400';
@@ -21,31 +21,30 @@ export default function Create() {
   const [title, , handleTitle] = useInput('');
   const [ErrorFontColor, SetErrorFontColor] = useState(ErrorInitColor);
   const [openModal, closeModal] = useModal();
+  const router = useRouter();
 
   const handleConfirm = async () => {
     openModal(<Confirm content="확인" yes={handleClick} no={closeModal} />);
   };
 
   const handleClick = () => {
-    const router = useRouter();
-    const isConfirmed = true;
-    if (isConfirmed) {
-      const data = {
-        backgroundColor: Theme,
-        title: title,
-      };
-      axiosInstance
-        .post(`/boards`, data)
-        .then((data) => {
-          setLinkURL(data.data.link);
-          router.push('/board');
-        })
-        .catch((err) => {
-          if (err.response.status === 406) {
-            alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
-          }
-        });
-    }
+    // const data = {
+    //   backgroundColor: Theme,
+    //   title: title,
+    // };
+    // axiosInstance
+    //   .post(`/boards`, data)
+    //   .then((data) => {
+    //     setLinkURL(data.data.link);
+    //     router.push(data.data);
+    //   })
+    //   .catch((err) => {
+    //     if (err.response.status === 406) {
+    //       alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
+    //     }
+    //   });
+    router.push('/');
+    closeModal();
   };
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
