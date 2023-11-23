@@ -10,6 +10,8 @@ import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 import { useParams } from 'next/navigation';
+import Drawer from '@/component/Drawer';
+import StrcatHeader from '@/component/StrcatHeader';
 
 export default function Home() {
   const [title, setTitle] = useState<string>('');
@@ -47,36 +49,40 @@ export default function Home() {
   };
 
   return (
-    <div
-      className={`relative w-full  p-[24px] text-justify ${theme.BgColor} pb-[500px]`}
-    >
-      <StrcatBoard
-        ref={(node) => {
-          const map = getMap();
-          if (node) {
-            map.set(boardId, node);
-          } else {
-            map.delete(boardId);
-          }
-        }}
-        boardId={boardId}
-        title={title}
-        data={data}
-        isAdd={isAdd}
-      />
-      {isAdd ? (
-        <Add id={`${params.id}`} setIsAdd={setIsAdd} />
-      ) : (
-        <div className="sticky bottom-5 w-full">
-          <BottomButton
-            name="글 작성"
-            width="w-full"
-            onClickHandler={handleClick}
-            disabled={false}
-          />
-        </div>
-      )}
-      {!isAdd && <ContentPhoto />}
-    </div>
+    <>
+      <Drawer />
+      <StrcatHeader />
+      <div
+        className={`relative w-full  p-[24px] text-justify ${theme.BgColor} pb-[500px]`}
+      >
+        <StrcatBoard
+          ref={(node) => {
+            const map = getMap();
+            if (node) {
+              map.set(boardId, node);
+            } else {
+              map.delete(boardId);
+            }
+          }}
+          boardId={boardId}
+          title={title}
+          data={data}
+          isAdd={isAdd}
+        />
+        {isAdd ? (
+          <Add id={`${params.id}`} setIsAdd={setIsAdd} />
+        ) : (
+          <div className="sticky bottom-5 w-full">
+            <BottomButton
+              name="글 작성"
+              width="w-full"
+              onClickHandler={handleClick}
+              disabled={false}
+            />
+          </div>
+        )}
+        {!isAdd && <ContentPhoto />}
+      </div>
+    </>
   );
 }
