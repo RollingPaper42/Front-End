@@ -8,13 +8,13 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 export default function StrcatHeader() {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [, setDrawer] = useRecoilState(drawerState);
   // login을 api요청 확인 후 변경
 
   useEffect(() => {
     axiosInstance
-      .get('/islogin')
+      .get('/api/login')
       .then((res) => {
         setIsLogin(res.data.data);
       })
