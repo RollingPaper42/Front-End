@@ -58,6 +58,7 @@ export default function Home() {
         {boardsConetent.map((board) => {
           return (
             <StrcatComponent
+              isAdd={isAdd} //그룹페이지에서 글작성버튼은 설정되지않은 상태인데, 타입에러 방지를 위해 일단 추가하였습니다
               ref={(node) => {
                 const map = getMap();
                 if (node) {
