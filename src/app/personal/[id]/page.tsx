@@ -6,6 +6,9 @@ import { content } from '@/types/content';
 import StrcatComponent from '@/component/StrcatComponent';
 import Add from '@/component/Add';
 import BottomButton from '@/component/BottomButton';
+import PhotoComponent from '@/component/PhotoComponent';
+import Drawer from '@/component/Drawer';
+import StrcatHeader from '@/component/StrcatHeader';
 
 export default function Home() {
   const [title, setTitle] = useState<string>('');
@@ -26,20 +29,25 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full p-[24px] text-justify">
-      <StrcatComponent title={title} data={data}></StrcatComponent>
-      {isAdd ? (
-        <Add id="Vvs_JTGorbxqVWXr6aH0cg==" setIsAdd={setIsAdd} />
-      ) : (
-        <div className="sticky bottom-5 w-full">
-          <BottomButton
-            name="글 작성"
-            width="w-full"
-            onClickHandler={handleClick}
-            disabled={false}
-          />
-        </div>
-      )}
-    </div>
+    <>
+      <Drawer />
+      <StrcatHeader />
+      <div className=" relative w-full p-[24px] text-justify">
+        <StrcatComponent boardId={boardId} title={title} data={data} />
+        {isAdd ? (
+          <Add id="Vvs_JTGorbxqVWXr6aH0cg==" setIsAdd={setIsAdd} />
+        ) : (
+          <div className="sticky bottom-5 w-full">
+            <BottomButton
+              name="글 작성"
+              width="w-full"
+              onClickHandler={handleClick}
+              disabled={false}
+            />
+          </div>
+        )}
+        <PhotoComponent />
+      </div>
+    </>
   );
 }

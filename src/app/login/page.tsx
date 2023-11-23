@@ -1,10 +1,10 @@
 'use client';
 
-import { axiosInstance } from '@/utils/axios';
+import Drawer from '@/component/Drawer';
+import StrcatHeader from '@/component/StrcatHeader';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-axiosInstance;
 
 export default function login() {
   // useEffect(() => {
@@ -25,22 +25,29 @@ export default function login() {
     location.href = `http://rolling-eb-env.eba-pppydmmc.ap-northeast-2.elasticbeanstalk.com/oauth2/authorization/google`;
   };
   return (
-    <div className="bg-strcat-black h-full">
-      <div className="mx-6">
-        <div>
-          <div className="mt-6 flex w-80 flex-row text-3xl">
-            <div className="text-strcat-white text-xl">
-              로그인하고 스트링캣을 생성해보세요.
-            </div>
+    <>
+      <Drawer />
+      <StrcatHeader />
+      <div className="relative m-6">
+        <div className="font-FiraCode font-semibold">
+          <div className="mt-2 flex w-80 flex-row text-3xl">
+            <div className="basis-2/12">{`//`}</div>
+            <div className="basis-5/12">스트링캣</div>
+            <div className="basis-3.5/12 bg-red-300">로그인</div>
           </div>
         </div>
-        <div className="relative -z-10 my-20 flex h-96 flex-row items-center justify-center"></div>
+        <div className="relative z-10 my-20 flex h-96 flex-row items-center justify-center">
+          {/* <Image
+                    src="/strcatImage.png"
+                    width={170}
+                    height={100}
+                    alt="strcatImage"
+                    className='absolute opacity-10'
+                    /> */}
+        </div>
         <button className="mt-3 flex h-12 w-full flex-row justify-center rounded-lg bg-yellow-300 ">
           <div className=" basis-3/12"></div>
-          <div
-            onClick={onClickOAuthKakao}
-            className="flex basis-52 flex-row items-center justify-center"
-          >
+          <div className="flex basis-52 flex-row items-center justify-center">
             <Image
               src="/kakao.png"
               width={48}
@@ -54,10 +61,7 @@ export default function login() {
         </button>
         <button className="mt-3 flex h-12 w-full flex-row justify-center rounded-lg bg-neutral-200 ">
           <div className=" basis-3/12"></div>
-          <div
-            onClick={onClickOAuthGoogle}
-            className="flex basis-52 flex-row items-center justify-center"
-          >
+          <div className="flex basis-52 flex-row items-center justify-center">
             <Image
               src="/google.png"
               width={48}
@@ -70,6 +74,6 @@ export default function login() {
           <div className="basis-3/12"></div>
         </button>
       </div>
-    </div>
+    </>
   );
 }
