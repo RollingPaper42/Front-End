@@ -6,17 +6,15 @@ import StrcatBoard from '@/component/StrcatBoard';
 import { board } from '@/types/boards';
 import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
+import { themeObj, themeState } from '@/recoil/theme';
 import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
-import Add from '@/component/Add';
 import BottomButton from '@/component/BottomButton';
 import { observeState } from '@/recoil/observe';
 
 export default function Home() {
   const [title, setTitle] = useState<string | null>();
-  const [boardsTitle, setBoardsTitle] = useState<board[]>([]);
-  const [boardsConetent, setBoardsContent] = useState<board[]>([]);
+  const [boards, setBoards] = useState<board[]>([]);
   const [isAdd, setIsAdd] = useState(false);
   const [theme] = useRecoilState(themeState);
   const itemsRef = useRef(new Map());
@@ -37,9 +35,8 @@ export default function Home() {
     axiosInstance
       .get(`/api/group`)
       .then((data) => {
-        setTitle(data.data.titleData.title);
-        setBoardsTitle(data.data.titleData.boards);
-        setBoardsContent(data.data.contentData);
+        setBoards(data.data.boards);
+        setTitle(data.data.title);
       })
       .catch((error) => {});
   }, []);
@@ -47,20 +44,22 @@ export default function Home() {
     <>
       <Drawer />
       <StrcatHeader />
-      <div className={`relative w-full p-[24px] ${theme.BgColor}`}>
+      <div className={`relative w-full py-[24px] ${theme.BgColor}`}>
         <div className="mb-[20px]">
           <h1 className={`${theme.DefaultFontColor} text-4xl`}>{title}</h1>
         </div>
         <div>
-          {boardsTitle.map((board: board) => {
+          {boards.map((board: board) => {
             return (
               <div
                 key={board.id}
-                className="my-[32px]"
+                className={`my-[32px] ${themeObj[board.theme].BgColor}`}
                 onClick={() => scrollToId(board.id)}
               >
                 <p
-                  className={`cursor-pointer text-xl ${theme.DefaultFontColor}`}
+                  className={`cursor-pointer text-xl ${
+                    themeObj[board.theme].DefaultFontColor
+                  }`}
                 >
                   {board.title}
                 </p>
@@ -69,11 +68,12 @@ export default function Home() {
           })}
         </div>
         <div className="pb-[500px] text-justify">
-          {boardsConetent.map((board) => {
+          {boards.map((board) => {
             return (
               <StrcatBoard
+                theme={board.theme}
                 setIsAdd={setIsAdd}
-                isAdd={isAdd} //그룹페이지에서 글작성버튼은 설정되지않은 상태인데, 타입에러 방지를 위해 일단 추가하였습니다
+                isAdd={isAdd}
                 ref={(node) => {
                   const map = getMap();
                   if (node) {
@@ -107,14 +107,14 @@ export default function Home() {
               disabled={false}
             />
             <BottomButton
-              color={`bg-[#7CED43]`}
+              color={`bg-strcat-green`}
               name="만들기"
               width="basis-1/4"
               onClickHandler={handleClick}
               disabled={false}
             />
             <BottomButton
-              color={`bg-[#6CD8ED]`}
+              color={`bg-strcat-cyan`}
               name="글 작성"
               width="basis-1/4"
               onClickHandler={handleClick}

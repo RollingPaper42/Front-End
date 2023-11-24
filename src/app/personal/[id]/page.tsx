@@ -8,18 +8,21 @@ import Add from '@/component/Add';
 import BottomButton from '@/component/BottomButton';
 import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
+import { themeObj, themeState } from '@/recoil/theme';
 import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
 import { observeState } from '@/recoil/observe';
 import { useRouter } from 'next/navigation';
+import { board } from '@/types/boards';
 
 export default function Home() {
-  const [title, setTitle] = useState<string>('');
-  const [boardId, setBoardId] = useState(0);
-  const [data, setData] = useState<content[] | undefined>(undefined);
+  const [boards, setBoards] = useState<board>({
+    id: 0,
+    title: '',
+    theme: 'strcat',
+    content: [],
+  });
   const [isAdd, setIsAdd] = useState<boolean>(false);
-  const [theme] = useRecoilState(themeState);
   const itemsRef = useRef(new Map());
   const [observe] = useRecoilState(observeState);
   const router = useRouter();
@@ -37,11 +40,8 @@ export default function Home() {
   useEffect(() => {
     axiosInstance
       .get(`/api/personal`)
-      //.get(`/boards/${params.id}/contents`)
       .then((data) => {
-        setBoardId(data.data.id);
-        setTitle(data.data.title);
-        setData(data.data.contents);
+        setBoards(data.data);
       })
       .catch((error) => {});
   }, []);
@@ -56,20 +56,23 @@ export default function Home() {
       <Drawer />
       <StrcatHeader />
       <div
-        className={`relative w-full  p-[24px] text-justify ${theme.BgColor} pb-[500px]`}
+        className={`relative w-full  p-[24px] text-justify ${
+          themeObj[boards.theme].BgColor
+        } pb-[500px]`}
       >
         <StrcatBoard
+          theme={boards.theme}
           ref={(node) => {
             const map = getMap();
             if (node) {
-              map.set(boardId, node);
+              map.set(boards.id, node);
             } else {
-              map.delete(boardId);
+              map.delete(boards.id);
             }
           }}
-          boardId={boardId}
-          title={title}
-          data={data}
+          boardId={boards.id}
+          title={boards.title}
+          data={boards.content}
           isAdd={isAdd}
           setIsAdd={setIsAdd}
         />
@@ -87,14 +90,14 @@ export default function Home() {
               width="basis-1/5"
               onClickHandler={() => router.push('./summary')}
               disabled={false}
-              color={`bg-[#7CED43]`}
+              color={`bg-strcat-green`}
             />
             <BottomButton
               name="글 작성"
               width="basis-3/5"
               onClickHandler={handleClick}
               disabled={!observe.boardId}
-              color={`bg-[#6CD8ED]`}
+              color={`bg-strcat-cyan`}
             />
           </div>
         )}

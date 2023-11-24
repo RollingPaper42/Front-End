@@ -1,9 +1,9 @@
 import { content } from '@/types/content';
 import ObserveContent from './ObserveContent';
-import { forwardRef, Dispatch, SetStateAction } from 'react';
+import { forwardRef, Dispatch, SetStateAction, useState } from 'react';
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
+import { themeObj } from '@/recoil/theme';
 import Add from './Add';
 import { observeState } from '@/recoil/observe';
 
@@ -13,18 +13,24 @@ interface Props {
   boardId: number;
   isAdd: boolean;
   setIsAdd: Dispatch<SetStateAction<boolean>>;
+  theme: 'strcat' | 'calm' | 'green' | 'cyan';
 }
 
 const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
-  { title, data, boardId, isAdd, setIsAdd },
+  { title, data, boardId, isAdd, setIsAdd, theme },
   ref,
 ) {
-  const [theme] = useRecoilState(themeState);
   const [observe] = useRecoilState(observeState);
+
   return (
-    <div ref={ref} className={`inline font-FiraCode`}>
+    <div
+      ref={ref}
+      className={` font-FiraCode ${themeObj[theme].BgColor} px-[24px]`}
+    >
       <div className="h-[200px]">
-        <h1 className={` text-[28px] ${theme.DefaultFontColor} `}>{title}</h1>
+        <h1 className={` text-[28px] ${themeObj[theme].DefaultFontColor}`}>
+          {title}
+        </h1>
       </div>
       <div className={`z-0 inline`}>
         {data &&
@@ -35,6 +41,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
                 key={content.id}
                 content={content}
                 boardId={boardId}
+                theme={theme}
               />
             );
           })}

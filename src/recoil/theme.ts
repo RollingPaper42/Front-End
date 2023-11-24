@@ -37,6 +37,13 @@ export const cyan: themeState = {
   BgColor: 'bg-strcat-black',
 };
 
+export const themeObj = {
+  strcat: strcat,
+  calm: calm,
+  green: green,
+  cyan: cyan,
+};
+
 export const themeState = atom<themeState>({
   key: 'themeState',
   default: strcat,
