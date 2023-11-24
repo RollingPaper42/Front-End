@@ -40,7 +40,7 @@ export default function Drawer() {
   }, []);
   const [, setDrawer] = useRecoilState(drawerState);
 
-  const handleBackground = (e: any) => {
+  const handleBackground = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target !== e.currentTarget) return;
     setDrawer(false);
   };
