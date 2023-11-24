@@ -5,6 +5,15 @@ import StrcatHeader from '@/component/StrcatHeader';
 import Image from 'next/image';
 
 export default function login() {
+  const onClickOAuthKakao = () => {
+    location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/kakao`;
+  };
+  console.log(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/kakao`,
+  );
+  const onClickOAuthGoogle = () => {
+    location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/google`;
+  };
   return (
     <>
       <Drawer />
@@ -17,16 +26,11 @@ export default function login() {
             <div className="basis-3.5/12 bg-red-300">로그인</div>
           </div>
         </div>
-        <div className="relative z-10 my-20 flex h-96 flex-row items-center justify-center">
-          {/* <Image
-                    src="/strcatImage.png"
-                    width={170}
-                    height={100}
-                    alt="strcatImage"
-                    className='absolute opacity-10'
-                    /> */}
-        </div>
-        <button className="mt-3 flex h-12 w-full flex-row justify-center rounded-lg bg-yellow-300 ">
+        <div className="relative z-10 my-20 flex h-96 flex-row items-center justify-center"></div>
+        <button
+          className="mt-3 flex h-12 w-full flex-row justify-center rounded-lg bg-yellow-300  "
+          onClick={onClickOAuthKakao}
+        >
           <div className=" basis-3/12"></div>
           <div className="flex basis-52 flex-row items-center justify-center">
             <Image
@@ -40,7 +44,10 @@ export default function login() {
           </div>
           <div className="basis-3/12"></div>
         </button>
-        <button className="mt-3 flex h-12 w-full flex-row justify-center rounded-lg bg-neutral-200 ">
+        <button
+          className="mt-3 flex h-12 w-full flex-row justify-center rounded-lg bg-neutral-200 "
+          onClick={onClickOAuthGoogle}
+        >
           <div className=" basis-3/12"></div>
           <div className="flex basis-52 flex-row items-center justify-center">
             <Image
@@ -49,6 +56,7 @@ export default function login() {
               height={48}
               alt="kakao"
               className="h-12"
+              onClick={onClickOAuthGoogle}
             />
             <div className="h-full basis-32 text-left">구글로 시작하기</div>
           </div>
