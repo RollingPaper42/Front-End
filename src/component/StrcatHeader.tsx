@@ -22,7 +22,7 @@ export default function StrcatHeader() {
   }, []);
 
   return (
-    <div className="flex h-[56px] flex-row items-center bg-black px-[24px]">
+    <div className="flex h-[56px] flex-row items-center justify-between bg-black px-[24px]">
       <Link href="/">
         <Image src="/Logo.svg" width={128} height={25} alt="logo" />
       </Link>
