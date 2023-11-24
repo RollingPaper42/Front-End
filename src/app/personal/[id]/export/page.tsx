@@ -1,18 +1,18 @@
 'use client';
 
-import Drawer from '@/component/Drawer';
-import StrcatHeader from '@/component/StrcatHeader';
 import { useEffect, useRef, useState } from 'react';
 import { content } from '@/types/content';
+import { exportThemeButton, exportThemeEnum } from '@/types/export';
 import { axiosInstance } from '@/utils/axios';
-import BottomButton from '@/component/BottomButton';
 import html2canvas from 'html2canvas';
 import saveAs from 'file-saver';
-import useModal from '@/hooks/useModal';
+import BottomButton from '@/component/BottomButton';
 import ExportSuccess from '@/component/Modal/ExportSuccess';
-import { exportThemeButton, exportThemeEnum } from '@/types/export';
 import ExportBoard from '@/component/export/ExportBoard';
-import ExportTheme from '../../../../component/export/ExportTheme';
+import Drawer from '@/component/Drawer';
+import StrcatHeader from '@/component/StrcatHeader';
+import ExportTheme from '@/component/export/ExportTheme';
+import useModal from '@/hooks/useModal';
 
 export default function Export() {
   const [openModal, closeModal] = useModal();
