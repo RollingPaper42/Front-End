@@ -59,13 +59,13 @@ const ObserveContent = ({ content, boardId, isAdd }: props) => {
       >
         {content.text}
       </div>
-      {/* {!isAdd &&
+      {!isAdd &&
         observe.boardId === boardId &&
         observe.contentId === content.id && (
           <div
-            className={`bg-strcat-green animate-slide absolute right-[24px]  mt-[1px] px-1 text-white`}
+            className={`bg-strcat-green absolute right-[24px] mt-[1px]  animate-slide px-1 text-white`}
           >{`From: ${observe.writer}`}</div>
-        )} */}
+        )}
     </div>
   );
 };
