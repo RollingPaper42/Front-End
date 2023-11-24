@@ -9,9 +9,9 @@ import BottomButton from '@/component/BottomButton';
 import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
-import { useParams } from 'next/navigation';
 import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
+import { observeState } from '@/recoil/observe';
 
 export default function Home() {
   const [title, setTitle] = useState<string>('');
@@ -20,7 +20,8 @@ export default function Home() {
   const [isAdd, setIsAdd] = useState<boolean>(false);
   const [theme] = useRecoilState(themeState);
   const itemsRef = useRef(new Map());
-  const params = useParams();
+  const [observe] = useRecoilState(observeState);
+
   const scrollToId = (itemId: number) => {
     const map = getMap();
     const node = map.get(itemId);
@@ -76,7 +77,7 @@ export default function Home() {
               name="글 작성"
               width="w-full"
               onClickHandler={handleClick}
-              disabled={false}
+              disabled={!observe.boardId}
             />
           </div>
         )}

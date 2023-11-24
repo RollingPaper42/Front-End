@@ -42,7 +42,7 @@ export default function Add({ id, setIsAdd }: AddProps) {
       };
 
       axiosInstance
-        .post(`/boards/${id}/contents`, data)
+        .post(`/board/${id}/content`, data)
         .then((res) => {
           console.log(res);
         })
@@ -121,7 +121,7 @@ export default function Add({ id, setIsAdd }: AddProps) {
           </div>
         </div>
       </div>
-      <div className="sticky bottom-5 flex w-full flex-row">
+      <div className=" bottom-5 flex w-full flex-row">
         <BottomButton
           name="취소"
           width="basis-1/5"

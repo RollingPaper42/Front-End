@@ -68,7 +68,7 @@ export default function Home() {
             );
           })}
         </div>
-        <div className=" mb-[500px] text-justify">
+        <div className="pb-[500px] text-justify">
           {boardsConetent.map((board) => {
             return (
               <StrcatBoard
@@ -96,11 +96,10 @@ export default function Home() {
               name="글 작성"
               width="w-full"
               onClickHandler={handleClick}
-              disabled={false}
+              disabled={!observe.boardId}
             />
           </div>
         )}
-        {!isAdd && <ContentPhoto />}
         {!isAdd && <ContentPhoto />}
       </div>
     </>
