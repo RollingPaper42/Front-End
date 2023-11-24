@@ -10,11 +10,19 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        xxl: [
+          '1.35rem',
+          {
+            lineHeight: '2.25rem',
+          },
+        ],
+      },
       colors: {
         'strcat-white': '#F0EEEA',
         'strcat-black': '#212121',
         'strcat-green': '#7CED43',
-        'strcat-blue': '#557FE4',
+        'strcat-blue': '#6CD8ED',
         'strcat-yellow': '#FBFF36',
         'strcat-buttonColor': '#8F38FF',
       },
@@ -32,6 +40,6 @@ module.exports = {
       sans: ['Noto Sans KR', 'DotGothic16'],
       FiraCode: ['FiraCode'],
     },
+    plugins: [],
   },
-  plugins: [],
 };
