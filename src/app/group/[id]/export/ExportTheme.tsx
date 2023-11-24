@@ -10,14 +10,10 @@ interface Props {
   onClick: () => void;
 }
 export default function ExportTheme({ name, src, alt, onClick }: Props) {
-  const [Theme, setTheme] = useRecoilState(themeState);
-  const handleThemeChange = (newTheme: themeState) => {
-    setTheme(newTheme);
-  };
   return (
     <div>
       <Image src={src} width={52} height={52} alt={alt} onClick={onClick} />
-      <div className={`text-center ${Theme.DefaultFontColor} `}>{name}</div>
+      <div className={`text-center`}>{name}</div>
     </div>
   );
 }

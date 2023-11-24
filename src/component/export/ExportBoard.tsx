@@ -10,7 +10,7 @@ interface Props {
   exportTheme: string;
 }
 
-export default function Board({ title, data, exportTheme }: Props) {
+export default function ExportBoard({ title, data, exportTheme }: Props) {
   return (
     <div>
       <div className="mb-20 mt-5 text-[22px]">

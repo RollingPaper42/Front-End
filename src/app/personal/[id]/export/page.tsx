@@ -2,24 +2,22 @@
 
 import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
-import ExportTheme from './ExportTheme';
 import { useEffect, useRef, useState } from 'react';
 import { content } from '@/types/content';
 import { axiosInstance } from '@/utils/axios';
 import BottomButton from '@/component/BottomButton';
-import Default from './Default';
-import Writer from './Writer';
-import LineBreak from './LineBreak';
 import html2canvas from 'html2canvas';
 import saveAs from 'file-saver';
 import useModal from '@/hooks/useModal';
 import ExportSuccess from '@/component/Modal/ExportSuccess';
 import { exportThemeButton, exportThemeEnum } from '@/types/export';
+import ExportBoard from '@/component/export/ExportBoard';
+import ExportTheme from '../../../../component/export/ExportTheme';
 
 export default function Export() {
   const [openModal, closeModal] = useModal();
   const [title, setTitle] = useState<string>('');
-  const [data, setData] = useState<content[] | undefined>(undefined);
+  const [board, setBoard] = useState<content[] | undefined>(undefined);
   const divRef = useRef<HTMLDivElement>(null);
   const [exportTheme, setExportTheme] = useState<string>(
     exportThemeEnum.default,
@@ -30,7 +28,7 @@ export default function Export() {
       .get(`/api/personal`)
       .then((data) => {
         setTitle(data.data.title);
-        setData(data.data.contents);
+        setBoard(data.data.contents);
       })
       .catch((error) => {});
   }, []);
@@ -61,22 +59,12 @@ export default function Export() {
       <Drawer />
       <StrcatHeader />
       <div ref={divRef} className=" mx-5 mt-5 text-[22px]">
-        <div className=" mb-10">{title}</div>
-        <div className=" text-justify text-[18px]">
-          {data?.map((item: content) => (
-            <span key={item.id}>
-              {exportTheme === exportThemeEnum.default && (
-                <Default content={item} />
-              )}
-              {exportTheme === exportThemeEnum.writer && (
-                <Writer content={item} />
-              )}
-              {exportTheme === exportThemeEnum.lineBreak && (
-                <LineBreak content={item} />
-              )}
-            </span>
-          ))}
-        </div>
+        <ExportBoard
+          key={title}
+          title={title}
+          data={board}
+          exportTheme={exportTheme}
+        />
       </div>
       <div className=" fixed bottom-5 w-full max-w-[calc(100vh*0.6)]">
         <div className=" mb-5 flex w-full flex-row items-center justify-around">
@@ -92,8 +80,7 @@ export default function Export() {
         </div>
         <BottomButton
           name="저장하기"
-          // w-full 안됨 왜??
-          width="w-[370px]"
+          width="w-full"
           onClickHandler={handleSave}
           disabled={false}
         />

@@ -11,8 +11,8 @@ import saveAs from 'file-saver';
 import useModal from '@/hooks/useModal';
 import ExportSuccess from '@/component/Modal/ExportSuccess';
 import { board } from '@/types/boards';
-import Board from './Board';
 import { exportThemeButton, exportThemeEnum } from '@/types/export';
+import ExportBoard from '@/component/export/ExportBoard';
 
 export default function Export() {
   const divRef = useRef<HTMLDivElement>(null);
@@ -70,7 +70,7 @@ export default function Export() {
         })}
         {boardsConetent.map((board) => {
           return (
-            <Board
+            <ExportBoard
               key={board.id}
               title={board.title}
               data={board.content}
@@ -93,7 +93,6 @@ export default function Export() {
         </div>
         <BottomButton
           name="저장하기"
-          // w-full 안됨 왜??
           width="w-[370px]"
           onClickHandler={handleSave}
           disabled={false}
