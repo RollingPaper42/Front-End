@@ -3,7 +3,7 @@ interface Props {
   handleModalClose: () => void;
 }
 
-export default function Error({ content, handleModalClose }: Props) {
+export default function ExportSuccess({ content, handleModalClose }: Props) {
   return (
     <div className="flex h-full w-full flex-col bg-green-700">
       <div className="flex h-[70%] items-center justify-center p-10 text-center text-2xl">
