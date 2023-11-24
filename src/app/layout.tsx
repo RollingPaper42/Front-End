@@ -10,9 +10,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body>
-        <div className="font-sans m-auto h-full max-w-[calc(100vh*0.6)]">
+    <html className="h-full">
+      <body className="h-full">
+        <div className="m-auto h-full max-w-[calc(100vh*0.6)] font-sans">
           <RecoilRoot>
             <Modal />
             {children}
