@@ -10,6 +10,7 @@ import BottomButton from '@/component/BottomButton';
 import Default from './Default';
 import Writer from './Writer';
 import LineBreak from './LineBreak';
+import html2canvas from 'html2canvas';
 
 const exportThemeEnum = {
   default: 'default',
@@ -55,6 +56,21 @@ export default function Export() {
       .catch((error) => {});
   }, []);
 
+  const saveImageHandler = () => {
+    const target = document.getElementById('content');
+    if (!target) {
+      return alert('결과 저장에 실패했습니다.');
+    }
+    html2canvas(target).then((canvas) => {
+      const element = document.createElement('a');
+      document.body.appendChild(element);
+      element.href = canvas.toDataURL('image/png');
+      element.download = `strcat_${title}.png`;
+      element.click();
+      document.body.removeChild(element);
+    });
+  };
+
   return (
     <div className="mb-10">
       <Drawer />
@@ -92,7 +108,7 @@ export default function Export() {
           name="저장하기"
           // w-full 안됨 왜??
           width="w-[370px]"
-          onClickHandler={() => console.log('hi')}
+          onClickHandler={saveImageHandler}
           disabled={false}
         />
       </div>
