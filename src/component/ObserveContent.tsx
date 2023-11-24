@@ -24,7 +24,7 @@ const ObserveContent = ({ content, boardId, isAdd }: props) => {
             setObserve(() => ({
               boardId: boardId,
               contentId: content.id,
-              photo: content.photo,
+              photoUrl: content.photo,
               writer: content.writer,
             }));
           }
@@ -41,7 +41,7 @@ const ObserveContent = ({ content, boardId, isAdd }: props) => {
     return () => {
       observer.disconnect();
     };
-  });
+  }, [boardId, content.id, content.photo, content.writer, setObserve]);
 
   return (
     <div className="inline">
@@ -52,20 +52,20 @@ const ObserveContent = ({ content, boardId, isAdd }: props) => {
         !isAdd &&
         observe.boardId === boardId &&
         observe.contentId === content.id
-          ? `${theme.FontColor1} ' duration-500' inline  w-full  text-[24px] opacity-100 transition-all`
-          : `${theme.DefaultFontColor} ' duration-500'  inline  w-full text-[24px] opacity-30 transition-all`
+          ? `${theme.FontColor1} ' duration-500' inline  w-full  text-[22px] opacity-100 transition-all`
+          : `${theme.DefaultFontColor} ' duration-500'  inline  w-full text-[22px] opacity-30 transition-all`
       }
     `}
       >
         {content.text}
       </div>
-      {!isAdd &&
+      {/* {!isAdd &&
         observe.boardId === boardId &&
         observe.contentId === content.id && (
           <div
             className={`bg-strcat-green animate-slide absolute right-[24px]  mt-[1px] px-1 text-white`}
           >{`From: ${observe.writer}`}</div>
-        )}
+        )} */}
     </div>
   );
 };
