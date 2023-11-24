@@ -26,8 +26,8 @@ export default function StrcatHeader() {
       <Link href="/">
         <Image
           src="/Logo.svg"
-          width={128}
-          height={25}
+          width={89}
+          height={39}
           alt="logo"
           priority
           loading="eager"
@@ -37,8 +37,8 @@ export default function StrcatHeader() {
       {isLogin ? (
         <Image
           src="/ProfileImg.svg"
-          width={40}
-          height={10}
+          width={24}
+          height={24}
           alt="profileImg"
           loading="eager"
           priority
