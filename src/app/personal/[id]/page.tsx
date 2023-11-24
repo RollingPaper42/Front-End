@@ -68,10 +68,9 @@ export default function Home() {
           title={title}
           data={data}
           isAdd={isAdd}
+          setIsAdd={setIsAdd}
         />
-        {isAdd ? (
-          <Add id={`${params.id}`} setIsAdd={setIsAdd} />
-        ) : (
+        {!isAdd && (
           <div className="sticky bottom-5 w-full">
             <BottomButton
               name="글 작성"

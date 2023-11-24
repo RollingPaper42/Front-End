@@ -20,7 +20,7 @@ const ObserveContent = ({ content, boardId, isAdd }: props) => {
       (entries) => {
         entries.forEach(({ isIntersecting, boundingClientRect }) => {
           ratio = 10 / boundingClientRect.height;
-          if (isIntersecting) {
+          if (!isAdd && isIntersecting) {
             setObserve(() => ({
               boardId: boardId,
               contentId: content.id,
@@ -41,7 +41,7 @@ const ObserveContent = ({ content, boardId, isAdd }: props) => {
     return () => {
       observer.disconnect();
     };
-  }, [boardId, content.id, content.photo, content.writer, setObserve]);
+  }, [boardId, content.id, content.photo, content.writer, setObserve, isAdd]);
 
   return (
     <div className="inline">

@@ -9,6 +9,9 @@ import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
+import Add from '@/component/Add';
+import BottomButton from '@/component/BottomButton';
+import { observeState } from '@/recoil/observe';
 
 export default function Home() {
   const [title, setTitle] = useState<string | null>();
@@ -17,11 +20,15 @@ export default function Home() {
   const [isAdd, setIsAdd] = useState(false);
   const [theme] = useRecoilState(themeState);
   const itemsRef = useRef(new Map());
+  const [observe] = useRecoilState(observeState);
   const scrollToId = (itemId: number) => {
     const map = getMap();
     const node = map.get(itemId);
     const offset = node.offsetTop;
     window.scrollTo({ top: offset, behavior: 'smooth' });
+  };
+  const handleClick = () => {
+    setIsAdd(true);
   };
   const getMap = () => {
     return itemsRef.current;
@@ -65,6 +72,7 @@ export default function Home() {
           {boardsConetent.map((board) => {
             return (
               <StrcatBoard
+                setIsAdd={setIsAdd}
                 isAdd={isAdd} //그룹페이지에서 글작성버튼은 설정되지않은 상태인데, 타입에러 방지를 위해 일단 추가하였습니다
                 ref={(node) => {
                   const map = getMap();
@@ -82,7 +90,18 @@ export default function Home() {
             );
           })}
         </div>
-        <ContentPhoto />
+        {!isAdd && (
+          <div className="sticky bottom-5 w-full">
+            <BottomButton
+              name="글 작성"
+              width="w-full"
+              onClickHandler={handleClick}
+              disabled={false}
+            />
+          </div>
+        )}
+        {!isAdd && <ContentPhoto />}
+        {!isAdd && <ContentPhoto />}
       </div>
     </>
   );
