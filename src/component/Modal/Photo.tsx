@@ -1,10 +1,12 @@
-import Image from 'next/image';
+interface Props {
+  photoUrl: string;
+}
 
-export default function Photo(photo: any) {
+export default function Photo({ photoUrl }: Props) {
   return (
     <div className="relative flex h-full w-full flex-col items-center justify-center">
-      <Image
-        src={photo.photo}
+      <img
+        src={photoUrl}
         alt="사진"
         width={innerWidth}
         height={innerHeight}

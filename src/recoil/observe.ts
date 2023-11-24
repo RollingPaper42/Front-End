@@ -5,7 +5,7 @@ export const observeState = atom({
   default: {
     boardId: 0,
     contentId: 0,
-    photo: '',
+    photoUrl: '',
     writer: '',
   },
 });

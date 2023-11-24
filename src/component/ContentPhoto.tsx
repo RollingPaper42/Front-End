@@ -9,15 +9,15 @@ export default function ContentPhoto() {
   const [observe] = useRecoilState(observeState);
   return (
     <div className="fixed top-[100px] h-[100px] max-w-[312px]">
-      {observe.photo && observe.photo.length !== 0 && (
-        <Image
-          src={observe.photo}
+      {observe.photoUrl && observe.photoUrl.length !== 0 && (
+        <img
+          src={observe.photoUrl}
           alt="사진"
           width={innerWidth}
           height={innerHeight}
           className="h-[100px] w-auto max-w-[312px] "
           onClick={() => {
-            openModal(<Photo photo={observe.photo} />);
+            openModal(<Photo photoUrl={observe.photoUrl} />);
           }}
         />
       )}

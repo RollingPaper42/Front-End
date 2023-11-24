@@ -24,7 +24,7 @@ const ObserveContent = ({ content, boardId, isAdd }: props) => {
             setObserve(() => ({
               boardId: boardId,
               contentId: content.id,
-              photo: content.photo,
+              photoUrl: content.photo,
               writer: content.writer,
             }));
           }
@@ -41,7 +41,7 @@ const ObserveContent = ({ content, boardId, isAdd }: props) => {
     return () => {
       observer.disconnect();
     };
-  });
+  }, [boardId, content.id, content.photo, content.writer, setObserve]);
 
   return (
     <div className="inline">
@@ -63,7 +63,7 @@ const ObserveContent = ({ content, boardId, isAdd }: props) => {
         observe.boardId === boardId &&
         observe.contentId === content.id && (
           <div
-            className={`bg-strcat-green animate-slide absolute right-[24px]  mt-[1px] px-1 text-white`}
+            className={`bg-strcat-green absolute right-[24px] mt-[1px]  animate-slide px-1 text-white`}
           >{`From: ${observe.writer}`}</div>
         )}
     </div>
