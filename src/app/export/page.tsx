@@ -3,7 +3,7 @@
 import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
 import ExportTheme from './ExportTheme';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { content } from '@/types/content';
 import { axiosInstance } from '@/utils/axios';
 import BottomButton from '@/component/BottomButton';
@@ -11,6 +11,9 @@ import Default from './Default';
 import Writer from './Writer';
 import LineBreak from './LineBreak';
 import html2canvas from 'html2canvas';
+import saveAs from 'file-saver';
+import useModal from '@/hooks/useModal';
+import ExportSuccess from '@/component/Modal/ExportSuccess';
 
 const exportThemeEnum = {
   default: 'default',
@@ -40,8 +43,10 @@ const exportThemeButton = [
 ];
 
 export default function Export() {
+  const [openModal, closeModal] = useModal();
   const [title, setTitle] = useState<string>('');
   const [data, setData] = useState<content[] | undefined>(undefined);
+  const divRef = useRef<HTMLDivElement>(null);
   const [exportTheme, setExportTheme] = useState<string>(
     exportThemeEnum.default,
   );
@@ -56,26 +61,32 @@ export default function Export() {
       .catch((error) => {});
   }, []);
 
-  const saveImageHandler = () => {
-    const target = document.getElementById('content');
-    if (!target) {
-      return alert('결과 저장에 실패했습니다.');
+  const handleSave = async () => {
+    if (!divRef.current) return;
+    try {
+      const div = divRef.current;
+      const canvas = await html2canvas(div, { scale: 2 });
+      canvas.toBlob((blob) => {
+        if (blob !== null) {
+          saveAs(blob, `strcat_${title}.png`);
+        }
+      });
+      openModal(
+        <ExportSuccess
+          content="스트링캣이 저장되었습니다!"
+          handleModalClose={closeModal}
+        />,
+      );
+    } catch (error) {
+      console.error('Error converting div to image:', error);
     }
-    html2canvas(target).then((canvas) => {
-      const element = document.createElement('a');
-      document.body.appendChild(element);
-      element.href = canvas.toDataURL('image/png');
-      element.download = `strcat_${title}.png`;
-      element.click();
-      document.body.removeChild(element);
-    });
   };
 
   return (
     <div className="mb-10">
       <Drawer />
       <StrcatHeader />
-      <div id="content" className=" mx-5 mt-5 text-[22px]">
+      <div ref={divRef} className=" mx-5 mt-5 text-[22px]">
         <div className=" mb-10">{title}</div>
         <div className=" text-justify  text-[18px]">
           {data?.map((item: content) => (
@@ -94,7 +105,7 @@ export default function Export() {
         </div>
       </div>
       <div className=" fixed bottom-5 w-full max-w-[calc(100vh*0.6)]">
-        <div className="mb-5 flex w-full flex-row items-center justify-around">
+        <div className=" mb-5 flex w-full flex-row items-center justify-around">
           {exportThemeButton.map((item) => (
             <ExportTheme
               name={item.name}
@@ -108,7 +119,7 @@ export default function Export() {
           name="저장하기"
           // w-full 안됨 왜??
           width="w-[370px]"
-          onClickHandler={saveImageHandler}
+          onClickHandler={handleSave}
           disabled={false}
         />
       </div>
