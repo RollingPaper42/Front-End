@@ -108,6 +108,7 @@ export default function Export() {
         <div className=" mb-5 flex w-full flex-row items-center justify-around">
           {exportThemeButton.map((item) => (
             <ExportTheme
+              key={item.alt}
               name={item.name}
               src={item.src}
               alt={item.alt}
