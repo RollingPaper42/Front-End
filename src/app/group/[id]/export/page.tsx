@@ -4,33 +4,33 @@ import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
 import ExportTheme from './ExportTheme';
 import { useEffect, useRef, useState } from 'react';
-import { content } from '@/types/content';
 import { axiosInstance } from '@/utils/axios';
 import BottomButton from '@/component/BottomButton';
-import Default from './Default';
-import Writer from './Writer';
-import LineBreak from './LineBreak';
 import html2canvas from 'html2canvas';
 import saveAs from 'file-saver';
 import useModal from '@/hooks/useModal';
 import ExportSuccess from '@/component/Modal/ExportSuccess';
+import { board } from '@/types/boards';
+import Board from './Board';
 import { exportThemeButton, exportThemeEnum } from '@/types/export';
 
 export default function Export() {
+  const divRef = useRef<HTMLDivElement>(null);
   const [openModal, closeModal] = useModal();
   const [title, setTitle] = useState<string>('');
-  const [data, setData] = useState<content[] | undefined>(undefined);
-  const divRef = useRef<HTMLDivElement>(null);
+  const [boardsTitle, setBoardsTitle] = useState<board[]>([]);
+  const [boardsConetent, setBoardsContent] = useState<board[]>([]);
   const [exportTheme, setExportTheme] = useState<string>(
     exportThemeEnum.default,
   );
 
   useEffect(() => {
     axiosInstance
-      .get(`/api/personal`)
+      .get(`/api/group`)
       .then((data) => {
-        setTitle(data.data.title);
-        setData(data.data.contents);
+        setTitle(data.data.titleData.title);
+        setBoardsTitle(data.data.titleData.boards);
+        setBoardsContent(data.data.contentData);
       })
       .catch((error) => {});
   }, []);
@@ -60,23 +60,24 @@ export default function Export() {
     <div className="mb-10">
       <Drawer />
       <StrcatHeader />
-      <div ref={divRef} className=" mx-5 mt-5 text-[22px]">
-        <div className=" mb-10">{title}</div>
-        <div className=" text-justify text-[18px]">
-          {data?.map((item: content) => (
-            <span key={item.id}>
-              {exportTheme === exportThemeEnum.default && (
-                <Default content={item} />
-              )}
-              {exportTheme === exportThemeEnum.writer && (
-                <Writer content={item} />
-              )}
-              {exportTheme === exportThemeEnum.lineBreak && (
-                <LineBreak content={item} />
-              )}
-            </span>
-          ))}
-        </div>
+      <div ref={divRef} className="mx-5">
+        {boardsTitle.map((board: board) => {
+          return (
+            <div key={board.title} className=" mb-5  text-[32px]">
+              {board.title}
+            </div>
+          );
+        })}
+        {boardsConetent.map((board) => {
+          return (
+            <Board
+              key={board.id}
+              title={board.title}
+              data={board.content}
+              exportTheme={exportTheme}
+            />
+          );
+        })}
       </div>
       <div className=" fixed bottom-5 w-full max-w-[calc(100vh*0.6)]">
         <div className=" mb-5 flex w-full flex-row items-center justify-around">
