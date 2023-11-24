@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <>
+    <div className="relative h-full w-full">
       <Drawer />
       <StrcatHeader />
       <div className="m-6">
@@ -49,6 +49,6 @@ export default function Home() {
           를 누르면 여러 문자열을 한 그룹으로 관리할 수 있어요. 주렁주렁~
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -38,10 +38,16 @@ export default function Drawer() {
         console.log(err);
       });
   }, []);
+  const [, setDrawer] = useRecoilState(drawerState);
 
+  const handleBackground = (e: any) => {
+    console.log(e);
+    if (e.target !== e.currentTarget) return;
+    setDrawer(false);
+  };
   return (
     drawer && (
-      <div className="fixed right-0 top-0 z-20 h-full w-[300px] items-center bg-black">
+      <div className="absolute right-0 top-0 z-20 h-full w-[300px] bg-black text-white">
         <div className="flex h-[123px] w-full justify-start">
           <Image
             src="/ProfileImg.svg"
@@ -92,7 +98,7 @@ export default function Drawer() {
           <div className="absolute bottom-0 w-full px-[24px]">
             <div className="h-[53px] w-full">
               <DrawerItem
-                title="버전 정보?"
+                title="이용약관"
                 alt="version"
                 icon="/VersionIcon.svg"
               />
