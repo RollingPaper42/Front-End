@@ -91,10 +91,32 @@ export default function Home() {
           })}
         </div>
         {!isAdd && (
-          <div className="sticky bottom-5 w-full">
+          <div className="sticky bottom-5 flex w-full">
             <BottomButton
+              color={`bg-white`}
+              name="저장"
+              width="basis-1/4"
+              onClickHandler={handleClick}
+              disabled={false}
+            />
+            <BottomButton
+              color={`bg-white`}
+              name="공유"
+              width="basis-1/4"
+              onClickHandler={handleClick}
+              disabled={false}
+            />
+            <BottomButton
+              color={`bg-[#7CED43]`}
+              name="만들기"
+              width="basis-1/4"
+              onClickHandler={handleClick}
+              disabled={false}
+            />
+            <BottomButton
+              color={`bg-[#6CD8ED]`}
               name="글 작성"
-              width="w-full"
+              width="basis-1/4"
               onClickHandler={handleClick}
               disabled={!observe.boardId}
             />

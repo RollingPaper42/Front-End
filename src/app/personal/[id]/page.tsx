@@ -12,6 +12,7 @@ import { themeState } from '@/recoil/theme';
 import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
 import { observeState } from '@/recoil/observe';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [title, setTitle] = useState<string>('');
@@ -21,6 +22,7 @@ export default function Home() {
   const [theme] = useRecoilState(themeState);
   const itemsRef = useRef(new Map());
   const [observe] = useRecoilState(observeState);
+  const router = useRouter();
 
   const scrollToId = (itemId: number) => {
     const map = getMap();
@@ -72,12 +74,27 @@ export default function Home() {
           setIsAdd={setIsAdd}
         />
         {!isAdd && (
-          <div className="sticky bottom-5 w-full">
+          <div className="sticky bottom-5 flex w-full">
+            <BottomButton
+              name="저장"
+              width="basis-1/5"
+              onClickHandler={() => router.push('./export')}
+              disabled={false}
+              color={`bg-white`}
+            />
+            <BottomButton
+              name="공유"
+              width="basis-1/5"
+              onClickHandler={() => router.push('./summary')}
+              disabled={false}
+              color={`bg-[#7CED43]`}
+            />
             <BottomButton
               name="글 작성"
-              width="w-full"
+              width="basis-3/5"
               onClickHandler={handleClick}
               disabled={!observe.boardId}
+              color={`bg-[#6CD8ED]`}
             />
           </div>
         )}
