@@ -22,17 +22,26 @@ export default function StrcatHeader() {
   }, []);
 
   return (
-    <div className="flex h-[56px] flex-row items-center bg-black px-[24px]">
+    <div className="flex h-[56px] flex-row items-center justify-between bg-black px-[24px]">
       <Link href="/">
-        <Image src="/Logo.svg" width={128} height={25} alt="logo" />
+        <Image
+          src="/Logo.svg"
+          width={89}
+          height={39}
+          alt="logo"
+          priority
+          loading="eager"
+        />
       </Link>
       <div className="basis-4/6"></div>
       {isLogin ? (
         <Image
           src="/ProfileImg.svg"
-          width={40}
-          height={10}
+          width={24}
+          height={24}
           alt="profileImg"
+          loading="eager"
+          priority
           onClick={() => setDrawer(true)}
         />
       ) : (
@@ -43,7 +52,9 @@ export default function StrcatHeader() {
               width={74}
               height={34}
               alt="login"
+              loading="eager"
               className="absolute inset-0"
+              priority
             />
             <span className="absolute inset-0 flex items-center justify-center text-white">
               로그인
