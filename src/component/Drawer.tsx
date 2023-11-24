@@ -61,20 +61,24 @@ export default function Drawer() {
             />
           </div>
           <div className="flex flex-col items-center text-white">
-            <div className="flex h-[53px] w-full items-center justify-between px-[24px]">
+            <div
+              className="flex h-[53px] w-full items-center justify-between px-[24px]"
+              onClick={() => setDropList(!dropList)}
+            >
               <DrawerItem
                 title="내 스트링캣"
                 alt="personalStrCat"
                 icon="/StrCatIcon.svg"
               />
-              <Image
-                src={dropList ? '/ListDownButton.svg' : '/ListUpButton.svg'}
-                width={24}
-                height={24}
-                alt="dropList"
-                className="ml-[12px]"
-                onClick={() => setDropList(!dropList)}
-              />
+              {personalList.length != 0 && (
+                <Image
+                  src={dropList ? '/ListDownButton.svg' : '/ListUpButton.svg'}
+                  width={24}
+                  height={24}
+                  alt="dropList"
+                  className="ml-[12px]"
+                />
+              )}
             </div>
             {dropList && (
               <div className="flex w-full flex-col">
@@ -83,7 +87,10 @@ export default function Drawer() {
                 )}
               </div>
             )}
-            <div className="flex h-[53px] w-full items-center justify-between px-[24px]">
+            <div
+              className="flex h-[53px] w-full items-center justify-between px-[24px]"
+              onClick={() => setGroupDropList(!groupDropList)}
+            >
               <DrawerItem
                 title="그룹 스트링캣"
                 alt="groupStrCat"
@@ -96,7 +103,6 @@ export default function Drawer() {
                 width={24}
                 height={24}
                 alt="groupDropList"
-                onClick={() => setGroupDropList(!groupDropList)}
               />
             </div>
             {groupDropList && (
