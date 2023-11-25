@@ -20,7 +20,7 @@ const ObserveContent = ({ title }: Props) => {
       },
       {
         rootMargin: '-30% 0% -65% 0%',
-        threshold: 0.1,
+        threshold: 0,
       },
     );
     if (ref.current) {

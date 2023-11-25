@@ -30,6 +30,7 @@ export default function Home() {
       .get(`/api/personal`)
       .then((data) => {
         setBoard(data.data);
+        console.log(data.data);
       })
       .catch((error) => {});
   }, []);
