@@ -3,6 +3,7 @@
 import { RecoilRoot } from 'recoil';
 import './globals.css';
 import Modal from '@/component/Modal';
+import AxiosInterceptor from '@/component/AxiosInterceptor';
 
 export default function RootLayout({
   children,
@@ -14,6 +15,7 @@ export default function RootLayout({
       <body className="h-full">
         <div className="m-auto h-full max-w-[calc(100vh*0.6)] font-sans">
           <RecoilRoot>
+            <AxiosInterceptor />
             <Modal />
             {children}
           </RecoilRoot>
