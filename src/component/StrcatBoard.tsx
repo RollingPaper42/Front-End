@@ -6,18 +6,16 @@ import { useRecoilState } from 'recoil';
 import { themeObj } from '@/recoil/theme';
 import Add from './Add';
 import { observeState } from '@/recoil/observe';
+import { board } from '@/types/boards';
 
 interface Props {
-  title: string;
-  data: content[] | undefined;
-  boardId: number;
+  board: board;
   isAdd: boolean;
   setIsAdd: Dispatch<SetStateAction<boolean>>;
-  theme: 'strcat' | 'calm' | 'green' | 'cyan';
 }
 
 const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
-  { title, data, boardId, isAdd, setIsAdd, theme },
+  { board, isAdd, setIsAdd },
   ref,
 ) {
   const [observe] = useRecoilState(observeState);
@@ -25,28 +23,30 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
   return (
     <div
       ref={ref}
-      className={` font-FiraCode ${themeObj[theme].BgColor} px-[24px]`}
+      className={` font-FiraCode ${themeObj[board.theme].BgColor} px-[24px]`}
     >
       <div className="h-[200px]">
-        <h1 className={` text-[28px] ${themeObj[theme].DefaultFontColor}`}>
-          {title}
+        <h1
+          className={` text-[28px] ${themeObj[board.theme].DefaultFontColor}`}
+        >
+          {board.title}
         </h1>
       </div>
       <div className={`z-0 inline`}>
-        {data &&
-          data.map((content: content) => {
+        {board.content &&
+          board.content.map((content: content) => {
             return (
               <ObserveContent
                 isAdd={isAdd}
                 key={content.id}
                 content={content}
-                boardId={boardId}
-                theme={theme}
+                boardId={board.id}
+                theme={board.theme}
               />
             );
           })}
       </div>
-      {isAdd && boardId === observe.boardId && (
+      {isAdd && board.id === observe.boardId && (
         <Add id={`${observe.boardId}`} setIsAdd={setIsAdd} />
       )}
       {!isAdd && <div className=" h-12"></div>}

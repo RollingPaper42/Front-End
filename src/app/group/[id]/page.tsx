@@ -6,7 +6,7 @@ import StrcatBoard from '@/component/StrcatBoard';
 import { board } from '@/types/boards';
 import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
-import { themeObj, themeState } from '@/recoil/theme';
+import { themeState } from '@/recoil/theme';
 import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
 import BottomButton from '@/component/BottomButton';
@@ -72,14 +72,11 @@ export default function Home() {
           {boards.map((board) => {
             return (
               <StrcatBoard
-                theme={board.theme}
                 setIsAdd={setIsAdd}
                 isAdd={isAdd}
                 ref={(node) => setMap(node, board)}
                 key={board.id}
-                boardId={board.id}
-                title={board.title}
-                data={board.content}
+                board={board}
               />
             );
           })}
