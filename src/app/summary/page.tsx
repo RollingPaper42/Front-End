@@ -35,42 +35,36 @@ export default function Home() {
   // }, []);
 
   return (
-    <div className={`${Theme.BgColor} relative min-h-screen`}>
+    <div className={`${Theme.BgColor} relative min-h-screen overflow-hidden`}>
+      <Link href="/board">
+        <Image
+          src="/backpage.png"
+          width={24}
+          height={24}
+          alt="backpagebutton"
+          className="fixed left-0 top-0 mt-4 "
+        />
+      </Link>
       <div
-        className={`absolute left-6 top-1/4 -z-0 w-40 bg-fixed text-2xl ${Theme.DefaultFontColor} `}
+        className={`fixed left-32 top-0 basis-8/12 text-center ${Theme.DefaultFontColor}  mt-4`}
+      >
+        스트링캣 공유하기
+      </div>
+      <div className={`fixed top-10 m-6 text-xl ${Theme.DefaultFontColor}`}>
+        {Title}
+      </div>
+      <div
+        className={`fixed left-6 top-1/4 -z-0 w-40 text-2xl ${Theme.DefaultFontColor} `}
       >
         총 {ContentCount}번의 <br /> 마음으로 <br /> 내 스트링캣이 <br /> 총{' '}
         {ContentTextCount}자 <br /> 이어졌어요!
-      </div>
-      <div className="flex h-14 w-full flex-row content-center items-center justify-center bg-fixed">
-        <div className=" basis-8"></div>
-        <div className="basis-2/12">
-          <Link href="/board">
-            <Image
-              src="/backpage.png"
-              width={24}
-              height={24}
-              alt="backpagebutton"
-              className="mt-4 "
-            />
-          </Link>
-        </div>
-        <div
-          className={`basis-8/12 bg-fixed text-center ${Theme.DefaultFontColor}  mt-4`}
-        >
-          스트링캣 공유하기
-        </div>
-        <div className="basis-3/12"></div>
-      </div>
-      <div className={`m-6 bg-fixed text-xl ${Theme.DefaultFontColor}`}>
-        {Title}
       </div>
       <Image
         src="/strcatImage.png"
         width={153}
         height={1040}
         alt="Image"
-        className="relative left-40  top-1/4 -z-0 bg-local "
+        className=" relative left-40 top-48  -z-0"
       />
     </div>
   );
