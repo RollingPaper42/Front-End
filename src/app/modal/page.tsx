@@ -5,6 +5,7 @@ import Error from '@/component/Modal/Error';
 import useModal from '@/hooks/useModal';
 import { catState } from '@/recoil/cat';
 import { catAction } from '@/types/cat';
+import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { useRecoilState } from 'recoil';
 
@@ -64,6 +65,13 @@ export default function Modal() {
     });
   };
 
+  const handleErrorRespons = () => {
+    axiosInstance
+      .get('/api/error')
+      .then((res) => {})
+      .catch((error) => {});
+  };
+
   return (
     <div className="h-full w-full bg-green-200">
       <CatAnimation />
@@ -81,6 +89,9 @@ export default function Modal() {
       </div>
       <div id="catdiv3">
         <button onClick={handleCatBottom}>handleCatBottom</button>
+      </div>
+      <div>
+        <button onClick={handleErrorRespons}>500 Error api send</button>
       </div>
     </div>
   );
