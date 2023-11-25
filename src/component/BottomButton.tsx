@@ -1,14 +1,9 @@
-import { themeState } from '@/recoil/theme';
-import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-
 interface BottomButtonProps {
   name: string;
   width: string;
   onClickHandler: () => void;
   disabled: boolean;
   color: string;
-  bgColor: string;
 }
 
 export default function BottomButton({
