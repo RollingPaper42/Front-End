@@ -11,6 +11,7 @@ import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
 import BottomButton from '@/component/BottomButton';
 import { observeState } from '@/recoil/observe';
+import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 
 export default function Home() {
   const [title, setTitle] = useState<string | null>();
@@ -51,19 +52,11 @@ export default function Home() {
         <div>
           {boards.map((board: board) => {
             return (
-              <div
+              <StrcatGroupTitle
                 key={board.id}
-                className={`my-[32px] ${themeObj[board.theme].BgColor}`}
-                onClick={() => scrollToId(board.id)}
-              >
-                <p
-                  className={`cursor-pointer text-xl ${
-                    themeObj[board.theme].DefaultFontColor
-                  }`}
-                >
-                  {board.title}
-                </p>
-              </div>
+                board={board}
+                scrollToId={scrollToId}
+              />
             );
           })}
         </div>
