@@ -45,7 +45,7 @@ export default function Home() {
       <StrcatHeader />
       <div
         className={`relative w-full  p-[24px] text-justify ${
-          themeObj[board.theme].BgColor
+          themeObj[board.theme].background
         } pb-[500px]`}
       >
         <StrcatBoard

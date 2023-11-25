@@ -52,21 +52,17 @@ export default function ThemeChange() {
       </div>
       <div className="flex w-full flex-row items-center justify-center">
         <div className=" mt-9 basis-8"></div>
-        <div className={`basis-14 text-center ${Theme.DefaultFontColor} `}>
+        <div className={`basis-14 text-center ${Theme.defaultText} `}>
           strcat
         </div>
         <div className="basis-8"></div>
-        <div className={`basis-14 text-center ${Theme.DefaultFontColor} `}>
-          Calm
-        </div>
+        <div className={`basis-14 text-center ${Theme.defaultText} `}>Calm</div>
         <div className="basis-8"></div>
-        <div className={`basis-14 text-center ${Theme.DefaultFontColor} `}>
+        <div className={`basis-14 text-center ${Theme.defaultText} `}>
           green
         </div>
         <div className="basis-8"></div>
-        <div className={`basis-14 text-center ${Theme.DefaultFontColor} `}>
-          Cyan
-        </div>
+        <div className={`basis-14 text-center ${Theme.defaultText} `}>Cyan</div>
         <div className="basis-8"></div>
       </div>
     </>

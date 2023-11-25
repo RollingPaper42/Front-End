@@ -1,40 +1,48 @@
 import { atom } from 'recoil';
 
 export interface themeState {
-  DefaultFontColor: string;
-  FontColor1: string;
-  FontColor2: string;
-  PlaceholderColor: string;
-  BgColor: string;
+  name: string;
+  background: string;
+  defaultText: string;
+  highlightText: string;
+  rightCTA: string;
+  leftCTA: string;
 }
 
 export const strcat: themeState = {
-  DefaultFontColor: 'text-strcat-white',
-  FontColor1: 'text-strcat-green',
-  FontColor2: 'text-strcat-blue',
-  PlaceholderColor: 'placeholder-strcat-green',
-  BgColor: 'bg-strcat-black',
+  name: 'strcat',
+  background: 'bg-strcat-default-black',
+  defaultText: 'text-strcat-default-white',
+  highlightText: 'text-strcat-default-yellow',
+  rightCTA: 'bg-strcat-default-cyan',
+  leftCTA: 'bg-strcat-default-green',
 };
+
 export const calm: themeState = {
-  DefaultFontColor: 'text-strcat-black',
-  FontColor1: 'text-strcat-green',
-  FontColor2: 'text-strcat-blue',
-  PlaceholderColor: 'placeholder-strcat-green',
-  BgColor: 'bg-strcat-white',
+  name: 'calm',
+  background: 'bg-strcat-calm-white',
+  defaultText: 'text-strcat-calm-black',
+  highlightText: 'text-strcat-calm-orange',
+  rightCTA: 'bg-strcat-calm-cyan',
+  leftCTA: 'bg-strcat-calm-green',
 };
+
 export const green: themeState = {
-  DefaultFontColor: 'text-strcat-white',
-  FontColor1: 'text-strcat-blue',
-  FontColor2: 'text-strcat-yellow',
-  PlaceholderColor: 'placeholder-strcat-blue',
-  BgColor: 'bg-strcat-black',
+  name: 'green',
+  background: 'bg-strcat-green-green',
+  defaultText: 'text-strcat-green-yellow',
+  highlightText: 'strcat-green-black',
+  rightCTA: 'bg-strcat-green-cyan',
+  leftCTA: 'bg-strcat-green-yellow',
 };
+
 export const cyan: themeState = {
-  DefaultFontColor: 'text-strcat-white',
-  FontColor1: 'text-strcat-yellow',
-  FontColor2: 'text-strcat-green',
-  PlaceholderColor: 'placeholder-strcat-yellow',
-  BgColor: 'bg-strcat-black',
+  name: 'cyan',
+  background: 'bg-strcat-cyan-cyan',
+  defaultText: 'text-strcat-cyan-white',
+  highlightText: 'text-strcat-cyan-yellow',
+  rightCTA: 'bg-strcat-cyan-green',
+  leftCTA: 'bg-strcat-cyan-yellow',
 };
 
 export const themeObj = {

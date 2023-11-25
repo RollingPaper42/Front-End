@@ -52,8 +52,8 @@ const ObserveContent = ({ content, boardId, isAdd, theme }: props) => {
         !isAdd &&
         observe.boardId === boardId &&
         observe.contentId === content.id
-          ? `${themeObj[theme].FontColor1} ' duration-500' inline  w-full  text-[22px] opacity-100 transition-all`
-          : `${themeObj[theme].DefaultFontColor} ' duration-500'  inline  w-full text-[22px] opacity-30 transition-all`
+          ? `${themeObj[theme].highlightText} ' duration-500' inline  w-full  text-[22px] opacity-100 transition-all`
+          : `${themeObj[theme].defaultText} ' duration-500'  inline  w-full text-[22px] opacity-30 transition-all`
       }
     `}
       >

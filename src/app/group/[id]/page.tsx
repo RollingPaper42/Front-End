@@ -44,9 +44,9 @@ export default function Home() {
     <>
       <Drawer />
       <StrcatHeader />
-      <div className={`relative w-full py-[24px] ${theme.BgColor}`}>
+      <div className={`relative w-full py-[24px] ${theme.background}`}>
         <div className="mb-[20px]">
-          <h1 className={`${theme.DefaultFontColor} text-4xl`}>{title}</h1>
+          <h1 className={`${theme.defaultText} text-4xl`}>{title}</h1>
         </div>
         <div>
           {boards.map((board: board) => {
@@ -65,7 +65,7 @@ export default function Home() {
               <StrcatBoard
                 setIsAdd={setIsAdd}
                 isAdd={isAdd}
-                ref={(node) => setMap(node, board, itemsRef)}
+                ref={(node: any) => setMap(node, board, itemsRef)}
                 key={board.id}
                 board={board}
               />
