@@ -5,6 +5,11 @@ import { axiosInstance } from '@/utils/axios';
 import { useRouter } from 'next/navigation';
 import { Dispatch, SetStateAction, useRef } from 'react';
 import Image from 'next/image';
+import useModal from '@/hooks/useModal';
+import Error from '@/component/Modal/Error';
+import { confirm } from '@/utils/confirm';
+import { useRecoilState } from 'recoil';
+import { themeState } from '@/recoil/theme';
 // import { useRecoilState } from 'recoil';
 
 interface AddProps {
@@ -17,8 +22,9 @@ export default function Add({ id, setIsAdd }: AddProps) {
   const [imgFile, setImgFile] = useInput('');
   const [writer, , handleWriter] = useInput('');
   const router = useRouter();
-  // const [modal, setModal] = useRecoilState(modalState);
+  const [openModal, closeModal] = useModal();
   const imgRef = useRef<HTMLInputElement>(null);
+  const [theme] = useRecoilState(themeState);
 
   if (id === null || id === undefined) {
     alert('유효하지 않은 접속입니다.');
@@ -26,14 +32,21 @@ export default function Add({ id, setIsAdd }: AddProps) {
     // redirect 해야함 -> main으로?
   }
 
-  const handleClick = () => {
-    if (text === '') {
-      alert('이어 쓸 스트링을 입력해주세요');
-    } else if (writer === '') {
-      alert('작성자명을 입력해주세요');
+  const handleClick = async () => {
+    if (text.length < 20) {
+      openModal(
+        <Error
+          content="이어 쓸 스트링을 20자 이상 입력해주세요"
+          handleModalClose={closeModal}
+        />,
+      );
+      return;
     }
-    //const isConfirmed = await useConfirm('작성한 글을 이어붙이시겠습니까?', setModal);
-    const isConfirmed = true;
+    const isConfirmed = await confirm(
+      '작성한 스트링을 이어붙이시겠습니까?',
+      openModal,
+      closeModal,
+    );
     if (isConfirmed) {
       const data = {
         text: text,
@@ -44,6 +57,7 @@ export default function Add({ id, setIsAdd }: AddProps) {
       axiosInstance
         .post(`/boards/${id}/contents`, data)
         .then((res) => {
+          setIsAdd(false);
           console.log(res);
         })
         .catch((err) => {
@@ -65,7 +79,6 @@ export default function Add({ id, setIsAdd }: AddProps) {
     }
   };
 
-  // 이미지 업로드 input의 onChange
   const saveImgFile = () => {
     if (!imgRef.current?.files) return;
     const file = imgRef.current.files[0];
@@ -84,38 +97,48 @@ export default function Add({ id, setIsAdd }: AddProps) {
         suppressContentEditableWarning
         onInput={(e) => setText(e.currentTarget.innerText)}
         onKeyDown={(e) => handleInputText(e)}
-        className="bottom-[200px] ml-5 inline w-full text-justify text-[20px] text-purple-700 outline-none"
+        className={`${theme.highlightText} bottom-[200px] ml-5 inline w-full text-justify text-[22px] outline-none`}
+        style={{ cursor: 'padding:0 6px;' }}
       />
       {text === '' && (
-        <div className="inline text-[20px] text-purple-200" onClick={focusText}>
+        <div
+          className={`inline text-[20px] ${theme.highlightText} opacity-50 `}
+          onClick={focusText}
+        >
           20자 이상 내용을 입력해주세요
         </div>
       )}
-      {text?.length > 900 && (
+      {text?.length >= 1000 && (
         <div
           className={`text-right ${
-            text.length > 1000 ? 'text-red-600' : 'text-black'
+            text.length > 1000 ? 'text-red-600' : 'text-strcat-default-white'
           }`}
         >
           {text.length}/1000자
         </div>
       )}
-      <div className="z-10 w-full">
-        <div className="m-2 flex w-80 items-center">
-          From :
+      <div className="z-10 mt-[24px] flex w-full items-center justify-center">
+        <div className="flex w-full items-center justify-center space-x-[16px]">
+          <div className={`${theme.defaultText} w-fit text-[16px]`}>From :</div>
           <input
             type="text"
             id="writer"
             value={writer}
-            className="h-8 w-[180px] px-2 outline-none placeholder:text-[#CACACA]"
-            placeholder="10글자 제한"
+            className={`${theme.defaultText} w-[163px] bg-transparent text-[16px] outline-none placeholder:text-[#909090]`}
+            placeholder="익명의 스트링캣"
             maxLength={11}
             onChange={handleWriter}
           />
           <div
-            className={`text-right ${
-              writer.length > 10 ? 'text-red-600' : 'text-[#CACACA]'
-            }`}
+            className={`w-16 text-right text-[16px] 
+            ${
+              writer === ''
+                ? 'text-[#909090]'
+                : writer.length > 10
+                ? 'text-red-600'
+                : 'text-strcat-default-white'
+            }
+           `}
           >
             {writer.length}/10자
           </div>
@@ -156,12 +179,7 @@ export default function Add({ id, setIsAdd }: AddProps) {
           name="완료"
           width="basis-3/5"
           onClickHandler={handleClick}
-          disabled={
-            text === '' ||
-            writer === '' ||
-            text.length > 1000 ||
-            writer.length > 10
-          }
+          disabled={text === '' || text.length > 1000 || writer.length > 10}
         />
       </div>
     </div>
