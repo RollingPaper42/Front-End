@@ -35,37 +35,45 @@ export default function Home() {
   // }, []);
 
   return (
-    <div className={`${Theme.BgColor} relative min-h-screen overflow-hidden`}>
-      <Link href="/board">
-        <Image
-          src="/backpage.png"
-          width={24}
-          height={24}
-          alt="backpagebutton"
-          className="fixed left-0 top-0 mt-4 "
-        />
-      </Link>
-      <div
-        className={`fixed left-32 top-0 basis-8/12 text-center ${Theme.DefaultFontColor}  mt-4`}
-      >
-        스트링캣 공유하기
+    <div className={`${Theme.BgColor}`}>
+      <div className="fixed max-w-[calc(100vh*0.6)]">
+        <Link href="/board">
+          <Image
+            src="/backpage.png"
+            width={24}
+            height={24}
+            alt="backpagebutton"
+            className="left-[30px] top-[18px] "
+          />
+        </Link>
+        <div className={`top-[20px] mx-[25px]  ${Theme.DefaultFontColor} `}>
+          스트링캣 공유하기
+        </div>
+        <div
+          className={`top-[104px] mx-[25px]  text-xl ${Theme.DefaultFontColor}`}
+        >
+          {Title}
+        </div>
+        <div
+          className={`top-[300px] -z-0   text-2xl ${Theme.DefaultFontColor} `}
+        >
+          총 {ContentCount}번의 <br /> 마음으로 <br /> 내 스트링캣이 <br /> 총{' '}
+          {ContentTextCount}자 <br /> 이어졌어요!
+        </div>
       </div>
-      <div className={`fixed top-10 m-6 text-xl ${Theme.DefaultFontColor}`}>
-        {Title}
+
+      <div className="flex flex-row">
+        <div className="h-full w-full basis-2/4 bg-red-600"> text </div>
+        <div className="flex basis-2/4 content-start justify-start">
+          <Image
+            src="/strcatImage.png"
+            width={153}
+            height={1040}
+            alt="Image"
+            className=" relative  -z-0"
+          />
+        </div>
       </div>
-      <div
-        className={`fixed left-6 top-1/4 -z-0 w-40 text-2xl ${Theme.DefaultFontColor} `}
-      >
-        총 {ContentCount}번의 <br /> 마음으로 <br /> 내 스트링캣이 <br /> 총{' '}
-        {ContentTextCount}자 <br /> 이어졌어요!
-      </div>
-      <Image
-        src="/strcatImage.png"
-        width={153}
-        height={1040}
-        alt="Image"
-        className=" relative left-40 top-48  -z-0"
-      />
     </div>
   );
 }
