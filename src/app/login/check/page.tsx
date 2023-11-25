@@ -1,11 +1,13 @@
 'use client';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Check() {
   const searchParams = useSearchParams();
-
-  const token = searchParams.get('token');
-  console.log(token);
-
-  return <div>hi</div>;
+  const router = useRouter();
+  useEffect(() => {
+    const token = searchParams.get('token');
+    localStorage.setItem('strcat_token', token === null ? '' : token);
+    router.push('/');
+  }, []);
 }
