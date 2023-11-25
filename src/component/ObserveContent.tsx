@@ -1,5 +1,5 @@
 import { content } from '@/types/content';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { observeState } from '@/recoil/observe';
 import React from 'react';

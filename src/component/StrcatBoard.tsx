@@ -7,6 +7,7 @@ import { themeObj } from '@/recoil/theme';
 import Add from './Add';
 import { observeState } from '@/recoil/observe';
 import { board } from '@/types/boards';
+import ObserveTitle from './ObserveTitle';
 
 interface Props {
   board: board;
@@ -25,13 +26,14 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
       ref={ref}
       className={` font-FiraCode ${themeObj[board.theme].BgColor} px-[24px]`}
     >
-      <div className="h-[200px]">
+      <ObserveTitle title={board.title} />
+      {/* <div className="h-[200px]">
         <h1
           className={` text-[28px] ${themeObj[board.theme].DefaultFontColor}`}
         >
           {board.title}
         </h1>
-      </div>
+      </div> */}
       <div className={`z-0 inline`}>
         {board.content &&
           board.content.map((content: content) => {
