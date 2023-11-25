@@ -42,7 +42,7 @@ export default function Add({ id, setIsAdd }: AddProps) {
       };
 
       axiosInstance
-        .post(`/board/${id}/content`, data)
+        .post(`/boards/${id}/contents`, data)
         .then((res) => {
           console.log(res);
         })
