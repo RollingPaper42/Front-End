@@ -32,6 +32,14 @@ export default function Home() {
   const getMap = () => {
     return itemsRef.current;
   };
+  const setMap = (node: HTMLDivElement | null, board: board) => {
+    const map = getMap();
+    if (node) {
+      map.set(board.id, node);
+    } else {
+      map.delete(board.id);
+    }
+  };
   useEffect(() => {
     axiosInstance
       .get(`/api/group`)
@@ -67,14 +75,7 @@ export default function Home() {
                 theme={board.theme}
                 setIsAdd={setIsAdd}
                 isAdd={isAdd}
-                ref={(node) => {
-                  const map = getMap();
-                  if (node) {
-                    map.set(board.id, node);
-                  } else {
-                    map.delete(board.id);
-                  }
-                }}
+                ref={(node) => setMap(node, board)}
                 key={board.id}
                 boardId={board.id}
                 title={board.title}
