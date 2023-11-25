@@ -62,6 +62,7 @@ export default function Home() {
               onClickHandler={() => router.push('./export')}
               disabled={false}
               color={`bg-white`}
+              bgColor={`${themeObj[board.theme].BgColor}`}
             />
             <BottomButton
               name="공유"
@@ -69,6 +70,7 @@ export default function Home() {
               onClickHandler={() => router.push('./summary')}
               disabled={false}
               color={`bg-strcat-green`}
+              bgColor={`${themeObj[board.theme].BgColor}`}
             />
             <BottomButton
               name="글 작성"
@@ -76,6 +78,7 @@ export default function Home() {
               onClickHandler={handleClick}
               disabled={!observe.boardId}
               color={`bg-strcat-cyan`}
+              bgColor={`${themeObj[board.theme].BgColor}`}
             />
           </div>
         )}

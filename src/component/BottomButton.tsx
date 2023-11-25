@@ -1,4 +1,5 @@
 import { themeState } from '@/recoil/theme';
+import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
 interface BottomButtonProps {
@@ -7,6 +8,7 @@ interface BottomButtonProps {
   onClickHandler: () => void;
   disabled: boolean;
   color: string;
+  bgColor: string;
 }
 
 export default function BottomButton({
@@ -16,20 +18,20 @@ export default function BottomButton({
   disabled,
   color,
 }: BottomButtonProps) {
-  const [theme] = useRecoilState(themeState);
   return (
     <button
       disabled={disabled}
-      className={`${width} relative mx-2 h-12 ${color} text-xl disabled:bg-[#CCCCCC]`}
+      className={`${width} relative mx-2 h-12 items-center ${color} text-xl disabled:bg-[#CCCCCC]`}
       onClick={onClickHandler}
     >
       <div
-        className={`absolute left-0 top-0 h-[4.5px] w-[2px] ${theme.BgColor}`}
-      ></div>
-      <div
-        className={`absolute bottom-0 right-0 h-[4.5px] w-[2px] ${theme.BgColor}`}
-      ></div>
-      {name}
+        className={`${width} relative bottom-[4.5px] left-[2px] h-12 text-xl ${
+          disabled ? 'bg-[#CCCCCC]' : color
+        }`}
+        style={{ lineHeight: '3rem' }}
+      >
+        <h1 className=" bottom-[-4.5px] left-[-2px]">{name}</h1>
+      </div>
     </button>
   );
 }
