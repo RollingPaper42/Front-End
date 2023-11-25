@@ -27,13 +27,6 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
       className={` font-FiraCode ${themeObj[board.theme].BgColor} px-[24px]`}
     >
       <ObserveTitle title={board.title} />
-      {/* <div className="h-[200px]">
-        <h1
-          className={` text-[28px] ${themeObj[board.theme].DefaultFontColor}`}
-        >
-          {board.title}
-        </h1>
-      </div> */}
       <div className={`z-0 inline`}>
         {board.content &&
           board.content.map((content: content) => {
