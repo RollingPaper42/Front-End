@@ -6,7 +6,7 @@ import StrcatBoard from '@/component/StrcatBoard';
 import BottomButton from '@/component/BottomButton';
 import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
-import { themeObj } from '@/recoil/theme';
+import { themeObj, themeState } from '@/recoil/theme';
 import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
 import { observeState } from '@/recoil/observe';
@@ -22,15 +22,18 @@ export default function Home() {
     content: [],
   });
   const [isAdd, setIsAdd] = useState<boolean>(false);
+  const [isOwner, setIsOwner] = useState<boolean>(false);
   const itemsRef = useRef(new Map());
   const [observe] = useRecoilState(observeState);
+  const [theme, setTheme] = useRecoilState(themeState);
   const router = useRouter();
   useEffect(() => {
     axiosInstance
       .get(`/api/personal`)
       .then((data) => {
-        setBoard(data.data);
-        console.log(data.data);
+        setBoard(data.data.board);
+        setTheme(data.data.board.theme);
+        setIsOwner(data.data.isOwner);
       })
       .catch((error) => {});
   }, []);
@@ -55,7 +58,7 @@ export default function Home() {
           isAdd={isAdd}
           setIsAdd={setIsAdd}
         />
-        {!isAdd && (
+        {!isAdd && isOwner && (
           <div className="sticky bottom-5 flex w-full">
             <BottomButton
               name="저장"

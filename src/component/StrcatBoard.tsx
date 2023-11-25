@@ -3,7 +3,7 @@ import ObserveContent from './ObserveContent';
 import { forwardRef, Dispatch, SetStateAction, useState } from 'react';
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { themeObj } from '@/recoil/theme';
+import { themeObj, themeState } from '@/recoil/theme';
 import Add from './Add';
 import { observeState } from '@/recoil/observe';
 import { board } from '@/types/boards';
@@ -20,11 +20,12 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
   ref,
 ) {
   const [observe] = useRecoilState(observeState);
+  const [theme, setTheme] = useRecoilState(themeState);
 
   return (
     <div
       ref={ref}
-      className={` font-FiraCode ${themeObj[board.theme].background} px-[24px]`}
+      className={` font-FiraCode ${theme.background} px-[24px] duration-200`}
     >
       <ObserveTitle title={board.title} />
       <div className={`z-0 inline`}>
@@ -32,11 +33,11 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
           board.content.map((content: content) => {
             return (
               <ObserveContent
+                boardTheme={board.theme}
                 isAdd={isAdd}
                 key={content.id}
                 content={content}
                 boardId={board.id}
-                theme={board.theme}
               />
             );
           })}
