@@ -2,7 +2,7 @@
 
 import { content } from '@/types/content';
 
-export default function Writer(content: content) {
+export default function Writer({ content }: { content: content }) {
   return (
     <div className="inline">
       {content.text}
