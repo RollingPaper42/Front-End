@@ -12,6 +12,7 @@ import StrcatHeader from '@/component/StrcatHeader';
 import BottomButton from '@/component/BottomButton';
 import { observeState } from '@/recoil/observe';
 import StrcatGroupTitle from '@/component/StrcatGroupTitle';
+import { scrollToAdd, setMap } from '@/utils/scrollTo';
 
 export default function Home() {
   const [title, setTitle] = useState<string | null>();
@@ -21,24 +22,14 @@ export default function Home() {
   const itemsRef = useRef(new Map());
   const [observe] = useRecoilState(observeState);
   const scrollToId = (itemId: number) => {
-    const map = getMap();
+    const map = itemsRef.current;
     const node = map.get(itemId);
     const offset = node.offsetTop;
     window.scrollTo({ top: offset, behavior: 'smooth' });
   };
   const handleClick = () => {
     setIsAdd(true);
-  };
-  const getMap = () => {
-    return itemsRef.current;
-  };
-  const setMap = (node: HTMLDivElement | null, board: board) => {
-    const map = getMap();
-    if (node) {
-      map.set(board.id, node);
-    } else {
-      map.delete(board.id);
-    }
+    scrollToAdd(observe.boardId, itemsRef);
   };
   useEffect(() => {
     axiosInstance
@@ -74,7 +65,7 @@ export default function Home() {
               <StrcatBoard
                 setIsAdd={setIsAdd}
                 isAdd={isAdd}
-                ref={(node) => setMap(node, board)}
+                ref={(node) => setMap(node, board, itemsRef)}
                 key={board.id}
                 board={board}
               />
