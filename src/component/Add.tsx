@@ -10,7 +10,6 @@ import Error from '@/component/Modal/Error';
 import { confirm } from '@/utils/confirm';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
-// import { useRecoilState } from 'recoil';
 
 interface AddProps {
   id: string;
@@ -29,7 +28,6 @@ export default function Add({ id, setIsAdd }: AddProps) {
   if (id === null || id === undefined) {
     alert('유효하지 않은 접속입니다.');
     router.push('/');
-    // redirect 해야함 -> main으로?
   }
 
   const handleClick = async () => {
@@ -48,22 +46,30 @@ export default function Add({ id, setIsAdd }: AddProps) {
       closeModal,
     );
     if (isConfirmed) {
-      const data = {
-        text: text,
-        photo: imgFile,
-        writer: writer,
-      };
-
+      // photo upload전 1MB이하로 압축하기
       axiosInstance
-        .post(`/boards/${id}/contents`, data)
+        .post(`/boards/${id}/contents`, imgFile)
         .then((res) => {
-          setIsAdd(false);
           console.log(res);
+          const data = {
+            text: text,
+            photo: res.data,
+            writer: writer,
+          };
+          axiosInstance
+            .post(`/boards/${id}/contents`, data)
+            .then((res) => {
+              setIsAdd(false);
+              console.log(res);
+            })
+            .catch((err) => {
+              if (err.response.status === 406) {
+                alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
+              }
+            });
         })
         .catch((err) => {
-          if (err.response.status === 406) {
-            alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
-          }
+          console.log(err);
         });
     }
   };
