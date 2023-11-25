@@ -52,8 +52,8 @@ const ObserveContent = ({ content, boardId, isAdd }: props) => {
         !isAdd &&
         observe.boardId === boardId &&
         observe.contentId === content.id
-          ? `${theme.FontColor1} ' duration-500' inline  w-full  text-[22px] opacity-100 transition-all`
-          : `${theme.DefaultFontColor} ' duration-500'  inline  w-full text-[22px] opacity-30 transition-all`
+          ? `text-strcat-green' duration-500' inline  w-full  text-[22px] opacity-100 transition-all`
+          : `${theme.defaultText} ' duration-500'  inline  w-full text-[22px] opacity-30 transition-all`
       }
     `}
       >
@@ -63,7 +63,7 @@ const ObserveContent = ({ content, boardId, isAdd }: props) => {
         observe.boardId === boardId &&
         observe.contentId === content.id && (
           <div
-            className={`bg-strcat-green absolute right-[24px] mt-[1px]  animate-slide px-1 text-white`}
+            className={`absolute right-[24px] mt-[1px] animate-slide  bg-strcat-green px-1 text-white`}
           >{`From: ${observe.writer}`}</div>
         )}
     </div>

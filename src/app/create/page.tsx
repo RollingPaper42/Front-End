@@ -70,7 +70,7 @@ export default function Create() {
   };
 
   return (
-    <div className={`${Theme.BgColor} flex h-full flex-col`}>
+    <div className={`${Theme.background} flex h-full flex-col`}>
       <div className="flex h-14 w-full flex-row content-center items-center justify-center">
         <div className=" basis-8"></div>
         <div className="basis-2/12">
@@ -84,9 +84,7 @@ export default function Create() {
             />
           </Link>
         </div>
-        <div
-          className={`basis-8/12 text-center ${Theme.DefaultFontColor}  mt-4`}
-        >
+        <div className={`basis-8/12 text-center ${Theme.defaultText}  mt-4`}>
           스트링캣 만들기
         </div>
         <div className="basis-3/12"></div>
@@ -97,7 +95,7 @@ export default function Create() {
             <input
               id="titleMessage"
               value={title}
-              className={` max-h-96 w-full ${Theme.BgColor} text-xl ${Theme.DefaultFontColor} outline-none placeholder:${Theme.DefaultFontColor}`}
+              className={` max-h-96 w-full ${Theme.background} text-xl ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
               placeholder="제목을 입력해주세요."
               maxLength={20}
               onChange={(e) => handleChangeTitle(e)}
