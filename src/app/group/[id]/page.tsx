@@ -40,9 +40,9 @@ export default function Home() {
     <>
       <Drawer />
       <StrcatHeader />
-      <div className={`relative w-full p-[24px] ${theme.BgColor}`}>
+      <div className={`relative w-full p-[24px] ${theme.background}`}>
         <div className="mb-[20px]">
-          <h1 className={`${theme.DefaultFontColor} text-4xl`}>{title}</h1>
+          <h1 className={`${theme.defaultText} text-4xl`}>{title}</h1>
         </div>
         <div>
           {boardsTitle.map((board: board) => {
@@ -52,9 +52,7 @@ export default function Home() {
                 className="my-[32px]"
                 onClick={() => scrollToId(board.id)}
               >
-                <p
-                  className={`cursor-pointer text-xl ${theme.DefaultFontColor}`}
-                >
+                <p className={`cursor-pointer text-xl ${theme.defaultText}`}>
                   {board.title}
                 </p>
               </div>

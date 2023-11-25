@@ -20,7 +20,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, props>(function StrcatBoard(
   return (
     <div ref={ref} className={`inline font-FiraCode`}>
       <div className="h-[200px]">
-        <h1 className={` text-[28px] ${theme.DefaultFontColor} `}>{title}</h1>
+        <h1 className={` text-[28px] ${theme.defaultText} `}>{title}</h1>
       </div>
       <div className={`z-0 inline`}>
         {data &&

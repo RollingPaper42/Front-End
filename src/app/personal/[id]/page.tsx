@@ -53,7 +53,7 @@ export default function Home() {
       <Drawer />
       <StrcatHeader />
       <div
-        className={`relative w-full  p-[24px] text-justify ${theme.BgColor} pb-[500px]`}
+        className={`relative w-full  p-[24px] text-justify ${theme.background} pb-[500px]`}
       >
         <StrcatBoard
           ref={(node) => {
