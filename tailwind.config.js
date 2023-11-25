@@ -10,14 +10,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontSize: {
-        xxl: [
-          '1.35rem',
-          {
-            lineHeight: '2.25rem',
-          },
-        ],
-      },
       colors: {
         'strcat-white': '#F0EEEA',
         'strcat-black': '#212121',

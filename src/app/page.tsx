@@ -31,7 +31,7 @@ export default function Home() {
           <p>소중한 사람에게 스트링캣을 남겨보세요!</p>
         </div>
         <div className=" absolute bottom-36">
-          <div className="text-xxl relative mx-6 text-strcat-green">
+          <div className="relative mx-6 text-[22px] text-strcat-green">
             <div onClick={handleClick}>
               <Image
                 src="/StrcatMake.png"
@@ -40,18 +40,18 @@ export default function Home() {
                 alt="button"
                 className="absolute top-0"
               />
-              <div className="text-xxl absolute left-1 top-0 text-black">
+              <div className="absolute left-1 top-0 text-[22px] text-black">
                 스트링캣 만들기
               </div>
             </div>
-            <div className="text-xxl mt-1 text-strcat-green">
+            <div className="mt-1 text-[22px] text-strcat-green">
               를 누르면 하나의 문자열을 할당받을 수 있어요. 링크를 공유해
               문자열을 끝없이 이어보세요.
             </div>
           </div>
         </div>
         <div className="absolute bottom-16 ">
-          <div className="text-xxl relative mx-6 text-strcat-blue">
+          <div className="relative mx-6 text-[22px] text-strcat-blue">
             <div onClick={handleClick}>
               <Image
                 src="/GroupStrcatMake.png"
@@ -60,11 +60,11 @@ export default function Home() {
                 alt="button"
                 className="absolute top-0 mb-2"
               />
-              <div className="text-xxl absolute left-1 top-0 text-black ">
+              <div className="absolute left-1 top-0 text-[22px] text-black ">
                 그룹 스트링캣 만들기
               </div>
             </div>
-            <div className="text-xxl text-strcat-blue">
+            <div className="text-[22px] text-strcat-blue">
               &nbsp;를 누르면 여러 문자열을 한 그룹으로 관리할 수 있어요.
               주렁주렁~
             </div>
