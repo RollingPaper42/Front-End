@@ -2,11 +2,7 @@
 
 import { content } from '@/types/content';
 
-interface Props {
-  content: content;
-}
-
-export default function Writer({ content }: Props) {
+export default function Writer(content: content) {
   return (
     <div className="inline">
       {content.text}
