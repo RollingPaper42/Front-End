@@ -64,6 +64,7 @@ export default function Home(props: any) {
             <div className="fixed bottom-5 left-0 z-50 flex w-full items-center justify-center">
               <div className="flex w-full max-w-[calc(100vh*0.6)] items-center justify-center px-[24px]">
                 <BottomButton
+                  height="h-[42px]"
                   name="저장"
                   width="basis-1/5"
                   onClickHandler={() =>
@@ -74,6 +75,7 @@ export default function Home(props: any) {
                 />
                 <BottomButton
                   name="공유"
+                  height="h-[42px]"
                   width="basis-1/5"
                   onClickHandler={() =>
                     router.push(`./${props.params.id}/summary`)
@@ -83,6 +85,7 @@ export default function Home(props: any) {
                 />
                 <BottomButton
                   name="이어서 글쓰기"
+                  height="h-[42px]"
                   width="basis-3/5"
                   onClickHandler={handleClick}
                   disabled={!observe.boardId}
@@ -96,6 +99,7 @@ export default function Home(props: any) {
                 <div className="flex w-full max-w-[calc(100vh*0.6)] items-center justify-center px-[24px] ">
                   <BottomButton
                     name="스트링캣 만들기"
+                    height="h-[42px]"
                     width="basis-1/2"
                     onClickHandler={() => router.push(`../create`)}
                     disabled={false}
@@ -104,6 +108,7 @@ export default function Home(props: any) {
                   <BottomButton
                     name="이어서 글쓰기"
                     width="basis-1/2"
+                    height="h-[42px]"
                     onClickHandler={handleClick}
                     disabled={!observe.boardId}
                     color={`bg-strcat-cyan`}

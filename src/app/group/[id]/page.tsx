@@ -94,6 +94,7 @@ export default function Home(props: any) {
             (isOwner ? (
               <div className=" flex w-full">
                 <BottomButton
+                  height="h-[42px]"
                   color={`bg-white`}
                   name="저장"
                   width="basis-1/4"
@@ -103,6 +104,7 @@ export default function Home(props: any) {
                   disabled={false}
                 />
                 <BottomButton
+                  height="h-[42px]"
                   color={`bg-white`}
                   name="공유"
                   width="basis-1/4"
@@ -112,6 +114,7 @@ export default function Home(props: any) {
                   disabled={false}
                 />
                 <BottomButton
+                  height="h-[42px]"
                   color={`bg-strcat-green`}
                   name="만들기"
                   width="basis-1/4"
@@ -121,6 +124,7 @@ export default function Home(props: any) {
                   disabled={false}
                 />
                 <BottomButton
+                  height="h-[42px]"
                   color={`bg-strcat-cyan`}
                   name="글 작성"
                   width="basis-1/4"
@@ -131,6 +135,7 @@ export default function Home(props: any) {
             ) : (
               <div className=" flex w-full">
                 <BottomButton
+                  height="h-[42px]"
                   color={`bg-white`}
                   name="스트링캣 만들기"
                   width="basis-1/2"
@@ -138,6 +143,7 @@ export default function Home(props: any) {
                   disabled={false}
                 />
                 <BottomButton
+                  height="h-[42px]"
                   color={`bg-strcat-cyan`}
                   name="이어서 글쓰기"
                   width="basis-1/2"

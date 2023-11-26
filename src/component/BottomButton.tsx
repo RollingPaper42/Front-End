@@ -8,6 +8,7 @@ interface BottomButtonProps {
   onClickHandler: () => void;
   disabled: boolean;
   color: string;
+  height: string;
 }
 
 export default function BottomButton({
@@ -16,11 +17,11 @@ export default function BottomButton({
   onClickHandler,
   disabled,
   color,
+  height,
 }: BottomButtonProps) {
-  useEffect(() => {}, [disabled]);
   return (
     <button
-      className={`relative mx-2 h-12 ${width}`}
+      className={`relative mx-2 ${height}  ${width}`}
       onClick={onClickHandler}
       disabled={disabled}
     >

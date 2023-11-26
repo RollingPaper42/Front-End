@@ -43,7 +43,16 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
     return () => {
       observer.disconnect();
     };
-  }, [boardId, content.id, content.photo, content.writer, setObserve, isAdd]);
+  }, [
+    boardId,
+    content.id,
+    content.photo,
+    content.writer,
+    setObserve,
+    isAdd,
+    setTheme,
+    boardTheme,
+  ]);
 
   return (
     <div className="inline">
