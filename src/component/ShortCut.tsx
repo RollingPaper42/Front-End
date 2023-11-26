@@ -1,7 +1,11 @@
-export default function ShortCut() {
+interface Props {
+  color: string;
+}
+
+export default function ShortCut({ color }: Props) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" fill="none">
-      <g fill="#FBFF36" filter="url(#a)">
+      <g fill={color} filter="url(#a)">
         <path
           fill-rule="evenodd"
           d="M31 7h10v1h4v1h2v1h2v1h2v1h1v1h1v1h1v1h1v1h1v1h1v2h1v1h1v2h1v3h1v14h-1v3h-1v2h-1v2h-1v1h-1v2h-1v1h-1v1h-1v1h-2v1h-1v1h-2v1h-2v1h-3v1H29v-1h-3v-1h-2v-1h-1v-1h-2v-1h-1v-1h-1v-1h-1v-1h-1v-1h-1v-1h-1v-2h-1v-2h-1v-2h-1v-4h-1V27h1v-3h1v-3h1v-2h1v-1h1v-1h1v-2h1v-1h1v-1h1v-1h2v-1h1v-1h2V9h3V8h3V7Zm10 49v-1h4v-1h2v-1h2v-1h1v-1h1v-1h2v-1h1v-2h1v-1h1v-1h1v-2h1v-2h1v-4h1V27h-1v-3h-1v-2h-1v-2h-1v-2h-1v-1h-1v-1h-1v-1h-1v-1h-1v-1h-2v-1h-1v-1h-2v-1h-3V9h-4V8h-6v1h-4v1h-2v1h-2v1h-2v1h-1v1h-2v1h-1v1h-1v2h-1v1h-1v2h-1v2h-1v2h-1v4h-1v6h1v4h1v3h1v2h1v1h1v2h1v1h1v1h1v1h1v1h1v1h2v1h2v1h2v1h3v1h10Z"

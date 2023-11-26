@@ -10,13 +10,17 @@ export default function StrcatGroupTitle({ board, scrollToId }: Props) {
   return (
     <div
       key={board.id}
-      className={`my-[32px] ${themeObj[board.theme].background}`}
+      className={` flex h-[110px]  items-center ${
+        themeObj[board.theme].background
+      }`}
       onClick={() => scrollToId(board.id)}
     >
       <p
-        className={`cursor-pointer text-xl ${themeObj[board.theme].background}`}
+        className={`mx-[24px] cursor-pointer text-xl ${
+          themeObj[board.theme].background
+        }`}
       >
-        {board.title}
+        {`// ${board.title}`}
       </p>
     </div>
   );

@@ -55,7 +55,9 @@ export default function Home(props: any) {
       <StrcatHeader />
       <div className={`relative w-full py-[24px] ${theme.background}`}>
         <div className="mb-[20px]">
-          <h1 className={`${theme.defaultText} text-4xl`}>{title}</h1>
+          <h1 className={`${theme.defaultText} mx-[24px] text-[26px]`}>
+            {`// ${title}`}
+          </h1>
         </div>
         <div>
           {boards.map((board: board) => {
@@ -81,12 +83,12 @@ export default function Home(props: any) {
             );
           })}
         </div>
-        <div className="sticky bottom-5 w-full">
+        <div className="sticky bottom-5 z-20  w-full">
           <button
             className=" absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
             onClick={scrollToTop}
           >
-            <ShortCut />
+            <ShortCut color={'#FFFFFF'} />
           </button>
           {!isAdd && isOwner ? (
             <div className="  flex w-full">
