@@ -16,7 +16,7 @@ import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import { useRouter } from 'next/navigation';
 import ShortCut from '@/component/Icon/ShortCut';
 
-export default function Group(props: any) {
+export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string | null>();
   const [boards, setBoards] = useState<board[]>([]);
   const [isAdd, setIsAdd] = useState(false);
@@ -83,7 +83,7 @@ export default function Group(props: any) {
             );
           })}
         </div>
-        <div className="fixed bottom-5 z-20 w-full  max-w-[calc(100vh*0.6)]">
+        <div className="fixed bottom-5 z-20 w-full  max-w-[calc(100vh*0.6)] px-[24px]">
           <button
             className=" absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
             onClick={scrollToTop}
@@ -92,7 +92,7 @@ export default function Group(props: any) {
           </button>
           {!isAdd &&
             (isOwner ? (
-              <div className=" flex w-full">
+              <div className=" flex w-full max-w-[calc(100vh*0.6)]">
                 <BottomButton
                   height="h-[42px]"
                   color={`bg-white`}
@@ -133,7 +133,7 @@ export default function Group(props: any) {
                 />
               </div>
             ) : (
-              <div className=" flex w-full">
+              <div className=" flex w-full max-w-[calc(100vh*0.6)]">
                 <BottomButton
                   height="h-[42px]"
                   color={`bg-white`}
