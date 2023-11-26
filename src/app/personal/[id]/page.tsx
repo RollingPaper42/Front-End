@@ -49,7 +49,7 @@ export default function Personal({ params }: { params: { id: string } }) {
       <Drawer />
       <StrcatHeader />
       <div
-        className={`relative w-full  p-[24px] text-justify ${
+        className={`relative w-full  py-[24px] text-justify ${
           themeObj[board.theme].background
         } pb-[500px]`}
       >
@@ -67,9 +67,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                   height="h-[42px]"
                   name="저장"
                   width="basis-1/5"
-                  onClickHandler={() =>
-                    router.push(`./${props.params.id}/export`)
-                  }
+                  onClickHandler={() => router.push(`./${params.id}/export`)}
                   disabled={false}
                   color={`bg-white`}
                 />
@@ -77,9 +75,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                   name="공유"
                   height="h-[42px]"
                   width="basis-1/5"
-                  onClickHandler={() =>
-                    router.push(`./${props.params.id}/summary`)
-                  }
+                  onClickHandler={() => router.push(`./${params.id}/summary`)}
                   disabled={false}
                   color={`bg-strcat-green`}
                 />

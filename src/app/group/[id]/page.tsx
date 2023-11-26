@@ -98,9 +98,7 @@ export default function Group({ params }: { params: { id: string } }) {
                   color={`bg-white`}
                   name="저장"
                   width="basis-1/4"
-                  onClickHandler={() =>
-                    router.push(`./${props.params.id}/export`)
-                  }
+                  onClickHandler={() => router.push(`./${params.id}/export`)}
                   disabled={false}
                 />
                 <BottomButton
@@ -108,9 +106,7 @@ export default function Group({ params }: { params: { id: string } }) {
                   color={`bg-white`}
                   name="공유"
                   width="basis-1/4"
-                  onClickHandler={() =>
-                    router.push(`./${props.params.id}/summary`)
-                  }
+                  onClickHandler={() => router.push(`./${params.id}/summary`)}
                   disabled={false}
                 />
                 <BottomButton
@@ -119,7 +115,7 @@ export default function Group({ params }: { params: { id: string } }) {
                   name="만들기"
                   width="basis-1/4"
                   onClickHandler={() =>
-                    router.push(`../create?id=${props.params.id}`)
+                    router.push(`../create?id=${params.id}`)
                   }
                   disabled={false}
                 />
