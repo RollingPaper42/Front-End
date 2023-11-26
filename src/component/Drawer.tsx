@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { axiosInstance } from '@/utils/axios';
 import DropListItem from './DropListItem';
 import DrawerItem from './DrawerItem';
+import { handleBackground } from '@/utils/handleBackground';
 
 interface Board {
   id: string;
@@ -48,7 +49,7 @@ export default function Drawer() {
     drawer && (
       <div
         className="fixed z-20 h-full w-full max-w-[calc(100vh*0.6)]"
-        onClick={handleBackground}
+        onClick={(e) => handleBackground(e, () => setDrawer(false))}
       >
         <div className="absolute right-0 z-20 h-full w-[300px] bg-black text-white">
           <div className="flex h-[123px] w-full justify-start">
