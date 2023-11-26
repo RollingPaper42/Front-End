@@ -133,6 +133,7 @@ export default function Create() {
         <div className="basis-2/12">
           <div className="mt-10 flex flex-row items-center justify-center">
             <BottomButton
+              height="h-[42px]"
               name="완료"
               width="w-[312px]"
               onClickHandler={() => handleConfirm()}

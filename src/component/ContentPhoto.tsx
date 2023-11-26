@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 import Photo from './Modal/Photo';
 import { observeState } from '@/recoil/observe';

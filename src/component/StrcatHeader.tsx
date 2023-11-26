@@ -11,7 +11,9 @@ export default function StrcatHeader() {
   const [isLogin, checkLogin] = useLogin();
   const [, setDrawer] = useRecoilState(drawerState);
 
-  useEffect(() => {}, [checkLogin()]);
+  useEffect(() => {
+    checkLogin();
+  }, [checkLogin]);
 
   return (
     <div className="flex h-[56px] flex-row items-center justify-between bg-black px-[24px]">
