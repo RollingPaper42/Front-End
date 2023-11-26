@@ -1,25 +1,17 @@
 'use client';
 
+import { useLogin } from '@/hooks/useLogin';
 import { drawerState } from '@/recoil/drawer';
-import { axiosInstance } from '@/utils/axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 export default function StrcatHeader() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, checkLogin] = useLogin();
   const [, setDrawer] = useRecoilState(drawerState);
-  // login을 api요청 확인 후 변경
 
-  useEffect(() => {
-    axiosInstance
-      .get('/api/login')
-      .then((res) => {
-        setIsLogin(res.data.data);
-      })
-      .catch((err) => {});
-  }, []);
+  useEffect(() => {}, [checkLogin()]);
 
   return (
     <div className="flex h-[56px] flex-row items-center justify-between bg-black px-[24px]">

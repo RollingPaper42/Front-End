@@ -8,9 +8,7 @@ export default function login() {
   const onClickOAuthKakao = () => {
     location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/kakao`;
   };
-  console.log(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/kakao`,
-  );
+
   const onClickOAuthGoogle = () => {
     location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/google`;
   };
