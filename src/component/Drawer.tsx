@@ -45,7 +45,7 @@ export default function Drawer() {
     drawer &&
     isLogin && (
       <div
-        className="fixed z-20 h-full w-full max-w-[calc(100vh*0.6)]"
+        className="fixed z-20 h-full w-full max-w-md"
         onClick={(e) => handleBackground(e, () => setDrawer(false))}
       >
         <div className="absolute right-0 z-20 h-full w-[300px] bg-black text-white">

@@ -62,7 +62,7 @@ export default function Personal({ params }: { params: { id: string } }) {
         {!isAdd &&
           (isOwner ? (
             <div className="fixed bottom-5 left-0 z-50 flex w-full items-center justify-center">
-              <div className="flex w-full max-w-[calc(100vh*0.6)] items-center justify-center px-[24px]">
+              <div className="flex w-full max-w-md items-center justify-center px-[24px]">
                 <BottomButton
                   height="h-[42px]"
                   name="저장"
@@ -92,7 +92,7 @@ export default function Personal({ params }: { params: { id: string } }) {
           ) : (
             <>
               <div className=" fixed bottom-0 left-0 z-50 flex w-full items-center justify-center">
-                <div className="flex w-full max-w-[calc(100vh*0.6)] items-center justify-center px-[24px] ">
+                <div className="flex w-full max-w-md items-center justify-center px-[24px] ">
                   <BottomButton
                     name="스트링캣 만들기"
                     height="h-[42px]"
