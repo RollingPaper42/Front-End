@@ -11,7 +11,7 @@ export const useInterceptor = () => {
   const requestHandler = async (config: any) => {
     config.withCredentials = true;
     config.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
-    const accessToken = localStorage.getItem('s2trcat_token');
+    const accessToken = localStorage.getItem('strcat_token');
     config.headers.Authorization = `Bearer ${accessToken}`;
     return config;
   };
