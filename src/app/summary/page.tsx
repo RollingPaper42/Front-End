@@ -2,15 +2,16 @@
 
 import { themeState } from '@/recoil/theme';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRecoilState } from 'recoil';
 import ThemeChange from '@/component/ThemeChange';
 import { axiosInstance } from '@/utils/axios';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { title } from 'process';
+import BottomButton from '@/component/BottomButton';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
   const [Theme, setTheme] = useRecoilState(themeState);
   const params = useParams();
   const [Title, setTitle] = useState(
@@ -71,15 +72,15 @@ export default function Home() {
             <div className=" basis-1/4"></div>
             <div className=" basis-1/4">
               <div className="flex h-full w-full flex-row">
-                <div className="basis-1/2">
+                <div className="basis-2/3">
                   <div
-                    className={`${Theme.defaultText} mx-[25px] text-[26px] `}
+                    className={`${Theme.defaultText} mx-[24px] text-[26px] `}
                   >
-                    총 {ContentCount}번의 <br /> 마음으로 <br /> 내 스트링캣이{' '}
+                    총 {ContentCount}번의 <br /> 마음으로 <br /> 내 스트링캣이
                     <br /> 총 {ContentTextCount}자 <br /> 이어졌어요!
                   </div>
                 </div>
-                <div className="basis-1/2"></div>
+                <div className="basis-1/3"></div>
               </div>
             </div>
             <div className=" basis-1/4 "></div>
@@ -87,8 +88,14 @@ export default function Home() {
           </div>
         </div>
         <div className=" mx-[25px] basis-2/12">
-          <div className="flex flex-row items-center justify-center">
-            <button></button>
+          <div className="flex h-full w-full flex-row items-center justify-center">
+            <BottomButton
+              name="공유하기"
+              width="w-[312px]"
+              onClickHandler={() => router.push('/create')}
+              disabled={false}
+              color={`${Theme.rightCTA}`}
+            />
           </div>
         </div>
       </div>
