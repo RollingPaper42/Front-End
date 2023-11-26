@@ -6,10 +6,13 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
+import { useLogin } from '@/hooks/useLogin';
 
 export default function Home() {
+  const [isLogin] = useLogin();
   const [Theme, SetTheme] = useRecoilState(themeState);
   const router = useRouter();
+
   return (
     <div className={`${Theme.background}`}>
       <div className=" fixed flex h-full w-full max-w-[calc(100vh*0.6)]  flex-col">
@@ -34,7 +37,9 @@ export default function Home() {
               <div className="inline">
                 <button
                   className={`relative h-[33px] w-[150px] items-center ${Theme.leftCTA} text-[22px]`}
-                  onClick={() => router.push('/create')}
+                  onClick={() =>
+                    isLogin ? router.push('/create') : router.push('/login')
+                  }
                 >
                   <div
                     className={`relative bottom-[4.5px] left-[2px] h-[33px] w-[150px] text-[22px] ${Theme.leftCTA}`}
@@ -55,7 +60,9 @@ export default function Home() {
               <div className="inline">
                 <button
                   className={`relative h-[33px] w-[200px] items-center ${Theme.rightCTA} text-[22px]`}
-                  onClick={() => router.push('/create')}
+                  onClick={() =>
+                    isLogin ? router.push('/create') : router.push('/login')
+                  }
                 >
                   <div
                     className={`relative bottom-[4.5px] left-[2px] h-[33px]  w-[200px] text-[22px] ${Theme.rightCTA}`}
