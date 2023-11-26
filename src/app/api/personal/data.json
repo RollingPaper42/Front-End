@@ -1,5 +1,5 @@
 {
-  "isOwner": false,
+  "isOwner": true,
   "board": {
     "id": 1,
     "title": "Sample Board",
