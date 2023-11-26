@@ -2,13 +2,14 @@ import { axiosInstance } from '@/utils/axios';
 import { useEffect } from 'react';
 import useModal from './useModal';
 import Error from '@/component/Modal/Error';
+import { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 export const useInterceptor = () => {
   const [openModal, closeModal] = useModal();
-  const responseHandler = (response: any) => {
+  const responseHandler = (response: AxiosResponse<any, any>) => {
     return response;
   };
-  const requestHandler = async (config: any) => {
+  const requestHandler = async (config: InternalAxiosRequestConfig<any>) => {
     config.withCredentials = true;
     config.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
     const accessToken = localStorage.getItem('strcat_token');
