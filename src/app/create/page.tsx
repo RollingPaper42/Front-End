@@ -10,19 +10,26 @@ import ThemeChange from '@/component/ThemeChange';
 import useModal from '@/hooks/useModal';
 import Confirm from '@/component/Modal/Confirm';
 import { useRouter } from 'next/navigation';
+import BottomButton from '@/component/BottomButton';
 
 export default function Create() {
-  const ErrorInitColor = 'slate-400';
+  const ErrorInitColor = 'text-gray-400';
   const [Theme, setTheme] = useRecoilState(themeState);
   const [linkURL, setLinkURL] = useState('');
-  const [buttonState, SetButtonState] = useState('/DisabledButton.png');
+  const [buttonState, SetButtonState] = useState(true);
   const [title, , handleTitle] = useInput('');
   const [ErrorFontColor, SetErrorFontColor] = useState(ErrorInitColor);
   const [openModal, closeModal] = useModal();
   const router = useRouter();
 
   const handleConfirm = async () => {
-    openModal(<Confirm content="확인" yes={handleClick} no={closeModal} />);
+    openModal(
+      <Confirm
+        content="여기서 완료하면 더이상 내용을 수정할 수 없습니다. 완료하시겠습니까?"
+        yes={handleClick}
+        no={closeModal}
+      />,
+    );
   };
 
   const handleClick = () => {
@@ -45,80 +52,97 @@ export default function Create() {
     closeModal();
   };
 
-  const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputTitle = e.currentTarget.value;
-    const byteLength = new TextEncoder().encode(inputTitle).length;
+  const handleChangeTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const TextAreaTitle = e.currentTarget.value;
+    const byteLength = new TextEncoder().encode(TextAreaTitle).length;
 
-    if (byteLength <= 60) {
+    if (byteLength <= 90) {
       handleTitle(e);
     }
   };
 
   const handleKeyDownTitle = (
-    e: React.KeyboardEvent<HTMLInputElement>,
+    e: React.KeyboardEvent<HTMLTextAreaElement>,
     title: string,
   ) => {
-    SetButtonState('/ActivateButton.png');
-    if (title.length == 0) SetButtonState('/DisabledButton.png');
-    if (title.length >= 20 && e.key !== 'Backspace' && e.key !== 'Delete') {
+    SetButtonState(false);
+    if (title.length == 0) SetButtonState(true);
+    if (title.length >= 30 && e.key !== 'Backspace' && e.key !== 'Delete') {
       e.preventDefault();
-      e.currentTarget.value = e.currentTarget.value.slice(0, 20);
-      SetErrorFontColor('red-600');
+      e.currentTarget.value = e.currentTarget.value.slice(0, 30);
+      SetErrorFontColor('text-red-600');
     } else {
-      SetErrorFontColor('slate-400');
+      SetErrorFontColor('text-gray-400');
     }
   };
 
   return (
-    <div className={`${Theme.background} flex h-full flex-col`}>
-      <div className="flex h-14 w-full flex-row content-center items-center justify-center">
-        <div className=" basis-8"></div>
+    <div className={`${Theme.background} h-full w-full`}>
+      <div className="flex h-full w-full flex-col">
+        <div className="basis-1/1">
+          <div className="flex h-full w-full flex-row">
+            <div className=" basis-1/6 items-center justify-center">
+              <Image
+                src="/backpage.png"
+                width={24}
+                height={24}
+                alt="backpagebutton"
+                className="ml-[24px] mt-[16px]"
+              />
+            </div>
+            <div className=" basis-4/6">
+              <div
+                className={`text-center text-[18px] ${Theme.defaultText} mt-[16px]`}
+              >
+                스트링캣 만들기
+              </div>
+            </div>
+            <div className=" basis-1/6"></div>
+          </div>
+        </div>
         <div className="basis-2/12">
-          <Link href="/">
-            <Image
-              src="/backpage.png"
-              width={24}
-              height={24}
-              alt="backpagebutton"
-              className="mt-4"
-            />
-          </Link>
-        </div>
-        <div className={`basis-8/12 text-center ${Theme.defaultText}  mt-4`}>
-          스트링캣 만들기
-        </div>
-        <div className="basis-3/12"></div>
-      </div>
-      <>
-        <div className="mt-10 flex flex-col items-center justify-center">
-          <div className="w-80">
-            <input
-              id="titleMessage"
-              value={title}
-              className={` max-h-96 w-full ${Theme.background} text-xl ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
-              placeholder="제목을 입력해주세요."
-              maxLength={20}
-              onChange={(e) => handleChangeTitle(e)}
-              onKeyDown={(e) => handleKeyDownTitle(e, title)}
-            />
-            <div className={`text-right text-${ErrorFontColor}`}>
-              {title.length}/20
+          <div className="mt-10 flex flex-col items-center justify-center">
+            <div className="w-80">
+              <textarea
+                id="titleMessage"
+                rows={3}
+                value={title}
+                className={` w-full ${Theme.background} text-[22px] ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
+                placeholder="제목을 입력해주세요."
+                maxLength={30}
+                onChange={(e) => handleChangeTitle(e)}
+                onKeyDown={(e) => handleKeyDownTitle(e, title)}
+              />
+              <div className={`text-right ${ErrorFontColor}`}>
+                {title.length}/30
+              </div>
             </div>
           </div>
         </div>
-      </>
-      <ThemeChange />
-      <div className=" h-8"></div>
-      <div className="flex w-full flex-row items-center justify-center">
-        <Image
-          src={`${buttonState}`}
-          width={312}
-          height={42}
-          alt="Button"
-          onClick={handleConfirm}
-        />
+        <div className="mx-[24px] basis-5/12">
+          <div className={`inline text-[18px] ${Theme.highlightText}`}>
+            스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
+          </div>
+          <div className={`inline text-[18px] ${Theme.defaultText}`}>
+            스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
+          </div>
+        </div>
+        <div className="basis-2/12">
+          <ThemeChange />
+        </div>
+        <div className="basis-2/12">
+          <div className="mt-10 flex flex-row items-center justify-center">
+            <BottomButton
+              height="h-[42px]"
+              name="완료"
+              width="w-[312px]"
+              onClickHandler={() => handleConfirm()}
+              disabled={buttonState}
+              color={`${Theme.rightCTA}`}
+            />
+          </div>
+        </div>
       </div>
-      <div className=" h-11"></div>
     </div>
   );
 }
