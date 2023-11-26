@@ -1,40 +1,49 @@
 import { content } from '@/types/content';
 import ObserveContent from './ObserveContent';
-import { forwardRef } from 'react';
+import { forwardRef, Dispatch, SetStateAction, useState } from 'react';
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
+import { themeObj } from '@/recoil/theme';
+import Add from './Add';
+import { observeState } from '@/recoil/observe';
+import { board } from '@/types/boards';
+import ObserveTitle from './ObserveTitle';
 
-interface props {
-  title: string;
-  data: content[] | undefined;
-  boardId: number;
+interface Props {
+  board: board;
   isAdd: boolean;
+  setIsAdd: Dispatch<SetStateAction<boolean>>;
 }
 
-const StrcatBoard = forwardRef<HTMLDivElement, props>(function StrcatBoard(
-  { title, data, boardId, isAdd },
+const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
+  { board, isAdd, setIsAdd },
   ref,
 ) {
-  const [theme] = useRecoilState(themeState);
+  const [observe] = useRecoilState(observeState);
+
   return (
-    <div ref={ref} className={`inline font-FiraCode`}>
-      <div className="h-[200px]">
-        <h1 className={` text-[28px] ${theme.defaultText} `}>{title}</h1>
-      </div>
+    <div
+      ref={ref}
+      className={` font-FiraCode ${themeObj[board.theme].background} px-[24px]`}
+    >
+      <ObserveTitle title={board.title} />
       <div className={`z-0 inline`}>
-        {data &&
-          data.map((content: content) => {
+        {board.content &&
+          board.content.map((content: content) => {
             return (
               <ObserveContent
                 isAdd={isAdd}
                 key={content.id}
                 content={content}
-                boardId={boardId}
+                boardId={board.id}
+                theme={board.theme}
               />
             );
           })}
       </div>
+      {isAdd && board.id === observe.boardId && (
+        <Add id={`${observe.boardId}`} setIsAdd={setIsAdd} />
+      )}
       {!isAdd && <div className=" h-12"></div>}
     </div>
   );

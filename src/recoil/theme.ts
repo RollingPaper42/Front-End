@@ -45,6 +45,13 @@ export const cyan: themeState = {
   leftCTA: 'bg-strcat-cyan-yellow',
 };
 
+export const themeObj = {
+  strcat: strcat,
+  calm: calm,
+  green: green,
+  cyan: cyan,
+};
+
 export const themeState = atom<themeState>({
   key: 'themeState',
   default: strcat,
