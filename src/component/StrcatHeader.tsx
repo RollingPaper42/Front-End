@@ -1,25 +1,17 @@
 'use client';
 
+import { useLogin } from '@/hooks/useLogin';
 import { drawerState } from '@/recoil/drawer';
-import { loginState } from '@/recoil/login';
-import { axiosInstance } from '@/utils/axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 export default function StrcatHeader() {
-  const [isLogin, setIsLogin] = useRecoilState(loginState);
+  const [isLogin, checkLogin] = useLogin();
   const [, setDrawer] = useRecoilState(drawerState);
 
-  useEffect(() => {
-    axiosInstance
-      .get('/login/check')
-      .then((res) => {
-        setIsLogin(res.data.login);
-      })
-      .catch((err) => {});
-  }, []);
+  useEffect(() => {}, [checkLogin()]);
 
   return (
     <div className="flex h-[56px] flex-row items-center justify-between bg-black px-[24px]">

@@ -1,20 +1,17 @@
 import { loginState } from '@/recoil/login';
+import { axiosInstance } from '@/utils/axios';
 import { useRecoilState } from 'recoil';
 
-export const useLogin = (): [
-  (modalComponent: JSX.Element) => void,
-  () => void,
-] => {
-  const [, setModal] = useRecoilState(loginState);
-
-  const openModal = (modalComponent: JSX.Element) => {
-    if (!modalComponent) return;
-    document.body.style.overflow = 'hidden';
+export const useLogin = (): [boolean, () => void] => {
+  const [isLogin, setIsLogin] = useRecoilState(loginState);
+  const checkLogin = () => {
+    axiosInstance
+      .get('/login/check')
+      .then((res) => {
+        setIsLogin(res.data.login);
+      })
+      .catch((err) => {});
   };
 
-  const closeModal = () => {
-    document.body.style.overflow = 'auto';
-  };
-
-  return [openModal, closeModal];
+  return [isLogin, checkLogin];
 };
