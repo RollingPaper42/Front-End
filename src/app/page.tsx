@@ -2,53 +2,91 @@
 
 import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
-import Link from 'next/link';
-// import Image from 'next/image';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { themeState } from '@/recoil/theme';
+import { useRecoilState } from 'recoil';
 
 export default function Home() {
+  const [Theme, SetTheme] = useRecoilState(themeState);
+  const router = useRouter();
   return (
-    <>
-      <Drawer />
-      <StrcatHeader />
-      <div className="m-6">
-        <div className="font-FiraCode font-semibold">
-          <div className="mt-2 flex flex-row text-3xl">
-            <div className="basis-1/12">{`//`}</div>
-            <div className="basis-4/6">스트링캣</div>
+    <div className={`${Theme.background}`}>
+      <div className=" fixed flex h-full w-full max-w-[calc(100vh*0.6)]  flex-col">
+        <div className="basis-1/12">
+          <Drawer />
+          <StrcatHeader />
+        </div>
+        <div className="basis-6/12">
+          <div
+            className={`mx-[24px] mt-[46px] text-[20px] ${Theme.defaultText}`}
+          >
+            <p>
+              // 스트링캣은 문자열을 끝없이 늘려 스크롤을 만들 수 있는 신개념
+              롤링페이퍼 서비스 입니다.
+            </p>
+            <p>소중한 사람에게 스트링캣을 남겨보세요!</p>
           </div>
         </div>
-        <div className="font-FiraCode text-xl">
-          <div className="mt-5">
-            스트링캣은 문자열을 끝없이 늘려 스크롤을 만들 수 있는 신개념
-            롤링페이퍼 서비스 입니다.
+        <div className="basis-5/12">
+          <div className=" flex h-full w-full flex-col">
+            <div className="mx-[24px] mt-[100px] inline basis-1/2 text-[22px]">
+              <div className="inline">
+                <button
+                  className={`relative h-[33px] w-[150px] items-center ${Theme.leftCTA} text-[22px]`}
+                  onClick={() => router.push('/create')}
+                >
+                  <div
+                    className={`relative bottom-[4.5px] left-[2px] h-[33px] w-[150px] text-[22px] ${Theme.leftCTA}`}
+                    style={{ lineHeight: '3rem' }}
+                  >
+                    <h1 className=" bottom-[-4.5px] left-[-2px]">
+                      스트링캣 만들기
+                    </h1>
+                  </div>
+                </button>
+              </div>
+              <div className="inline text-strcat-default-green">
+                &nbsp;를 누르면 하나의 문자열을 할당받을 수 있어요. 링크를
+                공유해 문자열을 끝없이 이어보세요.
+              </div>
+            </div>
+            <div className="mx-[24px] inline basis-1/2 text-[22px]">
+              <div className="inline">
+                <button
+                  className={`relative h-[33px] w-[200px] items-center ${Theme.rightCTA} text-[22px]`}
+                  onClick={() => router.push('/create')}
+                >
+                  <div
+                    className={`relative bottom-[4.5px] left-[2px] h-[33px]  w-[200px] text-[22px] ${Theme.rightCTA}`}
+                    style={{ lineHeight: '3rem' }}
+                  >
+                    <h1 className=" bottom-[-4.5px] left-[-2px]">
+                      그룹 스트링캣 만들기
+                    </h1>
+                  </div>
+                </button>
+              </div>
+              <div className="inline text-[22px] text-strcat-default-cyan">
+                &nbsp;를 누르면 여러 문자열을 한 그룹으로 관리할 수 있어요.
+                주렁주렁~
+              </div>
+            </div>
           </div>
-          <div>소중한 사람에게 스트링캣을 남겨보세요!</div>
-        </div>
-        <div className="relative z-10 flex h-60 flex-row items-center justify-center">
-          {/* <Image
-                    src="/strcatImage.png"
-                    width={170}
-                    height={100}
-                    alt="strcatImage"
-                    className='absolute opacity-10 backdrop-opacity-0'
-                    /> */}
-        </div>
-        <div className="text-2xl text-slate-400">
-          <Link legacyBehavior href="/create">
-            <a className="m-1 bg-indigo-400 text-slate-900	">스트링캣 만들기</a>
-          </Link>
-          를 누르면 하나의 문자열을 할당받을 수 있어요. 링크를 공유해 문자열을
-          끝없이 이어보세요.
-        </div>
-        <div className="text-2xl text-slate-400">
-          <Link legacyBehavior href="/create">
-            <a className="m-1 bg-indigo-400 text-slate-900	">
-              그룹 스트링캣 만들기
-            </a>
-          </Link>
-          를 누르면 여러 문자열을 한 그룹으로 관리할 수 있어요. 주렁주렁~
         </div>
       </div>
-    </>
+      <div className="flex h-full w-full flex-row">
+        <div className="basis-1/2"></div>
+        <div className="basis-1/2">
+          <Image
+            src="/strcatImage.png"
+            width={153}
+            height={1040}
+            alt="Image"
+            className="mr-[24px] mt-[228px]"
+          />
+        </div>
+      </div>
+    </div>
   );
 }
