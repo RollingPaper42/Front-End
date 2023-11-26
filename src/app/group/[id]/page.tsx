@@ -14,7 +14,7 @@ import { observeState } from '@/recoil/observe';
 import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import { useRouter } from 'next/navigation';
-import ShortCut from '@/component/ShortCut';
+import ShortCut from '@/component/Icon/ShortCut';
 
 export default function Home(props: any) {
   const [title, setTitle] = useState<string | null>();

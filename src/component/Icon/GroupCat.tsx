@@ -3,7 +3,7 @@ interface Props {
   eyeColor: string;
 }
 
-export default function GroupCatIcon({ bodyColor, eyeColor }: Props) {
+export default function GroupCat({ bodyColor, eyeColor }: Props) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="18" fill="none">
       <path
