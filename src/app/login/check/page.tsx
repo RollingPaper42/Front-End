@@ -9,5 +9,5 @@ export default function Check() {
     const token = searchParams.get('token');
     localStorage.setItem('strcat_token', token === null ? '' : token);
     router.push('/');
-  }, []);
+  }, [router, searchParams]);
 }

@@ -37,7 +37,7 @@ export default function Personal({ params }: { params: { id: string } }) {
         setIsOwner(data.data.isOwner);
       })
       .catch((error) => {});
-  }, []);
+  }, [setTheme]);
 
   const handleClick = () => {
     setIsAdd(true);
