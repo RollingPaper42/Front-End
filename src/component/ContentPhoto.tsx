@@ -8,7 +8,7 @@ export default function ContentPhoto() {
   const [openModal] = useModal();
   const [observe] = useRecoilState(observeState);
   return (
-    <div className="fixed top-[100px] h-[100px] max-w-[312px]">
+    <div className="fixed top-[100px] mx-[24px] h-[100px] max-w-[312px]">
       {observe.photoUrl && observe.photoUrl.length !== 0 && (
         <img
           src={observe.photoUrl}

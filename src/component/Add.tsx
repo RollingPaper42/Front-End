@@ -150,8 +150,9 @@ export default function Add({ id, setIsAdd }: AddProps) {
           </div>
         </div>
       </div>
-      <div className="sticky bottom-5 flex w-full flex-row">
+      <div className=" bottom-5 flex w-full flex-row">
         <BottomButton
+          color="bg-white"
           name="취소"
           width="basis-1/5"
           onClickHandler={() => setIsAdd(false)}
@@ -182,6 +183,7 @@ export default function Add({ id, setIsAdd }: AddProps) {
           )}
         </form>
         <BottomButton
+          color={`bg-strcat-cyan`}
           name="완료"
           width="basis-3/5"
           onClickHandler={handleClick}
