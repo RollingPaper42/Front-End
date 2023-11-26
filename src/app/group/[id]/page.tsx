@@ -14,6 +14,7 @@ import { observeState } from '@/recoil/observe';
 import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import { useRouter } from 'next/navigation';
+import ShortCut from '@/component/ShortCut';
 
 export default function Home(props: any) {
   const [title, setTitle] = useState<string | null>();
@@ -82,9 +83,11 @@ export default function Home(props: any) {
         </div>
         <div className="sticky bottom-5 w-full">
           <button
-            className=" absolute bottom-[4.5rem] right-0 flex h-20 w-20 bg-yellow-700"
+            className=" absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
             onClick={scrollToTop}
-          ></button>
+          >
+            <ShortCut />
+          </button>
           {!isAdd && isOwner ? (
             <div className="  flex w-full">
               <BottomButton
