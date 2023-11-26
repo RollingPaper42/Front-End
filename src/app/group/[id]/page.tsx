@@ -83,68 +83,69 @@ export default function Home(props: any) {
             );
           })}
         </div>
-        <div className="sticky bottom-5 z-20  w-full">
+        <div className="fixed bottom-5 z-20 w-full  max-w-[calc(100vh*0.6)]">
           <button
             className=" absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
             onClick={scrollToTop}
           >
             <ShortCut color={'#FFFFFF'} />
           </button>
-          {!isAdd && isOwner ? (
-            <div className="  flex w-full">
-              <BottomButton
-                color={`bg-white`}
-                name="저장"
-                width="basis-1/4"
-                onClickHandler={() =>
-                  router.push(`./${props.params.id}/export`)
-                }
-                disabled={false}
-              />
-              <BottomButton
-                color={`bg-white`}
-                name="공유"
-                width="basis-1/4"
-                onClickHandler={() =>
-                  router.push(`./${props.params.id}/summary`)
-                }
-                disabled={false}
-              />
-              <BottomButton
-                color={`bg-strcat-green`}
-                name="만들기"
-                width="basis-1/4"
-                onClickHandler={handleClick}
-                disabled={false}
-              />
-              <BottomButton
-                color={`bg-strcat-cyan`}
-                name="글 작성"
-                width="basis-1/4"
-                onClickHandler={handleClick}
-                disabled={!observe.boardId}
-              />
-            </div>
-          ) : (
-            <div className="sticky bottom-5 flex w-full">
-              <BottomButton
-                color={`bg-white`}
-                name="스트링캣 만들기"
-                width="basis-1/2"
-                onClickHandler={() =>
-                  router.push(`../create?id=${props.params.id}`)
-                }
-                disabled={false}
-              />
-              <BottomButton
-                color={`bg-strcat-cyan`}
-                name="이어서 글쓰기"
-                width="basis-1/2"
-                onClickHandler={handleClick}
-                disabled={!observe.boardId}
-              />
-            </div>
-          )}
+          {!isAdd &&
+            (isOwner ? (
+              <div className=" flex w-full">
+                <BottomButton
+                  color={`bg-white`}
+                  name="저장"
+                  width="basis-1/4"
+                  onClickHandler={() =>
+                    router.push(`./${props.params.id}/export`)
+                  }
+                  disabled={false}
+                />
+                <BottomButton
+                  color={`bg-white`}
+                  name="공유"
+                  width="basis-1/4"
+                  onClickHandler={() =>
+                    router.push(`./${props.params.id}/summary`)
+                  }
+                  disabled={false}
+                />
+                <BottomButton
+                  color={`bg-strcat-green`}
+                  name="만들기"
+                  width="basis-1/4"
+                  onClickHandler={handleClick}
+                  disabled={false}
+                />
+                <BottomButton
+                  color={`bg-strcat-cyan`}
+                  name="글 작성"
+                  width="basis-1/4"
+                  onClickHandler={handleClick}
+                  disabled={!observe.boardId}
+                />
+              </div>
+            ) : (
+              <div className=" flex w-full">
+                <BottomButton
+                  color={`bg-white`}
+                  name="스트링캣 만들기"
+                  width="basis-1/2"
+                  onClickHandler={() =>
+                    router.push(`../create?id=${props.params.id}`)
+                  }
+                  disabled={false}
+                />
+                <BottomButton
+                  color={`bg-strcat-cyan`}
+                  name="이어서 글쓰기"
+                  width="basis-1/2"
+                  onClickHandler={handleClick}
+                  disabled={!observe.boardId}
+                />
+              </div>
+            ))}
         </div>
         {!isAdd && <ContentPhoto />}
       </div>

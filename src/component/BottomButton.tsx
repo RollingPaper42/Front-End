@@ -16,11 +16,11 @@ export default function BottomButton({
   return (
     <button
       disabled={disabled}
-      className={`${width} relative mx-2 h-12 items-center ${color} text-xl disabled:bg-[#CCCCCC]`}
+      className={`${width} relative mx-2 h-full items-center ${color} text-xl disabled:bg-[#CCCCCC]`}
       onClick={onClickHandler}
     >
       <div
-        className={`${width} relative bottom-[4.5px] left-[2px] h-12 text-xl ${
+        className={`${width} relative bottom-[4.5px] left-[2px] h-full text-xl ${
           disabled ? 'bg-[#CCCCCC]' : color
         }`}
         style={{ lineHeight: '3rem' }}

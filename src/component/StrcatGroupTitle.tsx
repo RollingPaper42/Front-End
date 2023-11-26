@@ -1,5 +1,6 @@
 import { themeObj } from '@/recoil/theme';
 import { board } from '@/types/boards';
+import GroupCatIcon from './GroupCatIcon';
 
 interface Props {
   board: board;
@@ -15,6 +16,7 @@ export default function StrcatGroupTitle({ board, scrollToId }: Props) {
       }`}
       onClick={() => scrollToId(board.id)}
     >
+      <GroupCatIcon eyeColor="#FF43A8" bodyColor="#FBFF36" />
       <p
         className={`mx-[24px] cursor-pointer text-xl ${
           themeObj[board.theme].background
