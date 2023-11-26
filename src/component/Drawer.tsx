@@ -1,10 +1,12 @@
 import { drawerState } from '@/recoil/drawer';
 import { useRecoilState } from 'recoil';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { axiosInstance } from '@/utils/axios';
 import DropListItem from './DropListItem';
 import DrawerItem from './DrawerItem';
+import { useLogin } from '@/hooks/useLogin';
+import { AxiosError } from 'axios';
 import { handleBackground } from '@/utils/handleBackground';
 
 interface Board {
@@ -13,40 +15,35 @@ interface Board {
 }
 
 export default function Drawer() {
+  const [isLogin] = useLogin();
   const [drawer] = useRecoilState(drawerState);
   const [dropList, setDropList] = useState(false);
   const [groupDropList, setGroupDropList] = useState(false);
   const [personalList, setPersonalList] = useState<Board[]>([]);
   const [groupList, setGroupList] = useState<Board[]>([]);
 
+  const fetchData = useCallback(async () => {
+    if (isLogin) {
+      try {
+        const personal = await axiosInstance.get('/api/users');
+        setPersonalList(personal.data);
+        const group = await axiosInstance.get('/api/users');
+        setGroupList(personal.data);
+      } catch (err) {
+        const error = err as AxiosError;
+        console.log(error);
+      }
+    }
+  }, [isLogin, setPersonalList, setGroupList]);
+
   useEffect(() => {
-    axiosInstance
-      .get('/api/users')
-      .then((res) => {
-        setPersonalList(res.data.data);
-      })
-      .catch((err) => {
-        //401 406 500
-        console.log(err);
-      });
-    axiosInstance
-      .get('/api/users')
-      .then((res) => {
-        setGroupList(res.data.data);
-      })
-      .catch((err) => {
-        //401 406 500
-        console.log(err);
-      });
-  }, []);
+    fetchData();
+  }, [fetchData]);
   const [, setDrawer] = useRecoilState(drawerState);
 
-  const handleBackground = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target !== e.currentTarget) return;
-    setDrawer(false);
-  };
   return (
-    drawer && (
+    drawer &&
+    isLogin && (
       <div
         className="fixed z-20 h-full w-full max-w-[calc(100vh*0.6)]"
         onClick={(e) => handleBackground(e, () => setDrawer(false))}
