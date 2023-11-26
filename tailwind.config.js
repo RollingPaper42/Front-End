@@ -21,7 +21,7 @@ module.exports = {
 
         'strcat-default-yellow': '#FBFF36',
         'strcat-default-cyan': '#6CD8ED',
-        'strcat-default-green': '#7CD43',
+        'strcat-default-green': '#7CED43',
         'strcat-default-magenta': '#FF43A8',
         'strcat-default-white': '#FFFFFF',
         'strcat-default-black': '#212121',
