@@ -148,6 +148,7 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
       <div className="fixed bottom-5 left-0 flex w-full items-center justify-center">
         <div className="flex w-full max-w-[calc(100vh*0.6)] flex-row px-[24px]">
           <BottomButton
+            height="h-[42px]"
             color="bg-white"
             name="취소"
             width="basis-1/5"
@@ -156,6 +157,7 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
           />
           <PhotoUpload setImage={setImage} />
           <BottomButton
+            height="h-[42px]"
             color={`${theme.rightCTA} mx-2`}
             name="완료"
             width="basis-1/2"

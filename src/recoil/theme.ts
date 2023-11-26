@@ -30,8 +30,8 @@ export const calm: themeState = {
 export const green: themeState = {
   name: 'green',
   background: 'bg-strcat-green-green',
-  defaultText: 'text-strcat-green-yellow',
-  highlightText: 'strcat-green-black',
+  defaultText: 'text-strcat-green-black',
+  highlightText: 'text-strcat-green-yellow',
   rightCTA: 'bg-strcat-green-cyan',
   leftCTA: 'bg-strcat-green-yellow',
 };
