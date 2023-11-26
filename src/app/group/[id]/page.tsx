@@ -115,7 +115,9 @@ export default function Home(props: any) {
                   color={`bg-strcat-green`}
                   name="만들기"
                   width="basis-1/4"
-                  onClickHandler={handleClick}
+                  onClickHandler={() =>
+                    router.push(`../create?id=${props.params.id}`)
+                  }
                   disabled={false}
                 />
                 <BottomButton
@@ -132,9 +134,7 @@ export default function Home(props: any) {
                   color={`bg-white`}
                   name="스트링캣 만들기"
                   width="basis-1/2"
-                  onClickHandler={() =>
-                    router.push(`../create?id=${props.params.id}`)
-                  }
+                  onClickHandler={() => router.push(`../created`)}
                   disabled={false}
                 />
                 <BottomButton
