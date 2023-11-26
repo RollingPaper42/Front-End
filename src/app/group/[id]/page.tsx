@@ -40,9 +40,9 @@ export default function Group({ params }: { params: { id: string } }) {
     scrollToAdd(observe.boardId, itemsRef);
   };
   useEffect(() => {
-    axios
-      .get(`/api/group`)
-      //.get(`/board-groups/${params.id}/boards`)
+    axiosInstance
+      //.get(`/api/group`)
+      .get(`/board-groups/${params.id}/boards`)
       .then((data) => {
         setBoards(data.data.boards);
         setTitle(data.data.title);
