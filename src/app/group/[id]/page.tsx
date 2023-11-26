@@ -15,6 +15,7 @@ import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import { useRouter } from 'next/navigation';
 import ShortCut from '@/component/Icon/ShortCut';
+import axios from 'axios';
 
 export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string | null>();
@@ -39,13 +40,14 @@ export default function Group({ params }: { params: { id: string } }) {
     scrollToAdd(observe.boardId, itemsRef);
   };
   useEffect(() => {
-    axiosInstance
+    axios
       .get(`/api/group`)
-      //.get(`/board-groups/${props.params.id}`)
+      //.get(`/board-groups/${params.id}/boards`)
       .then((data) => {
         setBoards(data.data.boards);
         setTitle(data.data.title);
         setIsOwner(data.data.isOwner);
+        console.log(data);
       })
       .catch((error) => {});
   }, []);
@@ -115,7 +117,7 @@ export default function Group({ params }: { params: { id: string } }) {
                   name="만들기"
                   width="basis-1/4"
                   onClickHandler={() =>
-                    router.push(`../create?id=${params.id}`)
+                    router.push(`../create?groupId=${params.id}`)
                   }
                   disabled={false}
                 />

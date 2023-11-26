@@ -2,19 +2,29 @@ import { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { observeState } from '@/recoil/observe';
 import React from 'react';
+import { board } from '@/types/boards';
+import { themeObj, themeState } from '@/recoil/theme';
 interface Props {
-  title: string;
+  board: board;
+  isAdd: boolean;
 }
 
-const ObserveContent = ({ title }: Props) => {
+const ObserveContent = ({ board, isAdd }: Props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [, setObserve] = useRecoilState(observeState);
+  const [, setTheme] = useRecoilState(themeState);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(({ isIntersecting }) => {
-          if (isIntersecting) {
-            setObserve((prev) => ({ ...prev, photoUrl: '' }));
+          if (!isAdd && isIntersecting) {
+            setObserve((prev) => ({
+              ...prev,
+              photoUrl: '',
+              boardId: board.id,
+              theme: board.theme,
+            }));
+            setTheme(themeObj[board.theme]);
           }
         });
       },
@@ -29,11 +39,11 @@ const ObserveContent = ({ title }: Props) => {
     return () => {
       observer.disconnect();
     };
-  }, [setObserve]);
+  }, [setObserve, isAdd]);
 
   return (
     <div className="my-[24px] mt-[20px] h-[200px]" ref={ref}>
-      <h1 className={` text-[28px] `}>{title}</h1>
+      <h1 className={` text-[28px] `}>{board.title}</h1>
     </div>
   );
 };

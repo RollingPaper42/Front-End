@@ -13,14 +13,10 @@ import { observeState } from '@/recoil/observe';
 import { useRouter } from 'next/navigation';
 import { board } from '@/types/boards';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
+import axios from 'axios';
 
 export default function Personal({ params }: { params: { id: string } }) {
-  const [board, setBoard] = useState<board>({
-    id: 0,
-    title: '',
-    theme: 'strcat',
-    content: [],
-  });
+  const [board, setBoard] = useState<board[]>([]);
   const [isAdd, setIsAdd] = useState<boolean>(false);
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const itemsRef = useRef(new Map());
@@ -29,19 +25,32 @@ export default function Personal({ params }: { params: { id: string } }) {
   const router = useRouter();
   useEffect(() => {
     axiosInstance
-      //.get(`/boards/${props.params.id}`)
-      .get(`/api/personal`)
+      .get(`/boards/${params.id}/contents`)
+      //.get(`/api/personal`)
       .then((data) => {
-        setBoard(data.data.board);
+        setBoard([data.data.board]);
         setTheme(data.data.board.theme);
         setIsOwner(data.data.isOwner);
+        console.log(board);
       })
       .catch((error) => {});
   }, [setTheme]);
 
   const handleClick = () => {
     setIsAdd(true);
-    scrollToAdd(board.id, itemsRef);
+    scrollToAdd(board[0].id, itemsRef);
+  };
+  if (!board.length) return null;
+  const handleShare = async () => {
+    try {
+      await navigator.share({
+        title: '내 스트링캣 공유하기',
+        text: 'strcat을 달아주세요~~',
+        url: 'strcat.me',
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -50,12 +59,12 @@ export default function Personal({ params }: { params: { id: string } }) {
       <StrcatHeader />
       <div
         className={`relative w-full  py-[24px] text-justify ${
-          themeObj[board.theme].background
+          themeObj[board[0].theme].background
         } pb-[500px]`}
       >
         <StrcatBoard
-          board={board}
-          ref={(node) => setMap(node, board, itemsRef)}
+          board={board[0]}
+          ref={(node) => setMap(node, board[0], itemsRef)}
           isAdd={isAdd}
           setIsAdd={setIsAdd}
         />
@@ -113,6 +122,10 @@ export default function Personal({ params }: { params: { id: string } }) {
               </div>
             </>
           ))}
+        <div
+          className="  h-32 w-32 bg-slate-200"
+          onClick={() => handleShare()}
+        ></div>
         {!isAdd && <ContentPhoto />}
       </div>
     </>
