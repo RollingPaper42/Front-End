@@ -3,6 +3,7 @@ interface BottomButtonProps {
   width: string;
   onClickHandler: () => void;
   disabled: boolean;
+  color: string;
 }
 
 export default function BottomButton({
@@ -10,14 +11,22 @@ export default function BottomButton({
   width,
   onClickHandler,
   disabled,
+  color,
 }: BottomButtonProps) {
   return (
     <button
       disabled={disabled}
-      className={`${width} mx-2 h-12 rounded-lg bg-black text-xl text-white disabled:bg-[#CCCCCC]`}
+      className={`${width} relative mx-2 h-12 items-center ${color} text-xl disabled:bg-[#CCCCCC]`}
       onClick={onClickHandler}
     >
-      {name}
+      <div
+        className={`${width} relative bottom-[4.5px] left-[2px] h-12 text-xl ${
+          disabled ? 'bg-[#CCCCCC]' : color
+        }`}
+        style={{ lineHeight: '3rem' }}
+      >
+        <h1 className=" bottom-[-4.5px] left-[-2px]">{name}</h1>
+      </div>
     </button>
   );
 }

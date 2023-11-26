@@ -1,25 +1,11 @@
 {
-  "titleData": {
-    "title": "친애하는 친구에게",
-    "backgroundColor": "#FFDAB9",
-    "boards": [
-      {
-        "id": 1,
-        "title": "소중한 인연을 지켜줘",
-        "backgroundColor": "#87CEEB"
-      },
-      {
-        "id": 2,
-        "title": "감사의 마음을 전해줘",
-        "backgroundColor": "#90EE90"
-      }
-    ]
-  },
-  "contentData": [
+  "isOwner": true,
+  "title": "hello~~",
+  "boards": [
     {
       "id": 1,
       "title": "소중한 인연을 지켜줘",
-      "backgroundColor": "#87CEEB",
+      "theme": "calm",
       "content": [
         {
           "id": 1,
@@ -44,7 +30,7 @@
     {
       "id": 2,
       "title": "감사의 마음을 전해줘",
-      "backgroundColor": "#90EE90",
+      "theme": "green",
       "content": [
         {
           "id": 4,
