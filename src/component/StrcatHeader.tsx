@@ -1,25 +1,28 @@
 'use client';
 
 import { useLogin } from '@/hooks/useLogin';
-import { drawerState } from '@/recoil/drawer';
+import { drawerState, themeState } from '@/recoil/state';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
 export default function StrcatHeader() {
   const [isLogin, checkLogin] = useLogin();
   const [, setDrawer] = useRecoilState(drawerState);
+  const [theme] = useRecoilState(themeState);
 
   useEffect(() => {
     checkLogin();
   }, [checkLogin]);
 
   return (
-    <div className="flex h-[56px] flex-row items-center justify-between bg-black px-[24px]">
+    <div
+      className={`flex h-[56px] flex-row items-center justify-between ${theme.background} px-[24px]`}
+    >
       <Link href="/">
         <Image
-          src="/Logo.svg"
+          src={`/Logo_${theme.name}.svg`}
           width={89}
           height={39}
           alt="logo"
@@ -30,7 +33,7 @@ export default function StrcatHeader() {
       <div className="basis-4/6"></div>
       {isLogin ? (
         <Image
-          src="/ProfileImg.svg"
+          src={`/ProfileImg_${theme.name}.svg`}
           width={24}
           height={24}
           alt="profileImg"
@@ -42,7 +45,7 @@ export default function StrcatHeader() {
         <Link href="/login">
           <div className="relative h-[34px] w-[74px]">
             <Image
-              src="/LoginButton.svg"
+              src={`/LoginButton_${theme.name}.svg`}
               width={74}
               height={34}
               alt="login"
@@ -50,7 +53,9 @@ export default function StrcatHeader() {
               className="absolute inset-0"
               priority
             />
-            <span className="absolute inset-0 flex items-center justify-center text-white">
+            <span
+              className={`absolute inset-0 flex items-center justify-center ${theme.defaultText}`}
+            >
               로그인
             </span>
           </div>
