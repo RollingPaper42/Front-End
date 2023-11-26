@@ -123,6 +123,7 @@ export default function Add({ id, setIsAdd }: AddProps) {
       </div>
       <div className=" bottom-5 flex w-full flex-row">
         <BottomButton
+          height="h-[42px]"
           color="bg-white"
           name="취소"
           width="basis-1/5"
@@ -154,6 +155,7 @@ export default function Add({ id, setIsAdd }: AddProps) {
           )}
         </form>
         <BottomButton
+          height="h-[42px]"
           color={`bg-strcat-cyan`}
           name="완료"
           width="basis-3/5"

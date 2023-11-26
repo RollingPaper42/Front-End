@@ -1,13 +1,20 @@
 import { content } from '@/types/content';
 import ObserveContent from './ObserveContent';
-import { forwardRef, Dispatch, SetStateAction, useState } from 'react';
+import {
+  forwardRef,
+  Dispatch,
+  SetStateAction,
+  useState,
+  useEffect,
+} from 'react';
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { themeObj } from '@/recoil/theme';
+import { themeObj, themeState } from '@/recoil/theme';
 import Add from './Add';
 import { observeState } from '@/recoil/observe';
 import { board } from '@/types/boards';
 import ObserveTitle from './ObserveTitle';
+import { setupFsCheck } from 'next/dist/server/lib/router-utils/filesystem';
 
 interface Props {
   board: board;
@@ -20,23 +27,27 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
   ref,
 ) {
   const [observe] = useRecoilState(observeState);
-
+  const [theme, setTheme] = useRecoilState(themeState);
+  const [content, setContent] = useState(board.content);
+  useEffect(() => {
+    setContent(board.content);
+  }, [board.content]);
   return (
     <div
       ref={ref}
-      className={` font-FiraCode ${themeObj[board.theme].background} px-[24px]`}
+      className={` font-FiraCode ${theme.background} px-[24px] duration-200`}
     >
       <ObserveTitle title={board.title} />
       <div className={`z-0 inline`}>
-        {board.content &&
-          board.content.map((content: content) => {
+        {content &&
+          content.map((content: content) => {
             return (
               <ObserveContent
+                boardTheme={board.theme}
                 isAdd={isAdd}
                 key={content.id}
                 content={content}
                 boardId={board.id}
-                theme={board.theme}
               />
             );
           })}

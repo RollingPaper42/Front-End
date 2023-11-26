@@ -22,8 +22,8 @@ export default function Home() {
             className={`mx-[24px] mt-[46px] text-[20px] ${Theme.defaultText}`}
           >
             <p>
-              // 스트링캣은 문자열을 끝없이 늘려 스크롤을 만들 수 있는 신개념
-              롤링페이퍼 서비스 입니다.
+              {`// 스트링캣은 문자열을 끝없이 늘려 스크롤을 만들 수 있는 신개념
+              롤링페이퍼 서비스 입니다.`}
             </p>
             <p>소중한 사람에게 스트링캣을 남겨보세요!</p>
           </div>
@@ -46,7 +46,7 @@ export default function Home() {
                   </div>
                 </button>
               </div>
-              <div className="inline text-strcat-default-green">
+              <div className="text-strcat-default-green inline">
                 &nbsp;를 누르면 하나의 문자열을 할당받을 수 있어요. 링크를
                 공유해 문자열을 끝없이 이어보세요.
               </div>
@@ -67,7 +67,7 @@ export default function Home() {
                   </div>
                 </button>
               </div>
-              <div className="inline text-[22px] text-strcat-default-cyan">
+              <div className="text-strcat-default-cyan inline text-[22px]">
                 &nbsp;를 누르면 여러 문자열을 한 그룹으로 관리할 수 있어요.
                 주렁주렁~
               </div>

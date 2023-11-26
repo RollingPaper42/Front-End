@@ -92,6 +92,7 @@ export default function Export() {
           ))}
         </div>
         <BottomButton
+          height="h-[42px]"
           color="white"
           name="저장하기"
           width="w-[370px]"
