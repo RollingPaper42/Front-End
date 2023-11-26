@@ -1,26 +1,26 @@
 import { content } from '@/types/content';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { observeState } from '@/recoil/observe';
 import React from 'react';
-import { themeState } from '@/recoil/theme';
+import { themeObj } from '@/recoil/theme';
 interface props {
   content: content;
   boardId: number;
   isAdd: boolean;
+  theme: 'strcat' | 'calm' | 'green' | 'cyan';
 }
 
-const ObserveContent = ({ content, boardId, isAdd }: props) => {
+const ObserveContent = ({ content, boardId, isAdd, theme }: props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [observe, setObserve] = useRecoilState(observeState);
-  const [theme] = useRecoilState(themeState);
   useEffect(() => {
     let ratio = 0.01;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(({ isIntersecting, boundingClientRect }) => {
           ratio = 10 / boundingClientRect.height;
-          if (isIntersecting) {
+          if (!isAdd && isIntersecting) {
             setObserve(() => ({
               boardId: boardId,
               contentId: content.id,
@@ -41,7 +41,7 @@ const ObserveContent = ({ content, boardId, isAdd }: props) => {
     return () => {
       observer.disconnect();
     };
-  }, [boardId, content.id, content.photo, content.writer, setObserve]);
+  }, [boardId, content.id, content.photo, content.writer, setObserve, isAdd]);
 
   return (
     <div className="inline">
@@ -52,8 +52,8 @@ const ObserveContent = ({ content, boardId, isAdd }: props) => {
         !isAdd &&
         observe.boardId === boardId &&
         observe.contentId === content.id
-          ? `text-strcat-green' duration-500' inline  w-full  text-[22px] opacity-100 transition-all`
-          : `${theme.defaultText} ' duration-500'  inline  w-full text-[22px] opacity-30 transition-all`
+          ? `${themeObj[theme].highlightText} ' duration-500' inline  w-full  text-[22px] opacity-100 transition-all`
+          : `${themeObj[theme].defaultText} ' duration-500'  inline  w-full text-[22px] opacity-30 transition-all`
       }
     `}
       >
@@ -63,7 +63,7 @@ const ObserveContent = ({ content, boardId, isAdd }: props) => {
         observe.boardId === boardId &&
         observe.contentId === content.id && (
           <div
-            className={`absolute right-[24px] mt-[1px] animate-slide  bg-strcat-green px-1 text-white`}
+            className={`bg-strcat-green absolute right-[24px] z-10 mt-[1px] animate-slide  px-1 text-white opacity-100`}
           >{`From: ${observe.writer}`}</div>
         )}
     </div>
