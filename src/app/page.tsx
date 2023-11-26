@@ -5,16 +5,11 @@ import StrcatHeader from '@/component/StrcatHeader';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { themeState } from '@/recoil/theme';
-import { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import BottomButton from '@/component/BottomButton';
 
 export default function Home() {
   const [Theme, SetTheme] = useRecoilState(themeState);
   const router = useRouter();
-  const handleClick = () => {
-    router.push('/create');
-  };
   return (
     <div className={`${Theme.background}`}>
       <div className=" fixed flex h-full w-full max-w-[calc(100vh*0.6)]  flex-col">
