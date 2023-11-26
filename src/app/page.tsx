@@ -38,11 +38,10 @@ export default function Home() {
                 >
                   <div
                     className={`relative bottom-[4.5px] left-[2px] h-[33px] w-[150px] text-[22px] ${Theme.leftCTA}`}
-                    style={{ lineHeight: '3rem' }}
                   >
-                    <h1 className=" bottom-[-4.5px] left-[-2px]">
+                    <div className=" bottom-[-4.5px] left-[-2px]">
                       스트링캣 만들기
-                    </h1>
+                    </div>
                   </div>
                 </button>
               </div>
@@ -59,11 +58,9 @@ export default function Home() {
                 >
                   <div
                     className={`relative bottom-[4.5px] left-[2px] h-[33px]  w-[200px] text-[22px] ${Theme.rightCTA}`}
-                    style={{ lineHeight: '3rem' }}
                   >
-                    <h1 className=" bottom-[-4.5px] left-[-2px]">
-                      그룹 스트링캣 만들기
-                    </h1>
+                    그룹 스트링캣 만들기
+                    <div className=" bottom-[-4.5px] left-[-2px]"></div>
                   </div>
                 </button>
               </div>
