@@ -16,7 +16,7 @@ import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import { useRouter } from 'next/navigation';
 import ShortCut from '@/component/Icon/ShortCut';
 
-export default function Home(props: any) {
+export default function Group(props: any) {
   const [title, setTitle] = useState<string | null>();
   const [boards, setBoards] = useState<board[]>([]);
   const [isAdd, setIsAdd] = useState(false);

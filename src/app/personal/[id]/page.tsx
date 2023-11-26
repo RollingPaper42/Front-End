@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 import { board } from '@/types/boards';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
 
-export default function Home(props: any) {
+export default function Personal(props: any) {
   const [board, setBoard] = useState<board>({
     id: 0,
     title: '',
