@@ -3,8 +3,10 @@ import { useEffect } from 'react';
 import useModal from './useModal';
 import Error from '@/component/Modal/Error';
 import { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { useRouter } from 'next/navigation';
 
 export const useInterceptor = () => {
+  const route = useRouter();
   const [openModal, closeModal] = useModal();
   const responseHandler = (response: AxiosResponse<any, any>) => {
     return response;
@@ -20,10 +22,13 @@ export const useInterceptor = () => {
   };
 
   const errorHandler = (errorStatus: number) => {
-    if (errorStatus === 401 || errorStatus === 500) {
+    if (errorStatus === 500) {
       openModal(
-        <Error content="400 & 500 에러 발생 " handleModalClose={closeModal} />,
+        <Error content="500 에러 발생 " handleModalClose={closeModal} />,
       );
+    }
+    if (errorStatus === 401) {
+      route.push('/login');
     }
   };
 
