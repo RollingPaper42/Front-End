@@ -31,9 +31,6 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
   const [content, setContent] = useState(board.contents);
   useEffect(() => {
     setContent(board.contents);
-    console.log(content);
-    console.log(board);
-    console.log(board.contents);
   }, [board]);
   return (
     <div
