@@ -73,7 +73,7 @@ export default function Export() {
             <ExportBoard
               key={board.id}
               title={board.title}
-              data={board.content}
+              data={board.contents}
               exportTheme={exportTheme}
             />
           );
