@@ -61,7 +61,7 @@ export default function Home(props: any) {
         />
         {!isAdd &&
           (isOwner ? (
-            <div className="fixed bottom-0 left-0 z-50 flex w-full items-center justify-center">
+            <div className="fixed bottom-5 left-0 z-50 flex w-full items-center justify-center">
               <div className="flex w-full max-w-[calc(100vh*0.6)] items-center justify-center px-[24px]">
                 <BottomButton
                   name="저장"
