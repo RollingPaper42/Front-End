@@ -3,27 +3,29 @@ import BottomButton from '@/component/BottomButton';
 import useInput from '@/hooks/useInput';
 import { axiosInstance } from '@/utils/axios';
 import { useRouter } from 'next/navigation';
-import { Dispatch, SetStateAction, useRef } from 'react';
-import Image from 'next/image';
+import { Dispatch, SetStateAction, useState } from 'react';
 import useModal from '@/hooks/useModal';
 import Error from '@/component/Modal/Error';
 import { confirm } from '@/utils/confirm';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
+import { AxiosError } from 'axios';
+import { content } from '@/types/content';
+import PhotoUpload from './PhotoUpload';
 
 interface AddProps {
   id: string;
+  setContent: Dispatch<SetStateAction<content[]>>;
   setIsAdd: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function Add({ id, setIsAdd }: AddProps) {
+export default function Add({ id, setIsAdd, setContent }: AddProps) {
   const [text, setText] = useInput('');
-  const [imgFile, setImgFile] = useInput('');
   const [writer, , handleWriter] = useInput('');
   const router = useRouter();
   const [openModal, closeModal] = useModal();
-  const imgRef = useRef<HTMLInputElement>(null);
   const [theme] = useRecoilState(themeState);
+  const [image, setImage] = useInput<Blob | null>(null);
 
   if (id === null || id === undefined) {
     alert('유효하지 않은 접속입니다.');
@@ -46,31 +48,35 @@ export default function Add({ id, setIsAdd }: AddProps) {
       closeModal,
     );
     if (isConfirmed) {
-      // photo upload전 1MB이하로 압축하기
-      axiosInstance
-        .post(`/boards/${id}/contents`, imgFile)
-        .then((res) => {
-          console.log(res);
-          const data = {
-            text: text,
-            photo: res.data,
-            writer: writer,
-          };
-          axiosInstance
-            .post(`/boards/${id}/contents`, data)
-            .then((res) => {
-              setIsAdd(false);
-              console.log(res);
-            })
-            .catch((err) => {
-              if (err.response.status === 406) {
-                alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
-              }
-            });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      try {
+        console.log('here');
+        const photoRes = await axiosInstance.post(
+          `/boards/${id}/contents/pictures`,
+          image,
+        );
+        console.log(photoRes);
+        const data = {
+          text: text,
+          photo: photoRes.data,
+          writer: writer,
+        };
+        const contentRes = await axiosInstance.post(
+          `/boards/${id}/contents`,
+          data,
+        );
+        setContent((prevContent: content[]) => [
+          ...prevContent,
+          { id: contentRes.data.id, ...data },
+        ]);
+        setIsAdd(false);
+        console.log(contentRes);
+      } catch (err) {
+        const error = err as AxiosError;
+        console.log(error);
+        if (error.response?.status === 406) {
+          alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
+        }
+      }
     }
   };
 
@@ -85,16 +91,6 @@ export default function Add({ id, setIsAdd }: AddProps) {
     }
   };
 
-  const saveImgFile = () => {
-    if (!imgRef.current?.files) return;
-    const file = imgRef.current.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setImgFile(reader.result as string);
-    };
-  };
-
   return (
     <div className="inline w-full">
       <div
@@ -104,7 +100,6 @@ export default function Add({ id, setIsAdd }: AddProps) {
         onInput={(e) => setText(e.currentTarget.innerText)}
         onKeyDown={(e) => handleInputText(e)}
         className={`${theme.highlightText} bottom-[200px] ml-5 inline w-full text-justify text-[22px] outline-none`}
-        style={{ cursor: 'padding:0 6px;' }}
       />
       {text === '' && (
         <div
@@ -150,45 +145,24 @@ export default function Add({ id, setIsAdd }: AddProps) {
           </div>
         </div>
       </div>
-      <div className=" bottom-5 flex w-full flex-row">
-        <BottomButton
-          color="bg-white"
-          name="취소"
-          width="basis-1/5"
-          onClickHandler={() => setIsAdd(false)}
-          disabled={false}
-        />
-        <form className="mx-2 flex basis-1/5 items-center justify-center rounded-lg bg-[#CCCCCC]">
-          {imgFile ? (
-            <>
-              <Image width={63} height={63} src={imgFile} alt="프로필 이미지" />
-              <div className="top-0 z-10 h-full" onClick={() => setImgFile('')}>
-                x
-              </div>
-            </>
-          ) : (
-            <>
-              <label className="img-label text-xl text-white" htmlFor="imgFile">
-                사진
-              </label>
-              <input
-                type="file"
-                accept="image/*"
-                id="imgFile"
-                onChange={saveImgFile}
-                ref={imgRef}
-                className="img-input hidden"
-              />
-            </>
-          )}
-        </form>
-        <BottomButton
-          color={`bg-strcat-cyan`}
-          name="완료"
-          width="basis-3/5"
-          onClickHandler={handleClick}
-          disabled={text === '' || text.length > 1000 || writer.length > 10}
-        />
+      <div className="fixed bottom-5 left-0 flex w-full items-center justify-center">
+        <div className="flex w-full max-w-[calc(100vh*0.6)] flex-row px-[24px]">
+          <BottomButton
+            color="bg-white"
+            name="취소"
+            width="basis-1/5"
+            onClickHandler={() => setIsAdd(false)}
+            disabled={false}
+          />
+          <PhotoUpload setImage={setImage} />
+          <BottomButton
+            color={`${theme.rightCTA} mx-2`}
+            name="완료"
+            width="basis-1/2"
+            onClickHandler={handleClick}
+            disabled={text === '' || text.length > 1000 || writer.length > 10}
+          />
+        </div>
       </div>
     </div>
   );
