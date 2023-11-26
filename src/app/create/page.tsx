@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useState } from 'react';
 import Image from 'next/image';
 import useInput from '@/hooks/useInput';
@@ -11,16 +10,19 @@ import useModal from '@/hooks/useModal';
 import Confirm from '@/component/Modal/Confirm';
 import { useRouter } from 'next/navigation';
 import BottomButton from '@/component/BottomButton';
+import { axiosInstance } from '@/utils/axios';
+import { useSearchParams } from 'next/navigation';
 
 export default function Create() {
+  const searchParams = useSearchParams();
   const ErrorInitColor = 'text-gray-400';
   const [Theme, setTheme] = useRecoilState(themeState);
-  const [linkURL, setLinkURL] = useState('');
   const [buttonState, SetButtonState] = useState(true);
   const [title, , handleTitle] = useInput('');
   const [ErrorFontColor, SetErrorFontColor] = useState(ErrorInitColor);
   const [openModal, closeModal] = useModal();
   const router = useRouter();
+  const groupId = searchParams.get('groupId');
 
   const handleConfirm = async () => {
     openModal(
@@ -33,22 +35,22 @@ export default function Create() {
   };
 
   const handleClick = () => {
-    // const data = {
-    //   backgroundColor: Theme,
-    //   title: title,
-    // };
-    // axiosInstance
-    //   .post(`/boards`, data)
-    //   .then((data) => {
-    //     setLinkURL(data.data.link);
-    //     router.push(data.data);
-    //   })
-    //   .catch((err) => {
-    //     if (err.response.status === 406) {
-    //       alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
-    //     }
-    //   });
-    router.push('/');
+    const data = {
+      groupId: groupId,
+      backgroundColor: Theme,
+      title: title,
+    };
+    axiosInstance
+      .post(`/boards`, data)
+      .then((data) => {
+        if (groupId == null) router.push(`/personal/${data.data}`);
+        else router.push(`/group/${groupId}`);
+      })
+      .catch((err) => {
+        if (err.response.status === 406) {
+          alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
+        }
+      });
     closeModal();
   };
 
