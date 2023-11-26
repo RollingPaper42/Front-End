@@ -90,6 +90,7 @@ export default function Home() {
         <div className=" mx-[25px] basis-2/12">
           <div className="flex h-full w-full flex-row items-center justify-center">
             <BottomButton
+              height="h-[42px]"
               name="공유하기"
               width="w-[312px]"
               onClickHandler={() => router.push('/create')}

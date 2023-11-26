@@ -53,7 +53,11 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
           })}
       </div>
       {isAdd && board.id === observe.boardId && (
-        <Add id={`${observe.boardId}`} setIsAdd={setIsAdd} />
+        <Add
+          setContent={setContent}
+          id={`${observe.boardId}`}
+          setIsAdd={setIsAdd}
+        />
       )}
       {!isAdd && <div className=" h-12"></div>}
     </div>
