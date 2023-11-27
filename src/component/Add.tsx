@@ -146,7 +146,7 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
         </div>
       </div>
       <div className="fixed bottom-5 left-0 flex w-full items-center justify-center">
-        <div className="flex w-full max-w-[calc(100vh*0.6)] flex-row px-[24px]">
+        <div className="flex w-full max-w-md flex-row px-[24px]">
           <BottomButton
             height="h-[42px]"
             color="bg-white"

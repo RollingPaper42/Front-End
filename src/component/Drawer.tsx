@@ -1,6 +1,6 @@
-import { drawerState } from '@/recoil/drawer';
-import { useRecoilState } from 'recoil';
 import Image from 'next/image';
+import { themeState, drawerState } from '@/recoil/state';
+import { useRecoilState } from 'recoil';
 import { useCallback, useEffect, useState } from 'react';
 import { axiosInstance } from '@/utils/axios';
 import DropListItem from './DropListItem';
@@ -21,6 +21,7 @@ export default function Drawer() {
   const [groupDropList, setGroupDropList] = useState(false);
   const [personalList, setPersonalList] = useState<Board[]>([]);
   const [groupList, setGroupList] = useState<Board[]>([]);
+  const [theme] = useRecoilState(themeState);
 
   const fetchData = useCallback(async () => {
     if (isLogin) {
@@ -45,10 +46,12 @@ export default function Drawer() {
     drawer &&
     isLogin && (
       <div
-        className="fixed z-20 h-full w-full max-w-[calc(100vh*0.6)]"
+        className="fixed z-30 h-full w-full max-w-md"
         onClick={(e) => handleBackground(e, () => setDrawer(false))}
       >
-        <div className="absolute right-0 z-20 h-full w-[300px] bg-black text-white">
+        <div
+          className={`absolute right-0 z-20 h-full w-[300px] ${theme.background} ${theme.defaultText}`}
+        >
           <div className="flex h-[123px] w-full justify-start">
             <Image
               src="/ProfileImg.svg"
@@ -58,7 +61,7 @@ export default function Drawer() {
               className="m-[24px]"
             />
           </div>
-          <div className="flex flex-col items-center text-white">
+          <div className={`flex flex-col items-center ${theme.defaultText}`}>
             <div
               className="flex h-[53px] w-full items-center justify-between px-[24px]"
               onClick={() => setDropList(!dropList)}

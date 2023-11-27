@@ -33,10 +33,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
     setContent(board.content);
   }, [board.content]);
   return (
-    <div
-      ref={ref}
-      className={` font-FiraCode ${theme.background} px-[24px] duration-200`}
-    >
+    <div ref={ref} className={`${theme.background} px-[24px] duration-200`}>
       <ObserveTitle title={board.title} />
       <div className={`z-0 inline`}>
         {content &&

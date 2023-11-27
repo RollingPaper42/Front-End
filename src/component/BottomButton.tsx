@@ -17,21 +17,20 @@ export default function BottomButton({
   onClickHandler,
   disabled,
   color,
-  height,
 }: BottomButtonProps) {
   return (
     <button
-      className={`relative mx-2 ${height}  ${width}`}
+      className={`relative mx-2 h-[42px] ${width}`}
       onClick={onClickHandler}
       disabled={disabled}
     >
       <div
-        className={`absolute inset-0 w-full ${
+        className={`absolute inset-0 h-[38px] w-full ${
           disabled ? 'bg-[#CCCCCC]' : color
         }`}
       >
         <div
-          className={`relative bottom-[4.5px] left-[2px] h-12 w-full ${
+          className={`relative bottom-[4.5px] left-[2px] h-[38px] w-full ${
             disabled ? 'bg-[#CCCCCC]' : color
           }`}
           style={{ lineHeight: '3rem' }}

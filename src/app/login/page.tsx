@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
 
-export default function login() {
+export default function Login() {
   const [theme, setTheme] = useRecoilState(themeState);
   const onClickOAuthKakao = () => {
     location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/kakao`;
