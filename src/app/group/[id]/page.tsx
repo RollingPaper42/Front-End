@@ -41,7 +41,7 @@ export default function Group({ params }: { params: { id: string } }) {
   useEffect(() => {
     axiosInstance
       //.get(`/api/group`)
-      .get(`/board-groups/${params.id}/boards`)
+      .get(`/board-groups/${params.id}`)
       .then((data) => {
         setBoards(data.data.boards);
         setTitle(data.data.title);

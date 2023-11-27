@@ -24,13 +24,12 @@ export default function Personal({ params }: { params: { id: string } }) {
   const router = useRouter();
   useEffect(() => {
     axiosInstance
-      .get(`/boards/${params.id}/contents`)
+      .get(`/boards/${params.id}`)
       //.get(`/api/personal`)
       .then((data) => {
         setBoard([data.data.board]);
         setTheme(data.data.board.theme);
         setIsOwner(data.data.isOwner);
-        console.log(board);
       })
       .catch((error) => {});
   }, [setTheme]);
@@ -120,7 +119,7 @@ export default function Personal({ params }: { params: { id: string } }) {
               </div>
             </>
           ))}
-        {!board[0].contents.length && (
+        {!board[0].contents.length && !isAdd && (
           <div
             className="  h-32 w-32 bg-slate-200"
             onClick={() => handleShare()}
