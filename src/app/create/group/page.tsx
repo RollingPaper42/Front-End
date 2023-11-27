@@ -60,7 +60,10 @@ export default function Create() {
     <div className={`${Theme.background} h-full w-full`}>
       <div className="flex h-full w-full flex-col">
         <div className="flex basis-14 items-center">
-          <div className="flex h-full w-full basis-1/6 flex-row items-center justify-center pl-[24px]">
+          <div
+            className="flex h-full w-full basis-1/6 flex-row items-center justify-center pl-[24px]"
+            onClick={() => router.push('/')}
+          >
             <Back color={Theme.backIcon} />
           </div>
           <div
