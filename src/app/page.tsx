@@ -2,15 +2,15 @@
 
 import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
 import { useLogin } from '@/hooks/useLogin';
+import LongCat from '@/component/Icon/LongCat';
 
 export default function Home() {
   const [isLogin] = useLogin();
-  const [Theme, SetTheme] = useRecoilState(themeState);
+  const [Theme] = useRecoilState(themeState);
   const router = useRouter();
 
   const handlePersonalStrcat = () => {
@@ -24,7 +24,7 @@ export default function Home() {
   const handleGroupStrcat = () => {
     if (isLogin) router.push('create');
     else {
-      localStorage.setItem('strcat_login_success_url', '/create');
+      localStorage.setItem('strcat_login_success_url', '/create/group');
       router.push('/login');
     }
   };
@@ -93,13 +93,10 @@ export default function Home() {
       </div>
       <div className="flex h-full w-full flex-row">
         <div className="basis-1/2"></div>
-        <div className="basis-1/2">
-          <Image
-            src="/strcatImage.png"
-            width={153}
-            height={1040}
-            alt="Image"
-            className="mr-[24px] mt-[228px]"
+        <div className="basis-1/2 pr-[24px] pt-[228px]">
+          <LongCat
+            bodyColor={Theme.catTheme.mainCat}
+            eyeColor={Theme.catTheme.mainCatEye}
           />
         </div>
       </div>
