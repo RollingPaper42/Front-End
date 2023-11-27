@@ -57,7 +57,7 @@ export default function Personal({ params }: { params: { id: string } }) {
       <Drawer />
       <StrcatHeader />
       <div
-        className={`relative w-full  py-[24px] text-justify ${theme.background} pb-[500px]`}
+        className={`relative h-full w-full py-[24px] text-justify ${theme.background} pb-[500px]`}
       >
         <StrcatBoard
           board={board[0]}
@@ -90,7 +90,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                   height="h-[42px]"
                   width="basis-3/5"
                   onClickHandler={handleClick}
-                  disabled={!observe.boardId}
+                  disabled={false}
                   color={`bg-strcat-cyan`}
                 />
               </div>

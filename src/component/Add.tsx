@@ -158,9 +158,9 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
           <PhotoUpload setImage={setImage} />
           <BottomButton
             height="h-[42px]"
-            color={`${theme.rightCTA} mx-2`}
+            color={`${theme.rightCTA}`}
             name="완료"
-            width="basis-1/2"
+            width="basis-3/5"
             onClickHandler={handleClick}
             disabled={text === '' || text.length > 1000 || writer.length > 10}
           />
