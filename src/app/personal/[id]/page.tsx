@@ -6,14 +6,13 @@ import StrcatBoard from '@/component/StrcatBoard';
 import BottomButton from '@/component/BottomButton';
 import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
-import { themeObj, themeState } from '@/recoil/theme';
+import { themeState } from '@/recoil/theme';
 import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
 import { observeState } from '@/recoil/observe';
 import { useRouter } from 'next/navigation';
 import { board } from '@/types/boards';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
-import axios from 'axios';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -41,17 +40,17 @@ export default function Personal({ params }: { params: { id: string } }) {
     scrollToAdd(board[0].id, itemsRef);
   };
   if (!board.length) return null;
-  // const handleShare = async () => {
-  //   try {
-  //     await navigator.share({
-  //       title: '내 스트링캣 공유하기',
-  //       text: 'strcat을 달아주세요~~',
-  //       url: 'strcat.me',
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const handleShare = async () => {
+    try {
+      await navigator.share({
+        title: '내 스트링캣 공유하기',
+        text: 'strcat을 달아주세요~~',
+        url: 'strcat.me',
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   // 공유하기 기능을 위한 임시 코드입니다.
 
   return (
@@ -121,10 +120,14 @@ export default function Personal({ params }: { params: { id: string } }) {
               </div>
             </>
           ))}
-        {/* <div
-          className="  h-32 w-32 bg-slate-200"
-          onClick={() => handleShare()}
-        ></div> */}
+        {!board[0].contents.length && (
+          <div
+            className="  h-32 w-32 bg-slate-200"
+            onClick={() => handleShare()}
+          >
+            공유하기
+          </div>
+        )}
         {!isAdd && <ContentPhoto />}
       </div>
     </>
