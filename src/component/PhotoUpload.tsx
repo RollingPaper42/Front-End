@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 import Image from 'next/image';
 import imageCompression from 'browser-image-compression';
+import PreviewPhoto from './PreviewPhoto';
 
 interface Props {
   setImage: Dispatch<React.SetStateAction<Blob | null>>;
@@ -54,22 +55,25 @@ const PhotoUpload = ({ setImage }: Props) => {
   return (
     <>
       {preview ? (
-        <div className="relative mx-2 h-[42px] w-full basis-1/5 ">
-          <div
-            className={`absolute top-[3px] h-[39px] w-full ${theme.leftCTA}`}
-          />
-          <div
-            className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.leftCTA}`}
-          />
-          <div className="absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center text-black">
-            <Image
-              src="/Picture.svg"
-              alt="pictureIcon"
-              width={24}
-              height={24}
+        <>
+          <PreviewPhoto preview={preview} />
+          <div className="relative mx-2 h-[42px] w-full basis-1/5 ">
+            <div
+              className={`absolute top-[3px] h-[39px] w-full ${theme.leftCTA}`}
             />
+            <div
+              className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.leftCTA}`}
+            />
+            <div className="absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center text-black">
+              <Image
+                src="/Picture.svg"
+                alt="pictureIcon"
+                width={24}
+                height={24}
+              />
+            </div>
           </div>
-        </div>
+        </>
       ) : (
         <form className="mx-2 flex h-[42px] basis-1/5 items-center justify-center">
           <label htmlFor="imgFile" className="relative h-full w-full">
