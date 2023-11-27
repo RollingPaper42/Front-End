@@ -15,7 +15,6 @@ import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import { useRouter } from 'next/navigation';
 import ShortCut from '@/component/Icon/ShortCut';
-import axios from 'axios';
 
 export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string | null>();
@@ -47,7 +46,6 @@ export default function Group({ params }: { params: { id: string } }) {
         setBoards(data.data.boards);
         setTitle(data.data.title);
         setIsOwner(data.data.isOwner);
-        console.log(data);
       })
       .catch((error) => {});
   }, []);

@@ -41,26 +41,25 @@ export default function Personal({ params }: { params: { id: string } }) {
     scrollToAdd(board[0].id, itemsRef);
   };
   if (!board.length) return null;
-  const handleShare = async () => {
-    try {
-      await navigator.share({
-        title: '내 스트링캣 공유하기',
-        text: 'strcat을 달아주세요~~',
-        url: 'strcat.me',
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const handleShare = async () => {
+  //   try {
+  //     await navigator.share({
+  //       title: '내 스트링캣 공유하기',
+  //       text: 'strcat을 달아주세요~~',
+  //       url: 'strcat.me',
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+  // 공유하기 기능을 위한 임시 코드입니다.
 
   return (
     <>
       <Drawer />
       <StrcatHeader />
       <div
-        className={`relative w-full  py-[24px] text-justify ${
-          themeObj[board[0].theme].background
-        } pb-[500px]`}
+        className={`relative w-full  py-[24px] text-justify ${theme.background} pb-[500px]`}
       >
         <StrcatBoard
           board={board[0]}
@@ -122,10 +121,10 @@ export default function Personal({ params }: { params: { id: string } }) {
               </div>
             </>
           ))}
-        <div
+        {/* <div
           className="  h-32 w-32 bg-slate-200"
           onClick={() => handleShare()}
-        ></div>
+        ></div> */}
         {!isAdd && <ContentPhoto />}
       </div>
     </>
