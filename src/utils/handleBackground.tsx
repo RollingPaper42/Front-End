@@ -3,5 +3,5 @@ export const handleBackground = (
   callback: () => void,
 ) => {
   if (e.target !== e.currentTarget) return;
-  close();
+  callback();
 };
