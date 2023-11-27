@@ -4,11 +4,13 @@ import { useLogin } from '@/hooks/useLogin';
 import { drawerState, themeState } from '@/recoil/state';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
 export default function StrcatHeader() {
   const [isLogin, checkLogin] = useLogin();
+  const pathName = usePathname();
   const [, setDrawer] = useRecoilState(drawerState);
   const [theme] = useRecoilState(themeState);
 
@@ -43,7 +45,12 @@ export default function StrcatHeader() {
             onClick={() => setDrawer(true)}
           />
         ) : (
-          <Link href="/login">
+          <Link
+            href="/login"
+            onClick={() =>
+              localStorage.setItem('strcat_login_success_url', pathName)
+            }
+          >
             <div className="relative h-[34px] w-[74px]">
               <Image
                 src={`/LoginButton_${theme.name}.svg`}
