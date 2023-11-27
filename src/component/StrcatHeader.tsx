@@ -2,13 +2,11 @@
 
 import { useLogin } from '@/hooks/useLogin';
 import { drawerState, themeState } from '@/recoil/state';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import LogoCat from './Icon/LogoCat';
-import HeaderProfileCat from './Icon/HeaderProfileCat';
+import { LogoCat, HeaderProfileCat, Outline } from './Icon/Header';
 
 export default function StrcatHeader() {
   const [isLogin, checkLogin] = useLogin();
@@ -49,19 +47,13 @@ export default function StrcatHeader() {
             }
           >
             <div className="relative h-[34px] w-[74px]">
-              <Image
-                src={`/LoginButton_${theme.name}.svg`}
-                width={74}
-                height={34}
-                alt="login"
-                loading="eager"
-                className="absolute inset-0"
-                priority
-              />
+              <div className="absolute inset-0">
+                <Outline color={theme.loginIcon} />
+              </div>
               <span
                 className={`absolute inset-0 flex items-center justify-center ${theme.defaultText}`}
               >
-                로그인
+                {pathName === 'login' ? '홈으로' : '로그인'}
               </span>
             </div>
           </Link>

@@ -1,7 +1,7 @@
 export interface catThemeState {
-  headerCat: string; // header cat
-  profileCat: string;
+  headerCat: string;
   headerCatEye: string;
+  profileCat: string;
   profileCircle: string;
   mainCat: string;
   mainCatEye: string;
@@ -9,8 +9,8 @@ export interface catThemeState {
 
 export const strcatCat: catThemeState = {
   headerCat: '#FBFF36',
-  profileCat: '#7CED43',
   headerCatEye: '#FF43A8',
+  profileCat: '#7CED43',
   profileCircle: '#6CD8ED',
   mainCat: '#FBFF36',
   mainCatEye: '#FF43A8',
@@ -18,8 +18,8 @@ export const strcatCat: catThemeState = {
 
 export const calmCat: catThemeState = {
   headerCat: '#FFA857',
-  profileCat: '#FFA857',
   headerCatEye: '#FF43A8',
+  profileCat: '#FFA857',
   profileCircle: '#ABC4FF',
   mainCat: '#FFA857',
   mainCatEye: '#FF43A8',
@@ -27,8 +27,8 @@ export const calmCat: catThemeState = {
 
 export const greenCat: catThemeState = {
   headerCat: '#212121',
-  profileCat: '#212121',
   headerCatEye: '#FBFF36',
+  profileCat: '#212121',
   profileCircle: '#FF43A8',
   mainCat: '#FBFF36',
   mainCatEye: '#FF43A8',
@@ -36,8 +36,8 @@ export const greenCat: catThemeState = {
 
 export const cyanCat: catThemeState = {
   headerCat: '#FFFFFF',
-  profileCat: '#FFFFFF',
   headerCatEye: '#FF43A8',
+  profileCat: '#FFFFFF',
   profileCircle: '#FBFF36',
   mainCat: '#FBFF36',
   mainCatEye: '#FF43A8',
