@@ -30,11 +30,10 @@ export default function Personal({ params }: { params: { id: string } }) {
       //.get(`/api/personal`)
       .then((data) => {
         setBoard([data.data.board]);
-        setTheme(data.data.board.theme);
         setIsOwner(data.data.isOwner);
       })
       .catch((error) => {});
-  }, [setTheme]);
+  }, []);
 
   const handleClick = () => {
     setIsAdd(true);
