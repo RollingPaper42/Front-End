@@ -47,6 +47,7 @@ export default function Summary({ params }: { params: { id: string } }) {
                     height={24}
                     alt="backpagebutton"
                     className="ml-[24px] mt-[16px]"
+                    onClick={() => router.push(`/personal/${params.id}`)}
                   />
                 </div>
                 <div className=" basis-4/6">
