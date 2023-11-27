@@ -16,7 +16,7 @@ export default function StrcatHeader() {
 
   useEffect(() => {
     checkLogin();
-  }, [checkLogin]);
+  }, []);
 
   return (
     <div className="fixed top-0 z-10 w-full max-w-md">
