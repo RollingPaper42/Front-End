@@ -3,6 +3,7 @@
 import { themeState } from '@/recoil/theme';
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
+
 import { axiosInstance } from '@/utils/axios';
 import { useEffect, useState } from 'react';
 import BottomButton from '@/component/BottomButton';
