@@ -38,7 +38,7 @@ export default function Home() {
 
   return (
     <div className={`${Theme.background}`}>
-      <div className=" fixed flex h-full w-full max-w-[calc(100vh*0.6)]  flex-col">
+      <div className=" fixed flex h-full w-full max-w-md flex-col">
         <div className=" basis-3/12">
           <div className="flex h-full w-full flex-col">
             <div className=" basis-2/5">

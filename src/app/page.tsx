@@ -12,7 +12,7 @@ export default function Home() {
   const router = useRouter();
   return (
     <div className={`${Theme.background}`}>
-      <div className=" fixed flex h-full w-full max-w-[calc(100vh*0.6)]  flex-col">
+      <div className=" fixed flex h-full w-full max-w-md  flex-col">
         <div className="basis-1/12">
           <Drawer />
           <StrcatHeader />
