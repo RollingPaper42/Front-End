@@ -2,20 +2,13 @@ import Image from 'next/image';
 
 interface Props {
   title: string;
-  icon: string;
-  alt: string;
+  icon: React.ReactElement;
 }
 
-export default function DrawerItem({ title, icon, alt }: Props) {
+export default function DrawerItem({ title, icon }: Props) {
   return (
     <div className="flex items-center">
-      <Image
-        src={`${icon}`}
-        width={24}
-        height={24}
-        alt={`${alt}`}
-        className="mr-[12px]"
-      />
+      <div className="pr-[12px]">{icon}</div>
       {title}
     </div>
   );

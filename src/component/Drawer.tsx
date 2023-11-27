@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { themeState, drawerState } from '@/recoil/state';
 import { useRecoilState } from 'recoil';
 import { useCallback, useEffect, useState } from 'react';
@@ -8,6 +7,11 @@ import DrawerItem from './DrawerItem';
 import { useLogin } from '@/hooks/useLogin';
 import { AxiosError } from 'axios';
 import { handleBackground } from '@/utils/handleBackground';
+import DrawerProfileCat from './Icon/DrawerProfileCat';
+import Strcat from './Icon/Strcat';
+import DropListUp from './Icon/DropListUp';
+import DropListDown from './Icon/DropListDown';
+import Logout from './Icon/Logout';
 
 interface Board {
   id: string;
@@ -16,20 +20,25 @@ interface Board {
 
 export default function Drawer() {
   const [isLogin] = useLogin();
-  const [drawer] = useRecoilState(drawerState);
+  const [drawer, setDrawer] = useRecoilState(drawerState);
   const [dropList, setDropList] = useState(false);
   const [groupDropList, setGroupDropList] = useState(false);
   const [personalList, setPersonalList] = useState<Board[]>([]);
   const [groupList, setGroupList] = useState<Board[]>([]);
   const [theme] = useRecoilState(themeState);
+  const catTheme = theme.catTheme;
 
   const fetchData = useCallback(async () => {
     if (isLogin) {
       try {
+        // const personal = await axiosInstance.get('/users/boards');
+        // setPersonalList(personal.data);
         const personal = await axiosInstance.get('/api/users');
-        setPersonalList(personal.data);
+        setPersonalList(personal.data.data);
         const group = await axiosInstance.get('/api/users');
-        setGroupList(personal.data);
+        setGroupList(group.data.data);
+        //const group = await axiosInstance.get('/users/board-groups');
+        // setGroupList(group.data);
       } catch (err) {
         const error = err as AxiosError;
         console.log(error);
@@ -40,7 +49,6 @@ export default function Drawer() {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
-  const [, setDrawer] = useRecoilState(drawerState);
 
   return (
     drawer &&
@@ -52,13 +60,11 @@ export default function Drawer() {
         <div
           className={`absolute right-0 z-20 h-full w-[300px] ${theme.background} ${theme.defaultText}`}
         >
-          <div className="flex h-[123px] w-full justify-start">
-            <Image
-              src="/ProfileImg.svg"
-              width={72}
-              height={72}
-              alt="profileImg"
-              className="m-[24px]"
+          <div className="flex h-[123px] w-full justify-start p-[24px]">
+            <DrawerProfileCat
+              circleColor={catTheme.profileCircle}
+              eyeColor={catTheme.headerCatEye}
+              bodyColor={catTheme.profileCat}
             />
           </div>
           <div className={`flex flex-col items-center ${theme.defaultText}`}>
@@ -68,17 +74,21 @@ export default function Drawer() {
             >
               <DrawerItem
                 title="내 스트링캣"
-                alt="personalStrCat"
-                icon="/StrCatIcon.svg"
+                icon={
+                  <Strcat
+                    eyeColor={catTheme.headerCatEye}
+                    bodyColor={catTheme.headerCat}
+                  />
+                }
               />
               {personalList.length != 0 && (
-                <Image
-                  src={dropList ? '/ListDownButton.svg' : '/ListUpButton.svg'}
-                  width={24}
-                  height={24}
-                  alt="dropList"
-                  className="ml-[12px]"
-                />
+                <div className="ml-[12px]">
+                  {dropList ? (
+                    <DropListDown color={theme.defaultIcon} />
+                  ) : (
+                    <DropListUp color={theme.defaultIcon} />
+                  )}{' '}
+                </div>
               )}
             </div>
             {dropList && (
@@ -94,17 +104,18 @@ export default function Drawer() {
             >
               <DrawerItem
                 title="그룹 스트링캣"
-                alt="groupStrCat"
-                icon="/StrCatIcon.svg"
-              />
-              <Image
-                src={
-                  groupDropList ? '/ListDownButton.svg' : '/ListUpButton.svg'
+                icon={
+                  <Strcat
+                    eyeColor={catTheme.headerCatEye}
+                    bodyColor={catTheme.headerCat}
+                  />
                 }
-                width={24}
-                height={24}
-                alt="groupDropList"
               />
+              {groupDropList ? (
+                <DropListDown color={theme.defaultIcon} />
+              ) : (
+                <DropListUp color={theme.defaultIcon} />
+              )}
             </div>
             {groupDropList && (
               <DropListItem list={groupList} category="group" />
@@ -112,23 +123,8 @@ export default function Drawer() {
             <div className="absolute bottom-0 w-full px-[24px]">
               <div className="h-[53px] w-full">
                 <DrawerItem
-                  title="이용약관"
-                  alt="version"
-                  icon="/VersionIcon.svg"
-                />
-              </div>
-              <div className="h-[53px] w-full">
-                <DrawerItem
-                  title="Man Strcat"
-                  alt="notify"
-                  icon="/NotifyIcon.svg"
-                />
-              </div>
-              <div className="h-[53px] w-full">
-                <DrawerItem
                   title="로그아웃"
-                  alt="logout"
-                  icon="/LogoutIcon.svg"
+                  icon={<Logout color={theme.defaultIcon} />}
                 />
               </div>
             </div>

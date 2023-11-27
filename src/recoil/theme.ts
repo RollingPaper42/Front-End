@@ -1,4 +1,11 @@
 import { atom } from 'recoil';
+import {
+  calmCat,
+  catThemeState,
+  cyanCat,
+  greenCat,
+  strcatCat,
+} from './catTheme';
 
 export interface themeState {
   name: string;
@@ -7,6 +14,10 @@ export interface themeState {
   highlightText: string;
   rightCTA: string;
   leftCTA: string;
+  catTheme: catThemeState;
+  defaultIcon: string;
+  backIcon: string;
+  activeDropItem: string;
 }
 
 export const strcat: themeState = {
@@ -16,6 +27,10 @@ export const strcat: themeState = {
   highlightText: 'text-strcat-default-yellow',
   rightCTA: 'bg-strcat-default-cyan',
   leftCTA: 'bg-strcat-default-green',
+  catTheme: strcatCat,
+  defaultIcon: '#FBFF36',
+  backIcon: '#FFFFFF',
+  activeDropItem: 'bg-strcat-default-yellow',
 };
 
 export const calm: themeState = {
@@ -25,6 +40,10 @@ export const calm: themeState = {
   highlightText: 'text-strcat-calm-orange',
   rightCTA: 'bg-strcat-calm-cyan',
   leftCTA: 'bg-strcat-calm-green',
+  catTheme: calmCat,
+  defaultIcon: '#FFA857',
+  backIcon: '#463F3A',
+  activeDropItem: 'bg-strcat-calm-orange',
 };
 
 export const green: themeState = {
@@ -34,6 +53,10 @@ export const green: themeState = {
   highlightText: 'text-strcat-green-yellow',
   rightCTA: 'bg-strcat-green-cyan',
   leftCTA: 'bg-strcat-green-yellow',
+  catTheme: greenCat,
+  defaultIcon: '#212121',
+  backIcon: '#212121',
+  activeDropItem: 'bg-strcat-green-yellow',
 };
 
 export const cyan: themeState = {
@@ -43,6 +66,10 @@ export const cyan: themeState = {
   highlightText: 'text-strcat-cyan-yellow',
   rightCTA: 'bg-strcat-cyan-green',
   leftCTA: 'bg-strcat-cyan-yellow',
+  catTheme: cyanCat,
+  defaultIcon: '#FFFFFF',
+  backIcon: '#FFFFFF',
+  activeDropItem: 'bg-strcat-cyan-yellow',
 };
 
 export const themeObj = {
