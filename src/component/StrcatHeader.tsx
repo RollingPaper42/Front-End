@@ -25,7 +25,7 @@ export default function StrcatHeader() {
       <div
         className={`flex h-[56px] flex-row items-center justify-between ${theme.background} px-[24px]`}
       >
-        <Link href="/">
+        <Link href="/" scroll={false}>
           <LogoCat
             bodyColor={theme.catTheme.headerCat}
             eyeColor={theme.catTheme.headerCatEye}
@@ -43,6 +43,7 @@ export default function StrcatHeader() {
         ) : (
           <Link
             href="/login"
+            scroll={false}
             onClick={() =>
               localStorage.setItem('strcat_login_success_url', pathName)
             }
