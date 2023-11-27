@@ -1,17 +1,19 @@
-import { themeState, drawerState } from '@/recoil/state';
+import { AxiosError } from 'axios';
 import { useRecoilState } from 'recoil';
 import { useCallback, useEffect, useState } from 'react';
+import { themeState, drawerState } from '@/recoil/state';
+import { useLogin } from '@/hooks/useLogin';
 import { axiosInstance } from '@/utils/axios';
 import DropListItem from './DropListItem';
 import DrawerItem from './DrawerItem';
-import { useLogin } from '@/hooks/useLogin';
-import { AxiosError } from 'axios';
 import { handleBackground } from '@/utils/handleBackground';
-import DrawerProfileCat from './Icon/DrawerProfileCat';
+import {
+  DrawerProfileCat,
+  DropListDown,
+  DropListUp,
+  Logout,
+} from './Icon/Drawer';
 import Strcat from './Icon/Strcat';
-import DropListUp from './Icon/DropListUp';
-import DropListDown from './Icon/DropListDown';
-import Logout from './Icon/Logout';
 
 interface Board {
   id: string;
@@ -31,14 +33,14 @@ export default function Drawer() {
   const fetchData = useCallback(async () => {
     if (isLogin) {
       try {
-        // const personal = await axiosInstance.get('/users/boards');
-        // setPersonalList(personal.data);
-        const personal = await axiosInstance.get('/api/users');
-        setPersonalList(personal.data.data);
-        const group = await axiosInstance.get('/api/users');
-        setGroupList(group.data.data);
-        //const group = await axiosInstance.get('/users/board-groups');
-        // setGroupList(group.data);
+        // const personal = await axiosInstance.get('/api/users');
+        // setPersonalList(personal.data.data);
+        // const group = await axiosInstance.get('/api/users');
+        // setGroupList(group.data.data);
+        const personal = await axiosInstance.get('/users/boards');
+        setPersonalList(personal.data);
+        const group = await axiosInstance.get('/users/board-groups');
+        setGroupList(group.data);
       } catch (err) {
         const error = err as AxiosError;
         console.log(error);

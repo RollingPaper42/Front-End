@@ -2,7 +2,7 @@ import { drawerState } from '@/recoil/drawer';
 import { usePathname, useRouter } from 'next/navigation';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
-import Check from './Icon/Check';
+import { Check } from './Icon/Drawer';
 
 interface Board {
   id: string;
