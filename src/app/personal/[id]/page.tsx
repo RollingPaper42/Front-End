@@ -103,7 +103,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                     name="스트링캣 만들기"
                     height="h-[42px]"
                     width="basis-1/2"
-                    onClickHandler={() => router.push(`../create`)}
+                    onClickHandler={() => router.push(`/create`)}
                     disabled={false}
                     color={`bg-white`}
                   />
