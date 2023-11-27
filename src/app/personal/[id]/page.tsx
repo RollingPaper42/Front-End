@@ -20,19 +20,19 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const itemsRef = useRef(new Map());
   const [observe] = useRecoilState(observeState);
-  const [theme, setTheme] = useRecoilState(themeState);
+  const [theme] = useRecoilState(themeState);
   const router = useRouter();
   useEffect(() => {
     axiosInstance
       .get(`/boards/${params.id}`)
       //.get(`/api/personal`)
       .then((data) => {
-        setBoard([data.data.board]);
-        setTheme(data.data.board.theme);
+        setBoard(data.data.board);
+        // setTheme(data.data.board.theme);
         setIsOwner(data.data.isOwner);
       })
       .catch((error) => {});
-  }, [setTheme]);
+  }, []);
 
   const handleClick = () => {
     setIsAdd(true);

@@ -83,16 +83,16 @@ export default function Group({ params }: { params: { id: string } }) {
             );
           })}
         </div>
-        <div className="fixed bottom-5 z-20 w-full  max-w-md px-[24px]">
+        <div className="fixed bottom-5 z-20 w-full max-w-md px-[24px]">
           <button
-            className=" absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
+            className="absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
             onClick={scrollToTop}
           >
-            <ShortCut color={'#FFFFFF'} />
+            <ShortCut color={theme.defaultIcon} />
           </button>
           {!isAdd &&
             (isOwner ? (
-              <div className=" flex w-full max-w-md">
+              <div className="flex w-full max-w-md">
                 <BottomButton
                   height="h-[42px]"
                   color={`bg-white`}
@@ -129,7 +129,7 @@ export default function Group({ params }: { params: { id: string } }) {
                 />
               </div>
             ) : (
-              <div className=" flex w-full max-w-md">
+              <div className="flex w-full max-w-md">
                 <BottomButton
                   height="h-[42px]"
                   color={`bg-white`}
