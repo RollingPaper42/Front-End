@@ -66,7 +66,7 @@ export default function Export() {
           exportTheme={exportTheme}
         />
       </div>
-      <div className=" fixed bottom-5 w-full max-w-[calc(100vh*0.6)]">
+      <div className=" fixed bottom-5 w-full max-w-md">
         <div className=" mb-5 flex w-full flex-row items-center justify-around">
           {exportThemeButton.map((item) => (
             <ExportTheme
@@ -79,6 +79,7 @@ export default function Export() {
           ))}
         </div>
         <BottomButton
+          height="h-[42px]"
           color={'white'}
           name="저장하기"
           width="w-full"

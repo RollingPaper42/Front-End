@@ -13,19 +13,26 @@ import BottomButton from '@/component/BottomButton';
 import { observeState } from '@/recoil/observe';
 import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
+import { useRouter } from 'next/navigation';
+import ShortCut from '@/component/Icon/ShortCut';
 
-export default function Home() {
+export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string | null>();
   const [boards, setBoards] = useState<board[]>([]);
   const [isAdd, setIsAdd] = useState(false);
   const [theme] = useRecoilState(themeState);
   const itemsRef = useRef(new Map());
   const [observe] = useRecoilState(observeState);
+  const [isOwner, setIsOwner] = useState<boolean>(false);
+  const router = useRouter();
   const scrollToId = (itemId: number) => {
     const map = itemsRef.current;
     const node = map.get(itemId);
     const offset = node.offsetTop;
     window.scrollTo({ top: offset, behavior: 'smooth' });
+  };
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   const handleClick = () => {
     setIsAdd(true);
@@ -34,9 +41,11 @@ export default function Home() {
   useEffect(() => {
     axiosInstance
       .get(`/api/group`)
+      //.get(`/board-groups/${props.params.id}`)
       .then((data) => {
         setBoards(data.data.boards);
         setTitle(data.data.title);
+        setIsOwner(data.data.isOwner);
       })
       .catch((error) => {});
   }, []);
@@ -46,7 +55,9 @@ export default function Home() {
       <StrcatHeader />
       <div className={`relative w-full py-[24px] ${theme.background}`}>
         <div className="mb-[20px]">
-          <h1 className={`${theme.defaultText} text-4xl`}>{title}</h1>
+          <h1 className={`${theme.defaultText} mx-[24px] text-[26px]`}>
+            {`// ${title}`}
+          </h1>
         </div>
         <div>
           {boards.map((board: board) => {
@@ -72,38 +83,72 @@ export default function Home() {
             );
           })}
         </div>
-        {!isAdd && (
-          <div className="sticky bottom-5 flex w-full">
-            <BottomButton
-              color={`bg-white`}
-              name="저장"
-              width="basis-1/4"
-              onClickHandler={handleClick}
-              disabled={false}
-            />
-            <BottomButton
-              color={`bg-white`}
-              name="공유"
-              width="basis-1/4"
-              onClickHandler={handleClick}
-              disabled={false}
-            />
-            <BottomButton
-              color={`bg-strcat-green`}
-              name="만들기"
-              width="basis-1/4"
-              onClickHandler={handleClick}
-              disabled={false}
-            />
-            <BottomButton
-              color={`bg-strcat-cyan`}
-              name="글 작성"
-              width="basis-1/4"
-              onClickHandler={handleClick}
-              disabled={!observe.boardId}
-            />
-          </div>
-        )}
+        <div className="fixed bottom-5 z-20 w-full  max-w-md px-[24px]">
+          <button
+            className=" absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
+            onClick={scrollToTop}
+          >
+            <ShortCut color={'#FFFFFF'} />
+          </button>
+          {!isAdd &&
+            (isOwner ? (
+              <div className=" flex w-full max-w-md">
+                <BottomButton
+                  height="h-[42px]"
+                  color={`bg-white`}
+                  name="저장"
+                  width="basis-1/4"
+                  onClickHandler={() => router.push(`./${params.id}/export`)}
+                  disabled={false}
+                />
+                <BottomButton
+                  height="h-[42px]"
+                  color={`bg-white`}
+                  name="공유"
+                  width="basis-1/4"
+                  onClickHandler={() => router.push(`./${params.id}/summary`)}
+                  disabled={false}
+                />
+                <BottomButton
+                  height="h-[42px]"
+                  color={`bg-strcat-green`}
+                  name="만들기"
+                  width="basis-1/4"
+                  onClickHandler={() =>
+                    router.push(`../create?id=${params.id}`)
+                  }
+                  disabled={false}
+                />
+                <BottomButton
+                  height="h-[42px]"
+                  color={`bg-strcat-cyan`}
+                  name="글 작성"
+                  width="basis-1/4"
+                  onClickHandler={handleClick}
+                  disabled={!observe.boardId}
+                />
+              </div>
+            ) : (
+              <div className=" flex w-full max-w-md">
+                <BottomButton
+                  height="h-[42px]"
+                  color={`bg-white`}
+                  name="스트링캣 만들기"
+                  width="basis-1/2"
+                  onClickHandler={() => router.push(`../created`)}
+                  disabled={false}
+                />
+                <BottomButton
+                  height="h-[42px]"
+                  color={`bg-strcat-cyan`}
+                  name="이어서 글쓰기"
+                  width="basis-1/2"
+                  onClickHandler={handleClick}
+                  disabled={!observe.boardId}
+                />
+              </div>
+            ))}
+        </div>
         {!isAdd && <ContentPhoto />}
       </div>
     </>

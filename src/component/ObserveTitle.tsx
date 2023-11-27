@@ -20,7 +20,7 @@ const ObserveContent = ({ title }: Props) => {
       },
       {
         rootMargin: '-30% 0% -65% 0%',
-        threshold: 0.1,
+        threshold: 0,
       },
     );
     if (ref.current) {
@@ -32,7 +32,7 @@ const ObserveContent = ({ title }: Props) => {
   }, [setObserve]);
 
   return (
-    <div className="h-[200px]" ref={ref}>
+    <div className="my-[24px] mt-[20px] h-[200px]" ref={ref}>
       <h1 className={` text-[28px] `}>{title}</h1>
     </div>
   );
