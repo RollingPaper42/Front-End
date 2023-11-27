@@ -6,10 +6,29 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
+import { useLogin } from '@/hooks/useLogin';
 
 export default function Home() {
+  const [isLogin] = useLogin();
   const [Theme, SetTheme] = useRecoilState(themeState);
   const router = useRouter();
+
+  const handlePersonalStrcat = () => {
+    if (isLogin) router.push('create');
+    else {
+      localStorage.setItem('strcat_login_success_url', '/create');
+      router.push('/login');
+    }
+  };
+
+  const handleGroupStrcat = () => {
+    if (isLogin) router.push('create');
+    else {
+      localStorage.setItem('strcat_login_success_url', '/create');
+      router.push('/login');
+    }
+  };
+
   return (
     <div className={`${Theme.background}`}>
       <div className=" fixed flex h-full w-full max-w-md  flex-col">
@@ -34,7 +53,7 @@ export default function Home() {
               <div className="inline">
                 <button
                   className={`relative h-[33px] w-[150px] items-center ${Theme.leftCTA} text-[22px]`}
-                  onClick={() => router.push('/create')}
+                  onClick={handlePersonalStrcat}
                 >
                   <div
                     className={`relative bottom-[4.5px] left-[2px] h-[33px] w-[150px] text-[22px] ${Theme.leftCTA}`}
@@ -45,7 +64,7 @@ export default function Home() {
                   </div>
                 </button>
               </div>
-              <div className="text-strcat-default-green inline">
+              <div className="inline text-strcat-default-green">
                 &nbsp;를 누르면 하나의 문자열을 할당받을 수 있어요. 링크를
                 공유해 문자열을 끝없이 이어보세요.
               </div>
@@ -54,7 +73,7 @@ export default function Home() {
               <div className="inline">
                 <button
                   className={`relative h-[33px] w-[200px] items-center ${Theme.rightCTA} text-[22px]`}
-                  onClick={() => router.push('/create')}
+                  onClick={handleGroupStrcat}
                 >
                   <div
                     className={`relative bottom-[4.5px] left-[2px] h-[33px]  w-[200px] text-[22px] ${Theme.rightCTA}`}
@@ -64,7 +83,7 @@ export default function Home() {
                   </div>
                 </button>
               </div>
-              <div className="text-strcat-default-cyan inline text-[22px]">
+              <div className="inline text-[22px] text-strcat-default-cyan">
                 &nbsp;를 누르면 여러 문자열을 한 그룹으로 관리할 수 있어요.
                 주렁주렁~
               </div>

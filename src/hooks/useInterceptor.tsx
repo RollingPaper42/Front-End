@@ -27,9 +27,9 @@ export const useInterceptor = () => {
         <Error content="500 에러 발생 " handleModalClose={closeModal} />,
       );
     }
-    if (errorStatus === 401) {
-      route.push('/login');
-    }
+    // if (errorStatus === 401) {
+    //   route.push('/login');
+    // }
   };
 
   const requestInterceptor =
