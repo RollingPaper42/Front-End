@@ -72,7 +72,7 @@ export default function Create() {
           <div
             className={`h-full text-center text-[18px] ${Theme.defaultText} flex basis-4/6 items-center justify-center`}
           >
-            스트링캣 만들기
+            그룹 스트링캣 만들기
           </div>
         </div>
         <div className="basis-1/6">
