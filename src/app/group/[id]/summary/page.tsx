@@ -22,7 +22,7 @@ export default function Summary({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     axiosInstance
-      .get(`/boards/${params.id}/summaries`)
+      .get(`/board-groups/${params.id}/summaries`)
       .then((data) => {
         setTitle(data.data.title);
         setContentCount(data.data.contentCount);
