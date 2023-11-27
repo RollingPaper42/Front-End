@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import useInput from '@/hooks/useInput';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
@@ -12,11 +11,12 @@ import { useRouter } from 'next/navigation';
 import BottomButton from '@/component/BottomButton';
 import { axiosInstance } from '@/utils/axios';
 import { useSearchParams } from 'next/navigation';
+import Back from '@/component/Icon/Back';
 
 export default function Create() {
   const searchParams = useSearchParams();
   const ErrorInitColor = 'text-gray-400';
-  const [Theme, setTheme] = useRecoilState(themeState);
+  const [Theme] = useRecoilState(themeState);
   const [buttonState, SetButtonState] = useState(true);
   const [title, , handleTitle] = useInput('');
   const [ErrorFontColor, SetErrorFontColor] = useState(ErrorInitColor);
@@ -85,15 +85,11 @@ export default function Create() {
       <div className="flex h-full w-full flex-col">
         <div className="basis-1/1">
           <div className="flex h-full w-full flex-row">
-            <div className=" basis-1/6 items-center justify-center">
-              <Image
-                src="/backpage.png"
-                width={24}
-                height={24}
-                alt="backpagebutton"
-                className="ml-[24px] mt-[16px]"
-                onClick={() => router.push(`/`)}
-              />
+            <div
+              className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
+              onClick={() => router.push('/')}
+            >
+              <Back color={Theme.backIcon} />
             </div>
             <div className=" basis-4/6">
               <div

@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import useInput from '@/hooks/useInput';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
@@ -11,6 +10,7 @@ import { axiosInstance } from '@/utils/axios';
 import { AxiosError } from 'axios';
 import Error from '@/component/Modal/Error';
 import BottomButton from '@/component/BottomButton';
+import Back from '@/component/Icon/Back';
 
 export default function Create() {
   const [Theme] = useRecoilState(themeState);
@@ -60,14 +60,8 @@ export default function Create() {
     <div className={`${Theme.background} h-full w-full`}>
       <div className="flex h-full w-full flex-col">
         <div className="flex basis-14 items-center">
-          <div className="flex h-full w-full basis-1/6 flex-row items-center justify-center">
-            <Image
-              src="/backpage.png"
-              width={24}
-              height={24}
-              alt="backpagebutton"
-              className="ml-[24px]"
-            />
+          <div className="flex h-full w-full basis-1/6 flex-row items-center justify-center pl-[24px]">
+            <Back color={Theme.backIcon} />
           </div>
           <div
             className={`h-full text-center text-[18px] ${Theme.defaultText} flex basis-4/6 items-center justify-center`}
