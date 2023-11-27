@@ -55,7 +55,10 @@ export default function Create() {
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const TextAreaTitle = e.currentTarget.value;
+    const textarea: HTMLTextAreaElement = e.target;
     const byteLength = new TextEncoder().encode(TextAreaTitle).length;
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
 
     if (byteLength <= 90) {
       handleTitle(e);
@@ -89,6 +92,7 @@ export default function Create() {
                 height={24}
                 alt="backpagebutton"
                 className="ml-[24px] mt-[16px]"
+                onClick={() => router.push(`/`)}
               />
             </div>
             <div className=" basis-4/6">
@@ -106,9 +110,9 @@ export default function Create() {
             <div className="w-80">
               <textarea
                 id="titleMessage"
-                rows={3}
+                rows={1}
                 value={title}
-                className={` w-full ${Theme.background} text-[22px] ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
+                className={` w-full resize-none ${Theme.background} text-[22px] ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
                 placeholder="제목을 입력해주세요."
                 maxLength={30}
                 onChange={(e) => handleChangeTitle(e)}
@@ -120,11 +124,11 @@ export default function Create() {
             </div>
           </div>
         </div>
-        <div className="mx-[24px] basis-5/12">
+        <div className="mx-[24px] mt-[24px] basis-5/12">
           <div className={`inline text-[18px] ${Theme.highlightText}`}>
             스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
           </div>
-          <div className={`inline text-[18px] ${Theme.defaultText}`}>
+          <div className={`inline text-[18px] opacity-30 ${Theme.defaultText}`}>
             스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
           </div>
         </div>
