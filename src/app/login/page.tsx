@@ -51,7 +51,7 @@ export default function login() {
             </button>
             <button
               className="mt-3 flex h-12 w-full flex-row justify-center rounded-lg bg-neutral-200 "
-              onClick={onClickOAuthGoogle}
+              onClick={onClickOAuthKakao}
             >
               <div className=" basis-3/12"></div>
               <div className="flex basis-52 flex-row items-center justify-center">
@@ -59,7 +59,7 @@ export default function login() {
                   src="/google.png"
                   width={48}
                   height={48}
-                  alt="kakao"
+                  alt="google"
                   className="h-12"
                   onClick={onClickOAuthGoogle}
                 />
