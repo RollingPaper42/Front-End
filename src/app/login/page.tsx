@@ -51,7 +51,7 @@ export default function login() {
             </button>
             <button
               className="mt-3 flex h-12 w-full flex-row justify-center rounded-lg bg-neutral-200 "
-              onClick={onClickOAuthKakao}
+              onClick={onClickOAuthGoogle}
             >
               <div className=" basis-3/12"></div>
               <div className="flex basis-52 flex-row items-center justify-center">
@@ -61,7 +61,6 @@ export default function login() {
                   height={48}
                   alt="google"
                   className="h-12"
-                  onClick={onClickOAuthGoogle}
                 />
                 <div className="h-full basis-32 text-left">구글로 시작하기</div>
               </div>
