@@ -48,7 +48,7 @@ export default function Drawer() {
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  });
 
   return (
     drawer &&
@@ -87,7 +87,7 @@ export default function Drawer() {
                     <DropListDown color={theme.defaultIcon} />
                   ) : (
                     <DropListUp color={theme.defaultIcon} />
-                  )}{' '}
+                  )}
                 </div>
               )}
             </div>
