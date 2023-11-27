@@ -10,10 +10,9 @@ import { useEffect, useState } from 'react';
 import BottomButton from '@/component/BottomButton';
 import { useRouter } from 'next/navigation';
 
-export default function Home() {
+export default function Summary({ params }: { params: { id: string } }) {
   const router = useRouter();
   const [Theme, setTheme] = useRecoilState(themeState);
-  const params = useParams();
   const [Title, setTitle] = useState(
     '테스트입니다테스트입니다테스트입니다테스트입니다테스트입니다',
   );
@@ -21,21 +20,21 @@ export default function Home() {
   const [ContentTextCount, setContentTextCount] = useState('1305');
   const [boardCount, setboardCount] = useState('13');
 
-  // useEffect(() => {
-  //   axiosInstance
-  //     .get(`/boards/${params.id}/summaries`)
-  //     .then((data) => {
-  //       setTitle(data.data.title);
-  //       setContentCount(data.data.contentCount);
-  //       setContentTextCount(data.data.contentTextCount);
-  //       setboardCount(data.data.boardCount);
-  //     })
-  //     .catch((err) => {
-  //       if (err.response.status === 406) {
-  //         alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
-  //       }
-  //     });
-  // }, []);
+  useEffect(() => {
+    axiosInstance
+      .get(`/boards/${params.id}/summaries`)
+      .then((data) => {
+        setTitle(data.data.title);
+        setContentCount(data.data.contentCount);
+        setContentTextCount(data.data.contentTextCount);
+        setboardCount(data.data.boardCount);
+      })
+      .catch((err) => {
+        if (err.response.status === 406) {
+          alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
+        }
+      });
+  }, []);
 
   return (
     <div className={`${Theme.background}`}>
