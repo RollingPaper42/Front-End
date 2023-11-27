@@ -8,11 +8,15 @@ import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 import Drawer from '@/component/Drawer';
-import StrcatHeader from '@/component/StrcatHeader';
 import { observeState } from '@/recoil/observe';
 import { useRouter } from 'next/navigation';
 import { board } from '@/types/boards';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
+import StrcatAnimationHeader from '@/component/StrcatAnimationHeader';
+import axios from 'axios';
+import CatAnimation from '@/component/CatAnimation';
+import { catState } from '@/recoil/cat';
+import { catAction } from '@/types/cat';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -22,10 +26,11 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [observe] = useRecoilState(observeState);
   const [theme, setTheme] = useRecoilState(themeState);
   const router = useRouter();
+  const [cat, setCat] = useRecoilState(catState);
   useEffect(() => {
-    axiosInstance
-      .get(`/boards/${params.id}`)
-      //.get(`/api/personal`)
+    axios
+      // .get(`/boards/${params.id}`)
+      .get(`/api/personal`)
       .then((data) => {
         setBoard([data.data.board]);
         setTheme(data.data.board.theme);
@@ -38,7 +43,25 @@ export default function Personal({ params }: { params: { id: string } }) {
     setIsAdd(true);
     scrollToAdd(board[0].id, itemsRef);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      const div = document.getElementById('strcatCreate');
+      if (div === null) return;
+      const divLeft = div.getBoundingClientRect().left;
+      const divTop = div.getBoundingClientRect().top;
+      setCat({
+        catAction: catAction.sit,
+        width: 40,
+        height: 40,
+        top: divTop - 40,
+        left: divLeft + 200,
+      });
+    }, 5000);
+  }, []);
+
   if (!board.length) return null;
+
   const handleShare = async () => {
     try {
       await navigator.share({
@@ -55,7 +78,8 @@ export default function Personal({ params }: { params: { id: string } }) {
   return (
     <>
       <Drawer />
-      <StrcatHeader />
+      <StrcatAnimationHeader />
+      <CatAnimation />
       <div
         className={`relative w-full  py-[24px] text-justify ${theme.background} pb-[500px]`}
       >
@@ -68,7 +92,7 @@ export default function Personal({ params }: { params: { id: string } }) {
         {!isAdd &&
           (isOwner ? (
             <div className="fixed bottom-5 left-0 z-50 flex w-full items-center justify-center">
-              <div className="flex w-full max-w-md items-center justify-center px-[24px]">
+              <div className="flex h-full w-full max-w-md items-center justify-center px-[24px]">
                 <BottomButton
                   height="h-[42px]"
                   name="저장"

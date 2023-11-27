@@ -1,8 +1,8 @@
 export const catAction = {
   exit: 'exit',
   newContent: 'newContent',
-  scroll: 'scroll',
   longText: 'longText',
+  sit: 'sit',
   none: 'none',
 };
 

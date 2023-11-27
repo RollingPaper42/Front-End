@@ -25,6 +25,7 @@ export default function BottomButton({
       disabled={disabled}
     >
       <div
+        id="strcatCreate"
         className={`absolute inset-0 h-[38px] w-full ${
           disabled ? 'bg-[#CCCCCC]' : color
         }`}

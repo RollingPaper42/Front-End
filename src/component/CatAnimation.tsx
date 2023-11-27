@@ -8,19 +8,19 @@ export default function CatAnimation() {
 
   return (
     <div
-      className="fixed"
+      className="fixed z-[55]"
       style={{
         width: `${cat.width}px`,
         height: `${cat.height}px`,
-        top: `${cat.top - cat.width}px`,
+        top: `${cat.top}px`,
         left: `${cat.left}px`,
       }}
     >
       {cat.catAction === catAction.exit && (
-        <Image alt="exit" src="/cats/strcat_basic_default.gif" fill />
+        <Image alt="exit" src="/cats/app_bar_left.gif" fill />
       )}
-      {cat.catAction === catAction.scroll && (
-        <Image alt="exit" src="/cats/strcat_scroll_default.gif" fill />
+      {cat.catAction === catAction.sit && (
+        <Image alt="exit" src="/cats/basic_default.gif" fill />
       )}
     </div>
   );
