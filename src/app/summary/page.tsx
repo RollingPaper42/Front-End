@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import BottomButton from '@/component/BottomButton';
 import { useRouter } from 'next/navigation';
 
-export default function Home() {
+export default function Summary() {
   const router = useRouter();
   const [Theme, setTheme] = useRecoilState(themeState);
   const params = useParams();
