@@ -2,7 +2,7 @@ import { MutableRefObject } from 'react';
 import { board } from '@/types/boards';
 
 export const scrollToAdd = (
-  itemId: number,
+  itemId: string,
   itemsRef: MutableRefObject<Map<any, any>>,
 ) => {
   const map = itemsRef.current;
