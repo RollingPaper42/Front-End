@@ -41,7 +41,7 @@ export default function Home() {
             className={`mx-[24px] mt-[46px] text-[20px] ${Theme.defaultText}`}
           >
             <p>
-              {`// 스트링캣은 문자열을 끝없이 늘려 스크롤을 만들 수 있는 신개념
+              {`\/\/ 스트링캣은 문자열을 끝없이 늘려 스크롤을 만들 수 있는 신개념
               롤링페이퍼 서비스 입니다.`}
             </p>
             <p>소중한 사람에게 스트링캣을 남겨보세요!</p>
