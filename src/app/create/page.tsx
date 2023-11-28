@@ -107,7 +107,7 @@ export default function Create() {
               id="titleMessage"
               rows={1}
               value={title}
-              className={`w-full resize-none text-[24px] ${Theme.background} ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
+              className={` w-full resize-none ${Theme.background} text-[22px] ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
               placeholder="제목을 입력해주세요."
               maxLength={30}
               onChange={(e) => handleChangeTitle(e)}
@@ -118,7 +118,6 @@ export default function Create() {
             </div>
           </div>
         </div>
-
         <div className="mx-[24px] mt-[24px] basis-5/12">
           <div className={`inline text-[18px] ${Theme.highlightText}`}>
             스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
