@@ -1,6 +1,7 @@
 import BottomButton from '@/component/BottomButton';
 import Image from 'next/image';
-import Close from '../Icon/Close';
+import ModalClose from '../Icon/ModalClose';
+import ModalBackground from '../Icon/ModalBackground';
 
 interface Props {
   content: string;
@@ -10,15 +11,15 @@ interface Props {
 
 export default function Confirm({ content, yes, no }: Props) {
   return (
-    <div className="flex  h-[312px] w-[311px] flex-col">
-      <Image src={'/Modal.png'} alt="modal" width={312} height={312} />
+    <div className="flex  h-[260px] w-[312px] flex-col">
+      <ModalBackground />
       <div className="felx felx-col absolute h-[312px] w-[312px] items-center justify-center">
         <div className="flex w-full justify-end p-[16px]">
           <div onClick={no}>
-            <Close />
+            <ModalClose />
           </div>
         </div>
-        <div className=" flex h-[190px] items-center justify-center">
+        <div className=" flex h-[150px] items-center justify-center px-16">
           <p>{content}</p>
         </div>
         <div className="flex flex-row justify-around">
