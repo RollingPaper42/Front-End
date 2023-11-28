@@ -123,7 +123,7 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
       {text?.length >= 1000 && (
         <div
           className={`text-right ${
-            text.length > 1000 ? 'text-red-600' : 'text-strcat-default-white'
+            text.length > 1000 ? 'text-red-600' : `${theme.defaultText}`
           }`}
         >
           {text.length}/1000자
@@ -144,7 +144,7 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
           <div className={`${writer === '' ? 'grayscale-50' : 'grayscale-0'}`}>
             <div
               className={`w-16 text-right text-[16px] 
-            ${writer.length > 10 ? 'text-red-600' : 'text-strcat-default-white'}
+            ${writer.length > 10 ? 'text-red-600' : `${theme.defaultText}`}
             `}
             >
               {writer.length}/10자
