@@ -79,7 +79,7 @@ export default function Summary({ params }: { params: { id: string } }) {
                     className={`${Theme.defaultText} mx-[24px] text-[26px] `}
                   >
                     총 {ContentCount}번의 <br /> 마음으로 <br /> 내 스트링캣이
-                    <br /> 총 {formatNumberWithCommas(ContentTextCount)}자{' '}
+                    <br /> 총 {formatNumberWithCommas(ContentTextCount)}자
                     <br />
                     이어졌어요!
                   </div>
