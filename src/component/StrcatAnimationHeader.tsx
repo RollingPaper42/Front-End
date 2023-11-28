@@ -19,16 +19,17 @@ export default function StrcatAnimationHeader() {
 
   useEffect(() => {
     checkLogin();
-    setCatAnimation(document.getElementById('catHeader'), catAction.exit, 0);
+    setCatAnimation('catHeader', catAction.exit, 0);
   }, []);
 
   return (
     <div className="fixed top-0 z-10 w-full max-w-md">
       <div
         className={`flex h-[56px] flex-row items-center justify-between ${theme.background} px-[24px]`}
+        id="catHeader"
       >
         <Link href="/">
-          <div id="catHeader" />
+          <div />
         </Link>
         <div className="basis-4/6"></div>
         {isLogin ? (

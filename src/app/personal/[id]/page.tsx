@@ -45,15 +45,8 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
-    if (board)
-      setCatAnimation(
-        document.getElementById('strcatCreate'),
-        catAction.sit,
-        3000,
-      );
+    if (board) setCatAnimation('strcatCreate', catAction.sit, 3000);
   }, [board]);
-
-  // 공유하기 기능을 위한 임시 코드입니다.
 
   return (
     <>
