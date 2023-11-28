@@ -12,12 +12,12 @@ import { useRouter } from 'next/navigation';
 import { board } from '@/types/boards';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import StrcatAnimationHeader from '@/component/StrcatAnimationHeader';
-import axios from 'axios';
 import CatAnimation from '@/component/CatAnimation';
 import { catAction } from '@/types/cat';
 import { useCat } from '@/hooks/useCat';
-import { handleShare } from '@/utils/handleShare';
 import ShareButton from '@/component/ShareButton';
+import { axiosInstance } from '@/utils/axios';
+import StrcatHeader from '@/component/StrcatHeader';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -29,9 +29,9 @@ export default function Personal({ params }: { params: { id: string } }) {
   const router = useRouter();
   const [setCatAnimation] = useCat();
   useEffect(() => {
-    axios
-      // .get(`/boards/${params.id}`)
-      .get(`/api/personal`)
+    axiosInstance
+      .get(`/boards/${params.id}`)
+      // .get(`/api/personal`)
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
@@ -52,6 +52,7 @@ export default function Personal({ params }: { params: { id: string } }) {
     <>
       <Drawer />
       <StrcatAnimationHeader />
+      {/* <StrcatHeader /> */}
       <CatAnimation />
       <div
         className={`relative w-full  py-[24px] text-justify ${theme.background} pb-[500px]`}
