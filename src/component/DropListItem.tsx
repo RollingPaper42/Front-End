@@ -1,7 +1,8 @@
 import { drawerState } from '@/recoil/drawer';
-import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useRecoilState } from 'recoil';
+import { themeState } from '@/recoil/theme';
+import { Check } from './Icon/Drawer';
 
 interface Board {
   id: string;
@@ -17,6 +18,7 @@ export default function DropListItem({ list, category }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const [, setDrawer] = useRecoilState(drawerState);
+  const [theme] = useRecoilState(themeState);
 
   const truncateTitle = (title: string) => {
     if (title.length <= 17) {
@@ -32,18 +34,22 @@ export default function DropListItem({ list, category }: Props) {
     return (
       <div
         key={item.id}
-        className={`flex h-[53px] w-full items-center justify-between px-[24px] hover:bg-[#373723] ${
-          isActive && 'bg-[#373723]'
-        }`}
+        className={`flex h-[53px] w-full items-center justify-between`}
         onClick={() => {
           router.push(url);
           setDrawer(false);
         }}
       >
-        {truncateTitle(item.title)}
-        {isActive && (
-          <Image src="/CheckSmall.svg" width={24} height={24} alt="check" />
-        )}
+        <div
+          className={`flex h-full w-full items-center justify-between px-[24px] hover:${
+            theme.activeDropItem
+          } hover:bg-opacity-10 ${
+            isActive && `${theme.activeDropItem} bg-opacity-10`
+          }`}
+        >
+          {truncateTitle(item.title)}
+          {isActive && <Check color={theme.defaultIcon} />}
+        </div>
       </div>
     );
   });

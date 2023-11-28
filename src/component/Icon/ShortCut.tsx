@@ -4,12 +4,12 @@ interface Props {
 
 export default function ShortCut({ color }: Props) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" fill="none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72">
       <g fill={color} filter="url(#a)">
         <path
-          fill-rule="evenodd"
+          fillRule="evenodd"
           d="M31 7h10v1h4v1h2v1h2v1h2v1h1v1h1v1h1v1h1v1h1v1h1v2h1v1h1v2h1v3h1v14h-1v3h-1v2h-1v2h-1v1h-1v2h-1v1h-1v1h-1v1h-2v1h-1v1h-2v1h-2v1h-3v1H29v-1h-3v-1h-2v-1h-1v-1h-2v-1h-1v-1h-1v-1h-1v-1h-1v-1h-1v-1h-1v-2h-1v-2h-1v-2h-1v-4h-1V27h1v-3h1v-3h1v-2h1v-1h1v-1h1v-2h1v-1h1v-1h1v-1h2v-1h1v-1h2V9h3V8h3V7Zm10 49v-1h4v-1h2v-1h2v-1h1v-1h1v-1h2v-1h1v-2h1v-1h1v-1h1v-2h1v-2h1v-4h1V27h-1v-3h-1v-2h-1v-2h-1v-2h-1v-1h-1v-1h-1v-1h-1v-1h-1v-1h-2v-1h-1v-1h-2v-1h-3V9h-4V8h-6v1h-4v1h-2v1h-2v1h-2v1h-1v1h-2v1h-1v1h-1v2h-1v1h-1v2h-1v2h-1v2h-1v4h-1v6h1v4h1v3h1v2h1v1h1v2h1v1h1v1h1v1h1v1h1v1h2v1h2v1h2v1h3v1h10Z"
-          clip-rule="evenodd"
+          clipRule="evenodd"
         />
         <path d="M31 32v-1h2v-2h2v12h2V29h2v2h2v1h2v-3h-2v-2h-2v-2h-1v-1h-1v-1h-2v1h-1v1h-1v2h-2v2h-2v3h2Z" />
       </g>
@@ -20,10 +20,10 @@ export default function ShortCut({ color }: Props) {
           height="72"
           x="0"
           y="0"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             result="hardAlpha"

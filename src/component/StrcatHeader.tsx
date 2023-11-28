@@ -2,11 +2,11 @@
 
 import { useLogin } from '@/hooks/useLogin';
 import { drawerState, themeState } from '@/recoil/state';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+import { LogoCat, HeaderProfileCat, Outline } from './Icon/Header';
 
 export default function StrcatHeader() {
   const [isLogin, checkLogin] = useLogin();
@@ -23,48 +23,37 @@ export default function StrcatHeader() {
       <div
         className={`flex h-[56px] flex-row items-center justify-between ${theme.background} px-[24px]`}
       >
-        <Link href="/">
-          <Image
-            src={`/Logo_${theme.name}.svg`}
-            width={89}
-            height={39}
-            alt="logo"
-            priority
-            loading="eager"
+        <Link href="/" scroll={false}>
+          <LogoCat
+            bodyColor={theme.catTheme.headerCat}
+            eyeColor={theme.catTheme.headerCatEye}
           />
         </Link>
         <div className="basis-4/6"></div>
         {isLogin ? (
-          <Image
-            src={`/ProfileImg_${theme.name}.svg`}
-            width={24}
-            height={24}
-            alt="profileImg"
-            loading="eager"
-            priority
-            onClick={() => setDrawer(true)}
-          />
+          <div onClick={() => setDrawer(true)}>
+            <HeaderProfileCat
+              circleColor={theme.catTheme.profileCircle}
+              eyeColor={theme.catTheme.headerCatEye}
+              bodyColor={theme.catTheme.profileCat}
+            />
+          </div>
         ) : (
           <Link
             href="/login"
+            scroll={false}
             onClick={() =>
               localStorage.setItem('strcat_login_success_url', pathName)
             }
           >
             <div className="relative h-[34px] w-[74px]">
-              <Image
-                src={`/LoginButton_${theme.name}.svg`}
-                width={74}
-                height={34}
-                alt="login"
-                loading="eager"
-                className="absolute inset-0"
-                priority
-              />
+              <div className="absolute inset-0">
+                <Outline color={theme.loginIcon} />
+              </div>
               <span
                 className={`absolute inset-0 flex items-center justify-center ${theme.defaultText}`}
               >
-                로그인
+                {pathName === 'login' ? '홈으로' : '로그인'}
               </span>
             </div>
           </Link>
