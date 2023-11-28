@@ -29,7 +29,7 @@ const ObserveContent = ({ board, isAdd }: Props) => {
         });
       },
       {
-        rootMargin: '-30% 0% -65% 0%',
+        rootMargin: '-20% 0% -65% 0%',
         threshold: 0,
       },
     );
@@ -42,8 +42,10 @@ const ObserveContent = ({ board, isAdd }: Props) => {
   }, [setObserve, isAdd]);
 
   return (
-    <div className="my-[24px] mt-[20px] h-[200px]" ref={ref}>
-      <h1 className={` text-[28px] ${theme.defaultText}`}>{board.title}</h1>
+    <div className="my-[24px] mt-[40px] h-[100px]" ref={ref}>
+      <h1
+        className={` text-[22px] ${theme.defaultText}`}
+      >{`\/\/ ${board.title}`}</h1>
     </div>
   );
 };

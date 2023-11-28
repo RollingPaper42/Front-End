@@ -15,7 +15,7 @@ import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import { useRouter } from 'next/navigation';
 import ShortCut from '@/component/Icon/ShortCut';
-import { AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string | null>();
@@ -29,7 +29,7 @@ export default function Group({ params }: { params: { id: string } }) {
   const scrollToId = (itemId: string) => {
     const map = itemsRef.current;
     const node = map.get(itemId);
-    const offset = node.offsetTop;
+    const offset = node.offsetTop - 56; //헤더 높이만큼 빼준다.
     window.scrollTo({ top: offset, behavior: 'smooth' });
   };
   const scrollToTop = () => {
@@ -40,9 +40,10 @@ export default function Group({ params }: { params: { id: string } }) {
     scrollToAdd(observe.boardId, itemsRef);
   };
   useEffect(() => {
-    axiosInstance
-      //.get(`/api/group`)
-      .get(`/board-groups/${params.id}`)
+    axios
+      //axiosInstance
+      .get(`/api/group`)
+      //.get(`/board-groups/${params.id}`)
       .then((data) => {
         setBoards(data.data.boards);
         setTitle(data.data.title);
@@ -56,13 +57,13 @@ export default function Group({ params }: { params: { id: string } }) {
       });
   }, [params.id]);
   return (
-    <div>
+    <div className={`h-[100vh] ${theme.background}`}>
       <Drawer />
       <StrcatHeader />
-      <div className={` w-full py-[24px] ${theme.background}`}>
+      <div className={` w-full py-[24px] pt-[56px] ${theme.background}`}>
         <div className="mb-[20px]">
           <h1 className={`${theme.defaultText} mx-[24px] text-[26px]`}>
-            {`// ${title}`}
+            {`\/\/ ${title}`}
           </h1>
         </div>
         <div>
@@ -117,7 +118,7 @@ export default function Group({ params }: { params: { id: string } }) {
                 />
                 <BottomButton
                   height="h-[42px]"
-                  color={`bg-strcat-green`}
+                  color={`${theme.leftCTA}`}
                   name="만들기"
                   width="basis-1/4"
                   onClickHandler={() =>
@@ -127,7 +128,7 @@ export default function Group({ params }: { params: { id: string } }) {
                 />
                 <BottomButton
                   height="h-[42px]"
-                  color={`bg-strcat-cyan`}
+                  color={`${theme.rightCTA}`}
                   name="글 작성"
                   width="basis-1/4"
                   onClickHandler={handleClick}
@@ -138,7 +139,7 @@ export default function Group({ params }: { params: { id: string } }) {
               <div className="flex w-full max-w-md">
                 <BottomButton
                   height="h-[42px]"
-                  color={`bg-white`}
+                  color={`${theme.leftCTA}`}
                   name="스트링캣 만들기"
                   width="basis-1/2"
                   onClickHandler={() => router.push(`/create`)}
@@ -146,7 +147,7 @@ export default function Group({ params }: { params: { id: string } }) {
                 />
                 <BottomButton
                   height="h-[42px]"
-                  color={`bg-strcat-cyan`}
+                  color={`${theme.rightCTA}`}
                   name="이어서 글쓰기"
                   width="basis-1/2"
                   onClickHandler={handleClick}

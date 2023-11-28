@@ -25,10 +25,10 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
   useEffect(() => {
-    //axios
-    axiosInstance
-      .get(`/boards/${params.id}`)
-      //.get(`/api/personal`)
+    axios
+      //axiosInstance
+      //.get(`/boards/${params.id}`)
+      .get(`/api/personal`)
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
@@ -42,7 +42,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
   return (
     <>
-      <div className="h-[100vh]">
+      <div className={`h-[100vh] ${theme.background}`}>
         <Drawer />
         <StrcatHeader />
         <div
@@ -74,7 +74,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                     width="basis-1/5"
                     onClickHandler={() => router.push(`./${params.id}/summary`)}
                     disabled={false}
-                    color={`bg-strcat-green`}
+                    color={`${theme.leftCTA}`}
                   />
                   <BottomButton
                     name="이어서 글쓰기"
@@ -82,13 +82,13 @@ export default function Personal({ params }: { params: { id: string } }) {
                     width="basis-3/5"
                     onClickHandler={handleClick}
                     disabled={!observe.boardId}
-                    color={`bg-strcat-cyan`}
+                    color={`${theme.rightCTA}`}
                   />
                 </div>
               </div>
             ) : (
               <>
-                <div className=" fixed bottom-0 left-0 z-20 flex w-full items-center justify-center">
+                <div className=" fixed bottom-5 left-0 z-20 flex w-full items-center justify-center">
                   <div className="flex w-full max-w-md items-center justify-center px-[24px] ">
                     <BottomButton
                       name="스트링캣 만들기"
@@ -96,7 +96,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                       width="basis-1/2"
                       onClickHandler={() => router.push(`/create`)}
                       disabled={false}
-                      color={`bg-white`}
+                      color={`${theme.leftCTA}`}
                     />
                     <BottomButton
                       name="이어서 글쓰기"
@@ -104,7 +104,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                       height="h-[42px]"
                       onClickHandler={handleClick}
                       disabled={!observe.boardId}
-                      color={`bg-strcat-cyan`}
+                      color={`${theme.rightCTA}`}
                     />
                   </div>
                 </div>

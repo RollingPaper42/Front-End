@@ -7,7 +7,7 @@ interface Props {
 
 export default function Error({ content, handleModalClose }: Props) {
   return (
-    <div className="z-50 flex h-full w-full flex-col bg-green-700">
+    <div className="flex h-full w-full flex-col bg-green-700">
       <div className="flex h-[70%] items-center justify-center p-10 text-center text-2xl">
         {content}
       </div>
