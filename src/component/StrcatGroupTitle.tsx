@@ -1,6 +1,6 @@
 import { themeObj } from '@/recoil/theme';
 import { board } from '@/types/boards';
-import GroupCat from './Icon/GroupCat';
+import Strcat from './Icon/Strcat';
 
 interface Props {
   board: board;
@@ -8,20 +8,18 @@ interface Props {
 }
 
 export default function StrcatGroupTitle({ board, scrollToId }: Props) {
+  const theme = themeObj[board.theme];
   return (
     <div
       key={board.id}
-      className={` flex h-[110px]  items-center ${
-        themeObj[board.theme].background
-      }`}
+      className={` flex h-[110px] items-center ${theme.background}`}
       onClick={() => scrollToId(board.id)}
     >
-      <GroupCat eyeColor="#FF43A8" bodyColor="#FBFF36" />
-      <p
-        className={`mx-[24px] cursor-pointer text-xl ${
-          themeObj[board.theme].background
-        }`}
-      >
+      <Strcat
+        eyeColor={theme.catTheme.headerCatEye}
+        bodyColor={theme.catTheme.headerCat}
+      />
+      <p className={`mx-[24px] cursor-pointer text-xl ${theme.background}`}>
         {`// ${board.title}`}
       </p>
     </div>

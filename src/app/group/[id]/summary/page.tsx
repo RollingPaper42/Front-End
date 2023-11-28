@@ -1,18 +1,17 @@
 'use client';
 
-import { strcat, themeState } from '@/recoil/theme';
-import Image from 'next/image';
+import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
-import ThemeChange from '@/component/ThemeChange';
 import { axiosInstance } from '@/utils/axios';
-import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import BottomButton from '@/component/BottomButton';
 import { useRouter } from 'next/navigation';
+import Back from '@/component/Icon/Back';
+import LongCat from '@/component/Icon/LongCat';
 
 export default function Summary({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const [Theme, setTheme] = useRecoilState(themeState);
+  const [Theme] = useRecoilState(themeState);
   const [Title, setTitle] = useState(
     '테스트입니다테스트입니다테스트입니다테스트입니다테스트입니다',
   );
@@ -43,15 +42,11 @@ export default function Summary({ params }: { params: { id: string } }) {
           <div className="flex h-full w-full flex-col">
             <div className=" basis-2/5">
               <div className=" flex h-full w-full flex-row">
-                <div className=" basis-1/6 items-center justify-center">
-                  <Image
-                    src="/backpage.png"
-                    width={24}
-                    height={24}
-                    alt="backpagebutton"
-                    className="ml-[24px] mt-[16px]"
-                    onClick={() => router.push(`/group/${params.id}`)}
-                  />
+                <div
+                  className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
+                  onClick={() => router.push(`/group/${params.id}`)}
+                >
+                  <Back color={Theme.backIcon} />
                 </div>
                 <div className=" basis-4/6">
                   <div
@@ -104,13 +99,10 @@ export default function Summary({ params }: { params: { id: string } }) {
       </div>
       <div className="flex h-full w-full flex-row">
         <div className="basis-1/2"></div>
-        <div className="basis-1/2">
-          <Image
-            src="/strcatImage.png"
-            width={153}
-            height={1040}
-            alt="Image"
-            className="mr-[24px] mt-[186px]"
+        <div className="basis-1/2 pr-[24px] pt-[186px]">
+          <LongCat
+            bodyColor={Theme.catTheme.mainCat}
+            eyeColor={Theme.catTheme.mainCatEye}
           />
         </div>
       </div>
