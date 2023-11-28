@@ -20,7 +20,7 @@ export default function StrcatGroupTitle({ board, scrollToId }: Props) {
         bodyColor={theme.catTheme.headerCat}
       />
       <p className={` cursor-pointer pl-[12px] text-xl ${theme.defaultText}`}>
-        {`\/\/ ${board.title}`}
+        {`${board.title}`}
       </p>
     </div>
   );
