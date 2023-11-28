@@ -3,7 +3,7 @@ import { atom } from 'recoil';
 export const observeState = atom({
   key: 'observeState',
   default: {
-    boardId: 0,
+    boardId: '',
     contentId: 0,
     photoUrl: '',
     writer: '',

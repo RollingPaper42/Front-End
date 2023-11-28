@@ -6,7 +6,7 @@ import React from 'react';
 import { themeObj, themeState } from '@/recoil/theme';
 interface props {
   content: content;
-  boardId: number;
+  boardId: string;
   isAdd: boolean;
   boardTheme: 'strcat' | 'calm' | 'green' | 'cyan';
 }

@@ -25,7 +25,7 @@ export default function Group({ params }: { params: { id: string } }) {
   const [observe] = useRecoilState(observeState);
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const router = useRouter();
-  const scrollToId = (itemId: number) => {
+  const scrollToId = (itemId: string) => {
     const map = itemsRef.current;
     const node = map.get(itemId);
     const offset = node.offsetTop;
@@ -48,7 +48,7 @@ export default function Group({ params }: { params: { id: string } }) {
         setIsOwner(data.data.isOwner);
       })
       .catch((error) => {});
-  }, []);
+  }, [params.id]);
   return (
     <>
       <Drawer />

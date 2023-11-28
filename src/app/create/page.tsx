@@ -132,11 +132,11 @@ export default function Create() {
           <ThemeChange />
         </div>
         <div className="basis-2/12">
-          <div className="mt-10 flex flex-row items-center justify-center">
+          <div className="mx-[24px] mt-10 flex flex-row items-center justify-center">
             <BottomButton
               height="h-[42px]"
               name="완료"
-              width="w-[312px]"
+              width="w-full"
               onClickHandler={() => handleConfirm()}
               disabled={buttonState}
               color={`${Theme.rightCTA}`}
