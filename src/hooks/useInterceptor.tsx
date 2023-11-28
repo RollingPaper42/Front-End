@@ -27,6 +27,14 @@ export const useInterceptor = () => {
         <Error content="500 에러 발생 " handleModalClose={closeModal} />,
       );
     }
+    if (errorStatus === 406) {
+      openModal(
+        <Error
+          content="유효하지않은 접근입니다"
+          handleModalClose={closeModal}
+        />,
+      );
+    }
     // if (errorStatus === 401) {
     //   route.push('/login');
     // }

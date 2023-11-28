@@ -57,7 +57,7 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
         console.log(photoRes);
         const data = {
           text: text,
-          photo: photoRes.data,
+          photoUrl: photoRes.data,
           writer: writer,
         };
         const contentRes = await axiosInstance.post(

@@ -12,7 +12,7 @@ export default function Modal() {
   return (
     modal && (
       <div
-        className="fixed top-0 z-20 flex h-full w-full max-w-md items-center justify-center bg-slate-400/50"
+        className="fixed top-0  z-50 flex h-full w-full max-w-md items-center justify-center bg-slate-400/50"
         onClick={(e) => handleBackground(e, closeModal)}
       >
         {modal.modalComponent}

@@ -25,7 +25,7 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
             setObserve(() => ({
               boardId: boardId,
               contentId: content.id,
-              photoUrl: content.photo,
+              photoUrl: content.photoUrl,
               writer: content.writer,
             }));
             setTheme(() => themeObj[boardTheme]);
@@ -46,7 +46,7 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
   }, [
     boardId,
     content.id,
-    content.photo,
+    content.photoUrl,
     content.writer,
     setObserve,
     isAdd,
@@ -74,13 +74,13 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
         observe.boardId === boardId &&
         observe.contentId === content.id && (
           <div
-            className={`${theme.writerContainer} absolute right-[22px] z-10 mt-[1px] animate-slide pl-[2px] text-white opacity-100`}
+            className={`${theme.writerContainer} absolute right-[22px] z-10 mt-[1px] animate-slide pl-[2px] text-[16px] text-white opacity-100`}
           >
             <div
-              className={`${theme.writerContainer} relative top-[-3px] z-20 w-full whitespace-pre-wrap`}
+              className={`${theme.writerContainer} relative top-[-3px] z-20 w-full whitespace-pre-wrap text-[16px]`}
             >
               <div
-                className={`relative top-[3px] ${theme.defaultText}`}
+                className={`relative top-[2px] ${theme.defaultText}`}
               >{`From: ${
                 observe.writer.length ? observe.writer : '익명의 스트링캣'
               } `}</div>

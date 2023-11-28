@@ -56,10 +56,10 @@ export default function Group({ params }: { params: { id: string } }) {
       });
   }, [params.id]);
   return (
-    <>
+    <div>
       <Drawer />
       <StrcatHeader />
-      <div className={`relative w-full py-[24px] ${theme.background}`}>
+      <div className={` w-full py-[24px] ${theme.background}`}>
         <div className="mb-[20px]">
           <h1 className={`${theme.defaultText} mx-[24px] text-[26px]`}>
             {`// ${title}`}
@@ -157,6 +157,6 @@ export default function Group({ params }: { params: { id: string } }) {
         </div>
         {!isAdd && <ContentPhoto />}
       </div>
-    </>
+    </div>
   );
 }
