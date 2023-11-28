@@ -13,6 +13,7 @@ import { observeState } from '@/recoil/observe';
 import { useRouter } from 'next/navigation';
 import { board } from '@/types/boards';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
+import { handleShare } from '@/utils/handleShare';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -23,35 +24,22 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [theme, setTheme] = useRecoilState(themeState);
   const router = useRouter();
   useEffect(() => {
+    //axios
     axiosInstance
       .get(`/boards/${params.id}`)
       //.get(`/api/personal`)
       .then((data) => {
         setBoard([data.data.board]);
-        setTheme(data.data.board.theme);
         setIsOwner(data.data.isOwner);
       })
       .catch((error) => {});
-  }, [setTheme]);
+  }, []);
 
   const handleClick = () => {
     setIsAdd(true);
     scrollToAdd(board[0].id, itemsRef);
   };
   if (!board.length) return null;
-  const handleShare = async () => {
-    try {
-      await navigator.share({
-        title: '내 스트링캣 공유하기',
-        text: 'strcat을 달아주세요~~',
-        url: 'strcat.me',
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  // 공유하기 기능을 위한 임시 코드입니다.
-
   return (
     <>
       <Drawer />
@@ -122,7 +110,7 @@ export default function Personal({ params }: { params: { id: string } }) {
         {!board[0].contents.length && !isAdd && (
           <div
             className="  h-32 w-32 bg-slate-200"
-            onClick={() => handleShare()}
+            onClick={() => handleShare(`/personal/${params.id}`)}
           >
             공유하기
           </div>
