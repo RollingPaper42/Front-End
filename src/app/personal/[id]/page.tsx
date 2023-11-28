@@ -14,7 +14,6 @@ import { useRouter } from 'next/navigation';
 import { board } from '@/types/boards';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import ShareButton from '@/component/ShareButton';
-import axios, { AxiosError } from 'axios';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);

@@ -20,7 +20,6 @@ const ObserveContent = ({ board, isAdd }: Props) => {
           if (!isAdd && isIntersecting) {
             setObserve((prev) => ({
               ...prev,
-              photoUrl: '',
               boardId: board.id,
               theme: board.theme,
             }));
@@ -29,7 +28,7 @@ const ObserveContent = ({ board, isAdd }: Props) => {
         });
       },
       {
-        rootMargin: '-20% 0% -65% 0%',
+        rootMargin: '-20% 0% -70% 0%',
         threshold: 0,
       },
     );
