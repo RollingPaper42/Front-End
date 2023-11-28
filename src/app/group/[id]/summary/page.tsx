@@ -16,9 +16,9 @@ export default function Summary({ params }: { params: { id: string } }) {
   const [Title, setTitle] = useState(
     '테스트입니다테스트입니다테스트입니다테스트입니다테스트입니다',
   );
-  const [ContentCount, setContentCount] = useState('13');
-  const [ContentTextCount, setContentTextCount] = useState('1305');
-  const [boardCount, setboardCount] = useState('13');
+  const [ContentCount, setContentCount] = useState(13);
+  const [ContentTextCount, setContentTextCount] = useState(1305);
+  const [boardCount, setboardCount] = useState(13);
 
   useEffect(() => {
     axiosInstance
@@ -36,9 +36,13 @@ export default function Summary({ params }: { params: { id: string } }) {
       });
   }, []);
 
+  function formatNumberWithCommas(inputText: number) {
+    return inputText.toLocaleString();
+  }
+
   return (
     <div className={`${Theme.background}`}>
-      <div className=" fixed flex h-full w-full max-w-[calc(100vh*0.6)]  flex-col">
+      <div className=" fixed flex h-full w-full max-w-md flex-col">
         <div className=" basis-3/12">
           <div className="flex h-full w-full flex-col">
             <div className=" basis-2/5">
@@ -79,7 +83,9 @@ export default function Summary({ params }: { params: { id: string } }) {
                   >
                     총 {ContentCount}번의 <br /> 마음으로 <br /> {boardCount}
                     개의 스트링캣이
-                    <br /> 총 {ContentTextCount}자 <br /> 이어졌어요!
+                    <br /> 총 {formatNumberWithCommas(ContentTextCount)}자{' '}
+                    <br />
+                    이어졌어요!
                   </div>
                 </div>
                 <div className="basis-1/3"></div>
