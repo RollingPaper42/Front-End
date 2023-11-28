@@ -1,19 +1,23 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { axiosInstance } from '@/utils/axios';
 import StrcatBoard from '@/component/StrcatBoard';
 import BottomButton from '@/component/BottomButton';
 import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 import Drawer from '@/component/Drawer';
-import StrcatHeader from '@/component/StrcatHeader';
 import { observeState } from '@/recoil/observe';
 import { useRouter } from 'next/navigation';
 import { board } from '@/types/boards';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
+import StrcatAnimationHeader from '@/component/StrcatAnimationHeader';
+import axios from 'axios';
+import CatAnimation from '@/component/CatAnimation';
+import { catAction } from '@/types/cat';
+import { useCat } from '@/hooks/useCat';
 import { handleShare } from '@/utils/handleShare';
+import { axiosInstance } from '@/utils/axios';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -23,11 +27,11 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [observe] = useRecoilState(observeState);
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
+  const [setCatAnimation] = useCat();
   useEffect(() => {
-    //axios
     axiosInstance
       .get(`/boards/${params.id}`)
-      //.get(`/api/personal`)
+      // .get(`/api/personal`)
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
@@ -39,11 +43,25 @@ export default function Personal({ params }: { params: { id: string } }) {
     setIsAdd(true);
     scrollToAdd(board[0].id, itemsRef);
   };
+
+  useEffect(() => {
+    if (board)
+      setCatAnimation(
+        document.getElementById('strcatCreate'),
+        catAction.sit,
+        3000,
+      );
+  }, [board]);
+
   if (!board.length) return null;
+
+  // 공유하기 기능을 위한 임시 코드입니다.
+
   return (
     <>
       <Drawer />
-      <StrcatHeader />
+      <StrcatAnimationHeader />
+      <CatAnimation />
       <div
         className={`relative w-full  py-[24px] text-justify ${theme.background} pb-[500px]`}
       >
@@ -56,7 +74,10 @@ export default function Personal({ params }: { params: { id: string } }) {
         {!isAdd &&
           (isOwner ? (
             <div className="fixed bottom-5 left-0 z-50 flex w-full items-center justify-center">
-              <div className="flex w-full max-w-md items-center justify-center px-[24px]">
+              <div
+                className="flex h-full w-full max-w-md items-center justify-center px-[24px] "
+                id="strcatCreate"
+              >
                 <BottomButton
                   height="h-[42px]"
                   name="저장"
@@ -86,7 +107,10 @@ export default function Personal({ params }: { params: { id: string } }) {
           ) : (
             <>
               <div className=" fixed bottom-0 left-0 z-50 flex w-full items-center justify-center">
-                <div className="flex w-full max-w-md items-center justify-center px-[24px] ">
+                <div
+                  className="flex w-full max-w-md items-center justify-center px-[24px] "
+                  id="strcatCreate"
+                >
                   <BottomButton
                     name="스트링캣 만들기"
                     height="h-[42px]"

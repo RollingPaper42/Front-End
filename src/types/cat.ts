@@ -1,12 +1,13 @@
 export const catAction = {
   exit: 'exit',
   newContent: 'newContent',
-  scroll: 'scroll',
   longText: 'longText',
+  sit: 'sit',
   none: 'none',
 };
 
 export interface cat {
+  src: string;
   catAction: string;
   top: number;
   left: number;

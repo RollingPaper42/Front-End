@@ -2,6 +2,7 @@ import { cat, catAction } from '@/types/cat';
 import { atom } from 'recoil';
 
 const defaultCat: cat = {
+  src: '',
   catAction: catAction.none,
   top: 0,
   left: 0,
