@@ -12,11 +12,6 @@ const PhotoUpload = ({ setImage }: Props) => {
   const [theme] = useRecoilState(themeState);
   const [preview, setPreview] = useState<string>();
 
-  const handleImageDelete = () => {
-    setImage(null);
-    setPreview('');
-  };
-
   const handleChangeImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files === null) return;
     const file = e.target?.files[0];
