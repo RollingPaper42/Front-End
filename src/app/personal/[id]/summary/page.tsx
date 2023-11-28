@@ -3,6 +3,7 @@
 import { themeState } from '@/recoil/theme';
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
+
 import { axiosInstance } from '@/utils/axios';
 import { useEffect, useState } from 'react';
 import BottomButton from '@/component/BottomButton';
@@ -47,6 +48,7 @@ export default function Summary({ params }: { params: { id: string } }) {
                     height={24}
                     alt="backpagebutton"
                     className="ml-[24px] mt-[16px]"
+                    onClick={() => router.push(`/personal/${params.id}`)}
                   />
                 </div>
                 <div className=" basis-4/6">

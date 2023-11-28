@@ -40,8 +40,8 @@ export default function Group({ params }: { params: { id: string } }) {
   };
   useEffect(() => {
     axiosInstance
-      .get(`/api/group`)
-      //.get(`/board-groups/${props.params.id}`)
+      //.get(`/api/group`)
+      .get(`/board-groups/${params.id}`)
       .then((data) => {
         setBoards(data.data.boards);
         setTitle(data.data.title);
@@ -115,7 +115,7 @@ export default function Group({ params }: { params: { id: string } }) {
                   name="만들기"
                   width="basis-1/4"
                   onClickHandler={() =>
-                    router.push(`../create?id=${params.id}`)
+                    router.push(`/create?groupId=${params.id}`)
                   }
                   disabled={false}
                 />
@@ -135,7 +135,7 @@ export default function Group({ params }: { params: { id: string } }) {
                   color={`bg-white`}
                   name="스트링캣 만들기"
                   width="basis-1/2"
-                  onClickHandler={() => router.push(`../created`)}
+                  onClickHandler={() => router.push(`/create`)}
                   disabled={false}
                 />
                 <BottomButton

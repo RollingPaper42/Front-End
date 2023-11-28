@@ -28,13 +28,13 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
 ) {
   const [observe] = useRecoilState(observeState);
   const [theme, setTheme] = useRecoilState(themeState);
-  const [content, setContent] = useState(board.content);
+  const [content, setContent] = useState(board.contents);
   useEffect(() => {
-    setContent(board.content);
-  }, [board.content]);
+    setContent(board.contents);
+  }, [board]);
   return (
-    <div ref={ref} className={`${theme.background} px-[24px] duration-200`}>
-      <ObserveTitle title={board.title} />
+    <div ref={ref} className={` ${theme.background} px-[24px] duration-200`}>
+      <ObserveTitle isAdd={isAdd} board={board} />
       <div className={`z-0 inline`}>
         {content &&
           content.map((content: content) => {
