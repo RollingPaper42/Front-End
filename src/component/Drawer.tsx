@@ -50,7 +50,7 @@ export default function Drawer() {
 
   useEffect(() => {
     fetchData();
-  });
+  }, []);
 
   return (
     drawer &&
