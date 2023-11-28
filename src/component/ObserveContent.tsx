@@ -80,7 +80,7 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
               className={`${theme.writerContainer} relative top-[-3px] z-20 w-full whitespace-pre-wrap text-[16px]`}
             >
               <div
-                className={`relative top-[2px] ${theme.defaultText}`}
+                className={`relative top-[3px] ${theme.defaultText}`}
               >{`From: ${
                 observe.writer.length ? observe.writer : '익명의 스트링캣'
               } `}</div>
