@@ -3,14 +3,16 @@ import Image from 'next/image';
 export default function PreviewPhoto({
   preview,
   setPreview,
+  setImage,
 }: {
   preview: string;
   setPreview: any;
+  setImage: any;
 }) {
   return (
     <div className="fixed top-[120px] h-[120px] max-w-[332px]">
       <Image
-        src={'/GroupStrcatMake.png'}
+        src={preview}
         alt="사진"
         width={innerWidth}
         height={innerHeight}
@@ -23,7 +25,8 @@ export default function PreviewPhoto({
         height={20}
         className="absolute right-[10px] top-[10px]"
         onClick={() => {
-          setPreview(null);
+          setImage(null);
+          setPreview('');
         }}
       />
     </div>

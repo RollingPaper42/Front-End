@@ -6,47 +6,37 @@ import imageCompression from 'browser-image-compression';
 import PreviewPhoto from './PreviewPhoto';
 
 interface Props {
-  setImage: Dispatch<React.SetStateAction<Blob | null>>;
+  setImage: Dispatch<React.SetStateAction<File | null>>;
 }
 const PhotoUpload = ({ setImage }: Props) => {
   const [theme] = useRecoilState(themeState);
-  const [preview, setPreview] = useState('');
+  const [preview, setPreview] = useState<string>();
 
-  // const handleImageDelete = () => {
-  //   setImage(null);
-  //   setPreview('');
-  // };
+  const handleImageDelete = () => {
+    setImage(null);
+    setPreview('');
+  };
 
   const handleChangeImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    // const selectedImage = e.target.files[0];
-    // if (selectedImage) {
-    //   const imageUrl = URL.createObjectURL(selectedImage);
-    //   setPreview(imageUrl);
-    //   setImage(selectedImage);
-    // }
-
     if (e.target.files === null) return;
-    let file = e.target?.files[0];
+    const file = e.target?.files[0];
     const options = {
       maxSizeMB: 1,
       alwaysKeepResolution: true,
     };
-
     try {
       if (file.size > 1024) {
         const compressedFile = await imageCompression(file, options);
-        setImage(compressedFile);
-        const dataUrl =
-          await imageCompression.getDataUrlFromFile(compressedFile);
-        setPreview(dataUrl);
+        const preview = new File([compressedFile], 'name');
+        setImage(preview);
       } else {
         setImage(file);
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-          setPreview(reader.result as string);
-        };
       }
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setPreview(reader.result as string);
+      };
     } catch (error) {
       console.log(error);
     }
@@ -56,7 +46,11 @@ const PhotoUpload = ({ setImage }: Props) => {
     <>
       {preview ? (
         <>
-          <PreviewPhoto preview={preview} />
+          <PreviewPhoto
+            preview={preview}
+            setPreview={setPreview}
+            setImage={setImage}
+          />
           <div className="relative mx-2 h-[42px] w-full basis-1/5 ">
             <div
               className={`absolute top-[3px] h-[39px] w-full ${theme.leftCTA}`}
@@ -89,7 +83,7 @@ const PhotoUpload = ({ setImage }: Props) => {
           </label>
           <input
             type="file"
-            accept="image/*"
+            accept="image/png, image/jpeg, image/jpg"
             id="imgFile"
             onChange={handleChangeImage}
             className="img-input hidden"
