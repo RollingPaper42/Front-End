@@ -12,7 +12,7 @@ interface Props {
 const ObserveContent = ({ board, isAdd }: Props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [, setObserve] = useRecoilState(observeState);
-  const [, setTheme] = useRecoilState(themeState);
+  const [theme, setTheme] = useRecoilState(themeState);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -43,7 +43,7 @@ const ObserveContent = ({ board, isAdd }: Props) => {
 
   return (
     <div className="my-[24px] mt-[20px] h-[200px]" ref={ref}>
-      <h1 className={` text-[28px] `}>{board.title}</h1>
+      <h1 className={` text-[28px] ${theme.defaultText}`}>{board.title}</h1>
     </div>
   );
 };

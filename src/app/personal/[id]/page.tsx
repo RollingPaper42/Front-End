@@ -13,8 +13,8 @@ import { observeState } from '@/recoil/observe';
 import { useRouter } from 'next/navigation';
 import { board } from '@/types/boards';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
-import { handleShare } from '@/utils/handleShare';
 import ShareButton from '@/component/ShareButton';
+import axios, { AxiosError } from 'axios';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -25,15 +25,20 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
   useEffect(() => {
-    //axios
-    axiosInstance
-      .get(`/boards/${params.id}`)
-      //.get(`/api/personal`)
+    axios
+      //axiosInstance
+      //.get(`/boards/${params.id}`)
+      .get(`/api/personal`)
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
       })
-      .catch((error) => {});
+      .catch((err) => {
+        const error = err as AxiosError;
+        if (error.response?.status === 406) {
+          router.push('/'); // 추후 에러페이지 만들어지면 리다이렉트 예정
+        }
+      });
   }, [params.id]);
 
   const handleClick = () => {

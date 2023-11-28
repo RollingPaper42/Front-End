@@ -78,7 +78,9 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
           >
             <div
               className={`bg-strcat-green relative top-[-3px] z-20 w-full whitespace-pre-wrap`}
-            >{`From: ${observe.writer} `}</div>
+            >
+              <div className="relative top-[3px]">{`From: ${observe.writer} `}</div>
+            </div>
           </div>
         )}
     </div>
