@@ -25,10 +25,10 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
   useEffect(() => {
-    axios
-      //axiosInstance
-      //.get(`/boards/${params.id}`)
-      .get(`/api/personal`)
+    //axios
+    axiosInstance
+      .get(`/boards/${params.id}`)
+      //.get(`/api/personal`)
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
