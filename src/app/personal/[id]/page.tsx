@@ -21,7 +21,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const itemsRef = useRef(new Map());
   const [observe] = useRecoilState(observeState);
-  const [theme, setTheme] = useRecoilState(themeState);
+  const [theme] = useRecoilState(themeState);
   const router = useRouter();
   useEffect(() => {
     //axios
