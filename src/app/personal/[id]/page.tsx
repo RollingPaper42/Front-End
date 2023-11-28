@@ -14,6 +14,7 @@ import { useRouter } from 'next/navigation';
 import { board } from '@/types/boards';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import { handleShare } from '@/utils/handleShare';
+import ShareButton from '@/component/ShareButton';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -33,13 +34,12 @@ export default function Personal({ params }: { params: { id: string } }) {
         setIsOwner(data.data.isOwner);
       })
       .catch((error) => {});
-  }, []);
+  }, [params.id]);
 
   const handleClick = () => {
     setIsAdd(true);
     scrollToAdd(board[0].id, itemsRef);
   };
-  if (!board.length) return null;
   return (
     <>
       <Drawer />
@@ -47,12 +47,14 @@ export default function Personal({ params }: { params: { id: string } }) {
       <div
         className={`relative w-full  py-[24px] text-justify ${theme.background} pb-[500px]`}
       >
-        <StrcatBoard
-          board={board[0]}
-          ref={(node) => setMap(node, board[0], itemsRef)}
-          isAdd={isAdd}
-          setIsAdd={setIsAdd}
-        />
+        {board.length && (
+          <StrcatBoard
+            board={board[0]}
+            ref={(node) => setMap(node, board[0], itemsRef)}
+            isAdd={isAdd}
+            setIsAdd={setIsAdd}
+          />
+        )}
         {!isAdd &&
           (isOwner ? (
             <div className="fixed bottom-5 left-0 z-50 flex w-full items-center justify-center">
@@ -107,13 +109,8 @@ export default function Personal({ params }: { params: { id: string } }) {
               </div>
             </>
           ))}
-        {!board[0].contents.length && !isAdd && (
-          <div
-            className="  h-32 w-32 bg-slate-200"
-            onClick={() => handleShare(`/personal/${params.id}`)}
-          >
-            공유하기
-          </div>
+        {board.length && !board[0].contents.length && !isAdd && (
+          <ShareButton params={params.id} />
         )}
         {!isAdd && <ContentPhoto />}
       </div>

@@ -4,7 +4,7 @@ import Strcat from './Icon/Strcat';
 
 interface Props {
   board: board;
-  scrollToId: (arg0: number) => void;
+  scrollToId: (arg0: string) => void;
 }
 
 export default function StrcatGroupTitle({ board, scrollToId }: Props) {
