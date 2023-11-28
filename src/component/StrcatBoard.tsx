@@ -26,9 +26,10 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
   { board, isAdd, setIsAdd },
   ref,
 ) {
+  if (!board) return null;
   const [observe] = useRecoilState(observeState);
   const [theme, setTheme] = useRecoilState(themeState);
-  const [content, setContent] = useState(board.contents);
+  const [content, setContent] = useState<content[]>([]);
   useEffect(() => {
     setContent(board.contents);
   }, [board]);

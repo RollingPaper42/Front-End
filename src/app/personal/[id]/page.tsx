@@ -39,7 +39,7 @@ export default function Personal({ params }: { params: { id: string } }) {
     setIsAdd(true);
     scrollToAdd(board[0].id, itemsRef);
   };
-  if (!board.length) return null;
+  // if (!board.length) return null;
   return (
     <>
       <Drawer />
