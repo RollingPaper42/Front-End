@@ -15,53 +15,44 @@ export default function ThemeChange() {
     setTheme(newTheme);
   };
   return (
-    <>
+    <div className="mx-[24px]">
       <div className="flex w-full flex-row items-center justify-center">
-        <div className="basis-8"></div>
         <div
-          className="mt-20 basis-14 "
+          className="mt-20 basis-1/6 "
           onClick={() => handleThemeChange(strcat)}
         >
           <ThemeStrcat />
+          <div className={`${Theme.defaultText} `}>strcat</div>
         </div>
-        <div className="basis-8"></div>
+        <div className="basis-1/6"></div>
         <div
-          className="mt-20 basis-14 "
+          className="mt-20 basis-1/6 "
           onClick={() => handleThemeChange(calm)}
         >
           <ThemeCalm />
+          <div className={`basis-1/6 text-center ${Theme.defaultText} `}>
+            Calm
+          </div>
         </div>
-        <div className="basis-8"></div>
+        <div className="basis-1/6"></div>
         <div
-          className="mt-20 basis-14 "
+          className="mt-20 basis-1/6 "
           onClick={() => handleThemeChange(green)}
         >
           <ThemeGreen />
+          <div className={`basis-1/6 text-center ${Theme.defaultText} `}>
+            green
+          </div>
         </div>
-        <div className="basis-8"></div>
+        <div className="basis-1/6"></div>
         <div
-          className="mt-20 basis-14  "
+          className="mt-20 basis-1/6  "
           onClick={() => handleThemeChange(cyan)}
         >
           <ThemeCyan />
+          <div className={`text-center ${Theme.defaultText} `}>Cyan</div>
         </div>
-        <div className="basis-8"></div>
       </div>
-      <div className="flex w-full flex-row items-center justify-center">
-        <div className=" mt-9 basis-8"></div>
-        <div className={`basis-14 text-center ${Theme.defaultText} `}>
-          strcat
-        </div>
-        <div className="basis-8"></div>
-        <div className={`basis-14 text-center ${Theme.defaultText} `}>Calm</div>
-        <div className="basis-8"></div>
-        <div className={`basis-14 text-center ${Theme.defaultText} `}>
-          green
-        </div>
-        <div className="basis-8"></div>
-        <div className={`basis-14 text-center ${Theme.defaultText} `}>Cyan</div>
-        <div className="basis-8"></div>
-      </div>
-    </>
+    </div>
   );
 }
