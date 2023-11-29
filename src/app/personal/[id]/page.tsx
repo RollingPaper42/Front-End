@@ -17,6 +17,7 @@ import { useCat } from '@/hooks/useCat';
 import ShareButton from '@/component/ShareButton';
 import { axiosInstance } from '@/utils/axios';
 import StrcatHeader from '@/component/StrcatHeader';
+import { useLogin } from '@/hooks/useLogin';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -27,6 +28,8 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
   const [runCatAnimati] = useCat();
+  const [isLogin] = useLogin();
+
   useEffect(() => {
     axiosInstance
       .get(`/boards/${params.id}`)
@@ -41,6 +44,15 @@ export default function Personal({ params }: { params: { id: string } }) {
   const handleClick = () => {
     setIsAdd(true);
     scrollToAdd(board[0].id, itemsRef);
+  };
+
+  const handleClickCreate = () => {
+    if (!isLogin) {
+      localStorage.setItem('strcat_login_success_url', `create`);
+      router.push('/login');
+    } else {
+      router.push(`create`);
+    }
   };
 
   useEffect(() => {
@@ -108,7 +120,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                       name="스트링캣 만들기"
                       height="h-[42px]"
                       width="basis-1/2"
-                      onClickHandler={() => router.push(`/create`)}
+                      onClickHandler={handleClickCreate}
                       disabled={false}
                       color={`${theme.leftCTA}`}
                     />
