@@ -38,7 +38,7 @@ export default function Create() {
     const data = {
       groupId: groupId,
       backgroundColor: Theme,
-      title: title,
+      title: `\/\/${title}`,
     };
     axiosInstance
       .post(`/boards`, data)
@@ -83,7 +83,7 @@ export default function Create() {
   return (
     <div className={`${Theme.background} h-full w-full`}>
       <div className="flex h-full w-full flex-col">
-        <div className="basis-1/1">
+        <div className="basis-1/12">
           <div className="flex h-full w-full flex-row">
             <div
               className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
@@ -102,21 +102,19 @@ export default function Create() {
           </div>
         </div>
         <div className="basis-2/12">
-          <div className="mt-10 flex flex-col items-center justify-center">
-            <div className="w-80">
-              <textarea
-                id="titleMessage"
-                rows={1}
-                value={title}
-                className={` w-full resize-none ${Theme.background} text-[22px] ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
-                placeholder="제목을 입력해주세요."
-                maxLength={30}
-                onChange={(e) => handleChangeTitle(e)}
-                onKeyDown={(e) => handleKeyDownTitle(e, title)}
-              />
-              <div className={`text-right ${ErrorFontColor}`}>
-                {title.length}/30
-              </div>
+          <div className="mt-10 flex w-full basis-3/12 flex-col items-center justify-center px-[24px]">
+            <textarea
+              id="titleMessage"
+              rows={1}
+              value={title}
+              className={` w-full resize-none ${Theme.background} text-[22px] ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
+              placeholder="제목을 입력해주세요."
+              maxLength={30}
+              onChange={(e) => handleChangeTitle(e)}
+              onKeyDown={(e) => handleKeyDownTitle(e, title)}
+            />
+            <div className={`w-full text-right text-[14px] ${ErrorFontColor}`}>
+              {title.length}/30
             </div>
           </div>
         </div>

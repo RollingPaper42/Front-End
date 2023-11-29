@@ -15,7 +15,7 @@ export default function ThemeChange() {
     setTheme(newTheme);
   };
   return (
-    <div className="mx-[24px]">
+    <div className="mx-[34px]">
       <div className="flex w-full flex-row items-center justify-center">
         <div
           className="mt-20 basis-1/6 "
