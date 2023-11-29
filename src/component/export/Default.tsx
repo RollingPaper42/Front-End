@@ -9,11 +9,11 @@ interface Props {
 }
 export default function Default({ content, color, highlightcolor }: Props) {
   return (
-    <div className={`${highlightcolor} inline`}>
+    <div className={` ${color} inline`}>
       {content.id % 2 === 0 ? (
-        <span>{content.text}</span>
+        <span className={`  ${highlightcolor}`}>{content.text}</span>
       ) : (
-        <span className={` ${color}`}>{content.text}</span>
+        <span>{content.text}</span>
       )}
     </div>
   );

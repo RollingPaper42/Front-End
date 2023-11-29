@@ -64,11 +64,11 @@ export default function Export({ params }: { params: { id: string } }) {
   }, []);
 
   return (
-    <div className={`${theme.background} ${theme.defaultText} `}>
+    <div className={`${theme.background} ${theme.defaultText} h-full `}>
       <Drawer />
-      <StrcatHeader />/
-      <div ref={divRef} className="mt-[78px]">
-        <div className={`mx-[24px] mb-[24px] text-[24px]`}>{title}</div>
+      <StrcatHeader />.
+      <div ref={divRef} className={`${theme.background} mt-[78px] h-full`}>
+        <div className={`mx-[24px] pb-[24px]  text-[24px]`}>{title}</div>
         {boardsTitle?.map((board: board) => {
           return (
             <StrcatGroupTitle
