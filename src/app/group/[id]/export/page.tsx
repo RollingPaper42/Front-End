@@ -13,8 +13,6 @@ import StrcatHeader from '@/component/StrcatHeader';
 import ExportBoard from '@/component/export/ExportBoard';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
-import CatAnimation from '@/component/CatAnimation';
-import Strcat from '@/component/Icon/Strcat';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 import StrcatGroupTitle from '@/component/StrcatGroupTitle';

@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { content } from '@/types/content';
 import { exportThemeButton, exportThemeEnum } from '@/types/export';
 import { axiosInstance } from '@/utils/axios';
 import html2canvas from 'html2canvas';
@@ -13,12 +12,16 @@ import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
+import { board } from '@/types/boards';
+import { useRecoilState } from 'recoil';
+import { themeState } from '@/recoil/theme';
 
 export default function Export({ params }: { params: { id: string } }) {
   const [openModal, closeModal] = useModal();
   const [title, setTitle] = useState<string>('');
-  const [board, setBoard] = useState<content[] | undefined>(undefined);
+  const [board, setBoard] = useState<board | undefined>(undefined);
   const divRef = useRef<HTMLDivElement>(null);
+  const [theme] = useRecoilState(themeState);
   const [exportTheme, setExportTheme] = useState<string>(
     exportThemeEnum.default,
   );
@@ -31,7 +34,7 @@ export default function Export({ params }: { params: { id: string } }) {
       .then((data) => {
         console.log(data);
         setTitle(data.data.board.title);
-        setBoard(data.data.board.contents);
+        setBoard(data.data.board);
       })
       .catch((error) => {});
   }, []);
@@ -58,15 +61,19 @@ export default function Export({ params }: { params: { id: string } }) {
   };
 
   return (
-    <div ref={divRef}>
+    <div className={`${theme.background} ${theme.defaultText} h-full`}>
       <Drawer />
-      <StrcatHeader />
-      <div className=" mx-5 mt-[78px] text-[22px]">
+      <StrcatHeader />.
+      <div
+        ref={divRef}
+        className={`${theme.background}  mt-[78px] h-full text-[22px]`}
+      >
         <ExportBoard
           key={title}
           title={title}
-          data={board}
+          content={board?.contents}
           exportTheme={exportTheme}
+          boardTheme={board?.theme}
         />
       </div>
       <div className=" fixed bottom-5 w-full max-w-md">
@@ -83,7 +90,7 @@ export default function Export({ params }: { params: { id: string } }) {
         </div>
         <BottomButton
           height="h-[42px]"
-          color={'white'}
+          color={theme.rightCTA}
           name="저장하기"
           width="w-full"
           onClickHandler={handleSave}

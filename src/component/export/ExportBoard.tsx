@@ -9,7 +9,7 @@ interface Props {
   title: string;
   content: content[] | undefined;
   exportTheme: string;
-  boardTheme: 'strcat' | 'calm' | 'green' | 'cyan';
+  boardTheme: 'strcat' | 'calm' | 'green' | 'cyan' | undefined;
 }
 
 export default function ExportBoard({
@@ -18,14 +18,15 @@ export default function ExportBoard({
   exportTheme,
   boardTheme,
 }: Props) {
+  if (!boardTheme) return;
   const theme = themeObj[boardTheme];
   return (
     <div className={`${theme.background} ${theme.defaultText}`}>
       <div className={`mx-[24px]`}>
-        <div className={`pb-[32px] pt-[40px] text-[22px]`}>{title}</div>
+        <div className={`text-[ 22px] pb-[32px] pt-[40px]`}>{title}</div>
         <div className={` pb-[40px]  text-justify text-[18px]`}>
           {content?.map((item: content) => (
-            <div key={item.id}>
+            <span key={item.id}>
               {exportTheme === exportThemeEnum.default && (
                 <Default
                   content={item}
@@ -37,9 +38,9 @@ export default function ExportBoard({
                 <LineBreak content={item} color={theme.defaultText} />
               )}
               {exportTheme === exportThemeEnum.writer && (
-                <Writer content={item} color={theme.defaultText} />
+                <Writer content={item} color={theme.highlightText} />
               )}
-            </div>
+            </span>
           ))}
         </div>
       </div>
