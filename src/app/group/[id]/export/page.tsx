@@ -15,7 +15,7 @@ import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
 import CatAnimation from '@/component/CatAnimation';
 
-export default function Export() {
+export default function Export({ params }: { params: { id: string } }) {
   const divRef = useRef<HTMLDivElement>(null);
   const [openModal, closeModal] = useModal();
   const [title, setTitle] = useState<string>('');
@@ -26,12 +26,15 @@ export default function Export() {
   );
 
   useEffect(() => {
+    const id = params.id;
+    if (id === null) return;
     axiosInstance
-      .get(`/board-groups`)
+      .get(`/board-groups/${id}`)
       .then((data) => {
-        setTitle(data.data.titleData.title);
-        setBoardsTitle(data.data.titleData.boards);
-        setBoardsContent(data.data.contentData);
+        console.log(data);
+        setTitle(data.data.title);
+        setBoardsTitle(data.data.boards);
+        setBoardsContent(data.data.boards);
       })
       .catch((error) => {});
   }, []);
@@ -58,18 +61,19 @@ export default function Export() {
   };
 
   return (
-    <div className="mb-10">
+    <div className="mb-10 ">
       <Drawer />
       <StrcatHeader />
-      <div ref={divRef} className="mx-5">
-        {boardsTitle.map((board: board) => {
+      <div ref={divRef} className="mx-5 mt-[78px]">
+        <div className="text-[24px]">{title}</div>
+        {boardsTitle?.map((board: board) => {
           return (
-            <div key={board.title} className=" mb-5  text-[32px]">
+            <div key={board.title} className=" mb-5  text-[22px]">
               {board.title}
             </div>
           );
         })}
-        {boardsConetent.map((board) => {
+        {boardsConetent?.map((board) => {
           return (
             <ExportBoard
               key={board.id}
