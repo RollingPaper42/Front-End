@@ -12,15 +12,15 @@ export default function StrcatGroupTitle({ board, scrollToId }: Props) {
   return (
     <div
       key={board.id}
-      className={` flex h-[110px] items-center ${theme.background}`}
+      className={` flex h-[110px] items-center ${theme.background} p-[22px]`}
       onClick={() => scrollToId(board.id)}
     >
       <Strcat
         eyeColor={theme.catTheme.headerCatEye}
         bodyColor={theme.catTheme.headerCat}
       />
-      <p className={`mx-[24px] cursor-pointer text-xl ${theme.background}`}>
-        {`// ${board.title}`}
+      <p className={` cursor-pointer pl-[12px] text-xl ${theme.defaultText}`}>
+        {`${board.title}`}
       </p>
     </div>
   );

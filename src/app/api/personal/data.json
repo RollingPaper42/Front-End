@@ -1,5 +1,5 @@
 {
-  "isOwner": true,
+  "isOwner": false,
   "board": {
     "id": 1,
     "title": "Sample Board",
@@ -8,26 +8,26 @@
       {
         "id": 1,
         "text": "즐거운 순간을 함께하며 행복한 기억 만들기를 기대해요.n",
-        "writer": "영일이삼사오육칠팔구",
-        "photo": "/Google.png"
+        "writer": "",
+        "photoUrl": "/Google.png"
       },
       {
         "id": 2,
         "text": "봄바람 속에 햇살이 미소 짓도록. 따뜻한 날 되세요.",
-        "writer": "User2",
-        "photo": "/kakao.png"
+        "writer": "",
+        "photoUrl": "/kakao.png"
       },
       {
         "id": 3,
         "text": "마음 가는 대로 꿈 펼쳐보세요. 가능성은 무한합니다.",
         "writer": "User3",
-        "photo": "/strcatImage.png"
+        "photoUrl": "/strcatImage.png"
       },
       {
         "id": 4,
         "text": "지친 하루 뒤에 찾아오는 평화로운 밤 되길 바랍니다.",
         "writer": "User4",
-        "photo": "/mario.png"
+        "photoUrl": "/mario.png"
       },
       {
         "id": 5,
@@ -39,7 +39,7 @@
         "id": 6,
         "text": "작은 기쁨이 큰 행복을 만들어냅니다. 즐거운 순간들!",
         "writer": "User6",
-        "photo": "/Google.png"
+        "photoUrl": "/Google.png"
       },
       {
         "id": 7,

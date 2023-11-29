@@ -74,11 +74,17 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
         observe.boardId === boardId &&
         observe.contentId === content.id && (
           <div
-            className={`absolute right-[22px] z-10 mt-[1px] animate-slide bg-strcat-green pl-[2px] text-white opacity-100`}
+            className={`${theme.writerContainer} absolute right-[22px] z-10 mt-[1px] animate-slide pl-[2px] text-[16px] text-white opacity-100`}
           >
             <div
-              className={`relative top-[-3px] z-20 w-full whitespace-pre-wrap bg-strcat-green`}
-            >{`From: ${observe.writer} `}</div>
+              className={`${theme.writerContainer} relative top-[-3px] z-20 w-full whitespace-pre-wrap text-[16px]`}
+            >
+              <div
+                className={`relative top-[3px] ${theme.defaultText}`}
+              >{`From: ${
+                observe.writer.length ? observe.writer : '익명의 스트링캣'
+              } `}</div>
+            </div>
           </div>
         )}
     </div>
