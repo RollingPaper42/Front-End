@@ -36,7 +36,6 @@ export default function Personal({ params }: { params: { id: string } }) {
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
-        console.log(`personal id: ${data.data.board.id}`);
       })
       .catch((err) => {});
   }, [params.id]);
@@ -52,12 +51,14 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={`h-[100vh] ${theme.background}`}>
+      <div className={` h-full ${theme.background}`}>
         <Drawer />
         <StrcatHeader />
         <CatAnimation />
         <div
-          className={`relative w-full  py-[24px] text-justify ${theme.background} pb-[500px]`}
+          className={`relative w-full  py-[24px] text-justify ${
+            content.length ? 'pb-[500px]' : ''
+          }`}
         >
           {board.length && (
             <StrcatBoard
@@ -130,7 +131,7 @@ export default function Personal({ params }: { params: { id: string } }) {
               </>
             ))}
           {board.length && !content.length && !isAdd && (
-            <ShareButton params={params.id} />
+            <ShareButton params={`/personal/${params.id}`} />
           )}
           {!isAdd && <ContentPhoto />}
         </div>

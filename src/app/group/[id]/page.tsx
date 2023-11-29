@@ -16,6 +16,7 @@ import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import { useRouter } from 'next/navigation';
 import ShortCut from '@/component/Icon/ShortCut';
 import { content } from '@/types/content';
+import ShareButton from '@/component/ShareButton';
 
 export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string | null>();
@@ -53,7 +54,7 @@ export default function Group({ params }: { params: { id: string } }) {
       .catch((err) => {});
   }, [params.id]);
   return (
-    <div className={`h-[100vh] ${theme.background}`}>
+    <div className={`${theme.background} h-full`}>
       <Drawer />
       <StrcatHeader />
       <div
@@ -75,7 +76,7 @@ export default function Group({ params }: { params: { id: string } }) {
             );
           })}
         </div>
-        <div className="pb-[500px] text-justify">
+        <div className={`${boards.length ? 'pb-[500px]' : ''} text-justify`}>
           {boards.map((board) => {
             return (
               <StrcatBoard
@@ -157,6 +158,11 @@ export default function Group({ params }: { params: { id: string } }) {
             ))}
         </div>
         {!isAdd && <ContentPhoto />}
+        {!boards.length && (
+          <div className="absolute top-[200px]">
+            <ShareButton params={`/group/${params.id}`} />
+          </div>
+        )}
       </div>
     </div>
   );
