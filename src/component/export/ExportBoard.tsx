@@ -20,12 +20,12 @@ export default function ExportBoard({
 }: Props) {
   const theme = themeObj[boardTheme];
   return (
-    <div className={`${theme.background}`}>
-      <div className={`mx-[24px] mb-[40px] mt-[40px] text-[22px] `}>
-        <div className="mb-[32px]">{title}</div>
-        <div className={` text-justify  text-[18px] ${theme.defaultText}`}>
+    <div className={`${theme.background} ${theme.defaultText}`}>
+      <div className={`mx-[24px]`}>
+        <div className={`pb-[32px] pt-[40px] text-[22px]`}>{title}</div>
+        <div className={` pb-[40px]  text-justify text-[18px]`}>
           {content?.map((item: content) => (
-            <span key={item.id}>
+            <div key={item.id}>
               {exportTheme === exportThemeEnum.default && (
                 <Default
                   content={item}
@@ -39,7 +39,7 @@ export default function ExportBoard({
               {exportTheme === exportThemeEnum.writer && (
                 <Writer content={item} color={theme.defaultText} />
               )}
-            </span>
+            </div>
           ))}
         </div>
       </div>

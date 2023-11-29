@@ -8,7 +8,7 @@ interface Props {
 }
 export default function LineBreak({ content, color }: Props) {
   return (
-    <div className={`${color} mb-5 `}>{`${content.text} From ${
+    <div className={`${color}`}>{`${content.text} From ${
       content.writer === '' ? '익명의 스트링캣' : content.writer
     }`}</div>
   );
