@@ -3,12 +3,6 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'FiraCode';
-  src: url('/fonts/FiraCode-Regular.ttf') format('truetype');
-  font-style: normal;
-}
-
-@font-face {
   font-family: 'Noto Sans KR';
   src: url('/fonts/NotoSansKR-Regular.ttf') format('truetype');
   font-style: normal;
