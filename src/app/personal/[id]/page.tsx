@@ -55,7 +55,11 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
-    if (board) runCatAnimation('strcatCreate', catAction.sit, 5000);
+    if (board) {
+      console.log(board);
+      runCatAnimation('catHeader', catAction.out, 1000);
+      runCatAnimation('strcatCreate', catAction.sit, 5000);
+    }
   }, [board]);
 
   return (

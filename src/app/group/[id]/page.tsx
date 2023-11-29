@@ -75,8 +75,15 @@ export default function Group({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   useEffect(() => {
-    if (boards) runCatAnimation('strcatCreate', catAction.sit, 5000);
+    if (boards) {
+      runCatAnimation('catHeader', catAction.out, 1000);
+      runCatAnimation('strcatCreate', catAction.sit, 5000);
+    }
   }, [boards]);
+
+  useEffect(() => {
+    runCatAnimation('strcatCreate', catAction.sit, 0);
+  }, [theme]);
 
   return (
     <div className={`${theme.background} h-full`}>
