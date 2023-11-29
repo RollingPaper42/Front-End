@@ -8,6 +8,7 @@ import BottomButton from '@/component/BottomButton';
 import { useRouter } from 'next/navigation';
 import Back from '@/component/Icon/Back';
 import LongCat from '@/component/Icon/LongCat';
+import { handleShare } from '@/utils/handleShare';
 
 export default function Summary({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -46,7 +47,7 @@ export default function Summary({ params }: { params: { id: string } }) {
               <div className=" flex h-full w-full flex-row">
                 <div
                   className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
-                  onClick={() => router.push(`/personal/${params.id}`)}
+                  onClick={() => router.back()}
                 >
                   <Back color={Theme.backIcon} />
                 </div>
@@ -93,7 +94,7 @@ export default function Summary({ params }: { params: { id: string } }) {
               height="h-[42px]"
               name="공유하기"
               width="w-[312px]"
-              onClickHandler={() => router.push('/create')}
+              onClickHandler={() => handleShare(`/personal/${params.id}`)}
               disabled={false}
               color={`${Theme.rightCTA}`}
             />
