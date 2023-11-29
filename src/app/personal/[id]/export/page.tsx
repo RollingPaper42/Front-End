@@ -13,24 +13,21 @@ import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
-import { usePathname } from 'next/navigation';
 
-export default function Export() {
+export default function Export({ params }: { params: { id: string } }) {
   const [openModal, closeModal] = useModal();
   const [title, setTitle] = useState<string>('');
   const [board, setBoard] = useState<content[] | undefined>(undefined);
   const divRef = useRef<HTMLDivElement>(null);
-  const pathname = usePathname();
   const [exportTheme, setExportTheme] = useState<string>(
     exportThemeEnum.default,
   );
 
   useEffect(() => {
-    const regex = /\/personal\/(.*?)\/export/;
-    const match = pathname.match(regex);
-    if (match === null) return;
+    const id = params.id;
+    if (id === null) return;
     axiosInstance
-      .get(`/boards/${match[1]}`)
+      .get(`/boards/${id}`)
       .then((data) => {
         console.log(data);
         setTitle(data.data.board.title);

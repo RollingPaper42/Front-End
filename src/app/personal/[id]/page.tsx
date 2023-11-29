@@ -88,7 +88,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                     height="h-[42px]"
                     name="저장"
                     width="basis-1/5"
-                    onClickHandler={() => router.push(`./export`)}
+                    onClickHandler={() => router.push(`${params.id}/export`)}
                     disabled={false}
                     color={`bg-white`}
                   />
