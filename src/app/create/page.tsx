@@ -43,7 +43,8 @@ export default function Create() {
     axiosInstance
       .post(`/boards`, data)
       .then((data) => {
-        router.push(`/personal/${data.data}`);
+        if (groupId == null) router.push(`/personal/${data.data}`);
+        else router.push(`/group/${data.data}`);
       })
       .catch((err) => {
         if (err.response.status === 406) {
@@ -73,6 +74,7 @@ export default function Create() {
     if (title.length == 0) SetButtonState(true);
     if (title.length >= 30 && e.key !== 'Backspace' && e.key !== 'Delete') {
       e.preventDefault();
+      SetButtonState(true);
       e.currentTarget.value = e.currentTarget.value.slice(0, 30);
       SetErrorFontColor('text-red-600');
     } else {
@@ -122,7 +124,7 @@ export default function Create() {
           <div className={`inline text-[18px] ${Theme.highlightText}`}>
             스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
           </div>
-          <div className={`inline text-[18px] opacity-30 ${Theme.defaultText}`}>
+          <div className={`inline text-[18px] ${Theme.defaultText}`}>
             스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
           </div>
         </div>

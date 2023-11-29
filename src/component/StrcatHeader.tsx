@@ -59,7 +59,7 @@ export default function StrcatHeader() {
           </div>
         ) : (
           <Link
-            href="/login"
+            href={pathName === '/login' ? '/' : '/login'}
             scroll={false}
             onClick={() =>
               localStorage.setItem('strcat_login_success_url', pathName)

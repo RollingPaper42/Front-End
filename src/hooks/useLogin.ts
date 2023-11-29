@@ -1,8 +1,13 @@
 import { loginState } from '@/recoil/login';
 import { axiosInstance } from '@/utils/axios';
+import { Dispatch } from 'react';
 import { useRecoilState } from 'recoil';
 
-export const useLogin = (): [boolean, () => void] => {
+export const useLogin = (): [
+  boolean,
+  () => void,
+  Dispatch<React.SetStateAction<boolean>>,
+] => {
   const [isLogin, setIsLogin] = useRecoilState(loginState);
   const checkLogin = () => {
     axiosInstance
@@ -13,5 +18,5 @@ export const useLogin = (): [boolean, () => void] => {
       .catch((err) => {});
   };
 
-  return [isLogin, checkLogin];
+  return [isLogin, checkLogin, setIsLogin];
 };

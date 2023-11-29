@@ -22,7 +22,7 @@ interface Board {
 }
 
 export default function Drawer() {
-  const [isLogin] = useLogin();
+  const [isLogin, , setIsLogin] = useLogin();
   const [drawer, setDrawer] = useRecoilState(drawerState);
   const [dropList, setDropList] = useState(false);
   const [groupDropList, setGroupDropList] = useState(false);
@@ -50,6 +50,7 @@ export default function Drawer() {
     setDrawer(false);
     localStorage.removeItem('strcat_token');
     router.push('/');
+    setIsLogin(false);
   };
 
   useEffect(() => {
@@ -90,9 +91,9 @@ export default function Drawer() {
               {personalList.length != 0 && (
                 <div className="ml-[12px]">
                   {dropList ? (
-                    <DropListDown color={theme.defaultIcon} />
-                  ) : (
                     <DropListUp color={theme.defaultIcon} />
+                  ) : (
+                    <DropListDown color={theme.defaultIcon} />
                   )}
                 </div>
               )}
@@ -120,9 +121,9 @@ export default function Drawer() {
               {groupList.length != 0 && (
                 <div className="ml-[12px]">
                   {groupDropList ? (
-                    <DropListDown color={theme.defaultIcon} />
-                  ) : (
                     <DropListUp color={theme.defaultIcon} />
+                  ) : (
+                    <DropListDown color={theme.defaultIcon} />
                   )}
                 </div>
               )}

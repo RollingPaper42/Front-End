@@ -26,7 +26,7 @@ export default function Login() {
           <div
             className={`mx-[24px] mt-[40px] h-full text-[20px] ${theme.defaultText}`}
           >
-            <div>로그인하고 스트링캣을 생성해보세요.</div>
+            <div>{`\/\/ 로그인하고 스트링캣을 생성해보세요.`}</div>
           </div>
         </div>
         <div className="basis-9/12"></div>
@@ -51,7 +51,7 @@ export default function Login() {
           >
             <div className="flex h-full w-full flex-row">
               <div className="basis-2/12">
-                <Image src="/google.svg" width={48} height={48} alt="google" />
+                <Image src="/Google.svg" width={48} height={48} alt="google" />
               </div>
               <div className="mt-[12px] basis-8/12 text-center text-[16px]">
                 구글 시작하기

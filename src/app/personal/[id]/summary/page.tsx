@@ -1,6 +1,6 @@
 'use client';
 
-import { themeState } from '@/recoil/theme';
+import { themeObj, themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
 import { axiosInstance } from '@/utils/axios';
 import { useEffect, useState } from 'react';
@@ -26,7 +26,8 @@ export default function Summary({ params }: { params: { id: string } }) {
         setTitle(data.data.title);
         setContentCount(data.data.contentCount);
         setContentTextCount(data.data.contentTextCount);
-        setTheme(data.data.theme);
+        const themename: 'strcat' | 'cyan' | 'green' | 'calm' = data.data.theme;
+        setTheme(themeObj[themename]);
       })
       .catch((err) => {
         if (err.response.status === 406) {
