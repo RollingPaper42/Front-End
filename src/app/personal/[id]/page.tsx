@@ -96,9 +96,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                     name="공유"
                     height="h-[42px]"
                     width="basis-1/5"
-                    onClickHandler={() =>
-                      router.push(`./${params.id}/export?id=${params.id}`)
-                    }
+                    onClickHandler={() => router.push(`${params.id}/summary`)}
                     disabled={false}
                     color={`${theme.leftCTA}`}
                   />
