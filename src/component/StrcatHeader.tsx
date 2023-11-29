@@ -29,7 +29,7 @@ export default function StrcatHeader() {
     ) {
       setTimeout(() => {
         setAnimationHeader(true);
-        runCatAnimation('catHeader', catAction.exit, 0);
+        runCatAnimation('catHeader', catAction.out, 0);
       }, 1000);
     }
   }, [pathName]);

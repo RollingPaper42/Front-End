@@ -1,8 +1,9 @@
 export const catAction = {
-  exit: 'exit',
-  newContent: 'newContent',
-  longText: 'longText',
+  in: 'in',
+  out: 'out',
   sit: 'sit',
+  leftWall: 'leftWall',
+  rightWall: 'rightWall',
   none: 'none',
 };
 
@@ -16,15 +17,13 @@ export interface catAnimation {
 }
 
 export const catAnimationDetail = {
-  [catAction.exit]: {
-    src: '/cats/exit.gif',
+  [catAction.out]: {
     width: 114,
     height: 40,
     top: 8,
     left: 0,
   },
   [catAction.sit]: {
-    src: '/cats/sit.gif',
     width: 40,
     height: 40,
     top: -40,
