@@ -27,7 +27,9 @@ export default function Create() {
     );
     if (isConfirmed) {
       try {
-        const res = await axiosInstance.post(`/board-groups`, { title: title });
+        const res = await axiosInstance.post(`/board-groups`, {
+          title: `\/\/${title}`,
+        });
         router.push(`/group/${res.data}`);
       } catch (err) {
         const error = err as AxiosError;
