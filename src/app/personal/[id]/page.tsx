@@ -53,7 +53,7 @@ export default function Personal({ params }: { params: { id: string } }) {
       <StrcatHeader />
       <CatAnimation />
       <div
-        className={`relative w-full  py-[24px] text-justify ${theme.background} pb-[500px]`}
+        className={`relative w-full py-[24px] text-justify ${theme.background} pb-[500px]`}
       >
         {board.length && (
           <StrcatBoard

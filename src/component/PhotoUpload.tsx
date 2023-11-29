@@ -1,51 +1,37 @@
 import React, { Dispatch, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
+import Image from 'next/image';
 import imageCompression from 'browser-image-compression';
-/* eslint-disable @next/next/no-img-element */
+import PreviewPhoto from './PreviewPhoto';
 
 interface Props {
-  setImage: Dispatch<React.SetStateAction<Blob | null>>;
+  setImage: Dispatch<React.SetStateAction<File | null>>;
 }
 const PhotoUpload = ({ setImage }: Props) => {
   const [theme] = useRecoilState(themeState);
-  const [preview, setPreview] = useState('');
-
-  const handleImageDelete = () => {
-    setImage(null);
-    setPreview('');
-  };
+  const [preview, setPreview] = useState<string>();
 
   const handleChangeImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    // const selectedImage = e.target.files[0];
-    // if (selectedImage) {
-    //   const imageUrl = URL.createObjectURL(selectedImage);
-    //   setPreview(imageUrl);
-    //   setImage(selectedImage);
-    // }
-
     if (e.target.files === null) return;
-    let file = e.target?.files[0];
+    const file = e.target?.files[0];
     const options = {
       maxSizeMB: 1,
       alwaysKeepResolution: true,
     };
-
     try {
       if (file.size > 1024) {
         const compressedFile = await imageCompression(file, options);
-        setImage(compressedFile);
-        const dataUrl =
-          await imageCompression.getDataUrlFromFile(compressedFile);
-        setPreview(dataUrl);
+        const preview = new File([compressedFile], 'name');
+        setImage(preview);
       } else {
         setImage(file);
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-          setPreview(reader.result as string);
-        };
       }
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setPreview(reader.result as string);
+      };
     } catch (error) {
       console.log(error);
     }
@@ -54,37 +40,45 @@ const PhotoUpload = ({ setImage }: Props) => {
   return (
     <>
       {preview ? (
-        <div className="relative h-[63px] w-[63px] ">
-          <div className="h-[56px] w-[56px]">
-            <img
-              src={preview}
-              alt="프로필 이미지"
-              style={{ width: 'auto', height: 'auto' }}
+        <>
+          <PreviewPhoto
+            preview={preview}
+            setPreview={setPreview}
+            setImage={setImage}
+          />
+          <div className="relative mx-2 h-[42px] w-full basis-1/5 ">
+            <div
+              className={`absolute top-[3px] h-[39px] w-full ${theme.leftCTA}`}
             />
-          </div>
-          <div
-            className="absolute right-0 top-0 z-10 h-full cursor-pointer"
-            onClick={handleImageDelete}
-          >
-            x
-          </div>
-        </div>
-      ) : (
-        <form className="flex basis-1/5 items-center justify-center">
-          <label htmlFor="imgFile" className="relative mx-2 h-full w-full">
-            <div className="absolute inset-0 w-full bg-white">
-              <div
-                className={`relative bottom-[4.5px] left-[2px] h-12 w-full bg-white`}
-                style={{ lineHeight: '3rem' }}
+            <div
+              className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.leftCTA}`}
+            />
+            <div className="absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center text-black">
+              <Image
+                src="/Picture.svg"
+                alt="pictureIcon"
+                width={24}
+                height={24}
               />
             </div>
-            <h1 className="absolute inset-0 flex w-full items-center justify-center text-xl text-black">
+          </div>
+        </>
+      ) : (
+        <form className="mx-2 flex h-[42px] basis-1/5 items-center justify-center">
+          <label htmlFor="imgFile" className="relative h-full w-full">
+            <div
+              className={`absolute top-[3px] h-[39px] w-full ${theme.leftCTA}`}
+            />
+            <div
+              className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.leftCTA}`}
+            />
+            <h1 className="absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center text-[22px] text-strcat-default-black">
               사진
             </h1>
           </label>
           <input
             type="file"
-            accept="image/*"
+            accept="image/png, image/jpeg, image/jpg"
             id="imgFile"
             onChange={handleChangeImage}
             className="img-input hidden"

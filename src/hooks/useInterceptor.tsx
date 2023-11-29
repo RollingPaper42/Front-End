@@ -36,7 +36,10 @@ export const useInterceptor = () => {
     axiosInstance.interceptors.request.use(requestHandler);
   const responseInterceptor = axiosInstance.interceptors.response.use(
     (response) => responseHandler(response),
-    (error) => errorHandler(error.response.status),
+    (error) => {
+      errorHandler(error.response.status);
+      return error;
+    },
   );
 
   useEffect(() => {
