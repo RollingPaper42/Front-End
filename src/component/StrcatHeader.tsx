@@ -45,7 +45,7 @@ export default function StrcatHeader() {
         {animationHeader ? (
           <Link href="/" scroll={false}>
             <div className="relative h-[40px] w-[120px]">
-              <Image src="/outHeader.svg" alt="hi" fill />
+              <Image src="/strcatHeaderText.svg" alt="hi" fill />
             </div>
           </Link>
         ) : (
