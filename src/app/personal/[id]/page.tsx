@@ -11,13 +11,12 @@ import { observeState } from '@/recoil/observe';
 import { useRouter } from 'next/navigation';
 import { board } from '@/types/boards';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
-import StrcatAnimationHeader from '@/component/StrcatAnimationHeader';
 import CatAnimation from '@/component/CatAnimation';
 import { catAction } from '@/types/animation';
 import { useCat } from '@/hooks/useCat';
 import ShareButton from '@/component/ShareButton';
 import { axiosInstance } from '@/utils/axios';
-// import StrcatHeader from '@/component/StrcatHeader';
+import StrcatHeader from '@/component/StrcatHeader';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -45,14 +44,13 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
-    if (board) runCatAnimati('strcatCreate', catAction.sit, 3000);
+    if (board) runCatAnimati('strcatCreate', catAction.sit, 10000);
   }, [board]);
 
   return (
     <>
       <Drawer />
-      <StrcatAnimationHeader />
-      {/* <StrcatHeader /> */}
+      <StrcatHeader />
       <CatAnimation />
       <div
         className={`relative w-full  py-[24px] text-justify ${theme.background} pb-[500px]`}
