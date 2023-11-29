@@ -1,21 +1,25 @@
-import { catState } from '@/recoil/cat';
+import { catAnimationState } from '@/recoil/catAnimation';
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 
 export default function CatAnimation() {
-  const [cat] = useRecoilState(catState);
+  const [catAnimation] = useRecoilState(catAnimationState);
 
   return (
     <div
       className="fixed z-[55]"
       style={{
-        width: `${cat.width}px`,
-        height: `${cat.height}px`,
-        top: `${cat.top}px`,
-        left: `${cat.left}px`,
+        width: `${catAnimation.width}px`,
+        height: `${catAnimation.height}px`,
+        top: `${catAnimation.top}px`,
+        left: `${catAnimation.left}px`,
       }}
     >
-      <Image alt={`${cat.catAction}`} src={`${cat.src}`} fill />
+      <Image
+        alt={`${catAnimation.catAction}`}
+        src={`${catAnimation.src}`}
+        fill
+      />
     </div>
   );
 }

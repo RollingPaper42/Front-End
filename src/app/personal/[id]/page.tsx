@@ -13,11 +13,11 @@ import { board } from '@/types/boards';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import StrcatAnimationHeader from '@/component/StrcatAnimationHeader';
 import CatAnimation from '@/component/CatAnimation';
-import { catAction } from '@/types/cat';
+import { catAction } from '@/types/animation';
 import { useCat } from '@/hooks/useCat';
 import ShareButton from '@/component/ShareButton';
 import { axiosInstance } from '@/utils/axios';
-import StrcatHeader from '@/component/StrcatHeader';
+// import StrcatHeader from '@/component/StrcatHeader';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -27,7 +27,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [observe] = useRecoilState(observeState);
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
-  const [setCatAnimation] = useCat();
+  const [runCatAnimati] = useCat();
   useEffect(() => {
     axiosInstance
       .get(`/boards/${params.id}`)
@@ -45,7 +45,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
-    if (board) setCatAnimation('strcatCreate', catAction.sit, 3000);
+    if (board) runCatAnimati('strcatCreate', catAction.sit, 3000);
   }, [board]);
 
   return (

@@ -6,7 +6,7 @@ export const catAction = {
   none: 'none',
 };
 
-export interface cat {
+export interface catAnimation {
   src: string;
   catAction: string;
   top: number;

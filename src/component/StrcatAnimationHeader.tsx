@@ -2,8 +2,8 @@
 
 import { useCat } from '@/hooks/useCat';
 import { useLogin } from '@/hooks/useLogin';
-import { catState, drawerState, themeState } from '@/recoil/state';
-import { catAction } from '@/types/cat';
+import { drawerState, themeState } from '@/recoil/state';
+import { catAction } from '@/types/animation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -15,11 +15,11 @@ export default function StrcatAnimationHeader() {
   const pathName = usePathname();
   const [, setDrawer] = useRecoilState(drawerState);
   const [theme] = useRecoilState(themeState);
-  const [setCatAnimation] = useCat();
+  const [runCatAnimation] = useCat();
 
   useEffect(() => {
     checkLogin();
-    setCatAnimation('catHeader', catAction.exit, 0);
+    runCatAnimation('catHeader', catAction.exit, 0);
   }, []);
 
   return (

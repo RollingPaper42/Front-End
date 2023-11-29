@@ -1,4 +1,4 @@
-import { catState } from './cat';
+import { catAnimationState } from './catAnimation';
 import { drawerState } from './drawer';
 import { loginState } from './login';
 import { modalState } from './modal';
@@ -6,7 +6,7 @@ import { observeState } from './observe';
 import { themeState } from './theme';
 
 export {
-  catState,
+  catAnimationState,
   drawerState,
   loginState,
   modalState,

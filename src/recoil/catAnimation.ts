@@ -1,7 +1,7 @@
-import { cat, catAction } from '@/types/cat';
+import { catAction, catAnimation } from '@/types/animation';
 import { atom } from 'recoil';
 
-const defaultCat: cat = {
+const defaultCat: catAnimation = {
   src: '',
   catAction: catAction.none,
   top: 0,
@@ -10,7 +10,7 @@ const defaultCat: cat = {
   height: 0,
 };
 
-export const catState = atom<cat>({
+export const catAnimationState = atom<catAnimation>({
   key: 'catState',
   default: defaultCat,
 });

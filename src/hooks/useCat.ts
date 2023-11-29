@@ -1,13 +1,13 @@
-import { catState } from '@/recoil/cat';
-import { catAction, catAnimationDetail } from '@/types/cat';
+import { catAnimationState } from '@/recoil/catAnimation';
+import { catAnimationDetail } from '@/types/animation';
 import { useRecoilState } from 'recoil';
 
 export const useCat = (): [
   (element: string, catAction: string, second: number) => void,
 ] => {
-  const [, setCat] = useRecoilState(catState);
+  const [, setCatAnimation] = useRecoilState(catAnimationState);
 
-  const setCatAnimation = (
+  const runCatAnimation = (
     elementId: string,
     catActionString: string,
     time: number,
@@ -17,7 +17,7 @@ export const useCat = (): [
       if (element === null) return;
       const elementLeft = element.getBoundingClientRect().left;
       const elementTop = element.getBoundingClientRect().top;
-      setCat({
+      setCatAnimation({
         src: catAnimationDetail[catActionString].src,
         catAction: catActionString,
         width: catAnimationDetail[catActionString].width,
@@ -27,5 +27,5 @@ export const useCat = (): [
       });
     }, time);
   };
-  return [setCatAnimation];
+  return [runCatAnimation];
 };
