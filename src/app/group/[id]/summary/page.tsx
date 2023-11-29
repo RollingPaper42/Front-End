@@ -1,6 +1,6 @@
 'use client';
 
-import { themeState } from '@/recoil/theme';
+import { themeObj, themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
 import { axiosInstance } from '@/utils/axios';
 import { useEffect, useState } from 'react';

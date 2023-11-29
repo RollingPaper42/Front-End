@@ -8,7 +8,6 @@ import BottomButton from '@/component/BottomButton';
 import { useRouter } from 'next/navigation';
 import Back from '@/component/Icon/Back';
 import LongCat from '@/component/Icon/LongCat';
-import { handleShare } from '@/utils/handleShare';
 
 export default function Summary({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -94,7 +93,7 @@ export default function Summary({ params }: { params: { id: string } }) {
               height="h-[42px]"
               name="공유하기"
               width="w-[312px]"
-              onClickHandler={() => handleShare(`/personal/${params.id}`)}
+              onClickHandler={() => router.push('/create')}
               disabled={false}
               color={`${Theme.rightCTA}`}
             />
