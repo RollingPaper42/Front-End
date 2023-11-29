@@ -44,7 +44,7 @@ export default function Modal() {
     const divBottom = div.getBoundingClientRect().bottom;
     const divRight = div.getBoundingClientRect().right;
     setCat({
-      src: '/cats/in.gif',
+      src: '/cats/strcat/in.gif',
       catAction: catAction.out,
       width: 50,
       height: 50,
@@ -59,8 +59,8 @@ export default function Modal() {
     const divLeft = div.getBoundingClientRect().left;
     const divBottom = div.getBoundingClientRect().bottom;
     setCat({
-      src: '/cats/in.gif',
-      catAction: catAction.newContent,
+      src: '/cats/strcat/in.gif',
+      catAction: catAction.out,
       width: 50,
       height: 50,
       top: divBottom + 50,
