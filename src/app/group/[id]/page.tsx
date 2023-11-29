@@ -15,7 +15,6 @@ import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import { useRouter } from 'next/navigation';
 import ShortCut from '@/component/Icon/ShortCut';
-import axios, { AxiosError } from 'axios';
 
 export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string | null>();
@@ -49,12 +48,7 @@ export default function Group({ params }: { params: { id: string } }) {
         setTitle(data.data.title);
         setIsOwner(data.data.isOwner);
       })
-      .catch((err) => {
-        const error = err as AxiosError;
-        if (err.response?.status === 406) {
-          router.push('/'); // 추후 에러페이지 만들어지면 리다이렉트 예정
-        }
-      });
+      .catch((err) => {});
   }, [params.id]);
   return (
     <div className={`h-[100vh] ${theme.background}`}>
