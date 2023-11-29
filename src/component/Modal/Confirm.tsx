@@ -19,10 +19,10 @@ export default function Confirm({ content, yes, no }: Props) {
             <ModalClose />
           </div>
         </div>
-        <div className=" flex h-[150px] items-center justify-center px-16">
+        <div className=" flex h-[150px] items-center justify-center px-8">
           <p>{content}</p>
         </div>
-        <div className="flex flex-row justify-around">
+        <div className="bottom-2 flex flex-row justify-around">
           <BottomButton
             height="h-[42px]"
             color="bg-[#A6A6A6]"

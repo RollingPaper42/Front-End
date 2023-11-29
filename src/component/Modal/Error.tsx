@@ -1,4 +1,6 @@
 import useModal from '@/hooks/useModal';
+import ModalErrorBackground from '../Icon/ModalErrorBackground';
+import BottomButton from '../BottomButton';
 
 interface Props {
   content: string;
@@ -7,17 +9,22 @@ interface Props {
 
 export default function Error({ content, handleModalClose }: Props) {
   return (
-    <div className="flex h-full w-full flex-col bg-green-700">
-      <div className="flex h-[70%] items-center justify-center p-10 text-center text-2xl">
-        {content}
-      </div>
-      <div className="flex h-[30%] justify-center">
-        <button
-          className="h-[80%] basis-4/5 bg-amber-200 text-3xl"
-          onClick={handleModalClose}
-        >
-          돌아가기
-        </button>
+    <div className="flex h-[196px] w-[312px] flex-col">
+      <ModalErrorBackground />
+      <div className="absolute flex h-[196px] w-[312px] flex-col items-center justify-center">
+        <div className="flex h-[100px] items-center justify-center px-[8px]">
+          {content}
+        </div>
+        <div className=" bottom-2 flex w-[264px] items-center justify-center">
+          <BottomButton
+            height="42px"
+            color="bg-[#6CD8ED]"
+            name="돌아가기"
+            width="w-full"
+            disabled={false}
+            onClickHandler={handleModalClose}
+          ></BottomButton>
+        </div>
       </div>
     </div>
   );
