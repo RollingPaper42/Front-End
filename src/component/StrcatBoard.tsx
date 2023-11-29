@@ -4,36 +4,36 @@ import {
   forwardRef,
   Dispatch,
   SetStateAction,
-  useState,
   useEffect,
+  useState,
 } from 'react';
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { themeObj, themeState } from '@/recoil/theme';
 import Add from './Add';
 import { observeState } from '@/recoil/observe';
 import { board } from '@/types/boards';
 import ObserveTitle from './ObserveTitle';
-import { setupFsCheck } from 'next/dist/server/lib/router-utils/filesystem';
+import ShareButton from './ShareButton';
 
 interface Props {
   board: board;
   isAdd: boolean;
   setIsAdd: Dispatch<SetStateAction<boolean>>;
+  isPersonal: boolean;
+  paramsId?: string;
 }
 
 const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
-  { board, isAdd, setIsAdd },
+  { board, isAdd, setIsAdd, isPersonal, paramsId },
   ref,
 ) {
   const [observe] = useRecoilState(observeState);
-  const [theme] = useRecoilState(themeState);
   const [content, setContent] = useState<content[]>([]);
   useEffect(() => {
     setContent(board.contents);
   }, [board]);
   return (
-    <div ref={ref} className={` ${theme.background} px-[24px] duration-200`}>
+    <div ref={ref} className={`break-words px-[24px]`}>
       <ObserveTitle isAdd={isAdd} board={board} />
       <div className={`z-0 inline`}>
         {content &&
@@ -57,6 +57,9 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
         />
       )}
       {!isAdd && <div className=" h-12"></div>}
+      {isPersonal && !content.length && (
+        <ShareButton params={`/personal/${paramsId}`} />
+      )}
     </div>
   );
 });

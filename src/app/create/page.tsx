@@ -43,7 +43,8 @@ export default function Create() {
     axiosInstance
       .post(`/boards`, data)
       .then((data) => {
-        router.push(`/personal/${data.data}`);
+        if (groupId == null) router.push(`/personal/${data.data}`);
+        else router.push(`/group/${data.data}`);
       })
       .catch((err) => {
         if (err.response.status === 406) {

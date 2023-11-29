@@ -28,7 +28,6 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
               photoUrl: content.photoUrl,
               writer: content.writer,
             }));
-            setTheme(() => themeObj[boardTheme]);
           }
         });
       },
@@ -63,8 +62,8 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
         !isAdd &&
         observe.boardId === boardId &&
         observe.contentId === content.id
-          ? `${theme.highlightText} ' duration-500' inline  w-full  text-[18px] leading-[160%] opacity-100 transition-all`
-          : `${theme.defaultText} ' duration-500'  inline  w-full text-[18px] leading-[160%] opacity-30 transition-all`
+          ? `${theme.highlightText}  inline  w-full  text-[18px] leading-[160%] opacity-100 transition-all`
+          : `${theme.defaultText}   inline  w-full text-[18px] leading-[160%] opacity-30 transition-all`
       }
     `}
       >
