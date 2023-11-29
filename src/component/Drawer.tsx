@@ -117,10 +117,14 @@ export default function Drawer() {
                   />
                 }
               />
+              {groupList.length != 0 && (
+                <div className="ml-[12px]">
                   {groupDropList ? (
                     <DropListDown color={theme.defaultIcon} />
                   ) : (
                     <DropListUp color={theme.defaultIcon} />
+                  )}
+                </div>
               )}
             </div>
             {groupDropList && (
