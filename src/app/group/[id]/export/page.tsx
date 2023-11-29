@@ -34,7 +34,7 @@ export default function Export({ params }: { params: { id: string } }) {
     if (!divRef.current) return;
     try {
       const div = divRef.current;
-      const canvas = await html2canvas(div, { scale: 2 });
+      const canvas = await html2canvas(div, { scale: 4 });
       canvas.toBlob((blob) => {
         if (blob !== null) {
           saveAs(blob, `strcat_${title}.png`);
@@ -66,10 +66,10 @@ export default function Export({ params }: { params: { id: string } }) {
   }, []);
 
   return (
-    <div ref={divRef} className={`${theme.background} ${theme.defaultText} `}>
+    <div className={`${theme.background} ${theme.defaultText} `}>
       <Drawer />
       <StrcatHeader />/
-      <div className="mt-[78px]">
+      <div ref={divRef} className="mt-[78px]">
         <div className={`mx-[24px] mb-[24px] text-[24px]`}>{title}</div>
         {boardsTitle?.map((board: board) => {
           return (
