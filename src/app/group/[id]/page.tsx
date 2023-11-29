@@ -54,7 +54,9 @@ export default function Group({ params }: { params: { id: string } }) {
     <div className={`h-[100vh] ${theme.background}`}>
       <Drawer />
       <StrcatHeader />
-      <div className={` w-full py-[24px] pt-[56px] ${theme.background}`}>
+      <div
+        className={`relative w-full py-[24px] pt-[56px] ${theme.background}`}
+      >
         <div className="mb-[20px]">
           <h1 className={`${theme.defaultText} mx-[24px] text-[26px]`}>
             {`${title}`}
