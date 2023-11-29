@@ -10,7 +10,7 @@ export const catAction = {
 export interface catAnimation {
   src: string;
   catAction: string;
-  top: number;
+  bottom: number;
   left: number;
   width: number;
   height: number;
@@ -20,13 +20,13 @@ export const catAnimationDetail = {
   [catAction.out]: {
     width: 114,
     height: 40,
-    top: 8,
+    bottom: 8,
     left: 0,
   },
   [catAction.sit]: {
     width: 40,
     height: 40,
-    top: -40,
+    bottom: 40,
     left: 200,
   },
 };
