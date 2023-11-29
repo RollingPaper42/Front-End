@@ -26,7 +26,7 @@ export default function Login() {
           <div
             className={`mx-[24px] mt-[40px] h-full text-[20px] ${theme.defaultText}`}
           >
-            <div>로그인하고 스트링캣을 생성해보세요.</div>
+            <div>{`\/\/ 로그인하고 스트링캣을 생성해보세요.`}</div>
           </div>
         </div>
         <div className="basis-9/12"></div>
