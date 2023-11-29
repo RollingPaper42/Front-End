@@ -17,6 +17,7 @@ import { useCat } from '@/hooks/useCat';
 import ShareButton from '@/component/ShareButton';
 import { axiosInstance } from '@/utils/axios';
 import StrcatHeader from '@/component/StrcatHeader';
+import { content } from '@/types/content';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -49,19 +50,19 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={`h-[100vh] ${theme.background}`}>
+      <div className={` h-full ${theme.background}`}>
         <Drawer />
         <StrcatHeader />
         <CatAnimation />
-        <div
-          className={`relative w-full  py-[24px] text-justify ${theme.background} pb-[500px]`}
-        >
+        <div className={`relative w-full  py-[24px] text-justify `}>
           {board.length && (
             <StrcatBoard
               board={board[0]}
               ref={(node) => setMap(node, board[0], itemsRef)}
               isAdd={isAdd}
               setIsAdd={setIsAdd}
+              isPersonal={true}
+              paramsId={params.id}
             />
           )}
           {!isAdd &&
@@ -124,9 +125,6 @@ export default function Personal({ params }: { params: { id: string } }) {
                 </div>
               </>
             ))}
-          {board.length && !board[0].contents.length && !isAdd && (
-            <ShareButton params={params.id} />
-          )}
           {!isAdd && <ContentPhoto />}
         </div>
       </div>

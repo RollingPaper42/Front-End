@@ -12,10 +12,10 @@ export default function Modal() {
   return (
     modal && (
       <div
-        className="fixed top-0  z-[99] flex h-full w-full max-w-md items-center justify-center bg-slate-400/50"
+        className="fixed top-0  z-[99] flex h-full w-full max-w-md items-center justify-center bg-black/40"
         onClick={(e) => handleBackground(e, closeModal)}
       >
-        {modal.modalComponent}
+        <div className="opacity-100">{modal.modalComponent}</div>
       </div>
     )
   );
