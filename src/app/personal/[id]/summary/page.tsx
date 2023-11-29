@@ -48,7 +48,7 @@ export default function Summary({ params }: { params: { id: string } }) {
               <div className=" flex h-full w-full flex-row">
                 <div
                   className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
-                  onClick={() => router.push(`/personal/${params.id}`)}
+                  onClick={() => router.back()}
                 >
                   <Back color={Theme.backIcon} />
                 </div>

@@ -17,6 +17,7 @@ import { useRouter } from 'next/navigation';
 import ShortCut from '@/component/Icon/ShortCut';
 import { content } from '@/types/content';
 import ShareButton from '@/component/ShareButton';
+import { useLogin } from '@/hooks/useLogin';
 
 export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string | null>();
@@ -27,6 +28,7 @@ export default function Group({ params }: { params: { id: string } }) {
   const [observe] = useRecoilState(observeState);
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [content, setContent] = useState<content[]>([]);
+  const [isLogin] = useLogin();
   const router = useRouter();
   const scrollToId = (itemId: string) => {
     const map = itemsRef.current;
@@ -41,6 +43,19 @@ export default function Group({ params }: { params: { id: string } }) {
     setIsAdd(true);
     scrollToAdd(observe.boardId, itemsRef);
   };
+
+  const handleClickCreate = () => {
+    if (!isLogin) {
+      localStorage.setItem(
+        'strcat_login_success_url',
+        `create?groupId=${params.id}`,
+      );
+      router.push('/login');
+    } else {
+      router.push(`create?groupId=${params.id}`);
+    }
+  };
+
   useEffect(() => {
     //axios
     axiosInstance
@@ -53,6 +68,7 @@ export default function Group({ params }: { params: { id: string } }) {
       })
       .catch((err) => {});
   }, [params.id]);
+
   return (
     <div className={`${theme.background} h-full`}>
       <Drawer />
@@ -85,8 +101,7 @@ export default function Group({ params }: { params: { id: string } }) {
                 ref={(node: any) => setMap(node, board, itemsRef)}
                 key={board.id}
                 board={board}
-                content={content}
-                setContent={setContent}
+                isPersonal={false}
               />
             );
           })}
@@ -143,7 +158,7 @@ export default function Group({ params }: { params: { id: string } }) {
                   color={`${theme.leftCTA}`}
                   name="스트링캣 만들기"
                   width="basis-1/2"
-                  onClickHandler={() => router.push(`/create`)}
+                  onClickHandler={handleClickCreate}
                   disabled={false}
                 />
                 <BottomButton

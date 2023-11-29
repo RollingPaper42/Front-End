@@ -61,7 +61,7 @@ export default function Drawer() {
     drawer &&
     isLogin && (
       <div
-        className="fixed z-30 h-full w-full max-w-md"
+        className="fixed z-30 h-full w-full max-w-md bg-black bg-opacity-40"
         onClick={(e) => handleBackground(e, () => setDrawer(false))}
       >
         <div
