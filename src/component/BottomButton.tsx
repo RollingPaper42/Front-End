@@ -34,7 +34,7 @@ export default function BottomButton({
             disabled ? 'bg-[#CCCCCC]' : color
           }`}
           style={{ lineHeight: '3rem' }}
-        />{' '}
+        />
         <h1 className="absolute inset-0 flex w-full items-center justify-center text-xl text-black ">
           {name}
         </h1>
