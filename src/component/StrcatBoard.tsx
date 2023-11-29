@@ -33,7 +33,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
     setContent(board.contents);
   }, [board]);
   return (
-    <div ref={ref} className={`break-words px-[24px]`}>
+    <div ref={ref} className={`break-all px-[24px]`}>
       <ObserveTitle isAdd={isAdd} board={board} />
       <div className={`z-0 inline`}>
         {content &&
@@ -57,7 +57,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
         />
       )}
       {!isAdd && <div className=" h-12"></div>}
-      {isPersonal && !content.length && (
+      {!isAdd && isPersonal && !content.length && (
         <ShareButton params={`/personal/${paramsId}`} />
       )}
     </div>
