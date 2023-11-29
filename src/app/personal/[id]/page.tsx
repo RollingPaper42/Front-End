@@ -28,7 +28,6 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
   const [runCatAnimati] = useCat();
-  const [content, setContent] = useState<content[]>([]);
   useEffect(() => {
     axiosInstance
       .get(`/boards/${params.id}`)
@@ -55,19 +54,15 @@ export default function Personal({ params }: { params: { id: string } }) {
         <Drawer />
         <StrcatHeader />
         <CatAnimation />
-        <div
-          className={`relative w-full  py-[24px] text-justify ${
-            content.length ? 'pb-[500px]' : ''
-          }`}
-        >
+        <div className={`relative w-full  py-[24px] text-justify `}>
           {board.length && (
             <StrcatBoard
               board={board[0]}
               ref={(node) => setMap(node, board[0], itemsRef)}
               isAdd={isAdd}
               setIsAdd={setIsAdd}
-              content={content}
-              setContent={setContent}
+              isPersonal={true}
+              paramsId={params.id}
             />
           )}
           {!isAdd &&
@@ -130,9 +125,6 @@ export default function Personal({ params }: { params: { id: string } }) {
                 </div>
               </>
             ))}
-          {board.length && !content.length && !isAdd && (
-            <ShareButton params={`/personal/${params.id}`} />
-          )}
           {!isAdd && <ContentPhoto />}
         </div>
       </div>
