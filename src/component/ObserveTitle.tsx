@@ -12,7 +12,7 @@ interface Props {
 const ObserveContent = ({ board, isAdd }: Props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [, setObserve] = useRecoilState(observeState);
-  const [, setTheme] = useRecoilState(themeState);
+  const [theme, setTheme] = useRecoilState(themeState);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -20,7 +20,6 @@ const ObserveContent = ({ board, isAdd }: Props) => {
           if (!isAdd && isIntersecting) {
             setObserve((prev) => ({
               ...prev,
-              photoUrl: '',
               boardId: board.id,
               theme: board.theme,
             }));
@@ -29,7 +28,7 @@ const ObserveContent = ({ board, isAdd }: Props) => {
         });
       },
       {
-        rootMargin: '-30% 0% -65% 0%',
+        rootMargin: '-20% 0% -70% 0%',
         threshold: 0,
       },
     );
@@ -42,8 +41,10 @@ const ObserveContent = ({ board, isAdd }: Props) => {
   }, [setObserve, isAdd]);
 
   return (
-    <div className="my-[24px] mt-[20px] h-[200px]" ref={ref}>
-      <h1 className={` text-[28px] `}>{board.title}</h1>
+    <div className="my-[24px] mt-[40px] h-[100px]" ref={ref}>
+      <h1
+        className={` text-[22px] ${theme.defaultText}`}
+      >{`${board.title}`}</h1>
     </div>
   );
 };

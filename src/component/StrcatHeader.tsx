@@ -1,34 +1,53 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useLogin } from '@/hooks/useLogin';
-import { drawerState, themeState } from '@/recoil/state';
-import Link from 'next/link';
+import { catAction } from '@/types/animation';
 import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import Link from 'next/link';
 import { useRecoilState } from 'recoil';
-import { LogoCat, HeaderProfileCat, Outline } from './Icon/Header';
+import { drawerState, themeState } from '@/recoil/state';
+import { useCat } from '@/hooks/useCat';
+import { HeaderProfileCat, LogoCat, Outline } from './Icon/Header';
 
 export default function StrcatHeader() {
   const [isLogin, checkLogin] = useLogin();
   const pathName = usePathname();
   const [, setDrawer] = useRecoilState(drawerState);
   const [theme] = useRecoilState(themeState);
+  const [runCatAnimation] = useCat();
+  const [animationHeader, setAnimationHeader] = useState(false);
 
   useEffect(() => {
     checkLogin();
   }, []);
 
+  useEffect(() => {
+    if (
+      pathName.indexOf('/personal') === 0 ||
+      pathName.indexOf('/group') === 0
+    ) {
+      setTimeout(() => {
+        setAnimationHeader(true);
+        runCatAnimation('catHeader', catAction.out, 0);
+      }, 1000);
+    }
+  }, [pathName]);
+
   return (
     <div className="fixed top-0 z-10 w-full max-w-md">
       <div
         className={`flex h-[56px] flex-row items-center justify-between ${theme.background} px-[24px]`}
+        id="catHeader"
       >
-        <Link href="/" scroll={false}>
-          <LogoCat
-            bodyColor={theme.catTheme.headerCat}
-            eyeColor={theme.catTheme.headerCatEye}
-          />
-        </Link>
+        {!animationHeader && (
+          <Link href="/" scroll={false}>
+            <LogoCat
+              bodyColor={theme.catTheme.headerCat}
+              eyeColor={theme.catTheme.headerCatEye}
+            />
+          </Link>
+        )}
         <div className="basis-4/6"></div>
         {isLogin ? (
           <div onClick={() => setDrawer(true)}>
@@ -53,7 +72,7 @@ export default function StrcatHeader() {
               <span
                 className={`absolute inset-0 flex items-center justify-center ${theme.defaultText}`}
               >
-                {pathName === 'login' ? '홈으로' : '로그인'}
+                {pathName === '/login' ? '홈으로' : '로그인'}
               </span>
             </div>
           </Link>

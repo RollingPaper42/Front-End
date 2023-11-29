@@ -37,7 +37,7 @@ export default function Create() {
   const handleClick = () => {
     const data = {
       groupId: groupId,
-      backgroundColor: Theme,
+      theme: Theme.name,
       title: `\/\/${title}`,
     };
     axiosInstance
