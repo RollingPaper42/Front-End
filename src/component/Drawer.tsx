@@ -22,7 +22,7 @@ interface Board {
 }
 
 export default function Drawer() {
-  const [isLogin] = useLogin();
+  const [isLogin, , setIsLogin] = useLogin();
   const [drawer, setDrawer] = useRecoilState(drawerState);
   const [dropList, setDropList] = useState(false);
   const [groupDropList, setGroupDropList] = useState(false);
@@ -50,6 +50,7 @@ export default function Drawer() {
     setDrawer(false);
     localStorage.removeItem('strcat_token');
     router.push('/');
+    setIsLogin(false);
   };
 
   useEffect(() => {
