@@ -1,5 +1,8 @@
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
 export default function NotFound() {
+  const router = useRouter();
   return (
     <div className="flex h-full max-w-md flex-col items-center justify-center bg-strcat-default-black px-[24px] pb-[110px]">
       <div className="flex items-center justify-center text-[64px] leading-[140%] text-strcat-default-white">
@@ -26,6 +29,7 @@ export default function NotFound() {
           width={148}
           height={42}
           alt="notFoundButton"
+          onClick={() => router.push('/')}
         />
         <div className="absolute text-strcat-default-white">
           스트링캣 홈으로
