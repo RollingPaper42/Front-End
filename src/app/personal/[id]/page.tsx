@@ -17,6 +17,7 @@ import { useCat } from '@/hooks/useCat';
 import ShareButton from '@/component/ShareButton';
 import { axiosInstance } from '@/utils/axios';
 import StrcatHeader from '@/component/StrcatHeader';
+import { content } from '@/types/content';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -27,6 +28,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
   const [runCatAnimati] = useCat();
+  const [content, setContent] = useState<content[]>([]);
   useEffect(() => {
     axiosInstance
       .get(`/boards/${params.id}`)
@@ -34,6 +36,7 @@ export default function Personal({ params }: { params: { id: string } }) {
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
+        console.log(`personal id: ${data.data.board.id}`);
       })
       .catch((err) => {});
   }, [params.id]);
@@ -62,6 +65,8 @@ export default function Personal({ params }: { params: { id: string } }) {
               ref={(node) => setMap(node, board[0], itemsRef)}
               isAdd={isAdd}
               setIsAdd={setIsAdd}
+              content={content}
+              setContent={setContent}
             />
           )}
           {!isAdd &&
@@ -124,7 +129,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                 </div>
               </>
             ))}
-          {board.length && !board[0].contents.length && !isAdd && (
+          {board.length && !content.length && !isAdd && (
             <ShareButton params={params.id} />
           )}
           {!isAdd && <ContentPhoto />}

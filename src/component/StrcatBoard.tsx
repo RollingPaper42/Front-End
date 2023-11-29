@@ -1,12 +1,6 @@
 import { content } from '@/types/content';
 import ObserveContent from './ObserveContent';
-import {
-  forwardRef,
-  Dispatch,
-  SetStateAction,
-  useState,
-  useEffect,
-} from 'react';
+import { forwardRef, Dispatch, SetStateAction, useEffect } from 'react';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { themeObj, themeState } from '@/recoil/theme';
@@ -14,21 +8,21 @@ import Add from './Add';
 import { observeState } from '@/recoil/observe';
 import { board } from '@/types/boards';
 import ObserveTitle from './ObserveTitle';
-import { setupFsCheck } from 'next/dist/server/lib/router-utils/filesystem';
 
 interface Props {
   board: board;
   isAdd: boolean;
   setIsAdd: Dispatch<SetStateAction<boolean>>;
+  content: content[];
+  setContent: Dispatch<SetStateAction<content[]>>;
 }
 
 const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
-  { board, isAdd, setIsAdd },
+  { board, isAdd, setIsAdd, content, setContent },
   ref,
 ) {
   const [observe] = useRecoilState(observeState);
   const [theme] = useRecoilState(themeState);
-  const [content, setContent] = useState<content[]>([]);
   useEffect(() => {
     setContent(board.contents);
   }, [board]);
