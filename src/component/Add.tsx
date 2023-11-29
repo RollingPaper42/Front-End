@@ -61,8 +61,7 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
           axiosInstance.defaults.headers.common['Content-Type'] =
             'multipart/form-data';
           const photoRes = await axiosInstance.post(
-            'boards/2EYdon3FFp8Gm+knKrXgEw==/contents/pictures',
-            // `/boards/${id}/contents/pictures`,
+            `/boards/${id}/contents/pictures`,
             { picture: image },
           );
           console.log(photoRes);
@@ -71,8 +70,7 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
         axiosInstance.defaults.headers.common['Content-Type'] =
           'application/json';
         const contentRes = await axiosInstance.post(
-          `/boards/2EYdon3FFp8Gm+knKrXgEw==/contents`, //임시 테스트
-          // `/boards/${id}/contents`,
+          `/boards/${id}/contents`,
           data,
         );
         setIsAdd(false);
