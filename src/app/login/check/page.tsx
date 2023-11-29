@@ -9,6 +9,12 @@ export default function Check() {
   useEffect(() => {
     const token = searchParams.get('token');
     localStorage.setItem('strcat_token', token ?? '');
-    router.push(localStorage.getItem('strcat_login_success_url') ?? '/');
+    const url = localStorage.getItem('strcat_login_success_url');
+    if (url) {
+      localStorage.removeItem('strcat_login_success_url');
+      router.push(url);
+    } else {
+      router.push('/');
+    }
   }, [router, searchParams]);
 }
