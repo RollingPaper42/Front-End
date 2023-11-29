@@ -14,6 +14,7 @@ import { observeState } from '@/recoil/observe';
 import { board } from '@/types/boards';
 import ObserveTitle from './ObserveTitle';
 import ShareButton from './ShareButton';
+import { useLogin } from '@/hooks/useLogin';
 
 interface Props {
   board: board;
@@ -27,6 +28,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
   { board, isAdd, setIsAdd, isPersonal, paramsId },
   ref,
 ) {
+  const [isLogin] = useLogin();
   const [observe] = useRecoilState(observeState);
   const [content, setContent] = useState<content[]>([]);
   useEffect(() => {
@@ -57,7 +59,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
         />
       )}
       {!isAdd && <div className=" h-12"></div>}
-      {!isAdd && isPersonal && !content.length && (
+      {!isAdd && isLogin && isPersonal && !content.length && (
         <ShareButton params={`/personal/${paramsId}`} />
       )}
     </div>
