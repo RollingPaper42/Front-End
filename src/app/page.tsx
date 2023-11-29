@@ -22,7 +22,7 @@ export default function Home() {
   };
 
   const handleGroupStrcat = () => {
-    if (isLogin) router.push('create');
+    if (isLogin) router.push('create/group');
     else {
       localStorage.setItem('strcat_login_success_url', '/create/group');
       router.push('/login');
