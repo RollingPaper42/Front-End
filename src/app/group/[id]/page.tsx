@@ -101,8 +101,7 @@ export default function Group({ params }: { params: { id: string } }) {
                 ref={(node: any) => setMap(node, board, itemsRef)}
                 key={board.id}
                 board={board}
-                content={content}
-                setContent={setContent}
+                isPersonal={false}
               />
             );
           })}
