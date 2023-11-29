@@ -75,7 +75,7 @@ export default function Group({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   useEffect(() => {
-    if (boards) runCatAnimation('strcatCreate', catAction.sit, 10000);
+    if (boards) runCatAnimation('strcatCreate', catAction.sit, 5000);
   }, [boards]);
 
   return (
