@@ -9,6 +9,7 @@ export default function ContentPhoto() {
   return (
     <div className="fixed top-[100px] mx-[24px] h-[100px] max-w-[312px]">
       {observe.photoUrl && observe.photoUrl.length !== 0 && (
+        // eslint-disable-next-line @next/next/no-img-element
         <img
           src={observe.photoUrl}
           alt="사진"

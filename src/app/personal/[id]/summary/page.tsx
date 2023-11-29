@@ -8,6 +8,7 @@ import BottomButton from '@/component/BottomButton';
 import { useRouter } from 'next/navigation';
 import Back from '@/component/Icon/Back';
 import LongCat from '@/component/Icon/LongCat';
+import { handleShare } from '@/utils/handleShare';
 
 export default function Summary({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -15,8 +16,8 @@ export default function Summary({ params }: { params: { id: string } }) {
   const [Title, setTitle] = useState(
     '테스트입니다테스트입니다테스트입니다테스트입니다테스트입니다',
   );
-  const [ContentCount, setContentCount] = useState('13');
-  const [ContentTextCount, setContentTextCount] = useState('1305');
+  const [ContentCount, setContentCount] = useState(13);
+  const [ContentTextCount, setContentTextCount] = useState(1305);
 
   useEffect(() => {
     axiosInstance
@@ -34,6 +35,9 @@ export default function Summary({ params }: { params: { id: string } }) {
       });
   }, []);
 
+  function formatNumberWithCommas(inputText: number) {
+    return inputText.toLocaleString();
+  }
   return (
     <div className={`${Theme.background}`}>
       <div className=" fixed flex h-full w-full max-w-md flex-col">
@@ -72,7 +76,9 @@ export default function Summary({ params }: { params: { id: string } }) {
                     className={`${Theme.defaultText} mx-[24px] text-[26px] `}
                   >
                     총 {ContentCount}번의 <br /> 마음으로 <br /> 내 스트링캣이
-                    <br /> 총 {ContentTextCount}자 <br /> 이어졌어요!
+                    <br /> 총 {formatNumberWithCommas(ContentTextCount)}자
+                    <br />
+                    이어졌어요!
                   </div>
                 </div>
                 <div className="basis-1/3"></div>
@@ -88,7 +94,7 @@ export default function Summary({ params }: { params: { id: string } }) {
               height="h-[42px]"
               name="공유하기"
               width="w-[312px]"
-              onClickHandler={() => router.push('/create')}
+              onClickHandler={() => handleShare(`/personal/${params.id}`)}
               disabled={false}
               color={`${Theme.rightCTA}`}
             />
