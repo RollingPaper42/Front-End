@@ -14,6 +14,7 @@ import {
   Logout,
 } from './Icon/Drawer';
 import Strcat from './Icon/Strcat';
+import { useRouter } from 'next/navigation';
 
 interface Board {
   id: string;
@@ -29,14 +30,11 @@ export default function Drawer() {
   const [groupList, setGroupList] = useState<Board[]>([]);
   const [theme] = useRecoilState(themeState);
   const catTheme = theme.catTheme;
+  const router = useRouter();
 
   const fetchData = useCallback(async () => {
     if (isLogin) {
       try {
-        // const personal = await axiosInstance.get('/api/users');
-        // setPersonalList(personal.data.data);
-        // const group = await axiosInstance.get('/api/users');
-        // setGroupList(group.data.data);
         const personal = await axiosInstance.get('/users/boards');
         setPersonalList(personal.data);
         const group = await axiosInstance.get('/users/board-groups');
@@ -47,6 +45,12 @@ export default function Drawer() {
       }
     }
   }, [isLogin, setPersonalList, setGroupList]);
+
+  const handleLogout = () => {
+    setDrawer(false);
+    localStorage.removeItem('strcat_token');
+    router.push('/');
+  };
 
   useEffect(() => {
     fetchData();
@@ -113,17 +117,21 @@ export default function Drawer() {
                   />
                 }
               />
-              {groupDropList ? (
-                <DropListDown color={theme.defaultIcon} />
-              ) : (
-                <DropListUp color={theme.defaultIcon} />
+              {groupList.length != 0 && (
+                <div className="ml-[12px]">
+                  {groupDropList ? (
+                    <DropListDown color={theme.defaultIcon} />
+                  ) : (
+                    <DropListUp color={theme.defaultIcon} />
+                  )}
+                </div>
               )}
             </div>
             {groupDropList && (
               <DropListItem list={groupList} category="group" />
             )}
             <div className="absolute bottom-0 w-full px-[24px]">
-              <div className="h-[53px] w-full">
+              <div className="h-[53px] w-full" onClick={handleLogout}>
                 <DrawerItem
                   title="로그아웃"
                   icon={<Logout color={theme.defaultIcon} />}

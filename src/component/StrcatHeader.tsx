@@ -72,7 +72,7 @@ export default function StrcatHeader() {
               <span
                 className={`absolute inset-0 flex items-center justify-center ${theme.defaultText}`}
               >
-                {pathName === 'login' ? '홈으로' : '로그인'}
+                {pathName === '/login' ? '홈으로' : '로그인'}
               </span>
             </div>
           </Link>
