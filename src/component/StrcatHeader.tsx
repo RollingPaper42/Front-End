@@ -8,8 +8,7 @@ import Link from 'next/link';
 import { useRecoilState } from 'recoil';
 import { drawerState, themeState } from '@/recoil/state';
 import { useCat } from '@/hooks/useCat';
-import { HeaderProfileCat, LogoCat, Outline } from './Icon/Header';
-import Image from 'next/image';
+import { HeaderProfileCat, LogoCat, LogoText, Outline } from './Icon/Header';
 
 export default function StrcatHeader() {
   const [isLogin, checkLogin] = useLogin();
@@ -45,7 +44,7 @@ export default function StrcatHeader() {
         {animationHeader ? (
           <Link href="/" scroll={false}>
             <div className="relative h-[40px] w-[120px]">
-              <Image src="/strcatHeaderText.svg" alt="hi" fill />
+              <LogoText color={theme.catTheme.headerCat} />
             </div>
           </Link>
         ) : (
