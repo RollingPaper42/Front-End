@@ -88,7 +88,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                     height="h-[42px]"
                     name="저장"
                     width="basis-1/5"
-                    onClickHandler={() => router.push(`./${params.id}/export`)}
+                    onClickHandler={() => router.push(`./export`)}
                     disabled={false}
                     color={`bg-white`}
                   />
@@ -96,7 +96,9 @@ export default function Personal({ params }: { params: { id: string } }) {
                     name="공유"
                     height="h-[42px]"
                     width="basis-1/5"
-                    onClickHandler={() => router.push(`./${params.id}/summary`)}
+                    onClickHandler={() =>
+                      router.push(`./${params.id}/export?id=${params.id}`)
+                    }
                     disabled={false}
                     color={`${theme.leftCTA}`}
                   />

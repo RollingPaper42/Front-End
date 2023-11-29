@@ -9,6 +9,7 @@ import { useRecoilState } from 'recoil';
 import { drawerState, themeState } from '@/recoil/state';
 import { useCat } from '@/hooks/useCat';
 import { HeaderProfileCat, LogoCat, Outline } from './Icon/Header';
+import Image from 'next/image';
 
 export default function StrcatHeader() {
   const [isLogin, checkLogin] = useLogin();
@@ -24,8 +25,9 @@ export default function StrcatHeader() {
 
   useEffect(() => {
     if (
-      pathName.indexOf('/personal') === 0 ||
-      pathName.indexOf('/group') === 0
+      (pathName.indexOf('/personal') === 0 ||
+        pathName.indexOf('/group') === 0) &&
+      pathName.indexOf('/export') === -1
     ) {
       setTimeout(() => {
         setAnimationHeader(true);
@@ -40,7 +42,13 @@ export default function StrcatHeader() {
         className={`flex h-[56px] flex-row items-center justify-between ${theme.background} px-[24px]`}
         id="catHeader"
       >
-        {!animationHeader && (
+        {animationHeader ? (
+          <Link href="/" scroll={false}>
+            <div className="relative h-[40px] w-[120px]">
+              <Image src="/outHeader.svg" alt="hi" fill />
+            </div>
+          </Link>
+        ) : (
           <Link href="/" scroll={false}>
             <LogoCat
               bodyColor={theme.catTheme.headerCat}

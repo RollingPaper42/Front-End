@@ -13,22 +13,28 @@ import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
+import { usePathname } from 'next/navigation';
 
 export default function Export() {
   const [openModal, closeModal] = useModal();
   const [title, setTitle] = useState<string>('');
   const [board, setBoard] = useState<content[] | undefined>(undefined);
   const divRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
   const [exportTheme, setExportTheme] = useState<string>(
     exportThemeEnum.default,
   );
 
   useEffect(() => {
+    const regex = /\/personal\/(.*?)\/export/;
+    const match = pathname.match(regex);
+    if (match === null) return;
     axiosInstance
-      .get(`/api/personal`)
+      .get(`/boards/${match[1]}`)
       .then((data) => {
-        setTitle(data.data.title);
-        setBoard(data.data.contents);
+        console.log(data);
+        setTitle(data.data.board.title);
+        setBoard(data.data.board.contents);
       })
       .catch((error) => {});
   }, []);
@@ -55,10 +61,10 @@ export default function Export() {
   };
 
   return (
-    <div className="mb-10">
+    <div ref={divRef}>
       <Drawer />
       <StrcatHeader />
-      <div ref={divRef} className=" mx-5 mt-5 text-[22px]">
+      <div className=" mx-5 mt-[78px] text-[22px]">
         <ExportBoard
           key={title}
           title={title}
