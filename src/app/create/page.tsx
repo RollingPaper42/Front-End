@@ -130,17 +130,16 @@ export default function Create() {
         <div className="basis-2/12">
           <ThemeChange />
         </div>
-        <div className="basis-2/12">
-          <div className="mx-[24px] mt-10 flex flex-row items-center justify-center">
-            <BottomButton
-              height="h-[42px]"
-              name="완료"
-              width="w-full"
-              onClickHandler={() => handleConfirm()}
-              disabled={buttonState}
-              color={`${Theme.rightCTA}`}
-            />
-          </div>
+        <div className="basis-2/12" />
+        <div className="fixed bottom-5 flex w-full max-w-md items-center justify-center px-[24px]">
+          <BottomButton
+            height="h-[42px]"
+            name="완료"
+            width="w-full"
+            onClickHandler={() => handleConfirm()}
+            disabled={buttonState}
+            color={Theme.rightCTA}
+          />
         </div>
       </div>
     </div>
