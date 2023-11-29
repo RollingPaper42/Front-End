@@ -14,6 +14,10 @@ import ExportBoard from '@/component/export/ExportBoard';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
 import CatAnimation from '@/component/CatAnimation';
+import Strcat from '@/component/Icon/Strcat';
+import { useRecoilState } from 'recoil';
+import { themeState } from '@/recoil/theme';
+import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 
 export default function Export({ params }: { params: { id: string } }) {
   const divRef = useRef<HTMLDivElement>(null);
@@ -21,23 +25,10 @@ export default function Export({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string>('');
   const [boardsTitle, setBoardsTitle] = useState<board[]>([]);
   const [boardsConetent, setBoardsContent] = useState<board[]>([]);
+  const [theme, setTheme] = useRecoilState(themeState);
   const [exportTheme, setExportTheme] = useState<string>(
     exportThemeEnum.default,
   );
-
-  useEffect(() => {
-    const id = params.id;
-    if (id === null) return;
-    axiosInstance
-      .get(`/board-groups/${id}`)
-      .then((data) => {
-        console.log(data);
-        setTitle(data.data.title);
-        setBoardsTitle(data.data.boards);
-        setBoardsContent(data.data.boards);
-      })
-      .catch((error) => {});
-  }, []);
 
   const handleSave = async () => {
     if (!divRef.current) return;
@@ -60,17 +51,33 @@ export default function Export({ params }: { params: { id: string } }) {
     }
   };
 
+  useEffect(() => {
+    const id = params.id;
+    if (id === null) return;
+    axiosInstance
+      .get(`/board-groups/${id}`)
+      .then((data) => {
+        console.log(data);
+        setTitle(data.data.title);
+        setBoardsTitle(data.data.boards);
+        setBoardsContent(data.data.boards);
+      })
+      .catch((error) => {});
+  }, []);
+
   return (
-    <div className="mb-10 ">
+    <div ref={divRef} className={`${theme.background} ${theme.defaultText} `}>
       <Drawer />
-      <StrcatHeader />
-      <div ref={divRef} className="mx-5 mt-[78px]">
-        <div className="text-[24px]">{title}</div>
+      <StrcatHeader />/
+      <div className="mt-[78px]">
+        <div className={`mx-[24px] mb-[24px] text-[24px]`}>{title}</div>
         {boardsTitle?.map((board: board) => {
           return (
-            <div key={board.title} className=" mb-5  text-[22px]">
-              {board.title}
-            </div>
+            <StrcatGroupTitle
+              key={board.id}
+              board={board}
+              scrollToId={() => {}}
+            />
           );
         })}
         {boardsConetent?.map((board) => {
@@ -78,8 +85,9 @@ export default function Export({ params }: { params: { id: string } }) {
             <ExportBoard
               key={board.id}
               title={board.title}
-              data={board.contents}
+              content={board.contents}
               exportTheme={exportTheme}
+              boardTheme={board.theme}
             />
           );
         })}
@@ -98,7 +106,7 @@ export default function Export({ params }: { params: { id: string } }) {
         </div>
         <BottomButton
           height="h-[42px]"
-          color="white"
+          color={theme.rightCTA}
           name="저장하기"
           width="w-[370px]"
           onClickHandler={handleSave}

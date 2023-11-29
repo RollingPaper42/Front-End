@@ -2,11 +2,16 @@
 
 import { content } from '@/types/content';
 
-export default function Writer({ content }: { content: content }) {
+interface Props {
+  content: content;
+  color: string;
+}
+
+export default function Writer({ content, color }: Props) {
   return (
     <div className="inline">
       {content.text}
-      <span className=" bg-emerald-400">
+      <span className={`${color}`}>
         {content.writer === '' ? '익명의 스트링캣' : content.writer}
       </span>
     </div>

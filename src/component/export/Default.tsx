@@ -4,14 +4,16 @@ import { content } from '@/types/content';
 
 interface Props {
   content: content;
+  color: string;
+  highlightcolor: string;
 }
-export default function Default({ content }: Props) {
+export default function Default({ content, color, highlightcolor }: Props) {
   return (
-    <div className="inline">
+    <div className={`${color} inline`}>
       {content.id % 2 === 0 ? (
         <span>{content.text}</span>
       ) : (
-        <span className=" text-fuchsia-500">{content.text}</span>
+        <span className={`${highlightcolor}`}>{content.text}</span>
       )}
     </div>
   );
