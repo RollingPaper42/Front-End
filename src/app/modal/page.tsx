@@ -3,15 +3,15 @@
 import CatAnimation from '@/component/CatAnimation';
 import Error from '@/component/Modal/Error';
 import useModal from '@/hooks/useModal';
-import { catState } from '@/recoil/cat';
-import { catAction } from '@/types/cat';
+import { catAnimationState } from '@/recoil/catAnimation';
+import { catAction } from '@/types/animation';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { useRecoilState } from 'recoil';
 
 export default function Modal() {
   const [openModal, closeModal] = useModal();
-  const [, setCat] = useRecoilState(catState);
+  const [, setCat] = useRecoilState(catAnimationState);
 
   const handleConfirm = async () => {
     const result = await confirm('컨펌 메시지 글', openModal, closeModal);
@@ -29,7 +29,8 @@ export default function Modal() {
     const divLeft = div.getBoundingClientRect().left;
     const divTop = div.getBoundingClientRect().top;
     setCat({
-      catAction: catAction.exit,
+      src: '/cats/in.gif',
+      catAction: catAction.out,
       width: 50,
       height: 50,
       top: divTop,
@@ -43,7 +44,8 @@ export default function Modal() {
     const divBottom = div.getBoundingClientRect().bottom;
     const divRight = div.getBoundingClientRect().right;
     setCat({
-      catAction: catAction.exit,
+      src: '/cats/strcat/in.gif',
+      catAction: catAction.out,
       width: 50,
       height: 50,
       top: divBottom,
@@ -57,7 +59,8 @@ export default function Modal() {
     const divLeft = div.getBoundingClientRect().left;
     const divBottom = div.getBoundingClientRect().bottom;
     setCat({
-      catAction: catAction.scroll,
+      src: '/cats/strcat/in.gif',
+      catAction: catAction.out,
       width: 50,
       height: 50,
       top: divBottom + 50,
