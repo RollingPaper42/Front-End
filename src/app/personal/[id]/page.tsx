@@ -28,7 +28,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [observe] = useRecoilState(observeState);
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
-  const [runCatAnimati] = useCat();
+  const [runCatAnimation] = useCat();
   const [isLogin] = useLogin();
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
-    if (board) runCatAnimati('strcatCreate', catAction.sit, 10000);
+    if (board) runCatAnimation('strcatCreate', catAction.sit, 10000);
   }, [board]);
 
   return (

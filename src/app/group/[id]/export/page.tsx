@@ -13,6 +13,7 @@ import StrcatHeader from '@/component/StrcatHeader';
 import ExportBoard from '@/component/export/ExportBoard';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
+import CatAnimation from '@/component/CatAnimation';
 
 export default function Export() {
   const divRef = useRef<HTMLDivElement>(null);
@@ -26,7 +27,7 @@ export default function Export() {
 
   useEffect(() => {
     axiosInstance
-      .get(`/api/group`)
+      .get(`/board-groups`)
       .then((data) => {
         setTitle(data.data.titleData.title);
         setBoardsTitle(data.data.titleData.boards);
