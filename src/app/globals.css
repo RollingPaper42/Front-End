@@ -3,17 +3,11 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'FiraCode';
-  src: url('/fonts/FiraCode-Regular.ttf') format('truetype');
-  font-style: normal;
-}
-
-@font-face {
   font-family: 'Noto Sans KR';
   src: url('/fonts/NotoSansKR-Regular.ttf') format('truetype');
   font-style: normal;
   font-weight: 400;
-  unicode-range: U+AC00-D7AF;
+  unicode-range: U+AC00-D7AF, U+0020, U+23CE;
 }
 
 @font-face {
@@ -21,5 +15,4 @@
   font-weight: 400;
   src: url('/fonts/DotGothic16-Regular.ttf') format('truetype');
   font-style: normal;
-  unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
 }
