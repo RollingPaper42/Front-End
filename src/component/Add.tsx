@@ -114,7 +114,7 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
       />
       {text === '' && (
         <div
-          className={`inline text-[20px] ${theme.highlightText} opacity-50 `}
+          className={`inline text-[18px] ${theme.highlightText} opacity-50 `}
           onClick={focusText}
         >
           20자 이상 내용을 입력해주세요
@@ -136,23 +136,22 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
             type="text"
             id="writer"
             value={writer}
-            className={`${theme.defaultText} w-[163px] bg-transparent text-[16px] outline-none placeholder:text-[#909090]`}
+            className={`${theme.defaultText} w-[163px] bg-transparent text-[16px] outline-none placeholder:${theme.defaultText} placeholder:text-opacity-50`}
             placeholder="익명의 스트링캣"
             maxLength={11}
             onChange={handleWriter}
           />
-          <div className={`${writer === '' ? 'grayscale-50' : 'grayscale-0'}`}>
-            <div
-              className={`w-16 text-right text-[16px] 
-            ${writer.length > 10 ? 'text-red-600' : `${theme.defaultText}`}
-            `}
-            >
-              {writer.length}/10자
-            </div>
+          <div
+            className={`flex w-16 items-center justify-center text-right text-[16px]
+              ${writer.length > 10 ? 'text-red-600' : `${theme.defaultText}`}
+              ${writer === '' && ' text-opacity-50'}
+              `}
+          >
+            {writer.length}/10자
           </div>
         </div>
       </div>
-      <div className="fixed bottom-5 left-0 flex w-full items-center justify-center">
+      <div className="fixed bottom-5 left-0 z-10 flex w-full items-center justify-center">
         <div className="flex w-full max-w-md flex-row px-[24px]">
           <BottomButton
             height="h-[42px]"
