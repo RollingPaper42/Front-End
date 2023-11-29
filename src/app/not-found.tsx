@@ -1,8 +1,7 @@
+import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 export default function NotFound() {
-  const router = useRouter();
   return (
     <div className="flex h-full max-w-md flex-col items-center justify-center bg-strcat-default-black px-[24px] pb-[110px]">
       <div className="flex items-center justify-center text-[64px] leading-[140%] text-strcat-default-white">
@@ -19,18 +18,24 @@ export default function NotFound() {
         </div>
       </div>
       <div className="flex w-full justify-end">
-        <div className="relative mr-[12px] mt-[40px] flex h-[39px] w-[218px] justify-end">
-          <Image src="/NotFoundCat.svg" fill alt="notFoundCat" />
+        <div className="relative mr-[12px] mt-[40px] flex w-full justify-end">
+          <Image
+            src="/NotFoundCat.svg"
+            height={39}
+            width={218}
+            alt="notFoundCat"
+          />
         </div>
       </div>
       <div className="flex w-full items-center justify-center">
-        <Image
-          src="/NotFoundButton.svg"
-          width={148}
-          height={42}
-          alt="notFoundButton"
-          onClick={() => router.push('/')}
-        />
+        <Link href="/">
+          <Image
+            src="/NotFoundButton.svg"
+            width={148}
+            height={42}
+            alt="notFoundButton"
+          />
+        </Link>
         <div className="absolute text-strcat-default-white">
           스트링캣 홈으로
         </div>
