@@ -12,7 +12,7 @@ export default function Check() {
   useEffect(() => {
     if (url) {
       router.push(url);
-      localStorage.removeItem('strcat_login_success_url');
+      // localStorage.removeItem('strcat_login_success_url');
     } else {
       router.push('/');
     }
