@@ -86,7 +86,7 @@ export default function Create() {
           <div className="flex h-full w-full flex-row">
             <div
               className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
-              onClick={() => router.back}
+              onClick={() => router.back()}
             >
               <Back color={Theme.backIcon} />
             </div>
@@ -106,7 +106,7 @@ export default function Create() {
               id="titleMessage"
               rows={1}
               value={title}
-              className={` w-full resize-none ${Theme.background} text-[22px] ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
+              className={` w-full resize-none ${Theme.background} text-[22px] ${Theme.defaultText} outline-none ${Theme.placeholder}`}
               placeholder="제목을 입력해주세요."
               maxLength={maxLength}
               onChange={(e) => handleChangeTitle(e)}

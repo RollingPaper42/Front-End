@@ -28,17 +28,17 @@ export default function NotFound() {
         </div>
       </div>
       <div className="flex w-full items-center justify-center">
-        <Link href="/">
+        <Link href="/" className="relative flex items-center justify-center">
           <Image
             src="/NotFoundButton.svg"
             width={148}
             height={42}
             alt="notFoundButton"
           />
+          <div className="absolute cursor-pointer select-none text-strcat-default-white">
+            스트링캣 홈으로
+          </div>
         </Link>
-        <div className="absolute cursor-pointer select-none text-strcat-default-white">
-          스트링캣 홈으로
-        </div>
       </div>
     </div>
   );

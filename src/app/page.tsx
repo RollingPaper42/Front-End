@@ -30,7 +30,7 @@ export default function Home() {
   };
 
   return (
-    <div className={`${Theme.background}`}>
+    <div className={`h-full ${Theme.background}`}>
       <div className=" fixed flex h-full w-full max-w-md  flex-col">
         <div className="basis-1/12">
           <Drawer />
