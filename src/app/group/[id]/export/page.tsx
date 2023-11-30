@@ -8,14 +8,13 @@ import html2canvas from 'html2canvas';
 import saveAs from 'file-saver';
 import BottomButton from '@/component/BottomButton';
 import ExportSuccess from '@/component/Modal/ExportSuccess';
-import Drawer from '@/component/Drawer';
-import StrcatHeader from '@/component/StrcatHeader';
 import ExportBoard from '@/component/export/ExportBoard';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 import StrcatGroupTitle from '@/component/StrcatGroupTitle';
+import HeaderLayout from '@/component/HeaderLayout';
 
 export default function Export({ params }: { params: { id: string } }) {
   const divRef = useRef<HTMLDivElement>(null);
@@ -23,7 +22,7 @@ export default function Export({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string>('');
   const [boardsTitle, setBoardsTitle] = useState<board[]>([]);
   const [boardsConetent, setBoardsContent] = useState<board[]>([]);
-  const [theme, setTheme] = useRecoilState(themeState);
+  const [theme] = useRecoilState(themeState);
   const [exportTheme, setExportTheme] = useState<string>(
     exportThemeEnum.default,
   );
@@ -65,8 +64,7 @@ export default function Export({ params }: { params: { id: string } }) {
 
   return (
     <div className={`${theme.background} ${theme.defaultText} h-full `}>
-      <Drawer />
-      <StrcatHeader />.
+      <HeaderLayout />
       <div ref={divRef} className={`${theme.background} mt-[78px] h-full`}>
         <div className={`mx-[24px] pb-[24px]  text-[24px]`}>{title}</div>
         {boardsTitle?.map((board: board) => {

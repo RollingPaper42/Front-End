@@ -1,20 +1,16 @@
 import { useState } from 'react';
 import DrawerItem from './DrawerItem';
-import Strcat from './Icon/Strcat';
-import { DropListDown, DropListUp } from './Icon/Drawer';
+import Strcat from '../Icon/Strcat';
+import { DropListDown, DropListUp } from '../Icon/Drawer';
 import DropListItem from './DropListItem';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
+import { drawerBoard } from '@/types/drawerBoard';
 
 interface Props {
   title: string;
   list: drawerBoard[];
   category: string;
-}
-
-interface drawerBoard {
-  id: string;
-  title: string;
 }
 
 export default function DropList({ title, list, category }: Props) {

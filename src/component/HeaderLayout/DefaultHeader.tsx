@@ -6,9 +6,9 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useRecoilState } from 'recoil';
 import { drawerState, themeState } from '@/recoil/state';
-import { HeaderProfileCat, LogoCat, LogoText, Outline } from './Icon/Header';
+import { HeaderProfileCat, LogoCat, LogoText, Outline } from '../Icon/Header';
 
-export default function StrcatHeader() {
+export default function DefaultHeader() {
   const [isLogin, checkLogin] = useLogin();
   const pathName = usePathname();
   const [, setDrawer] = useRecoilState(drawerState);

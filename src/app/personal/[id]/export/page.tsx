@@ -8,13 +8,12 @@ import saveAs from 'file-saver';
 import BottomButton from '@/component/BottomButton';
 import ExportSuccess from '@/component/Modal/ExportSuccess';
 import ExportBoard from '@/component/export/ExportBoard';
-import Drawer from '@/component/Drawer';
-import StrcatHeader from '@/component/StrcatHeader';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
 import { board } from '@/types/boards';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
+import HeaderLayout from '@/component/HeaderLayout';
 
 export default function Export({ params }: { params: { id: string } }) {
   const [openModal, closeModal] = useModal();
@@ -62,8 +61,7 @@ export default function Export({ params }: { params: { id: string } }) {
 
   return (
     <div className={`${theme.background} ${theme.defaultText} h-full`}>
-      <Drawer />
-      <StrcatHeader />.
+      <HeaderLayout />
       <div
         ref={divRef}
         className={`${theme.background}  mt-[78px] h-full text-[22px]`}

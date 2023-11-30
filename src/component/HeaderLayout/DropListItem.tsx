@@ -2,15 +2,11 @@ import { drawerState } from '@/recoil/drawer';
 import { usePathname, useRouter } from 'next/navigation';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
-import { Check } from './Icon/Drawer';
-
-interface Board {
-  id: string;
-  title: string;
-}
+import { Check } from '../Icon/Drawer';
+import { drawerBoard } from '@/types/drawerBoard';
 
 interface Props {
-  list: Board[];
+  list: drawerBoard[];
   category: string;
 }
 
@@ -28,7 +24,7 @@ export default function DropListItem({ list, category }: Props) {
     }
   };
 
-  return list.map((item: Board) => {
+  return list.map((item: drawerBoard) => {
     const url = '/'.concat(category, '/', item.id);
     const isActive = pathname === url;
     return (

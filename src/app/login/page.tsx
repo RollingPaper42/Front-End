@@ -1,13 +1,12 @@
 'use client';
 
-import Drawer from '@/component/Drawer';
-import StrcatHeader from '@/component/StrcatHeader';
 import Image from 'next/image';
 import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
+import HeaderLayout from '@/component/HeaderLayout';
 
 export default function Login() {
-  const [theme, setTheme] = useRecoilState(themeState);
+  const [theme] = useRecoilState(themeState);
   const onClickOAuthKakao = () => {
     location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/kakao`;
   };
@@ -19,8 +18,7 @@ export default function Login() {
     <div className={`h-full w-full ${theme.background}`}>
       <div className="flex h-full w-full flex-col">
         <div className="basis-1/12">
-          <Drawer />
-          <StrcatHeader />
+          <HeaderLayout />
         </div>
         <div className="basis-2/12">
           <div

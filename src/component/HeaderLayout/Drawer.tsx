@@ -6,19 +6,15 @@ import { useLogin } from '@/hooks/useLogin';
 import { axiosInstance } from '@/utils/axios';
 import DrawerItem from './DrawerItem';
 import { handleBackground } from '@/utils/handleBackground';
-import { DrawerProfileCat, Logout } from './Icon/Drawer';
+import { DrawerProfileCat, Logout } from '../Icon/Drawer';
 import DropList from './DropList';
-
-interface Board {
-  id: string;
-  title: string;
-}
+import { drawerBoard } from '@/types/drawerBoard';
 
 export default function Drawer() {
   const [isLogin, , setIsLogin] = useLogin();
   const [drawer, setDrawer] = useRecoilState(drawerState);
-  const [personalList, setPersonalList] = useState<Board[]>([]);
-  const [groupList, setGroupList] = useState<Board[]>([]);
+  const [personalList, setPersonalList] = useState<drawerBoard[]>([]);
+  const [groupList, setGroupList] = useState<drawerBoard[]>([]);
   const [theme] = useRecoilState(themeState);
   const catTheme = theme.catTheme;
 
