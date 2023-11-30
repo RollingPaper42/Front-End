@@ -15,9 +15,9 @@ export default function Confirm({ content, yes, no }: Props) {
       <ModalBackground />
       <div className="felx felx-col absolute h-[260px] w-[312px] items-center justify-center">
         <div className="flex w-full justify-end p-[16px]">
-          <div onClick={no}>
+          <button onClick={no}>
             <ModalClose />
-          </div>
+          </button>
         </div>
         <div className="relative flex h-[135px] items-center justify-center px-[16px]">
           <p>{content}</p>

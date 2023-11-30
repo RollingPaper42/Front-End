@@ -1,6 +1,7 @@
 import useModal from '@/hooks/useModal';
 import ModalErrorBackground from '../Icon/ModalErrorBackground';
 import BottomButton from '../BottomButton';
+import ModalClose from '../Icon/ModalClose';
 
 interface Props {
   content: string;
@@ -12,7 +13,12 @@ export default function Error({ content, handleModalClose }: Props) {
     <div className="flex h-[196px] w-[312px] flex-col">
       <ModalErrorBackground />
       <div className="absolute flex h-[196px] w-[312px] flex-col items-center justify-center">
-        <div className="flex h-[100px] items-center justify-center px-[24px]">
+        <div className="flex w-full justify-end pr-[16px]">
+          <button onClick={handleModalClose}>
+            <ModalClose />
+          </button>
+        </div>
+        <div className="flex h-[90px] items-center justify-center px-[24px]">
           {content}
         </div>
         <div className=" bottom-2 flex w-[280px] items-center justify-center">
