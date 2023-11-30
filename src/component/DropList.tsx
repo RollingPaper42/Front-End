@@ -47,7 +47,7 @@ export default function DropList({ title, list }: Props) {
         )}
       </div>
       {dropDown && (
-        <div className="flex w-full flex-col">
+        <div className="flex h-[203px] w-full flex-col overflow-y-scroll">
           {list && <DropListItem list={list} category="personal" />}
         </div>
       )}

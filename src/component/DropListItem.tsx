@@ -34,7 +34,7 @@ export default function DropListItem({ list, category }: Props) {
     return (
       <div
         key={item.id}
-        className={`flex h-[53px] w-full items-center justify-between`}
+        className={`flex h-[53px] w-full basis-1/4 items-center justify-between py-[20px]`}
         onClick={() => {
           router.push(url);
           setDrawer(false);
