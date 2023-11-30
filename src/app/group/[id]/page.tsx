@@ -27,7 +27,6 @@ export default function Group({ params }: { params: { id: string } }) {
   const itemsRef = useRef(new Map());
   const [observe] = useRecoilState(observeState);
   const [isOwner, setIsOwner] = useState<boolean>(false);
-  const [content, setContent] = useState<content[]>([]);
   const [isLogin] = useLogin();
   const router = useRouter();
   const scrollToId = (itemId: string) => {
@@ -77,7 +76,7 @@ export default function Group({ params }: { params: { id: string } }) {
         className={`relative w-full py-[24px] pt-[56px] ${theme.background}`}
       >
         <div className="mb-[20px]">
-          <h1 className={`${theme.defaultText} mx-[24px] text-[26px]`}>
+          <h1 className={`${theme.titleText} mx-[24px] text-[26px]`}>
             {`${title}`}
           </h1>
         </div>

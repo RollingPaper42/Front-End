@@ -20,6 +20,7 @@ export interface themeState {
   loginIcon: string;
   backIcon: string;
   activeDropItem: string;
+  titleText: string;
 }
 
 export const strcat: themeState = {
@@ -35,6 +36,7 @@ export const strcat: themeState = {
   loginIcon: '#6CD8ED', //strcat-default-cyan
   backIcon: '#FFFFFF', //strcat-default-white
   activeDropItem: 'bg-strcat-default-yellow',
+  titleText: 'text-strcat-default-white',
 };
 
 export const calm: themeState = {
@@ -50,6 +52,7 @@ export const calm: themeState = {
   loginIcon: '#557FE4', //strcat-calm-text-cyan
   backIcon: '#463F3A', //strcat-calm-text-black
   activeDropItem: 'bg-strcat-calm-orange',
+  titleText: 'text-strcat-calm-black',
 };
 
 export const green: themeState = {
@@ -65,6 +68,7 @@ export const green: themeState = {
   loginIcon: 'FF43A8', // strcat-default-magenta
   backIcon: '#212121', //strcat-green-black
   activeDropItem: 'bg-strcat-green-yellow',
+  titleText: 'text-strcat-green-black',
 };
 
 export const cyan: themeState = {
@@ -80,6 +84,7 @@ export const cyan: themeState = {
   defaultIcon: '#FFFFFF', //strcat-cyan-white
   backIcon: '#FFFFFF', //strcat-cyan-white
   activeDropItem: 'bg-strcat-cyan-yellow',
+  titleText: 'text-strcat-cyan-white',
 };
 
 export const themeObj = {
