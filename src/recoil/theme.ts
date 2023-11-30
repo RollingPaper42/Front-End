@@ -21,6 +21,7 @@ export interface themeState {
   backIcon: string;
   activeDropItem: string;
   titleText: string;
+  placeholder: string;
 }
 
 export const strcat: themeState = {
@@ -37,6 +38,7 @@ export const strcat: themeState = {
   backIcon: '#FFFFFF', //strcat-default-white
   activeDropItem: 'bg-strcat-default-yellow',
   titleText: 'text-strcat-default-white',
+  placeholder: 'placeholder:text-strcat-default-white',
 };
 
 export const calm: themeState = {
@@ -53,6 +55,7 @@ export const calm: themeState = {
   backIcon: '#463F3A', //strcat-calm-text-black
   activeDropItem: 'bg-strcat-calm-orange',
   titleText: 'text-strcat-calm-black',
+  placeholder: 'placeholder:text-strcat-default-black',
 };
 
 export const green: themeState = {
@@ -69,6 +72,7 @@ export const green: themeState = {
   backIcon: '#212121', //strcat-green-black
   activeDropItem: 'bg-strcat-green-yellow',
   titleText: 'text-strcat-green-black',
+  placeholder: 'placeholder:text-strcat-default-yellow',
 };
 
 export const cyan: themeState = {
@@ -85,6 +89,7 @@ export const cyan: themeState = {
   backIcon: '#FFFFFF', //strcat-cyan-white
   activeDropItem: 'bg-strcat-cyan-yellow',
   titleText: 'text-strcat-cyan-white',
+  placeholder: 'placeholder:text-strcat-default-white',
 };
 
 export const themeObj = {

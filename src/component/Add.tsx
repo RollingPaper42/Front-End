@@ -132,7 +132,7 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
             type="text"
             id="writer"
             value={writer}
-            className={`${theme.defaultText} w-[163px] bg-transparent text-[16px] outline-none placeholder:${theme.defaultText} placeholder:text-opacity-50`}
+            className={`${theme.defaultText} w-[163px] bg-transparent text-[16px] outline-none ${theme.placeholder} placeholder:text-opacity-50`}
             placeholder="익명의 스트링캣"
             maxLength={11}
             onChange={handleWriter}
