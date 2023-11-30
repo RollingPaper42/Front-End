@@ -70,7 +70,9 @@ export default function Group({ params }: { params: { id: string } }) {
         setTitle(data.data.title);
         setIsOwner(data.data.isOwner);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        if (err.response.status === 406) router.push('/not-found');
+      });
   }, [params.id]);
 
   useEffect(() => {

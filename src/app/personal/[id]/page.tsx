@@ -40,7 +40,9 @@ export default function Personal({ params }: { params: { id: string } }) {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        if (err.response.status === 406) router.push('/not-found');
+      });
   }, [params.id]);
 
   const handleClick = () => {
