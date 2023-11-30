@@ -28,7 +28,7 @@ module.exports = {
 
         'strcat-calm-orange': '#FFA857',
         'strcat-calm-cyan': '#ABC4FF',
-        'strcat-calm-text-cyan': '557FE4',
+        'strcat-calm-text-cyan': '#557FE4',
         'strcat-calm-green': '#BEE4A4',
         'strcat-calm-text-green': '#61A136',
         'strcat-calm-magenta': '#FF43A8',
