@@ -5,6 +5,7 @@ import StrcatHeader from '@/component/StrcatHeader';
 import Image from 'next/image';
 import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
+import { bodyFont, titleFont } from '@/recoil/font';
 
 export default function Login() {
   const [theme, setTheme] = useRecoilState(themeState);
@@ -24,7 +25,7 @@ export default function Login() {
         </div>
         <div className="basis-2/12">
           <div
-            className={`mx-[24px] mt-[40px] h-full text-[20px] ${theme.defaultText}`}
+            className={`mx-[24px] mt-[40px] h-full ${titleFont.category2} ${theme.defaultText}`}
           >
             <div>로그인하고 스트링캣을 생성해보세요.</div>
           </div>
@@ -39,7 +40,9 @@ export default function Login() {
               <div className="basis-2/12">
                 <Image src="/kakao.svg" width={48} height={48} alt="kakao" />
               </div>
-              <div className="mt-[12px] basis-8/12 text-center text-[16px]">
+              <div
+                className={`mt-[12px] basis-8/12 text-center ${bodyFont.category2}`}
+              >
                 카카오 시작하기
               </div>
               <div className="basis-2/12"></div>
@@ -53,7 +56,9 @@ export default function Login() {
               <div className="basis-2/12">
                 <Image src="/google.svg" width={48} height={48} alt="google" />
               </div>
-              <div className="mt-[12px] basis-8/12 text-center text-[16px]">
+              <div
+                className={`${bodyFont.category2} mt-[12px] basis-8/12 text-center`}
+              >
                 구글 시작하기
               </div>
               <div className="basis-2/12"></div>

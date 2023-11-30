@@ -12,6 +12,7 @@ import BottomButton from '@/component/BottomButton';
 import { axiosInstance } from '@/utils/axios';
 import { useSearchParams } from 'next/navigation';
 import Back from '@/component/Icon/Back';
+import { bodyFont, captionFont, titleFont } from '@/recoil/font';
 
 export default function Create() {
   const searchParams = useSearchParams();
@@ -93,7 +94,7 @@ export default function Create() {
             </div>
             <div className=" basis-4/6">
               <div
-                className={`text-center text-[18px] ${Theme.defaultText} mt-[16px]`}
+                className={`text-center ${bodyFont.category1} ${Theme.defaultText} mt-[16px]`}
               >
                 스트링캣 만들기
               </div>
@@ -107,22 +108,26 @@ export default function Create() {
               id="titleMessage"
               rows={1}
               value={title}
-              className={` w-full resize-none ${Theme.background} text-[22px] ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
+              className={` w-full resize-none ${Theme.background} ${titleFont.category1} ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
               placeholder="제목을 입력해주세요."
               maxLength={30}
               onChange={(e) => handleChangeTitle(e)}
               onKeyDown={(e) => handleKeyDownTitle(e, title)}
             />
-            <div className={`w-full text-right text-[14px] ${ErrorFontColor}`}>
+            <div
+              className={`w-full text-right ${captionFont.category2} ${ErrorFontColor}`}
+            >
               {title.length}/30
             </div>
           </div>
         </div>
-        <div className="mx-[24px] mt-[24px] basis-5/12">
-          <div className={`inline text-[18px] ${Theme.highlightText}`}>
+        <div className={`${bodyFont.category1} mx-[24px] mt-[24px] basis-5/12`}>
+          <div className={`inline ${Theme.highlightText}`}>
             스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
           </div>
-          <div className={`inline text-[18px] opacity-30 ${Theme.defaultText}`}>
+          <div
+            className={`inline ${bodyFont.category1} opacity-30 ${Theme.defaultText}`}
+          >
             스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
           </div>
         </div>

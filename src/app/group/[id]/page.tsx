@@ -15,6 +15,7 @@ import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import { useRouter } from 'next/navigation';
 import ShortCut from '@/component/Icon/ShortCut';
+import { headlineFont } from '@/recoil/font';
 
 export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string | null>();
@@ -58,7 +59,9 @@ export default function Group({ params }: { params: { id: string } }) {
         className={`relative w-full py-[24px] pt-[56px] ${theme.background}`}
       >
         <div className="mb-[20px]">
-          <h1 className={`${theme.defaultText} mx-[24px] text-[26px]`}>
+          <h1
+            className={`${theme.defaultText} mx-[24px] ${headlineFont.category1}`}
+          >
             {`${title}`}
           </h1>
         </div>

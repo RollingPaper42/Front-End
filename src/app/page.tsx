@@ -7,6 +7,7 @@ import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
 import { useLogin } from '@/hooks/useLogin';
 import LongCat from '@/component/Icon/LongCat';
+import { titleFont } from '@/recoil/font';
 
 export default function Home() {
   const [isLogin] = useLogin();
@@ -38,7 +39,7 @@ export default function Home() {
         </div>
         <div className="basis-6/12">
           <div
-            className={`mx-[24px] mt-[46px] text-[20px] ${Theme.defaultText}`}
+            className={`mx-[24px] mt-[46px] ${titleFont.category2} ${Theme.defaultText}`}
           >
             <p>
               {`\/\/ 스트링캣은 문자열을 끝없이 늘려 스크롤을 만들 수 있는 신개념
@@ -47,16 +48,16 @@ export default function Home() {
             <p>소중한 사람에게 스트링캣을 남겨보세요!</p>
           </div>
         </div>
-        <div className="basis-5/12">
+        <div className={`basis-5/12 ${titleFont.category1}`}>
           <div className=" flex h-full w-full flex-col">
-            <div className="mx-[24px] mt-[100px] inline basis-1/2 text-[22px]">
+            <div className={`mx-[24px] mt-[100px] inline basis-1/2 `}>
               <div className="inline">
                 <button
-                  className={`relative h-[33px] w-[150px] items-center ${Theme.leftCTA} text-[22px]`}
+                  className={`relative h-[33px] w-[150px] items-center ${Theme.leftCTA}`}
                   onClick={handlePersonalStrcat}
                 >
                   <div
-                    className={`relative bottom-[4.5px] left-[2px] h-[33px] w-[150px] text-[22px] ${Theme.leftCTA}`}
+                    className={`relative bottom-[4.5px] left-[2px] h-[33px] w-[150px] ${Theme.leftCTA}`}
                   >
                     <div className=" bottom-[-4.5px] left-[-2px]">
                       <div className="relative top-1">스트링캣 만들기</div>
@@ -69,21 +70,21 @@ export default function Home() {
                 공유해 문자열을 끝없이 이어보세요.
               </div>
             </div>
-            <div className="mx-[24px] inline basis-1/2 text-[22px]">
+            <div className={`mx-[24px] inline basis-1/2`}>
               <div className="inline">
                 <button
-                  className={`relative h-[33px] w-[200px] items-center ${Theme.rightCTA} text-[22px]`}
+                  className={`relative h-[33px] w-[200px] items-center ${Theme.rightCTA}`}
                   onClick={handleGroupStrcat}
                 >
                   <div
-                    className={`relative bottom-[4.5px] left-[2px] h-[33px]  w-[200px] text-[22px] ${Theme.rightCTA}`}
+                    className={`relative bottom-[4.5px] left-[2px] h-[33px]  w-[200px] ${Theme.rightCTA}`}
                   >
                     <div className="relative top-1">그룹 스트링캣 만들기</div>
                     <div className=" bottom-[-4.5px] left-[-2px]"></div>
                   </div>
                 </button>
               </div>
-              <div className="inline text-[22px] text-strcat-default-cyan">
+              <div className="inline text-strcat-default-cyan">
                 &nbsp;를 누르면 여러 문자열을 한 그룹으로 관리할 수 있어요.
                 주렁주렁~
               </div>

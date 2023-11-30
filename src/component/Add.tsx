@@ -13,6 +13,7 @@ import Error from '@/component/Modal/Error';
 import { confirm } from '@/utils/confirm';
 import BottomButton from '@/component/BottomButton';
 import PhotoUpload from './PhotoUpload';
+import { bodyFont } from '@/recoil/font';
 
 interface AddProps {
   id: string;
@@ -108,11 +109,11 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
         suppressContentEditableWarning
         onInput={(e) => setText(e.currentTarget.innerText)}
         onKeyDown={(e) => handleInputText(e)}
-        className={`${theme.highlightText} bottom-[200px] ml-[8px] inline w-full text-justify text-[18px] outline-none`}
+        className={`${theme.highlightText} bottom-[200px] ml-[8px] inline w-full text-justify ${bodyFont.category1} outline-none`}
       />
       {text === '' && (
         <div
-          className={`inline text-[18px] ${theme.highlightText} opacity-50 `}
+          className={`inline ${bodyFont.category1} ${theme.highlightText} opacity-50 `}
           onClick={focusText}
         >
           20자 이상 내용을 입력해주세요
@@ -129,18 +130,22 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
       )}
       <div className="sticky bottom-[88px] z-10 mt-[24px] flex w-full items-center justify-center">
         <div className="flex w-full items-center justify-center space-x-[16px]">
-          <div className={`${theme.defaultText} w-fit text-[16px]`}>From :</div>
+          <div className={`${theme.defaultText} w-fit ${bodyFont.category2}`}>
+            From :
+          </div>
           <input
             type="text"
             id="writer"
             value={writer}
-            className={`${theme.defaultText} w-[163px] bg-transparent text-[16px] outline-none placeholder:${theme.defaultText} placeholder:text-opacity-50`}
+            className={`${theme.defaultText} w-[163px] bg-transparent ${bodyFont.category2} outline-none placeholder:${theme.defaultText} placeholder:text-opacity-50`}
             placeholder="익명의 스트링캣"
             maxLength={11}
             onChange={handleWriter}
           />
           <div
-            className={`flex w-16 items-center justify-center text-right text-[16px]
+            className={`flex w-16 items-center justify-center text-right ${
+              bodyFont.category2
+            }
               ${writer.length > 10 ? 'text-red-600' : `${theme.defaultText}`}
               ${writer === '' && ' text-opacity-50'}
               `}

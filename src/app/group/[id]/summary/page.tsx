@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import Back from '@/component/Icon/Back';
 import LongCat from '@/component/Icon/LongCat';
 import { handleShare } from '@/utils/handleShare';
+import { bodyFont, headlineFont, titleFont } from '@/recoil/font';
 
 export default function Summary({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -55,7 +56,7 @@ export default function Summary({ params }: { params: { id: string } }) {
                 </div>
                 <div className=" basis-4/6">
                   <div
-                    className={`text-center text-[18px] ${Theme.defaultText} mt-[16px]`}
+                    className={`text-center ${bodyFont.category1} ${Theme.defaultText} mt-[16px]`}
                   >
                     그룹 스트링캣 공유하기
                   </div>
@@ -64,7 +65,9 @@ export default function Summary({ params }: { params: { id: string } }) {
               </div>
             </div>
             <div className="mx-[25px]  mt-[7px] basis-3/5">
-              <div className={`text-[22px] ${Theme.defaultText}`}>{Title}</div>
+              <div className={`${headlineFont.category2} ${Theme.defaultText}`}>
+                {Title}
+              </div>
             </div>
           </div>
         </div>
@@ -75,7 +78,7 @@ export default function Summary({ params }: { params: { id: string } }) {
               <div className="flex h-full w-full flex-row">
                 <div className="basis-2/3">
                   <div
-                    className={`${Theme.defaultText} mx-[24px] text-[26px] `}
+                    className={`${Theme.defaultText} mx-[24px] ${headlineFont.category1} `}
                   >
                     총 {ContentCount}번의 <br /> 마음으로 <br /> {boardCount}
                     개의 스트링캣이

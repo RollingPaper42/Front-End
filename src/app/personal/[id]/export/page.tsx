@@ -13,6 +13,7 @@ import Drawer from '@/component/Drawer';
 import StrcatHeader from '@/component/StrcatHeader';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
+import { titleFont } from '@/recoil/font';
 
 export default function Export() {
   const [openModal, closeModal] = useModal();
@@ -58,7 +59,7 @@ export default function Export() {
     <div className="mb-10">
       <Drawer />
       <StrcatHeader />
-      <div ref={divRef} className=" mx-5 mt-5 text-[22px]">
+      <div ref={divRef} className={`${titleFont.category1} mx-5 mt-5`}>
         <ExportBoard
           key={title}
           title={title}

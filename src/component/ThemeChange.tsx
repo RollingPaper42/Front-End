@@ -8,6 +8,7 @@ import {
   ThemeGreen,
   ThemeStrcat,
 } from '@/component/Icon/Theme';
+import { captionFont } from '@/recoil/font';
 
 export default function ThemeChange() {
   const [Theme, setTheme] = useRecoilState(themeState);
@@ -22,7 +23,9 @@ export default function ThemeChange() {
           onClick={() => handleThemeChange(strcat)}
         >
           <ThemeStrcat />
-          <div className={`${Theme.defaultText} `}>strcat</div>
+          <div className={`${Theme.defaultText} ${captionFont.category2} `}>
+            strcat
+          </div>
         </div>
         <div className="basis-1/6"></div>
         <div
@@ -30,7 +33,9 @@ export default function ThemeChange() {
           onClick={() => handleThemeChange(calm)}
         >
           <ThemeCalm />
-          <div className={`basis-1/6 text-center ${Theme.defaultText} `}>
+          <div
+            className={`basis-1/6 text-center ${Theme.defaultText} ${captionFont.category2} `}
+          >
             Calm
           </div>
         </div>
@@ -40,7 +45,9 @@ export default function ThemeChange() {
           onClick={() => handleThemeChange(green)}
         >
           <ThemeGreen />
-          <div className={`basis-1/6 text-center ${Theme.defaultText} `}>
+          <div
+            className={`basis-1/6 text-center ${Theme.defaultText} ${captionFont.category2} `}
+          >
             green
           </div>
         </div>
@@ -50,7 +57,11 @@ export default function ThemeChange() {
           onClick={() => handleThemeChange(cyan)}
         >
           <ThemeCyan />
-          <div className={`text-center ${Theme.defaultText} `}>Cyan</div>
+          <div
+            className={`text-center ${Theme.defaultText} ${captionFont.category2}`}
+          >
+            Cyan
+          </div>
         </div>
       </div>
     </div>

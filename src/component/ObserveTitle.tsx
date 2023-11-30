@@ -4,6 +4,7 @@ import { observeState } from '@/recoil/observe';
 import React from 'react';
 import { board } from '@/types/boards';
 import { themeObj, themeState } from '@/recoil/theme';
+import { titleFont } from '@/recoil/font';
 interface Props {
   board: board;
   isAdd: boolean;
@@ -43,7 +44,7 @@ const ObserveContent = ({ board, isAdd }: Props) => {
   return (
     <div className="my-[24px] mt-[40px] h-[100px]" ref={ref}>
       <h1
-        className={` text-[22px] ${theme.defaultText}`}
+        className={` ${titleFont.category1} ${theme.defaultText}`}
       >{`${board.title}`}</h1>
     </div>
   );
