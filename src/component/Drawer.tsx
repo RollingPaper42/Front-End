@@ -69,8 +69,12 @@ export default function Drawer() {
             />
           </div>
           <div className={`flex flex-col items-center ${theme.defaultText}`}>
-            <DropList title="내 스트링캣" list={personalList} />
-            <DropList title="그룹 스트링캣" list={groupList} />
+            <DropList
+              title="내 스트링캣"
+              list={personalList}
+              category="personal"
+            />
+            <DropList title="그룹 스트링캣" list={groupList} category="group" />
             <div className="absolute bottom-0 w-full px-[24px]">
               <div className="h-[53px] w-full" onClick={handleLogout}>
                 <DrawerItem

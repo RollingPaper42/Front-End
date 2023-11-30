@@ -9,6 +9,7 @@ import { themeState } from '@/recoil/theme';
 interface Props {
   title: string;
   list: drawerBoard[];
+  category: string;
 }
 
 interface drawerBoard {
@@ -16,7 +17,7 @@ interface drawerBoard {
   title: string;
 }
 
-export default function DropList({ title, list }: Props) {
+export default function DropList({ title, list, category }: Props) {
   const [theme] = useRecoilState(themeState);
   const [dropDown, setDropDown] = useState(false);
   const catTheme = theme.catTheme;
@@ -48,7 +49,7 @@ export default function DropList({ title, list }: Props) {
       </div>
       {dropDown && (
         <div className="flex h-[203px] w-full flex-col overflow-y-scroll">
-          {list && <DropListItem list={list} category="personal" />}
+          {list && <DropListItem list={list} category={category} />}
         </div>
       )}
     </>
