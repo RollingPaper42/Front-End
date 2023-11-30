@@ -72,7 +72,7 @@ const PhotoUpload = ({ setImage }: Props) => {
             <div
               className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.leftCTA}`}
             />
-            <h1 className="absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center text-[22px] text-strcat-default-black">
+            <h1 className="absolute left-[1px] top-[4px] flex h-[33px] w-full select-none items-center justify-center text-[22px] text-strcat-default-black">
               사진
             </h1>
           </label>
