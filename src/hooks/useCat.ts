@@ -25,7 +25,7 @@ export const useCat = (): [
         width: catAnimationDetail[catActionString].width,
         height: catAnimationDetail[catActionString].height,
         bottom:
-          screen.height -
+          window.innerHeight -
           elementBottom +
           catAnimationDetail[catActionString].bottom,
         left: elementLeft + catAnimationDetail[catActionString].left,
