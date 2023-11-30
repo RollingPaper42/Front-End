@@ -30,7 +30,7 @@ export default function Home() {
   };
 
   return (
-    <div className={`${Theme.background}`}>
+    <div className={`h-full ${Theme.background}`}>
       <div className=" fixed flex h-full w-full max-w-md  flex-col">
         <div className="basis-1/12">
           <Drawer />
@@ -59,7 +59,9 @@ export default function Home() {
                     className={`relative bottom-[4.5px] left-[2px] h-[33px] w-[150px] text-[22px] ${Theme.leftCTA}`}
                   >
                     <div className=" bottom-[-4.5px] left-[-2px]">
-                      <div className="relative top-1">스트링캣 만들기</div>
+                      <div className="relative top-1 select-none">
+                        스트링캣 만들기
+                      </div>
                     </div>
                   </div>
                 </button>
@@ -78,7 +80,9 @@ export default function Home() {
                   <div
                     className={`relative bottom-[4.5px] left-[2px] h-[33px]  w-[200px] text-[22px] ${Theme.rightCTA}`}
                   >
-                    <div className="relative top-1">그룹 스트링캣 만들기</div>
+                    <div className="relative top-1 select-none">
+                      그룹 스트링캣 만들기
+                    </div>
                     <div className=" bottom-[-4.5px] left-[-2px]"></div>
                   </div>
                 </button>

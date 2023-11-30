@@ -51,13 +51,10 @@ export default function Group({ params }: { params: { id: string } }) {
 
   const handleClickCreate = () => {
     if (!isLogin) {
-      localStorage.setItem(
-        'strcat_login_success_url',
-        `create?groupId=${params.id}`,
-      );
+      localStorage.setItem('strcat_login_success_url', `/group/${params.id}`);
       router.push('/login');
     } else {
-      router.push(`create?groupId=${params.id}`);
+      router.push(`/group/${params.id}`);
     }
   };
 
