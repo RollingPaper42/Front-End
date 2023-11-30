@@ -18,13 +18,16 @@ export const useCat = (): [
       const element = document.getElementById(elementId);
       if (element === null) return;
       const elementLeft = element.getBoundingClientRect().left;
-      const elementTop = element.getBoundingClientRect().top;
+      const elementBottom = element.getBoundingClientRect().bottom;
       setCatAnimation({
         src: `/cats/${theme.name}/${catActionString}.gif`,
         catAction: catActionString,
         width: catAnimationDetail[catActionString].width,
         height: catAnimationDetail[catActionString].height,
-        top: elementTop + catAnimationDetail[catActionString].top,
+        bottom:
+          screen.height -
+          elementBottom +
+          catAnimationDetail[catActionString].bottom,
         left: elementLeft + catAnimationDetail[catActionString].left,
       });
     }, time);

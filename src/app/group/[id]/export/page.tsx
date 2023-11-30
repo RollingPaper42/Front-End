@@ -13,33 +13,26 @@ import StrcatHeader from '@/component/StrcatHeader';
 import ExportBoard from '@/component/export/ExportBoard';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
+import { useRecoilState } from 'recoil';
+import { themeState } from '@/recoil/theme';
+import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 
-export default function Export() {
+export default function Export({ params }: { params: { id: string } }) {
   const divRef = useRef<HTMLDivElement>(null);
   const [openModal, closeModal] = useModal();
   const [title, setTitle] = useState<string>('');
   const [boardsTitle, setBoardsTitle] = useState<board[]>([]);
   const [boardsConetent, setBoardsContent] = useState<board[]>([]);
+  const [theme, setTheme] = useRecoilState(themeState);
   const [exportTheme, setExportTheme] = useState<string>(
     exportThemeEnum.default,
   );
-
-  useEffect(() => {
-    axiosInstance
-      .get(`/api/group`)
-      .then((data) => {
-        setTitle(data.data.titleData.title);
-        setBoardsTitle(data.data.titleData.boards);
-        setBoardsContent(data.data.contentData);
-      })
-      .catch((error) => {});
-  }, []);
 
   const handleSave = async () => {
     if (!divRef.current) return;
     try {
       const div = divRef.current;
-      const canvas = await html2canvas(div, { scale: 2 });
+      const canvas = await html2canvas(div, { scale: 4 });
       canvas.toBlob((blob) => {
         if (blob !== null) {
           saveAs(blob, `strcat_${title}.png`);
@@ -56,25 +49,43 @@ export default function Export() {
     }
   };
 
+  useEffect(() => {
+    const id = params.id;
+    if (id === null) return;
+    axiosInstance
+      .get(`/board-groups/${id}`)
+      .then((data) => {
+        console.log(data);
+        setTitle(data.data.title);
+        setBoardsTitle(data.data.boards);
+        setBoardsContent(data.data.boards);
+      })
+      .catch((error) => {});
+  }, []);
+
   return (
-    <div className="mb-10">
+    <div className={`${theme.background} ${theme.defaultText} h-full `}>
       <Drawer />
-      <StrcatHeader />
-      <div ref={divRef} className="mx-5">
-        {boardsTitle.map((board: board) => {
+      <StrcatHeader />.
+      <div ref={divRef} className={`${theme.background} mt-[78px] h-full`}>
+        <div className={`mx-[24px] pb-[24px]  text-[24px]`}>{title}</div>
+        {boardsTitle?.map((board: board) => {
           return (
-            <div key={board.title} className=" mb-5  text-[32px]">
-              {board.title}
-            </div>
+            <StrcatGroupTitle
+              key={board.id}
+              board={board}
+              scrollToId={() => {}}
+            />
           );
         })}
-        {boardsConetent.map((board) => {
+        {boardsConetent?.map((board) => {
           return (
             <ExportBoard
               key={board.id}
               title={board.title}
-              data={board.contents}
+              content={board.contents}
               exportTheme={exportTheme}
+              boardTheme={board.theme}
             />
           );
         })}
@@ -93,7 +104,7 @@ export default function Export() {
         </div>
         <BottomButton
           height="h-[42px]"
-          color="white"
+          color={theme.rightCTA}
           name="저장하기"
           width="w-[370px]"
           onClickHandler={handleSave}

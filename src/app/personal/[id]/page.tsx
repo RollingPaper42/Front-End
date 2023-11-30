@@ -14,10 +14,8 @@ import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import CatAnimation from '@/component/CatAnimation';
 import { catAction } from '@/types/animation';
 import { useCat } from '@/hooks/useCat';
-import ShareButton from '@/component/ShareButton';
 import { axiosInstance } from '@/utils/axios';
 import StrcatHeader from '@/component/StrcatHeader';
-import { content } from '@/types/content';
 import { useLogin } from '@/hooks/useLogin';
 import Loading from '@/component/Loading';
 
@@ -29,7 +27,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [observe] = useRecoilState(observeState);
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
-  const [runCatAnimati] = useCat();
+  const [runCatAnimation] = useCat();
   const [isLogin] = useLogin();
 
   useEffect(() => {
@@ -58,7 +56,11 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
-    if (board) runCatAnimati('strcatCreate', catAction.sit, 10000);
+    if (board) {
+      console.log(board);
+      runCatAnimation('catHeader', catAction.out, 1000);
+      runCatAnimation('strcatCreate', catAction.sit, 5000);
+    }
   }, [board]);
 
   return (
@@ -91,7 +93,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                     height="h-[42px]"
                     name="저장"
                     width="basis-1/5"
-                    onClickHandler={() => router.push(`./${params.id}/export`)}
+                    onClickHandler={() => router.push(`${params.id}/export`)}
                     disabled={false}
                     color={`bg-white`}
                   />
@@ -99,7 +101,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                     name="공유"
                     height="h-[42px]"
                     width="basis-1/5"
-                    onClickHandler={() => router.push(`./${params.id}/summary`)}
+                    onClickHandler={() => router.push(`${params.id}/summary`)}
                     disabled={false}
                     color={`${theme.leftCTA}`}
                   />

@@ -19,6 +19,9 @@ import { content } from '@/types/content';
 import ShareButton from '@/component/ShareButton';
 import { useLogin } from '@/hooks/useLogin';
 import Loading from '@/component/Loading';
+import CatAnimation from '@/component/CatAnimation';
+import { useCat } from '@/hooks/useCat';
+import { catAction } from '@/types/animation';
 
 export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string>('');
@@ -30,6 +33,8 @@ export default function Group({ params }: { params: { id: string } }) {
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [content, setContent] = useState<content[]>([]);
   const [isLogin] = useLogin();
+  const [runCatAnimation] = useCat();
+
   const router = useRouter();
   const scrollToId = (itemId: string) => {
     const map = itemsRef.current;
@@ -70,12 +75,25 @@ export default function Group({ params }: { params: { id: string } }) {
       .catch((err) => {});
   }, [params.id]);
 
+  useEffect(() => {
+    if (boards) {
+      runCatAnimation('catHeader', catAction.out, 1000);
+      runCatAnimation('strcatCreate', catAction.sit, 5000);
+    }
+  }, [boards]);
+
+  useEffect(() => {
+    runCatAnimation('strcatCreate', catAction.sit, 0);
+  }, [theme]);
+
   return (
     <div className={`${theme.background} h-full`}>
       <Drawer />
       <StrcatHeader />
+      <CatAnimation />
       <div
-        className={`relative w-full py-[24px] pt-[56px] ${theme.background}`}
+        className={`relative w-full py-[24px] pt-[56px] ${theme.background}
+        `}
       >
         {title === '' ? (
           <Loading />
@@ -124,13 +142,13 @@ export default function Group({ params }: { params: { id: string } }) {
           </button>
           {!isAdd &&
             (isOwner ? (
-              <div className="flex w-full max-w-md">
+              <div className="flex w-full max-w-md" id="strcatCreate">
                 <BottomButton
                   height="h-[42px]"
                   color={`bg-white`}
                   name="저장"
                   width="basis-1/4"
-                  onClickHandler={() => router.push(`./${params.id}/export`)}
+                  onClickHandler={() => router.push(`${params.id}/export`)}
                   disabled={false}
                 />
                 <BottomButton
@@ -138,7 +156,7 @@ export default function Group({ params }: { params: { id: string } }) {
                   color={`bg-white`}
                   name="공유"
                   width="basis-1/4"
-                  onClickHandler={() => router.push(`./${params.id}/summary`)}
+                  onClickHandler={() => router.push(`${params.id}/summary`)}
                   disabled={false}
                 />
                 <BottomButton
@@ -161,7 +179,7 @@ export default function Group({ params }: { params: { id: string } }) {
                 />
               </div>
             ) : (
-              <div className="flex w-full max-w-md">
+              <div className="flex w-full max-w-md" id="strcatCreate">
                 <BottomButton
                   height="h-[42px]"
                   color={`${theme.leftCTA}`}

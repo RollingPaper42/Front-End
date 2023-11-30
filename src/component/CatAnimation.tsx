@@ -7,11 +7,11 @@ export default function CatAnimation() {
 
   return (
     <div
-      className="fixed z-[55]"
+      className="fixed z-[25]"
       style={{
         width: `${catAnimation.width}px`,
         height: `${catAnimation.height}px`,
-        top: `${catAnimation.top}px`,
+        bottom: `${catAnimation.bottom}px`,
         left: `${catAnimation.left}px`,
       }}
     >

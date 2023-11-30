@@ -2,20 +2,17 @@
 
 import { useEffect, useState } from 'react';
 import { useLogin } from '@/hooks/useLogin';
-import { catAction } from '@/types/animation';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useRecoilState } from 'recoil';
 import { drawerState, themeState } from '@/recoil/state';
-import { useCat } from '@/hooks/useCat';
-import { HeaderProfileCat, LogoCat, Outline } from './Icon/Header';
+import { HeaderProfileCat, LogoCat, LogoText, Outline } from './Icon/Header';
 
 export default function StrcatHeader() {
   const [isLogin, checkLogin] = useLogin();
   const pathName = usePathname();
   const [, setDrawer] = useRecoilState(drawerState);
   const [theme] = useRecoilState(themeState);
-  const [runCatAnimation] = useCat();
   const [animationHeader, setAnimationHeader] = useState(false);
 
   useEffect(() => {
@@ -24,13 +21,11 @@ export default function StrcatHeader() {
 
   useEffect(() => {
     if (
-      pathName.indexOf('/personal') === 0 ||
-      pathName.indexOf('/group') === 0
+      (pathName.indexOf('/personal') === 0 ||
+        pathName.indexOf('/group') === 0) &&
+      pathName.indexOf('/export') === -1
     ) {
-      setTimeout(() => {
-        setAnimationHeader(true);
-        runCatAnimation('catHeader', catAction.out, 0);
-      }, 1000);
+      setAnimationHeader(true);
     }
   }, [pathName]);
 
@@ -40,7 +35,13 @@ export default function StrcatHeader() {
         className={`flex h-[56px] flex-row items-center justify-between ${theme.background} px-[24px]`}
         id="catHeader"
       >
-        {!animationHeader && (
+        {animationHeader ? (
+          <Link href="/" scroll={false}>
+            <div className="relative h-[40px] w-[120px]">
+              <LogoText color={theme.catTheme.headerCat} />
+            </div>
+          </Link>
+        ) : (
           <Link href="/" scroll={false}>
             <LogoCat
               bodyColor={theme.catTheme.headerCat}
