@@ -114,7 +114,7 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
         ${
           text.length > 1000 || text.length < 20
             ? 'text-strcat-error'
-            : `${theme.highlightText}`
+            : `${theme.highlightText} text-opacity-50`
         }`}
       >
         {text != '' && text.length < 20
