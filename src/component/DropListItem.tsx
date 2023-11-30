@@ -34,14 +34,14 @@ export default function DropListItem({ list, category }: Props) {
     return (
       <div
         key={item.id}
-        className={`flex h-[53px] w-full basis-1/4 items-center justify-between py-[20px]`}
+        className={`flex h-[53px] w-full items-center justify-between`}
         onClick={() => {
           router.push(url);
           setDrawer(false);
         }}
       >
         <div
-          className={`flex h-full w-full items-center justify-between px-[24px] hover:${
+          className={`my-[15px] flex h-full w-full items-center justify-between px-[24px] hover:${
             theme.activeDropItem
           } hover:bg-opacity-10 ${
             isActive && `${theme.activeDropItem} bg-opacity-10`
