@@ -16,3 +16,11 @@
   src: url('/fonts/DotGothic16-Regular.ttf') format('truetype');
   font-style: normal;
 }
+
+body {
+  -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
