@@ -22,6 +22,7 @@ export interface themeState {
   activeDropItem: string;
   explainRightCTA: string;
   explainLeftCTA: string;
+  titleText: string;
 }
 
 export const strcat: themeState = {
@@ -39,6 +40,7 @@ export const strcat: themeState = {
   activeDropItem: 'bg-strcat-default-yellow',
   explainLeftCTA: 'text-strcat-default-green',
   explainRightCTA: 'text-strcat-default-cyan',
+  titleText: 'text-strcat-default-white',
 };
 
 export const calm: themeState = {
@@ -56,6 +58,7 @@ export const calm: themeState = {
   activeDropItem: 'bg-strcat-calm-orange',
   explainLeftCTA: 'text-strcat-calm-text-green',
   explainRightCTA: 'text-strcat-calm-text-cyan',
+  titleText: 'text-strcat-calm-black',
 };
 
 export const green: themeState = {
@@ -73,6 +76,7 @@ export const green: themeState = {
   activeDropItem: 'bg-strcat-green-yellow',
   explainLeftCTA: 'strcat-cyan-black',
   explainRightCTA: 'strcat-cyan-black',
+  titleText: 'text-strcat-green-black',
 };
 
 export const cyan: themeState = {
@@ -90,6 +94,7 @@ export const cyan: themeState = {
   activeDropItem: 'bg-strcat-cyan-yellow',
   explainLeftCTA: 'strcat-cyan-black',
   explainRightCTA: 'strcat-cyan-black',
+  titleText: 'text-strcat-cyan-white',
 };
 
 export const themeObj = {

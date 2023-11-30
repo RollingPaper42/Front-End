@@ -38,7 +38,7 @@ export const useInterceptor = () => {
     (response) => responseHandler(response),
     (error) => {
       errorHandler(error.response.status);
-      return error;
+      return Promise.reject(error);
     },
   );
 

@@ -49,6 +49,7 @@ module.exports = {
 
         'login-button-kakao': '#FEE500',
         'login-button-google': '#FFFFFF',
+        'loading-gray': '#D9D9D9',
       },
       keyframes: {
         slide: {
