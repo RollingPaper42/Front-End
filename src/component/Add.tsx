@@ -34,15 +34,6 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
   }
 
   const handleClick = async () => {
-    if (text.length < 20) {
-      openModal(
-        <Error
-          content="이어 쓸 스트링을 20자 이상 입력해주세요"
-          handleModalClose={closeModal}
-        />,
-      );
-      return;
-    }
     const isConfirmed = await confirm(
       '작성한 스트링을 이어붙이시겠습니까?',
       openModal,
@@ -50,21 +41,18 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
     );
     if (isConfirmed) {
       try {
-        console.log('here');
         let data = {
           text: text,
           writer: writer,
           photoUrl: '',
         };
         if (image !== null) {
-          console.log(image);
           axiosInstance.defaults.headers.common['Content-Type'] =
             'multipart/form-data';
           const photoRes = await axiosInstance.post(
             `/boards/${id}/contents/pictures`,
             { picture: image },
           );
-          console.log(photoRes);
           data = { ...data, photoUrl: photoRes.data };
         }
         axiosInstance.defaults.headers.common['Content-Type'] =
@@ -78,12 +66,15 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
           ...prevContent,
           { id: contentRes.data, ...data },
         ]);
-        console.log(contentRes);
       } catch (err) {
         const error = err as AxiosError;
-        console.log(error);
         if (error.response?.status === 406) {
-          alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
+          openModal(
+            <Error
+              content="올바르지 않은 입력입니다. 다시 작성해주세요."
+              handleModalClose={closeModal}
+            />,
+          );
         }
       }
     }
@@ -120,10 +111,15 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
       )}
       <div
         className={`ml-[8px] inline text-right 
-        ${text.length > 1000 ? 'text-strcat-error' : `${theme.highlightText}`}
-        ${text.length < 20 && 'text-opacity-50'}`}
+        ${
+          text.length > 1000 || text.length < 20
+            ? 'text-strcat-error'
+            : `${theme.highlightText}`
+        }`}
       >
-        {text.length}/1000자
+        {text != '' && text.length < 20
+          ? '20자 이상 내용을 입력해주세요'
+          : `${text.length}/1000자`}
       </div>
       <div className="sticky bottom-[88px] z-10 mt-[24px] flex w-full items-center justify-center">
         <div className="flex w-full items-center justify-center space-x-[16px]">
