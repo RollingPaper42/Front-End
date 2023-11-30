@@ -14,10 +14,8 @@ import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import CatAnimation from '@/component/CatAnimation';
 import { catAction } from '@/types/animation';
 import { useCat } from '@/hooks/useCat';
-import ShareButton from '@/component/ShareButton';
 import { axiosInstance } from '@/utils/axios';
 import StrcatHeader from '@/component/StrcatHeader';
-import { content } from '@/types/content';
 import { useLogin } from '@/hooks/useLogin';
 
 export default function Personal({ params }: { params: { id: string } }) {
@@ -57,7 +55,11 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
-    if (board) runCatAnimation('strcatCreate', catAction.sit, 10000);
+    if (board) {
+      console.log(board);
+      runCatAnimation('catHeader', catAction.out, 1000);
+      runCatAnimation('strcatCreate', catAction.sit, 5000);
+    }
   }, [board]);
 
   return (
