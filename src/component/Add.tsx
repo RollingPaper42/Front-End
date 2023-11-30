@@ -82,7 +82,9 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
 
   const focusText = () => {
     const textDiv = document.getElementById('text');
+    const selection = window.getSelection();
     textDiv?.focus();
+    selection?.setPosition(textDiv, 0);
   };
 
   const handleInputText = (e: React.KeyboardEvent<HTMLDivElement>) => {
