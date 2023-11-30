@@ -122,26 +122,26 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
           : `${text.length}/1000자`}
       </div>
       <div className="sticky bottom-[88px] z-10 mt-[24px] flex w-full items-center justify-center">
-        <div className="flex w-full items-center justify-center space-x-[16px]">
-          <div className={`${theme.defaultText} w-fit text-[16px]`}>From :</div>
-          <input
-            type="text"
-            id="writer"
-            value={writer}
-            className={`${theme.defaultText} w-[163px] bg-transparent text-[16px] outline-none ${theme.placeholder} placeholder:text-opacity-50`}
-            placeholder="익명의 스트링캣"
-            maxLength={11}
-            onChange={handleWriter}
-          />
+        <div className="flex w-full items-center justify-between px-[16px]">
+          <div className="flex flex-row">
+            <div className={`${theme.defaultText} mr-[16px] w-fit text-[16px]`}>
+              From :
+            </div>
+            <input
+              type="text"
+              id="writer"
+              value={writer}
+              className={`${theme.defaultText} w-fit bg-transparent text-[16px] outline-none ${theme.placeholder} placeholder:text-opacity-50`}
+              placeholder="익명의 스트링캣"
+              maxLength={11}
+              onChange={handleWriter}
+            />
+          </div>
           <div
-            className={`flex w-16 items-center justify-center text-right text-[16px]
-              ${
-                writer.length > 10
-                  ? 'text-strcat-error'
-                  : `${theme.defaultText}`
-              }
-              ${writer === '' && ' text-opacity-50'}
-              `}
+            className={`flex w-fit items-center justify-center text-right text-[16px]
+            ${writer.length > 10 ? 'text-strcat-error' : `${theme.defaultText}`}
+            ${writer === '' && ' text-opacity-50'}
+            `}
           >
             {writer.length}/10자
           </div>
