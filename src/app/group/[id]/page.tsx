@@ -69,7 +69,7 @@ export default function Group({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   return (
-    <div className={`${theme.background} h-full`}>
+    <div className={`${theme.background}  min-h-full`}>
       <Drawer />
       <StrcatHeader />
       <div
@@ -91,7 +91,7 @@ export default function Group({ params }: { params: { id: string } }) {
             );
           })}
         </div>
-        <div className={`${boards.length ? 'pb-[500px]' : ''} text-justify`}>
+        <div className={`${boards.length ? 'pb-[150px]' : ''} text-justify`}>
           {boards.map((board) => {
             return (
               <StrcatBoard
@@ -106,12 +106,14 @@ export default function Group({ params }: { params: { id: string } }) {
           })}
         </div>
         <div className="fixed bottom-5 z-20 w-full max-w-md px-[24px]">
-          <button
-            className="absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
-            onClick={scrollToTop}
-          >
-            <ShortCut color={theme.defaultIcon} />
-          </button>
+          {window.scrollY > 20 && (
+            <button
+              className="absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
+              onClick={scrollToTop}
+            >
+              <ShortCut color={theme.defaultIcon} />
+            </button>
+          )}
           {!isAdd &&
             (isOwner ? (
               <div className="flex w-full max-w-md">

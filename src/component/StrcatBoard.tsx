@@ -6,14 +6,16 @@ import {
   SetStateAction,
   useEffect,
   useState,
+  use,
 } from 'react';
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { RecoilState, useRecoilState } from 'recoil';
 import Add from './Add';
 import { observeState } from '@/recoil/observe';
 import { board } from '@/types/boards';
 import ObserveTitle from './ObserveTitle';
 import ShareButton from './ShareButton';
+import { themeState } from '@/recoil/theme';
 
 interface Props {
   board: board;
@@ -29,6 +31,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
 ) {
   const [observe] = useRecoilState(observeState);
   const [content, setContent] = useState<content[]>([]);
+  const [theme, setTheme] = useRecoilState(themeState);
   useEffect(() => {
     setContent(board.contents);
   }, [board]);

@@ -19,6 +19,7 @@ import { axiosInstance } from '@/utils/axios';
 import StrcatHeader from '@/component/StrcatHeader';
 import { content } from '@/types/content';
 import { useLogin } from '@/hooks/useLogin';
+import { overflow } from 'html2canvas/dist/types/css/property-descriptors/overflow';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -62,7 +63,7 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={` h-full ${theme.background}`}>
+      <div className={` ${theme.background} min-h-full pb-[150px]`}>
         <Drawer />
         <StrcatHeader />
         <CatAnimation />
