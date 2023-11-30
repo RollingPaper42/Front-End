@@ -120,7 +120,7 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
       )}
       <div
         className={`ml-[8px] inline text-right 
-        ${text.length > 1000 ? 'text-red-600' : `${theme.highlightText}`}
+        ${text.length > 1000 ? 'text-strcat-error' : `${theme.highlightText}`}
         ${text.length < 20 && 'text-opacity-50'}`}
       >
         {text.length}/1000자
@@ -139,7 +139,11 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
           />
           <div
             className={`flex w-16 items-center justify-center text-right text-[16px]
-              ${writer.length > 10 ? 'text-red-600' : `${theme.defaultText}`}
+              ${
+                writer.length > 10
+                  ? 'text-strcat-error'
+                  : `${theme.defaultText}`
+              }
               ${writer === '' && ' text-opacity-50'}
               `}
           >
