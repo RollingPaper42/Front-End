@@ -45,7 +45,7 @@ export default function Drawer() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   return (
     drawer &&
@@ -54,7 +54,8 @@ export default function Drawer() {
         className="fixed z-30 h-full w-full max-w-md bg-black bg-opacity-40"
         onClick={(e) => {
           handleBackground(e, () => setDrawer(false));
-          document.body.style.overflow = 'auto';
+          if (e.target === e.currentTarget)
+            document.body.style.overflow = 'auto';
         }}
       >
         <div
