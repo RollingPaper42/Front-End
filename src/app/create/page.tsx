@@ -21,8 +21,7 @@ export default function Create() {
   const [openModal, closeModal] = useModal();
   const router = useRouter();
   const groupId = searchParams.get('groupId');
-  const ErrorInitColor = Theme.defaultText;
-  const [ErrorFontColor, SetErrorFontColor] = useState(ErrorInitColor);
+  const maxLength = 30;
 
   const handleConfirm = async () => {
     openModal(
@@ -72,13 +71,11 @@ export default function Create() {
   ) => {
     SetButtonState(false);
     if (title.length == 0) SetButtonState(true);
-    if (title.length >= 30 && e.key !== 'Backspace' && e.key !== 'Delete') {
+    if (e.key === 'Enter') {
       e.preventDefault();
+    }
+    if (title.length >= 30) {
       SetButtonState(true);
-      e.currentTarget.value = e.currentTarget.value.slice(0, 30);
-      SetErrorFontColor('text-strcat-error');
-    } else {
-      SetErrorFontColor(Theme.defaultText + ' text-opacity-50');
     }
   };
 
@@ -111,11 +108,17 @@ export default function Create() {
               value={title}
               className={` w-full resize-none ${Theme.background} text-[22px] ${Theme.defaultText} outline-none ${Theme.placeholder}`}
               placeholder="제목을 입력해주세요."
-              maxLength={30}
+              maxLength={maxLength}
               onChange={(e) => handleChangeTitle(e)}
               onKeyDown={(e) => handleKeyDownTitle(e, title)}
             />
-            <div className={`w-full text-right text-[14px] ${ErrorFontColor}`}>
+            <div
+              className={`w-full text-right text-[14px]  ${
+                title.length > maxLength
+                  ? 'text-red-600'
+                  : `${Theme.defaultText}`
+              }`}
+            >
               {title.length}/30
             </div>
           </div>
