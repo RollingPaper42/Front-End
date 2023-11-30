@@ -1,3 +1,7 @@
+import BottomButton from '../BottomButton';
+import ModalClose from '../Icon/ModalClose';
+import ShareModal from '../Icon/ShareModal';
+
 interface Props {
   content: string;
   handleModalClose: () => void;
@@ -5,17 +9,29 @@ interface Props {
 
 export default function ExportSuccess({ content, handleModalClose }: Props) {
   return (
-    <div className="flex h-full w-full flex-col bg-green-700">
-      <div className="flex h-[70%] items-center justify-center p-10 text-center text-2xl">
-        {content}
-      </div>
-      <div className="flex h-[30%] justify-center">
-        <button
-          className="h-[80%] basis-4/5 bg-amber-200 text-3xl"
-          onClick={handleModalClose}
-        >
-          공유하기
-        </button>
+    <div className="relative h-[196px] w-[312px]">
+      <ShareModal />
+      <div className="absolute top-0 h-[196px] w-[312px] items-center justify-center p-[16px]">
+        <div className="flex w-full justify-end">
+          <button onClick={handleModalClose}>
+            <ModalClose />
+          </button>
+        </div>
+        <div className=" items-center justify-center">
+          <p className="absolute left-0 top-[64px] px-[24px] text-center text-[22px]">
+            {content}
+          </p>
+        </div>
+        <div className="absolute bottom-[16px] left-0 flex w-full justify-between px-[16px]">
+          <BottomButton
+            height="h-[42px]"
+            color="bg-[#6CD8ED]"
+            name="예"
+            width="w-full"
+            onClickHandler={handleModalClose}
+            disabled={false}
+          />
+        </div>
       </div>
     </div>
   );
