@@ -4,6 +4,7 @@ interface BottomButtonProps {
   onClickHandler: () => void;
   disabled: boolean;
   color: string;
+  height: string;
 }
 
 export default function BottomButton({
