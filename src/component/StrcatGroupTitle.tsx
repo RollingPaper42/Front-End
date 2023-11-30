@@ -19,7 +19,7 @@ export default function StrcatGroupTitle({ board, scrollToId }: Props) {
         eyeColor={theme.catTheme.headerCatEye}
         bodyColor={theme.catTheme.headerCat}
       />
-      <p className={` cursor-pointer pl-[12px] text-xl ${theme.defaultText}`}>
+      <p className={` cursor-pointer pl-[12px] text-xl ${theme.titleText}`}>
         {`${board.title}`}
       </p>
     </div>

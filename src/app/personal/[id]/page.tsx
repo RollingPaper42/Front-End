@@ -38,7 +38,9 @@ export default function Personal({ params }: { params: { id: string } }) {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        if (err.response.status === 406) router.push('/not-found');
+      });
   }, [params.id]);
 
   const handleClick = () => {
@@ -65,7 +67,7 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={`h-full ${theme.background}`}>
+      <div className={` ${theme.background} min-h-full pb-[150px]`}>
         <Drawer />
         <StrcatHeader />
         <CatAnimation />

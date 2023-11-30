@@ -31,7 +31,6 @@ export default function Group({ params }: { params: { id: string } }) {
   const itemsRef = useRef(new Map());
   const [observe] = useRecoilState(observeState);
   const [isOwner, setIsOwner] = useState<boolean>(false);
-  const [content, setContent] = useState<content[]>([]);
   const [isLogin] = useLogin();
   const [runCatAnimation] = useCat();
 
@@ -72,7 +71,9 @@ export default function Group({ params }: { params: { id: string } }) {
         setTitle(data.data.title);
         setIsOwner(data.data.isOwner);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        if (err.response.status === 406) router.push('/not-found');
+      });
   }, [params.id]);
 
   useEffect(() => {
@@ -87,7 +88,7 @@ export default function Group({ params }: { params: { id: string } }) {
   }, [theme]);
 
   return (
-    <div className={`${theme.background} h-full`}>
+    <div className={`${theme.background}  min-h-full`}>
       <Drawer />
       <StrcatHeader />
       <CatAnimation />
@@ -100,7 +101,7 @@ export default function Group({ params }: { params: { id: string } }) {
         ) : (
           <>
             <div className="mb-[20px]">
-              <h1 className={`${theme.defaultText} mx-[24px] text-[26px]`}>
+              <h1 className={`${theme.titleText} mx-[24px] text-[26px]`}>
                 {`${title}`}
               </h1>
             </div>
@@ -134,12 +135,14 @@ export default function Group({ params }: { params: { id: string } }) {
           </>
         )}
         <div className="fixed bottom-5 z-20 w-full max-w-md px-[24px]">
-          <button
-            className="absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
-            onClick={scrollToTop}
-          >
-            <ShortCut color={theme.defaultIcon} />
-          </button>
+          {window.scrollY > 20 && (
+            <button
+              className="absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
+              onClick={scrollToTop}
+            >
+              <ShortCut color={theme.defaultIcon} />
+            </button>
+          )}
           {!isAdd &&
             (isOwner ? (
               <div className="flex w-full max-w-md" id="strcatCreate">
