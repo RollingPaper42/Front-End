@@ -25,7 +25,7 @@ export default function DropList({ title, list, category }: Props) {
   return (
     <>
       <div
-        className="flex h-[53px] w-full items-center justify-between px-[24px]"
+        className="flex h-[54px] w-full items-center justify-between px-[24px]"
         onClick={() => setDropDown(!dropDown)}
       >
         <DrawerItem

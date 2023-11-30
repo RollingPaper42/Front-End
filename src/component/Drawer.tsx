@@ -75,8 +75,9 @@ export default function Drawer() {
               category="personal"
             />
             <DropList title="그룹 스트링캣" list={groupList} category="group" />
+            <div className="h-[54px] w-full"></div>
             <div className="absolute bottom-0 w-full px-[24px]">
-              <div className="h-[53px] w-full" onClick={handleLogout}>
+              <div className="h-[54px] w-full" onClick={handleLogout}>
                 <DrawerItem
                   title="로그아웃"
                   icon={<Logout color={theme.defaultIcon} />}
