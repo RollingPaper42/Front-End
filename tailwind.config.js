@@ -46,6 +46,9 @@ module.exports = {
         'strcat-cyan-magenta': '#FF43A8',
         'strcat-cyan-cyan': '#6CD8ED',
         'strcat-cyan-black': '#212121',
+
+        'login-button-kakao': '#FEE500',
+        'login-button-google': '#FFFFFF',
       },
       keyframes: {
         slide: {
