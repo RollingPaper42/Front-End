@@ -67,7 +67,7 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={` ${theme.background} min-h-full pb-[150px]`}>
+      <div className={` ${theme.background} min-h-full`}>
         <Drawer />
         <StrcatHeader />
         <CatAnimation />

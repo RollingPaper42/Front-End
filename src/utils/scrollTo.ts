@@ -8,7 +8,7 @@ export const scrollToAdd = (
   const map = itemsRef.current;
   const node = map.get(itemId);
   const height = node.offsetHeight;
-  const offset = node.offsetTop + height - 500; // 하단의 여백을 500만큼 줬으므로 그만큼 빼준다.
+  const offset = node.offsetTop + height - window.innerHeight - 500; // 하단의 여백을 500만큼 줬으므로 그만큼 빼준다.
   window.scrollTo({ top: offset, behavior: 'smooth' });
 };
 

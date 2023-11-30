@@ -32,14 +32,19 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
   const [isLogin] = useLogin();
   const [observe] = useRecoilState(observeState);
   const [content, setContent] = useState<content[]>([]);
-  const [theme, setTheme] = useRecoilState(themeState);
+
   useEffect(() => {
     setContent(board.contents);
   }, [board]);
+
   return (
-    <div ref={ref} className={`break-all px-[24px]`}>
+    <div
+      ref={ref}
+      className={`h-auto break-all  px-[24px] `}
+      style={{ paddingBottom: `${window.innerHeight}px` }}
+    >
       <ObserveTitle isAdd={isAdd} board={board} />
-      <div className={`z-0 inline`}>
+      <div className={`z-0 inline-block`}>
         {content &&
           content.map((content: content) => {
             return (
