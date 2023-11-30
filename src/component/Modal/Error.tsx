@@ -12,10 +12,10 @@ export default function Error({ content, handleModalClose }: Props) {
     <div className="flex h-[196px] w-[312px] flex-col">
       <ModalErrorBackground />
       <div className="absolute flex h-[196px] w-[312px] flex-col items-center justify-center">
-        <div className="flex h-[100px] items-center justify-center px-[8px]">
+        <div className="flex h-[100px] items-center justify-center px-[24px]">
           {content}
         </div>
-        <div className=" bottom-2 flex w-[264px] items-center justify-center">
+        <div className=" bottom-2 flex w-[280px] items-center justify-center">
           <BottomButton
             height="42px"
             color="bg-[#6CD8ED]"

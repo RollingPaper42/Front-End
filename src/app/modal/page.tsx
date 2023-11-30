@@ -14,12 +14,19 @@ export default function Modal() {
   const [, setCat] = useRecoilState(catAnimationState);
 
   const handleConfirm = async () => {
-    const result = await confirm('컨펌 메시지 글', openModal, closeModal);
+    const result = await confirm(
+      '컨펌 메시지 글 컨펌메세지 컨펌메세지 컨퍼어어어어어엄커어ㅓ어어어엉언퍼어어엄',
+      openModal,
+      closeModal,
+    );
   };
 
   const handleError = () => {
     openModal(
-      <Error content="에러 모달 띄우기" handleModalClose={closeModal} />,
+      <Error
+        content="에러 모달 띄우기 에러모달 에러모달 어쩌구 에러모달"
+        handleModalClose={closeModal}
+      />,
     );
   };
 
