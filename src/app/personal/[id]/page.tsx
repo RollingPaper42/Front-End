@@ -14,11 +14,10 @@ import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import CatAnimation from '@/component/CatAnimation';
 import { catAction } from '@/types/animation';
 import { useCat } from '@/hooks/useCat';
-import ShareButton from '@/component/ShareButton';
 import { axiosInstance } from '@/utils/axios';
 import StrcatHeader from '@/component/StrcatHeader';
-import { content } from '@/types/content';
 import { useLogin } from '@/hooks/useLogin';
+import Loading from '@/component/Loading';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -39,7 +38,9 @@ export default function Personal({ params }: { params: { id: string } }) {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        if (err.response.status === 406) router.push('/not-found');
+      });
   }, [params.id]);
 
   const handleClick = () => {
@@ -52,22 +53,26 @@ export default function Personal({ params }: { params: { id: string } }) {
       localStorage.setItem('strcat_login_success_url', `create`);
       router.push('/login');
     } else {
-      router.push(`create`);
+      router.push('/create');
     }
   };
 
   useEffect(() => {
-    if (board) runCatAnimation('strcatCreate', catAction.sit, 10000);
+    if (board) {
+      console.log(board);
+      runCatAnimation('catHeader', catAction.out, 1000);
+      runCatAnimation('strcatCreate', catAction.sit, 5000);
+    }
   }, [board]);
 
   return (
     <>
-      <div className={` h-full ${theme.background}`}>
+      <div className={` ${theme.background} min-h-full pb-[150px]`}>
         <Drawer />
         <StrcatHeader />
         <CatAnimation />
-        <div className={`relative w-full  py-[24px] text-justify `}>
-          {board.length && (
+        <div className={`relative w-full py-[24px] text-justify `}>
+          {board.length ? (
             <StrcatBoard
               board={board[0]}
               ref={(node) => setMap(node, board[0], itemsRef)}
@@ -76,6 +81,8 @@ export default function Personal({ params }: { params: { id: string } }) {
               isPersonal={true}
               paramsId={params.id}
             />
+          ) : (
+            <Loading />
           )}
           {!isAdd &&
             (isOwner ? (

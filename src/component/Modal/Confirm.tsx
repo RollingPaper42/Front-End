@@ -13,16 +13,16 @@ export default function Confirm({ content, yes, no }: Props) {
   return (
     <div className="flex  h-[260px] w-[312px] flex-col">
       <ModalBackground />
-      <div className="felx felx-col absolute h-[312px] w-[312px] items-center justify-center">
+      <div className="felx felx-col absolute h-[260px] w-[312px] items-center justify-center">
         <div className="flex w-full justify-end p-[16px]">
-          <div onClick={no}>
+          <button onClick={no}>
             <ModalClose />
-          </div>
+          </button>
         </div>
-        <div className=" flex h-[150px] items-center justify-center px-16">
+        <div className="relative flex h-[135px] items-center justify-center px-[16px]">
           <p>{content}</p>
         </div>
-        <div className="flex flex-row justify-around">
+        <div className="relative bottom-0 flex flex-row justify-around">
           <BottomButton
             height="h-[42px]"
             color="bg-[#A6A6A6]"
