@@ -124,7 +124,9 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
       <div className="sticky bottom-[88px] z-10 mt-[24px] flex w-full items-center justify-center">
         <div className="flex w-full items-center justify-between px-[16px]">
           <div className="flex flex-row">
-            <div className={`${theme.defaultText} mr-[16px] w-fit text-[16px]`}>
+            <div
+              className={`${theme.defaultText} mr-[16px] w-fit min-w-fit text-[16px]`}
+            >
               From :
             </div>
             <input
@@ -138,7 +140,7 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
             />
           </div>
           <div
-            className={`flex w-fit items-center justify-center text-right text-[16px]
+            className={`flex w-fit min-w-fit items-center justify-center text-right text-[16px]
             ${writer.length > 10 ? 'text-strcat-error' : `${theme.defaultText}`}
             ${writer === '' && ' text-opacity-50'}
             `}
