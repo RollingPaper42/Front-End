@@ -14,6 +14,8 @@ export default function Drawer() {
   const [isLogin, , setIsLogin] = useLogin();
   const [drawer, setDrawer] = useRecoilState(drawerState);
   const [personalList, setPersonalList] = useState<drawerBoard[]>([]);
+  const [personalDrop, setPersonalDrop] = useState<boolean>(false);
+  const [groupDrop, setGroupDrop] = useState<boolean>(false);
   const [groupList, setGroupList] = useState<drawerBoard[]>([]);
   const [theme] = useRecoilState(themeState);
   const catTheme = theme.catTheme;
@@ -69,10 +71,26 @@ export default function Drawer() {
               title="내 스트링캣"
               list={personalList}
               category="personal"
+              dropDown={personalDrop}
+              handleDropDown={() => {
+                if (!personalDrop) setGroupDrop(false);
+                setPersonalDrop(!personalDrop);
+              }}
             />
-            <DropList title="그룹 스트링캣" list={groupList} category="group" />
+            <DropList
+              title="그룹 스트링캣"
+              list={groupList}
+              category="group"
+              dropDown={groupDrop}
+              handleDropDown={() => {
+                if (!groupDrop) setPersonalDrop(false);
+                setGroupDrop(!groupDrop);
+              }}
+            />
             <div className="h-[54px] w-full"></div>
-            <div className="absolute bottom-0 w-full px-[24px]">
+            <div
+              className={`absolute bottom-0 w-full ${theme.background} px-[24px]`}
+            >
               <div className="h-[54px] w-full" onClick={handleLogout}>
                 <DrawerItem
                   title="로그아웃"

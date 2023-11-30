@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Dispatch, useState } from 'react';
 import DrawerItem from './DrawerItem';
 import Strcat from '../Icon/Strcat';
 import { DropListDown, DropListUp } from '../Icon/Drawer';
@@ -11,18 +11,25 @@ interface Props {
   title: string;
   list: drawerBoard[];
   category: string;
+  dropDown: boolean;
+  handleDropDown: () => void;
 }
 
-export default function DropList({ title, list, category }: Props) {
+export default function DropList({
+  title,
+  list,
+  category,
+  dropDown,
+  handleDropDown,
+}: Props) {
   const [theme] = useRecoilState(themeState);
-  const [dropDown, setDropDown] = useState(false);
   const catTheme = theme.catTheme;
 
   return (
     <>
       <div
         className="flex h-[54px] w-full items-center justify-between px-[24px]"
-        onClick={() => setDropDown(!dropDown)}
+        onClick={handleDropDown}
       >
         <DrawerItem
           title={title}
