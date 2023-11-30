@@ -1,6 +1,7 @@
 'use client';
 
 import CatAnimation from '@/component/CatAnimation';
+import Loading from '@/component/Loading';
 import Error from '@/component/Modal/Error';
 import useModal from '@/hooks/useModal';
 import { catAnimationState } from '@/recoil/catAnimation';
@@ -76,7 +77,8 @@ export default function Modal() {
   };
 
   return (
-    <div className="h-full w-full bg-green-200">
+    <div className="h-full w-full">
+      <Loading />
       <CatAnimation />
       <div>
         <button onClick={handleError}>Modal click</button>

@@ -1,0 +1,33 @@
+import { themeState } from '@/recoil/theme';
+import { useRecoilState } from 'recoil';
+
+function LoadingLine({ width, height }: { width: string; height: string }) {
+  return (
+    <div className={`${height} ${width} bg-loading-gray`}>
+      <div className="h-full w-full bg-black bg-opacity-20" />
+    </div>
+  );
+}
+
+export default function Loading() {
+  const [theme] = useRecoilState(themeState);
+  return (
+    <div className={`h-full w-full ${theme.background} px-[24px] pt-[96px]`}>
+      <div className="w-full animate-pulse space-y-[7px]">
+        <div className="bg-loading-gray h-[30px] w-full" />
+        <LoadingLine width="w-[206px]" height="h-[30px]" />
+      </div>
+      <div className="mt-[84px] w-full animate-pulse space-y-[7px]">
+        <LoadingLine width="w-full" height="h-[26px]" />
+        <LoadingLine width="w-full" height="h-[26px]" />
+      </div>
+      <div className="mt-[36px] w-full animate-pulse space-y-[7px]">
+        <LoadingLine width="w-full" height="h-[26px]" />
+        <LoadingLine width="w-full" height="h-[26px]" />
+        <LoadingLine width="w-[88px]" height="h-[26px]" />
+        <LoadingLine width="w-full" height="h-[26px]" />
+        <LoadingLine width="w-[187px]" height="h-[26px]" />
+      </div>
+    </div>
+  );
+}
