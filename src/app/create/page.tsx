@@ -44,7 +44,7 @@ export default function Create() {
       .post(`/boards`, data)
       .then((data) => {
         if (groupId == null) router.push(`/personal/${data.data}`);
-        else router.push(`/group/${data.data}`);
+        else router.push(`/group/${groupId}`);
       })
       .catch((err) => {
         if (err.response.status === 406) {

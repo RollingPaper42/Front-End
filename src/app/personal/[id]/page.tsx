@@ -28,7 +28,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [observe] = useRecoilState(observeState);
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
-  const [runCatAnimati] = useCat();
+  const [runCatAnimation] = useCat();
   const [isLogin] = useLogin();
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
-    if (board) runCatAnimati('strcatCreate', catAction.sit, 10000);
+    if (board) runCatAnimation('strcatCreate', catAction.sit, 10000);
   }, [board]);
 
   return (
@@ -88,7 +88,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                     height="h-[42px]"
                     name="저장"
                     width="basis-1/5"
-                    onClickHandler={() => router.push(`./${params.id}/export`)}
+                    onClickHandler={() => router.push(`${params.id}/export`)}
                     disabled={false}
                     color={`bg-white`}
                   />
@@ -96,7 +96,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                     name="공유"
                     height="h-[42px]"
                     width="basis-1/5"
-                    onClickHandler={() => router.push(`./${params.id}/summary`)}
+                    onClickHandler={() => router.push(`${params.id}/summary`)}
                     disabled={false}
                     color={`${theme.leftCTA}`}
                   />
