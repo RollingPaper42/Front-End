@@ -4,17 +4,10 @@ import { useCallback, useEffect, useState } from 'react';
 import { themeState, drawerState } from '@/recoil/state';
 import { useLogin } from '@/hooks/useLogin';
 import { axiosInstance } from '@/utils/axios';
-import DropListItem from './DropListItem';
 import DrawerItem from './DrawerItem';
 import { handleBackground } from '@/utils/handleBackground';
-import {
-  DrawerProfileCat,
-  DropListDown,
-  DropListUp,
-  Logout,
-} from './Icon/Drawer';
-import Strcat from './Icon/Strcat';
-import { useRouter } from 'next/navigation';
+import { DrawerProfileCat, Logout } from './Icon/Drawer';
+import DropList from './DropList';
 
 interface Board {
   id: string;
@@ -24,13 +17,10 @@ interface Board {
 export default function Drawer() {
   const [isLogin, , setIsLogin] = useLogin();
   const [drawer, setDrawer] = useRecoilState(drawerState);
-  const [dropList, setDropList] = useState(false);
-  const [groupDropList, setGroupDropList] = useState(false);
   const [personalList, setPersonalList] = useState<Board[]>([]);
   const [groupList, setGroupList] = useState<Board[]>([]);
   const [theme] = useRecoilState(themeState);
   const catTheme = theme.catTheme;
-  const router = useRouter();
 
   const fetchData = useCallback(async () => {
     if (isLogin) {
@@ -78,62 +68,8 @@ export default function Drawer() {
             />
           </div>
           <div className={`flex flex-col items-center ${theme.defaultText}`}>
-            <div
-              className="flex h-[53px] w-full items-center justify-between px-[24px]"
-              onClick={() => setDropList(!dropList)}
-            >
-              <DrawerItem
-                title="내 스트링캣"
-                icon={
-                  <Strcat
-                    eyeColor={catTheme.headerCatEye}
-                    bodyColor={catTheme.headerCat}
-                  />
-                }
-              />
-              {personalList.length != 0 && (
-                <div className="ml-[12px]">
-                  {dropList ? (
-                    <DropListUp color={theme.defaultIcon} />
-                  ) : (
-                    <DropListDown color={theme.defaultIcon} />
-                  )}
-                </div>
-              )}
-            </div>
-            {dropList && (
-              <div className="flex w-full flex-col">
-                {personalList && (
-                  <DropListItem list={personalList} category="personal" />
-                )}
-              </div>
-            )}
-            <div
-              className="flex h-[53px] w-full items-center justify-between px-[24px]"
-              onClick={() => setGroupDropList(!groupDropList)}
-            >
-              <DrawerItem
-                title="그룹 스트링캣"
-                icon={
-                  <Strcat
-                    eyeColor={catTheme.headerCatEye}
-                    bodyColor={catTheme.headerCat}
-                  />
-                }
-              />
-              {groupList.length != 0 && (
-                <div className="ml-[12px]">
-                  {groupDropList ? (
-                    <DropListUp color={theme.defaultIcon} />
-                  ) : (
-                    <DropListDown color={theme.defaultIcon} />
-                  )}
-                </div>
-              )}
-            </div>
-            {groupDropList && (
-              <DropListItem list={groupList} category="group" />
-            )}
+            <DropList title="내 스트링캣" list={personalList} />
+            <DropList title="그룹 스트링캣" list={groupList} />
             <div className="absolute bottom-0 w-full px-[24px]">
               <div className="h-[53px] w-full" onClick={handleLogout}>
                 <DrawerItem
