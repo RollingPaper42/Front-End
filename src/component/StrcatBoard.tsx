@@ -16,7 +16,7 @@ import { board } from '@/types/boards';
 import ObserveTitle from './ObserveTitle';
 import ShareButton from './ShareButton';
 import { themeState } from '@/recoil/theme';
-
+import { useLogin } from '@/hooks/useLogin';
 interface Props {
   board: board;
   isAdd: boolean;
@@ -29,6 +29,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
   { board, isAdd, setIsAdd, isPersonal, paramsId },
   ref,
 ) {
+  const [isLogin] = useLogin();
   const [observe] = useRecoilState(observeState);
   const [content, setContent] = useState<content[]>([]);
   const [theme, setTheme] = useRecoilState(themeState);
@@ -36,7 +37,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
     setContent(board.contents);
   }, [board]);
   return (
-    <div ref={ref} className={`break-words px-[24px]`}>
+    <div ref={ref} className={`break-all px-[24px]`}>
       <ObserveTitle isAdd={isAdd} board={board} />
       <div className={`z-0 inline`}>
         {content &&
@@ -60,7 +61,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
         />
       )}
       {!isAdd && <div className=" h-12"></div>}
-      {isPersonal && !content.length && (
+      {!isAdd && isLogin && isPersonal && !content.length && (
         <ShareButton params={`/personal/${paramsId}`} />
       )}
     </div>

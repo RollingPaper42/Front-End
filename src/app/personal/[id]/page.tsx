@@ -17,7 +17,7 @@ import { useCat } from '@/hooks/useCat';
 import { axiosInstance } from '@/utils/axios';
 import StrcatHeader from '@/component/StrcatHeader';
 import { useLogin } from '@/hooks/useLogin';
-import { overflow } from 'html2canvas/dist/types/css/property-descriptors/overflow';
+import Loading from '@/component/Loading';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -53,7 +53,7 @@ export default function Personal({ params }: { params: { id: string } }) {
       localStorage.setItem('strcat_login_success_url', `create`);
       router.push('/login');
     } else {
-      router.push(`create`);
+      router.push('/create');
     }
   };
 
@@ -71,8 +71,8 @@ export default function Personal({ params }: { params: { id: string } }) {
         <Drawer />
         <StrcatHeader />
         <CatAnimation />
-        <div className={`relative w-full  py-[24px] text-justify `}>
-          {board.length && (
+        <div className={`relative w-full py-[24px] text-justify `}>
+          {board.length ? (
             <StrcatBoard
               board={board[0]}
               ref={(node) => setMap(node, board[0], itemsRef)}
@@ -81,6 +81,8 @@ export default function Personal({ params }: { params: { id: string } }) {
               isPersonal={true}
               paramsId={params.id}
             />
+          ) : (
+            <Loading />
           )}
           {!isAdd &&
             (isOwner ? (
