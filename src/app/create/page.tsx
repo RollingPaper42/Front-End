@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import useInput from '@/hooks/useInput';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
+import { strcat, themeState } from '@/recoil/theme';
 import ThemeChange from '@/component/ThemeChange';
 import useModal from '@/hooks/useModal';
 import Confirm from '@/component/Modal/Confirm';
@@ -15,14 +15,13 @@ import Back from '@/component/Icon/Back';
 
 export default function Create() {
   const searchParams = useSearchParams();
-  const ErrorInitColor = 'text-gray-400';
   const [Theme] = useRecoilState(themeState);
   const [buttonState, SetButtonState] = useState(true);
   const [title, , handleTitle] = useInput('');
-  const [ErrorFontColor, SetErrorFontColor] = useState(ErrorInitColor);
   const [openModal, closeModal] = useModal();
   const router = useRouter();
   const groupId = searchParams.get('groupId');
+  const maxLength = 30;
 
   const handleConfirm = async () => {
     openModal(
@@ -72,13 +71,11 @@ export default function Create() {
   ) => {
     SetButtonState(false);
     if (title.length == 0) SetButtonState(true);
-    if (title.length >= 30 && e.key !== 'Backspace' && e.key !== 'Delete') {
+    if (e.key === 'Enter') {
       e.preventDefault();
+    }
+    if (title.length >= 30) {
       SetButtonState(true);
-      e.currentTarget.value = e.currentTarget.value.slice(0, 30);
-      SetErrorFontColor('text-red-600');
-    } else {
-      SetErrorFontColor('text-gray-400');
     }
   };
 
@@ -111,11 +108,17 @@ export default function Create() {
               value={title}
               className={` w-full resize-none ${Theme.background} text-[22px] ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
               placeholder="제목을 입력해주세요."
-              maxLength={30}
+              maxLength={maxLength}
               onChange={(e) => handleChangeTitle(e)}
               onKeyDown={(e) => handleKeyDownTitle(e, title)}
             />
-            <div className={`w-full text-right text-[14px] ${ErrorFontColor}`}>
+            <div
+              className={`w-full text-right text-[14px]  ${
+                title.length > maxLength
+                  ? 'text-red-600'
+                  : `${Theme.defaultText}`
+              }`}
+            >
               {title.length}/30
             </div>
           </div>

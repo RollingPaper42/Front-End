@@ -88,7 +88,9 @@ export default function Create() {
             />
             <div
               className={`w-full text-right text-[14px] ${
-                title.length > maxLength ? 'text-red-600' : 'text-gray-400'
+                title.length > maxLength
+                  ? 'text-red-600'
+                  : `${Theme.defaultText}`
               }`}
             >
               {title.length}/{maxLength}

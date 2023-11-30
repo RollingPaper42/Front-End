@@ -2,6 +2,7 @@
 
 import { useRecoilState } from 'recoil';
 import { calm, cyan, green, strcat, themeState } from '@/recoil/theme';
+import { useState } from 'react';
 import {
   ThemeCalm,
   ThemeCyan,
@@ -11,8 +12,10 @@ import {
 
 export default function ThemeChange() {
   const [Theme, setTheme] = useRecoilState(themeState);
+  const [ErrorFontColor, SetErrorFontColor] = useState(Theme.defaultText);
   const handleThemeChange = (newTheme: themeState) => {
     setTheme(newTheme);
+    SetErrorFontColor(Theme.defaultText);
   };
   return (
     <div className="mx-[34px]">
