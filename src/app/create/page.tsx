@@ -15,14 +15,14 @@ import Back from '@/component/Icon/Back';
 
 export default function Create() {
   const searchParams = useSearchParams();
-  const ErrorInitColor = 'text-gray-400';
   const [Theme] = useRecoilState(themeState);
   const [buttonState, SetButtonState] = useState(true);
   const [title, , handleTitle] = useInput('');
-  const [ErrorFontColor, SetErrorFontColor] = useState(ErrorInitColor);
   const [openModal, closeModal] = useModal();
   const router = useRouter();
   const groupId = searchParams.get('groupId');
+  const ErrorInitColor = Theme.defaultText;
+  const [ErrorFontColor, SetErrorFontColor] = useState(ErrorInitColor);
 
   const handleConfirm = async () => {
     openModal(
@@ -76,9 +76,9 @@ export default function Create() {
       e.preventDefault();
       SetButtonState(true);
       e.currentTarget.value = e.currentTarget.value.slice(0, 30);
-      SetErrorFontColor('text-red-600');
+      SetErrorFontColor('text-strcat-error');
     } else {
-      SetErrorFontColor('text-gray-400');
+      SetErrorFontColor(Theme.defaultText + ' text-opacity-50');
     }
   };
 
@@ -89,7 +89,7 @@ export default function Create() {
           <div className="flex h-full w-full flex-row">
             <div
               className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
-              onClick={() => router.push('/')}
+              onClick={() => router.back()}
             >
               <Back color={Theme.backIcon} />
             </div>
@@ -109,7 +109,7 @@ export default function Create() {
               id="titleMessage"
               rows={1}
               value={title}
-              className={` w-full resize-none ${Theme.background} text-[22px] ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
+              className={` w-full resize-none ${Theme.background} text-[22px] ${Theme.defaultText} outline-none ${Theme.placeholder}`}
               placeholder="제목을 입력해주세요."
               maxLength={30}
               onChange={(e) => handleChangeTitle(e)}
