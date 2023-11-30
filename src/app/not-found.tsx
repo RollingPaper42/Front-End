@@ -36,7 +36,7 @@ export default function NotFound() {
             alt="notFoundButton"
           />
         </Link>
-        <div className="absolute text-strcat-default-white">
+        <div className="absolute cursor-pointer select-none text-strcat-default-white">
           스트링캣 홈으로
         </div>
       </div>
