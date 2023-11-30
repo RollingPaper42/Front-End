@@ -31,31 +31,33 @@ export default function Login() {
         </div>
         <div className="basis-9/12"></div>
         <div className="mx-[24px] basis-3/12">
-          <button
-            className={`relative h-[45px] w-full`}
-            onClick={onClickOAuthKakao}
-          >
-            <Image
-              src="/kakao.svg"
-              width={48}
-              height={48}
-              alt="kakao"
-              className="relative bottom-1 z-10"
-            />
-            <div
-              className={`bg-login-button-kakao absolute top-[3px] h-[39px] w-full`}
-            />
-            {/* top에서 아래로 3px */}
-            <div
-              className={`bg-login-button-kakao absolute left-[2px] top-0 h-[39px] w-full`}
-            />
-            {/* top고정 오른쪽으로 2px */}
-            <div className="absolute left-[1px] top-[4px] flex h-[16px] w-full items-center justify-center text-[16px] text-strcat-default-black">
-              {/* top에서 아래로4px 오른쪽으로 1px, 33px크기  */}
-              <div className="relative top-2">카카오 로그인</div>
-            </div>
-          </button>
-          <div className="mt-[22px] items-center ">
+          <div className="mt-[10px]">
+            <button
+              className={`relative h-[45px] w-full`}
+              onClick={onClickOAuthKakao}
+            >
+              <Image
+                src="/kakao.svg"
+                width={48}
+                height={48}
+                alt="kakao"
+                className="relative bottom-1 z-10"
+              />
+              <div
+                className={`bg-login-button-kakao absolute top-[3px] h-[39px] w-full`}
+              />
+              {/* top에서 아래로 3px */}
+              <div
+                className={`bg-login-button-kakao absolute left-[2px] top-0 h-[39px] w-full`}
+              />
+              {/* top고정 오른쪽으로 2px */}
+              <div className="absolute left-[1px] top-[4px] flex h-[16px] w-full items-center justify-center text-[16px] text-strcat-default-black">
+                {/* top에서 아래로4px 오른쪽으로 1px, 33px크기  */}
+                <div className="relative top-2">카카오 로그인</div>
+              </div>
+            </button>
+          </div>
+          <div className="mt-[12px]">
             <button
               className={`relative h-[45px] w-full`}
               onClick={onClickOAuthGoogle}
