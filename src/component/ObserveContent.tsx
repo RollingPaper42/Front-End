@@ -30,7 +30,7 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
         });
       },
       {
-        rootMargin: '-30% -0% -70% 0%',
+        rootMargin: '-30% 0% -70% 0%',
         threshold: [],
       },
     );
