@@ -3,29 +3,42 @@ import Default from './Default';
 import Writer from './Writer';
 import LineBreak from './LineBreak';
 import { exportThemeEnum } from '@/types/export';
+import { themeObj } from '@/recoil/theme';
 
 interface Props {
   title: string;
-  data: content[] | undefined;
+  content: content[] | undefined;
   exportTheme: string;
+  boardTheme: 'strcat' | 'calm' | 'green' | 'cyan' | undefined;
 }
 
-export default function ExportBoard({ title, data, exportTheme }: Props) {
+export default function ExportBoard({
+  title,
+  content,
+  exportTheme,
+  boardTheme,
+}: Props) {
+  if (!boardTheme) return;
+  const theme = themeObj[boardTheme];
   return (
-    <div>
-      <div className="mb-20 mt-5 text-[22px]">
-        <div className=" mb-10">{title}</div>
-        <div className=" text-justify  text-[18px]">
-          {data?.map((item: content) => (
+    <div className={`${theme.background} ${theme.defaultText}`}>
+      <div className={`mx-[24px]`}>
+        <div className={`text-[ 22px] pb-[32px] pt-[40px]`}>{title}</div>
+        <div className={` pb-[40px]  text-justify text-[18px]`}>
+          {content?.map((item: content) => (
             <span key={item.id}>
               {exportTheme === exportThemeEnum.default && (
-                <Default content={item} />
-              )}
-              {exportTheme === exportThemeEnum.writer && (
-                <Writer content={item} />
+                <Default
+                  content={item}
+                  color={theme.defaultText}
+                  highlightcolor={theme.highlightText}
+                />
               )}
               {exportTheme === exportThemeEnum.lineBreak && (
-                <LineBreak content={item} />
+                <LineBreak content={item} color={theme.defaultText} />
+              )}
+              {exportTheme === exportThemeEnum.writer && (
+                <Writer content={item} color={theme.highlightText} />
               )}
             </span>
           ))}
