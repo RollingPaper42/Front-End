@@ -76,8 +76,8 @@ export default function Export({ params }: { params: { id: string } }) {
           boardTheme={board?.theme}
         />
       </div>
-      <div className=" fixed bottom-5 w-full max-w-md">
-        <div className=" mb-5 flex w-full flex-row items-center justify-around">
+      <div className="fixed bottom-5 flex w-full max-w-md flex-col items-center justify-center px-[24px]">
+        <div className="mb-5 flex w-full flex-row items-center justify-around">
           {exportThemeButton.map((item) => (
             <ExportTheme
               key={item.alt}
