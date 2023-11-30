@@ -75,13 +75,14 @@ export default function Group({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     if (boards) {
-      runCatAnimation('catHeader', catAction.out, 1000);
-      runCatAnimation('strcatCreate', catAction.sit, 5000);
+      runCatAnimation('catHeader', catAction.out, 1000, 'strcat');
+      runCatAnimation('strcatCreate', catAction.in, 5000, 'strcat');
+      runCatAnimation('strcatCreate', catAction.sit, 10000, 'strcat');
     }
   }, [boards]);
 
   useEffect(() => {
-    runCatAnimation('strcatCreate', catAction.sit, 0);
+    runCatAnimation('strcatCreate', catAction.sit, 0, theme.name);
   }, [theme]);
 
   return (

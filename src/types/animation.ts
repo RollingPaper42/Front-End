@@ -24,9 +24,15 @@ export const catAnimationDetail = {
     left: 0,
   },
   [catAction.sit]: {
-    width: 40,
+    width: 35,
     height: 40,
     bottom: 40,
-    left: 200,
+    left: 105,
+  },
+  [catAction.in]: {
+    width: 140,
+    height: 40,
+    bottom: 40,
+    left: 0,
   },
 };

@@ -4,15 +4,15 @@ import { catAnimationDetail } from '@/types/animation';
 import { useRecoilState } from 'recoil';
 
 export const useCat = (): [
-  (element: string, catAction: string, second: number) => void,
+  (element: string, catAction: string, second: number, theme: string) => void,
 ] => {
   const [, setCatAnimation] = useRecoilState(catAnimationState);
-  const [theme] = useRecoilState(themeState);
 
   const runCatAnimation = (
     elementId: string,
     catActionString: string,
     time: number,
+    theme: string,
   ) => {
     setTimeout(() => {
       const element = document.getElementById(elementId);
@@ -20,7 +20,7 @@ export const useCat = (): [
       const elementLeft = element.getBoundingClientRect().left;
       const elementBottom = element.getBoundingClientRect().bottom;
       setCatAnimation({
-        src: `/cats/${theme.name}/${catActionString}.gif`,
+        src: `/cats/${theme}/${catActionString}.gif`,
         catAction: catActionString,
         width: catAnimationDetail[catActionString].width,
         height: catAnimationDetail[catActionString].height,
