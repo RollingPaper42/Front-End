@@ -9,13 +9,12 @@ import {
   use,
 } from 'react';
 import React from 'react';
-import { RecoilState, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import Add from './Add';
 import { observeState } from '@/recoil/observe';
 import { board } from '@/types/boards';
 import ObserveTitle from './ObserveTitle';
 import ShareButton from './ShareButton';
-import { themeState } from '@/recoil/theme';
 import { useLogin } from '@/hooks/useLogin';
 interface Props {
   board: board;
@@ -30,19 +29,23 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
   ref,
 ) {
   const [isLogin] = useLogin();
-  const [observe] = useRecoilState(observeState);
+  const [observe, setObserve] = useRecoilState(observeState);
   const [content, setContent] = useState<content[]>([]);
 
   useEffect(() => {
     setContent(board.contents);
+    if (board.contents.length === 1) {
+      setObserve(() => ({
+        boardId: board.id,
+        contentId: board.contents[0].id,
+        photoUrl: board.contents[0].photoUrl,
+        writer: board.contents[0].writer,
+      }));
+    }
   }, [board]);
 
   return (
-    <div
-      ref={ref}
-      className={`h-auto break-all  px-[24px] `}
-      style={{ paddingBottom: `${window.innerHeight}px` }}
-    >
+    <div ref={ref} className={`h-auto break-all  px-[24px] `}>
       <ObserveTitle isAdd={isAdd} board={board} />
       <div>
         {content &&

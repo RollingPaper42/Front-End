@@ -59,7 +59,6 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     if (board) {
-      console.log(board);
       runCatAnimation('catHeader', catAction.out, 1000);
       runCatAnimation('strcatCreate', catAction.sit, 5000);
     }
@@ -71,7 +70,10 @@ export default function Personal({ params }: { params: { id: string } }) {
         <Drawer />
         <StrcatHeader />
         <CatAnimation />
-        <div className={`relative w-full py-[24px] text-justify `}>
+        <div
+          className={`relative w-full py-[24px] text-justify `}
+          style={{ paddingBottom: `${window.innerHeight}px` }}
+        >
           {board.length ? (
             <StrcatBoard
               board={board[0]}
