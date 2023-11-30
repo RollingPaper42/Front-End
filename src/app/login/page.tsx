@@ -39,7 +39,7 @@ export default function Login() {
               <div className="basis-2/12">
                 <Image src="/kakao.svg" width={48} height={48} alt="kakao" />
               </div>
-              <div className="mt-[12px] basis-8/12 text-center text-[16px]">
+              <div className="mt-[12px] basis-8/12 select-none text-center text-[16px]">
                 카카오 시작하기
               </div>
               <div className="basis-2/12"></div>
@@ -53,7 +53,7 @@ export default function Login() {
               <div className="basis-2/12">
                 <Image src="/Google.svg" width={48} height={48} alt="google" />
               </div>
-              <div className="mt-[12px] basis-8/12 text-center text-[16px]">
+              <div className="mt-[12px] basis-8/12 select-none text-center text-[16px]">
                 구글 시작하기
               </div>
               <div className="basis-2/12"></div>
