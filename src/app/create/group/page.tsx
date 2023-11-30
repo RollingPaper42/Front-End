@@ -103,7 +103,7 @@ export default function Create() {
             개별 스트링캣 리스트 예시 2
           </div>
         </div>
-        <div className="fixed bottom-5 mx-[24px] flex w-full max-w-md items-center justify-center">
+        <div className="fixed bottom-5 flex w-full max-w-md items-center justify-center px-[24px]">
           <BottomButton
             height="h-[42px]"
             name="완료"

@@ -51,7 +51,7 @@ export default function Personal({ params }: { params: { id: string } }) {
       localStorage.setItem('strcat_login_success_url', `create`);
       router.push('/login');
     } else {
-      router.push(`create`);
+      router.push('/create');
     }
   };
 
@@ -69,7 +69,7 @@ export default function Personal({ params }: { params: { id: string } }) {
         <Drawer />
         <StrcatHeader />
         <CatAnimation />
-        <div className={`relative w-full  py-[24px] text-justify `}>
+        <div className={`relative w-full py-[24px] text-justify `}>
           {board.length ? (
             <StrcatBoard
               board={board[0]}
