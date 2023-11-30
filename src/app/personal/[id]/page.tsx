@@ -24,7 +24,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [isAdd, setIsAdd] = useState<boolean>(false);
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const itemsRef = useRef(new Map());
-  const [observe] = useRecoilState(observeState);
+  const [observe, setObserve] = useRecoilState(observeState);
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
   const [runCatAnimation] = useCat();
@@ -37,6 +37,7 @@ export default function Personal({ params }: { params: { id: string } }) {
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
+        if (data.data.board.length) setObserve(data.data.board[0]);
       })
       .catch((err) => {
         if (err.response.status === 406) router.push('/not-found');
