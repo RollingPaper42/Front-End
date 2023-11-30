@@ -44,7 +44,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
       style={{ paddingBottom: `${window.innerHeight}px` }}
     >
       <ObserveTitle isAdd={isAdd} board={board} />
-      <div className={`z-0 inline-block`}>
+      <div>
         {content &&
           content.map((content: content) => {
             return (
