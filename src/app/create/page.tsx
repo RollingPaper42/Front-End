@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import useInput from '@/hooks/useInput';
 import { useRecoilState } from 'recoil';
-import { strcat, themeState } from '@/recoil/theme';
+import { themeState } from '@/recoil/theme';
 import ThemeChange from '@/component/ThemeChange';
 import useModal from '@/hooks/useModal';
 import Confirm from '@/component/Modal/Confirm';

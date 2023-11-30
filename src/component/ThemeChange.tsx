@@ -12,10 +12,8 @@ import {
 
 export default function ThemeChange() {
   const [Theme, setTheme] = useRecoilState(themeState);
-  const [ErrorFontColor, SetErrorFontColor] = useState(Theme.defaultText);
   const handleThemeChange = (newTheme: themeState) => {
     setTheme(newTheme);
-    SetErrorFontColor(Theme.defaultText);
   };
   return (
     <div className="mx-[34px]">
