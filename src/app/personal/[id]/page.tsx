@@ -19,6 +19,7 @@ import { axiosInstance } from '@/utils/axios';
 import StrcatHeader from '@/component/StrcatHeader';
 import { content } from '@/types/content';
 import { useLogin } from '@/hooks/useLogin';
+import Loading from '@/component/Loading';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -62,12 +63,12 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={` h-full ${theme.background}`}>
+      <div className={`h-full ${theme.background}`}>
         <Drawer />
         <StrcatHeader />
         <CatAnimation />
         <div className={`relative w-full  py-[24px] text-justify `}>
-          {board.length && (
+          {board.length ? (
             <StrcatBoard
               board={board[0]}
               ref={(node) => setMap(node, board[0], itemsRef)}
@@ -76,6 +77,8 @@ export default function Personal({ params }: { params: { id: string } }) {
               isPersonal={true}
               paramsId={params.id}
             />
+          ) : (
+            <Loading />
           )}
           {!isAdd &&
             (isOwner ? (
