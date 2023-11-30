@@ -18,12 +18,13 @@ import ShortCut from '@/component/Icon/ShortCut';
 import { content } from '@/types/content';
 import ShareButton from '@/component/ShareButton';
 import { useLogin } from '@/hooks/useLogin';
+import Loading from '@/component/Loading';
 import CatAnimation from '@/component/CatAnimation';
 import { useCat } from '@/hooks/useCat';
 import { catAction } from '@/types/animation';
 
 export default function Group({ params }: { params: { id: string } }) {
-  const [title, setTitle] = useState<string | null>();
+  const [title, setTitle] = useState<string>('');
   const [boards, setBoards] = useState<board[]>([]);
   const [isAdd, setIsAdd] = useState(false);
   const [theme] = useRecoilState(themeState);
@@ -94,36 +95,44 @@ export default function Group({ params }: { params: { id: string } }) {
         className={`relative w-full py-[24px] pt-[56px] ${theme.background}
         `}
       >
-        <div className="mb-[20px]">
-          <h1 className={`${theme.defaultText} mx-[24px] text-[26px]`}>
-            {`${title}`}
-          </h1>
-        </div>
-        <div>
-          {boards.map((board: board) => {
-            return (
-              <StrcatGroupTitle
-                key={board.id}
-                board={board}
-                scrollToId={scrollToId}
-              />
-            );
-          })}
-        </div>
-        <div className={`${boards.length ? 'pb-[500px]' : ''} text-justify`}>
-          {boards.map((board) => {
-            return (
-              <StrcatBoard
-                setIsAdd={setIsAdd}
-                isAdd={isAdd}
-                ref={(node: any) => setMap(node, board, itemsRef)}
-                key={board.id}
-                board={board}
-                isPersonal={false}
-              />
-            );
-          })}
-        </div>
+        {title === '' ? (
+          <Loading />
+        ) : (
+          <>
+            <div className="mb-[20px]">
+              <h1 className={`${theme.defaultText} mx-[24px] text-[26px]`}>
+                {`${title}`}
+              </h1>
+            </div>
+            <div>
+              {boards.map((board: board) => {
+                return (
+                  <StrcatGroupTitle
+                    key={board.id}
+                    board={board}
+                    scrollToId={scrollToId}
+                  />
+                );
+              })}
+            </div>
+            <div
+              className={`${boards.length ? 'pb-[500px]' : ''} text-justify`}
+            >
+              {boards.map((board) => {
+                return (
+                  <StrcatBoard
+                    setIsAdd={setIsAdd}
+                    isAdd={isAdd}
+                    ref={(node: any) => setMap(node, board, itemsRef)}
+                    key={board.id}
+                    board={board}
+                    isPersonal={false}
+                  />
+                );
+              })}
+            </div>
+          </>
+        )}
         <div className="fixed bottom-5 z-20 w-full max-w-md px-[24px]">
           <button
             className="absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
@@ -191,7 +200,7 @@ export default function Group({ params }: { params: { id: string } }) {
             ))}
         </div>
         {!isAdd && <ContentPhoto />}
-        {!boards.length && (
+        {!boards.length && title !== '' && (
           <div className="absolute top-[200px]">
             <ShareButton params={`/group/${params.id}`} />
           </div>
