@@ -57,7 +57,12 @@ export default function StrcatHeader() {
         )}
         <div className="basis-4/6"></div>
         {isLogin ? (
-          <div onClick={() => setDrawer(true)}>
+          <div
+            onClick={() => {
+              setDrawer(true);
+              document.body.style.overflow = 'hidden';
+            }}
+          >
             <HeaderProfileCat
               circleColor={theme.catTheme.profileCircle}
               eyeColor={theme.catTheme.headerCatEye}

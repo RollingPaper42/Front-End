@@ -62,10 +62,13 @@ export default function Drawer() {
     isLogin && (
       <div
         className="fixed z-30 h-full w-full max-w-md bg-black bg-opacity-40"
-        onClick={(e) => handleBackground(e, () => setDrawer(false))}
+        onClick={(e) => {
+          handleBackground(e, () => setDrawer(false));
+          document.body.style.overflow = 'auto';
+        }}
       >
         <div
-          className={`absolute right-0 z-20 h-full w-[300px] ${theme.background} ${theme.defaultText}`}
+          className={`absolute right-0 h-full w-[300px] ${theme.background} ${theme.defaultText}`}
         >
           <div className="flex h-[123px] w-full justify-start p-[24px]">
             <DrawerProfileCat
