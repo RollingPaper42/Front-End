@@ -49,7 +49,7 @@ export default function Drawer() {
   const handleLogout = () => {
     setDrawer(false);
     localStorage.removeItem('strcat_token');
-    router.push('/');
+    // router.push('/');
     setIsLogin(false);
   };
 
