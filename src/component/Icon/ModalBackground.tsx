@@ -3,10 +3,15 @@ export default function ModalBackground() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="312"
-      height="260"
+      height="312"
       fill="none"
     >
-      <path fill="#fff" d="M0 256h309v4H0zM3 0h309v4H3zM0 4h312v252H0z" />
+      <path
+        fill="#fff"
+        fill-rule="evenodd"
+        d="M312 0H3v4H0v308h309v-4h3V0Z"
+        clip-rule="evenodd"
+      />
     </svg>
   );
 }

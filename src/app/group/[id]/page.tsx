@@ -15,7 +15,6 @@ import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import { useRouter } from 'next/navigation';
 import ShortCut from '@/component/Icon/ShortCut';
-import { content } from '@/types/content';
 import ShareButton from '@/component/ShareButton';
 import { useLogin } from '@/hooks/useLogin';
 import Loading from '@/component/Loading';
@@ -28,12 +27,12 @@ export default function Group({ params }: { params: { id: string } }) {
   const [boards, setBoards] = useState<board[]>([]);
   const [isAdd, setIsAdd] = useState(false);
   const [theme] = useRecoilState(themeState);
-  const itemsRef = useRef(new Map());
   const [observe] = useRecoilState(observeState);
+  const itemsRef = useRef(new Map());
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [isLogin] = useLogin();
   const [runCatAnimation] = useCat();
-
+  const [isShortcut, setIsShorcut] = useState(false);
   const router = useRouter();
   const scrollToId = (itemId: string) => {
     const map = itemsRef.current;
@@ -53,18 +52,22 @@ export default function Group({ params }: { params: { id: string } }) {
     if (!isLogin) {
       localStorage.setItem(
         'strcat_login_success_url',
-        `create?groupId=${params.id}`,
+        `/create?groupId=${params.id}`,
       );
       router.push('/login');
     } else {
-      router.push(`create?groupId=${params.id}`);
+      router.push(`/create?groupId=${params.id}`);
     }
   };
 
   useEffect(() => {
-    //axios
+    if (window.scrollY) {
+      setIsShorcut(true);
+    }
+  });
+
+  useEffect(() => {
     axiosInstance
-      //.get(`/api/group`)
       .get(`/board-groups/${params.id}`)
       .then((data) => {
         setBoards(data.data.boards);
@@ -135,7 +138,7 @@ export default function Group({ params }: { params: { id: string } }) {
           </>
         )}
         <div className="fixed bottom-5 z-20 w-full max-w-md px-[24px]">
-          {window.scrollY > 20 && (
+          {isShortcut && (
             <button
               className="absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
               onClick={scrollToTop}
