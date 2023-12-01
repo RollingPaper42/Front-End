@@ -4,11 +4,11 @@ import { themeObj, themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
 import { axiosInstance } from '@/utils/axios';
 import { useEffect, useState } from 'react';
-import BottomButton from '@/component/BottomButton';
 import { useRouter } from 'next/navigation';
+import { handleShare } from '@/utils/handleShare';
 import Back from '@/component/Icon/Back';
 import LongCat from '@/component/Icon/LongCat';
-import { handleShare } from '@/utils/handleShare';
+import BottomButton from '@/component/BottomButton';
 import SummaryBoard from '@/component/SummaryBoard';
 
 export default function Summary({ params }: { params: { id: string } }) {
