@@ -3,9 +3,9 @@
 import useInput from '@/hooks/useInput';
 import { axiosInstance } from '@/utils/axios';
 import { useRouter } from 'next/navigation';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
+import { themeObj, themeState } from '@/recoil/theme';
 import { AxiosError } from 'axios';
 import { content } from '@/types/content';
 import useModal from '@/hooks/useModal';
@@ -18,16 +18,25 @@ interface AddProps {
   id: string;
   setContent: Dispatch<SetStateAction<content[]>>;
   setIsAdd: Dispatch<SetStateAction<boolean>>;
+  boardTheme: 'strcat' | 'green' | 'cyan' | 'calm';
 }
 
-export default function Add({ id, setIsAdd, setContent }: AddProps) {
+export default function Add({
+  id,
+  setIsAdd,
+  setContent,
+  boardTheme,
+}: AddProps) {
   const [text, setText] = useInput('');
   const [writer, , handleWriter] = useInput('');
   const router = useRouter();
   const [openModal, closeModal] = useModal();
-  const [theme] = useRecoilState(themeState);
+  const [theme, setTheme] = useRecoilState(themeState);
   const [image, setImage] = useInput<File | null>(null);
 
+  useEffect(() => {
+    setTheme(themeObj[boardTheme]);
+  }, []);
   if (id === null || id === undefined) {
     alert('유효하지 않은 접속입니다.');
     router.push('/');

@@ -45,7 +45,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
   }, [board]);
 
   return (
-    <div ref={ref} className={`h-auto break-all  px-[24px] `}>
+    <div ref={ref} className={` h-auto min-h-[424px] break-all  px-[24px] `}>
       <ObserveTitle isAdd={isAdd} board={board} />
       <div className={`z-0 inline`}>
         {content &&
@@ -66,6 +66,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
           setContent={setContent}
           id={`${observe.boardId}`}
           setIsAdd={setIsAdd}
+          boardTheme={board.theme}
         />
       )}
       {!isAdd && <div className=" h-12"></div>}

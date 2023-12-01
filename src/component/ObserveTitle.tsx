@@ -9,7 +9,7 @@ interface Props {
   isAdd: boolean;
 }
 
-const ObserveContent = ({ board, isAdd }: Props) => {
+const ObserveTitle = ({ board, isAdd }: Props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [, setObserve] = useRecoilState(observeState);
   const [theme, setTheme] = useRecoilState(themeState);
@@ -21,15 +21,14 @@ const ObserveContent = ({ board, isAdd }: Props) => {
             setObserve((prev) => ({
               ...prev,
               boardId: board.id,
-              theme: board.theme,
             }));
             setTheme(themeObj[board.theme]);
           }
         });
       },
       {
-        rootMargin: '0% 0% -70% 0%',
-        threshold: 0,
+        rootMargin: '0% 0% -50% 0%',
+        threshold: 0.3,
       },
     );
     if (ref.current) {
@@ -41,10 +40,10 @@ const ObserveContent = ({ board, isAdd }: Props) => {
   }, [setObserve, isAdd]);
 
   return (
-    <div className="my-[24px] mt-[96px] h-[100px] " ref={ref}>
+    <div className="my-[24px] mt-[40px] h-[100px] " ref={ref}>
       <h1 className={` text-[22px] ${theme.titleText}`}>{`${board.title}`}</h1>
     </div>
   );
 };
 
-export default React.memo(ObserveContent);
+export default React.memo(ObserveTitle);

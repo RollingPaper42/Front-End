@@ -23,7 +23,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [isAdd, setIsAdd] = useState<boolean>(false);
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const itemsRef = useRef(new Map());
-  const [observe] = useRecoilState(observeState);
+  const [observe, setObserve] = useRecoilState(observeState);
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
   const [runCatAnimation] = useCat();
@@ -32,10 +32,10 @@ export default function Personal({ params }: { params: { id: string } }) {
   useEffect(() => {
     axiosInstance
       .get(`/boards/${params.id}`)
-      // .get(`/api/personal`)
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
+        if (data.data.board.length) setObserve(data.data.board[0]);
       })
       .catch((err) => {
         if (err.response.status === 406) router.push('/not-found');
@@ -128,14 +128,20 @@ export default function Personal({ params }: { params: { id: string } }) {
                     className="flex w-full max-w-md items-center justify-center px-[24px] "
                     id="strcatCreate"
                   >
-                    <BottomButton
-                      name="스트링캣 만들기"
-                      height="h-[42px]"
-                      width="basis-1/2"
-                      onClickHandler={handleClickCreate}
-                      disabled={false}
-                      color={`${theme.leftCTA}`}
-                    />
+                    <button
+                      className={`relative mx-2 h-[42px] w-full basis-1/2`}
+                      onClick={handleClickCreate}
+                    >
+                      <div
+                        className={`absolute top-[3px] h-[39px] w-full ${theme.leftCTA}`}
+                      />
+                      <div
+                        className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.leftCTA}`}
+                      />
+                      <p className="text-strcat-default-black absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center text-[20px]">
+                        스트링캣 만들기
+                      </p>
+                    </button>
                     <BottomButton
                       name="이어서 글쓰기"
                       width="basis-1/2"

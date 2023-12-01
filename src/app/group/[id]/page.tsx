@@ -19,6 +19,7 @@ import Loading from '@/component/Loading';
 import CatAnimation from '@/component/CatAnimation';
 import { useCat } from '@/hooks/useCat';
 import { catAction } from '@/types/animation';
+import GruopMainTitle from '@/component/GroupMainTitle';
 import HeaderLayout from '@/component/HeaderLayout';
 
 export default function Group({ params }: { params: { id: string } }) {
@@ -26,12 +27,12 @@ export default function Group({ params }: { params: { id: string } }) {
   const [boards, setBoards] = useState<board[]>([]);
   const [isAdd, setIsAdd] = useState(false);
   const [theme] = useRecoilState(themeState);
+  const [observe, setObserve] = useRecoilState(observeState);
   const itemsRef = useRef(new Map());
-  const [observe] = useRecoilState(observeState);
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [isLogin] = useLogin();
   const [runCatAnimation] = useCat();
-
+  const [isShortcut, setIsShorcut] = useState(false);
   const router = useRouter();
   const scrollToId = (itemId: string) => {
     const map = itemsRef.current;
@@ -57,17 +58,23 @@ export default function Group({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
-    //axios
+    if (window.scrollY) {
+      setIsShorcut(true);
+    }
+  });
+
+  useEffect(() => {
     axiosInstance
-      //.get(`/api/group`)
       .get(`/board-groups/${params.id}`)
       .then((data) => {
         setBoards(data.data.boards);
         setTitle(data.data.title);
         setIsOwner(data.data.isOwner);
+        if (data.data.boards.length)
+          setObserve((prev) => ({ ...prev, boardId: data.data.boards[0].id }));
       })
       .catch((err) => {
-        if (err.response.status === 406) router.push('/not-found');
+        if (err.response?.status === 406) router.push('/not-found');
       });
   }, [params.id]);
 
@@ -95,11 +102,16 @@ export default function Group({ params }: { params: { id: string } }) {
           <Loading />
         ) : (
           <>
-            <div className="mb-[20px]">
-              <h1 className={`${theme.titleText} mx-[24px] text-[26px]`}>
-                {`${title}`}
-              </h1>
+            <div className="mb-[40px]">
+              <GruopMainTitle isAdd={isAdd} title={title} />
             </div>
+            {boards.length && (
+              <div className="mx-[24px] border-b-2 border-gray-400  py-[8px] text-center ">
+                <p className="text-[14px] text-white">
+                  스트링캣 리스트. 누르면 해당 스트링캣으로 이동해요.
+                </p>
+              </div>
+            )}
             <div>
               {boards.map((board: board) => {
                 return (
@@ -127,81 +139,85 @@ export default function Group({ params }: { params: { id: string } }) {
                 );
               })}
             </div>
+            <div className="fixed bottom-5 z-20 w-full max-w-md px-[24px]">
+              {isShortcut && (
+                <button
+                  className="absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
+                  onClick={scrollToTop}
+                >
+                  <ShortCut color={theme.defaultIcon} />
+                </button>
+              )}
+              {!isAdd &&
+                (isOwner ? (
+                  <div className="flex w-full max-w-md" id="strcatCreate">
+                    <BottomButton
+                      height="h-[42px]"
+                      color={`bg-white`}
+                      name="저장"
+                      width={`${boards.length ? 'basis-1/4' : 'basis-1/3'}`}
+                      onClickHandler={() => router.push(`${params.id}/export`)}
+                      disabled={false}
+                    />
+                    <BottomButton
+                      height="h-[42px]"
+                      color={`bg-white`}
+                      name="공유"
+                      width={`${boards.length ? 'basis-1/4' : 'basis-1/3'}`}
+                      onClickHandler={() => router.push(`${params.id}/summary`)}
+                      disabled={false}
+                    />
+                    <BottomButton
+                      height="h-[42px]"
+                      color={`${theme.leftCTA}`}
+                      name="만들기"
+                      width={`${boards.length ? 'basis-1/4' : 'basis-1/3'}`}
+                      onClickHandler={() =>
+                        router.push(`/create?groupId=${params.id}`)
+                      }
+                      disabled={false}
+                    />
+                    {boards.length && (
+                      <BottomButton
+                        height="h-[42px]"
+                        color={`${theme.rightCTA}`}
+                        name="글쓰기"
+                        width="basis-1/4"
+                        onClickHandler={handleClick}
+                        disabled={!observe.boardId}
+                      />
+                    )}
+                  </div>
+                ) : (
+                  <div className="flex w-full max-w-md" id="strcatCreate">
+                    <BottomButton
+                      height="h-[42px]"
+                      color={`${theme.leftCTA}`}
+                      name="스트링캣 만들기"
+                      width={`${boards.length ? 'basis-1/2' : 'w-full'}`}
+                      onClickHandler={handleClickCreate}
+                      disabled={false}
+                    />
+                    {boards.length && (
+                      <BottomButton
+                        height="h-[42px]"
+                        color={`${theme.rightCTA}`}
+                        name="이어서 글쓰기"
+                        width="basis-1/2"
+                        onClickHandler={handleClick}
+                        disabled={!observe.boardId}
+                      />
+                    )}
+                  </div>
+                ))}
+            </div>
+            {!isAdd && <ContentPhoto />}
+            {!boards.length && title !== '' && (
+              <div className="absolute top-[200px]">
+                <ShareButton params={`/group/${params.id}`} />
+              </div>
+            )}
           </>
-        )}
-        <div className="fixed bottom-5 z-20 w-full max-w-md px-[24px]">
-          {window.scrollY > 20 && (
-            <button
-              className="absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
-              onClick={scrollToTop}
-            >
-              <ShortCut color={theme.defaultIcon} />
-            </button>
-          )}
-          {!isAdd &&
-            (isOwner ? (
-              <div className="flex w-full max-w-md" id="strcatCreate">
-                <BottomButton
-                  height="h-[42px]"
-                  color={`bg-white`}
-                  name="저장"
-                  width="basis-1/4"
-                  onClickHandler={() => router.push(`${params.id}/export`)}
-                  disabled={false}
-                />
-                <BottomButton
-                  height="h-[42px]"
-                  color={`bg-white`}
-                  name="공유"
-                  width="basis-1/4"
-                  onClickHandler={() => router.push(`${params.id}/summary`)}
-                  disabled={false}
-                />
-                <BottomButton
-                  height="h-[42px]"
-                  color={`${theme.leftCTA}`}
-                  name="만들기"
-                  width="basis-1/4"
-                  onClickHandler={() =>
-                    router.push(`/create?groupId=${params.id}`)
-                  }
-                  disabled={false}
-                />
-                <BottomButton
-                  height="h-[42px]"
-                  color={`${theme.rightCTA}`}
-                  name="글 작성"
-                  width="basis-1/4"
-                  onClickHandler={handleClick}
-                  disabled={!observe.boardId}
-                />
-              </div>
-            ) : (
-              <div className="flex w-full max-w-md" id="strcatCreate">
-                <BottomButton
-                  height="h-[42px]"
-                  color={`${theme.leftCTA}`}
-                  name="스트링캣 만들기"
-                  width="basis-1/2"
-                  onClickHandler={handleClickCreate}
-                  disabled={false}
-                />
-                <BottomButton
-                  height="h-[42px]"
-                  color={`${theme.rightCTA}`}
-                  name="이어서 글쓰기"
-                  width="basis-1/2"
-                  onClickHandler={handleClick}
-                  disabled={!observe.boardId}
-                />
-              </div>
-            ))}
-        </div>
-        {!isAdd && <ContentPhoto />}
-        {!boards.length && title !== '' && (
-          <div className="absolute top-[200px]">
-            <ShareButton params={`/group/${params.id}`} />
-          </div>
         )}
       </div>
     </div>
