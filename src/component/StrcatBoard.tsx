@@ -47,7 +47,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
   return (
     <div ref={ref} className={`h-auto break-all  px-[24px] `}>
       <ObserveTitle isAdd={isAdd} board={board} />
-      <div>
+      <div className={`z-0 inline`}>
         {content &&
           content.map((content: content) => {
             return (
