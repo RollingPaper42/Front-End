@@ -79,32 +79,6 @@ export default function Export({ params }: { params: { id: string } }) {
     <div
       className={`${theme.background} ${theme.defaultText} h-full w-full max-w-md`}
     >
-      <div className="fixed flex h-full w-full max-w-md flex-col">
-        <div className="basis-3/4" />
-        <div className="basis-1/4">
-          <div className="mx-[24px] mb-5 flex flex-row items-center justify-around">
-            {exportThemeButton.map((item) => (
-              <ExportTheme
-                key={item.alt}
-                name={item.name}
-                src={item.src}
-                alt={item.alt}
-                onClick={() => setExportTheme(item.select)}
-              />
-            ))}
-          </div>
-          <div className="w-full">
-            <BottomButton
-              height="h-[42px]"
-              color={theme.rightCTA}
-              name="저장하기"
-              width="w-[312px]"
-              onClickHandler={handleSave}
-              disabled={false}
-            />
-          </div>
-        </div>
-      </div>
       <div className={`${theme.background} flex h-full w-full flex-col`}>
         <div className={`basis-1/6`}>
           <div className={` ${theme.background} flex w-full flex-row`}>
@@ -138,6 +112,27 @@ export default function Export({ params }: { params: { id: string } }) {
             />
           </div>
         </div>
+      </div>
+      <div className="fixed bottom-[24px] flex w-full max-w-md flex-col items-center justify-center px-[24px]">
+        <div className="flex w-full flex-row items-center justify-around">
+          {exportThemeButton.map((item) => (
+            <ExportTheme
+              key={item.alt}
+              name={item.name}
+              src={item.src}
+              alt={item.alt}
+              onClick={() => setExportTheme(item.select)}
+            />
+          ))}
+        </div>
+        <BottomButton
+          height="h-[42px]"
+          color={theme.rightCTA}
+          name="저장하기"
+          width="w-[312px]"
+          onClickHandler={handleSave}
+          disabled={false}
+        />
       </div>
     </div>
   );

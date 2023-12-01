@@ -113,7 +113,7 @@ export default function Export({ params }: { params: { id: string } }) {
           })}
         </div>
       </div>
-      <div className="fixed bottom-5 flex w-full max-w-md flex-col items-center justify-center px-[24px]">
+      <div className="fixed bottom-[24px] flex w-full max-w-md flex-col items-center justify-center px-[24px]">
         <div className="flex w-full flex-row items-center justify-around">
           {exportThemeButton.map((item) => (
             <ExportTheme
