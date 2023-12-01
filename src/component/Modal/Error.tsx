@@ -9,6 +9,8 @@ interface Props {
 }
 
 export default function Error({ content, handleModalClose }: Props) {
+  const array = content.replace(/\\n/g, '\n').split('\n');
+  console.log(array);
   return (
     <div className="flex h-[196px] w-[312px] flex-col">
       <ModalErrorBackground />
@@ -19,7 +21,13 @@ export default function Error({ content, handleModalClose }: Props) {
           </button>
         </div>
         <div className="flex h-[90px] items-center justify-center px-[24px] text-center text-[22px]">
-          {content}
+          {content
+            .replace(/\\n/g, '\n')
+            .split('\n')
+            .map((item, idx) => {
+              console.log(item);
+              return idx === 0 ? item : [<br key={idx} />, item];
+            })}
         </div>
         <div className=" bottom-2 flex w-[280px] items-center justify-center">
           <BottomButton
