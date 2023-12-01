@@ -42,6 +42,14 @@ export default function Personal({ params }: { params: { id: string } }) {
       });
   }, [params.id]);
 
+  useEffect(() => {
+    if (board.length === 1) {
+      runCatAnimation('catHeader', catAction.out, 1000, board[0].theme);
+      runCatAnimation('strcatCreate', catAction.in, 5000, board[0].theme);
+      runCatAnimation('strcatCreate', catAction.sit, 10000, board[0].theme);
+    }
+  }, [board]);
+
   const handleClick = () => {
     setIsAdd(true);
     scrollToAdd(board[0].id, itemsRef);
@@ -58,14 +66,6 @@ export default function Personal({ params }: { params: { id: string } }) {
       router.push('/personal/${params.id}');
     }
   };
-
-  useEffect(() => {
-    if (board.length === 1) {
-      runCatAnimation('catHeader', catAction.out, 1000, board[0].theme);
-      runCatAnimation('strcatCreate', catAction.in, 5000, board[0].theme);
-      runCatAnimation('strcatCreate', catAction.sit, 10000, board[0].theme);
-    }
-  }, [board]);
 
   return (
     <>
@@ -138,7 +138,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                       <div
                         className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.leftCTA}`}
                       />
-                      <p className="text-strcat-default-black absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center text-[20px]">
+                      <p className="absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center text-[20px] text-strcat-default-black">
                         스트링캣 만들기
                       </p>
                     </button>
