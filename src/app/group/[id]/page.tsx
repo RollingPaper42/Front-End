@@ -21,7 +21,8 @@ import Loading from '@/component/Loading';
 import CatAnimation from '@/component/CatAnimation';
 import { useCat } from '@/hooks/useCat';
 import { catAction } from '@/types/animation';
-import GroupInfo from '@/component/GroupInfo';
+import GroupInfo from '@/component/GroupMainTitle';
+import GruopMainTitle from '@/component/GroupMainTitle';
 
 export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string>('');
@@ -106,11 +107,15 @@ export default function Group({ params }: { params: { id: string } }) {
         ) : (
           <>
             <div className="mb-[40px]">
-              <h1 className={`${theme.titleText} mx-[24px] text-[24px]`}>
-                {`${title}`}
-              </h1>
+              <GruopMainTitle isAdd={isAdd} title={title} />
             </div>
-            <GroupInfo isAdd={isAdd} />
+            {boards.length && (
+              <div className="mx-[24px] border-b-2 border-gray-400  py-[8px] text-center ">
+                <p className="text-[14px] text-white">
+                  스트링캣 리스트. 누르면 해당 스트링캣으로 이동해요.
+                </p>
+              </div>
+            )}
             <div>
               {boards.map((board: board) => {
                 return (
@@ -154,7 +159,7 @@ export default function Group({ params }: { params: { id: string } }) {
                       height="h-[42px]"
                       color={`bg-white`}
                       name="저장"
-                      width={`${observe.boardId ? 'basis-1/4' : 'basis-1/3'}`}
+                      width={`${boards.length ? 'basis-1/4' : 'basis-1/3'}`}
                       onClickHandler={() => router.push(`${params.id}/export`)}
                       disabled={false}
                     />
@@ -162,7 +167,7 @@ export default function Group({ params }: { params: { id: string } }) {
                       height="h-[42px]"
                       color={`bg-white`}
                       name="공유"
-                      width={`${observe.boardId ? 'basis-1/4' : 'basis-1/3'}`}
+                      width={`${boards.length ? 'basis-1/4' : 'basis-1/3'}`}
                       onClickHandler={() => router.push(`${params.id}/summary`)}
                       disabled={false}
                     />
@@ -170,13 +175,13 @@ export default function Group({ params }: { params: { id: string } }) {
                       height="h-[42px]"
                       color={`${theme.leftCTA}`}
                       name="만들기"
-                      width={`${observe.boardId ? 'basis-1/4' : 'basis-1/3'}`}
+                      width={`${boards.length ? 'basis-1/4' : 'basis-1/3'}`}
                       onClickHandler={() =>
                         router.push(`/create?groupId=${params.id}`)
                       }
                       disabled={false}
                     />
-                    {observe.boardId && (
+                    {boards.length && (
                       <BottomButton
                         height="h-[42px]"
                         color={`${theme.rightCTA}`}
@@ -193,18 +198,20 @@ export default function Group({ params }: { params: { id: string } }) {
                       height="h-[42px]"
                       color={`${theme.leftCTA}`}
                       name="스트링캣 만들기"
-                      width="basis-1/2"
+                      width={`${boards.length ? 'basis-1/2' : 'w-full'}`}
                       onClickHandler={handleClickCreate}
                       disabled={false}
                     />
-                    <BottomButton
-                      height="h-[42px]"
-                      color={`${theme.rightCTA}`}
-                      name="이어서 글쓰기"
-                      width="basis-1/2"
-                      onClickHandler={handleClick}
-                      disabled={!observe.boardId}
-                    />
+                    {boards.length && (
+                      <BottomButton
+                        height="h-[42px]"
+                        color={`${theme.rightCTA}`}
+                        name="이어서 글쓰기"
+                        width="basis-1/2"
+                        onClickHandler={handleClick}
+                        disabled={!observe.boardId}
+                      />
+                    )}
                   </div>
                 ))}
             </div>

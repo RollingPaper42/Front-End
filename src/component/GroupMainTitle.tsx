@@ -5,9 +5,10 @@ import { useRecoilState } from 'recoil';
 
 interface Props {
   isAdd: boolean;
+  title: string;
 }
 
-export default function GroupInfo({ isAdd }: Props) {
+export default function GruopMainTitle({ isAdd, title }: Props) {
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [theme, setTheme] = useRecoilState(themeState);
   useEffect(() => {
@@ -20,7 +21,7 @@ export default function GroupInfo({ isAdd }: Props) {
         });
       },
       {
-        rootMargin: '0% 0% -80% 0%',
+        rootMargin: '0% 0% -90% 0%',
         threshold: 0,
       },
     );
@@ -30,15 +31,11 @@ export default function GroupInfo({ isAdd }: Props) {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [isAdd]);
   return (
-    <div
+    <h1
       ref={ref}
-      className="mx-[24px] border-b-2 border-gray-400  py-[8px] text-center "
-    >
-      <p className="text-[14px] text-white">
-        스트링캣 리스트. 누르면 해당 스트링캣으로 이동해요.
-      </p>
-    </div>
+      className={`${theme.titleText} mx-[24px] text-[24px]`}
+    >{`${title}`}</h1>
   );
 }
