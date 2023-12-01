@@ -58,7 +58,6 @@ export default function Export({ params }: { params: { id: string } }) {
           saveAs(blob, `strcat_${title}.png`);
         }
       });
-      throw new SyntaxError('hello');
       openModal(
         <ExportSuccess
           content="스트링캣이 저장되었습니다!"
