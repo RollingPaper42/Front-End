@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html className="h-full">
-      <body className="h-full">
+      <body className="h-full overscroll-none">
         <div className="m-auto h-full max-w-md font-sans">
           <RecoilRoot>
             <AxiosInterceptor />
