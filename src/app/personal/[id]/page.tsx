@@ -60,10 +60,10 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
-    if (board) {
-      console.log(board);
-      runCatAnimation('catHeader', catAction.out, 1000);
-      runCatAnimation('strcatCreate', catAction.sit, 5000);
+    if (board.length === 1) {
+      runCatAnimation('catHeader', catAction.out, 1000, board[0].theme);
+      runCatAnimation('strcatCreate', catAction.in, 5000, board[0].theme);
+      runCatAnimation('strcatCreate', catAction.sit, 10000, board[0].theme);
     }
   }, [board]);
 
