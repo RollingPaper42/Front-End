@@ -51,7 +51,7 @@ export default function DropList({
         )}
       </div>
       {dropDown && (
-        <div className="flex h-[216px] w-full flex-col overflow-y-scroll">
+        <div className="flex max-h-[216px] w-full flex-col overflow-y-scroll">
           {list && <DropListItem list={list} category={category} />}
         </div>
       )}
