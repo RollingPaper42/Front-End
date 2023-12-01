@@ -1,12 +1,11 @@
 'use client';
 
-import Drawer from '@/component/Drawer';
-import StrcatHeader from '@/component/StrcatHeader';
 import { useRouter } from 'next/navigation';
 import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
 import { useLogin } from '@/hooks/useLogin';
 import LongCat from '@/component/Icon/LongCat';
+import HeaderLayout from '@/component/HeaderLayout';
 
 export default function Home() {
   const [isLogin] = useLogin();
@@ -30,11 +29,10 @@ export default function Home() {
   };
 
   return (
-    <div className={`${Theme.background}`}>
+    <div className={`h-full ${Theme.background}`}>
       <div className=" fixed flex h-full w-full max-w-md  flex-col">
         <div className="basis-1/12">
-          <Drawer />
-          <StrcatHeader />
+          <HeaderLayout />
         </div>
         <div className="basis-6/12">
           <div

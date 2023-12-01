@@ -8,8 +8,6 @@ import saveAs from 'file-saver';
 import BottomButton from '@/component/BottomButton';
 import ExportSuccess from '@/component/Modal/ExportSuccess';
 import ExportBoard from '@/component/export/ExportBoard';
-import Drawer from '@/component/Drawer';
-import StrcatHeader from '@/component/StrcatHeader';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
 import { board } from '@/types/boards';

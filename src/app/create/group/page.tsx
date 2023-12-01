@@ -11,13 +11,18 @@ import { AxiosError } from 'axios';
 import Error from '@/component/Modal/Error';
 import BottomButton from '@/component/BottomButton';
 import Back from '@/component/Icon/Back';
+import { themeObj } from '@/recoil/theme';
+import { useEffect } from 'react';
 
-export default function Create() {
-  const [Theme] = useRecoilState(themeState);
+export default function CreateGroup() {
+  const [theme, setTheme] = useRecoilState(themeState);
   const [title, , handleTitle] = useInput('');
   const [openModal, closeModal] = useModal();
   const router = useRouter();
   const maxLength = 25;
+  useEffect(() => {
+    setTheme(themeObj['strcat']);
+  }, [setTheme]);
 
   const handleClick = async () => {
     const isConfirmed = await confirm(
@@ -59,17 +64,17 @@ export default function Create() {
   };
 
   return (
-    <div className={`${Theme.background} h-full w-full`}>
+    <div className={`${theme.background} h-full w-full`}>
       <div className="flex h-full w-full flex-col">
         <div className="flex basis-14 items-center">
           <div
             className="flex h-full w-full basis-1/6 flex-row items-center justify-center pl-[24px]"
             onClick={() => router.push('/')}
           >
-            <Back color={Theme.backIcon} />
+            <Back color={theme.backIcon} />
           </div>
           <div
-            className={`h-full text-center text-[18px] ${Theme.defaultText} flex basis-4/6 items-center justify-center`}
+            className={`h-full text-center text-[18px] ${theme.defaultText} flex basis-4/6 items-center justify-center`}
           >
             그룹 스트링캣 만들기
           </div>
@@ -80,28 +85,30 @@ export default function Create() {
               id="titleMessage"
               rows={1}
               value={title}
-              className={`w-full resize-none text-[24px] ${Theme.background} ${Theme.defaultText} outline-none placeholder:${Theme.defaultText}`}
+              className={`w-full resize-none text-[24px] ${theme.background} ${theme.defaultText} outline-none ${theme.placeholder}`}
               placeholder="제목을 입력해주세요."
               maxLength={maxLength + 1}
               onChange={handleResizeTitle}
               onKeyDown={handleKeyDownTitle}
             />
             <div
-              className={`w-full text-right text-[14px] ${
+              className={`w-full text-right text-[14px] 
+              ${
                 title.length > maxLength
-                  ? 'text-red-600'
-                  : `${Theme.defaultText}`
-              }`}
+                  ? 'text-strcat-error'
+                  : `${theme.defaultText} text-opacity-50`
+              }
+              `}
             >
               {title.length}/{maxLength}
             </div>
           </div>
         </div>
         <div className="mx-[24px] basis-1/3 space-y-[20px]">
-          <div className={`text-[22px] ${Theme.highlightText}`}>
+          <div className={`text-[22px] ${theme.highlightText}`}>
             개별 스트링캣 리스트 예시 1
           </div>
-          <div className={`text-[22px] ${Theme.defaultText}`}>
+          <div className={`text-[22px] ${theme.defaultText}`}>
             개별 스트링캣 리스트 예시 2
           </div>
         </div>
@@ -112,7 +119,7 @@ export default function Create() {
             width="w-full"
             onClickHandler={handleClick}
             disabled={title === '' || title.length > maxLength}
-            color={Theme.rightCTA}
+            color={theme.rightCTA}
           />
         </div>
       </div>

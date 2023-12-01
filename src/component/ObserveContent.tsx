@@ -16,11 +16,9 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
   const [observe, setObserve] = useRecoilState(observeState);
   const [theme, setTheme] = useRecoilState(themeState);
   useEffect(() => {
-    let ratio = 0.01;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(({ isIntersecting, boundingClientRect }) => {
-          ratio = 10 / boundingClientRect.height;
           if (!isAdd && isIntersecting) {
             setObserve(() => ({
               boardId: boardId,
@@ -32,8 +30,8 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
         });
       },
       {
-        rootMargin: '-30% 0% -65% 0%',
-        threshold: ratio,
+        rootMargin: '-30% 0% -70% 0%',
+        threshold: [],
       },
     );
     if (ref.current) {
@@ -42,16 +40,7 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
     return () => {
       observer.disconnect();
     };
-  }, [
-    boardId,
-    content.id,
-    content.photoUrl,
-    content.writer,
-    setObserve,
-    isAdd,
-    setTheme,
-    boardTheme,
-  ]);
+  }, []);
 
   return (
     <div className="inline">

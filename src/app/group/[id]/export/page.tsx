@@ -12,7 +12,7 @@ import ExportBoard from '@/component/export/ExportBoard';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
 import { useRecoilState } from 'recoil';
-import { themeObj, themeState } from '@/recoil/theme';
+import { themeState } from '@/recoil/theme';
 import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 import Back from '@/component/Icon/Back';
 import { useRouter } from 'next/navigation';
@@ -24,7 +24,7 @@ export default function Export({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string>('');
   const [boardsTitle, setBoardsTitle] = useState<board[]>([]);
   const [boardsConetent, setBoardsContent] = useState<board[]>([]);
-  const [theme, setTheme] = useRecoilState(themeState);
+  const [theme] = useRecoilState(themeState);
   const [exportTheme, setExportTheme] = useState<string>(
     exportThemeEnum.default,
   );
@@ -109,8 +109,8 @@ export default function Export({ params }: { params: { id: string } }) {
           })}
         </div>
       </div>
-      <div className=" fixed bottom-5 w-full max-w-md">
-        <div className=" mb-5 flex w-full flex-row items-center justify-around">
+      <div className="fixed bottom-5 flex w-full max-w-md flex-col items-center justify-center px-[24px]">
+        <div className="flex w-full flex-row items-center justify-around">
           {exportThemeButton.map((item) => (
             <ExportTheme
               key={item.alt}
@@ -125,7 +125,7 @@ export default function Export({ params }: { params: { id: string } }) {
           height="h-[42px]"
           color={theme.rightCTA}
           name="저장하기"
-          width="w-[370px]"
+          width="w-full"
           onClickHandler={handleSave}
           disabled={false}
         />

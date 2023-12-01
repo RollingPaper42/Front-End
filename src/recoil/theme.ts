@@ -23,6 +23,8 @@ export interface themeState {
   explainRightCTA: string;
   explainLeftCTA: string;
   titleText: string;
+  placeholder: string;
+  summaryText: string;
 }
 
 export const strcat: themeState = {
@@ -41,6 +43,8 @@ export const strcat: themeState = {
   explainLeftCTA: 'text-strcat-default-green',
   explainRightCTA: 'text-strcat-default-cyan',
   titleText: 'text-strcat-default-white',
+  placeholder: 'placeholder:text-strcat-default-white',
+  summaryText: 'text-strcat-default-white',
 };
 
 export const calm: themeState = {
@@ -59,6 +63,8 @@ export const calm: themeState = {
   explainLeftCTA: 'text-strcat-calm-text-green',
   explainRightCTA: 'text-strcat-calm-text-cyan',
   titleText: 'text-strcat-calm-black',
+  placeholder: 'placeholder:text-strcat-default-black',
+  summaryText: 'text-strcat-calm-black',
 };
 
 export const green: themeState = {
@@ -77,6 +83,8 @@ export const green: themeState = {
   explainLeftCTA: 'strcat-cyan-black',
   explainRightCTA: 'strcat-cyan-black',
   titleText: 'text-strcat-green-black',
+  placeholder: 'placeholder:text-strcat-default-yellow',
+  summaryText: 'text-strcat-green-black',
 };
 
 export const cyan: themeState = {
@@ -95,6 +103,8 @@ export const cyan: themeState = {
   explainLeftCTA: 'strcat-cyan-black',
   explainRightCTA: 'strcat-cyan-black',
   titleText: 'text-strcat-cyan-white',
+  placeholder: 'placeholder:text-strcat-default-white',
+  summaryText: 'text-strcat-cyan-black',
 };
 
 export const themeObj = {
