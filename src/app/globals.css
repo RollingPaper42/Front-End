@@ -7,7 +7,7 @@
   src: url('/fonts/NotoSansKR-Regular.ttf') format('truetype');
   font-style: normal;
   font-weight: 400;
-  unicode-range: U+AC00-D7AF, U+0020, U+23CE;
+  unicode-range: U+AC00-D7AF, U+0020, U+23CE, U+1100-11FF, U+3030-314E;
 }
 
 @font-face {
