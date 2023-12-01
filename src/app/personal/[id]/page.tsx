@@ -22,6 +22,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
   const [isAdd, setIsAdd] = useState<boolean>(false);
   const [isOwner, setIsOwner] = useState<boolean>(false);
+  const [windowHeight, setWindowHeight] = useState(0);
   const itemsRef = useRef(new Map());
   const [observe, setObserve] = useRecoilState(observeState);
   const [theme] = useRecoilState(themeState);
@@ -40,6 +41,9 @@ export default function Personal({ params }: { params: { id: string } }) {
       .catch((err) => {
         if (err.response.status === 406) router.push('/not-found');
       });
+    if (window) {
+      setWindowHeight(window.innerHeight);
+    }
   }, [params.id]);
 
   useEffect(() => {
@@ -74,7 +78,7 @@ export default function Personal({ params }: { params: { id: string } }) {
         <CatAnimation />
         <div
           className={`relative w-full py-[24px] text-justify `}
-          style={{ paddingBottom: `${window.innerHeight}px` }}
+          style={{ paddingBottom: `${windowHeight}px` }}
         >
           {board.length ? (
             <StrcatBoard
