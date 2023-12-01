@@ -89,6 +89,11 @@ export default function Add({
     }
   };
 
+  useEffect(() => {
+    const textDiv = document.getElementById('text');
+    textDiv?.focus();
+  }, []);
+
   const focusText = () => {
     const textDiv = document.getElementById('text');
     const selection = window.getSelection();
