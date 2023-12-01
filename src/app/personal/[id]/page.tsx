@@ -32,7 +32,6 @@ export default function Personal({ params }: { params: { id: string } }) {
   useEffect(() => {
     axiosInstance
       .get(`/boards/${params.id}`)
-      // .get(`/api/personal`)
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
@@ -143,14 +142,6 @@ export default function Personal({ params }: { params: { id: string } }) {
                         스트링캣 만들기
                       </p>
                     </button>
-                    {/* <BottomButton
-                      name="스트링캣 만들기"
-                      height="h-[42px]"
-                      width="basis-1/2"
-                      onClickHandler={handleClickCreate}
-                      disabled={false}
-                      color={`${theme.leftCTA}`}
-                    /> */}
                     <BottomButton
                       name="이어서 글쓰기"
                       width="basis-1/2"

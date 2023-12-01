@@ -74,7 +74,6 @@ export default function Group({ params }: { params: { id: string } }) {
           setObserve((prev) => ({ ...prev, boardId: data.data.boards[0].id }));
       })
       .catch((err) => {
-        console.log(err);
         if (err.response?.status === 406) router.push('/not-found');
       });
   }, [params.id]);
