@@ -1,6 +1,4 @@
 'use client';
-import { calm, cyan, green, strcat, themeState } from '@/recoil/theme';
-import { useRecoilState } from 'recoil';
 import Image from 'next/image';
 
 interface Props {

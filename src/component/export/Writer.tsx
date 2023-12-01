@@ -11,7 +11,7 @@ export default function Writer({ content, color }: Props) {
   return (
     <div className="inline">
       {content.text}
-      <span className={`${color}`}>
+      <span className={`${color} bg-black`}>
         {` From `}
         {content.writer === '' ? '익명의 스트링캣' : `${content.writer}`}
       </span>
