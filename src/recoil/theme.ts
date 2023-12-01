@@ -13,6 +13,7 @@ export interface themeState {
   defaultText: string;
   highlightText: string;
   writerContainer: string;
+  writerText: string;
   rightCTA: string;
   leftCTA: string;
   catTheme: catThemeState;
@@ -33,6 +34,7 @@ export const strcat: themeState = {
   defaultText: 'text-strcat-default-white',
   highlightText: 'text-strcat-default-yellow',
   writerContainer: 'bg-strcat-default-yellow',
+  writerText: 'text-strcat-default-black',
   rightCTA: 'bg-strcat-default-cyan',
   leftCTA: 'bg-strcat-default-green',
   catTheme: strcatCat,
@@ -53,6 +55,7 @@ export const calm: themeState = {
   defaultText: 'text-strcat-calm-black',
   highlightText: 'text-strcat-calm-orange',
   writerContainer: 'bg-strcat-calm-orange',
+  writerText: 'text-strcat-calm-black',
   rightCTA: 'bg-strcat-calm-cyan',
   leftCTA: 'bg-strcat-calm-green',
   catTheme: calmCat,
@@ -72,7 +75,8 @@ export const green: themeState = {
   background: 'bg-strcat-green-green',
   defaultText: 'text-strcat-green-yellow',
   highlightText: 'text-strcat-green-black',
-  writerContainer: 'bg-strcat-calm-black',
+  writerContainer: 'bg-strcat-green-yellow',
+  writerText: 'text-strcat-green-black',
   rightCTA: 'bg-strcat-green-cyan',
   leftCTA: 'bg-strcat-green-yellow',
   catTheme: greenCat,
@@ -93,6 +97,7 @@ export const cyan: themeState = {
   defaultText: 'text-strcat-cyan-white',
   highlightText: 'text-strcat-cyan-yellow',
   writerContainer: 'bg-strcat-cyan-yellow',
+  writerText: 'text-strcat-cyan-black',
   rightCTA: 'bg-strcat-cyan-green',
   leftCTA: 'bg-strcat-cyan-yellow',
   catTheme: cyanCat,

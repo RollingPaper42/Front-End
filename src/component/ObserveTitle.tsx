@@ -18,13 +18,17 @@ const ObserveTitle = ({ board, isAdd }: Props) => {
       (entries) => {
         entries.forEach(({ isIntersecting }) => {
           if (!isAdd && isIntersecting) {
+            setObserve((prev) => ({
+              ...prev,
+              boardId: board.id,
+            }));
             setTheme(themeObj[board.theme]);
           }
         });
       },
       {
-        rootMargin: '0% 0% -70% 0%',
-        threshold: 0,
+        rootMargin: '0% 0% -50% 0%',
+        threshold: 0.3,
       },
     );
     if (ref.current) {
