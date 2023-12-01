@@ -10,6 +10,7 @@ import LongCat from '@/component/Icon/LongCat';
 import BottomButton from '@/component/BottomButton';
 import SummaryBoard from '@/component/SummaryBoard';
 import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
+import useModal from '@/hooks/useModal';
 
 export default function Summary({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -18,6 +19,7 @@ export default function Summary({ params }: { params: { id: string } }) {
   const [contentCount, setContentCount] = useState(0);
   const [contentTextCount, setContentTextCount] = useState(0);
   const [boardCount, setboardCount] = useState(0);
+  const [openModal, closeModal] = useModal();
 
   useEffect(() => {
     setTheme(themeObj['strcat']);
@@ -73,7 +75,9 @@ export default function Summary({ params }: { params: { id: string } }) {
           height="h-[42px]"
           name="공유하기"
           width="w-full"
-          onClickHandler={() => handleShare(`/personal/${params.id}`)}
+          onClickHandler={() =>
+            handleShare(`/personal/${params.id}`, openModal, closeModal)
+          }
           disabled={false}
           color={`${theme.rightCTA}`}
         />

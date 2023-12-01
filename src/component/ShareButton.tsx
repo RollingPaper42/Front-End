@@ -2,6 +2,7 @@ import { handleShare } from '@/utils/handleShare';
 import Share from './Icon/Share';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
+import useModal from '@/hooks/useModal';
 
 interface Props {
   params: string;
@@ -9,6 +10,7 @@ interface Props {
 
 export default function ShareButton({ params }: Props) {
   const [theme, setTheme] = useRecoilState(themeState);
+  const [openModal, closeModal] = useModal();
   return (
     <div>
       <div className=" relative top-[-30px] mx-[24px] text-[18px]">
@@ -22,7 +24,7 @@ export default function ShareButton({ params }: Props) {
       <div className="flex h-[300px] w-full  justify-center">
         <button
           className="top-[30px] items-center justify-center"
-          onClick={() => handleShare(`${params}`)}
+          onClick={() => handleShare(`${params}`, openModal, closeModal)}
         >
           <Share />
         </button>
