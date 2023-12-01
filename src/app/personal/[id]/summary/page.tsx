@@ -12,10 +12,10 @@ import { handleShare } from '@/utils/handleShare';
 
 export default function Summary({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const [Theme, setTheme] = useRecoilState(themeState);
-  const [Title, setTitle] = useState('');
-  const [ContentCount, setContentCount] = useState(0);
-  const [ContentTextCount, setContentTextCount] = useState(0);
+  const [theme, setTheme] = useRecoilState(themeState);
+  const [title, setTitle] = useState('');
+  const [contentCount, setContentCount] = useState(0);
+  const [contentTextCount, setContentTextCount] = useState(0);
 
   useEffect(() => {
     axiosInstance
@@ -24,8 +24,8 @@ export default function Summary({ params }: { params: { id: string } }) {
         setTitle(res.data.title);
         setContentCount(res.data.contentCount);
         setContentTextCount(res.data.contentTextCount);
-        const themename: 'strcat' | 'cyan' | 'green' | 'calm' = res.data.theme;
-        setTheme(themeObj[themename]);
+        const themeName: 'strcat' | 'cyan' | 'green' | 'calm' = res.data.theme;
+        setTheme(themeObj[themeName]);
       })
       .catch((err) => {
         if (err.response?.status === 406) {
@@ -39,7 +39,7 @@ export default function Summary({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className={`${Theme.background}`}>
+    <div className={`${theme.background}`}>
       <div className=" fixed flex h-full w-full max-w-md flex-col">
         <div className="flex h-full basis-3/12 flex-col">
           <div className="flex h-full w-full basis-2/5 flex-row">
@@ -47,11 +47,11 @@ export default function Summary({ params }: { params: { id: string } }) {
               className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
               onClick={() => router.back()}
             >
-              <Back color={Theme.backIcon} />
+              <Back color={theme.backIcon} />
             </div>
             <div className=" basis-4/6">
               <div
-                className={`text-center text-[18px] ${Theme.titleText} mt-[16px]`}
+                className={`text-center text-[18px] ${theme.titleText} mt-[16px]`}
               >
                 스트링캣 공유하기
               </div>
@@ -59,17 +59,18 @@ export default function Summary({ params }: { params: { id: string } }) {
             <div className=" basis-1/6" />
           </div>
           <div className="mx-[24px] mt-[40px] basis-3/5">
-            <div className={`text-[22px] ${Theme.titleText}`}>{Title}</div>
+            <div className={`text-[22px] ${theme.titleText}`}>{title}</div>
           </div>
         </div>
         <div className="flex h-full w-full basis-7/12 flex-col ">
           <div className="basis-1/4" />
           <div className="flex h-full w-full basis-1/4 flex-row px-[24px]">
-            <div className={`${Theme.summaryText} w-full text-[26px] `}>
-              총 {ContentCount}번의 <br /> 마음으로 <br /> 내 스트링캣이
-              <br /> 총 {formatNumberWithCommas(ContentTextCount)}자
-              <br />
-              이어졌어요!
+            <div className={`${theme.summaryText} w-full text-[26px] `}>
+              총 {contentCount}번의
+              <br /> 마음으로
+              <br /> 내 스트링캣이
+              <br /> 총 {formatNumberWithCommas(contentTextCount)}자
+              <br /> 이어졌어요!
             </div>
           </div>
           <div className="basis-1/4" />
@@ -80,10 +81,10 @@ export default function Summary({ params }: { params: { id: string } }) {
           <BottomButton
             height="h-[42px]"
             name="공유하기"
-            width="w-[312px]"
+            width="w-full"
             onClickHandler={() => handleShare(`/personal/${params.id}`)}
             disabled={false}
-            color={`${Theme.rightCTA}`}
+            color={`${theme.rightCTA}`}
           />
         </div>
       </div>
@@ -91,8 +92,8 @@ export default function Summary({ params }: { params: { id: string } }) {
         <div className="basis-1/2" />
         <div className="basis-1/2 pr-[24px] pt-[186px]">
           <LongCat
-            bodyColor={Theme.catTheme.mainCat}
-            eyeColor={Theme.catTheme.mainCatEye}
+            bodyColor={theme.catTheme.mainCat}
+            eyeColor={theme.catTheme.mainCatEye}
           />
         </div>
       </div>
