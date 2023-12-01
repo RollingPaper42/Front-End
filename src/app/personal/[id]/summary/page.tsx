@@ -65,7 +65,7 @@ export default function Summary({ params }: { params: { id: string } }) {
         <div className="flex h-full w-full basis-7/12 flex-col ">
           <div className="basis-1/4" />
           <div className="flex h-full w-full basis-1/4 flex-row px-[24px]">
-            <div className={`${Theme.highlightText} w-full text-[26px] `}>
+            <div className={`${Theme.summaryText} w-full text-[26px] `}>
               총 {ContentCount}번의 <br /> 마음으로 <br /> 내 스트링캣이
               <br /> 총 {formatNumberWithCommas(ContentTextCount)}자
               <br />
