@@ -6,7 +6,6 @@ import BottomButton from '@/component/BottomButton';
 import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
-import Drawer from '@/component/Drawer';
 import { observeState } from '@/recoil/observe';
 import { useRouter } from 'next/navigation';
 import { board } from '@/types/boards';
@@ -15,9 +14,9 @@ import CatAnimation from '@/component/CatAnimation';
 import { catAction } from '@/types/animation';
 import { useCat } from '@/hooks/useCat';
 import { axiosInstance } from '@/utils/axios';
-import StrcatHeader from '@/component/StrcatHeader';
 import { useLogin } from '@/hooks/useLogin';
 import Loading from '@/component/Loading';
+import HeaderLayout from '@/component/HeaderLayout';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -61,17 +60,17 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   useEffect(() => {
-    if (board) {
-      runCatAnimation('catHeader', catAction.out, 1000);
-      runCatAnimation('strcatCreate', catAction.sit, 5000);
+    if (board.length === 1) {
+      runCatAnimation('catHeader', catAction.out, 1000, board[0].theme);
+      runCatAnimation('strcatCreate', catAction.in, 5000, board[0].theme);
+      runCatAnimation('strcatCreate', catAction.sit, 10000, board[0].theme);
     }
   }, [board]);
 
   return (
     <>
       <div className={` ${theme.background} min-h-full`}>
-        <Drawer />
-        <StrcatHeader />
+        <HeaderLayout />
         <CatAnimation />
         <div
           className={`relative w-full py-[24px] text-justify `}
