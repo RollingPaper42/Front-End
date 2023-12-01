@@ -18,7 +18,7 @@ export default function Error({ content, handleModalClose }: Props) {
             <ModalClose />
           </button>
         </div>
-        <div className="center flex h-[90px] items-center justify-center px-[24px] text-center text-[22px]">
+        <div className="flex h-[90px] items-center justify-center px-[24px] text-center text-[22px]">
           {content}
         </div>
         <div className=" bottom-2 flex w-[280px] items-center justify-center">

@@ -17,11 +17,9 @@ export default function ExportSuccess({ content, handleModalClose }: Props) {
             <ModalClose />
           </button>
         </div>
-        <div className=" items-center justify-center">
-          <p className="absolute left-0 top-[64px] px-[24px] text-center text-[22px]">
-            {content}
-          </p>
-        </div>
+        <p className="absolute left-0 top-[64px] px-[24px] text-center text-[22px]">
+          {content}
+        </p>
         <div className="absolute bottom-[16px] left-0 flex w-full justify-between px-[16px]">
           <BottomButton
             height="h-[42px]"
