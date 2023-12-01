@@ -10,11 +10,13 @@ import ExportSuccess from '@/component/Modal/ExportSuccess';
 import ExportBoard from '@/component/export/ExportBoard';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
+import Error from '@/component/Modal/Error';
 import { board } from '@/types/boards';
 import { useRecoilState } from 'recoil';
 import { themeObj, themeState } from '@/recoil/theme';
 import Back from '@/component/Icon/Back';
 import { useRouter } from 'next/navigation';
+import { handleBackground } from '@/utils/handleBackground';
 
 export default function Export({ params }: { params: { id: string } }) {
   const [openModal, closeModal] = useModal();
@@ -56,6 +58,7 @@ export default function Export({ params }: { params: { id: string } }) {
           saveAs(blob, `strcat_${title}.png`);
         }
       });
+      throw new SyntaxError('hello');
       openModal(
         <ExportSuccess
           content="스트링캣이 저장되었습니다!"
@@ -63,7 +66,13 @@ export default function Export({ params }: { params: { id: string } }) {
         />,
       );
     } catch (error) {
-      console.error('Error converting div to image:', error);
+      console.log(error);
+      openModal(
+        <Error
+          content="페이지를 이미지화하는 데\n실패했습니다.\n잠시 후 다시 시도해주세요"
+          handleModalClose={closeModal}
+        />,
+      );
     }
   };
 
@@ -72,7 +81,7 @@ export default function Export({ params }: { params: { id: string } }) {
       className={`${theme.background} ${theme.defaultText} h-full w-full max-w-md`}
     >
       <div className="fixed flex h-full w-full max-w-md flex-col">
-        <div className="basis-3/4"></div>
+        <div className="basis-3/4" />
         <div className="basis-1/4">
           <div className="mx-[24px] mb-5 flex flex-row items-center justify-around">
             {exportThemeButton.map((item) => (
@@ -119,7 +128,7 @@ export default function Export({ params }: { params: { id: string } }) {
         <div className="basis-5/6">
           <div
             ref={divRef}
-            className={`${theme.background} mt-[55px]  h-full break-all text-[22px]`}
+            className={`${theme.background} mt-[55px] h-auto break-all text-[22px]`}
           >
             <ExportBoard
               key={title}

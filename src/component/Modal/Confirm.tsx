@@ -1,5 +1,4 @@
 import BottomButton from '@/component/BottomButton';
-import Image from 'next/image';
 import ModalClose from '../Icon/ModalClose';
 import ModalBackground from '../Icon/ModalBackground';
 
