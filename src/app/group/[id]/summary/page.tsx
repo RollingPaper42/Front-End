@@ -12,25 +12,24 @@ import { handleShare } from '@/utils/handleShare';
 
 export default function Summary({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const [Theme] = useRecoilState(themeState);
-  const [Title, setTitle] = useState(
-    '테스트입니다테스트입니다테스트입니다테스트입니다테스트입니다',
-  );
-  const [ContentCount, setContentCount] = useState(13);
-  const [ContentTextCount, setContentTextCount] = useState(1305);
-  const [boardCount, setboardCount] = useState(13);
+  const [theme, setTheme] = useRecoilState(themeState);
+  const [title, setTitle] = useState('');
+  const [contentCount, setContentCount] = useState(0);
+  const [contentTextCount, setContentTextCount] = useState(0);
+  const [boardCount, setboardCount] = useState(0);
 
   useEffect(() => {
+    setTheme(themeObj['strcat']);
     axiosInstance
       .get(`/board-groups/${params.id}/summaries`)
-      .then((data) => {
-        setTitle(data.data.title);
-        setContentCount(data.data.contentCount);
-        setContentTextCount(data.data.contentTextCount);
-        setboardCount(data.data.boardCount);
+      .then((res) => {
+        setTitle(res.data.title);
+        setContentCount(res.data.contentCount);
+        setContentTextCount(res.data.contentTextCount);
+        setboardCount(res.data.boardCount);
       })
       .catch((err) => {
-        if (err.response.status === 406) {
+        if (err.response?.status === 406) {
           alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
         }
       });
@@ -41,75 +40,61 @@ export default function Summary({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className={`${Theme.background}`}>
+    <div className={`${theme.background}`}>
       <div className=" fixed flex h-full w-full max-w-md flex-col">
-        <div className=" basis-3/12">
-          <div className="flex h-full w-full flex-col">
-            <div className=" basis-2/5">
-              <div className=" flex h-full w-full flex-row">
-                <div
-                  className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
-                  onClick={() => router.push(`/group/${params.id}`)}
-                >
-                  <Back color={Theme.backIcon} />
-                </div>
-                <div className=" basis-4/6">
-                  <div
-                    className={`text-center text-[18px] ${Theme.defaultText} mt-[16px]`}
-                  >
-                    그룹 스트링캣 공유하기
-                  </div>
-                </div>
-                <div className=" basis-1/6"></div>
+        <div className="flex h-full basis-3/12 flex-col">
+          <div className="flex h-full w-full basis-2/5 flex-row">
+            <div
+              className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
+              onClick={() => router.push(`/group/${params.id}`)}
+            >
+              <Back color={theme.backIcon} />
+            </div>
+            <div className=" basis-4/6">
+              <div
+                className={`text-center text-[18px] ${theme.titleText} mt-[16px]`}
+              >
+                그룹 스트링캣 공유하기
               </div>
             </div>
-            <div className="mx-[25px]  mt-[7px] basis-3/5">
-              <div className={`text-[22px] ${Theme.defaultText}`}>{Title}</div>
-            </div>
+            <div className=" basis-1/6" />
+          </div>
+          <div className="mx-[24px] mt-[40px] basis-3/5">
+            <div className={`text-[22px] ${theme.titleText}`}>{title}</div>
           </div>
         </div>
-        <div className=" basis-7/12 ">
-          <div className=" flex h-full w-full flex-col ">
-            <div className=" basis-1/4"></div>
-            <div className=" basis-1/4">
-              <div className="flex h-full w-full flex-row">
-                <div className="basis-2/3">
-                  <div
-                    className={`${Theme.defaultText} mx-[24px] text-[26px] `}
-                  >
-                    총 {ContentCount}번의 <br /> 마음으로 <br /> {boardCount}
-                    개의 스트링캣이
-                    <br /> 총 {formatNumberWithCommas(ContentTextCount)}자{' '}
-                    <br />
-                    이어졌어요!
-                  </div>
-                </div>
-                <div className="basis-1/3"></div>
-              </div>
+        <div className="flex h-full w-full basis-7/12 flex-col ">
+          <div className="basis-1/4" />
+          <div className="flex h-full w-full basis-1/4 flex-row px-[24px]">
+            <div className={`${theme.summaryText} w-full text-[26px] `}>
+              총 {contentCount}번의
+              <br /> 마음으로
+              <br /> {boardCount}개의 스트링캣이
+              <br /> 총 {formatNumberWithCommas(contentTextCount)}자
+              <br /> 이어졌어요!
             </div>
-            <div className=" basis-1/4 "></div>
-            <div className=" basis-1/4"></div>
           </div>
+          <div className="basis-1/4 " />
+          <div className="basis-1/4" />
         </div>
-        <div className=" mx-[25px] basis-2/12">
-          <div className="flex h-full w-full flex-row items-center justify-center">
-            <BottomButton
-              height="h-[42px]"
-              name="공유하기"
-              width="w-[312px]"
-              onClickHandler={() => handleShare(`/group/${params.id}`)}
-              disabled={false}
-              color={`${Theme.rightCTA}`}
-            />
-          </div>
+        <div className="basis-2/12 " />
+        <div className="fixed bottom-[24px] flex w-full max-w-md items-center justify-center px-[24px]">
+          <BottomButton
+            height="h-[42px]"
+            name="공유하기"
+            width="w-full"
+            onClickHandler={() => handleShare(`/group/${params.id}`)}
+            disabled={false}
+            color={`${theme.rightCTA}`}
+          />
         </div>
       </div>
       <div className="flex h-full w-full flex-row">
-        <div className="basis-1/2"></div>
+        <div className="basis-1/2" />
         <div className="basis-1/2 pr-[24px] pt-[186px]">
           <LongCat
-            bodyColor={Theme.catTheme.mainCat}
-            eyeColor={Theme.catTheme.mainCatEye}
+            bodyColor={theme.catTheme.mainCat}
+            eyeColor={theme.catTheme.mainCatEye}
           />
         </div>
       </div>
