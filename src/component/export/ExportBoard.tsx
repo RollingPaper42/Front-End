@@ -21,7 +21,7 @@ export default function ExportBoard({
   if (!boardTheme) return;
   const theme = themeObj[boardTheme];
   return (
-    <div className={`${theme.background} ${theme.defaultText}`}>
+    <div className={`${theme.background} ${theme.titleText}`}>
       <div className={`mx-[24px]`}>
         <div className={`text-[ 22px] pb-[32px] pt-[40px]`}>{title}</div>
         <div className={` pb-[40px]  text-justify text-[18px]`}>

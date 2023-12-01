@@ -8,16 +8,17 @@ import html2canvas from 'html2canvas';
 import saveAs from 'file-saver';
 import BottomButton from '@/component/BottomButton';
 import ExportSuccess from '@/component/Modal/ExportSuccess';
-import Drawer from '@/component/Drawer';
-import StrcatHeader from '@/component/StrcatHeader';
 import ExportBoard from '@/component/export/ExportBoard';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
+import { themeObj, themeState } from '@/recoil/theme';
 import StrcatGroupTitle from '@/component/StrcatGroupTitle';
+import Back from '@/component/Icon/Back';
+import { useRouter } from 'next/navigation';
 
 export default function Export({ params }: { params: { id: string } }) {
+  const router = useRouter();
   const divRef = useRef<HTMLDivElement>(null);
   const [openModal, closeModal] = useModal();
   const [title, setTitle] = useState<string>('');
@@ -65,30 +66,48 @@ export default function Export({ params }: { params: { id: string } }) {
 
   return (
     <div className={`${theme.background} ${theme.defaultText} h-full `}>
-      <Drawer />
-      <StrcatHeader />.
+      <div className={` ${theme.background} flex w-full flex-row`}>
+        <div
+          className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
+          onClick={() => router.back()}
+        >
+          <Back color={theme.backIcon} />
+        </div>
+        <div className=" basis-4/6">
+          <div
+            className={`text-center text-[18px] ${theme.defaultText} mt-[16px]`}
+          >
+            그룹 스트링캣 내보내기
+          </div>
+        </div>
+        <div className=" basis-1/6"></div>
+      </div>
       <div ref={divRef} className={`${theme.background} mt-[78px] h-full`}>
         <div className={`mx-[24px] pb-[24px]  text-[24px]`}>{title}</div>
-        {boardsTitle?.map((board: board) => {
-          return (
-            <StrcatGroupTitle
-              key={board.id}
-              board={board}
-              scrollToId={() => {}}
-            />
-          );
-        })}
-        {boardsConetent?.map((board) => {
-          return (
-            <ExportBoard
-              key={board.id}
-              title={board.title}
-              content={board.contents}
-              exportTheme={exportTheme}
-              boardTheme={board.theme}
-            />
-          );
-        })}
+        <div className="break-all">
+          {boardsTitle?.map((board: board) => {
+            return (
+              <StrcatGroupTitle
+                key={board.id}
+                board={board}
+                scrollToId={() => {}}
+              />
+            );
+          })}
+        </div>
+        <div className="break-all">
+          {boardsConetent?.map((board) => {
+            return (
+              <ExportBoard
+                key={board.id}
+                title={board.title}
+                content={board.contents}
+                exportTheme={exportTheme}
+                boardTheme={board.theme}
+              />
+            );
+          })}
+        </div>
       </div>
       <div className=" fixed bottom-5 w-full max-w-md">
         <div className=" mb-5 flex w-full flex-row items-center justify-around">
