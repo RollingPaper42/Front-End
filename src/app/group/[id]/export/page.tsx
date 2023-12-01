@@ -14,8 +14,8 @@ import useModal from '@/hooks/useModal';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 import StrcatGroupTitle from '@/component/StrcatGroupTitle';
-import Back from '@/component/Icon/Back';
 import { useRouter } from 'next/navigation';
+import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 import Error from '@/component/Modal/Error';
 
 export default function Export({ params }: { params: { id: string } }) {
@@ -71,20 +71,10 @@ export default function Export({ params }: { params: { id: string } }) {
   return (
     <div className={`${theme.background} ${theme.defaultText} h-full `}>
       <div className={` ${theme.background} flex w-full flex-row`}>
-        <div
-          className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
-          onClick={() => router.back()}
-        >
-          <Back color={theme.backIcon} />
-        </div>
-        <div className=" basis-4/6">
-          <div
-            className={`text-center text-[18px] ${theme.defaultText} mt-[16px]`}
-          >
-            그룹 스트링캣 내보내기
-          </div>
-        </div>
-        <div className=" basis-1/6"></div>
+        <BackButtonHeader
+          title="그룹 스트링캣 내보내기"
+          backClickHandler={() => router.back()}
+        />
       </div>
       <div ref={divRef} className={`${theme.background} mt-[78px] h-full`}>
         <div className={`mx-[24px] pb-[24px]  text-[24px]`}>{title}</div>
