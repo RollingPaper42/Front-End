@@ -10,7 +10,6 @@ import { axiosInstance } from '@/utils/axios';
 import { AxiosError } from 'axios';
 import Error from '@/component/Modal/Error';
 import BottomButton from '@/component/BottomButton';
-import Back from '@/component/Icon/Back';
 import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 
 export default function Create() {
@@ -64,7 +63,7 @@ export default function Create() {
       <div className="flex h-full w-full flex-col">
         <div className="flex basis-14 items-center">
           <BackButtonHeader
-            title="스트링캣 내보내기"
+            title="그룹 스트링캣 만들기"
             backClickHandler={() => router.back()}
           />
         </div>
