@@ -66,7 +66,7 @@ export default function Export({ params }: { params: { id: string } }) {
     <div className={`${theme.background} ${theme.defaultText} h-full `}>
       <HeaderLayout />
       <div ref={divRef} className={`${theme.background} mt-[78px] h-full`}>
-        <div className={`mx-[24px] pb-[24px]  text-[24px]`}>{title}</div>
+        <div className={`mx-[24px] pb-[24px] text-[24px]`}>{title}</div>
         {boardsTitle?.map((board: board) => {
           return (
             <StrcatGroupTitle
@@ -88,8 +88,8 @@ export default function Export({ params }: { params: { id: string } }) {
           );
         })}
       </div>
-      <div className=" fixed bottom-5 w-full max-w-md">
-        <div className=" mb-5 flex w-full flex-row items-center justify-around">
+      <div className="fixed bottom-5 flex w-full max-w-md flex-col items-center justify-center px-[24px]">
+        <div className="flex w-full flex-row items-center justify-around">
           {exportThemeButton.map((item) => (
             <ExportTheme
               key={item.alt}
@@ -104,7 +104,7 @@ export default function Export({ params }: { params: { id: string } }) {
           height="h-[42px]"
           color={theme.rightCTA}
           name="저장하기"
-          width="w-[370px]"
+          width="w-full"
           onClickHandler={handleSave}
           disabled={false}
         />
