@@ -7,19 +7,19 @@ export const exportThemeEnum = {
 export const exportThemeButton = [
   {
     name: '기본',
-    src: '/strcatButton.png',
-    alt: 'strcatButton',
+    src: '/StrcatButton.svg',
+    alt: 'StrcatButton',
     select: exportThemeEnum.default,
   },
   {
     name: '줄바꿈',
-    src: '/CalmButton.png',
+    src: '/CalmButton.svg',
     alt: 'CalmButton',
     select: exportThemeEnum.lineBreak,
   },
   {
     name: '작성자',
-    src: '/GreenButton.png',
+    src: '/GreenButton.svg',
     alt: 'GreenButton',
     select: exportThemeEnum.writer,
   },

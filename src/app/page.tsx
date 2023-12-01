@@ -29,11 +29,10 @@ export default function Home() {
   };
 
   return (
-    <div className={`h-full ${Theme.background}`}>
+    <div className={`${Theme.background}`}>
+      <HeaderLayout />
       <div className=" fixed flex h-full w-full max-w-md  flex-col">
-        <div className="basis-1/12">
-          <HeaderLayout />
-        </div>
+        <div className="basis-1/12"></div>
         <div className="basis-6/12">
           <div
             className={`mx-[24px] mt-[25px] text-[20px] ${Theme.defaultText}`}
