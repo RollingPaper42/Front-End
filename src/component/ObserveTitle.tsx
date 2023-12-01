@@ -40,7 +40,7 @@ const ObserveTitle = ({ board, isAdd }: Props) => {
   }, [setObserve, isAdd]);
 
   return (
-    <div className="my-[24px] mt-[40px] h-[100px] " ref={ref}>
+    <div className="mb-[24px] mt-[72px] h-[100px] " ref={ref}>
       <h1 className={` text-[22px] ${theme.titleText}`}>{`${board.title}`}</h1>
     </div>
   );

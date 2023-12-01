@@ -1,14 +1,16 @@
 import Error from '@/component/Modal/Error';
 import ExportSuccess from '@/component/Modal/ExportSuccess';
-import useModal from '@/hooks/useModal';
 
-const [openModal, closeModal] = useModal();
-const handleCopyClipBoard = async (text: string) => {
+const handleCopyClipBoard = async (
+  text: string,
+  openModal: (modalComponent: JSX.Element) => void,
+  closeModal: () => void,
+) => {
   try {
     await navigator.clipboard.writeText(text);
     openModal(
       <ExportSuccess
-        content="스트링캣이 저장되었습니다!"
+        content="스트링캣이 복사되었습니다!"
         handleModalClose={closeModal}
       />,
     );
@@ -19,7 +21,11 @@ const handleCopyClipBoard = async (text: string) => {
   }
 };
 
-export const handleShare = async (params: string) => {
+export const handleShare = async (
+  params: string,
+  openModal: (modalComponent: JSX.Element) => void,
+  closeModal: () => void,
+) => {
   const url = `https://strcat.me${params}`;
   if (navigator.share) {
     try {
@@ -34,6 +40,6 @@ export const handleShare = async (params: string) => {
       );
     }
   } else {
-    handleCopyClipBoard(url);
+    handleCopyClipBoard(url, openModal, closeModal);
   }
 };
