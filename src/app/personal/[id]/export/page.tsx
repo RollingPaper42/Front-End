@@ -14,9 +14,8 @@ import Error from '@/component/Modal/Error';
 import { board } from '@/types/boards';
 import { useRecoilState } from 'recoil';
 import { themeObj, themeState } from '@/recoil/theme';
-import Back from '@/component/Icon/Back';
 import { useRouter } from 'next/navigation';
-import { handleBackground } from '@/utils/handleBackground';
+import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 
 export default function Export({ params }: { params: { id: string } }) {
   const [openModal, closeModal] = useModal();
@@ -58,14 +57,7 @@ export default function Export({ params }: { params: { id: string } }) {
           saveAs(blob, `strcat_${title}.png`);
         }
       });
-      openModal(
-        <ExportSuccess
-          content="스트링캣이 저장되었습니다!"
-          handleModalClose={closeModal}
-        />,
-      );
     } catch (error) {
-      console.log(error);
       openModal(
         <Error
           content="페이지를 이미지화하는 데\n실패했습니다.\n잠시 후 다시 시도해주세요"
@@ -80,24 +72,10 @@ export default function Export({ params }: { params: { id: string } }) {
       className={`${theme.background} ${theme.defaultText} h-full w-full max-w-md`}
     >
       <div className={`${theme.background} flex h-full w-full flex-col`}>
-        <div className={`basis-1/6`}>
-          <div className={` ${theme.background} flex w-full flex-row`}>
-            <div
-              className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
-              onClick={() => router.back()}
-            >
-              <Back color={theme.backIcon} />
-            </div>
-            <div className=" basis-4/6">
-              <div
-                className={`text-center text-[18px] ${theme.defaultText} mt-[16px]`}
-              >
-                스트링캣 내보내기
-              </div>
-            </div>
-            <div className=" basis-1/6"></div>
-          </div>
-        </div>
+        <BackButtonHeader
+          title={'스트링캣 내보내기'}
+          backClickHandler={() => router.back()}
+        />
         <div className="basis-5/6">
           <div
             ref={divRef}
@@ -114,7 +92,7 @@ export default function Export({ params }: { params: { id: string } }) {
         </div>
       </div>
       <div className="fixed bottom-[24px] flex w-full max-w-md flex-col items-center justify-center px-[24px]">
-        <div className="flex w-full flex-row items-center justify-around">
+        <div className="flex w-full flex-row items-center justify-between px-[7px] pb-[30px]">
           {exportThemeButton.map((item) => (
             <ExportTheme
               key={item.alt}

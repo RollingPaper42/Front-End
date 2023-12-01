@@ -16,6 +16,7 @@ import { themeState } from '@/recoil/theme';
 import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 import Back from '@/component/Icon/Back';
 import { useRouter } from 'next/navigation';
+import Error from '@/component/Modal/Error';
 
 export default function Export({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -39,14 +40,13 @@ export default function Export({ params }: { params: { id: string } }) {
           saveAs(blob, `strcat_${title}.png`);
         }
       });
+    } catch (error) {
       openModal(
-        <ExportSuccess
-          content="스트링캣이 저장되었습니다!"
+        <Error
+          content="페이지를 이미지화하는 데\n실패했습니다.\n잠시 후 다시 시도해주세요"
           handleModalClose={closeModal}
         />,
       );
-    } catch (error) {
-      console.error('Error converting div to image:', error);
     }
   };
 
