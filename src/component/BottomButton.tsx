@@ -32,7 +32,7 @@ export default function BottomButton({
         }`}
       />
       {/* top고정 오른쪽으로 2px */}
-      <div className="text-strcat-default-black absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center text-[22px]">
+      <div className="text-strcat-default-black absolute left-[1px] top-[4px] flex h-[33px] w-full select-none items-center justify-center text-[22px]">
         {/* top에서 아래로4px 오른쪽으로 1px, 33px크기  */}
         {name}
       </div>

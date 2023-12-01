@@ -1,29 +1,26 @@
+import { observeState } from '@/recoil/observe';
+import { themeObj, themeState } from '@/recoil/theme';
 import { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { observeState } from '@/recoil/observe';
-import React from 'react';
-import { board } from '@/types/boards';
-import { themeObj, themeState } from '@/recoil/theme';
+
 interface Props {
-  board: board;
   isAdd: boolean;
 }
 
-const ObserveTitle = ({ board, isAdd }: Props) => {
+export default function GroupInfo({ isAdd }: Props) {
   const ref = useRef<HTMLHeadingElement | null>(null);
-  const [, setObserve] = useRecoilState(observeState);
   const [theme, setTheme] = useRecoilState(themeState);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(({ isIntersecting }) => {
           if (!isAdd && isIntersecting) {
-            setTheme(themeObj[board.theme]);
+            setTheme(themeObj['strcat']);
           }
         });
       },
       {
-        rootMargin: '0% 0% -70% 0%',
+        rootMargin: '0% 0% -80% 0%',
         threshold: 0,
       },
     );
@@ -33,13 +30,15 @@ const ObserveTitle = ({ board, isAdd }: Props) => {
     return () => {
       observer.disconnect();
     };
-  }, [setObserve, isAdd]);
-
+  }, []);
   return (
-    <div className="my-[24px] mt-[40px] h-[100px] " ref={ref}>
-      <h1 className={` text-[22px] ${theme.titleText}`}>{`${board.title}`}</h1>
+    <div
+      ref={ref}
+      className="mx-[24px] border-b-2 border-gray-400  py-[8px] text-center "
+    >
+      <p className="text-[14px] text-white">
+        스트링캣 리스트. 누르면 해당 스트링캣으로 이동해요.
+      </p>
     </div>
   );
-};
-
-export default React.memo(ObserveTitle);
+}

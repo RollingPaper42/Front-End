@@ -20,7 +20,10 @@ export interface themeState {
   loginIcon: string;
   backIcon: string;
   activeDropItem: string;
+  explainRightCTA: string;
+  explainLeftCTA: string;
   titleText: string;
+  placeholder: string;
 }
 
 export const strcat: themeState = {
@@ -36,7 +39,10 @@ export const strcat: themeState = {
   loginIcon: '#6CD8ED', //strcat-default-cyan
   backIcon: '#FFFFFF', //strcat-default-white
   activeDropItem: 'bg-strcat-default-yellow',
+  explainLeftCTA: 'text-strcat-default-green',
+  explainRightCTA: 'text-strcat-default-cyan',
   titleText: 'text-strcat-default-white',
+  placeholder: 'placeholder:text-strcat-default-white',
 };
 
 export const calm: themeState = {
@@ -52,7 +58,10 @@ export const calm: themeState = {
   loginIcon: '#557FE4', //strcat-calm-text-cyan
   backIcon: '#463F3A', //strcat-calm-text-black
   activeDropItem: 'bg-strcat-calm-orange',
+  explainLeftCTA: 'text-strcat-calm-text-green',
+  explainRightCTA: 'text-strcat-calm-text-cyan',
   titleText: 'text-strcat-calm-black',
+  placeholder: 'placeholder:text-strcat-default-black',
 };
 
 export const green: themeState = {
@@ -68,7 +77,10 @@ export const green: themeState = {
   loginIcon: 'FF43A8', // strcat-default-magenta
   backIcon: '#212121', //strcat-green-black
   activeDropItem: 'bg-strcat-green-yellow',
+  explainLeftCTA: 'strcat-cyan-black',
+  explainRightCTA: 'strcat-cyan-black',
   titleText: 'text-strcat-green-black',
+  placeholder: 'placeholder:text-strcat-default-yellow',
 };
 
 export const cyan: themeState = {
@@ -84,7 +96,10 @@ export const cyan: themeState = {
   defaultIcon: '#FFFFFF', //strcat-cyan-white
   backIcon: '#FFFFFF', //strcat-cyan-white
   activeDropItem: 'bg-strcat-cyan-yellow',
+  explainLeftCTA: 'strcat-cyan-black',
+  explainRightCTA: 'strcat-cyan-black',
   titleText: 'text-strcat-cyan-white',
+  placeholder: 'placeholder:text-strcat-default-white',
 };
 
 export const themeObj = {

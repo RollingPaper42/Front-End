@@ -3,9 +3,9 @@
 import useInput from '@/hooks/useInput';
 import { axiosInstance } from '@/utils/axios';
 import { useRouter } from 'next/navigation';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
+import { themeObj, themeState } from '@/recoil/theme';
 import { AxiosError } from 'axios';
 import { content } from '@/types/content';
 import useModal from '@/hooks/useModal';
@@ -18,16 +18,25 @@ interface AddProps {
   id: string;
   setContent: Dispatch<SetStateAction<content[]>>;
   setIsAdd: Dispatch<SetStateAction<boolean>>;
+  boardTheme: 'strcat' | 'green' | 'cyan' | 'calm';
 }
 
-export default function Add({ id, setIsAdd, setContent }: AddProps) {
+export default function Add({
+  id,
+  setIsAdd,
+  setContent,
+  boardTheme,
+}: AddProps) {
   const [text, setText] = useInput('');
   const [writer, , handleWriter] = useInput('');
   const router = useRouter();
   const [openModal, closeModal] = useModal();
-  const [theme] = useRecoilState(themeState);
+  const [theme, setTheme] = useRecoilState(themeState);
   const [image, setImage] = useInput<File | null>(null);
 
+  useEffect(() => {
+    setTheme(themeObj[boardTheme]);
+  }, []);
   if (id === null || id === undefined) {
     alert('유효하지 않은 접속입니다.');
     router.push('/');
@@ -118,15 +127,13 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
           20자 이상 내용을 입력해주세요
         </div>
       )}
-      {text?.length >= 1000 && (
-        <div
-          className={`text-right ${
-            text.length > 1000 ? 'text-red-600' : `${theme.defaultText}`
-          }`}
-        >
-          {text.length}/1000자
-        </div>
-      )}
+      <div
+        className={`ml-[8px] inline text-right 
+        ${text.length > 1000 ? 'text-strcat-error' : `${theme.highlightText}`}
+        ${text.length < 20 && 'text-opacity-50'}`}
+      >
+        {text.length}/1000자
+      </div>
       <div className="sticky bottom-[88px] z-10 mt-[24px] flex w-full items-center justify-center">
         <div className="flex w-full items-center justify-center space-x-[16px]">
           <div className={`${theme.defaultText} w-fit text-[16px]`}>From :</div>
@@ -134,14 +141,18 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
             type="text"
             id="writer"
             value={writer}
-            className={`${theme.defaultText} w-[163px] bg-transparent text-[16px] outline-none placeholder:${theme.defaultText} placeholder:text-opacity-50`}
+            className={`${theme.defaultText} w-[163px] bg-transparent text-[16px] outline-none ${theme.placeholder} placeholder:text-opacity-50`}
             placeholder="익명의 스트링캣"
             maxLength={11}
             onChange={handleWriter}
           />
           <div
             className={`flex w-16 items-center justify-center text-right text-[16px]
-              ${writer.length > 10 ? 'text-red-600' : `${theme.defaultText}`}
+              ${
+                writer.length > 10
+                  ? 'text-strcat-error'
+                  : `${theme.defaultText}`
+              }
               ${writer === '' && ' text-opacity-50'}
               `}
           >
@@ -166,7 +177,12 @@ export default function Add({ id, setIsAdd, setContent }: AddProps) {
             name="완료"
             width="basis-3/5"
             onClickHandler={handleClick}
-            disabled={text === '' || text.length > 1000 || writer.length > 10}
+            disabled={
+              text === '' ||
+              text.length > 1000 ||
+              text.length < 20 ||
+              writer.length > 10
+            }
           />
         </div>
       </div>

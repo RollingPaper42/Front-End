@@ -21,6 +21,7 @@ import Loading from '@/component/Loading';
 import CatAnimation from '@/component/CatAnimation';
 import { useCat } from '@/hooks/useCat';
 import { catAction } from '@/types/animation';
+import GroupInfo from '@/component/GroupInfo';
 
 export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string>('');
@@ -50,13 +51,10 @@ export default function Group({ params }: { params: { id: string } }) {
 
   const handleClickCreate = () => {
     if (!isLogin) {
-      localStorage.setItem(
-        'strcat_login_success_url',
-        `/create?groupId=${params.id}`,
-      );
+      localStorage.setItem('strcat_login_success_url', `/group/${params.id}`);
       router.push('/login');
     } else {
-      router.push(`/create?groupId=${params.id}`);
+      router.push(`/group/${params.id}`);
     }
   };
 
@@ -107,11 +105,12 @@ export default function Group({ params }: { params: { id: string } }) {
           <Loading />
         ) : (
           <>
-            <div className="mb-[20px]">
-              <h1 className={`${theme.titleText} mx-[24px] text-[26px]`}>
+            <div className="mb-[40px]">
+              <h1 className={`${theme.titleText} mx-[24px] text-[24px]`}>
                 {`${title}`}
               </h1>
             </div>
+            <GroupInfo isAdd={isAdd} />
             <div>
               {boards.map((board: board) => {
                 return (
@@ -181,7 +180,7 @@ export default function Group({ params }: { params: { id: string } }) {
                       <BottomButton
                         height="h-[42px]"
                         color={`${theme.rightCTA}`}
-                        name="글 작성"
+                        name="글쓰기"
                         width="basis-1/4"
                         onClickHandler={handleClick}
                         disabled={!observe.boardId}

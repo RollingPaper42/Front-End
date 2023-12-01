@@ -18,6 +18,7 @@ module.exports = {
         'strcat-yellow': '#FBFF36',
         'strcat-cyan': '#6CD8ED',
         'strcat-buttonColor': '#8F38FF',
+        'strcat-error': '#FF0000',
 
         'strcat-default-yellow': '#FBFF36',
         'strcat-default-cyan': '#6CD8ED',
@@ -28,7 +29,7 @@ module.exports = {
 
         'strcat-calm-orange': '#FFA857',
         'strcat-calm-cyan': '#ABC4FF',
-        'strcat-calm-text-cyan': '557FE4',
+        'strcat-calm-text-cyan': '#557FE4',
         'strcat-calm-green': '#BEE4A4',
         'strcat-calm-text-green': '#61A136',
         'strcat-calm-magenta': '#FF43A8',
@@ -47,6 +48,8 @@ module.exports = {
         'strcat-cyan-cyan': '#6CD8ED',
         'strcat-cyan-black': '#212121',
 
+        'login-button-kakao': '#FEE500',
+        'login-button-google': '#FFFFFF',
         'loading-gray': '#D9D9D9',
       },
       keyframes: {
