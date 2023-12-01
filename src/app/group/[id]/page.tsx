@@ -89,7 +89,6 @@ export default function Group({ params }: { params: { id: string } }) {
   useEffect(() => {
     runCatAnimation('strcatCreate', catAction.sit, 0, theme.name);
   }, [theme]);
-  useEffect(() => {}, [observe.boardId]);
 
   return (
     <div className={`${theme.background}  min-h-full`}>
@@ -217,7 +216,7 @@ export default function Group({ params }: { params: { id: string } }) {
               <div className="absolute top-[200px]">
                 <ShareButton params={`/group/${params.id}`} />
               </div>
-            )}{' '}
+            )}
           </>
         )}
       </div>
