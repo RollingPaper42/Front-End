@@ -2,15 +2,11 @@ import { drawerState } from '@/recoil/drawer';
 import { usePathname, useRouter } from 'next/navigation';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
-import { Check } from './Icon/Drawer';
-
-interface Board {
-  id: string;
-  title: string;
-}
+import { Check } from '../Icon/Drawer';
+import { drawerBoard } from '@/types/drawerBoard';
 
 interface Props {
-  list: Board[];
+  list: drawerBoard[];
   category: string;
 }
 
@@ -28,20 +24,20 @@ export default function DropListItem({ list, category }: Props) {
     }
   };
 
-  return list.map((item: Board) => {
+  return list.map((item: drawerBoard) => {
     const url = '/'.concat(category, '/', item.id);
     const isActive = pathname === url;
     return (
       <div
         key={item.id}
-        className={`flex h-[53px] w-full items-center justify-between`}
+        className={`flex h-[54px] w-full items-center justify-between`}
         onClick={() => {
           router.push(url);
           setDrawer(false);
         }}
       >
         <div
-          className={`flex h-full w-full items-center justify-between px-[24px] hover:${
+          className={`my-[15px] flex h-full w-full items-center justify-between px-[24px] hover:${
             theme.activeDropItem
           } hover:bg-opacity-10 ${
             isActive && `${theme.activeDropItem} bg-opacity-10`

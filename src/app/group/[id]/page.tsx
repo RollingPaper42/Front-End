@@ -7,8 +7,6 @@ import { board } from '@/types/boards';
 import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
-import Drawer from '@/component/Drawer';
-import StrcatHeader from '@/component/StrcatHeader';
 import BottomButton from '@/component/BottomButton';
 import { observeState } from '@/recoil/observe';
 import StrcatGroupTitle from '@/component/StrcatGroupTitle';
@@ -21,8 +19,8 @@ import Loading from '@/component/Loading';
 import CatAnimation from '@/component/CatAnimation';
 import { useCat } from '@/hooks/useCat';
 import { catAction } from '@/types/animation';
-import GroupInfo from '@/component/GroupMainTitle';
 import GruopMainTitle from '@/component/GroupMainTitle';
+import HeaderLayout from '@/component/HeaderLayout';
 
 export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string>('');
@@ -83,20 +81,20 @@ export default function Group({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     if (boards) {
-      runCatAnimation('catHeader', catAction.out, 1000);
-      runCatAnimation('strcatCreate', catAction.sit, 5000);
+      runCatAnimation('catHeader', catAction.out, 1000, 'strcat');
+      runCatAnimation('strcatCreate', catAction.in, 5000, 'strcat');
+      runCatAnimation('strcatCreate', catAction.sit, 10000, 'strcat');
     }
   }, [boards]);
 
   useEffect(() => {
-    runCatAnimation('strcatCreate', catAction.sit, 0);
+    runCatAnimation('strcatCreate', catAction.sit, 0, theme.name);
   }, [theme]);
   useEffect(() => {}, [observe.boardId]);
 
   return (
     <div className={`${theme.background}  min-h-full`}>
-      <Drawer />
-      <StrcatHeader />
+      <HeaderLayout />
       <CatAnimation />
       <div
         className={`relative w-full py-[24px] pt-[56px] ${theme.background}

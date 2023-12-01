@@ -22,7 +22,9 @@ const PhotoUpload = ({ setImage }: Props) => {
     try {
       if (file.size > 1024) {
         const compressedFile = await imageCompression(file, options);
-        const preview = new File([compressedFile], 'name');
+        const preview = new File([compressedFile], compressedFile.name, {
+          type: compressedFile.type,
+        });
         setImage(preview);
       } else {
         setImage(file);
