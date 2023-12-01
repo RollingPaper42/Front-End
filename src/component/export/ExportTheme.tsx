@@ -7,11 +7,12 @@ interface Props {
   alt: string;
   onClick: () => void;
 }
+
 export default function ExportTheme({ name, src, alt, onClick }: Props) {
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center">
       <Image src={src} width={52} height={52} alt={alt} onClick={onClick} />
-      <div className={`text-center`}>{name}</div>
+      {name}
     </div>
   );
 }
