@@ -15,6 +15,7 @@ import { useRecoilState } from 'recoil';
 import { themeObj, themeState } from '@/recoil/theme';
 import Back from '@/component/Icon/Back';
 import { useRouter } from 'next/navigation';
+import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 
 export default function Export({ params }: { params: { id: string } }) {
   const [openModal, closeModal] = useModal();
@@ -98,24 +99,10 @@ export default function Export({ params }: { params: { id: string } }) {
         </div>
       </div>
       <div className={`${theme.background} flex h-full w-full flex-col`}>
-        <div className={`basis-1/6`}>
-          <div className={` ${theme.background} flex w-full flex-row`}>
-            <div
-              className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
-              onClick={() => router.back()}
-            >
-              <Back color={theme.backIcon} />
-            </div>
-            <div className=" basis-4/6">
-              <div
-                className={`text-center text-[18px] ${theme.defaultText} mt-[16px]`}
-              >
-                스트링캣 내보내기
-              </div>
-            </div>
-            <div className=" basis-1/6"></div>
-          </div>
-        </div>
+        <BackButtonHeader
+          title="스트링캣 내보내기"
+          backClickHandler={() => router.back()}
+        />
         <div className="basis-5/6">
           <div
             ref={divRef}
