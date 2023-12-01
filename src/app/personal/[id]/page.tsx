@@ -69,10 +69,13 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={` ${theme.background} min-h-full pb-[150px]`}>
+      <div className={` ${theme.background} min-h-full`}>
         <HeaderLayout />
         <CatAnimation />
-        <div className={`relative w-full py-[24px] text-justify `}>
+        <div
+          className={`relative w-full py-[24px] text-justify `}
+          style={{ paddingBottom: `${window.innerHeight}px` }}
+        >
           {board.length ? (
             <StrcatBoard
               board={board[0]}
