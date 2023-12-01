@@ -30,7 +30,7 @@ export default function Summary({ params }: { params: { id: string } }) {
       })
       .catch((err) => {
         if (err.response?.status === 406) {
-          alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
+          router.push('/not-found');
         }
       });
   }, []);
