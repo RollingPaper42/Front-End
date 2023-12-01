@@ -135,6 +135,7 @@ export default function Group({ params }: { params: { id: string } }) {
                     key={board.id}
                     board={board}
                     isPersonal={false}
+                    isOwner={true}
                   />
                 );
               })}
@@ -195,7 +196,7 @@ export default function Group({ params }: { params: { id: string } }) {
                       color={`${theme.leftCTA}`}
                       name="스트링캣 만들기"
                       width={`${boards.length ? 'basis-1/2' : 'w-full'}`}
-                      onClickHandler={handleClickCreate}
+                      onClickHandler={() => handleClickCreate()}
                       disabled={false}
                     />
                     {boards.length && (
@@ -212,7 +213,7 @@ export default function Group({ params }: { params: { id: string } }) {
                 ))}
             </div>
             {!isAdd && <ContentPhoto />}
-            {!boards.length && title !== '' && (
+            {!boards.length && title !== '' && isOwner && (
               <div className="absolute top-[200px]">
                 <ShareButton params={`/group/${params.id}`} />
               </div>

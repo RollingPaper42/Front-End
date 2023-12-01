@@ -76,7 +76,7 @@ export default function Summary({ params }: { params: { id: string } }) {
           name="공유하기"
           width="w-full"
           onClickHandler={() =>
-            handleShare(`/personal/${params.id}`, openModal, closeModal)
+            handleShare(`/group/${params.id}`, openModal, closeModal)
           }
           disabled={false}
           color={`${theme.rightCTA}`}
