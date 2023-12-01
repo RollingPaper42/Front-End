@@ -67,11 +67,9 @@ export default function Login() {
               <div
                 className={`bg-login-button-google absolute top-[3px] h-[39px] w-full`}
               />
-
               <div
                 className={`bg-login-button-google absolute left-[2px] top-0 h-[39px] w-full`}
               />
-
               <div className="absolute left-[1px] top-[4px] flex h-[16px] w-full items-center justify-center text-[16px] text-strcat-default-black">
                 <div className="relative top-2">구글 로그인</div>
               </div>

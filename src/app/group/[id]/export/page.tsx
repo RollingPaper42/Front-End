@@ -61,7 +61,11 @@ export default function Export({ params }: { params: { id: string } }) {
         setBoardsTitle(data.data.boards);
         setBoardsContent(data.data.boards);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        if (error.response?.status === 406) {
+          router.push('/not-found');
+        }
+      });
   }, []);
 
   return (

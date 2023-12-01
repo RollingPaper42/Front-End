@@ -39,7 +39,11 @@ export default function Export({ params }: { params: { id: string } }) {
           data.data.board.theme;
         setTheme(themeObj[themename]);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        if (error.response?.status === 406) {
+          router.push('/not-found');
+        }
+      });
   }, []);
 
   const handleSave = async () => {
