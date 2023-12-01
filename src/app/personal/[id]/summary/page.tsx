@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import Back from '@/component/Icon/Back';
 import LongCat from '@/component/Icon/LongCat';
 import { handleShare } from '@/utils/handleShare';
+import SummaryBoard from '@/component/SummaryBoard';
 
 export default function Summary({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -33,10 +34,6 @@ export default function Summary({ params }: { params: { id: string } }) {
         }
       });
   }, []);
-
-  function formatNumberWithCommas(inputText: number) {
-    return inputText.toLocaleString();
-  }
 
   return (
     <div className={`${theme.background}`}>
@@ -65,16 +62,13 @@ export default function Summary({ params }: { params: { id: string } }) {
         <div className="flex h-full w-full basis-7/12 flex-col ">
           <div className="basis-1/4" />
           <div className="flex h-full w-full basis-1/4 flex-row px-[24px]">
-            <div className={`${theme.summaryText} w-full text-[26px] `}>
-              총 {contentCount}번의
-              <br /> 마음으로
-              <br /> 내 스트링캣이
-              <br /> 총 {formatNumberWithCommas(contentTextCount)}자
-              <br /> 이어졌어요!
-            </div>
+            <SummaryBoard
+              contentCount={contentCount}
+              contentTextCount={contentTextCount}
+              summaryTextColor={theme.summaryText}
+            />
           </div>
-          <div className="basis-1/4" />
-          <div className="basis-1/4" />
+          <div className="basis-1/2" />
         </div>
         <div className="basis-2/12 " />
         <div className="fixed bottom-[24px] flex w-full max-w-md items-center justify-center px-[24px]">
