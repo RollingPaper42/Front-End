@@ -19,7 +19,7 @@ export default function SummaryBoard({
     <div className={`${summaryTextColor} w-full text-[26px] `}>
       총 {contentCount}번의
       <br /> 마음으로
-      <br /> {boardCount ? `${boardCount}` : '내'} 스트링캣이
+      <br /> {boardCount ? `${boardCount}개의` : '내'} 스트링캣이
       <br /> 총 {formatNumberWithCommas(contentTextCount)}자
       <br /> 이어졌어요!
     </div>
