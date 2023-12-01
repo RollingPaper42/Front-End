@@ -12,6 +12,7 @@ import BottomButton from '@/component/BottomButton';
 import { axiosInstance } from '@/utils/axios';
 import { useSearchParams } from 'next/navigation';
 import Back from '@/component/Icon/Back';
+import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 
 export default function Create() {
   const searchParams = useSearchParams();
@@ -83,22 +84,10 @@ export default function Create() {
     <div className={`${Theme.background} h-full w-full`}>
       <div className="flex h-full w-full flex-col">
         <div className="basis-1/12">
-          <div className="flex h-full w-full flex-row">
-            <div
-              className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
-              onClick={() => router.back()}
-            >
-              <Back color={Theme.backIcon} />
-            </div>
-            <div className=" basis-4/6">
-              <div
-                className={`text-center text-[18px] ${Theme.defaultText} mt-[16px]`}
-              >
-                스트링캣 만들기
-              </div>
-            </div>
-            <div className=" basis-1/6"></div>
-          </div>
+          <BackButtonHeader
+            title="스트링캣 만들기"
+            backClickHandler={() => router.back()}
+          />
         </div>
         <div className="basis-2/12">
           <div className="mt-10 flex w-full basis-3/12 flex-col items-center justify-center px-[24px]">
