@@ -1,6 +1,7 @@
 import BottomButton from '@/component/BottomButton';
 import ModalClose from '../Icon/ModalClose';
 import ModalBackground from '../Icon/ModalBackground';
+import { titleFont } from '@/recoil/font';
 
 interface Props {
   content: string;
@@ -19,7 +20,9 @@ export default function Confirm({ content, yes, no }: Props) {
           </button>
         </div>
         <div className=" items-center justify-center">
-          <p className="absolute left-0 top-[97px] px-[24px] text-center text-[22px]">
+          <p
+            className={`absolute left-0 top-[97px] px-[24px] text-center ${titleFont.category1}`}
+          >
             {content}
           </p>
         </div>

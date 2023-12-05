@@ -1,6 +1,7 @@
 import { themeObj } from '@/recoil/theme';
 import { board } from '@/types/boards';
 import Strcat from './Icon/Strcat';
+import { titleFont } from '@/recoil/font';
 
 interface Props {
   board: board;
@@ -19,7 +20,9 @@ export default function StrcatGroupTitle({ board, scrollToId }: Props) {
         eyeColor={theme.catTheme.headerCatEye}
         bodyColor={theme.catTheme.headerCat}
       />
-      <p className={` cursor-pointer pl-[12px] text-[22px] ${theme.titleText}`}>
+      <p
+        className={` cursor-pointer pl-[12px] ${titleFont.category1} ${theme.titleText}`}
+      >
         {`${board.title}`}
       </p>
     </div>

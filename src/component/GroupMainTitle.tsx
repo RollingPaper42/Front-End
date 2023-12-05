@@ -1,3 +1,4 @@
+import { headlineFont } from '@/recoil/font';
 import { observeState } from '@/recoil/observe';
 import { themeObj, themeState } from '@/recoil/theme';
 import { useEffect, useRef } from 'react';
@@ -35,7 +36,7 @@ export default function GruopMainTitle({ isAdd, title }: Props) {
   return (
     <h1
       ref={ref}
-      className={`${theme.titleText} mx-[24px] text-[24px]`}
+      className={`${theme.titleText} mx-[24px] ${headlineFont.category2}`}
     >{`${title}`}</h1>
   );
 }

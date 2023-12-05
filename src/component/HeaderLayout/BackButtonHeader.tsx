@@ -1,6 +1,7 @@
 import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
 import Back from '../Icon/Back';
+import { bodyFont } from '@/recoil/font';
 
 interface Props {
   title: string;
@@ -19,7 +20,7 @@ export default function BackButtonHeader({ title, backClickHandler }: Props) {
           <Back color={theme.backIcon} />
         </div>
         <div
-          className={`${theme.titleText} flex basis-4/6 items-center justify-center text-center text-[18px]`}
+          className={`${theme.titleText} flex basis-4/6 items-center justify-center text-center ${bodyFont.category1}`}
         >
           {title}
         </div>
