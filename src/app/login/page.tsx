@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
 import HeaderLayout from '@/component/HeaderLayout';
+import { captionFont, titleFont } from '@/recoil/font';
 
 export default function Login() {
   const [theme] = useRecoilState(themeState);
@@ -22,7 +23,7 @@ export default function Login() {
         </div>
         <div className="basis-2/12">
           <div
-            className={`mx-[24px] mt-[40px] h-full text-[20px] ${theme.defaultText}`}
+            className={`mx-[24px] mt-[40px] h-full ${titleFont.category2} ${theme.defaultText}`}
           >
             <div>{`\/\/ 로그인하고 스트링캣을 생성해보세요.`}</div>
           </div>
@@ -47,7 +48,9 @@ export default function Login() {
               <div
                 className={`bg-login-button-kakao absolute left-[2px] top-0 h-[39px] w-full`}
               />
-              <div className="absolute left-[1px] top-[4px] flex h-[16px] w-full items-center justify-center text-[16px] text-strcat-default-black">
+              <div
+                className={`${captionFont.category1} absolute left-[1px] top-[4px] flex h-[16px] w-full items-center justify-center text-strcat-default-black`}
+              >
                 <div className="relative top-2">카카오 로그인</div>
               </div>
             </button>
@@ -70,7 +73,9 @@ export default function Login() {
               <div
                 className={`bg-login-button-google absolute left-[2px] top-0 h-[39px] w-full`}
               />
-              <div className="absolute left-[1px] top-[4px] flex h-[16px] w-full items-center justify-center text-[16px] text-strcat-default-black">
+              <div
+                className={`${captionFont.category1} absolute left-[1px] top-[4px] flex h-[16px] w-full items-center justify-center text-strcat-default-black`}
+              >
                 <div className="relative top-2">구글 로그인</div>
               </div>
             </button>

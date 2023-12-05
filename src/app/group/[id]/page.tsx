@@ -21,6 +21,7 @@ import { useCat } from '@/hooks/useCat';
 import { catAction } from '@/types/animation';
 import GruopMainTitle from '@/component/GroupMainTitle';
 import HeaderLayout from '@/component/HeaderLayout';
+import { captionFont } from '@/recoil/font';
 
 export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string>('');
@@ -107,7 +108,7 @@ export default function Group({ params }: { params: { id: string } }) {
             </div>
             {boards.length && (
               <div className="mx-[24px] border-b-2 border-gray-400  py-[8px] text-center ">
-                <p className="text-[14px] text-white">
+                <p className={`${captionFont.category2} text-white `}>
                   스트링캣 리스트. 누르면 해당 스트링캣으로 이동해요.
                 </p>
               </div>
