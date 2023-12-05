@@ -1,33 +1,34 @@
-'use client';
+"use client";
 
-import useInput from '@/hooks/useInput';
-import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
-import useModal from '@/hooks/useModal';
-import { confirm } from '@/utils/confirm';
-import { useRouter } from 'next/navigation';
-import { axiosInstance } from '@/utils/axios';
-import { AxiosError } from 'axios';
-import Error from '@/component/Modal/Error';
-import BottomButton from '@/component/BottomButton';
-import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
-import { themeObj } from '@/recoil/theme';
-import { useEffect } from 'react';
-import { captionFont, headlineFont, titleFont } from '@/recoil/font';
+import { AxiosError } from "axios";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+
+import BottomButton from "@/component/BottomButton";
+import BackButtonHeader from "@/component/HeaderLayout/BackButtonHeader";
+import Error from "@/component/Modal/Error";
+import useInput from "@/hooks/useInput";
+import useModal from "@/hooks/useModal";
+import { captionFont, headlineFont, titleFont } from "@/recoil/font";
+import { themeState } from "@/recoil/theme";
+import { themeObj } from "@/recoil/theme";
+import { axiosInstance } from "@/utils/axios";
+import { confirm } from "@/utils/confirm";
+import { useRouter } from "next/navigation";
 
 export default function CreateGroup() {
   const [theme, setTheme] = useRecoilState(themeState);
-  const [title, , handleTitle] = useInput('');
+  const [title, , handleTitle] = useInput("");
   const [openModal, closeModal] = useModal();
   const router = useRouter();
   const maxLength = 25;
   useEffect(() => {
-    setTheme(themeObj['strcat']);
+    setTheme(themeObj["strcat"]);
   }, [setTheme]);
 
   const handleClick = async () => {
     const isConfirmed = await confirm(
-      '여기서 완료하면 더이상 내용을 수정할 수 없습니다. 완료하시겠습니까?',
+      "여기서 완료하면 더이상 내용을 수정할 수 없습니다. 완료하시겠습니까?",
       openModal,
       closeModal,
     );
@@ -54,12 +55,12 @@ export default function CreateGroup() {
   const handleResizeTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     handleTitle(e);
     const textarea: HTMLTextAreaElement = e.target;
-    textarea.style.height = 'auto';
+    textarea.style.height = "auto";
     textarea.style.height = `${textarea.scrollHeight}px`;
   };
 
   const handleKeyDownTitle = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
     }
   };
@@ -89,7 +90,7 @@ export default function CreateGroup() {
               className={`w-full text-right ${captionFont.category2}
               ${
                 title.length > maxLength
-                  ? 'text-strcat-error'
+                  ? "text-strcat-error"
                   : `${theme.defaultText} text-opacity-50`
               }
               `}
@@ -112,7 +113,7 @@ export default function CreateGroup() {
             name="완료"
             width="w-full"
             onClickHandler={handleClick}
-            disabled={title === '' || title.length > maxLength}
+            disabled={title === "" || title.length > maxLength}
             color={theme.rightCTA}
           />
         </div>
