@@ -10,11 +10,12 @@ import ExportSuccess from '@/component/Modal/ExportSuccess';
 import ExportBoard from '@/component/export/ExportBoard';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
+import Error from '@/component/Modal/Error';
 import { board } from '@/types/boards';
 import { useRecoilState } from 'recoil';
 import { themeObj, themeState } from '@/recoil/theme';
-import Back from '@/component/Icon/Back';
 import { useRouter } from 'next/navigation';
+import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 
 export default function Export({ params }: { params: { id: string } }) {
   const [openModal, closeModal] = useModal();
@@ -56,14 +57,13 @@ export default function Export({ params }: { params: { id: string } }) {
           saveAs(blob, `strcat_${title}.png`);
         }
       });
+    } catch (error) {
       openModal(
-        <ExportSuccess
-          content="스트링캣이 저장되었습니다!"
+        <Error
+          content="페이지를 이미지화하는 데\n실패했습니다.\n잠시 후 다시 시도해주세요"
           handleModalClose={closeModal}
         />,
       );
-    } catch (error) {
-      console.error('Error converting div to image:', error);
     }
   };
 
@@ -71,55 +71,15 @@ export default function Export({ params }: { params: { id: string } }) {
     <div
       className={`${theme.background} ${theme.defaultText} h-full w-full max-w-md`}
     >
-      <div className="fixed flex h-full w-full max-w-md flex-col">
-        <div className="basis-3/4"></div>
-        <div className="basis-1/4">
-          <div className="mx-[24px] mb-5 flex flex-row items-center justify-around">
-            {exportThemeButton.map((item) => (
-              <ExportTheme
-                key={item.alt}
-                name={item.name}
-                src={item.src}
-                alt={item.alt}
-                onClick={() => setExportTheme(item.select)}
-              />
-            ))}
-          </div>
-          <div className="w-full">
-            <BottomButton
-              height="h-[42px]"
-              color={theme.rightCTA}
-              name="저장하기"
-              width="w-[312px]"
-              onClickHandler={handleSave}
-              disabled={false}
-            />
-          </div>
-        </div>
-      </div>
       <div className={`${theme.background} flex h-full w-full flex-col`}>
-        <div className={`basis-1/6`}>
-          <div className={` ${theme.background} flex w-full flex-row`}>
-            <div
-              className=" basis-1/6 items-center justify-center pl-[24px] pt-[16px]"
-              onClick={() => router.back()}
-            >
-              <Back color={theme.backIcon} />
-            </div>
-            <div className=" basis-4/6">
-              <div
-                className={`text-center text-[18px] ${theme.defaultText} mt-[16px]`}
-              >
-                스트링캣 내보내기
-              </div>
-            </div>
-            <div className=" basis-1/6"></div>
-          </div>
-        </div>
+        <BackButtonHeader
+          title={'스트링캣 내보내기'}
+          backClickHandler={() => router.back()}
+        />
         <div className="basis-5/6">
           <div
             ref={divRef}
-            className={`${theme.background} mt-[55px]  h-full break-all text-[22px]`}
+            className={`${theme.background} mt-[55px] h-auto break-all text-[22px]`}
           >
             <ExportBoard
               key={title}
@@ -130,6 +90,27 @@ export default function Export({ params }: { params: { id: string } }) {
             />
           </div>
         </div>
+      </div>
+      <div className="fixed bottom-[24px] flex w-full max-w-md flex-col items-center justify-center px-[24px]">
+        <div className="flex w-full flex-row items-center justify-between px-[7px] pb-[30px]">
+          {exportThemeButton.map((item) => (
+            <ExportTheme
+              key={item.alt}
+              name={item.name}
+              src={item.src}
+              alt={item.alt}
+              onClick={() => setExportTheme(item.select)}
+            />
+          ))}
+        </div>
+        <BottomButton
+          height="h-[42px]"
+          color={theme.rightCTA}
+          name="저장하기"
+          width="w-[312px]"
+          onClickHandler={handleSave}
+          disabled={false}
+        />
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ import { axiosInstance } from '@/utils/axios';
 import { AxiosError } from 'axios';
 import Error from '@/component/Modal/Error';
 import BottomButton from '@/component/BottomButton';
-import Back from '@/component/Icon/Back';
+import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 import { themeObj } from '@/recoil/theme';
 import { useEffect } from 'react';
 
@@ -67,17 +67,10 @@ export default function CreateGroup() {
     <div className={`${theme.background} h-full w-full`}>
       <div className="flex h-full w-full flex-col">
         <div className="flex basis-14 items-center">
-          <div
-            className="flex h-full w-full basis-1/6 flex-row items-center justify-center pl-[24px]"
-            onClick={() => router.push('/')}
-          >
-            <Back color={theme.backIcon} />
-          </div>
-          <div
-            className={`h-full text-center text-[18px] ${theme.defaultText} flex basis-4/6 items-center justify-center`}
-          >
-            그룹 스트링캣 만들기
-          </div>
+          <BackButtonHeader
+            title="그룹 스트링캣 만들기"
+            backClickHandler={() => router.back()}
+          />
         </div>
         <div className="basis-1/6">
           <div className="mt-10 flex w-full basis-3/12 flex-col items-center justify-center px-[24px]">

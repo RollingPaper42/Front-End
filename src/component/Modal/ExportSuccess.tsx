@@ -24,7 +24,7 @@ export default function ExportSuccess({ content, handleModalClose }: Props) {
           <BottomButton
             height="h-[42px]"
             color="bg-[#6CD8ED]"
-            name="예"
+            name="확인"
             width="w-full"
             onClickHandler={handleModalClose}
             disabled={false}
