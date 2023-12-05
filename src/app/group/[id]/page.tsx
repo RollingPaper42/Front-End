@@ -135,7 +135,6 @@ export default function Group({ params }: { params: { id: string } }) {
                     key={board.id}
                     board={board}
                     isPersonal={false}
-                    isOwner={true}
                   />
                 );
               })}
@@ -213,7 +212,7 @@ export default function Group({ params }: { params: { id: string } }) {
                 ))}
             </div>
             {!isAdd && <ContentPhoto />}
-            {!boards.length && title !== '' && isOwner && (
+            {!boards.length && title !== '' && (
               <div className="absolute top-[200px]">
                 <ShareButton params={`/group/${params.id}`} />
               </div>

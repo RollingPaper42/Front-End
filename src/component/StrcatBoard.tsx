@@ -22,13 +22,13 @@ interface Props {
   setIsAdd: Dispatch<SetStateAction<boolean>>;
   isPersonal: boolean;
   paramsId?: string;
-  isOwner: boolean;
 }
 
 const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
-  { board, isAdd, setIsAdd, isPersonal, paramsId, isOwner },
+  { board, isAdd, setIsAdd, isPersonal, paramsId },
   ref,
 ) {
+  const [isLogin] = useLogin();
   const [observe, setObserve] = useRecoilState(observeState);
   const [content, setContent] = useState<content[]>([]);
 
@@ -70,7 +70,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
         />
       )}
       {!isAdd && <div className=" h-12"></div>}
-      {!isAdd && isPersonal && isOwner && !content.length && (
+      {!isAdd && isLogin && isPersonal && !content.length && (
         <ShareButton params={`/personal/${paramsId}`} />
       )}
     </div>
