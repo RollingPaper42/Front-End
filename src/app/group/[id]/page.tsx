@@ -195,7 +195,7 @@ export default function Group({ params }: { params: { id: string } }) {
                       color={`${theme.leftCTA}`}
                       name="스트링캣 만들기"
                       width={`${boards.length ? 'basis-1/2' : 'w-full'}`}
-                      onClickHandler={() => handleClickCreate()}
+                      onClickHandler={handleClickCreate}
                       disabled={false}
                     />
                     {boards.length && (
