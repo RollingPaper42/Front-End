@@ -9,7 +9,7 @@ export default function NotFound() {
         404
       </div>
       <div
-        className={`mt-[32px] flex flex-col justify-center ${captionFont.category1}  leading-[160%] tracking-[-2%]`}
+        className={`mt-[32px] flex flex-col justify-center text-[16px] leading-[160%] tracking-[-2%]`}
       >
         <div className="flex items-center text-strcat-default-yellow">
           {`//원하시는 페이지를 찾을 수 없습니다.`}
