@@ -69,9 +69,11 @@ export default function Export({ params }: { params: { id: string } }) {
 
   return (
     <div
-      className={`${theme.background} ${theme.defaultText} h-full w-full max-w-md`}
+      className={`${theme.bgTheme.background} ${theme.textTheme.default} h-full w-full max-w-md`}
     >
-      <div className={`${theme.background} flex h-full w-full flex-col`}>
+      <div
+        className={`${theme.bgTheme.background} flex h-full w-full flex-col`}
+      >
         <BackButtonHeader
           title={'스트링캣 내보내기'}
           backClickHandler={() => router.back()}
@@ -79,7 +81,7 @@ export default function Export({ params }: { params: { id: string } }) {
         <div className="basis-5/6">
           <div
             ref={divRef}
-            className={`${theme.background} mt-[55px] h-auto break-all text-[22px]`}
+            className={`${theme.bgTheme.background} mt-[55px] h-auto break-all text-[22px]`}
           >
             <ExportBoard
               key={title}
@@ -105,7 +107,7 @@ export default function Export({ params }: { params: { id: string } }) {
         </div>
         <BottomButton
           height="h-[42px]"
-          color={theme.rightCTA}
+          color={theme.bgTheme.rightCTA}
           name="저장하기"
           width="w-[312px]"
           onClickHandler={handleSave}

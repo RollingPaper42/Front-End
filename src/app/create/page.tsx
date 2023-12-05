@@ -81,7 +81,7 @@ export default function Create() {
   };
 
   return (
-    <div className={`${Theme.background} h-full w-full`}>
+    <div className={`${Theme.bgTheme.background} h-full w-full`}>
       <div className="flex h-full w-full flex-col">
         <div className="basis-1/12">
           <BackButtonHeader
@@ -95,7 +95,7 @@ export default function Create() {
               id="titleMessage"
               rows={1}
               value={title}
-              className={` w-full resize-none ${Theme.background} text-[22px] ${Theme.defaultText} outline-none ${Theme.placeholder}`}
+              className={` w-full resize-none ${Theme.bgTheme.background} text-[22px] ${Theme.textTheme.default} outline-none ${Theme.textTheme.placeholder}`}
               placeholder="제목을 입력해주세요."
               maxLength={maxLength}
               onChange={(e) => handleChangeTitle(e)}
@@ -105,7 +105,7 @@ export default function Create() {
               className={`w-full text-right text-[14px]  ${
                 title.length > maxLength
                   ? 'text-red-600'
-                  : `${Theme.defaultText}`
+                  : `${Theme.textTheme.default}`
               }`}
             >
               {title.length}/30
@@ -113,10 +113,10 @@ export default function Create() {
           </div>
         </div>
         <div className="mx-[24px] mt-[24px] basis-5/12">
-          <div className={`inline text-[18px] ${Theme.highlightText}`}>
+          <div className={`inline text-[18px] ${Theme.textTheme.highlight}`}>
             스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
           </div>
-          <div className={`inline text-[18px] ${Theme.defaultText}`}>
+          <div className={`inline text-[18px] ${Theme.textTheme.default}`}>
             스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
           </div>
         </div>
@@ -131,7 +131,7 @@ export default function Create() {
             width="w-full"
             onClickHandler={() => handleConfirm()}
             disabled={buttonState}
-            color={Theme.rightCTA}
+            color={Theme.bgTheme.rightCTA}
           />
         </div>
       </div>

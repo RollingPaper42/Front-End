@@ -16,10 +16,10 @@ export default function BackButtonHeader({ title, backClickHandler }: Props) {
           className="flex basis-1/6 items-center pl-[24px]"
           onClick={backClickHandler}
         >
-          <Back color={theme.backIcon} />
+          <Back color={theme.iconTheme.back} />
         </div>
         <div
-          className={`${theme.titleText} flex basis-4/6 items-center justify-center text-center text-[18px]`}
+          className={`${theme.textTheme.title} flex basis-4/6 items-center justify-center text-center text-[18px]`}
         >
           {title}
         </div>

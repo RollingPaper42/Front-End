@@ -69,14 +69,19 @@ export default function Export({ params }: { params: { id: string } }) {
   }, []);
 
   return (
-    <div className={`${theme.background} ${theme.defaultText} h-full `}>
-      <div className={` ${theme.background} flex w-full flex-row`}>
+    <div
+      className={`${theme.bgTheme.background} ${theme.textTheme.default} h-full `}
+    >
+      <div className={` ${theme.bgTheme.background} flex w-full flex-row`}>
         <BackButtonHeader
           title="그룹 스트링캣 내보내기"
           backClickHandler={() => router.back()}
         />
       </div>
-      <div ref={divRef} className={`${theme.background} mt-[78px] h-full`}>
+      <div
+        ref={divRef}
+        className={`${theme.bgTheme.background} mt-[78px] h-full`}
+      >
         <div className={`mx-[24px] pb-[24px]  text-[24px]`}>{title}</div>
         <div className="break-all">
           {boardsTitle?.map((board: board) => {
@@ -117,7 +122,7 @@ export default function Export({ params }: { params: { id: string } }) {
         </div>
         <BottomButton
           height="h-[42px]"
-          color={theme.rightCTA}
+          color={theme.bgTheme.rightCTA}
           name="저장하기"
           width="w-full"
           onClickHandler={handleSave}

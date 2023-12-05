@@ -23,7 +23,7 @@ export default function ThemeChange() {
           onClick={() => handleThemeChange(strcat)}
         >
           <ThemeStrcat />
-          <div className={`${Theme.defaultText} `}>strcat</div>
+          <div className={`${Theme.textTheme.default} `}>strcat</div>
         </div>
         <div className="basis-1/6"></div>
         <div
@@ -31,7 +31,7 @@ export default function ThemeChange() {
           onClick={() => handleThemeChange(calm)}
         >
           <ThemeCalm />
-          <div className={`basis-1/6 text-center ${Theme.defaultText} `}>
+          <div className={`basis-1/6 text-center ${Theme.textTheme.default} `}>
             Calm
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function ThemeChange() {
           onClick={() => handleThemeChange(green)}
         >
           <ThemeGreen />
-          <div className={`basis-1/6 text-center ${Theme.defaultText} `}>
+          <div className={`basis-1/6 text-center ${Theme.textTheme.default} `}>
             green
           </div>
         </div>
@@ -51,7 +51,7 @@ export default function ThemeChange() {
           onClick={() => handleThemeChange(cyan)}
         >
           <ThemeCyan />
-          <div className={`text-center ${Theme.defaultText} `}>Cyan</div>
+          <div className={`text-center ${Theme.textTheme.default} `}>Cyan</div>
         </div>
       </div>
     </div>

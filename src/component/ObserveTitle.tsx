@@ -41,7 +41,9 @@ const ObserveTitle = ({ board, isAdd }: Props) => {
 
   return (
     <div className="mb-[24px] mt-[40px] h-[100px] " ref={ref}>
-      <h1 className={` text-[22px] ${theme.titleText}`}>{`${board.title}`}</h1>
+      <h1
+        className={` text-[22px] ${theme.textTheme.title}`}
+      >{`${board.title}`}</h1>
     </div>
   );
 };
