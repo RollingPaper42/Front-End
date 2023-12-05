@@ -52,11 +52,12 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
           content.map((content: content) => {
             return (
               <ObserveContent
-                boardTheme={board.theme}
                 isAdd={isAdd}
                 key={content.id}
                 content={content}
                 boardId={board.id}
+                setObserve={setObserve}
+                observe={observe}
               />
             );
           })}

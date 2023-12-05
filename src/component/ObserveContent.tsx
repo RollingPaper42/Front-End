@@ -1,25 +1,33 @@
 import { content } from '@/types/content';
 import { useEffect, useRef } from 'react';
-import { useRecoilState } from 'recoil';
-import { observeState } from '@/recoil/observe';
+import { SetterOrUpdater, useRecoilState } from 'recoil';
 import React from 'react';
-import { themeObj, themeState } from '@/recoil/theme';
-interface props {
+import { themeState } from '@/recoil/theme';
+import { observe } from '@/types/observe';
+
+interface Props {
   content: content;
   boardId: string;
   isAdd: boolean;
-  boardTheme: 'strcat' | 'calm' | 'green' | 'cyan';
+  setObserve: SetterOrUpdater<observe>;
+  observe: observe;
 }
 
-const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
+const ObserveContent = ({
+  content,
+  boardId,
+  isAdd,
+  setObserve,
+  observe,
+}: Props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
-  const [observe, setObserve] = useRecoilState(observeState);
-  const [theme, setTheme] = useRecoilState(themeState);
+  const [theme] = useRecoilState(themeState);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(({ isIntersecting, boundingClientRect }) => {
+        entries.forEach(({ isIntersecting }) => {
           if (!isAdd && isIntersecting) {
+            document.body.style.overflow = 'hidden';
             setObserve(() => ({
               boardId: boardId,
               contentId: content.id,
