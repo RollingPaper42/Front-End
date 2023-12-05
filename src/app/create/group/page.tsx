@@ -100,7 +100,7 @@ export default function CreateGroup() {
         </div>
         <div className="mx-[24px] basis-1/3 space-y-[20px]">
           <div
-            className={`${titleFont.category1} ${theme.textTheme.highlight}`}
+            className={`inline ${titleFont.category1} ${theme.textTheme.highlight}`}
           >
             개별 스트링캣 리스트 예시 1
           </div>

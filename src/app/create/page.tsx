@@ -114,10 +114,12 @@ export default function Create() {
           </div>
         </div>
         <div className="mx-[24px] mt-[24px] basis-5/12">
-          <div className={`${bodyFont.category1} ${Theme.textTheme.highlight}`}>
-            스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
-          </div>
-          <div className={`${bodyFont.category1} ${Theme.textTheme.default}`}>
+          <div
+            className={`inline ${bodyFont.category1} ${Theme.textTheme.highlight}`}
+          ></div>
+          <div
+            className={`inline ${bodyFont.category1} ${Theme.textTheme.default}`}
+          >
             스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
           </div>
         </div>
