@@ -16,6 +16,7 @@ import { useRecoilState } from 'recoil';
 import { themeObj, themeState } from '@/recoil/theme';
 import { useRouter } from 'next/navigation';
 import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
+import { titleFont } from '@/recoil/font';
 
 export default function Export({ params }: { params: { id: string } }) {
   const [openModal, closeModal] = useModal();
@@ -81,7 +82,7 @@ export default function Export({ params }: { params: { id: string } }) {
         <div className="basis-5/6">
           <div
             ref={divRef}
-            className={`${theme.bgTheme.background} mt-[55px] h-auto break-all text-[22px]`}
+            className={`${theme.bgTheme.background} mt-[55px] h-auto break-all ${titleFont.category1}`}
           >
             <ExportBoard
               key={title}

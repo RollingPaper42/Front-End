@@ -17,6 +17,7 @@ import { axiosInstance } from '@/utils/axios';
 import { useLogin } from '@/hooks/useLogin';
 import Loading from '@/component/Loading';
 import HeaderLayout from '@/component/HeaderLayout';
+import { titleFont } from '@/recoil/font';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -142,7 +143,9 @@ export default function Personal({ params }: { params: { id: string } }) {
                       <div
                         className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.bgTheme.leftCTA}`}
                       />
-                      <p className="absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center text-[20px] text-strcat-default-black">
+                      <p
+                        className={`absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center ${titleFont.category2}  text-strcat-default-black`}
+                      >
                         스트링캣 만들기
                       </p>
                     </button>

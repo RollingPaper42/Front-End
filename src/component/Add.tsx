@@ -13,6 +13,7 @@ import Error from '@/component/Modal/Error';
 import { confirm } from '@/utils/confirm';
 import BottomButton from '@/component/BottomButton';
 import PhotoUpload from './PhotoUpload';
+import { bodyFont, captionFont } from '@/recoil/font';
 
 interface AddProps {
   id: string;
@@ -115,7 +116,7 @@ export default function Add({
         suppressContentEditableWarning
         onInput={(e) => setText(e.currentTarget.innerText)}
         onKeyDown={(e) => handleInputText(e)}
-        className={`${theme.textTheme.highlight} bottom-[200px] ml-[8px] inline w-full text-justify text-[18px] outline-none`}
+        className={`${theme.textTheme.highlight} bottom-[200px] ml-[8px] inline w-full text-justify  ${bodyFont.category1} outline-none`}
       />
       {text === '' && (
         <div
@@ -141,7 +142,7 @@ export default function Add({
         <div className="flex w-full items-center justify-between px-[16px]">
           <div className="flex flex-row">
             <div
-              className={`${theme.textTheme.default} mr-[16px] w-fit min-w-fit text-[16px]`}
+              className={`${theme.textTheme.default} mr-[16px] w-fit min-w-fit ${captionFont.category1}`}
             >
               From :
             </div>
@@ -149,14 +150,16 @@ export default function Add({
               type="text"
               id="writer"
               value={writer}
-              className={`${theme.textTheme.default} w-fit bg-transparent text-[16px] outline-none ${theme.textTheme.placeholder} placeholder:text-opacity-50`}
+              className={`${theme.textTheme.default} w-fit bg-transparent ${captionFont.category1} outline-none ${theme.textTheme.placeholder} placeholder:text-opacity-50`}
               placeholder="익명의 스트링캣"
               maxLength={11}
               onChange={handleWriter}
             />
           </div>
           <div
-            className={`flex w-fit min-w-fit items-center justify-center text-right text-[16px]
+            className={`flex w-fit min-w-fit items-center justify-center text-right ${
+              captionFont.category1
+            }
             ${
               writer.length > 10
                 ? 'text-strcat-error'

@@ -13,6 +13,7 @@ import BottomButton from '@/component/BottomButton';
 import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 import { themeObj } from '@/recoil/theme';
 import { useEffect } from 'react';
+import { captionFont, headlineFont, titleFont } from '@/recoil/font';
 
 export default function CreateGroup() {
   const [theme, setTheme] = useRecoilState(themeState);
@@ -78,14 +79,14 @@ export default function CreateGroup() {
               id="titleMessage"
               rows={1}
               value={title}
-              className={`w-full resize-none text-[24px] ${theme.bgTheme.background} ${theme.textTheme.default} outline-none ${theme.textTheme.default}`}
+              className={`w-full resize-none ${headlineFont.category2} ${theme.bgTheme.background} ${theme.textTheme.default} outline-none ${theme.textTheme.default}`}
               placeholder="제목을 입력해주세요."
               maxLength={maxLength + 1}
               onChange={handleResizeTitle}
               onKeyDown={handleKeyDownTitle}
             />
             <div
-              className={`w-full text-right text-[14px] 
+              className={`w-full text-right ${captionFont.category2}
               ${
                 title.length > maxLength
                   ? 'text-strcat-error'
@@ -98,10 +99,12 @@ export default function CreateGroup() {
           </div>
         </div>
         <div className="mx-[24px] basis-1/3 space-y-[20px]">
-          <div className={`text-[22px] ${theme.textTheme.highlight}`}>
+          <div
+            className={`${titleFont.category1} ${theme.textTheme.highlight}`}
+          >
             개별 스트링캣 리스트 예시 1
           </div>
-          <div className={`text-[22px] ${theme.textTheme.default}`}>
+          <div className={`${titleFont.category1} ${theme.textTheme.default}`}>
             개별 스트링캣 리스트 예시 2
           </div>
         </div>

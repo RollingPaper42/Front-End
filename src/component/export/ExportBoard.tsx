@@ -4,6 +4,7 @@ import Writer from './Writer';
 import LineBreak from './LineBreak';
 import { exportThemeEnum } from '@/types/export';
 import { themeObj } from '@/recoil/theme';
+import { bodyFont } from '@/recoil/font';
 
 interface Props {
   title: string;
@@ -24,7 +25,7 @@ export default function ExportBoard({
     <div className={`${theme.bgTheme.background} ${theme.textTheme.title}`}>
       <div className={`mx-[24px]`}>
         <div className={`text-[ 22px] pb-[32px] pt-[40px]`}>{title}</div>
-        <div className={` pb-[40px]  text-justify text-[18px]`}>
+        <div className={` pb-[40px]  text-justify ${bodyFont.category1}`}>
           {content?.map((item: content) => (
             <span key={item.id}>
               {exportTheme === exportThemeEnum.default && (

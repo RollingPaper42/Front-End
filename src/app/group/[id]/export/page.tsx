@@ -17,6 +17,7 @@ import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 import { useRouter } from 'next/navigation';
 import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 import Error from '@/component/Modal/Error';
+import { headlineFont } from '@/recoil/font';
 
 export default function Export({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -82,7 +83,9 @@ export default function Export({ params }: { params: { id: string } }) {
         ref={divRef}
         className={`${theme.bgTheme.background} mt-[78px] h-full`}
       >
-        <div className={`mx-[24px] pb-[24px]  text-[24px]`}>{title}</div>
+        <div className={`mx-[24px] pb-[24px]   ${headlineFont.category2}`}>
+          {title}
+        </div>
         <div className="break-all">
           {boardsTitle?.map((board: board) => {
             return (

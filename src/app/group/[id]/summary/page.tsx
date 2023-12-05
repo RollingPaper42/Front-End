@@ -11,6 +11,7 @@ import BottomButton from '@/component/BottomButton';
 import SummaryBoard from '@/component/SummaryBoard';
 import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 import useModal from '@/hooks/useModal';
+import { headlineFont } from '@/recoil/font';
 
 export default function Summary({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -47,7 +48,9 @@ export default function Summary({ params }: { params: { id: string } }) {
       <div className="fixed flex h-full w-full max-w-md flex-col">
         <div className="reltaive flex h-full w-full flex-col px-[24px]">
           <div className="mt-24 flex w-full">
-            <div className={`text-[24px] ${theme.textTheme.title}`}>
+            <div
+              className={`${headlineFont.category2} ${theme.textTheme.title}`}
+            >
               {title}
             </div>
           </div>

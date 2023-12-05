@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import { observeState } from '@/recoil/observe';
 import React from 'react';
 import { themeObj, themeState } from '@/recoil/theme';
+import { captionFont, bodyFont } from '@/recoil/font';
 interface props {
   content: content;
   boardId: string;
@@ -51,8 +52,8 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
         !isAdd &&
         observe.boardId === boardId &&
         observe.contentId === content.id
-          ? `${theme.textTheme.highlight}  inline  w-full  text-[18px] leading-[160%] opacity-100 transition-all`
-          : `${theme.textTheme.default}  inline  w-full text-[18px] leading-[160%] opacity-30 transition-all`
+          ? `${theme.textTheme.highlight}  inline  w-full  ${bodyFont.category1} leading-[160%] opacity-100 transition-all`
+          : `${theme.textTheme.default}  inline  w-full ${bodyFont.category1} leading-[160%] opacity-30 transition-all`
       }
     `}
       >
@@ -62,10 +63,10 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
         observe.boardId === boardId &&
         observe.contentId === content.id && (
           <div
-            className={`${theme.bgTheme.writerContainer} absolute right-[22px] z-10 mt-[1px] animate-slide pl-[2px] text-[16px] text-white opacity-100`}
+            className={`${theme.bgTheme.writerContainer} absolute right-[22px] z-10 mt-[1px] animate-slide pl-[2px] ${captionFont.category1} text-white opacity-100`}
           >
             <div
-              className={`${theme.bgTheme.writerContainer} relative top-[-3px] z-20 w-full whitespace-pre-wrap text-[16px]`}
+              className={`${theme.bgTheme.writerContainer} relative top-[-3px] z-20 w-full whitespace-pre-wrap ${captionFont.category1}`}
             >
               <div
                 className={`relative top-[3px] ${theme.textTheme.writer}`}
