@@ -120,7 +120,7 @@ export default function Add({
       />
       {text === '' && (
         <div
-          className={`inline text-[18px] ${theme.textTheme.highlight} opacity-50 `}
+          className={`inline ${bodyFont.category1} ${theme.textTheme.highlight} opacity-50 `}
           onClick={focusText}
         >
           20자 이상 내용을 입력해주세요
