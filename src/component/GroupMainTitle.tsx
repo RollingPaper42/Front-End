@@ -36,7 +36,7 @@ export default function GruopMainTitle({ isAdd, title }: Props) {
   return (
     <h1
       ref={ref}
-      className={`${theme.titleText} mx-[24px] ${headlineFont.category2}`}
+      className={`${theme.textTheme.title} mx-[24px] ${headlineFont.category2}`}
     >{`${title}`}</h1>
   );
 }

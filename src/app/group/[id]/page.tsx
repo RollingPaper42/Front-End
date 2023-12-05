@@ -92,11 +92,11 @@ export default function Group({ params }: { params: { id: string } }) {
   }, [theme]);
 
   return (
-    <div className={`${theme.background}  min-h-full`}>
+    <div className={`${theme.bgTheme.background}  min-h-full`}>
       <HeaderLayout />
       <CatAnimation />
       <div
-        className={`relative w-full py-[24px] pt-[56px] ${theme.background}
+        className={`relative w-full py-[24px] pt-[56px] ${theme.bgTheme.background}
         `}
       >
         {title === '' ? (
@@ -146,7 +146,7 @@ export default function Group({ params }: { params: { id: string } }) {
                   className="absolute bottom-[4.5rem] right-0 flex h-20 w-20 "
                   onClick={scrollToTop}
                 >
-                  <ShortCut color={theme.defaultIcon} />
+                  <ShortCut color={theme.iconTheme.default} />
                 </button>
               )}
               {!isAdd &&
@@ -170,7 +170,7 @@ export default function Group({ params }: { params: { id: string } }) {
                     />
                     <BottomButton
                       height="h-[42px]"
-                      color={`${theme.leftCTA}`}
+                      color={`${theme.bgTheme.leftCTA}`}
                       name="만들기"
                       width={`${boards.length ? 'basis-1/4' : 'basis-1/3'}`}
                       onClickHandler={() =>
@@ -181,7 +181,7 @@ export default function Group({ params }: { params: { id: string } }) {
                     {boards.length && (
                       <BottomButton
                         height="h-[42px]"
-                        color={`${theme.rightCTA}`}
+                        color={`${theme.bgTheme.rightCTA}`}
                         name="글쓰기"
                         width="basis-1/4"
                         onClickHandler={handleClick}
@@ -193,7 +193,7 @@ export default function Group({ params }: { params: { id: string } }) {
                   <div className="flex w-full max-w-md" id="strcatCreate">
                     <BottomButton
                       height="h-[42px]"
-                      color={`${theme.leftCTA}`}
+                      color={`${theme.bgTheme.leftCTA}`}
                       name="스트링캣 만들기"
                       width={`${boards.length ? 'basis-1/2' : 'w-full'}`}
                       onClickHandler={handleClickCreate}
@@ -202,7 +202,7 @@ export default function Group({ params }: { params: { id: string } }) {
                     {boards.length && (
                       <BottomButton
                         height="h-[42px]"
-                        color={`${theme.rightCTA}`}
+                        color={`${theme.bgTheme.rightCTA}`}
                         name="이어서 글쓰기"
                         width="basis-1/2"
                         onClickHandler={handleClick}

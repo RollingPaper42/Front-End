@@ -39,7 +39,7 @@ export default function Summary({ params }: { params: { id: string } }) {
   }, []);
 
   return (
-    <div className={`${theme.background}`}>
+    <div className={`${theme.bgTheme.background}`}>
       <BackButtonHeader
         title="스트링캣 공유하기"
         backClickHandler={() => router.back()}
@@ -47,7 +47,7 @@ export default function Summary({ params }: { params: { id: string } }) {
       <div className="fixed flex h-full w-full max-w-md flex-col">
         <div className="reltaive flex h-full w-full flex-col px-[24px]">
           <div className="mt-24 flex w-full">
-            <div className={`${titleFont.category1} ${theme.titleText}`}>
+            <div className={`${titleFont.category1} ${theme.textTheme.title}`}>
               {title}
             </div>
           </div>
@@ -56,7 +56,7 @@ export default function Summary({ params }: { params: { id: string } }) {
               <SummaryBoard
                 contentCount={contentCount}
                 contentTextCount={contentTextCount}
-                summaryTextColor={theme.summaryText}
+                summaryTextColor={theme.textTheme.summary}
               />
             </div>
           </div>
@@ -80,7 +80,7 @@ export default function Summary({ params }: { params: { id: string } }) {
             handleShare(`/personal/${params.id}`, openModal, closeModal)
           }
           disabled={false}
-          color={`${theme.rightCTA}`}
+          color={`${theme.bgTheme.rightCTA}`}
         />
       </div>
     </div>

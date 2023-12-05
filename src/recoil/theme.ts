@@ -6,110 +6,60 @@ import {
   greenCat,
   strcatCat,
 } from './catTheme';
+import { bgThemeState, calmBg, cyanBg, greenBg, strcatBg } from './bgTheme';
+import {
+  textThemeState,
+  strcatText,
+  calmText,
+  greenText,
+  cyanText,
+} from './textTheme';
+import {
+  calmIcon,
+  cyanIcon,
+  greenIcon,
+  iconThemeState,
+  strcatIcon,
+} from './IconTheme';
 
 export interface themeState {
   name: string;
-  background: string;
-  defaultText: string;
-  highlightText: string;
-  writerContainer: string;
-  writerText: string;
-  rightCTA: string;
-  leftCTA: string;
+  bgTheme: bgThemeState;
   catTheme: catThemeState;
-  defaultIcon: string;
-  loginIcon: string;
-  backIcon: string;
-  activeDropItem: string;
-  explainRightCTA: string;
-  explainLeftCTA: string;
-  titleText: string;
-  placeholder: string;
-  summaryText: string;
+  textTheme: textThemeState;
+  iconTheme: iconThemeState;
 }
 
 export const strcat: themeState = {
   name: 'strcat',
-  background: 'bg-strcat-default-black',
-  defaultText: 'text-strcat-default-white',
-  highlightText: 'text-strcat-default-yellow',
-  writerContainer: 'bg-strcat-default-yellow',
-  writerText: 'text-strcat-default-black',
-  rightCTA: 'bg-strcat-default-cyan',
-  leftCTA: 'bg-strcat-default-green',
+  textTheme: strcatText,
+  bgTheme: strcatBg,
   catTheme: strcatCat,
-  defaultIcon: '#FBFF36', //strcat-default-yellow
-  loginIcon: '#6CD8ED', //strcat-default-cyan
-  backIcon: '#FFFFFF', //strcat-default-white
-  activeDropItem: 'bg-strcat-default-yellow',
-  explainLeftCTA: 'text-strcat-default-green',
-  explainRightCTA: 'text-strcat-default-cyan',
-  titleText: 'text-strcat-default-white',
-  placeholder: 'placeholder:text-strcat-default-white',
-  summaryText: 'text-strcat-default-white',
+  iconTheme: strcatIcon,
 };
 
 export const calm: themeState = {
   name: 'calm',
-  background: 'bg-strcat-calm-white',
-  defaultText: 'text-strcat-calm-black',
-  highlightText: 'text-strcat-calm-orange',
-  writerContainer: 'bg-strcat-calm-orange',
-  writerText: 'text-strcat-calm-black',
-  rightCTA: 'bg-strcat-calm-cyan',
-  leftCTA: 'bg-strcat-calm-green',
+  bgTheme: calmBg,
   catTheme: calmCat,
-  defaultIcon: '#FFA857', //strcat-calm-orange
-  loginIcon: '#557FE4', //strcat-calm-text-cyan
-  backIcon: '#463F3A', //strcat-calm-text-black
-  activeDropItem: 'bg-strcat-calm-orange',
-  explainLeftCTA: 'text-strcat-calm-text-green',
-  explainRightCTA: 'text-strcat-calm-text-cyan',
-  titleText: 'text-strcat-calm-black',
-  placeholder: 'placeholder:text-strcat-default-black',
-  summaryText: 'text-strcat-calm-black',
+  textTheme: calmText,
+  iconTheme: calmIcon,
 };
 
 export const green: themeState = {
   name: 'green',
-  background: 'bg-strcat-green-green',
-  defaultText: 'text-strcat-green-yellow',
-  highlightText: 'text-strcat-green-black',
-  writerContainer: 'bg-strcat-green-yellow',
-  writerText: 'text-strcat-green-black',
-  rightCTA: 'bg-strcat-green-cyan',
-  leftCTA: 'bg-strcat-green-yellow',
+  textTheme: greenText,
   catTheme: greenCat,
-  defaultIcon: '#212121', //strcat-green-black
-  loginIcon: 'FF43A8', // strcat-default-magenta
-  backIcon: '#212121', //strcat-green-black
-  activeDropItem: 'bg-strcat-green-yellow',
-  explainLeftCTA: 'strcat-cyan-black',
-  explainRightCTA: 'strcat-cyan-black',
-  titleText: 'text-strcat-green-black',
-  placeholder: 'placeholder:text-strcat-default-yellow',
-  summaryText: 'text-strcat-green-black',
+  bgTheme: greenBg,
+  iconTheme: greenIcon,
 };
 
 export const cyan: themeState = {
   name: 'cyan',
-  background: 'bg-strcat-cyan-cyan',
-  defaultText: 'text-strcat-cyan-white',
-  highlightText: 'text-strcat-cyan-yellow',
-  writerContainer: 'bg-strcat-cyan-yellow',
-  writerText: 'text-strcat-cyan-black',
-  rightCTA: 'bg-strcat-cyan-green',
-  leftCTA: 'bg-strcat-cyan-yellow',
+  textTheme: cyanText,
+  bgTheme: cyanBg,
   catTheme: cyanCat,
-  loginIcon: '#FBFF36', //strcat-cyan-yellow
-  defaultIcon: '#FFFFFF', //strcat-cyan-white
-  backIcon: '#FFFFFF', //strcat-cyan-white
-  activeDropItem: 'bg-strcat-cyan-yellow',
-  explainLeftCTA: 'strcat-cyan-black',
-  explainRightCTA: 'strcat-cyan-black',
-  titleText: 'text-strcat-cyan-white',
-  placeholder: 'placeholder:text-strcat-default-white',
-  summaryText: 'text-strcat-cyan-black',
+  iconTheme: cyanIcon,
 };
 
 export const themeObj = {

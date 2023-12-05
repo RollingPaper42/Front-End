@@ -10,7 +10,7 @@ import { titleFont } from '@/recoil/font';
 
 export default function Home() {
   const [isLogin] = useLogin();
-  const [Theme] = useRecoilState(themeState);
+  const [theme] = useRecoilState(themeState);
   const router = useRouter();
 
   const handlePersonalStrcat = () => {
@@ -30,13 +30,13 @@ export default function Home() {
   };
 
   return (
-    <div className={`${Theme.background}`}>
+    <div className={`${theme.bgTheme.background}`}>
       <HeaderLayout />
       <div className=" fixed flex h-full w-full max-w-md  flex-col">
         <div className="basis-1/12"></div>
         <div className="basis-6/12">
           <div
-            className={`mx-[24px] mt-[25px] ${titleFont.category2} ${Theme.defaultText}`}
+            className={`mx-[24px] mt-[25px] ${titleFont.category2} ${theme.textTheme.default}`}
           >
             <p>
               {`\/\/ 스트링캣은 문자열을 끝없이 늘려 스크롤을 만들 수 있는 신개념
@@ -52,11 +52,11 @@ export default function Home() {
             >
               <div className="inline">
                 <button
-                  className={`relative h-[33px] w-[150px] items-center ${Theme.leftCTA} ${titleFont.category1}`}
+                  className={`relative h-[33px] w-[150px] items-center ${theme.bgTheme.leftCTA} ${titleFont.category1}`}
                   onClick={handlePersonalStrcat}
                 >
                   <div
-                    className={`relative bottom-[4.5px] left-[2px] h-[33px] w-[150px] ${titleFont.category1} ${Theme.leftCTA}`}
+                    className={`relative bottom-[4.5px] left-[2px] h-[33px] w-[150px] ${titleFont.category1} ${theme.bgTheme.leftCTA}`}
                   >
                     <div className=" bottom-[-4.5px] left-[-2px]">
                       <div className="relative top-1 select-none">
@@ -66,7 +66,7 @@ export default function Home() {
                   </div>
                 </button>
               </div>
-              <div className={`inline ${Theme.explainLeftCTA}`}>
+              <div className={`inline ${theme.textTheme.explainLeftCTA}`}>
                 &nbsp;를 누르면 하나의 문자열을 할당받을 수 있어요. 링크를
                 공유해 문자열을 끝없이 이어보세요.
               </div>
@@ -76,11 +76,11 @@ export default function Home() {
             >
               <div className="inline">
                 <button
-                  className={`relative h-[33px] w-[200px] items-center ${Theme.rightCTA} ${titleFont.category1}`}
+                  className={`relative h-[33px] w-[200px] items-center ${theme.bgTheme.rightCTA} ${titleFont.category1}`}
                   onClick={handleGroupStrcat}
                 >
                   <div
-                    className={`relative bottom-[4.5px] left-[2px] h-[33px]  w-[200px] ${titleFont.category1} ${Theme.rightCTA}`}
+                    className={`relative bottom-[4.5px] left-[2px] h-[33px]  w-[200px] ${titleFont.category1} ${theme.bgTheme.rightCTA}`}
                   >
                     <div className="relative top-1 select-none">
                       그룹 스트링캣 만들기
@@ -90,7 +90,7 @@ export default function Home() {
                 </button>
               </div>
               <div
-                className={`inline ${titleFont.category1} ${Theme.explainRightCTA}`}
+                className={`inline ${titleFont.category1} ${theme.textTheme.explainRightCTA}`}
               >
                 &nbsp;를 누르면 여러 문자열을 한 그룹으로 관리할 수 있어요.
                 주렁주렁~
@@ -103,8 +103,8 @@ export default function Home() {
         <div className="basis-1/2"></div>
         <div className="basis-1/2 pr-[24px] pt-[228px]">
           <LongCat
-            bodyColor={Theme.catTheme.mainCat}
-            eyeColor={Theme.catTheme.mainCatEye}
+            bodyColor={theme.catTheme.mainCat}
+            eyeColor={theme.catTheme.mainCatEye}
           />
         </div>
       </div>

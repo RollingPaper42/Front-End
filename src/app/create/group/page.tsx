@@ -65,7 +65,7 @@ export default function CreateGroup() {
   };
 
   return (
-    <div className={`${theme.background} h-full w-full`}>
+    <div className={`${theme.bgTheme.background} h-full w-full`}>
       <div className="flex h-full w-full flex-col">
         <div className="flex basis-14 items-center">
           <BackButtonHeader
@@ -79,7 +79,7 @@ export default function CreateGroup() {
               id="titleMessage"
               rows={1}
               value={title}
-              className={`w-full resize-none ${headlineFont.category2} ${theme.background} ${theme.defaultText} outline-none ${theme.placeholder}`}
+              className={`w-full resize-none ${headlineFont.category2} ${theme.bgTheme.background} ${theme.textTheme.default} outline-none ${theme.textTheme.default}`}
               placeholder="제목을 입력해주세요."
               maxLength={maxLength + 1}
               onChange={handleResizeTitle}
@@ -90,7 +90,7 @@ export default function CreateGroup() {
               ${
                 title.length > maxLength
                   ? 'text-strcat-error'
-                  : `${theme.defaultText} text-opacity-50`
+                  : `${theme.textTheme.default} text-opacity-50`
               }
               `}
             >
@@ -99,10 +99,12 @@ export default function CreateGroup() {
           </div>
         </div>
         <div className="mx-[24px] basis-1/3 space-y-[20px]">
-          <div className={`${titleFont.category1} ${theme.highlightText}`}>
+          <div
+            className={`${titleFont.category1} ${theme.textTheme.highlight}`}
+          >
             개별 스트링캣 리스트 예시 1
           </div>
-          <div className={`${titleFont.category1} ${theme.defaultText}`}>
+          <div className={`${titleFont.category1} ${theme.textTheme.default}`}>
             개별 스트링캣 리스트 예시 2
           </div>
         </div>
@@ -113,7 +115,7 @@ export default function CreateGroup() {
             width="w-full"
             onClickHandler={handleClick}
             disabled={title === '' || title.length > maxLength}
-            color={theme.rightCTA}
+            color={theme.bgTheme.rightCTA}
           />
         </div>
       </div>

@@ -43,7 +43,7 @@ const ObserveTitle = ({ board, isAdd }: Props) => {
   return (
     <div className="mb-[24px] mt-[40px] h-[100px] " ref={ref}>
       <h1
-        className={` ${titleFont.category1} ${theme.titleText}`}
+        className={` ${titleFont.category1} ${theme.textTheme.title}`}
       >{`${board.title}`}</h1>
     </div>
   );

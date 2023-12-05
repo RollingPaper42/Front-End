@@ -116,11 +116,11 @@ export default function Add({
         suppressContentEditableWarning
         onInput={(e) => setText(e.currentTarget.innerText)}
         onKeyDown={(e) => handleInputText(e)}
-        className={`${theme.highlightText} bottom-[200px] ml-[8px] inline w-full text-justify ${bodyFont.category1} outline-none`}
+        className={`${theme.textTheme.highlight} bottom-[200px] ml-[8px] inline w-full text-justify  ${bodyFont.category1} outline-none`}
       />
       {text === '' && (
         <div
-          className={`inline ${bodyFont.category1} ${theme.highlightText} opacity-50 `}
+          className={`inline ${bodyFont.category1} ${theme.textTheme.highlight} opacity-50 `}
           onClick={focusText}
         >
           20자 이상 내용을 입력해주세요
@@ -131,7 +131,7 @@ export default function Add({
         ${
           text.length > 1000 || text.length < 20
             ? 'text-strcat-error'
-            : `${theme.highlightText} text-opacity-50`
+            : `${theme.textTheme.highlight} text-opacity-50`
         }`}
       >
         {text != '' && text.length < 20
@@ -142,7 +142,7 @@ export default function Add({
         <div className="flex w-full items-center justify-between px-[16px]">
           <div className="flex flex-row">
             <div
-              className={`${theme.defaultText} mr-[16px] w-fit min-w-fit ${captionFont.category1}`}
+              className={`${theme.textTheme.default} mr-[16px] w-fit min-w-fit ${captionFont.category1}`}
             >
               From :
             </div>
@@ -150,7 +150,7 @@ export default function Add({
               type="text"
               id="writer"
               value={writer}
-              className={`${theme.defaultText} w-fit bg-transparent ${captionFont.category1} outline-none ${theme.placeholder} placeholder:text-opacity-50`}
+              className={`${theme.textTheme.default} w-fit bg-transparent ${captionFont.category1} outline-none ${theme.textTheme.placeholder} placeholder:text-opacity-50`}
               placeholder="익명의 스트링캣"
               maxLength={11}
               onChange={handleWriter}
@@ -160,7 +160,11 @@ export default function Add({
             className={`flex w-fit min-w-fit items-center justify-center text-right ${
               captionFont.category1
             }
-            ${writer.length > 10 ? 'text-strcat-error' : `${theme.defaultText}`}
+            ${
+              writer.length > 10
+                ? 'text-strcat-error'
+                : `${theme.textTheme.default}`
+            }
             ${writer === '' && ' text-opacity-50'}
             `}
           >
@@ -181,7 +185,7 @@ export default function Add({
           <PhotoUpload setImage={setImage} />
           <BottomButton
             height="h-[42px]"
-            color={`${theme.rightCTA}`}
+            color={`${theme.bgTheme.rightCTA}`}
             name="완료"
             width="basis-3/5"
             onClickHandler={handleClick}
