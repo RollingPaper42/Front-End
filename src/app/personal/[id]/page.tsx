@@ -17,6 +17,8 @@ import { axiosInstance } from '@/utils/axios';
 import { useLogin } from '@/hooks/useLogin';
 import Loading from '@/component/Loading';
 import HeaderLayout from '@/component/HeaderLayout';
+import axios from 'axios';
+import { titleFont } from '@/recoil/font';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -31,8 +33,8 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [isLogin] = useLogin();
 
   useEffect(() => {
-    axiosInstance
-      .get(`/boards/${params.id}`)
+    axios
+      .get(`/api/personal`)
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
@@ -73,7 +75,7 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={` ${theme.background} min-h-full`}>
+      <div className={` ${theme.bgTheme.background} min-h-full`}>
         <HeaderLayout />
         <CatAnimation />
         <div
@@ -113,7 +115,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                     width="basis-1/5"
                     onClickHandler={() => router.push(`${params.id}/summary`)}
                     disabled={false}
-                    color={`${theme.leftCTA}`}
+                    color={`${theme.bgTheme.leftCTA}`}
                   />
                   <BottomButton
                     name="이어서 글쓰기"
@@ -121,7 +123,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                     width="basis-3/5"
                     onClickHandler={handleClick}
                     disabled={!observe.boardId}
-                    color={`${theme.rightCTA}`}
+                    color={`${theme.bgTheme.rightCTA}`}
                   />
                 </div>
               </div>
@@ -137,12 +139,14 @@ export default function Personal({ params }: { params: { id: string } }) {
                       onClick={handleClickCreate}
                     >
                       <div
-                        className={`absolute top-[3px] h-[39px] w-full ${theme.leftCTA}`}
+                        className={`absolute top-[3px] h-[39px] w-full ${theme.bgTheme.leftCTA}`}
                       />
                       <div
-                        className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.leftCTA}`}
+                        className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.bgTheme.leftCTA}`}
                       />
-                      <p className="absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center text-[20px] text-strcat-default-black">
+                      <p
+                        className={`absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center ${titleFont.category2}  text-strcat-default-black`}
+                      >
                         스트링캣 만들기
                       </p>
                     </button>
@@ -152,7 +156,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                       height="h-[42px]"
                       onClickHandler={handleClick}
                       disabled={!observe.boardId}
-                      color={`${theme.rightCTA}`}
+                      color={`${theme.bgTheme.rightCTA}`}
                     />
                   </div>
                 </div>

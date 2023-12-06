@@ -11,6 +11,7 @@ interface Props {
   isAdd: boolean;
   setObserve: SetterOrUpdater<observe>;
   observe: observe;
+  setObserveCount: SetterOrUpdater<number>;
 }
 
 const ObserveContent = ({
@@ -19,6 +20,7 @@ const ObserveContent = ({
   isAdd,
   setObserve,
   observe,
+  setObserveCount,
 }: Props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [theme] = useRecoilState(themeState);
@@ -27,13 +29,10 @@ const ObserveContent = ({
       (entries) => {
         entries.forEach(({ isIntersecting }) => {
           if (!isAdd && isIntersecting) {
-            document.body.style.overflow = 'hidden';
-            setObserve(() => ({
-              boardId: boardId,
-              contentId: content.id,
-              photoUrl: content.photoUrl,
-              writer: content.writer,
-            }));
+            setObserveCount((prev) => prev + 1);
+            setObserve((prev) => ({ ...prev, contentId: content.id }));
+          } else {
+            setObserveCount((prev) => prev - 1);
           }
         });
       },
@@ -59,8 +58,8 @@ const ObserveContent = ({
         !isAdd &&
         observe.boardId === boardId &&
         observe.contentId === content.id
-          ? `${theme.highlightText}  inline  w-full  text-[18px] leading-[160%] opacity-100 transition-all`
-          : `${theme.defaultText}   inline  w-full text-[18px] leading-[160%] opacity-30 transition-all`
+          ? `${theme.textTheme.highlight}  inline  w-full  ${bodyFont.category1} leading-[160%] opacity-100 transition-all`
+          : `${theme.textTheme.default}  inline  w-full ${bodyFont.category1} leading-[160%] opacity-30 transition-all`
       }
     `}
       >
@@ -70,13 +69,13 @@ const ObserveContent = ({
         observe.boardId === boardId &&
         observe.contentId === content.id && (
           <div
-            className={`${theme.writerContainer} absolute right-[22px] z-10 mt-[1px] animate-slide pl-[2px] text-[16px] text-white opacity-100`}
+            className={`${theme.bgTheme.writerContainer} absolute right-[22px] z-10 mt-[1px] animate-slide pl-[2px] ${captionFont.category1} text-white opacity-100`}
           >
             <div
-              className={`${theme.writerContainer} relative top-[-3px] z-20 w-full whitespace-pre-wrap text-[16px]`}
+              className={`${theme.bgTheme.writerContainer} relative top-[-3px] z-20 w-full whitespace-pre-wrap ${captionFont.category1}`}
             >
               <div
-                className={`relative top-[3px] ${theme.writerText}`}
+                className={`relative top-[3px] ${theme.textTheme.writer}`}
               >{`From: ${
                 observe.writer.length ? observe.writer : '익명의 스트링캣'
               } `}</div>

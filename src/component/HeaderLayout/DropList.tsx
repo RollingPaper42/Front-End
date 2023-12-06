@@ -43,9 +43,9 @@ export default function DropList({
         {list.length != 0 && (
           <div className="ml-[12px]">
             {dropDown ? (
-              <DropListUp color={theme.defaultIcon} />
+              <DropListUp color={theme.iconTheme.default} />
             ) : (
-              <DropListDown color={theme.defaultIcon} />
+              <DropListDown color={theme.iconTheme.default} />
             )}
           </div>
         )}

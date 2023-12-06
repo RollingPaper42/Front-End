@@ -57,7 +57,7 @@ export default function Drawer() {
         }}
       >
         <div
-          className={`absolute right-0 h-full w-[300px] ${theme.background} ${theme.defaultText}`}
+          className={`absolute right-0 h-full w-[300px] ${theme.bgTheme.background} ${theme.textTheme.default}`}
         >
           <div className="flex h-[123px] w-full justify-start p-[24px]">
             <DrawerProfileCat
@@ -66,7 +66,9 @@ export default function Drawer() {
               bodyColor={catTheme.profileCat}
             />
           </div>
-          <div className={`flex flex-col items-center ${theme.defaultText}`}>
+          <div
+            className={`flex flex-col items-center ${theme.textTheme.default}`}
+          >
             <DropList
               title="내 스트링캣"
               list={personalList}
@@ -89,12 +91,12 @@ export default function Drawer() {
             />
             <div className="h-[54px] w-full"></div>
             <div
-              className={`absolute bottom-0 w-full ${theme.background} px-[24px]`}
+              className={`absolute bottom-0 w-full ${theme.bgTheme.background} px-[24px]`}
             >
               <div className="h-[54px] w-full" onClick={handleLogout}>
                 <DrawerItem
                   title="로그아웃"
-                  icon={<Logout color={theme.defaultIcon} />}
+                  icon={<Logout color={theme.iconTheme.default} />}
                 />
               </div>
             </div>

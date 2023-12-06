@@ -6,32 +6,38 @@
     "theme": "cyan",
     "contents": [
       {
+        "id": 0,
+        "text": "작은 기쁨이 큰 행복을 만들어냅니다. 즐거dsaadasasdasdsaasdsadsadasdsadasdsadasdsadasdasdasdasdsads운 순간들!",
+        "writer": "User6",
+        "photoUrl": "/Google.png"
+      },
+      {
         "id": 1,
-        "text": "즐거운 순간을 함께하며 행복한 기억 만들기를 기대해요.n",
+        "text": "즐거운 순간",
         "writer": "",
         "photoUrl": "/Google.png"
       },
       {
         "id": 2,
-        "text": "봄바람 속에 햇살이 미소 짓도록. 따뜻한 날 되세요.",
+        "text": "봄바람 속",
         "writer": "",
         "photoUrl": "/kakao.png"
       },
       {
         "id": 3,
-        "text": "마음 가는 대로 꿈 펼쳐보세요. 가능성은 무한합니다.",
+        "text": "마음 가는",
         "writer": "User3",
         "photoUrl": "/strcatImage.png"
       },
       {
         "id": 4,
-        "text": "지친 하루 뒤에 찾아오는 평화로운 밤 되길 바랍니다.",
+        "text": "지친 하루",
         "writer": "User4",
         "photoUrl": "/mario.png"
       },
       {
         "id": 5,
-        "text": "소소한 행복에 감사하며 강한 마음으로 살아갑시다.",
+        "text": "소소한 행복",
         "writer": "User5",
         "photo": ""
       },

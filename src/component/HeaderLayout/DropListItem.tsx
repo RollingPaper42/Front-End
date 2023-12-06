@@ -30,7 +30,7 @@ export default function DropListItem({ list, category }: Props) {
     return (
       <div
         key={item.id}
-        className={`flex h-[54px] w-full items-center justify-between`}
+        className="flex h-[54px] w-full select-none items-center justify-between"
         onClick={() => {
           router.push(url);
           document.body.style.overflow = 'auto';
@@ -39,13 +39,13 @@ export default function DropListItem({ list, category }: Props) {
       >
         <div
           className={`my-[15px] flex h-full w-full items-center justify-between px-[24px] hover:${
-            theme.activeDropItem
+            theme.bgTheme.activeDropItem
           } hover:bg-opacity-10 ${
-            isActive && `${theme.activeDropItem} bg-opacity-10`
+            isActive && `${theme.bgTheme.activeDropItem} bg-opacity-10`
           }`}
         >
           {truncateTitle(item.title)}
-          {isActive && <Check color={theme.defaultIcon} />}
+          {isActive && <Check color={theme.iconTheme.default} />}
         </div>
       </div>
     );

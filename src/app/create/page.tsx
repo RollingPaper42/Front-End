@@ -13,6 +13,7 @@ import { axiosInstance } from '@/utils/axios';
 import { useSearchParams } from 'next/navigation';
 import Back from '@/component/Icon/Back';
 import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
+import { bodyFont, captionFont, titleFont } from '@/recoil/font';
 
 export default function Create() {
   const searchParams = useSearchParams();
@@ -81,7 +82,7 @@ export default function Create() {
   };
 
   return (
-    <div className={`${Theme.background} h-full w-full`}>
+    <div className={`${Theme.bgTheme.background} h-full w-full`}>
       <div className="flex h-full w-full flex-col">
         <div className="basis-1/12">
           <BackButtonHeader
@@ -95,17 +96,17 @@ export default function Create() {
               id="titleMessage"
               rows={1}
               value={title}
-              className={` w-full resize-none ${Theme.background} text-[22px] ${Theme.defaultText} outline-none ${Theme.placeholder}`}
+              className={` w-full resize-none ${Theme.bgTheme.background} ${titleFont.category1} ${Theme.textTheme.default} outline-none ${Theme.textTheme.placeholder}`}
               placeholder="제목을 입력해주세요."
               maxLength={maxLength}
               onChange={(e) => handleChangeTitle(e)}
               onKeyDown={(e) => handleKeyDownTitle(e, title)}
             />
             <div
-              className={`w-full text-right text-[14px]  ${
+              className={`w-full text-right ${captionFont.category2}  ${
                 title.length > maxLength
                   ? 'text-red-600'
-                  : `${Theme.defaultText}`
+                  : `${Theme.textTheme.default}`
               }`}
             >
               {title.length}/30
@@ -113,10 +114,12 @@ export default function Create() {
           </div>
         </div>
         <div className="mx-[24px] mt-[24px] basis-5/12">
-          <div className={`inline text-[18px] ${Theme.highlightText}`}>
-            스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
-          </div>
-          <div className={`inline text-[18px] ${Theme.defaultText}`}>
+          <div
+            className={`inline ${bodyFont.category1} ${Theme.textTheme.highlight}`}
+          ></div>
+          <div
+            className={`inline ${bodyFont.category1} ${Theme.textTheme.default}`}
+          >
             스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
           </div>
         </div>
@@ -131,7 +134,7 @@ export default function Create() {
             width="w-full"
             onClickHandler={() => handleConfirm()}
             disabled={buttonState}
-            color={Theme.rightCTA}
+            color={Theme.bgTheme.rightCTA}
           />
         </div>
       </div>

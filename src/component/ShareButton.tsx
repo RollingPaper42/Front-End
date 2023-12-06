@@ -3,6 +3,7 @@ import Share from './Icon/Share';
 import { useRecoilState } from 'recoil';
 import { themeState } from '@/recoil/theme';
 import useModal from '@/hooks/useModal';
+import { bodyFont } from '@/recoil/font';
 
 interface Props {
   params: string;
@@ -13,11 +14,11 @@ export default function ShareButton({ params }: Props) {
   const [openModal, closeModal] = useModal();
   return (
     <div>
-      <div className=" relative top-[-30px] mx-[24px] text-[18px]">
-        <span className={`${theme.highlightText}`}>
+      <div className={`${bodyFont.category1} relative top-[-30px] mx-[24px]`}>
+        <span className={`${theme.textTheme.highlight}`}>
           공유하기 버튼을 눌러 생성한 스트링 캣을 동료에게 공유해보세요!
         </span>
-        <span className={`${theme.defaultText}`}>
+        <span className={`${theme.textTheme.default}`}>
           동료들이 이어준 문자열을 확인할 수 있어요!
         </span>
       </div>
