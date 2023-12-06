@@ -1,18 +1,20 @@
 'use client';
 
-import useInput from '@/hooks/useInput';
-import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
-import useModal from '@/hooks/useModal';
-import { confirm } from '@/utils/confirm';
-import { useRouter } from 'next/navigation';
-import { axiosInstance } from '@/utils/axios';
 import { AxiosError } from 'axios';
-import Error from '@/component/Modal/Error';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+
 import BottomButton from '@/component/BottomButton';
 import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
+import Error from '@/component/Modal/Error';
+import useInput from '@/hooks/useInput';
+import useModal from '@/hooks/useModal';
+import { captionFont, headlineFont, titleFont } from '@/recoil/font';
+import { themeState } from '@/recoil/theme';
 import { themeObj } from '@/recoil/theme';
-import { useEffect } from 'react';
+import { axiosInstance } from '@/utils/axios';
+import { confirm } from '@/utils/confirm';
+import { useRouter } from 'next/navigation';
 
 export default function CreateGroup() {
   const [theme, setTheme] = useRecoilState(themeState);
@@ -64,7 +66,7 @@ export default function CreateGroup() {
   };
 
   return (
-    <div className={`${theme.background} h-full w-full`}>
+    <div className={`${theme.bgTheme.background} h-full w-full`}>
       <div className="flex h-full w-full flex-col">
         <div className="flex basis-14 items-center">
           <BackButtonHeader
@@ -78,18 +80,18 @@ export default function CreateGroup() {
               id="titleMessage"
               rows={1}
               value={title}
-              className={`w-full resize-none text-[24px] ${theme.background} ${theme.defaultText} outline-none ${theme.placeholder}`}
+              className={`w-full resize-none ${headlineFont.category2} ${theme.bgTheme.background} ${theme.textTheme.default} outline-none ${theme.textTheme.default}`}
               placeholder="제목을 입력해주세요."
               maxLength={maxLength + 1}
               onChange={handleResizeTitle}
               onKeyDown={handleKeyDownTitle}
             />
             <div
-              className={`w-full text-right text-[14px] 
+              className={`w-full text-right ${captionFont.category2}
               ${
                 title.length > maxLength
                   ? 'text-strcat-error'
-                  : `${theme.defaultText} text-opacity-50`
+                  : `${theme.textTheme.default} text-opacity-50`
               }
               `}
             >
@@ -98,10 +100,12 @@ export default function CreateGroup() {
           </div>
         </div>
         <div className="mx-[24px] basis-1/3 space-y-[20px]">
-          <div className={`text-[22px] ${theme.highlightText}`}>
+          <div
+            className={`${titleFont.category1} ${theme.textTheme.highlight}`}
+          >
             개별 스트링캣 리스트 예시 1
           </div>
-          <div className={`text-[22px] ${theme.defaultText}`}>
+          <div className={`${titleFont.category1} ${theme.textTheme.default}`}>
             개별 스트링캣 리스트 예시 2
           </div>
         </div>
@@ -112,7 +116,7 @@ export default function CreateGroup() {
             width="w-full"
             onClickHandler={handleClick}
             disabled={title === '' || title.length > maxLength}
-            color={theme.rightCTA}
+            color={theme.bgTheme.rightCTA}
           />
         </div>
       </div>

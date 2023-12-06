@@ -2,6 +2,7 @@ import ModalErrorBackground from '../Icon/ModalErrorBackground';
 import BottomButton from '../BottomButton';
 import ModalClose from '../Icon/ModalClose';
 import ModalBackground from '../Icon/ModalBackground';
+import { titleFont } from '@/recoil/font';
 
 interface Props {
   content: string;
@@ -21,7 +22,9 @@ export default function Error({ content, handleModalClose }: Props) {
                 <ModalClose />
               </button>
             </div>
-            <p className="absolute left-0 top-[97px] flex w-full items-center justify-center px-[24px] text-center text-[22px]">
+            <p
+              className={`absolute left-0 top-[97px] flex w-full items-center justify-center px-[24px] text-center ${titleFont.category1}`}
+            >
               {content
                 .replace(/\\n/g, '\n')
                 .split('\n')
@@ -50,7 +53,9 @@ export default function Error({ content, handleModalClose }: Props) {
                 <ModalClose />
               </button>
             </div>
-            <div className="flex h-[90px] items-center justify-center px-[24px] text-center text-[22px]">
+            <div
+              className={`flex h-[90px] items-center justify-center px-[24px] text-center ${titleFont.category1}`}
+            >
               {content
                 .replace(/\\n/g, '\n')
                 .split('\n')

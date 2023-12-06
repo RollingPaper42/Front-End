@@ -61,6 +61,28 @@ module.exports = {
       animation: {
         slide: 'slide 0.7s linear',
       },
+      fontSize: {
+        'headline-size1': ['26px'],
+        'headline-size2': ['24px'],
+        'title-size1': ['22px'],
+        'title-size2': ['20px'],
+        'body-size1': ['18px'],
+        'body-size2': ['16px'],
+        'caption-size1': ['16px'],
+        'caption-size2': ['14px'],
+      },
+      letterSpacing: {
+        0: '0em',
+        1: '0.01em',
+        2: '0.02em',
+        3: '0.03em',
+        4: '0.04em',
+      },
+      lineHeight: {
+        16: 1.6,
+        15: 1.5,
+        14: 1.4,
+      },
     },
     fontFamily: {
       sans: ['Noto Sans KR', 'DotGothic16'],

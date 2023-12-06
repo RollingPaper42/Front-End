@@ -4,6 +4,7 @@ import { themeState } from '@/recoil/theme';
 import Image from 'next/image';
 import imageCompression from 'browser-image-compression';
 import PreviewPhoto from './PreviewPhoto';
+import { titleFont } from '@/recoil/font';
 
 interface Props {
   setImage: Dispatch<React.SetStateAction<File | null>>;
@@ -50,10 +51,10 @@ const PhotoUpload = ({ setImage }: Props) => {
           />
           <div className="relative mx-2 h-[42px] w-full basis-1/5 ">
             <div
-              className={`absolute top-[3px] h-[39px] w-full ${theme.leftCTA}`}
+              className={`absolute top-[3px] h-[39px] w-full ${theme.bgTheme.leftCTA}`}
             />
             <div
-              className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.leftCTA}`}
+              className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.bgTheme.leftCTA}`}
             />
             <div className="absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center text-black">
               <Image
@@ -69,12 +70,14 @@ const PhotoUpload = ({ setImage }: Props) => {
         <form className="mx-2 flex h-[42px] basis-1/5 items-center justify-center">
           <label htmlFor="imgFile" className="relative h-full w-full">
             <div
-              className={`absolute top-[3px] h-[39px] w-full ${theme.leftCTA}`}
+              className={`absolute top-[3px] h-[39px] w-full ${theme.bgTheme.leftCTA}`}
             />
             <div
-              className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.leftCTA}`}
+              className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.bgTheme.leftCTA}`}
             />
-            <h1 className="absolute left-[1px] top-[4px] flex h-[33px] w-full select-none items-center justify-center text-[22px] text-strcat-default-black">
+            <h1
+              className={`absolute left-[1px] top-[4px] flex h-[33px] w-full select-none items-center justify-center ${titleFont.category1} text-strcat-default-black`}
+            >
               사진
             </h1>
           </label>

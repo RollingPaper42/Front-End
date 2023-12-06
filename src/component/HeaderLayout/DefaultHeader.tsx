@@ -32,7 +32,7 @@ export default function DefaultHeader() {
   return (
     <div className="fixed top-0 z-10 w-full max-w-md">
       <div
-        className={`flex h-[56px] flex-row items-center justify-between ${theme.background} px-[24px]`}
+        className={`flex h-[56px] flex-row items-center justify-between ${theme.bgTheme.background} px-[24px]`}
         id="catHeader"
       >
         {animationHeader ? (
@@ -73,10 +73,10 @@ export default function DefaultHeader() {
           >
             <div className="relative h-[34px] w-[74px]">
               <div className="absolute inset-0">
-                <Outline color={theme.loginIcon} />
+                <Outline color={theme.iconTheme.login} />
               </div>
               <span
-                className={`absolute inset-0 flex items-center justify-center ${theme.defaultText}`}
+                className={`absolute inset-0 flex items-center justify-center ${theme.textTheme.default}`}
               >
                 {pathName === '/login' ? '홈으로' : '로그인'}
               </span>

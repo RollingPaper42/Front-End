@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { captionFont } from '@/recoil/font';
 
 export default function NotFound() {
   return (
@@ -7,7 +8,9 @@ export default function NotFound() {
       <div className="flex items-center justify-center text-[64px] leading-[140%] text-strcat-default-white">
         404
       </div>
-      <div className="mt-[32px] flex flex-col justify-center text-[16px] leading-[160%] tracking-[-2%] ">
+      <div
+        className={`mt-[32px] flex flex-col justify-center text-[16px] leading-[160%] tracking-[-2%]`}
+      >
         <div className="flex items-center text-strcat-default-yellow">
           {`//원하시는 페이지를 찾을 수 없습니다.`}
         </div>

@@ -12,9 +12,11 @@ function LoadingLine({ width, height }: { width: string; height: string }) {
 export default function Loading() {
   const [theme] = useRecoilState(themeState);
   return (
-    <div className={`h-full w-full ${theme.background} px-[24px] pt-[96px]`}>
+    <div
+      className={`h-full w-full ${theme.bgTheme.background} px-[24px] pt-[96px]`}
+    >
       <div className="w-full animate-pulse space-y-[7px]">
-        <div className="bg-loading-gray h-[30px] w-full" />
+        <div className="h-[30px] w-full bg-loading-gray" />
         <LoadingLine width="w-[206px]" height="h-[30px]" />
       </div>
       <div className="mt-[84px] w-full animate-pulse space-y-[7px]">

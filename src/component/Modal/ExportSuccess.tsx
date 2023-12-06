@@ -1,3 +1,4 @@
+import { titleFont } from '@/recoil/font';
 import BottomButton from '../BottomButton';
 import ModalClose from '../Icon/ModalClose';
 import ShareModal from '../Icon/ShareModal';
@@ -17,7 +18,9 @@ export default function ExportSuccess({ content, handleModalClose }: Props) {
             <ModalClose />
           </button>
         </div>
-        <p className="absolute left-0 top-[64px] px-[24px] text-center text-[22px]">
+        <p
+          className={`absolute left-0 top-[64px] px-[24px] text-center ${titleFont.category1}`}
+        >
           {content}
         </p>
         <div className="absolute bottom-[16px] left-0 flex w-full justify-between px-[16px]">

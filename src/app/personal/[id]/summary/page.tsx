@@ -11,6 +11,7 @@ import BottomButton from '@/component/BottomButton';
 import SummaryBoard from '@/component/SummaryBoard';
 import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 import useModal from '@/hooks/useModal';
+import { titleFont } from '@/recoil/font';
 
 export default function Summary({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -38,7 +39,7 @@ export default function Summary({ params }: { params: { id: string } }) {
   }, []);
 
   return (
-    <div className={`${theme.background}`}>
+    <div className={`${theme.bgTheme.background}`}>
       <BackButtonHeader
         title="스트링캣 공유하기"
         backClickHandler={() => router.back()}
@@ -46,14 +47,16 @@ export default function Summary({ params }: { params: { id: string } }) {
       <div className="fixed flex h-full w-full max-w-md flex-col">
         <div className="reltaive flex h-full w-full flex-col px-[24px]">
           <div className="mt-24 flex w-full">
-            <div className={`text-[22px] ${theme.titleText}`}>{title}</div>
+            <div className={`${titleFont.category1} ${theme.textTheme.title}`}>
+              {title}
+            </div>
           </div>
           <div className="mt-[138px] flex h-full w-full flex-col">
             <div className="flex h-full w-full basis-1/4 flex-row">
               <SummaryBoard
                 contentCount={contentCount}
                 contentTextCount={contentTextCount}
-                summaryTextColor={theme.summaryText}
+                summaryTextColor={theme.textTheme.summary}
               />
             </div>
           </div>
@@ -77,7 +80,7 @@ export default function Summary({ params }: { params: { id: string } }) {
             handleShare(`/personal/${params.id}`, openModal, closeModal)
           }
           disabled={false}
-          color={`${theme.rightCTA}`}
+          color={`${theme.bgTheme.rightCTA}`}
         />
       </div>
     </div>
