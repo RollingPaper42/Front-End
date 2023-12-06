@@ -4,6 +4,7 @@ import { SetterOrUpdater, useRecoilState } from 'recoil';
 import React from 'react';
 import { themeState } from '@/recoil/theme';
 import { observe } from '@/types/observe';
+import { captionFont, bodyFont } from '@/recoil/font';
 
 interface Props {
   content: content;
