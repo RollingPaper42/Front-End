@@ -30,8 +30,8 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
 ) {
   const [isLogin] = useLogin();
   const [observe, setObserve] = useRecoilState(observeState);
-  const [observeCount, setObserveCount] = useState(0);
   const [content, setContent] = useState<content[]>([]);
+  const [changeMode, setChangeMode] = useState(false);
 
   useEffect(() => {
     setContent(board.contents);
@@ -47,61 +47,55 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
 
   const [touchStart, setTouchStart] = useState(0);
   useEffect(() => {
-    console.log(observeCount, 'count ');
-    if (observeCount < 1) {
-      setObserveCount((prev) => 1);
-    }
-    if (observeCount < 3) {
+    const elem = document.getElementById(`content${observe.contentId}`);
+    if (!elem) return;
+    const elementY = elem.getBoundingClientRect().y;
+    const elementHeight = elem.getBoundingClientRect().height;
+    console.log(elementY, elementHeight);
+    if (elementHeight > 600 && elementY + elementHeight > 400) {
       document.body.style.overflow = 'auto';
-      return;
+    } else {
+      elem.scrollIntoView({
+        block: 'center',
+      });
+      document.body.style.overflow = 'hidden';
     }
-    document.body.style.overflow = 'hidden';
 
     const currTime = Date.now();
     const tsHandler = (e: any) => {
       setTouchStart((prev) => e.targetTouches[0].pageY);
     };
+
     const tmHandler = (e: any) => {
       const nextTime = Date.now();
-      if (nextTime - currTime > 128) {
+      if (nextTime - currTime > 100) {
         const dy = touchStart - e.targetTouches[0].pageY;
-        // move to up
-        if (dy < 0) {
+        if (elementHeight > 600 && elementY + elementHeight > 400) return;
+        if (dy < 0)
           setObserve((prev) => ({ ...prev, contentId: prev.contentId - 1 }));
-          setObserveCount((prev) => prev - 1);
-        }
-        // move to down
-        if (dy > 0) {
+        if (dy > 0)
           setObserve((prev) => ({ ...prev, contentId: prev.contentId + 1 }));
-          setObserveCount((prev) => prev - 1);
-        }
       }
     };
 
     const handleScroll = (e: any) => {
-      console.log('Scroll', e.deltaY);
       const dy = e.deltaY;
-      if (dy < 0) {
+      if (elementHeight > 600 && elementY + elementHeight > 400) return;
+      if (dy < 0)
         setObserve((prev) => ({ ...prev, contentId: prev.contentId - 1 }));
-        setObserveCount((prev) => prev - 1);
-      }
-      // move to down
-      if (dy > 0) {
+      if (dy > 0)
         setObserve((prev) => ({ ...prev, contentId: prev.contentId + 1 }));
-        setObserveCount((prev) => prev - 1);
-      }
     };
 
     window.addEventListener('wheel', handleScroll);
     window.addEventListener('touchstart', tsHandler);
     window.addEventListener('touchmove', tmHandler);
     return () => {
-      console.log('dispose');
+      window.removeEventListener('wheel', handleScroll);
       window.removeEventListener('touchstart', tsHandler);
       window.removeEventListener('touchmove', tmHandler);
-      window.removeEventListener('wheel', tsHandler);
     };
-  }, [observe, touchStart, observeCount]);
+  }, [observe, touchStart, changeMode]);
 
   return (
     <div ref={ref} className={` h-auto min-h-[424px] break-all  px-[24px] `}>
@@ -111,13 +105,15 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
           content.map((content: content) => {
             return (
               <ObserveContent
+                id={`content${content.id}`}
                 isAdd={isAdd}
                 key={content.id}
                 content={content}
                 boardId={board.id}
                 setObserve={setObserve}
                 observe={observe}
-                setObserveCount={setObserveCount}
+                setChangeMode={setChangeMode}
+                changeMode={changeMode}
               />
             );
           })}

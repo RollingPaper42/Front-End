@@ -7,51 +7,53 @@ import { observe } from '@/types/observe';
 import { captionFont, bodyFont } from '@/recoil/font';
 
 interface Props {
+  id: string;
   content: content;
   boardId: string;
-  isAdd: boolean;
-  setObserve: SetterOrUpdater<observe>;
   observe: observe;
-  setObserveCount: SetterOrUpdater<number>;
+  isAdd: boolean;
+  changeMode: boolean;
+  setObserve: SetterOrUpdater<observe>;
+  setChangeMode: SetterOrUpdater<boolean>;
 }
 
-const ObserveContent = ({
-  content,
-  boardId,
-  isAdd,
-  setObserve,
-  observe,
-  setObserveCount,
-}: Props) => {
+const ObserveContent = ({ id, content, boardId, isAdd, observe }: Props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [theme] = useRecoilState(themeState);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(({ isIntersecting }) => {
-          if (!isAdd && isIntersecting) {
-            setObserveCount((prev) => prev + 1);
-            setObserve((prev) => ({ ...prev, contentId: content.id }));
-          } else {
-            setObserveCount((prev) => prev - 1);
-          }
-        });
-      },
-      {
-        rootMargin: '-30% 0% -70% 0%',
-        threshold: [],
-      },
-    );
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+
+  // useEffect(() => {
+  //   console.log('in observeContent useEfect log');
+
+  //   if (changeMode) return;
+  //   console.log('in observeContent log');
+
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach(({ isIntersecting }) => {
+  //         console.log('in observe');
+  //         if (!isAdd && isIntersecting && !changeMode) {
+  //           if (observe.contentId !== content.id) {
+  //             console.log('here');
+  //             setChangeMode(true);
+  //           }
+  //         }
+  //       });
+  //     },
+  //     {
+  //       rootMargin: '-30% 0% -70% 0%',
+  //       threshold: [],
+  //     },
+  //   );
+  //   if (ref.current) {
+  //     observer.observe(ref.current);
+  //   }
+  //   return () => {
+  //     observer.disconnect();
+  //   };
+  // }, []);
 
   return (
-    <div className="inline">
+    <div className="inline" id={id}>
       <div
         ref={ref}
         className={`
