@@ -1,19 +1,20 @@
 'use client';
 
-import useInput from '@/hooks/useInput';
-import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
-import useModal from '@/hooks/useModal';
-import { confirm } from '@/utils/confirm';
-import { useRouter } from 'next/navigation';
-import { axiosInstance } from '@/utils/axios';
 import { AxiosError } from 'axios';
-import Error from '@/component/Modal/Error';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+
 import BottomButton from '@/component/BottomButton';
 import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
-import { themeObj } from '@/recoil/theme';
-import { useEffect } from 'react';
+import Error from '@/component/Modal/Error';
+import useInput from '@/hooks/useInput';
+import useModal from '@/hooks/useModal';
 import { captionFont, headlineFont, titleFont } from '@/recoil/font';
+import { themeState } from '@/recoil/theme';
+import { themeObj } from '@/recoil/theme';
+import { axiosInstance } from '@/utils/axios';
+import { confirm } from '@/utils/confirm';
+import { useRouter } from 'next/navigation';
 
 export default function CreateGroup() {
   const [theme, setTheme] = useRecoilState(themeState);
