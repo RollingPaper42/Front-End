@@ -15,6 +15,7 @@ import { board } from '@/types/boards';
 import ObserveTitle from './ObserveTitle';
 import ShareButton from './ShareButton';
 import { useLogin } from '@/hooks/useLogin';
+
 interface Props {
   board: board;
   isAdd: boolean;
@@ -45,7 +46,6 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
   }, [board]);
 
   const [touchStart, setTouchStart] = useState(0);
-
   useEffect(() => {
     console.log(observeCount, 'count ');
     if (observeCount < 1) {
@@ -55,26 +55,21 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
       document.body.style.overflow = 'auto';
       return;
     }
-
     document.body.style.overflow = 'hidden';
+
     const currTime = Date.now();
-
     const tsHandler = (e: any) => {
-      setTouchStart(e.targetTouches[0].pageY);
+      setTouchStart((prev) => e.targetTouches[0].pageY);
     };
-
     const tmHandler = (e: any) => {
       const nextTime = Date.now();
-
       if (nextTime - currTime > 128) {
         const dy = touchStart - e.targetTouches[0].pageY;
-
         // move to up
         if (dy < 0) {
           setObserve((prev) => ({ ...prev, contentId: prev.contentId - 1 }));
           setObserveCount((prev) => prev - 1);
         }
-
         // move to down
         if (dy > 0) {
           setObserve((prev) => ({ ...prev, contentId: prev.contentId + 1 }));
@@ -83,12 +78,28 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
       }
     };
 
+    const handleScroll = (e: any) => {
+      console.log('Scroll', e.deltaY);
+      const dy = e.deltaY;
+      if (dy < 0) {
+        setObserve((prev) => ({ ...prev, contentId: prev.contentId - 1 }));
+        setObserveCount((prev) => prev - 1);
+      }
+      // move to down
+      if (dy > 0) {
+        setObserve((prev) => ({ ...prev, contentId: prev.contentId + 1 }));
+        setObserveCount((prev) => prev - 1);
+      }
+    };
+
+    window.addEventListener('wheel', handleScroll);
     window.addEventListener('touchstart', tsHandler);
     window.addEventListener('touchmove', tmHandler);
     return () => {
       console.log('dispose');
       window.removeEventListener('touchstart', tsHandler);
       window.removeEventListener('touchmove', tmHandler);
+      window.removeEventListener('wheel', tsHandler);
     };
   }, [observe, touchStart, observeCount]);
 
@@ -107,7 +118,6 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
                 setObserve={setObserve}
                 observe={observe}
                 setObserveCount={setObserveCount}
-                observeCount={observeCount}
               />
             );
           })}
