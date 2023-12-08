@@ -1,10 +1,12 @@
-import { content } from '@/types/content';
-import { useEffect, useRef } from 'react';
-import { useRecoilState } from 'recoil';
-import { observeState } from '@/recoil/observe';
+import { useEffect, useRef, useState } from 'react';
 import React from 'react';
+import { useRecoilState } from 'recoil';
+
+import { bodyFont, captionFont } from '@/recoil/font';
+import { observeState } from '@/recoil/observe';
 import { themeObj, themeState } from '@/recoil/theme';
-import { captionFont, bodyFont } from '@/recoil/font';
+import { content } from '@/types/content';
+
 interface props {
   content: content;
   boardId: string;
@@ -15,18 +17,22 @@ interface props {
 const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [observe, setObserve] = useRecoilState(observeState);
+  const [card, setCard] = useState(false);
   const [theme, setTheme] = useRecoilState(themeState);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(({ isIntersecting, boundingClientRect }) => {
           if (!isAdd && isIntersecting) {
-            setObserve(() => ({
-              boardId: boardId,
-              contentId: content.id,
-              photoUrl: content.photoUrl,
-              writer: content.writer,
-            }));
+            // setObserve(() => ({
+            //   boardId: boardId,
+            //   contentId: content.id,
+            //   photoUrl: content.photoUrl,
+            //   writer: content.writer,
+            // }));
+            setCard(true);
+          } else {
+            setCard(false);
           }
         });
       },
@@ -43,17 +49,16 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
     };
   }, []);
 
+  console.log(content.id, card);
   return (
-    <div className="inline">
+    <div className="">
       <div
         ref={ref}
         className={`
       ${
-        !isAdd &&
-        observe.boardId === boardId &&
-        observe.contentId === content.id
-          ? `${theme.textTheme.highlight}  inline  w-full  ${bodyFont.category1} leading-[160%] opacity-100 transition-all`
-          : `${theme.textTheme.default}  inline  w-full ${bodyFont.category1} leading-[160%] opacity-30 transition-all`
+        card
+          ? `${theme.textTheme.highlight} w-full  ${bodyFont.category1} leading-[160%] opacity-100 transition-all bg-slate-400 scale-150 `
+          : `${theme.textTheme.default} w-full ${bodyFont.category1} leading-[160%] opacity-30 transition-all`
       }
     `}
       >

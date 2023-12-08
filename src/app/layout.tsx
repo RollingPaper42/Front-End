@@ -1,11 +1,12 @@
 'use client';
 
 import { RecoilRoot } from 'recoil';
-import './globals.css';
-import Modal from '@/component/Modal';
-import AxiosInterceptor from '@/component/AxiosInterceptor';
-import OpenGraph from '@/component/OpenGraph';
+
 import InApp from './InApp';
+import './globals.css';
+import AxiosInterceptor from '@/component/AxiosInterceptor';
+import Modal from '@/component/Modal';
+import OpenGraph from '@/component/OpenGraph';
 
 export default function RootLayout({
   children,
