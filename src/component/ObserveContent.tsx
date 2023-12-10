@@ -1,28 +1,28 @@
-import { content } from '@/types/content';
-import { useEffect, useRef } from 'react';
-import { useRecoilState } from 'recoil';
-import { observeState } from '@/recoil/observe';
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import React from 'react';
-import { themeObj, themeState } from '@/recoil/theme';
-import { captionFont, bodyFont } from '@/recoil/font';
+import { useRecoilState } from 'recoil';
+
+import { bodyFont, captionFont } from '@/recoil/font';
+import { themeState } from '@/recoil/theme';
+import { content } from '@/types/content';
+import { observeContent } from '@/types/observe';
+
 interface props {
   content: content;
-  boardId: string;
-  isAdd: boolean;
-  boardTheme: 'strcat' | 'calm' | 'green' | 'cyan';
+  observe: observeContent;
+  setObserve: Dispatch<SetStateAction<observeContent>>;
 }
 
-const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
+const ObserveContent = ({ content, observe, setObserve }: props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
-  const [observe, setObserve] = useRecoilState(observeState);
-  const [theme, setTheme] = useRecoilState(themeState);
+  const [theme] = useRecoilState(themeState);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(({ isIntersecting, boundingClientRect }) => {
-          if (!isAdd && isIntersecting) {
+        entries.forEach(({ isIntersecting }) => {
+          if (isIntersecting) {
             setObserve(() => ({
-              boardId: boardId,
               contentId: content.id,
               photoUrl: content.photoUrl,
               writer: content.writer,
@@ -44,38 +44,34 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
   }, []);
 
   return (
-    <div className="inline">
+    <div>
       <div
         ref={ref}
         className={`
       ${
-        !isAdd &&
-        observe.boardId === boardId &&
         observe.contentId === content.id
-          ? `${theme.textTheme.highlight}  inline  w-full  ${bodyFont.category1} leading-[160%] opacity-100 transition-all`
-          : `${theme.textTheme.default}  inline  w-full ${bodyFont.category1} leading-[160%] opacity-30 transition-all`
+          ? `${theme.textTheme.highlight} inline w-full ${bodyFont.category1} opacity-100 leading-[160%] transition-all `
+          : `${theme.textTheme.highlight} inline w-full ${bodyFont.category1} opacity-30  leading-[160%] transition-all `
       }
     `}
       >
         {content.text}
       </div>
-      {!isAdd &&
-        observe.boardId === boardId &&
-        observe.contentId === content.id && (
+      {observe.contentId === content.id && (
+        <div
+          className={`${theme.bgTheme.writerContainer} absolute text-right right-[22px] z-10 mt-[1px] animate-slide pl-[2px] ${captionFont.category1} text-white opacity-100`}
+        >
           <div
-            className={`${theme.bgTheme.writerContainer} absolute right-[22px] z-10 mt-[1px] animate-slide pl-[2px] ${captionFont.category1} text-white opacity-100`}
+            className={`${theme.bgTheme.writerContainer} relative top-[-3px] z-20 w-full whitespace-pre-wrap ${captionFont.category1}`}
           >
             <div
-              className={`${theme.bgTheme.writerContainer} relative top-[-3px] z-20 w-full whitespace-pre-wrap ${captionFont.category1}`}
-            >
-              <div
-                className={`relative top-[3px] ${theme.textTheme.writer}`}
-              >{`From: ${
-                observe.writer.length ? observe.writer : '익명의 스트링캣'
-              } `}</div>
-            </div>
+              className={`relative top-[3px] ${theme.textTheme.writer}`}
+            >{`From: ${
+              observe.writer.length ? observe.writer : '익명의 스트링캣'
+            } `}</div>
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 };
