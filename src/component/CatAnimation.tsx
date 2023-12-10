@@ -1,6 +1,7 @@
+import { useRecoilState } from 'recoil';
+
 import { catAnimationState } from '@/recoil/catAnimation';
 import Image from 'next/image';
-import { useRecoilState } from 'recoil';
 
 export default function CatAnimation() {
   const [catAnimation] = useRecoilState(catAnimationState);

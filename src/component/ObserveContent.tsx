@@ -9,8 +9,8 @@ import { observeContent } from '@/types/observe';
 interface props {
   content: content;
   observe: observeContent;
-  setObserve: Dispatch<SetStateAction<observeContent>>;
   theme: themeState;
+  setObserve: Dispatch<SetStateAction<observeContent>>;
 }
 
 const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
