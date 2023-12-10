@@ -1,4 +1,4 @@
-import { titleFont } from '@/recoil/font';
+import { bodyFont } from '@/recoil/font';
 
 interface BottomButtonProps {
   name: string;
@@ -7,6 +7,7 @@ interface BottomButtonProps {
   disabled: boolean;
   color: string;
   height: string;
+  textColor: string;
 }
 
 export default function BottomButton({
@@ -15,31 +16,20 @@ export default function BottomButton({
   onClickHandler,
   disabled,
   color,
+  textColor,
+  height,
 }: BottomButtonProps) {
   return (
     <button
-      className={`relative mx-2 h-[42px] w-full ${width}`}
+      className={` items-center justify-center font-bold ${
+        bodyFont.category2
+      } ${textColor} rounded relative mx-1 ${height} w-full ${width} ${
+        disabled ? 'bg-[#CCCCCC]' : color
+      } `}
       onClick={onClickHandler}
       disabled={disabled}
     >
-      <div
-        className={`absolute top-[3px] h-[39px] w-full ${
-          disabled ? 'bg-[#CCCCCC]' : color
-        }`}
-      />
-      {/* top에서 아래로 3px */}
-      <div
-        className={`absolute left-[2px] top-0 h-[39px] w-full ${
-          disabled ? 'bg-[#CCCCCC]' : color
-        }`}
-      />
-      {/* top고정 오른쪽으로 2px */}
-      <div
-        className={`absolute left-[1px] top-[4px] flex h-[33px] w-full select-none items-center justify-center text-strcat-default-black ${titleFont.category1}`}
-      >
-        {/* top에서 아래로4px 오른쪽으로 1px, 33px크기  */}
-        {name}
-      </div>
+      {name}
     </button>
   );
 }

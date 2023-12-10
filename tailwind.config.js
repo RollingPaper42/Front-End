@@ -18,8 +18,12 @@ module.exports = {
         'strcat-yellow': '#FBFF36',
         'strcat-cyan': '#6CD8ED',
         'strcat-buttonColor': '#8F38FF',
+        'strcat-gray': '#BCBCBC',
+        'strcat-gray2': '#4D4D4D',
         'strcat-error': '#FF0000',
-
+        'strcat-sub': '#9D9D8C',
+        'strcat-white2': '#E9E9E9',
+        'strcat-bright-yellow': '#FDFFB0',
         'strcat-default-yellow': '#FBFF36',
         'strcat-default-cyan': '#6CD8ED',
         'strcat-default-green': '#7CED43',

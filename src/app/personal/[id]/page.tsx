@@ -1,23 +1,25 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import StrcatBoard from '@/component/StrcatBoard';
-import BottomButton from '@/component/BottomButton';
-import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
-import { observeState } from '@/recoil/observe';
-import { useRouter } from 'next/navigation';
-import { board } from '@/types/boards';
-import { scrollToAdd, setMap } from '@/utils/scrollTo';
+
+import BottomButton from '@/component/BottomButton';
 import CatAnimation from '@/component/CatAnimation';
-import { catAction } from '@/types/animation';
-import { useCat } from '@/hooks/useCat';
-import { axiosInstance } from '@/utils/axios';
-import { useLogin } from '@/hooks/useLogin';
-import Loading from '@/component/Loading';
+import ContentPhoto from '@/component/ContentPhoto';
 import HeaderLayout from '@/component/HeaderLayout';
-import { titleFont } from '@/recoil/font';
+import Loading from '@/component/Loading';
+import StrcatBoard from '@/component/StrcatBoard';
+import { useCat } from '@/hooks/useCat';
+import { useLogin } from '@/hooks/useLogin';
+import { bodyFont } from '@/recoil/font';
+import { observeState } from '@/recoil/observe';
+import { themeState } from '@/recoil/theme';
+import { catAction } from '@/types/animation';
+import { board } from '@/types/boards';
+import { axiosInstance } from '@/utils/axios';
+import { scrollToAdd, setMap } from '@/utils/scrollTo';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -100,26 +102,32 @@ export default function Personal({ params }: { params: { id: string } }) {
                   className="flex w-full max-w-md items-center justify-center px-[24px]"
                   id="strcatCreate"
                 >
+                  <div className="flex basis-1/12 mx-1 items-center justify-center">
+                    <div
+                      className={`h-[46px] flex rounded w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
+                    >
+                      <Image
+                        src="/Download.svg"
+                        width={24}
+                        height={24}
+                        alt="Download"
+                      />
+                    </div>
+                  </div>
                   <BottomButton
-                    height="h-[42px]"
-                    name="저장"
-                    width="basis-1/5"
-                    onClickHandler={() => router.push(`${params.id}/export`)}
-                    disabled={false}
-                    color={`bg-white`}
-                  />
-                  <BottomButton
-                    name="공유"
-                    height="h-[42px]"
-                    width="basis-1/5"
+                    textColor="text-strcat-bright-yellow"
+                    name="공유하기"
+                    height="h-[46px]"
+                    width="basis-5/12"
                     onClickHandler={() => router.push(`${params.id}/summary`)}
                     disabled={false}
                     color={`${theme.bgTheme.leftCTA}`}
                   />
                   <BottomButton
-                    name="이어서 글쓰기"
-                    height="h-[42px]"
-                    width="basis-3/5"
+                    textColor="text-strcat-bright-yellow"
+                    name="글쓰기"
+                    height="h-[46px]"
+                    width="basis-5/12"
                     onClickHandler={handleClick}
                     disabled={!observe.boardId}
                     color={`${theme.bgTheme.rightCTA}`}
@@ -134,25 +142,18 @@ export default function Personal({ params }: { params: { id: string } }) {
                     id="strcatCreate"
                   >
                     <button
-                      className={`relative mx-2 h-[42px] w-full basis-1/2`}
+                      className={`mx-2 rounded h-[46px] w-full basis-1/3 ${theme.bgTheme.leftCTA} ${bodyFont.category2}`}
                       onClick={handleClickCreate}
                     >
-                      <div
-                        className={`absolute top-[3px] h-[39px] w-full ${theme.bgTheme.leftCTA}`}
-                      />
-                      <div
-                        className={`absolute left-[2px] top-0 h-[39px] w-full ${theme.bgTheme.leftCTA}`}
-                      />
-                      <p
-                        className={`absolute left-[1px] top-[4px] flex h-[33px] w-full items-center justify-center ${titleFont.category2}  text-strcat-default-black`}
-                      >
-                        스트링캣 만들기
+                      <p className="font-bold text-strcat-white2">
+                        나도 만들기
                       </p>
                     </button>
                     <BottomButton
-                      name="이어서 글쓰기"
-                      width="basis-1/2"
-                      height="h-[42px]"
+                      textColor=" text-strcat-bright-yellow"
+                      name="글쓰기"
+                      width="basis-2/3"
+                      height="h-[46px]"
                       onClickHandler={handleClick}
                       disabled={!observe.boardId}
                       color={`${theme.bgTheme.rightCTA}`}

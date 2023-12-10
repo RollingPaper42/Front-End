@@ -1,21 +1,23 @@
-import { content } from '@/types/content';
-import ObserveContent from './ObserveContent';
 import {
-  forwardRef,
   Dispatch,
   SetStateAction,
+  forwardRef,
+  use,
   useEffect,
   useState,
-  use,
 } from 'react';
 import React from 'react';
 import { useRecoilState } from 'recoil';
+
 import Add from './Add';
-import { observeState } from '@/recoil/observe';
-import { board } from '@/types/boards';
+import ObserveContent from './ObserveContent';
 import ObserveTitle from './ObserveTitle';
 import ShareButton from './ShareButton';
 import { useLogin } from '@/hooks/useLogin';
+import { observeState } from '@/recoil/observe';
+import { board } from '@/types/boards';
+import { content } from '@/types/content';
+
 interface Props {
   board: board;
   isAdd: boolean;
