@@ -1,27 +1,28 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
-import { axiosInstance } from '@/utils/axios';
-import StrcatBoard from '@/component/StrcatBoard';
-import { board } from '@/types/boards';
-import ContentPhoto from '@/component/ContentPhoto';
+import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
+
 import BottomButton from '@/component/BottomButton';
-import { observeState } from '@/recoil/observe';
-import StrcatGroupTitle from '@/component/StrcatGroupTitle';
-import { scrollToAdd, setMap } from '@/utils/scrollTo';
-import { useRouter } from 'next/navigation';
-import ShortCut from '@/component/Icon/ShortCut';
-import ShareButton from '@/component/ShareButton';
-import { useLogin } from '@/hooks/useLogin';
-import Loading from '@/component/Loading';
 import CatAnimation from '@/component/CatAnimation';
-import { useCat } from '@/hooks/useCat';
-import { catAction } from '@/types/animation';
+import ContentPhoto from '@/component/ContentPhoto';
 import GruopMainTitle from '@/component/GroupMainTitle';
 import HeaderLayout from '@/component/HeaderLayout';
+import ShortCut from '@/component/Icon/ShortCut';
+import Loading from '@/component/Loading';
+import ShareButton from '@/component/ShareButton';
+import StrcatBoard from '@/component/StrcatBoard';
+import StrcatGroupTitle from '@/component/StrcatGroupTitle';
+import { useCat } from '@/hooks/useCat';
+import { useLogin } from '@/hooks/useLogin';
 import { captionFont } from '@/recoil/font';
+import { observeState } from '@/recoil/observe';
+import { themeState } from '@/recoil/theme';
+import { catAction } from '@/types/animation';
+import { board } from '@/types/boards';
+import { axiosInstance } from '@/utils/axios';
+import { scrollToAdd, setMap } from '@/utils/scrollTo';
+import { useRouter } from 'next/navigation';
 
 export default function Group({ params }: { params: { id: string } }) {
   const [title, setTitle] = useState<string>('');
@@ -128,16 +129,7 @@ export default function Group({ params }: { params: { id: string } }) {
               className={`${boards.length ? 'pb-[500px]' : ''} text-justify`}
             >
               {boards.map((board) => {
-                return (
-                  <StrcatBoard
-                    setIsAdd={setIsAdd}
-                    isAdd={isAdd}
-                    ref={(node: any) => setMap(node, board, itemsRef)}
-                    key={board.id}
-                    board={board}
-                    isPersonal={false}
-                  />
-                );
+                return <StrcatBoard key={board.id} board={board} />;
               })}
             </div>
             <div className="fixed bottom-5 z-20 w-full max-w-md px-[24px]">
