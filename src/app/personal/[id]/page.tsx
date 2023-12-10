@@ -96,7 +96,7 @@ export default function Personal({ params }: { params: { id: string } }) {
           )}
           {!isAdd &&
             (isOwner ? (
-              <div className="fixed bottom-5 left-0 z-20 flex w-full items-center justify-center">
+              <div className="fixed bottom-5 left-0 z-button flex w-full items-center justify-center">
                 <div
                   className="flex w-full max-w-md items-center justify-center px-[24px]"
                   id="strcatCreate"
@@ -129,7 +129,7 @@ export default function Personal({ params }: { params: { id: string } }) {
               </div>
             ) : (
               <>
-                <div className=" fixed bottom-5 left-0 z-20 flex w-full items-center justify-center">
+                <div className=" fixed bottom-5 left-0 z-button flex w-full items-center justify-center">
                   <div
                     className="flex w-full max-w-md items-center justify-center px-[24px] "
                     id="strcatCreate"

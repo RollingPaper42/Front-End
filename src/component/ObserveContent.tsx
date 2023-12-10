@@ -65,10 +65,10 @@ const ObserveContent = ({ content, boardId, isAdd, boardTheme }: props) => {
         observe.boardId === boardId &&
         observe.contentId === content.id && (
           <div
-            className={`${theme.bgTheme.writerContainer} absolute right-[22px] z-10 mt-[1px] animate-slide pl-[2px] ${captionFont.category1} text-white opacity-100`}
+            className={`${theme.bgTheme.writerContainer} absolute right-[22px] z-button mt-[1px] animate-slide pl-[2px] ${captionFont.category1} text-white opacity-100`}
           >
             <div
-              className={`${theme.bgTheme.writerContainer} relative top-[-3px] z-20 w-full whitespace-pre-wrap ${captionFont.category1}`}
+              className={`${theme.bgTheme.writerContainer} relative top-[-3px] z-button w-full whitespace-pre-wrap ${captionFont.category1}`}
             >
               <div
                 className={`relative top-[3px] ${theme.textTheme.writer}`}

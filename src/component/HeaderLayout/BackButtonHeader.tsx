@@ -12,7 +12,7 @@ export default function BackButtonHeader({ title, backClickHandler }: Props) {
   const [theme] = useRecoilState(themeState);
 
   return (
-    <div className="fixed z-10 flex w-full max-w-md flex-col">
+    <div className="fixed z-button flex w-full max-w-md flex-col">
       <div className="flex h-[56px] w-full ">
         <div
           className="flex basis-1/6 items-center pl-[24px]"

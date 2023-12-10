@@ -83,6 +83,11 @@ module.exports = {
         15: 1.5,
         14: 1.4,
       },
+      zIndex: {
+        button: 10,
+        drawer: 30,
+        modal: 99,
+      },
     },
     fontFamily: {
       sans: ['Noto Sans KR', 'DotGothic16'],
