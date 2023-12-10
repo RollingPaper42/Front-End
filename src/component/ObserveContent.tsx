@@ -50,7 +50,7 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
       ${
         observe.contentId === content.id
           ? `${theme.textTheme.highlight} inline w-full ${bodyFont.category1} opacity-100 leading-[160%] transition-all `
-          : `${theme.textTheme.highlight} inline w-full ${bodyFont.category1} opacity-30  leading-[160%] transition-all `
+          : `${theme.textTheme.default} inline w-full ${bodyFont.category1} opacity-30  leading-[160%] transition-all `
       }
     `}
       >
