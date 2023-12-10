@@ -1,7 +1,8 @@
-import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
+
 import Back from '../Icon/Back';
 import { bodyFont } from '@/recoil/font';
+import { themeState } from '@/recoil/theme/theme';
 
 interface Props {
   title: string;

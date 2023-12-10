@@ -17,7 +17,7 @@ import ShareButton from '@/component/ShareButton';
 import { useLogin } from '@/hooks/useLogin';
 import Loading from '@/component/Loading';
 import CatAnimation from '@/component/CatAnimation';
-import { useCat } from '@/hooks/useCat';
+import { useCat } from '@/ho@/recoil/theme/theme
 import { catAction } from '@/types/animation';
 import GruopMainTitle from '@/component/GroupMainTitle';
 import HeaderLayout from '@/component/HeaderLayout';

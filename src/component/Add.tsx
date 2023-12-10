@@ -1,19 +1,20 @@
 'use client';
 
-import useInput from '@/hooks/useInput';
-import { axiosInstance } from '@/utils/axios';
-import { useRouter } from 'next/navigation';
+import { AxiosError } from 'axios';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { themeObj, themeState } from '@/recoil/theme';
-import { AxiosError } from 'axios';
-import { content } from '@/types/content';
-import useModal from '@/hooks/useModal';
-import Error from '@/component/Modal/Error';
-import { confirm } from '@/utils/confirm';
-import BottomButton from '@/component/BottomButton';
+
 import PhotoUpload from './PhotoUpload';
+import BottomButton from '@/component/BottomButton';
+import Error from '@/component/Modal/Error';
+import useInput from '@/hooks/useInput';
+import useModal from '@/hooks/useModal';
 import { bodyFont, captionFont } from '@/recoil/font';
+import { themeObj, themeState } from '@/recoil/theme/theme';
+import { content } from '@/types/content';
+import { axiosInstance } from '@/utils/axios';
+import { confirm } from '@/utils/confirm';
+import { useRouter } from 'next/navigation';
 
 interface AddProps {
   id: string;

@@ -1,10 +1,12 @@
-import { content } from '@/types/content';
 import { useEffect, useRef } from 'react';
-import { useRecoilState } from 'recoil';
-import { observeState } from '@/recoil/observe';
 import React from 'react';
-import { themeObj, themeState } from '@/recoil/theme';
-import { captionFont, bodyFont } from '@/recoil/font';
+import { useRecoilState } from 'recoil';
+
+import { bodyFont, captionFont } from '@/recoil/font';
+import { observeState } from '@/recoil/observe';
+import { themeObj, themeState } from '@/recoil/theme/theme';
+import { content } from '@/types/content';
+
 interface props {
   content: content;
   boardId: string;

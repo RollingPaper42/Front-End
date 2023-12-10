@@ -1,23 +1,24 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { board } from '@/types/boards';
-import { exportThemeButton, exportThemeEnum } from '@/types/export';
-import { axiosInstance } from '@/utils/axios';
-import html2canvas from 'html2canvas';
 import saveAs from 'file-saver';
+import html2canvas from 'html2canvas';
+import { useEffect, useRef, useState } from 'react';
+import { useRecoilState } from 'recoil';
+
 import BottomButton from '@/component/BottomButton';
+import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
+import Error from '@/component/Modal/Error';
 import ExportSuccess from '@/component/Modal/ExportSuccess';
+import StrcatGroupTitle from '@/component/StrcatGroupTitle';
 import ExportBoard from '@/component/export/ExportBoard';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
-import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
-import StrcatGroupTitle from '@/component/StrcatGroupTitle';
-import { useRouter } from 'next/navigation';
-import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
-import Error from '@/component/Modal/Error';
 import { headlineFont } from '@/recoil/font';
+import { themeState } from '@/recoil/theme/theme';
+import { board } from '@/types/boards';
+import { exportThemeButton, exportThemeEnum } from '@/types/export';
+import { axiosInstance } from '@/utils/axios';
+import { useRouter } from 'next/navigation';
 
 export default function Export({ params }: { params: { id: string } }) {
   const router = useRouter();

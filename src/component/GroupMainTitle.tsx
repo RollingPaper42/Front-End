@@ -1,8 +1,9 @@
-import { headlineFont } from '@/recoil/font';
-import { observeState } from '@/recoil/observe';
-import { themeObj, themeState } from '@/recoil/theme';
 import { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
+
+import { headlineFont } from '@/recoil/font';
+import { observeState } from '@/recoil/observe';
+import { themeObj, themeState } from '@/recoil/theme/theme';
 
 interface Props {
   isAdd: boolean;

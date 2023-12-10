@@ -1,9 +1,10 @@
-import { drawerState } from '@/recoil/drawer';
-import { usePathname, useRouter } from 'next/navigation';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
+
 import { Check } from '../Icon/Drawer';
+import { drawerState } from '@/recoil/drawer';
+import { themeState } from '@/recoil/theme/theme';
 import { drawerBoard } from '@/types/drawerBoard';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface Props {
   list: drawerBoard[];

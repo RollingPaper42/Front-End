@@ -1,10 +1,11 @@
 'use client';
 
-import Image from 'next/image';
-import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
+
 import HeaderLayout from '@/component/HeaderLayout';
 import { captionFont, titleFont } from '@/recoil/font';
+import { themeState } from '@/recoil/theme/theme';
+import Image from 'next/image';
 
 export default function Login() {
   const [theme] = useRecoilState(themeState);
