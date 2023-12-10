@@ -11,11 +11,11 @@ interface props {
   content: content;
   observe: observeContent;
   setObserve: Dispatch<SetStateAction<observeContent>>;
+  theme: themeState;
 }
 
-const ObserveContent = ({ content, observe, setObserve }: props) => {
+const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
-  const [theme] = useRecoilState(themeState);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
