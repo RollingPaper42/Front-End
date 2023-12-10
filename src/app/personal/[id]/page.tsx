@@ -84,6 +84,8 @@ export default function Personal({ params }: { params: { id: string } }) {
           className={`relative w-full py-[24px] text-justify `}
           style={{ paddingBottom: `${windowHeight}px` }}
         >
+          {/* 하이라이팅을 위한 padding top */}
+          <div className="pt-[200px]"></div>
           {board.length ? <StrcatBoard board={board[0]} /> : <Loading />}
           {!isAdd &&
             (isOwner ? (
