@@ -31,7 +31,7 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
       },
       {
         rootMargin: '-30% 0% -70% 0%',
-        threshold: [],
+        threshold: [0],
       },
     );
     if (ref.current) {

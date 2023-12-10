@@ -1,5 +1,6 @@
 'use client';
 
+import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -20,6 +21,7 @@ import { axiosInstance } from '@/utils/axios';
 import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import { useRouter } from 'next/navigation';
 
+require('intersection-observer');
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
   const [isAdd, setIsAdd] = useState<boolean>(false);
@@ -33,8 +35,8 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [isLogin] = useLogin();
 
   useEffect(() => {
-    axiosInstance
-      .get(`/boards/${params.id}`)
+    axios
+      .get(`/api/personal`)
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
