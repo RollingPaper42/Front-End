@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import React from 'react';
-import { useRecoilState } from 'recoil';
 
 import { bodyFont, captionFont } from '@/recoil/font';
 import { themeState } from '@/recoil/theme';
