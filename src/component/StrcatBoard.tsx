@@ -1,21 +1,23 @@
-import { content } from '@/types/content';
-import ObserveContent from './ObserveContent';
 import {
-  forwardRef,
   Dispatch,
   SetStateAction,
+  forwardRef,
+  use,
   useEffect,
   useState,
-  use,
 } from 'react';
 import React from 'react';
 import { useRecoilState } from 'recoil';
+
 import Add from './Add';
-import { observeState } from '@/recoil/observe';
-import { board } from '@/types/boards';
+import ObserveContent from './ObserveContent';
 import ObserveTitle from './ObserveTitle';
 import ShareButton from './ShareButton';
 import { useLogin } from '@/hooks/useLogin';
+import { observeState } from '@/recoil/observe';
+import { board } from '@/types/boards';
+import { content } from '@/types/content';
+
 interface Props {
   board: board;
   isAdd: boolean;
@@ -31,6 +33,7 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
   const [isLogin] = useLogin();
   const [observe, setObserve] = useRecoilState(observeState);
   const [content, setContent] = useState<content[]>([]);
+  const [text, setText] = useState<string>('');
 
   useEffect(() => {
     setContent(board.contents);
@@ -47,6 +50,9 @@ const StrcatBoard = forwardRef<HTMLDivElement, Props>(function StrcatBoard(
   return (
     <div ref={ref} className={` h-auto min-h-[424px] break-all  px-[24px] `}>
       <ObserveTitle isAdd={isAdd} board={board} />
+      <div className="text-strcat-gray3 text-[16px]">
+        {content.length}개의 마음이 {text.length}자 이어졌어요!
+      </div>
       <div className={`z-0 inline`}>
         {content &&
           content.map((content: content) => {

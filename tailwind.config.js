@@ -19,6 +19,7 @@ module.exports = {
         'strcat-cyan': '#6CD8ED',
         'strcat-buttonColor': '#8F38FF',
         'strcat-error': '#FF0000',
+        'strcat-gray3': '#666666',
 
         'strcat-default-yellow': '#FBFF36',
         'strcat-default-cyan': '#6CD8ED',
