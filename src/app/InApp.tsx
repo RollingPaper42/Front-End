@@ -49,8 +49,8 @@ export default function InApp() {
           'width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui';
         document.getElementsByTagName('head')[0].appendChild(mobile);
         document.body.innerHTML =
-          "<style>body{margin:0;padding:0;font-family: 'Noto Sans KR', sans-serif;overflow: hidden;height: 100%;}</style>\
-            <h2 style='padding-top:50px; text-align:center;font-family: 'Noto Sans KR', sans-serif;'>인앱브라우저 호환문제로 인해<br />\
+          "<style>body{margin:0;padding:0;font-family: 'Pretendard', sans-serif;overflow: hidden;height: 100%;}</style>\
+            <h2 style='padding-top:50px; text-align:center;font-family: 'Pretendard', sans-serif;'>인앱브라우저 호환문제로 인해<br />\
             Safari로 접속해야합니다.</h2>\
             <article style='text-align:center; font-size:17px; word-break:keep-all;color:#999;'>아래 버튼을 눌러 Safari를 실행해주세요<br />\
             Safari가 열리면, 주소창을 길게 터치한 뒤,<br />'붙여놓기 및 이동'을 누르면<br />정상적으로 이용할 수 있습니다.<br />\

@@ -21,7 +21,7 @@ export default function RootLayout({
         <link rel="icon" href="/Favicon.png"></link>
       </head>
       <body className="h-full overscroll-none">
-        <div className="m-auto h-full max-w-md font-sans">
+        <div className="m-auto h-full max-w-md font-pretentdard">
           <InApp />
           <RecoilRoot>
             <AxiosInterceptor />
