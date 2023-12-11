@@ -18,8 +18,12 @@ module.exports = {
         'strcat-yellow': '#FBFF36',
         'strcat-cyan': '#6CD8ED',
         'strcat-buttonColor': '#8F38FF',
+        'strcat-gray': '#BCBCBC',
+        'strcat-gray2': '#4D4D4D',
         'strcat-error': '#FF0000',
-
+        'strcat-sub': '#9D9D8C',
+        'strcat-white2': '#E9E9E9',
+        'strcat-bright-yellow': '#FDFFB0',
         'strcat-default-yellow': '#FBFF36',
         'strcat-default-cyan': '#6CD8ED',
         'strcat-default-green': '#7CED43',
@@ -57,9 +61,16 @@ module.exports = {
           '0%': { transform: 'translateX(20px)' },
           '100%': { transform: 'translateX(0)' },
         },
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '20%': { opacity: 0.5 },
+          '80%': { opacity: 0.5 },
+          '100%': { opacity: 0 },
+        },
       },
       animation: {
         slide: 'slide 0.7s linear',
+        fadeIn: 'fadeIn 2s ease-in-out',
       },
       fontSize: {
         'headline-size1': ['26px'],
@@ -82,6 +93,12 @@ module.exports = {
         16: 1.6,
         15: 1.5,
         14: 1.4,
+      },
+      zIndex: {
+        writer: 5,
+        button: 10,
+        drawer: 30,
+        modal: 99,
       },
     },
     fontFamily: {

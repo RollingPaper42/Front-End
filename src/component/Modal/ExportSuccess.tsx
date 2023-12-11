@@ -1,7 +1,7 @@
-import { titleFont } from '@/recoil/font';
 import BottomButton from '../BottomButton';
 import ModalClose from '../Icon/ModalClose';
 import ShareModal from '../Icon/ShareModal';
+import { titleFont } from '@/recoil/font';
 
 interface Props {
   content: string;
@@ -25,6 +25,7 @@ export default function ExportSuccess({ content, handleModalClose }: Props) {
         </p>
         <div className="absolute bottom-[16px] left-0 flex w-full justify-between px-[16px]">
           <BottomButton
+            textColor=""
             height="h-[42px]"
             color="bg-[#6CD8ED]"
             name="확인"

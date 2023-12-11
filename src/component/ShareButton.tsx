@@ -1,9 +1,10 @@
-import { handleShare } from '@/utils/handleShare';
-import Share from './Icon/Share';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
+
+import Share from './Icon/Share';
 import useModal from '@/hooks/useModal';
 import { bodyFont } from '@/recoil/font';
+import { themeState } from '@/recoil/theme/theme';
+import { handleShare } from '@/utils/handleShare';
 
 interface Props {
   params: string;

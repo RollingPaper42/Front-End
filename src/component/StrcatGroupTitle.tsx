@@ -1,7 +1,7 @@
-import { themeObj } from '@/recoil/theme';
-import { board } from '@/types/boards';
 import Strcat from './Icon/Strcat';
 import { titleFont } from '@/recoil/font';
+import { themeObj } from '@/recoil/theme/theme';
+import { board } from '@/types/boards';
 
 interface Props {
   board: board;

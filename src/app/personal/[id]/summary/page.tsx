@@ -1,17 +1,18 @@
 'use client';
 
-import { themeObj, themeState } from '@/recoil/theme';
-import { useRecoilState } from 'recoil';
-import { axiosInstance } from '@/utils/axios';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { handleShare } from '@/utils/handleShare';
-import LongCat from '@/component/Icon/LongCat';
+import { useRecoilState } from 'recoil';
+
 import BottomButton from '@/component/BottomButton';
-import SummaryBoard from '@/component/SummaryBoard';
 import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
+import LongCat from '@/component/Icon/LongCat';
+import SummaryBoard from '@/component/SummaryBoard';
 import useModal from '@/hooks/useModal';
 import { titleFont } from '@/recoil/font';
+import { themeObj, themeState } from '@/recoil/theme/theme';
+import { axiosInstance } from '@/utils/axios';
+import { handleShare } from '@/utils/handleShare';
+import { useRouter } from 'next/navigation';
 
 export default function Summary({ params }: { params: { id: string } }) {
   const router = useRouter();
@@ -73,6 +74,7 @@ export default function Summary({ params }: { params: { id: string } }) {
       </div>
       <div className="fixed bottom-[24px] flex w-full max-w-md items-center justify-center px-[24px]">
         <BottomButton
+          textColor=""
           height="h-[42px]"
           name="공유하기"
           width="w-full"

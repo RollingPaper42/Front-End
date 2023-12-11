@@ -1,22 +1,23 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { exportThemeButton, exportThemeEnum } from '@/types/export';
-import { axiosInstance } from '@/utils/axios';
-import html2canvas from 'html2canvas';
 import saveAs from 'file-saver';
+import html2canvas from 'html2canvas';
+import { useEffect, useRef, useState } from 'react';
+import { useRecoilState } from 'recoil';
+
 import BottomButton from '@/component/BottomButton';
+import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
+import Error from '@/component/Modal/Error';
 import ExportSuccess from '@/component/Modal/ExportSuccess';
 import ExportBoard from '@/component/export/ExportBoard';
 import ExportTheme from '@/component/export/ExportTheme';
 import useModal from '@/hooks/useModal';
-import Error from '@/component/Modal/Error';
-import { board } from '@/types/boards';
-import { useRecoilState } from 'recoil';
-import { themeObj, themeState } from '@/recoil/theme';
-import { useRouter } from 'next/navigation';
-import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 import { titleFont } from '@/recoil/font';
+import { themeObj, themeState } from '@/recoil/theme/theme';
+import { board } from '@/types/boards';
+import { exportThemeButton, exportThemeEnum } from '@/types/export';
+import { axiosInstance } from '@/utils/axios';
+import { useRouter } from 'next/navigation';
 
 export default function Export({ params }: { params: { id: string } }) {
   const [openModal, closeModal] = useModal();
@@ -107,6 +108,7 @@ export default function Export({ params }: { params: { id: string } }) {
           ))}
         </div>
         <BottomButton
+          textColor=""
           height="h-[42px]"
           color={theme.bgTheme.rightCTA}
           name="저장하기"

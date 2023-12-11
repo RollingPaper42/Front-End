@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 
 import PreviewPhoto from './PreviewPhoto';
 import { titleFont } from '@/recoil/font';
-import { themeState } from '@/recoil/theme';
+import { themeState } from '@/recoil/theme/theme';
 import Image from 'next/image';
 
 interface Props {

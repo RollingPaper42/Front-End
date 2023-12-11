@@ -140,7 +140,7 @@ export default function Add({
           ? '20자 이상 내용을 입력해주세요'
           : `${text.length}/1000자`}
       </div>
-      <div className="sticky bottom-[88px] z-10 mt-[24px] flex w-full items-center justify-center">
+      <div className="sticky bottom-[88px] z-button mt-[24px] flex w-full items-center justify-center">
         <div className="flex w-full items-center justify-between px-[16px]">
           <div className="flex flex-row">
             <div
@@ -174,9 +174,10 @@ export default function Add({
           </div>
         </div>
       </div>
-      <div className="fixed bottom-5 left-0 z-10 flex w-full items-center justify-center">
+      <div className="fixed bottom-5 left-0 z-button flex w-full items-center justify-center">
         <div className="flex w-full max-w-md flex-row px-[24px]">
           <BottomButton
+            textColor=""
             height="h-[42px]"
             color="bg-white"
             name="취소"
@@ -186,6 +187,7 @@ export default function Add({
           />
           <PhotoUpload setImage={setImage} />
           <BottomButton
+            textColor=""
             height="h-[42px]"
             color={`${theme.bgTheme.rightCTA}`}
             name="완료"

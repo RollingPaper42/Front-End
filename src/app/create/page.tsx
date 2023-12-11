@@ -1,31 +1,30 @@
 'use client';
 
 import { useState } from 'react';
-import useInput from '@/hooks/useInput';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
-import ThemeChange from '@/component/ThemeChange';
-import useModal from '@/hooks/useModal';
-import Confirm from '@/component/Modal/Confirm';
-import { useRouter } from 'next/navigation';
+
 import BottomButton from '@/component/BottomButton';
-import { axiosInstance } from '@/utils/axios';
-import { useSearchParams } from 'next/navigation';
-import Back from '@/component/Icon/Back';
 import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
+import Confirm from '@/component/Modal/Confirm';
+import ThemeChange from '@/component/ThemeChange';
+import useInput from '@/hooks/useInput';
+import useModal from '@/hooks/useModal';
 import { bodyFont, captionFont, titleFont } from '@/recoil/font';
+import { themeState } from '@/recoil/theme/theme';
+import { axiosInstance } from '@/utils/axios';
+import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 export default function Create() {
   const searchParams = useSearchParams();
-  const [Theme] = useRecoilState(themeState);
-  const [buttonState, SetButtonState] = useState(true);
+  const [theme] = useRecoilState(themeState);
   const [title, , handleTitle] = useInput('');
   const [openModal, closeModal] = useModal();
   const router = useRouter();
   const groupId = searchParams.get('groupId');
   const maxLength = 30;
 
-  const handleConfirm = async () => {
+  const handleConfirm = () => {
     openModal(
       <Confirm
         content="여기서 완료하면 더이상 내용을 수정할 수 없습니다. 완료하시겠습니까?"
@@ -38,7 +37,7 @@ export default function Create() {
   const handleClick = () => {
     const data = {
       groupId: groupId,
-      theme: Theme.name,
+      theme: theme.name,
       title: `\/\/${title}`,
     };
     axiosInstance
@@ -56,9 +55,9 @@ export default function Create() {
   };
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const TextAreaTitle = e.currentTarget.value;
+    const textAreaTitle = e.currentTarget.value;
     const textarea: HTMLTextAreaElement = e.target;
-    const byteLength = new TextEncoder().encode(TextAreaTitle).length;
+    const byteLength = new TextEncoder().encode(textAreaTitle).length;
     textarea.style.height = 'auto';
     textarea.style.height = `${textarea.scrollHeight}px`;
 
@@ -67,22 +66,14 @@ export default function Create() {
     }
   };
 
-  const handleKeyDownTitle = (
-    e: React.KeyboardEvent<HTMLTextAreaElement>,
-    title: string,
-  ) => {
-    SetButtonState(false);
-    if (title.length == 0) SetButtonState(true);
+  const handleKeyDownTitle = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-    }
-    if (title.length >= 30) {
-      SetButtonState(true);
     }
   };
 
   return (
-    <div className={`${Theme.bgTheme.background} h-full w-full`}>
+    <div className={`${theme.bgTheme.background} h-full w-full`}>
       <div className="flex h-full w-full flex-col">
         <div className="basis-1/12">
           <BackButtonHeader
@@ -96,17 +87,17 @@ export default function Create() {
               id="titleMessage"
               rows={1}
               value={title}
-              className={` w-full resize-none ${Theme.bgTheme.background} ${titleFont.category1} ${Theme.textTheme.default} outline-none ${Theme.textTheme.placeholder}`}
+              className={` w-full resize-none ${theme.bgTheme.background} ${titleFont.category1} ${theme.textTheme.default} outline-none ${theme.textTheme.placeholder}`}
               placeholder="제목을 입력해주세요."
               maxLength={maxLength}
               onChange={(e) => handleChangeTitle(e)}
-              onKeyDown={(e) => handleKeyDownTitle(e, title)}
+              onKeyDown={(e) => handleKeyDownTitle(e)}
             />
             <div
               className={`w-full text-right ${captionFont.category2}  ${
                 title.length > maxLength
                   ? 'text-red-600'
-                  : `${Theme.textTheme.default}`
+                  : `${theme.textTheme.default}`
               }`}
             >
               {title.length}/30
@@ -115,10 +106,10 @@ export default function Create() {
         </div>
         <div className="mx-[24px] mt-[24px] basis-5/12">
           <div
-            className={`inline ${bodyFont.category1} ${Theme.textTheme.highlight}`}
+            className={`inline ${bodyFont.category1} ${theme.textTheme.highlight}`}
           ></div>
           <div
-            className={`inline ${bodyFont.category1} ${Theme.textTheme.default}`}
+            className={`inline ${bodyFont.category1} ${theme.textTheme.default}`}
           >
             스트링캣을 생성하면 이곳에 문자열을 이을 수 있어요.
           </div>
@@ -129,12 +120,13 @@ export default function Create() {
         <div className="basis-2/12" />
         <div className="fixed bottom-5 flex w-full max-w-md items-center justify-center px-[24px]">
           <BottomButton
+            textColor=""
             height="h-[42px]"
             name="완료"
             width="w-full"
             onClickHandler={() => handleConfirm()}
-            disabled={buttonState}
-            color={Theme.bgTheme.rightCTA}
+            disabled={title === '' || title.length > 30}
+            color={theme.bgTheme.rightCTA}
           />
         </div>
       </div>

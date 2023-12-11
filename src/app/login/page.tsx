@@ -1,10 +1,11 @@
 'use client';
 
-import Image from 'next/image';
-import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
+
 import HeaderLayout from '@/component/HeaderLayout';
 import { captionFont, titleFont } from '@/recoil/font';
+import { themeState } from '@/recoil/theme/theme';
+import Image from 'next/image';
 
 export default function Login() {
   const [theme] = useRecoilState(themeState);
@@ -40,7 +41,7 @@ export default function Login() {
                 width={48}
                 height={48}
                 alt="kakao"
-                className="relative bottom-1 z-10"
+                className="relative bottom-1 z-button"
               />
               <div
                 className={`absolute top-[3px] h-[39px] w-full bg-login-button-kakao`}
@@ -65,7 +66,7 @@ export default function Login() {
                 width={48}
                 height={48}
                 alt="google"
-                className="relative bottom-1 z-10"
+                className="relative bottom-1 z-button"
               />
               <div
                 className={`absolute top-[3px] h-[39px] w-full bg-login-button-google`}
