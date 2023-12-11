@@ -51,9 +51,7 @@ export default function Textarea({
       />
       <div
         className={` text-right text-[14px] mb-[16px] basis-1/6 mx-[16px]  ${
-          text.length >= maxLength + 1
-            ? 'text-red-600'
-            : 'text-strcat-textarea-text'
+          text.length > maxLength ? 'text-red-600' : 'text-strcat-textarea-text'
         }`}
       >
         {text.length}/{maxLength}
