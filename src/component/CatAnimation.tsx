@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
 
-import { catAnimationState } from '@/recoil/catAnimation';
+import { catAnimationState } from '@/recoil/theme/catAnimation';
 import Image from 'next/image';
 
 export default function CatAnimation() {

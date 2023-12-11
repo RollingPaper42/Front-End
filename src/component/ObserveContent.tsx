@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import React from 'react';
 
 import { bodyFont, captionFont } from '@/recoil/font';
-import { themeState } from '@/recoil/theme';
+import { themeState } from '@/recoil/state';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
 
@@ -58,10 +58,10 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
       </div>
       {observe.contentId === content.id && (
         <div
-          className={`${theme.bgTheme.writerContainer} absolute text-right right-[22px] z-10 mt-[1px] animate-slide pl-[2px] ${captionFont.category1} text-white opacity-100`}
+          className={`${theme.bgTheme.writerContainer} absolute text-right right-[22px] z-writer mt-[1px] animate-slide pl-[2px] ${captionFont.category1} text-white opacity-100`}
         >
           <div
-            className={`${theme.bgTheme.writerContainer} relative top-[-3px] z-20 w-full whitespace-pre-wrap ${captionFont.category1}`}
+            className={`${theme.bgTheme.writerContainer} relative top-[-3px] z-writer w-full whitespace-pre-wrap ${captionFont.category1}`}
           >
             <div
               className={`relative top-[3px] ${theme.textTheme.writer}`}

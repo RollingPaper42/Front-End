@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { useRecoilState } from 'recoil';
-import { observeState } from '@/recoil/observe';
 import React from 'react';
-import { board } from '@/types/boards';
-import { themeObj, themeState } from '@/recoil/theme';
+import { useRecoilState } from 'recoil';
+
 import { titleFont } from '@/recoil/font';
+import { observeState } from '@/recoil/observe';
+import { themeObj, themeState } from '@/recoil/theme/theme';
+import { board } from '@/types/boards';
+
 interface Props {
   board: board;
   isAdd: boolean;

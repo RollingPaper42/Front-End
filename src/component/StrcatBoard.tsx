@@ -3,7 +3,7 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 
 import ObserveContent from './ObserveContent';
-import { themeState } from '@/recoil/theme';
+import { themeState } from '@/recoil/state';
 import { board } from '@/types/boards';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';

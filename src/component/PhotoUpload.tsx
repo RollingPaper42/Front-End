@@ -1,10 +1,11 @@
+import imageCompression from 'browser-image-compression';
 import React, { Dispatch, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
-import Image from 'next/image';
-import imageCompression from 'browser-image-compression';
+
 import PreviewPhoto from './PreviewPhoto';
 import { titleFont } from '@/recoil/font';
+import { themeState } from '@/recoil/theme/theme';
+import Image from 'next/image';
 
 interface Props {
   setImage: Dispatch<React.SetStateAction<File | null>>;

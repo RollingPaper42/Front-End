@@ -1,7 +1,8 @@
-import { catAnimationState } from '@/recoil/catAnimation';
-import { themeState } from '@/recoil/theme';
-import { catAnimationDetail } from '@/types/animation';
 import { useRecoilState } from 'recoil';
+
+import { catAnimationState } from '@/recoil/theme/catAnimation';
+import { themeState } from '@/recoil/theme/theme';
+import { catAnimationDetail } from '@/types/animation';
 
 export const useCat = (): [
   (element: string, catAction: string, second: number, theme: string) => void,

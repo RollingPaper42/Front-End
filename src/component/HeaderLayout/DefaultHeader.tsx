@@ -1,12 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useLogin } from '@/hooks/useLogin';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 import { useRecoilState } from 'recoil';
-import { drawerState, themeState } from '@/recoil/state';
+
 import { HeaderProfileCat, LogoCat, LogoText, Outline } from '../Icon/Header';
+import { useLogin } from '@/hooks/useLogin';
+import { drawerState, themeState } from '@/recoil/state';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function DefaultHeader() {
   const [isLogin, checkLogin] = useLogin();
@@ -30,7 +31,7 @@ export default function DefaultHeader() {
   }, [pathName]);
 
   return (
-    <div className="fixed top-0 z-10 w-full max-w-md">
+    <div className="fixed top-0 z-button w-full max-w-md">
       <div
         className={`flex h-[56px] flex-row items-center justify-between ${theme.bgTheme.background} px-[24px]`}
         id="catHeader"

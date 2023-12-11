@@ -1,19 +1,5 @@
 import { atom } from 'recoil';
-import {
-  calmCat,
-  catThemeState,
-  cyanCat,
-  greenCat,
-  strcatCat,
-} from './catTheme';
-import { bgThemeState, calmBg, cyanBg, greenBg, strcatBg } from './bgTheme';
-import {
-  textThemeState,
-  strcatText,
-  calmText,
-  greenText,
-  cyanText,
-} from './textTheme';
+
 import {
   calmIcon,
   cyanIcon,
@@ -21,6 +7,21 @@ import {
   iconThemeState,
   strcatIcon,
 } from './IconTheme';
+import { bgThemeState, calmBg, cyanBg, greenBg, strcatBg } from './bgTheme';
+import {
+  calmCat,
+  catThemeState,
+  cyanCat,
+  greenCat,
+  strcatCat,
+} from './catTheme';
+import {
+  calmText,
+  cyanText,
+  greenText,
+  strcatText,
+  textThemeState,
+} from './textTheme';
 
 export interface themeState {
   name: string;

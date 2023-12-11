@@ -1,6 +1,5 @@
 'use client';
 
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -9,7 +8,7 @@ import HeaderLayout from '@/component/HeaderLayout';
 import Loading from '@/component/Loading';
 import StrcatBoard from '@/component/StrcatBoard';
 import { useLogin } from '@/hooks/useLogin';
-import { themeState } from '@/recoil/theme';
+import { themeState } from '@/recoil/state';
 import { board } from '@/types/boards';
 import { axiosInstance } from '@/utils/axios';
 import { useRouter } from 'next/navigation';
@@ -91,7 +90,7 @@ export default function Personal({ params }: { params: { id: string } }) {
             </div>
           ) : (
             <>
-              <div className=" fixed bottom-5 left-0 z-20 flex w-full items-center justify-center">
+              <div className=" fixed bottom-5 left-0 z-button flex w-full items-center justify-center">
                 <div className="flex w-full max-w-md items-center justify-center px-[24px] ">
                   <BottomButton
                     name="나도 만들기"
