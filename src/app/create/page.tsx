@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import BottomButton from '@/component/BottomButton';
@@ -75,12 +74,7 @@ export default function Create() {
   return (
     <div className={`${theme.bgTheme.background} h-full w-full`}>
       <div className="flex h-full w-full flex-col">
-        <div className="basis-1/12">
-          <BackButtonHeader
-            title="스트링캣 만들기"
-            backClickHandler={() => router.back()}
-          />
-        </div>
+        <div className="basis-1/12" />
         <div className="basis-2/12">
           <div className="mt-10 flex w-full basis-3/12 flex-col items-center justify-center px-[24px]">
             <textarea
