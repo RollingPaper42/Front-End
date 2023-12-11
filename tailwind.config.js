@@ -84,6 +84,7 @@ module.exports = {
         14: 1.4,
       },
       zIndex: {
+        writer: 5,
         button: 10,
         drawer: 30,
         modal: 99,
