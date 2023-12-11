@@ -39,6 +39,7 @@ export default function Add({
   useEffect(() => {
     setTheme(themeObj[boardTheme]);
   }, []);
+
   if (id === null || id === undefined) {
     alert('유효하지 않은 접속입니다.');
     router.push('/');
