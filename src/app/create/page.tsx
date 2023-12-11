@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import BottomButton from '@/component/BottomButton';
@@ -7,7 +8,6 @@ import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 import Confirm from '@/component/Modal/Confirm';
 import Textarea from '@/component/Textarea';
 import ThemeChange from '@/component/ThemeChange';
-import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 import { bodyFont } from '@/recoil/font';
 import { themeState } from '@/recoil/theme/theme';
@@ -18,10 +18,10 @@ import { useSearchParams } from 'next/navigation';
 export default function Create() {
   const searchParams = useSearchParams();
   const [theme] = useRecoilState(themeState);
-  const [title, , handleTitle] = useInput('');
   const [openModal, closeModal] = useModal();
   const router = useRouter();
   const groupId = searchParams.get('groupId');
+  const [title, setTitle] = useState('');
 
   const handleConfirm = () => {
     openModal(
@@ -37,7 +37,7 @@ export default function Create() {
     const data = {
       groupId: groupId,
       theme: theme.name,
-      title: `\/\/${title}`,
+      title: `${title}`,
     };
     axiosInstance
       .post(`/boards`, data)
@@ -51,6 +51,9 @@ export default function Create() {
         }
       });
     closeModal();
+  };
+  const handleTitleChange = (newTitle: string) => {
+    setTitle(newTitle);
   };
 
   return (
@@ -70,6 +73,7 @@ export default function Create() {
               placeholder="스트링캣 주제를 입력해주세요."
               textColor="text-white "
               maxLength={25}
+              onTextChange={handleTitleChange}
             />
           </div>
         </div>
