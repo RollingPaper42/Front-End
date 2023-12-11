@@ -48,7 +48,7 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
       ${
         observe.contentId === content.id
           ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} transition-all`
-          : `${theme.textTheme.default} `
+          : `${theme.textTheme.unHighlight}`
       }
     `}
       >
