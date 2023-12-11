@@ -1,5 +1,6 @@
-import { themeState } from '@/recoil/theme';
 import { useRecoilState } from 'recoil';
+
+import { themeState } from '@/recoil/theme/theme';
 
 function LoadingLine({ width, height }: { width: string; height: string }) {
   return (

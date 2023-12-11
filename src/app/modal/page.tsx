@@ -1,13 +1,14 @@
 'use client';
 
+import { useRecoilState } from 'recoil';
+
 import CatAnimation from '@/component/CatAnimation';
 import Error from '@/component/Modal/Error';
 import useModal from '@/hooks/useModal';
-import { catAnimationState } from '@/recoil/catAnimation';
+import { catAnimationState } from '@/recoil/theme/catAnimation';
 import { catAction } from '@/types/animation';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
-import { useRecoilState } from 'recoil';
 
 export default function Modal() {
   const [openModal, closeModal] = useModal();

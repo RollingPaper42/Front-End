@@ -1,23 +1,24 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import StrcatBoard from '@/component/StrcatBoard';
-import BottomButton from '@/component/BottomButton';
-import ContentPhoto from '@/component/ContentPhoto';
 import { useRecoilState } from 'recoil';
-import { themeState } from '@/recoil/theme';
-import { observeState } from '@/recoil/observe';
-import { useRouter } from 'next/navigation';
-import { board } from '@/types/boards';
-import { scrollToAdd, setMap } from '@/utils/scrollTo';
+
+import BottomButton from '@/component/BottomButton';
 import CatAnimation from '@/component/CatAnimation';
-import { catAction } from '@/types/animation';
-import { useCat } from '@/hooks/useCat';
-import { axiosInstance } from '@/utils/axios';
-import { useLogin } from '@/hooks/useLogin';
-import Loading from '@/component/Loading';
+import ContentPhoto from '@/component/ContentPhoto';
 import HeaderLayout from '@/component/HeaderLayout';
+import Loading from '@/component/Loading';
+import StrcatBoard from '@/component/StrcatBoard';
+import { useCat } from '@/hooks/useCat';
+import { useLogin } from '@/hooks/useLogin';
 import { titleFont } from '@/recoil/font';
+import { observeState } from '@/recoil/observe';
+import { themeState } from '@/recoil/theme/theme';
+import { catAction } from '@/types/animation';
+import { board } from '@/types/boards';
+import { axiosInstance } from '@/utils/axios';
+import { scrollToAdd, setMap } from '@/utils/scrollTo';
+import { useRouter } from 'next/navigation';
 
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
@@ -95,7 +96,7 @@ export default function Personal({ params }: { params: { id: string } }) {
           )}
           {!isAdd &&
             (isOwner ? (
-              <div className="fixed bottom-5 left-0 z-20 flex w-full items-center justify-center">
+              <div className="fixed bottom-5 left-0 z-button flex w-full items-center justify-center">
                 <div
                   className="flex w-full max-w-md items-center justify-center px-[24px]"
                   id="strcatCreate"
@@ -128,7 +129,7 @@ export default function Personal({ params }: { params: { id: string } }) {
               </div>
             ) : (
               <>
-                <div className=" fixed bottom-5 left-0 z-20 flex w-full items-center justify-center">
+                <div className=" fixed bottom-5 left-0 z-button flex w-full items-center justify-center">
                   <div
                     className="flex w-full max-w-md items-center justify-center px-[24px] "
                     id="strcatCreate"

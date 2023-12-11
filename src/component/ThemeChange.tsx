@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import {
@@ -8,7 +9,7 @@ import {
   ThemeGreen,
   ThemeStrcat,
 } from '@/component/Icon/Theme';
-import { calm, cyan, green, strcat, themeState } from '@/recoil/theme';
+import { calm, cyan, green, strcat, themeState } from '@/recoil/theme/theme';
 
 export default function ThemeChange() {
   const [Theme, setTheme] = useRecoilState(themeState);

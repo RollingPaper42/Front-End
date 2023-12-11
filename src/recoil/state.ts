@@ -1,9 +1,9 @@
-import { catAnimationState } from './catAnimation';
 import { drawerState } from './drawer';
 import { loginState } from './login';
 import { modalState } from './modal';
 import { observeState } from './observe';
-import { themeState } from './theme';
+import { catAnimationState } from './theme/catAnimation';
+import { themeState } from './theme/theme';
 
 export {
   catAnimationState,
