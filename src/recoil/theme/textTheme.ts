@@ -10,9 +10,9 @@ export interface textThemeState {
 }
 
 export const strcatText: textThemeState = {
-  default: 'text-strcat-default-white',
+  default: 'text-strcat-unhighlighted',
   highlight: 'text-strcat-default-yellow',
-  writer: 'text-strcat-default-black',
+  writer: 'text-strcat-bright-yellow',
   explainLeftCTA: 'text-strcat-default-green',
   explainRightCTA: 'text-strcat-default-cyan',
   title: 'text-strcat-default-white',

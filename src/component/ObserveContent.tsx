@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import React from 'react';
 
-import { bodyFont, captionFont } from '@/recoil/font';
 import { themeState } from '@/recoil/state';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
@@ -43,14 +42,13 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
   }, []);
 
   return (
-    <div>
+    <div ref={ref}>
       <div
-        ref={ref}
-        className={`
+        className={`inline p-[5px] leading-[31px]
       ${
         observe.contentId === content.id
-          ? `${theme.textTheme.highlight} inline w-full ${bodyFont.category1} opacity-100 leading-[160%] transition-all `
-          : `${theme.textTheme.default} inline w-full ${bodyFont.category1} opacity-30  leading-[160%] transition-all `
+          ? `${theme.bgTheme.contentContainer} text-black transition-all font-medium opacity-100`
+          : `${theme.textTheme.default} font-medium opacity-30`
       }
     `}
       >
@@ -58,18 +56,10 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
       </div>
       {observe.contentId === content.id && (
         <div
-          className={`${theme.bgTheme.writerContainer} absolute text-right right-[22px] z-writer mt-[1px] animate-slide pl-[2px] ${captionFont.category1} text-white opacity-100`}
-        >
-          <div
-            className={`${theme.bgTheme.writerContainer} relative top-[-3px] z-writer w-full whitespace-pre-wrap ${captionFont.category1}`}
-          >
-            <div
-              className={`relative top-[3px] ${theme.textTheme.writer}`}
-            >{`From: ${
-              observe.writer.length ? observe.writer : '익명의 스트링캣'
-            } `}</div>
-          </div>
-        </div>
+          className={`text-right animate-slide ${theme.textTheme.writer} text-body-size2`}
+        >{`From: ${
+          observe.writer.length ? observe.writer : '익명의 스트링캣'
+        } `}</div>
       )}
     </div>
   );
