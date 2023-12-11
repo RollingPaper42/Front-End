@@ -44,11 +44,11 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
   return (
     <div ref={ref}>
       <div
-        className={`inline p-[5px] leading-[31px]
+        className={`inline p-[3px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium
       ${
         observe.contentId === content.id
-          ? `${theme.bgTheme.contentContainer} text-black transition-all font-medium opacity-100`
-          : `${theme.textTheme.default} font-medium opacity-30`
+          ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} transition-all`
+          : `${theme.textTheme.default} `
       }
     `}
       >

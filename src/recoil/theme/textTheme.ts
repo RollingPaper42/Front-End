@@ -11,7 +11,7 @@ export interface textThemeState {
 
 export const strcatText: textThemeState = {
   default: 'text-strcat-unhighlighted',
-  highlight: 'text-strcat-default-yellow',
+  highlight: 'text-black',
   writer: 'text-strcat-bright-yellow',
   explainLeftCTA: 'text-strcat-default-green',
   explainRightCTA: 'text-strcat-default-cyan',
