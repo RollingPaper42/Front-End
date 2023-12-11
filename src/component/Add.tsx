@@ -10,7 +10,7 @@ import Error from '@/component/Modal/Error';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 import { bodyFont, captionFont } from '@/recoil/font';
-import { themeObj, themeState } from '@/recoil/theme';
+import { themeObj, themeState } from '@/recoil/theme/theme';
 import { content } from '@/types/content';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
