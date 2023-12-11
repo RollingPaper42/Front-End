@@ -61,9 +61,16 @@ module.exports = {
           '0%': { transform: 'translateX(20px)' },
           '100%': { transform: 'translateX(0)' },
         },
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '20%': { opacity: 0.5 },
+          '80%': { opacity: 0.5 },
+          '100%': { opacity: 0 },
+        },
       },
       animation: {
         slide: 'slide 0.7s linear',
+        fadeIn: 'fadeIn 2s ease-in-out',
       },
       fontSize: {
         'headline-size1': ['26px'],
