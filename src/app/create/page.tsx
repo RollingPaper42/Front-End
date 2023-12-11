@@ -1,15 +1,15 @@
 'use client';
 
-import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import BottomButton from '@/component/BottomButton';
 import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 import Confirm from '@/component/Modal/Confirm';
+import Textarea from '@/component/Textarea';
 import ThemeChange from '@/component/ThemeChange';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
-import { bodyFont, captionFont, titleFont } from '@/recoil/font';
+import { bodyFont } from '@/recoil/font';
 import { themeState } from '@/recoil/theme/theme';
 import { axiosInstance } from '@/utils/axios';
 import { useRouter } from 'next/navigation';
@@ -22,7 +22,6 @@ export default function Create() {
   const [openModal, closeModal] = useModal();
   const router = useRouter();
   const groupId = searchParams.get('groupId');
-  const maxLength = 30;
 
   const handleConfirm = () => {
     openModal(
@@ -54,24 +53,6 @@ export default function Create() {
     closeModal();
   };
 
-  const handleChangeTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const textAreaTitle = e.currentTarget.value;
-    const textarea: HTMLTextAreaElement = e.target;
-    const byteLength = new TextEncoder().encode(textAreaTitle).length;
-    textarea.style.height = 'auto';
-    textarea.style.height = `${textarea.scrollHeight}px`;
-
-    if (byteLength <= 90) {
-      handleTitle(e);
-    }
-  };
-
-  const handleKeyDownTitle = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-    }
-  };
-
   return (
     <div className={`${theme.bgTheme.background} h-full w-full`}>
       <div className="flex h-full w-full flex-col">
@@ -83,25 +64,13 @@ export default function Create() {
         </div>
         <div className="basis-2/12">
           <div className="mt-10 flex w-full basis-3/12 flex-col items-center justify-center px-[24px]">
-            <textarea
-              id="titleMessage"
-              rows={1}
-              value={title}
-              className={` w-full resize-none ${theme.bgTheme.background} ${titleFont.category1} ${theme.textTheme.default} outline-none ${theme.textTheme.placeholder}`}
-              placeholder="제목을 입력해주세요."
-              maxLength={maxLength}
-              onChange={(e) => handleChangeTitle(e)}
-              onKeyDown={(e) => handleKeyDownTitle(e)}
+            <Textarea
+              width="w-[312px]"
+              height="h-[160px]"
+              placeholder="스트링캣 주제를 입력해주세요."
+              textColor="text-white "
+              maxLength={25}
             />
-            <div
-              className={`w-full text-right ${captionFont.category2}  ${
-                title.length > maxLength
-                  ? 'text-red-600'
-                  : `${theme.textTheme.default}`
-              }`}
-            >
-              {title.length}/30
-            </div>
           </div>
         </div>
         <div className="mx-[24px] mt-[24px] basis-5/12">
