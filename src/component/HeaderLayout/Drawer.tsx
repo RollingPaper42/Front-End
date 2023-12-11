@@ -1,14 +1,15 @@
 import { AxiosError } from 'axios';
-import { useRecoilState } from 'recoil';
 import { useCallback, useEffect, useState } from 'react';
-import { themeState, drawerState } from '@/recoil/state';
-import { useLogin } from '@/hooks/useLogin';
-import { axiosInstance } from '@/utils/axios';
-import DrawerItem from './DrawerItem';
-import { handleBackground } from '@/utils/handleBackground';
+import { useRecoilState } from 'recoil';
+
 import { DrawerProfileCat, Logout } from '../Icon/Drawer';
+import DrawerItem from './DrawerItem';
 import DropList from './DropList';
+import { useLogin } from '@/hooks/useLogin';
+import { drawerState, themeState } from '@/recoil/state';
 import { drawerBoard } from '@/types/drawerBoard';
+import { axiosInstance } from '@/utils/axios';
+import { handleBackground } from '@/utils/handleBackground';
 
 export default function Drawer() {
   const [isLogin, , setIsLogin] = useLogin();
@@ -49,7 +50,7 @@ export default function Drawer() {
     drawer &&
     isLogin && (
       <div
-        className="fixed z-30 h-full w-full max-w-md bg-black bg-opacity-40"
+        className="fixed  z-drawer h-full w-full max-w-md bg-black bg-opacity-40"
         onClick={(e) => {
           handleBackground(e, () => setDrawer(false));
           if (e.target === e.currentTarget)

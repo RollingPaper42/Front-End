@@ -1,36 +1,26 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import BottomButton from '@/component/BottomButton';
-import CatAnimation from '@/component/CatAnimation';
-import ContentPhoto from '@/component/ContentPhoto';
 import HeaderLayout from '@/component/HeaderLayout';
 import Loading from '@/component/Loading';
 import StrcatBoard from '@/component/StrcatBoard';
-import { useCat } from '@/hooks/useCat';
 import { useLogin } from '@/hooks/useLogin';
-import { bodyFont } from '@/recoil/font';
-import { observeState } from '@/recoil/observe';
-import { themeState } from '@/recoil/theme';
-import { catAction } from '@/types/animation';
+import { themeState } from '@/recoil/state';
 import { board } from '@/types/boards';
 import { axiosInstance } from '@/utils/axios';
-import { scrollToAdd, setMap } from '@/utils/scrollTo';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
+require('intersection-observer');
 export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
-  const [isAdd, setIsAdd] = useState<boolean>(false);
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [windowHeight, setWindowHeight] = useState(0);
-  const itemsRef = useRef(new Map());
-  const [observe, setObserve] = useRecoilState(observeState);
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
-  const [runCatAnimation] = useCat();
   const [isLogin] = useLogin();
 
   useEffect(() => {
@@ -39,27 +29,15 @@ export default function Personal({ params }: { params: { id: string } }) {
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
-        if (data.data.board.length) setObserve(data.data.board[0]);
       })
       .catch((err) => {
         if (err.response.status === 406) router.push('/not-found');
       });
-    if (window) {
-      setWindowHeight(window.innerHeight);
-    }
+    if (window) setWindowHeight(window.innerHeight);
   }, [params.id]);
 
-  useEffect(() => {
-    if (board.length === 1) {
-      runCatAnimation('catHeader', catAction.out, 1000, board[0].theme);
-      runCatAnimation('strcatCreate', catAction.in, 5000, board[0].theme);
-      runCatAnimation('strcatCreate', catAction.sit, 10000, board[0].theme);
-    }
-  }, [board]);
-
-  const handleClick = () => {
-    setIsAdd(true);
-    scrollToAdd(board[0].id, itemsRef);
+  const handleClickWrite = () => {
+    // 글 작성 페이지로 route push
   };
 
   const handleClickCreate = () => {
@@ -78,91 +56,71 @@ export default function Personal({ params }: { params: { id: string } }) {
     <>
       <div className={` ${theme.bgTheme.background} min-h-full`}>
         <HeaderLayout />
-        <CatAnimation />
-        <div
-          className={`relative w-full py-[24px] text-justify `}
-          style={{ paddingBottom: `${windowHeight}px` }}
-        >
-          {board.length ? (
-            <StrcatBoard
-              board={board[0]}
-              ref={(node) => setMap(node, board[0], itemsRef)}
-              isAdd={isAdd}
-              setIsAdd={setIsAdd}
-              isPersonal={true}
-              paramsId={params.id}
-            />
-          ) : (
-            <Loading />
-          )}
-          {!isAdd &&
-            (isOwner ? (
-              <div className="fixed bottom-5 left-0 z-20 flex w-full items-center justify-center">
-                <div
-                  className="flex w-full max-w-md items-center justify-center px-[24px]"
-                  id="strcatCreate"
-                >
-                  <div className="flex basis-1/12 mx-1 items-center justify-center">
-                    <div
-                      className={`h-[46px] flex rounded w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
-                    >
-                      <Image
-                        src="/Download.svg"
-                        width={24}
-                        height={24}
-                        alt="Download"
-                      />
-                    </div>
+        <div className={`relative w-full py-[24px] text-justify `}>
+          <div className="pt-[200px]"></div>
+          {board.length ? <StrcatBoard board={board[0]} /> : <Loading />}
+          <div style={{ minHeight: `${windowHeight}px` }}></div>
+          {isOwner ? (
+            <div className="fixed bottom-5 left-0 z-20 flex w-full items-center justify-center">
+              <div className="flex w-full max-w-md items-center justify-center px-[24px]">
+                <div className="flex basis-1/12 mx-1 items-center justify-center">
+                  <div
+                    className={`h-[46px] flex rounded w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
+                  >
+                    <Image
+                      src="/Download.svg"
+                      width={24}
+                      height={24}
+                      alt="Download"
+                    />
                   </div>
+                </div>
+                <BottomButton
+                  textColor="text-strcat-bright-yellow"
+                  name="공유하기"
+                  height="h-[46px]"
+                  width="basis-5/12"
+                  onClickHandler={() => router.push(`${params.id}/summary`)}
+                  disabled={false}
+                  color={`${theme.bgTheme.leftCTA}`}
+                />
+                <BottomButton
+                  textColor="text-strcat-bright-yellow"
+                  name="글쓰기"
+                  height="h-[46px]"
+                  width="basis-5/12"
+                  onClickHandler={handleClickWrite}
+                  disabled={false}
+                  color={`${theme.bgTheme.rightCTA}`}
+                />
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className=" fixed bottom-5 left-0 z-20 flex w-full items-center justify-center">
+                <div className="flex w-full max-w-md items-center justify-center px-[24px] ">
                   <BottomButton
-                    textColor="text-strcat-bright-yellow"
-                    name="공유하기"
+                    textColor=" text-strcat-white2"
+                    name="나도 만들기"
+                    width="basis-1/3"
                     height="h-[46px]"
-                    width="basis-5/12"
-                    onClickHandler={() => router.push(`${params.id}/summary`)}
+                    onClickHandler={handleClickCreate}
                     disabled={false}
                     color={`${theme.bgTheme.leftCTA}`}
                   />
                   <BottomButton
-                    textColor="text-strcat-bright-yellow"
+                    textColor=" text-strcat-bright-yellow"
                     name="글쓰기"
+                    width="basis-2/3"
                     height="h-[46px]"
-                    width="basis-5/12"
-                    onClickHandler={handleClick}
-                    disabled={!observe.boardId}
+                    onClickHandler={handleClickWrite}
+                    disabled={false}
                     color={`${theme.bgTheme.rightCTA}`}
                   />
                 </div>
               </div>
-            ) : (
-              <>
-                <div className=" fixed bottom-5 left-0 z-20 flex w-full items-center justify-center">
-                  <div
-                    className="flex w-full max-w-md items-center justify-center px-[24px] "
-                    id="strcatCreate"
-                  >
-                    <button
-                      className={`mx-2 rounded h-[46px] w-full basis-1/3 ${theme.bgTheme.leftCTA} ${bodyFont.category2}`}
-                      onClick={handleClickCreate}
-                    >
-                      <p className="font-bold text-strcat-white2">
-                        나도 만들기
-                      </p>
-                    </button>
-                    <BottomButton
-                      textColor=" text-strcat-bright-yellow"
-                      name="글쓰기"
-                      width="basis-2/3"
-                      height="h-[46px]"
-                      onClickHandler={handleClick}
-                      disabled={!observe.boardId}
-                      color={`${theme.bgTheme.rightCTA}`}
-                    />
-                  </div>
-                </div>
-              </>
-            ))}
-          {!isAdd && <ContentPhoto />}
+            </>
+          )}
         </div>
       </div>
     </>

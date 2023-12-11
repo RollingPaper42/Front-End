@@ -1,10 +1,10 @@
-import { content } from '@/types/content';
 import Default from './Default';
-import Writer from './Writer';
 import LineBreak from './LineBreak';
-import { exportThemeEnum } from '@/types/export';
-import { themeObj } from '@/recoil/theme';
+import Writer from './Writer';
 import { bodyFont, titleFont } from '@/recoil/font';
+import { themeObj } from '@/recoil/theme/theme';
+import { content } from '@/types/content';
+import { exportThemeEnum } from '@/types/export';
 
 interface Props {
   title: string;
