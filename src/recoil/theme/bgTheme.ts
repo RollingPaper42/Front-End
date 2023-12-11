@@ -9,8 +9,8 @@ export interface bgThemeState {
 export const strcatBg: bgThemeState = {
   background: 'bg-strcat-default-black',
   writerContainer: 'bg-strcat-default-yellow',
-  rightCTA: 'bg-strcat-default-cyan',
-  leftCTA: 'bg-strcat-default-green',
+  rightCTA: 'bg-strcat-sub',
+  leftCTA: 'bg-strcat-gray2',
   activeDropItem: 'bg-strcat-default-yellow',
 };
 

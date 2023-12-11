@@ -176,6 +176,7 @@ export default function Add({
       <div className="fixed bottom-5 left-0 z-button flex w-full items-center justify-center">
         <div className="flex w-full max-w-md flex-row px-[24px]">
           <BottomButton
+            textColor=""
             height="h-[42px]"
             color="bg-white"
             name="취소"
@@ -185,6 +186,7 @@ export default function Add({
           />
           <PhotoUpload setImage={setImage} />
           <BottomButton
+            textColor=""
             height="h-[42px]"
             color={`${theme.bgTheme.rightCTA}`}
             name="완료"

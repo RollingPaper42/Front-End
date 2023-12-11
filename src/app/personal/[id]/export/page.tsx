@@ -108,6 +108,7 @@ export default function Export({ params }: { params: { id: string } }) {
           ))}
         </div>
         <BottomButton
+          textColor=""
           height="h-[42px]"
           color={theme.bgTheme.rightCTA}
           name="저장하기"

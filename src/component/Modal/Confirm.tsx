@@ -1,6 +1,6 @@
-import BottomButton from '@/component/BottomButton';
-import ModalClose from '../Icon/ModalClose';
 import ModalBackground from '../Icon/ModalBackground';
+import ModalClose from '../Icon/ModalClose';
+import BottomButton from '@/component/BottomButton';
 import { titleFont } from '@/recoil/font';
 
 interface Props {
@@ -28,6 +28,7 @@ export default function Confirm({ content, yes, no }: Props) {
         </div>
         <div className="absolute bottom-[16px] left-0 flex w-full justify-between px-[16px]">
           <BottomButton
+            textColor=""
             height="h-[42px]"
             color="bg-[#A6A6A6]"
             name="아니요"
@@ -36,6 +37,7 @@ export default function Confirm({ content, yes, no }: Props) {
             disabled={false}
           />
           <BottomButton
+            textColor=""
             height="h-[42px]"
             color="bg-[#7CED43]"
             name="예"

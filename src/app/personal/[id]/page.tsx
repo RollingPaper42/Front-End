@@ -11,6 +11,7 @@ import { useLogin } from '@/hooks/useLogin';
 import { themeState } from '@/recoil/state';
 import { board } from '@/types/boards';
 import { axiosInstance } from '@/utils/axios';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 require('intersection-observer');
@@ -58,30 +59,36 @@ export default function Personal({ params }: { params: { id: string } }) {
         <div className={`relative w-full py-[24px] text-justify `}>
           <div className="pt-[200px]"></div>
           {board.length ? <StrcatBoard board={board[0]} /> : <Loading />}
-          <div style={{ minHeight: `${windowHeight / 2}px` }}></div>
+          <div style={{ minHeight: `${windowHeight}px` }}></div>
           {isOwner ? (
             <div className="fixed bottom-5 left-0 z-20 flex w-full items-center justify-center">
               <div className="flex w-full max-w-md items-center justify-center px-[24px]">
+                <div className="flex basis-1/12 mx-1 items-center justify-center">
+                  <div
+                    className={`h-[46px] flex rounded w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
+                  >
+                    <Image
+                      src="/Download.svg"
+                      width={24}
+                      height={24}
+                      alt="Download"
+                    />
+                  </div>
+                </div>
                 <BottomButton
-                  height="h-[42px]"
-                  name="저장"
-                  width="basis-1/5"
-                  onClickHandler={() => router.push(`${params.id}/export`)}
-                  disabled={false}
-                  color={`bg-white`}
-                />
-                <BottomButton
-                  name="공유"
-                  height="h-[42px]"
-                  width="basis-1/5"
+                  textColor="text-strcat-bright-yellow"
+                  name="공유하기"
+                  height="h-[46px]"
+                  width="basis-5/12"
                   onClickHandler={() => router.push(`${params.id}/summary`)}
                   disabled={false}
                   color={`${theme.bgTheme.leftCTA}`}
                 />
                 <BottomButton
+                  textColor="text-strcat-bright-yellow"
                   name="글쓰기"
-                  height="h-[42px]"
-                  width="basis-3/5"
+                  height="h-[46px]"
+                  width="basis-5/12"
                   onClickHandler={handleClickWrite}
                   disabled={false}
                   color={`${theme.bgTheme.rightCTA}`}
@@ -90,20 +97,22 @@ export default function Personal({ params }: { params: { id: string } }) {
             </div>
           ) : (
             <>
-              <div className=" fixed bottom-5 left-0 z-button flex w-full items-center justify-center">
+              <div className=" fixed bottom-5 left-0 z-20 flex w-full items-center justify-center">
                 <div className="flex w-full max-w-md items-center justify-center px-[24px] ">
                   <BottomButton
+                    textColor=" text-strcat-white2"
                     name="나도 만들기"
-                    width="basis-1/2"
-                    height="h-[42px]"
+                    width="basis-1/3"
+                    height="h-[46px]"
                     onClickHandler={handleClickCreate}
                     disabled={false}
                     color={`${theme.bgTheme.leftCTA}`}
                   />
                   <BottomButton
+                    textColor=" text-strcat-bright-yellow"
                     name="글쓰기"
-                    width="basis-1/2"
-                    height="h-[42px]"
+                    width="basis-2/3"
+                    height="h-[46px]"
                     onClickHandler={handleClickWrite}
                     disabled={false}
                     color={`${theme.bgTheme.rightCTA}`}
