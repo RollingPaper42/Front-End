@@ -22,8 +22,8 @@ export default function RootLayout({
       </head>
       <body className="h-full overscroll-none">
         <div className="m-auto h-full max-w-md font-sans">
+          <InApp />
           <RecoilRoot>
-            <InApp />
             <AxiosInterceptor />
             <Modal />
             {children}
