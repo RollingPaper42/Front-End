@@ -33,7 +33,7 @@ const StrcatBoard = ({ board }: Props) => {
   }, [board]);
 
   return (
-    <div className={` h-auto break-all px-[24px]`}>
+    <div className={` h-auto break-all px-[24px] text-justify`}>
       {content &&
         content.map((content: content) => {
           return (
