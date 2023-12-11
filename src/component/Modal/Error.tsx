@@ -1,7 +1,7 @@
-import ModalErrorBackground from '../Icon/ModalErrorBackground';
 import BottomButton from '../BottomButton';
-import ModalClose from '../Icon/ModalClose';
 import ModalBackground from '../Icon/ModalBackground';
+import ModalClose from '../Icon/ModalClose';
+import ModalErrorBackground from '../Icon/ModalErrorBackground';
 import { titleFont } from '@/recoil/font';
 
 interface Props {
@@ -34,6 +34,7 @@ export default function Error({ content, handleModalClose }: Props) {
             </p>
             <div className="absolute bottom-[16px] left-0 flex w-full justify-between px-[16px]">
               <BottomButton
+                textColor=""
                 height="42px"
                 color="bg-[#6CD8ED]"
                 name="돌아가기"
@@ -65,6 +66,7 @@ export default function Error({ content, handleModalClose }: Props) {
             </div>
             <div className=" bottom-2 flex w-[280px] items-center justify-center">
               <BottomButton
+                textColor=""
                 height="42px"
                 color="bg-[#6CD8ED]"
                 name="돌아가기"

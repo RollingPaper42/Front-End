@@ -130,6 +130,7 @@ export default function Create() {
         <div className="basis-2/12" />
         <div className="fixed bottom-5 flex w-full max-w-md items-center justify-center px-[24px]">
           <BottomButton
+            textColor=""
             height="h-[42px]"
             name="완료"
             width="w-full"

@@ -74,6 +74,7 @@ export default function Summary({ params }: { params: { id: string } }) {
       </div>
       <div className="fixed bottom-[24px] flex w-full max-w-md items-center justify-center px-[24px]">
         <BottomButton
+          textColor=""
           height="h-[42px]"
           name="공유하기"
           width="w-full"
