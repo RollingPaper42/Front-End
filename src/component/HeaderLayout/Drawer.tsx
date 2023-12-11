@@ -22,18 +22,16 @@ export default function Drawer() {
   const catTheme = theme.catTheme;
 
   const fetchData = useCallback(async () => {
-    if (isLogin) {
-      try {
-        const personal = await axiosInstance.get('/users/boards');
-        setPersonalList(personal.data);
-        const group = await axiosInstance.get('/users/board-groups');
-        setGroupList(group.data);
-      } catch (err) {
-        const error = err as AxiosError;
-        console.log(error);
-      }
+    try {
+      const personal = await axiosInstance.get('/users/boards');
+      setPersonalList(personal.data);
+      const group = await axiosInstance.get('/users/board-groups');
+      setGroupList(group.data);
+    } catch (err) {
+      const error = err as AxiosError;
+      console.log(error);
     }
-  }, [isLogin, setPersonalList, setGroupList]);
+  }, [setPersonalList, setGroupList]);
 
   const handleLogout = () => {
     setDrawer(false);
@@ -47,8 +45,7 @@ export default function Drawer() {
   }, [fetchData]);
 
   return (
-    drawer &&
-    isLogin && (
+    drawer && (
       <div
         className="fixed  z-drawer h-full w-full max-w-md bg-black bg-opacity-40"
         onClick={(e) => {

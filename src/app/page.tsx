@@ -2,7 +2,6 @@
 
 import { useRecoilState } from 'recoil';
 
-import HeaderLayout from '@/component/HeaderLayout';
 import LongCat from '@/component/Icon/LongCat';
 import { useLogin } from '@/hooks/useLogin';
 import { titleFont } from '@/recoil/font';
@@ -32,7 +31,6 @@ export default function Home() {
 
   return (
     <div className={`${theme.bgTheme.background}`}>
-      <HeaderLayout />
       <div className=" fixed flex h-full w-full max-w-md  flex-col">
         <div className="basis-1/12"></div>
         <div className="basis-6/12">
