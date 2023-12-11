@@ -1,5 +1,6 @@
 'use client';
 
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -24,8 +25,10 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [isLogin] = useLogin();
 
   useEffect(() => {
-    axiosInstance
-      .get(`/boards/${params.id}`)
+    //axiosInstance
+    axios
+      .get(`/api/personal`)
+      //.get(`/boards/${params.id}`)
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);

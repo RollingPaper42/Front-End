@@ -1,6 +1,9 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import React from 'react';
 
+import PhotoModal from './Modal/PhotoModal';
+import Photo from './Photo';
+import useModal from '@/hooks/useModal';
 import { bodyFont, captionFont } from '@/recoil/font';
 import { themeState } from '@/recoil/state';
 import { content } from '@/types/content';
@@ -15,6 +18,7 @@ interface props {
 
 const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
+  const [openModal, closeModal] = useModal();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -63,6 +67,22 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
           <div
             className={`${theme.bgTheme.writerContainer} relative top-[-3px] z-writer w-full whitespace-pre-wrap ${captionFont.category1}`}
           >
+            {observe.photoUrl && observe.photoUrl.length && (
+              <button
+                onClick={() => {
+                  openModal(
+                    <PhotoModal
+                      photoUrl={observe.photoUrl}
+                      closeModal={closeModal}
+                      text={content.text}
+                    />,
+                  );
+                }}
+                className=" bg-black"
+              >
+                사진
+              </button>
+            )}
             <div
               className={`relative top-[3px] ${theme.textTheme.writer}`}
             >{`From: ${

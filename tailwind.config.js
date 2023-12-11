@@ -100,6 +100,9 @@ module.exports = {
         drawer: 30,
         modal: 99,
       },
+      boxShadow: {
+        highlight: '0 0 0 2px #feffb0',
+      },
     },
     fontFamily: {
       sans: ['Noto Sans KR', 'DotGothic16'],
