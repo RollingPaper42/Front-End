@@ -3,7 +3,6 @@
 import { useRecoilState } from 'recoil';
 
 import BottomButton from '@/component/BottomButton';
-import BackButtonHeader from '@/component/HeaderLayout/BackButtonHeader';
 import Confirm from '@/component/Modal/Confirm';
 import ThemeChange from '@/component/ThemeChange';
 import useInput from '@/hooks/useInput';
