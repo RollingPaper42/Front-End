@@ -24,8 +24,8 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [isLogin] = useLogin();
 
   useEffect(() => {
-    axios
-      .get(`/api/personal`)
+    axiosInstance
+      .get(`/boards/${params.id}`)
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
