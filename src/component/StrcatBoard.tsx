@@ -3,6 +3,7 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 
 import ObserveContent from './ObserveContent';
+import useModal from '@/hooks/useModal';
 import { themeState } from '@/recoil/state';
 import { board } from '@/types/boards';
 import { content } from '@/types/content';
@@ -20,6 +21,7 @@ const StrcatBoard = ({ board }: Props) => {
   });
   const [content, setContent] = useState<content[]>([]);
   const [theme] = useRecoilState(themeState);
+  const [openModal, closeModal] = useModal();
 
   useEffect(() => {
     setContent(board.contents);
@@ -43,6 +45,8 @@ const StrcatBoard = ({ board }: Props) => {
               setObserve={setObserve}
               content={content}
               theme={theme}
+              openModal={openModal}
+              closeModal={closeModal}
             />
           );
         })}

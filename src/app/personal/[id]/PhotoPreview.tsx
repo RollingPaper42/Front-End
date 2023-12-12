@@ -1,9 +1,14 @@
 import Image from 'next/image';
 
-export default function PhotoPreview({ photoUrl }: { photoUrl: string }) {
+interface Props {
+  photoUrl: string;
+  handleClickPhoto: () => void;
+}
+
+export default function PhotoPreview({ photoUrl, handleClickPhoto }: Props) {
   return (
-    <div>
-      <div className="w-[44px] h-[46px] relative">
+    <div className="pb-[5px]">
+      <div className="w-[44px] h-[46px] relative" onClick={handleClickPhoto}>
         <div className="w-[40px] h-[40px] absolute left-[2px]">
           <Image
             src={photoUrl}

@@ -1,5 +1,6 @@
 'use client';
 
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -25,8 +26,8 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [isLogin] = useLogin();
 
   useEffect(() => {
-    axiosInstance
-      .get(`/boards/${params.id}`)
+    axios
+      .get(`/api/personal`)
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
@@ -38,7 +39,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   const handleClickWrite = () => {
-    // 글 작성 페이지로 route push
+    router.push(`${params.id}/add`);
   };
 
   const handleClickCreate = () => {

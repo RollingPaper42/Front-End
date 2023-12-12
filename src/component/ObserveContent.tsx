@@ -1,21 +1,40 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import React from 'react';
 
+import PhotoModal from './Modal/PhotoModal';
 import PhotoPreview from '@/app/personal/[id]/PhotoPreview';
 import { themeState } from '@/recoil/state';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
-import Image from 'next/image';
 
 interface props {
   content: content;
   observe: observeContent;
   theme: themeState;
   setObserve: Dispatch<SetStateAction<observeContent>>;
+  openModal: (modalComponent: JSX.Element) => void;
+  closeModal: () => void;
 }
 
-const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
+const ObserveContent = ({
+  content,
+  observe,
+  setObserve,
+  theme,
+  openModal,
+  closeModal,
+}: props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
+
+  const handleClickPhoto = () => {
+    openModal(
+      <PhotoModal
+        photoUrl={content.photoUrl}
+        closeModal={closeModal}
+        text={content.text}
+      />,
+    );
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -46,7 +65,10 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
   return (
     <div ref={ref}>
       {observe.contentId === content.id && observe.photoUrl !== '' && (
-        <PhotoPreview photoUrl={content.photoUrl} />
+        <PhotoPreview
+          photoUrl={content.photoUrl}
+          handleClickPhoto={handleClickPhoto}
+        />
       )}
       <div
         className={`inline pt-[3px] pb-[4px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium
