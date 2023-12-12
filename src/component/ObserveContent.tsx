@@ -1,10 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import React from 'react';
 
-import PhotoModal from './Modal/PhotoModal';
-import Photo from './Photo';
-import useModal from '@/hooks/useModal';
-import { bodyFont, captionFont } from '@/recoil/font';
 import { themeState } from '@/recoil/state';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
@@ -34,7 +30,7 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
         });
       },
       {
-        rootMargin: '-30% 0% -70% 0%',
+        rootMargin: '-40% 0% -60% 0%',
         threshold: [0],
       },
     );
@@ -47,14 +43,13 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
   }, []);
 
   return (
-    <div>
+    <div ref={ref}>
       <div
-        ref={ref}
-        className={`
+        className={`inline p-[3px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium
       ${
         observe.contentId === content.id
-          ? `${theme.textTheme.highlight} inline w-full ${bodyFont.category1} opacity-100 leading-[160%] transition-all `
-          : `${theme.textTheme.default} inline w-full ${bodyFont.category1} opacity-30  leading-[160%] transition-all `
+          ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} transition-colors `
+          : `${theme.textTheme.unHighlight}`
       }
     `}
       >
@@ -62,34 +57,10 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
       </div>
       {observe.contentId === content.id && (
         <div
-          className={`${theme.bgTheme.writerContainer} absolute text-right right-[22px] z-writer mt-[1px] animate-slide pl-[2px] ${captionFont.category1} text-white opacity-100`}
-        >
-          <div
-            className={`${theme.bgTheme.writerContainer} relative top-[-3px] z-writer w-full whitespace-pre-wrap ${captionFont.category1}`}
-          >
-            {observe.photoUrl && observe.photoUrl.length && (
-              <button
-                onClick={() => {
-                  openModal(
-                    <PhotoModal
-                      photoUrl={observe.photoUrl}
-                      closeModal={closeModal}
-                      text={content.text}
-                    />,
-                  );
-                }}
-                className=" bg-black"
-              >
-                사진
-              </button>
-            )}
-            <div
-              className={`relative top-[3px] ${theme.textTheme.writer}`}
-            >{`From: ${
-              observe.writer.length ? observe.writer : '익명의 스트링캣'
-            } `}</div>
-          </div>
-        </div>
+          className={`text-right transition-all ${theme.textTheme.writer} text-body-size2`}
+        >{`From: ${
+          observe.writer.length ? observe.writer : '익명의 스트링캣'
+        } `}</div>
       )}
     </div>
   );

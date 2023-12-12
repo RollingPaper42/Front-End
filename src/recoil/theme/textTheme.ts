@@ -4,6 +4,7 @@ export interface textThemeState {
   writer: string;
   explainRightCTA: string;
   explainLeftCTA: string;
+  unHighlight: string;
   title: string;
   placeholder: string;
   summary: string;
@@ -11,8 +12,9 @@ export interface textThemeState {
 
 export const strcatText: textThemeState = {
   default: 'text-strcat-default-white',
-  highlight: 'text-strcat-default-yellow',
-  writer: 'text-strcat-default-black',
+  unHighlight: 'text-strcat-unhighlighted',
+  highlight: 'text-black',
+  writer: 'text-strcat-bright-yellow',
   explainLeftCTA: 'text-strcat-default-green',
   explainRightCTA: 'text-strcat-default-cyan',
   title: 'text-strcat-default-white',
@@ -22,6 +24,7 @@ export const strcatText: textThemeState = {
 
 export const calmText: textThemeState = {
   default: 'text-strcat-calm-black',
+  unHighlight: 'text-strcat-unhighlighted',
   highlight: 'text-strcat-calm-orange',
   writer: 'text-strcat-calm-black',
   explainLeftCTA: 'text-strcat-calm-text-green',
@@ -33,6 +36,7 @@ export const calmText: textThemeState = {
 
 export const greenText: textThemeState = {
   default: 'text-strcat-green-yellow',
+  unHighlight: 'text-strcat-unhighlighted',
   highlight: 'text-strcat-green-black',
   writer: 'text-strcat-green-black',
   title: 'text-strcat-green-black',
@@ -44,6 +48,7 @@ export const greenText: textThemeState = {
 
 export const cyanText: textThemeState = {
   default: 'text-strcat-cyan-white',
+  unHighlight: 'text-strcat-unhighlighted',
   highlight: 'text-strcat-cyan-yellow',
   writer: 'text-strcat-cyan-black',
   explainLeftCTA: 'text-strcat-cyan-black',

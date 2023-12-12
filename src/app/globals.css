@@ -5,6 +5,7 @@
 @font-face {
   font-family: 'Pretendard';
   src: url('/fonts/PretendardVariable.ttf') format('truetype');
+  font-weight: normal;
   font-style: normal;
 }
 
