@@ -14,7 +14,7 @@ import useModal from '@/hooks/useModal';
 import { themeState } from '@/recoil/theme/theme';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export default function Add({ params }: { params: { id: string } }) {
   const [text, setText] = useState('');
