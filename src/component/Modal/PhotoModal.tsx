@@ -23,7 +23,7 @@ export default function PhotoModal({ photoUrl, closeModal, text }: Props) {
       <Photo photoUrl={photoUrl} />
       <div className="w-full h-[16px]"></div>
       <div className=" text-body-size1 overflow-y-scroll h-[204px] text-justify">
-        <p className=" inline leading-[31px] tracking-[-0.36px] bg-bright-yellow shadow-highlight">
+        <p className=" inline leading-[31px] tracking-[-0.36px] shadow-highlight bg-[#feffb0]">
           {text}
         </p>
       </div>
