@@ -2,7 +2,6 @@
 
 import { useRecoilState } from 'recoil';
 
-import LongCat from '@/component/Icon/LongCat';
 import { useLogin } from '@/hooks/useLogin';
 import { titleFont } from '@/recoil/font';
 import { themeState } from '@/recoil/theme/theme';
@@ -30,7 +29,7 @@ export default function Home() {
   };
 
   return (
-    <div className={`${theme.bgTheme.background}`}>
+    <div className={`w-full h-full ${theme.bgTheme.background}`}>
       <div className=" fixed flex h-full w-full max-w-md  flex-col">
         <div className="basis-1/12"></div>
         <div className="basis-6/12">
@@ -96,15 +95,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="flex h-full w-full flex-row">
-        <div className="basis-1/2"></div>
-        <div className="basis-1/2 pr-[24px] pt-[228px]">
-          <LongCat
-            bodyColor={theme.catTheme.mainCat}
-            eyeColor={theme.catTheme.mainCatEye}
-          />
         </div>
       </div>
     </div>
