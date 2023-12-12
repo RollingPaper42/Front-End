@@ -1,9 +1,11 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import React from 'react';
 
+import PhotoPreview from '@/app/personal/[id]/PhotoPreview';
 import { themeState } from '@/recoil/state';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
+import Image from 'next/image';
 
 interface props {
   content: content;
@@ -43,12 +45,15 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
 
   return (
     <div ref={ref}>
+      {observe.contentId === content.id && observe.photoUrl !== '' && (
+        <PhotoPreview photoUrl={content.photoUrl} />
+      )}
       <div
-        className={`inline p-[3px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium
+        className={`inline pt-[3px] pb-[4px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium
       ${
         observe.contentId === content.id
-          ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} transition-colors `
-          : `${theme.textTheme.unHighlight}`
+          ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} transition `
+          : `${theme.textTheme.default} opacity-[0.15]`
       }
     `}
       >
