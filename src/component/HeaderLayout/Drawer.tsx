@@ -60,7 +60,9 @@ export default function Drawer() {
         >
           <div className="flex h-[70px] w-full justify-start px-[24px] py-[22px]">
             <div className="absolute right-[24px]">
-              <DrawerClose />
+              <div className="flex justify-center items-center w-[24px] h-[24px]">
+                <DrawerClose />
+              </div>
             </div>
           </div>
           <div
@@ -74,16 +76,6 @@ export default function Drawer() {
               handleDropDown={() => {
                 if (!personalDrop) setGroupDrop(false);
                 setPersonalDrop(!personalDrop);
-              }}
-            />
-            <DropList
-              title="그룹 스트링캣"
-              list={groupList}
-              category="group"
-              dropDown={groupDrop}
-              handleDropDown={() => {
-                if (!groupDrop) setPersonalDrop(false);
-                setGroupDrop(!groupDrop);
               }}
             />
             <div className="h-[54px] w-full"></div>

@@ -29,33 +29,16 @@ export default function DropList({
   return (
     <>
       <div
-        className="flex h-[54px] w-full items-center justify-between px-[24px]"
+        className="flex mt-[18px] py-[12px] w-full items-center justify-between px-[24px]"
         onClick={handleDropDown}
       >
-        <DrawerItem
-          title={title}
-          icon={
-            <Strcat
-              eyeColor={catTheme.headerCatEye}
-              bodyColor={catTheme.headerCat}
-            />
-          }
-        />
-        {list.length != 0 && (
-          <div className="ml-[12px]">
-            {dropDown ? (
-              <DropListUp color={theme.iconTheme.default} />
-            ) : (
-              <DropListDown color={theme.iconTheme.default} />
-            )}
-          </div>
-        )}
+        <h1 className="text-body-size1 font-semibold select-none">
+          내 스트링캣
+        </h1>
       </div>
-      {dropDown && (
-        <div className="flex max-h-[216px] w-full flex-col overflow-y-scroll">
-          {list && <DropListItem list={list} category={category} />}
-        </div>
-      )}
+      <div className="flex max-h-[288px] w-full flex-col overflow-scroll scrollbar-thumb-[#373737] scrollbar-thin scrollbar-thumb-rounded-[7px] ">
+        {list && <DropListItem list={list} category={category} />}
+      </div>
     </>
   );
 }

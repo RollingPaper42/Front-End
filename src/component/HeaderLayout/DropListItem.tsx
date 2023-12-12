@@ -39,9 +39,7 @@ export default function DropListItem({ list, category }: Props) {
         }}
       >
         <div
-          className={`my-[15px] flex h-full w-full items-center justify-between px-[24px] hover:${
-            theme.bgTheme.activeDropItem
-          } hover:bg-opacity-10 ${
+          className={`my-[15px] flex h-full w-full items-center justify-between px-[24px] ${
             isActive && `${theme.bgTheme.activeDropItem} bg-opacity-10`
           }`}
         >

@@ -1,6 +1,6 @@
 interface Props {
   title: string;
-  icon: React.ReactElement;
+  icon?: React.ReactElement;
 }
 
 export default function DrawerItem({ title, icon }: Props) {
