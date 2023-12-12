@@ -10,25 +10,28 @@ export default function PreviewPhoto({
   setImage: any;
 }) {
   return (
-    <div className="fixed top-[120px] h-[120px] max-w-[332px]">
-      <Image
-        src={preview}
-        alt="사진"
-        width={innerWidth}
-        height={innerHeight}
-        className="mt-[20px] h-[100px] w-auto max-w-[332px] pr-[20px]"
-      />
-      <Image
-        src="/Delete.svg"
-        alt="pictureDeleteIcon"
-        width={20}
-        height={20}
-        className="absolute right-[10px] top-[10px]"
-        onClick={() => {
-          setImage(null);
-          setPreview('');
-        }}
-      />
+    <div className="relative w-full h-full flex justify-center items-center">
+      <div className="relative w-fit">
+        <Image
+          id="preview"
+          src={preview}
+          alt="사진"
+          width={innerWidth}
+          height={innerHeight}
+          className="relative w-auto max-h-[280px]"
+        />
+        <Image
+          src="/Delete.svg"
+          alt="pictureDeleteIcon"
+          width={24}
+          height={24}
+          className="absolute right-[20px] cursor-pointer top-[20px]"
+          onClick={() => {
+            setImage(null);
+            setPreview('');
+          }}
+        />
+      </div>
     </div>
   );
 }
