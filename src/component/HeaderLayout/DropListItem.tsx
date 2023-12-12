@@ -31,7 +31,7 @@ export default function DropListItem({ list, category }: Props) {
     return (
       <div
         key={item.id}
-        className="flex h-[54px] w-full select-none items-center justify-between"
+        className="flex h-[54px] w-full select-none items-center justify-between px-[24px]"
         onClick={() => {
           router.push(url);
           document.body.style.overflow = 'auto';
@@ -39,12 +39,12 @@ export default function DropListItem({ list, category }: Props) {
         }}
       >
         <div
-          className={`my-[15px] flex h-full w-full items-center justify-between px-[24px] ${
-            isActive && `${theme.bgTheme.activeDropItem} bg-opacity-10`
+          className={`py-[12px] flex h-full w-full items-center px-[24px] text-body-size2 font-medium ${
+            isActive && `px-0 text-strcat-bright-yellow bg-opacity-10`
           }`}
         >
-          {truncateTitle(item.title)}
           {isActive && <Check color={theme.iconTheme.default} />}
+          <div className="pl-[8px]">{truncateTitle(item.title)}</div>
         </div>
       </div>
     );
