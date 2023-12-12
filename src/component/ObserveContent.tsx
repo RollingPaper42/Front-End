@@ -14,6 +14,7 @@ interface props {
 
 const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
+  const [openModal, closeModal] = useModal();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,7 +30,7 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
         });
       },
       {
-        rootMargin: '-30% 0% -70% 0%',
+        rootMargin: '-40% 0% -60% 0%',
         threshold: [0],
       },
     );
@@ -47,7 +48,7 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
         className={`inline p-[3px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium
       ${
         observe.contentId === content.id
-          ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} transition-all`
+          ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} transition-colors `
           : `${theme.textTheme.unHighlight}`
       }
     `}
@@ -56,7 +57,7 @@ const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
       </div>
       {observe.contentId === content.id && (
         <div
-          className={`text-right animate-slide ${theme.textTheme.writer} text-body-size2`}
+          className={`text-right transition-all ${theme.textTheme.writer} text-body-size2`}
         >{`From: ${
           observe.writer.length ? observe.writer : '익명의 스트링캣'
         } `}</div>

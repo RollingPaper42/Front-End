@@ -103,6 +103,9 @@ module.exports = {
         drawer: 30,
         modal: 99,
       },
+      boxShadow: {
+        highlight: '0 1px 0 2px #feffb0',
+      },
     },
     fontFamily: {
       pretentdard: ['Pretendard'],
