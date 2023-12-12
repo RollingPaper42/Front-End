@@ -21,5 +21,5 @@ export const useScroll = () => {
     };
   }, [lastScrollTop]);
 
-  return isHidden;
+  return { isHidden, setIsHidden };
 };

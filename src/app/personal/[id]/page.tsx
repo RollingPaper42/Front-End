@@ -24,7 +24,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
   const [isLogin] = useLogin();
-  const isHidden = useScroll();
+  const { isHidden } = useScroll();
 
   useEffect(() => {
     axiosInstance

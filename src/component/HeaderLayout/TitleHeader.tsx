@@ -10,7 +10,7 @@ export default function TitleHeader() {
   const [title] = useRecoilState(titleState);
   const [, setDrawer] = useRecoilState(drawerState);
   const [theme] = useRecoilState(themeState);
-  const isHidden = useScroll();
+  const { isHidden } = useScroll();
 
   return (
     <div
