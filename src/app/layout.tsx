@@ -5,6 +5,7 @@ import { RecoilRoot } from 'recoil';
 import InApp from './InApp';
 import './globals.css';
 import AxiosInterceptor from '@/component/AxiosInterceptor';
+import HeaderLayout from '@/component/HeaderLayout';
 import Modal from '@/component/Modal';
 import OpenGraph from '@/component/OpenGraph';
 
@@ -21,11 +22,12 @@ export default function RootLayout({
         <link rel="icon" href="/Favicon.png"></link>
       </head>
       <body className="h-full overscroll-none">
-        <div className="m-auto h-full max-w-md font-sans">
+        <div className="m-auto h-full max-w-md font-pretentdard">
           <InApp />
           <RecoilRoot>
             <AxiosInterceptor />
             <Modal />
+            <HeaderLayout />
             {children}
           </RecoilRoot>
         </div>

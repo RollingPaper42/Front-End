@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import BottomButton from '@/component/BottomButton';
-import HeaderLayout from '@/component/HeaderLayout';
 import Loading from '@/component/Loading';
 import StrcatBoard from '@/component/StrcatBoard';
 import { useLogin } from '@/hooks/useLogin';
@@ -58,7 +57,6 @@ export default function Personal({ params }: { params: { id: string } }) {
   return (
     <>
       <div className={` ${theme.bgTheme.background} min-h-full`}>
-        <HeaderLayout />
         <div className={`relative w-full py-[24px] text-justify `}>
           <div className="pt-[200px]"></div>
           {board.length ? <StrcatBoard board={board[0]} /> : <Loading />}

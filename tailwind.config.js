@@ -20,6 +20,8 @@ module.exports = {
         'strcat-buttonColor': '#8F38FF',
         'strcat-gray': '#BCBCBC',
         'strcat-gray2': '#4D4D4D',
+        'strcat-textarea-bg': '#373737',
+        'strcat-textarea-text': '#909090',
         'strcat-error': '#FF0000',
         'strcat-sub': '#9D9D8C',
         'strcat-white2': '#E9E9E9',
@@ -105,8 +107,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ['Noto Sans KR', 'DotGothic16'],
-      FiraCode: ['FiraCode'],
+      pretentdard: ['Pretendard'],
     },
     plugins: [],
   },

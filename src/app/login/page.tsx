@@ -2,7 +2,6 @@
 
 import { useRecoilState } from 'recoil';
 
-import HeaderLayout from '@/component/HeaderLayout';
 import { captionFont, titleFont } from '@/recoil/font';
 import { themeState } from '@/recoil/theme/theme';
 import Image from 'next/image';
@@ -19,9 +18,7 @@ export default function Login() {
   return (
     <div className={`h-full w-full ${theme.bgTheme.background}`}>
       <div className="flex h-full w-full flex-col">
-        <div className="basis-1/12">
-          <HeaderLayout />
-        </div>
+        <div className="basis-1/12"></div>
         <div className="basis-2/12">
           <div
             className={`mx-[24px] mt-[40px] h-full ${titleFont.category2} ${theme.textTheme.default}`}

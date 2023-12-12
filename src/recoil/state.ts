@@ -2,14 +2,14 @@ import { drawerState } from './drawer';
 import { loginState } from './login';
 import { modalState } from './modal';
 import { observeState } from './observe';
-import { catAnimationState } from './theme/catAnimation';
 import { themeState } from './theme/theme';
+import { titleState } from './title';
 
 export {
-  catAnimationState,
   drawerState,
   loginState,
   modalState,
   observeState,
+  titleState,
   themeState,
 };
