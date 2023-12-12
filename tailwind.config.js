@@ -25,6 +25,7 @@ module.exports = {
         'strcat-error': '#FF0000',
         'strcat-sub': '#9D9D8C',
         'strcat-white2': '#E9E9E9',
+        'strcat-unhighlighted': '#424242',
         'strcat-bright-yellow': '#FDFFB0',
         'strcat-default-yellow': '#FBFF36',
         'strcat-default-cyan': '#6CD8ED',
