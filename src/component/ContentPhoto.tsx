@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
 
-import Photo from './Modal/Photo';
+import Photo from './Photo';
 import useModal from '@/hooks/useModal';
 import { observeState } from '@/recoil/observe';
 
