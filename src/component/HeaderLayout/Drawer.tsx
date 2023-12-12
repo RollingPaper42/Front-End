@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { DrawerProfileCat, Logout } from '../Icon/Drawer';
+import DrawerClose from '../Icon/drawer/DrawerClose';
 import DrawerItem from './DrawerItem';
 import DropList from './DropList';
 import { useLogin } from '@/hooks/useLogin';
@@ -57,12 +58,10 @@ export default function Drawer() {
         <div
           className={`absolute right-0 h-full w-[300px] ${theme.bgTheme.background} ${theme.textTheme.default}`}
         >
-          <div className="flex h-[123px] w-full justify-start p-[24px]">
-            <DrawerProfileCat
-              circleColor={catTheme.profileCircle}
-              eyeColor={catTheme.headerCatEye}
-              bodyColor={catTheme.profileCat}
-            />
+          <div className="flex h-[70px] w-full justify-start px-[24px] py-[22px]">
+            <div className="absolute right-[24px]">
+              <DrawerClose />
+            </div>
           </div>
           <div
             className={`flex flex-col items-center ${theme.textTheme.default}`}
