@@ -60,7 +60,7 @@ export default function Personal({ params }: { params: { id: string } }) {
           <>
             <div className="pt-[100px]" />
             {board[0].contents.length !== 0 && <Summary id={params.id} />}
-            <div className="pt-[100px]" />
+            <div className="pt-[150px]" />
             {board[0].contents.length === 0 && (
               <NoneContent handleClickNoneContent={handleClickWrite} />
             )}

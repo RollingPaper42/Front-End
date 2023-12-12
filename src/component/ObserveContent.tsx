@@ -14,7 +14,6 @@ interface props {
 
 const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
-  const [openModal, closeModal] = useModal();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
