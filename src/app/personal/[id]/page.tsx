@@ -55,7 +55,7 @@ export default function Personal({ params }: { params: { id: string } }) {
     <>
       <div className={` ${theme.bgTheme.background} min-h-full`}>
         <div className={`relative w-full py-[24px] text-justify `}>
-          <div className="pt-[200px]"></div>
+          <div className="pt-[250px]"></div>
           {board.length ? <StrcatBoard board={board[0]} /> : <Loading />}
           <div style={{ minHeight: `${windowHeight}px` }}></div>
           {isOwner ? (
