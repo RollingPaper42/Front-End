@@ -84,7 +84,7 @@ export default function Add({ params }: { params: { id: string } }) {
             />
           </div>
         )}
-        <div className="px-[24px]">
+        <div className={`px-[24px] ${theme.bgTheme.background}`}>
           <div className="mt-[16px] flex justify-center items-center">
             <Textarea
               width="w-full"
@@ -95,7 +95,7 @@ export default function Add({ params }: { params: { id: string } }) {
               onTextChange={handleTextChange}
             />
           </div>
-          <div className="mt-[20px] mb-[12px] text-body-size2 font-semibold text-white/70 tracking-[-0.32px] ">
+          <div className="mt-[20px] mb-[12px] text-body-size2 font-semibold text-[#BCBCBC] tracking-[-0.32px] ">
             From
           </div>
           <div className="h-[51px] pl-[16px] w-full flex items-center justify-center rounded-lg bg-white/10">
@@ -108,16 +108,19 @@ export default function Add({ params }: { params: { id: string } }) {
             />
             <div
               className={`pr-[16px] text-caption-size2 ${
-                writer.length > 10 ? 'text-[#DE6565]/50' : 'text-white/50'
+                writer.length > 10 ? 'text-[#DE6565]' : 'text-white/50'
               }`}
             >
               {writer.length}/10
             </div>
           </div>
+          <div className="pb-[154px]" />
         </div>
       </div>
-      <div className="fixed bottom-5 left-0 z-button flex w-full items-center justify-center">
-        <div className="flex w-full max-w-md flex-row px-[24px]">
+      <div className="fixed bottom-0 left-0 z-button flex w-full items-center justify-center">
+        <div
+          className={`flex w-full max-w-md flex-row px-[24px] h-[70px] items-center space-x-[12px] ${theme.bgTheme.background}`}
+        >
           <PhotoUpload setImage={setImage} setPreview={setPreview} />
           <BottomButton
             textColor="text-[#212121]"
