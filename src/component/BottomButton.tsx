@@ -1,5 +1,3 @@
-import { bodyFont } from '@/recoil/font';
-
 interface BottomButtonProps {
   name: string;
   width: string;
@@ -21,11 +19,10 @@ export default function BottomButton({
 }: BottomButtonProps) {
   return (
     <button
-      className={` items-center justify-center font-bold ${
-        bodyFont.category2
-      } ${textColor} rounded relative mx-1 ${height} w-full ${width} ${
-        disabled ? 'bg-[#CCCCCC]' : color
-      } `}
+      className={`items-center justify-center font-bold tracking-[0.32px] leading-[28px] text-body-size2 
+      rounded-[5px] relative ${height} w-full ${width} ${
+        disabled ? 'bg-[#909090] text-[#BCBCBC]' : `${color} ${textColor}`
+      }`}
       onClick={onClickHandler}
       disabled={disabled}
     >
