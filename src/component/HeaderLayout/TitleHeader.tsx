@@ -9,13 +9,13 @@ import { drawerState, themeState, titleState } from '@/recoil/state';
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function TitleHeader() {
-  const [title] = useRecoilState(titleState);
-  const [, setDrawer] = useRecoilState(drawerState);
-  const [theme] = useRecoilState(themeState);
-  const { isHidden } = useScroll();
   const pathName = usePathname();
   const router = useRouter();
   const isAdd = pathName.endsWith('/add');
+  const [title] = useRecoilState(titleState);
+  const [, setDrawer] = useRecoilState(drawerState);
+  const [theme] = useRecoilState(themeState);
+  const { isHidden } = useScroll({ scrollEvent: !isAdd });
 
   return (
     <div

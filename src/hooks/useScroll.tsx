@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 
-export const useScroll = () => {
-  const [isHidden, setIsHidden] = useState(false);
+import { hiddenState } from '@/recoil/layoutHidden';
+
+export const useScroll = (options = { scrollEvent: true }) => {
+  const [isHidden, setIsHidden] = useRecoilState(hiddenState);
   const [lastScrollTop, setLastScrollTop] = useState(0);
 
   useEffect(() => {
@@ -14,12 +17,13 @@ export const useScroll = () => {
       }
       setLastScrollTop(currentScrollTop);
     };
-    window.addEventListener('scroll', handleScroll);
-
+    if (options.scrollEvent) {
+      window.addEventListener('scroll', handleScroll);
+    }
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [lastScrollTop]);
+  }, [lastScrollTop, options.scrollEvent, setIsHidden]);
 
   return { isHidden, setIsHidden };
 };
