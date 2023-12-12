@@ -38,7 +38,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   const handleClickWrite = () => {
-    // 글 작성 페이지로 route push
+    router.push(`${params.id}/add`);
   };
 
   const handleClickCreate = () => {
