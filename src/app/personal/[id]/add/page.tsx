@@ -14,6 +14,7 @@ import useModal from '@/hooks/useModal';
 import { themeState } from '@/recoil/theme/theme';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
+import { useRouter } from 'next/router';
 
 export default function Add({ params }: { params: { id: string } }) {
   const [text, setText] = useState('');
@@ -22,6 +23,7 @@ export default function Add({ params }: { params: { id: string } }) {
   const [theme] = useRecoilState(themeState);
   const [image, setImage] = useInput<File | null>(null);
   const [preview, setPreview] = useState<string>('');
+  const router = useRouter();
 
   const handleClick = async () => {
     const isConfirmed = await confirm(
@@ -51,6 +53,7 @@ export default function Add({ params }: { params: { id: string } }) {
           `/boards/${params.id}/contents`,
           data,
         );
+        router.push(`/personal/${params.id}`);
       } catch (err) {
         const error = err as AxiosError;
         if (error.response?.status === 406) {
