@@ -10,8 +10,8 @@ export default function Logout() {
       <path
         d="M12 5L4.25 5L4.25 12L4.25 19L12 19M9.25 12L19.75 12M19.75 12L15.25 7.5M19.75 12L15.25 16.5"
         stroke="white"
-        stroke-width="2"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinejoin="round"
       />
     </svg>
   );
