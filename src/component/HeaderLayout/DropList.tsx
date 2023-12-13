@@ -1,22 +1,16 @@
-import { Dispatch, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { DropListDown, DropListUp } from '../Icon/Drawer';
-import Strcat from '../Icon/Strcat';
-import DrawerItem from './DrawerItem';
 import DropListItem from './DropListItem';
 import { themeState } from '@/recoil/theme/theme';
 import { drawerBoard } from '@/types/drawerBoard';
 
 interface Props {
-  title: string;
   list: drawerBoard[];
   category: string;
 }
 
-export default function DropList({ title, list, category }: Props) {
+export default function DropList({ list, category }: Props) {
   const [theme] = useRecoilState(themeState);
-  const catTheme = theme.catTheme;
 
   return (
     <>

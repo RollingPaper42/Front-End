@@ -57,11 +57,13 @@ export default function Drawer() {
   };
   useEffect(() => {
     checkLogin();
-  }, []);
+  }, [checkLogin]);
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    if (isLogin) {
+      fetchData();
+    }
+  }, [fetchData, isLogin]);
 
   return (
     drawer && (
@@ -91,11 +93,7 @@ export default function Drawer() {
           >
             {isLogin ? (
               <>
-                <DropList
-                  title="내 스트링캣"
-                  list={personalList}
-                  category="personal"
-                />
+                <DropList list={personalList} category="personal" />
                 <div className="w-full px-[24px] mt-[12px]">
                   <BottomButton
                     name="새 스트링캣 만들기"

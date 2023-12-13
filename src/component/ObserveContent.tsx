@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import React from 'react';
 
-import useModal from '@/hooks/useModal';
 import { themeState } from '@/recoil/state';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
@@ -15,7 +14,6 @@ interface props {
 
 const ObserveContent = ({ content, observe, setObserve, theme }: props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
-  const [openModal, closeModal] = useModal();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
