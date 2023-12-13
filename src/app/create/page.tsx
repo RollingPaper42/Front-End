@@ -25,7 +25,8 @@ export default function Create() {
   const handleConfirm = () => {
     openModal(
       <Confirm
-        content="여기서 완료하면 더이상 내용을 수정할 수 없습니다. 완료하시겠습니까?"
+        mainContent="완료하시겠어요?"
+        subContent="제목과 테마는 수정할 수 없어요!"
         yes={handleClick}
         no={closeModal}
       />,
