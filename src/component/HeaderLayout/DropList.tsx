@@ -28,9 +28,11 @@ export default function DropList({ title, list, category }: Props) {
           {list.length}
         </div>
       </div>
-      <div className="flex max-h-[288px] bg-[#1D1D1D] w-full flex-col overflow-scroll scrollbar-thumb-[#373737] scrollbar-thin scrollbar-thumb-rounded-[7px] ">
-        {list && <DropListItem list={list} category={category} />}
-      </div>
+      {list.length ? (
+        <div className="flex max-h-[288px] bg-[#1D1D1D] w-full flex-col overflow-scroll scrollbar-thumb-[#373737] scrollbar-thin scrollbar-thumb-rounded-[7px] ">
+          <DropListItem list={list} category={category} />
+        </div>
+      ) : null}
     </>
   );
 }

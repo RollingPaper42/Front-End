@@ -13,7 +13,7 @@ import { drawerState, themeState } from '@/recoil/state';
 import { drawerBoard } from '@/types/drawerBoard';
 import { axiosInstance } from '@/utils/axios';
 import { handleBackground } from '@/utils/handleBackground';
-import { useParams, usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function Drawer() {
   const [isLogin, checkLogin, setIsLogin] = useLogin();
@@ -66,7 +66,7 @@ export default function Drawer() {
   return (
     drawer && (
       <div
-        className="fixed  z-drawer h-full w-full max-w-md bg-black bg-opacity-40"
+        className="fixed  z-drawer h-full w-full max-w-md bg-black bg-opacity-80"
         onClick={(e) => {
           handleBackground(e, () => setDrawer(false));
           if (e.target === e.currentTarget)
