@@ -32,7 +32,10 @@ export default function Drawer() {
       console.log(error);
     }
   }, [setPersonalList]);
-
+  const drawerClose = () => {
+    setDrawer(false);
+    document.body.style.overflow = 'auto';
+  };
   const handleLogout = () => {
     drawerClose();
     localStorage.removeItem('strcat_token');
@@ -54,11 +57,6 @@ export default function Drawer() {
     drawerClose();
     localStorage.setItem('strcat_login_success_url', pathname);
     router.push('/login');
-  };
-
-  const drawerClose = () => {
-    setDrawer(false);
-    document.body.style.overflow = 'auto';
   };
   useEffect(() => {
     checkLogin();
