@@ -11,6 +11,7 @@ import PreviewPhoto from '@/component/PreviewPhoto';
 import Textarea from '@/component/Textarea';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
+import { useScroll } from '@/hooks/useScroll';
 import { themeState } from '@/recoil/theme/theme';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
@@ -24,6 +25,9 @@ export default function Add({ params }: { params: { id: string } }) {
   const [image, setImage] = useInput<File | null>(null);
   const [preview, setPreview] = useState<string>('');
   const router = useRouter();
+  const { isHidden, setIsHidden } = useScroll({
+    scrollEvent: false,
+  });
 
   const handleClick = async () => {
     const isConfirmed = await confirm(
@@ -93,6 +97,12 @@ export default function Add({ params }: { params: { id: string } }) {
               textColor="text-white "
               maxLength={400}
               onTextChange={handleTextChange}
+              handleFocus={() => {
+                setIsHidden(true);
+              }}
+              handleBlur={() => {
+                setIsHidden(false);
+              }}
             />
           </div>
           <div className="mt-[20px] mb-[12px] text-body-size2 font-semibold text-[#BCBCBC] tracking-[-0.32px] ">
@@ -105,6 +115,8 @@ export default function Add({ params }: { params: { id: string } }) {
               value={writer}
               onChange={handleWriter}
               placeholder="익명의 스트링캣"
+              onFocus={() => setIsHidden(true)}
+              onBlur={() => setIsHidden(false)}
             />
             <div
               className={`pr-[16px] text-caption-size2 ${
@@ -117,7 +129,11 @@ export default function Add({ params }: { params: { id: string } }) {
           <div className="pb-[154px]" />
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 z-button flex w-full items-center justify-center">
+      <div
+        className={`fixed bottom-0 left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
+          isHidden ? 'translate-y-full' : 'translate-y-0'
+        }`}
+      >
         <div
           className={`flex w-full max-w-md flex-row px-[24px] h-[70px] items-center space-x-[12px] ${theme.bgTheme.background}`}
         >

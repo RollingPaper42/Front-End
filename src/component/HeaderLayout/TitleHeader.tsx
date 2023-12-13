@@ -4,19 +4,25 @@ import { useRecoilState } from 'recoil';
 
 import Close from '../Icon/Close';
 import { HamburgerMenu } from '../Icon/Header';
+import { useScroll } from '@/hooks/useScroll';
 import { drawerState, themeState, titleState } from '@/recoil/state';
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function TitleHeader() {
-  const [title] = useRecoilState(titleState);
-  const [, setDrawer] = useRecoilState(drawerState);
-  const [theme] = useRecoilState(themeState);
   const pathName = usePathname();
   const router = useRouter();
   const isAdd = pathName.endsWith('/add');
+  const [title] = useRecoilState(titleState);
+  const [, setDrawer] = useRecoilState(drawerState);
+  const [theme] = useRecoilState(themeState);
+  const { isHidden } = useScroll({ scrollEvent: !isAdd });
 
   return (
-    <div className="fixed top-0 z-10 w-full max-w-md">
+    <div
+      className={`fixed top-0 z-10 w-full max-w-md transition-transform duration-300 ${
+        isHidden ? '-translate-y-full' : 'translate-y-0'
+      }`}
+    >
       <div
         className={`flex min-h-[52px] py-[10px] flex-row items-stretch justify-between ${theme.bgTheme.background} px-[24px]`}
         id="titleHeader"
