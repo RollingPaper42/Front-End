@@ -10,7 +10,7 @@ export default function Check() {
       <path
         d="M6.21875 11.9998L10.2822 16.1573L17.7808 7.84229"
         stroke="#FDFFB0"
-        stroke-width="2"
+        strokeWidth="2"
       />
     </svg>
   );
