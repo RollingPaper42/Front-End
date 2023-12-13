@@ -10,7 +10,7 @@ import Loading from '@/component/Loading';
 import StrcatBoard from '@/component/StrcatBoard';
 import { useLogin } from '@/hooks/useLogin';
 import { useScroll } from '@/hooks/useScroll';
-import { themeState } from '@/recoil/state';
+import { themeState, titleState } from '@/recoil/state';
 import { board } from '@/types/boards';
 import { axiosInstance } from '@/utils/axios';
 import Image from 'next/image';
@@ -25,6 +25,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const router = useRouter();
   const [isLogin] = useLogin();
   const { isHidden } = useScroll();
+  const [, setTitle] = useRecoilState(titleState);
 
   useEffect(() => {
     axiosInstance
@@ -38,6 +39,11 @@ export default function Personal({ params }: { params: { id: string } }) {
       });
     if (window) setWindowHeight(window.innerHeight);
   }, [params.id]);
+
+  useEffect(() => {
+    if (!board.length) return;
+    setTitle(board[0].title);
+  }, [board]);
 
   const handleClickWrite = () => {
     router.push(`${params.id}/add`);

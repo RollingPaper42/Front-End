@@ -6,6 +6,7 @@ import PhotoPreview from '@/app/personal/[id]/PhotoPreview';
 import { themeState } from '@/recoil/state';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
+import { focusToHighlight } from '@/utils/focusToHighlight';
 
 interface props {
   content: content;
@@ -78,6 +79,7 @@ const ObserveContent = ({
           : `${theme.textTheme.default} opacity-[0.15]`
       }
     `}
+        onClick={() => focusToHighlight(ref)}
       >
         {content.text}
       </div>
