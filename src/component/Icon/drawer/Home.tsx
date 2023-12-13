@@ -1,4 +1,4 @@
-export default function Logout() {
+export default function Home() {
   return (
     <svg
       width="24"
@@ -8,10 +8,10 @@ export default function Logout() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M12 5L4.25 5L4.25 12L4.25 19L12 19M9.25 12L19.75 12M19.75 12L15.25 7.5M19.75 12L15.25 16.5"
+        d="M6.5 9V18.5H17.5V9M3 11.5L12 4L21 11.5"
         stroke="white"
-        stroke-width="2"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinejoin="round"
       />
     </svg>
   );
