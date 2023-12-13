@@ -110,6 +110,6 @@ module.exports = {
     fontFamily: {
       pretentdard: ['Pretendard'],
     },
-    plugins: [],
   },
+  plugins: [require('tailwind-scrollbar')({ nocompatible: true })],
 };

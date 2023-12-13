@@ -1,61 +1,32 @@
-import { Dispatch, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { DropListDown, DropListUp } from '../Icon/Drawer';
-import Strcat from '../Icon/Strcat';
-import DrawerItem from './DrawerItem';
 import DropListItem from './DropListItem';
 import { themeState } from '@/recoil/theme/theme';
 import { drawerBoard } from '@/types/drawerBoard';
 
 interface Props {
-  title: string;
   list: drawerBoard[];
   category: string;
-  dropDown: boolean;
-  handleDropDown: () => void;
 }
 
-export default function DropList({
-  title,
-  list,
-  category,
-  dropDown,
-  handleDropDown,
-}: Props) {
+export default function DropList({ list, category }: Props) {
   const [theme] = useRecoilState(themeState);
-  const catTheme = theme.catTheme;
 
   return (
     <>
-      <div
-        className="flex h-[54px] w-full items-center justify-between px-[24px]"
-        onClick={handleDropDown}
-      >
-        <DrawerItem
-          title={title}
-          icon={
-            <Strcat
-              eyeColor={catTheme.headerCatEye}
-              bodyColor={catTheme.headerCat}
-            />
-          }
-        />
-        {list.length != 0 && (
-          <div className="ml-[12px]">
-            {dropDown ? (
-              <DropListUp color={theme.iconTheme.default} />
-            ) : (
-              <DropListDown color={theme.iconTheme.default} />
-            )}
-          </div>
-        )}
-      </div>
-      {dropDown && (
-        <div className="flex max-h-[216px] w-full flex-col overflow-y-scroll">
-          {list && <DropListItem list={list} category={category} />}
+      <div className="flex mt-[18px] py-[12px] w-full items-center justify-between px-[24px]">
+        <h1 className="text-body-size1 font-semibold select-none">
+          내 스트링캣
+        </h1>
+        <div className=" text-gray-500 text-caption-size2 font-medium">
+          {list.length}
         </div>
-      )}
+      </div>
+      {list.length ? (
+        <div className="flex max-h-[288px] bg-[#1D1D1D] w-full flex-col overflow-scroll scrollbar-thumb-[#373737] scrollbar-thin scrollbar-thumb-rounded-[7px] ">
+          <DropListItem list={list} category={category} />
+        </div>
+      ) : null}
     </>
   );
 }
