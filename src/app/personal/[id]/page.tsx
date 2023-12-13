@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import NoneContent from './NoneContent';
+import SnowAnimation from './SnowAnimation';
 import Summary from './Summary';
 import BottomButton from '@/component/BottomButton';
 import Loading from '@/component/Loading';
@@ -58,8 +59,9 @@ export default function Personal({ params }: { params: { id: string } }) {
   return (
     <>
       <div className={`${theme.bgTheme.background} min-h-full`}>
+        <SnowAnimation />
         {board.length ? (
-          <>
+          <div className="z-text">
             <div className="pt-[100px]" />
             {board[0].contents.length !== 0 && <Summary id={params.id} />}
             <div className="pt-[150px]" />
@@ -67,14 +69,14 @@ export default function Personal({ params }: { params: { id: string } }) {
               <NoneContent handleClickNoneContent={handleClickWrite} />
             )}
             <StrcatBoard board={board[0]} />
-          </>
+          </div>
         ) : (
           <Loading />
         )}
         <div style={{ minHeight: `${windowHeight}px` }}></div>
         {isOwner ? (
           <div
-            className={`fixed bottom-0 pb-[12px] left-0 z-20 flex w-full items-center justify-center transition-transform duration-300 ${
+            className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
               isHidden ? 'translate-y-full' : 'translate-y-0'
             }`}
           >
@@ -114,7 +116,7 @@ export default function Personal({ params }: { params: { id: string } }) {
         ) : (
           <>
             <div
-              className={`fixed bottom-0 pb-[12px] left-0 z-20 flex w-full items-center justify-center transition-transform duration-300 ${
+              className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
                 isHidden ? 'translate-y-full' : 'translate-y-0'
               }`}
             >
