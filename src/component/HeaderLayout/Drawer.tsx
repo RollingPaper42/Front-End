@@ -34,26 +34,31 @@ export default function Drawer() {
   }, [setPersonalList]);
 
   const handleLogout = () => {
-    setDrawer(false);
+    drawerClose();
     localStorage.removeItem('strcat_token');
     // router.push('/');
     setIsLogin(false);
   };
 
   const handleNewStrcat = () => {
-    setDrawer(false);
+    drawerClose();
     router.push('/create');
   };
 
   const handleHome = () => {
-    setDrawer(false);
+    drawerClose();
     router.push('/');
   };
 
   const handleLogin = () => {
-    setDrawer(false);
+    drawerClose();
     localStorage.setItem('strcat_login_success_url', pathname);
     router.push('/login');
+  };
+
+  const drawerClose = () => {
+    setDrawer(false);
+    document.body.style.overflow = 'auto';
   };
   useEffect(() => {
     checkLogin();
