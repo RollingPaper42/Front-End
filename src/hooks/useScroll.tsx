@@ -10,9 +10,15 @@ export const useScroll = (options = { scrollEvent: true }) => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollTop = window.scrollY;
-      if (currentScrollTop > lastScrollTop) {
+      if (window.scrollY < 0) {
+        return;
+      }
+      if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+        return;
+      }
+      if (currentScrollTop > lastScrollTop + 10) {
         setIsHidden(true);
-      } else {
+      } else if (currentScrollTop < lastScrollTop - 15) {
         setIsHidden(false);
       }
       setLastScrollTop(currentScrollTop);
