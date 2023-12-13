@@ -3,11 +3,11 @@
 import Image from 'next/image';
 
 export default function Login() {
-  const handleClickOAuthKaKao = () => {
+  const handleClickKaKao = () => {
     location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/kakao`;
   };
 
-  const handleClickOAuthGoogle = () => {
+  const handleClickGoogle = () => {
     location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/google`;
   };
   return (
@@ -29,7 +29,7 @@ export default function Login() {
           <button
             className="flex flex-row w-full rounded-[6px] h-[46px] items-center justify-center text-body-size2 font-medium"
             style={{ background: '#FEE500' }}
-            onClick={handleClickOAuthKaKao}
+            onClick={handleClickKaKao}
           >
             <Image src="/kakao.svg" width={35} height={35} alt="kakao" />
             <div className="">카카오 로그인</div>
@@ -37,7 +37,7 @@ export default function Login() {
           <div className="pt-[14px]"></div>
           <button
             className="flex flex-row w-full rounded-[6px] h-[46px] bg-white items-center justify-center text-body-size2 font-medium"
-            onClick={handleClickOAuthGoogle}
+            onClick={handleClickGoogle}
           >
             <Image src="/Google.svg" width={35} height={35} alt="google" />
             <div className="">구글 로그인</div>
