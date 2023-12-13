@@ -10,12 +10,11 @@ export default function PhotoPreview({ photoUrl, handleClickPhoto }: Props) {
     <div className="pb-[5px]">
       <div className="w-[44px] h-[46px] relative" onClick={handleClickPhoto}>
         <div className="w-[40px] h-[40px] absolute left-[2px]">
-          <Image
+          <img
             src={photoUrl}
-            className="rounded-[10px]"
-            fill
+            className="rounded-[10px] w-full h-full"
             alt="photo preview"
-          ></Image>
+          />
         </div>
         <Image
           className="absolute rounded-[10px]"
