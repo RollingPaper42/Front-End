@@ -14,7 +14,7 @@ const board: board = {
       },
       {
         id: 2,
-        text: '혹시 strcat을 들어보신 적 있나요? 만약 들어봤다면 당신은 혹시 개발자?',
+        text: '혹시 strcat을 들어보신 적 있나요? 만약 들어봤다면 당신은 혹시 개발자? 🤭',
         writer: 'jayoon',
         photoUrl: '',
       },

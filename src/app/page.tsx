@@ -62,7 +62,7 @@ export default function Home() {
             alt="IconUnder"
           />
         </div>
-        <div className="pt-[100px] pb-[800px]">
+        <div className="pt-[100px] pb-[500px]">
           <MainManStrcat />
         </div>
       </div>
