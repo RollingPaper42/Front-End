@@ -63,7 +63,7 @@ export default function Personal({ params }: { params: { id: string } }) {
               <div className="flex w-full max-w-md items-center justify-center px-[24px]">
                 <div className="flex basis-1/12 mx-1 items-center justify-center">
                   <div
-                    className={`h-[46px] flex rounded w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
+                    className={`h-[46px] flex rounded-[5px] w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
                   >
                     <Image
                       src="/Download.svg"
