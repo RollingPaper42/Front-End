@@ -9,6 +9,7 @@ import BottomButton from '@/component/BottomButton';
 import Loading from '@/component/Loading';
 import StrcatBoard from '@/component/StrcatBoard';
 import { useLogin } from '@/hooks/useLogin';
+import { useScroll } from '@/hooks/useScroll';
 import { themeState } from '@/recoil/state';
 import { board } from '@/types/boards';
 import { axiosInstance } from '@/utils/axios';
@@ -23,6 +24,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
   const [isLogin] = useLogin();
+  const { isHidden } = useScroll();
 
   useEffect(() => {
     axiosInstance
@@ -71,11 +73,15 @@ export default function Personal({ params }: { params: { id: string } }) {
         )}
         <div style={{ minHeight: `${windowHeight}px` }}></div>
         {isOwner ? (
-          <div className="fixed bottom-5 left-0 z-20 flex w-full items-center justify-center">
-            <div className="flex w-full max-w-md items-center justify-center px-[24px]">
-              <div className="flex basis-1/12 mx-1 items-center justify-center">
+          <div
+            className={`fixed bottom-0 pb-[12px] left-0 z-20 flex w-full items-center justify-center transition-transform duration-300 ${
+              isHidden ? 'translate-y-full' : 'translate-y-0'
+            }`}
+          >
+            <div className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]">
+              <div className="flex basis-1/12 items-center justify-center">
                 <div
-                  className={`h-[46px] flex rounded w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
+                  className={`h-[46px] flex rounded-[5px] w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
                 >
                   <Image
                     src="/Download.svg"
@@ -107,8 +113,12 @@ export default function Personal({ params }: { params: { id: string } }) {
           </div>
         ) : (
           <>
-            <div className=" fixed bottom-5 left-0 z-20 flex w-full items-center justify-center">
-              <div className="flex w-full max-w-md items-center justify-center px-[24px] ">
+            <div
+              className={`fixed bottom-0 pb-[12px] left-0 z-20 flex w-full items-center justify-center transition-transform duration-300 ${
+                isHidden ? 'translate-y-full' : 'translate-y-0'
+              }`}
+            >
+              <div className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px] ">
                 <BottomButton
                   textColor=" text-strcat-white2"
                   name="나도 만들기"

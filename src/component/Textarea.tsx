@@ -7,6 +7,8 @@ interface TextareaProps {
   textColor: string;
   placeholder: string;
   onTextChange: (newText: string) => void;
+  handleFocus?: () => void;
+  handleBlur?: () => void;
 }
 export default function Textarea({
   width,
@@ -15,6 +17,8 @@ export default function Textarea({
   textColor,
   height,
   onTextChange,
+  handleFocus,
+  handleBlur,
 }: TextareaProps) {
   const [text, , handleText] = useInput('');
   const handleChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -48,6 +52,8 @@ export default function Textarea({
         maxLength={maxLength + 1}
         onChange={(e) => handleChangeText(e)}
         onKeyDown={(e) => handleKeyDownText(e)}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       />
       <div
         className={` text-right text-[14px] mb-[16px] basis-1/6 mx-[16px]  ${
