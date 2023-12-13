@@ -10,11 +10,9 @@ interface Props {
 }
 
 export default function DropList({ list, category }: Props) {
-  const [theme] = useRecoilState(themeState);
-
   return (
     <>
-      <div className="flex mt-[18px] py-[12px] w-full items-center justify-between px-[24px]">
+      <div className="flex py-[12px] w-full items-center justify-between px-[24px]">
         <h1 className="text-body-size1 font-semibold select-none">
           내 스트링캣
         </h1>
@@ -23,7 +21,7 @@ export default function DropList({ list, category }: Props) {
         </div>
       </div>
       {list.length ? (
-        <div className="flex max-h-[288px] bg-[#1D1D1D] w-full flex-col overflow-scroll scrollbar-thumb-[#373737] scrollbar-thin scrollbar-thumb-rounded-[7px] ">
+        <div className="flex max-h-[280px] h-full bg-[#1D1D1D] w-full flex-col overflow-scroll scrollbar-thumb-[#373737] scrollbar-thin scrollbar-thumb-rounded-[7px] ">
           <DropListItem list={list} category={category} />
         </div>
       ) : null}

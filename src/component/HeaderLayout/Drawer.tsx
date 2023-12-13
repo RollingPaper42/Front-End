@@ -32,26 +32,29 @@ export default function Drawer() {
       console.log(error);
     }
   }, [setPersonalList]);
-
-  const handleLogout = () => {
+  const drawerClose = () => {
     setDrawer(false);
+    document.body.style.overflow = 'auto';
+  };
+  const handleLogout = () => {
+    drawerClose();
     localStorage.removeItem('strcat_token');
     // router.push('/');
     setIsLogin(false);
   };
 
   const handleNewStrcat = () => {
-    setDrawer(false);
+    drawerClose();
     router.push('/create');
   };
 
   const handleHome = () => {
-    setDrawer(false);
+    drawerClose();
     router.push('/');
   };
 
   const handleLogin = () => {
-    setDrawer(false);
+    drawerClose();
     localStorage.setItem('strcat_login_success_url', pathname);
     router.push('/login');
   };
