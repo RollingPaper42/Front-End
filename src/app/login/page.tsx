@@ -11,7 +11,7 @@ export default function Login() {
     location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/google`;
   };
   return (
-    <div className={`h-full w-full bg-strcat-black`}>
+    <div className={`h-full w-full bg-strcat-black `}>
       <div className="flex h-full w-full pt-[190px] flex-col items-center ">
         <Image
           src="/StrcatIcon.svg"
@@ -25,9 +25,9 @@ export default function Login() {
         <div className=" text-body-size2 text-white opacity-50">
           함께 문장을 이어가는 롤링페이퍼
         </div>
-        <div className="fixed bottom-[12px] w-full px-[24px]">
+        <div className="fixed bottom-[12px] w-full px-[24px] max-w-md ">
           <button
-            className="flex flex-row w-full rounded-[6px] h-[46px] items-center justify-center text-[15px] font-semibold"
+            className="flex flex-row w-full rounded-[6px] h-[46px] items-center justify-center text-body-size2 font-medium"
             style={{ background: '#FEE500' }}
             onClick={handleClickOAuthKaKao}
           >
@@ -36,7 +36,7 @@ export default function Login() {
           </button>
           <div className="pt-[14px]"></div>
           <button
-            className="flex flex-row w-full rounded-[6px] h-[46px] bg-white items-center justify-center text-[15px] font-semibold"
+            className="flex flex-row w-full rounded-[6px] h-[46px] bg-white items-center justify-center text-body-size2 font-medium"
             onClick={handleClickOAuthGoogle}
           >
             <Image src="/Google.svg" width={35} height={35} alt="google" />

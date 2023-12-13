@@ -16,7 +16,9 @@ export default function NotFound() {
           className="flex flex-col mt-[32px] h-[46px] w-[150px] rounded-[5px] text-center justify-center"
           style={{ background: '#4D4D4D' }}
         >
-          <div className="font-bold text-strcat-cyan-white">홈으로</div>
+          <button className="font-bold text-strcat-cyan-white">
+            <Link href={'/'}>홈으로</Link>
+          </button>
         </div>
       </div>
     </div>
