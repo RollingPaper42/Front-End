@@ -7,12 +7,12 @@ import { usePathname } from 'next/navigation';
 export default function HeaderLayout() {
   const pathName = usePathname();
   //main, login페이지 관련 옵션 변경 필요
-  const defaultHeaderCheck =
-    pathName.indexOf('/personal') === 0 ||
-    pathName === '/' ||
-    pathName === '/login';
+  //notfound로 이동시 여전히 헤더가 보이는 문제 발생 (/personal)같은 경우
+  //각 헤더를 페이지별 레이아웃으로 변경필요
+  const defaultHeaderCheck = pathName === '/' || pathName === '/login';
   const backButtonHeaderCheck = pathName.indexOf('/create') === 0;
-  const titleHeaderCheck = pathName.endsWith('/add');
+  const titleHeaderCheck =
+    pathName.endsWith('/add') || pathName.indexOf('/personal') === 0;
 
   return (
     <>

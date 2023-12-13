@@ -2,7 +2,7 @@
 
 import { useRecoilState } from 'recoil';
 
-import { HeaderProfileCat, LogoCat } from '../Icon/Header';
+import { HamburgerMenu, LogoText } from '../Icon/Header';
 import { drawerState, themeState } from '@/recoil/state';
 import Link from 'next/link';
 
@@ -17,10 +17,7 @@ export default function DefaultHeader() {
         id="catHeader"
       >
         <Link href="/" scroll={false}>
-          <LogoCat
-            bodyColor={theme.catTheme.headerCat}
-            eyeColor={theme.catTheme.headerCatEye}
-          />
+          <LogoText color={'white'} />
         </Link>
         <div className="basis-4/6"></div>
         <div
@@ -29,11 +26,7 @@ export default function DefaultHeader() {
             document.body.style.overflow = 'hidden';
           }}
         >
-          <HeaderProfileCat
-            circleColor={theme.catTheme.profileCircle}
-            eyeColor={theme.catTheme.headerCatEye}
-            bodyColor={theme.catTheme.profileCat}
-          />
+          <HamburgerMenu />
         </div>
       </div>
     </div>
