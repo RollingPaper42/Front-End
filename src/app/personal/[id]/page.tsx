@@ -24,8 +24,8 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
   const [isLogin] = useLogin();
-  const { isHidden } = useScroll();
   const [, setTitle] = useRecoilState(titleState);
+  const { isHidden, setIsHidden } = useScroll();
 
   useEffect(() => {
     axiosInstance
@@ -63,7 +63,12 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={`${theme.bgTheme.background} min-h-full`}>
+      <div
+        className={`${theme.bgTheme.background} min-h-full`}
+        onClick={() => {
+          setIsHidden(!isHidden);
+        }}
+      >
         {board.length ? (
           <>
             <div className="pt-[100px]" />

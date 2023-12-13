@@ -1,5 +1,8 @@
+import { useRecoilState } from 'recoil';
+
 import PhotoClose from '../Icon/PhotoClose';
 import Photo from '../Photo';
+import { themeState } from '@/recoil/state';
 import { handleBackground } from '@/utils/handleBackground';
 
 interface Props {
@@ -9,6 +12,7 @@ interface Props {
 }
 
 export default function PhotoModal({ photoUrl, closeModal, text }: Props) {
+  const [theme, setTheme] = useRecoilState(themeState);
   return (
     <div
       onClick={(e) => handleBackground(e, closeModal)}
@@ -22,8 +26,10 @@ export default function PhotoModal({ photoUrl, closeModal, text }: Props) {
       </button>
       <Photo photoUrl={photoUrl} />
       <div className="w-full h-[16px]"></div>
-      <div className=" text-body-size1 overflow-y-scroll h-[204px] text-justify">
-        <p className=" inline leading-[31px] tracking-[-0.36px] shadow-highlight bg-[#feffb0]">
+      <div className=" overflow-y-scroll h-[204px] text-justify">
+        <p
+          className={`${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} transition inline pt-[3px] pb-[4px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium`}
+        >
           {text}
         </p>
       </div>
