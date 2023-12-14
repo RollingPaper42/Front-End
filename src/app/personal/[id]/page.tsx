@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import NoneContent from './NoneContent';
@@ -13,6 +13,7 @@ import { useScroll } from '@/hooks/useScroll';
 import { themeState, titleState } from '@/recoil/state';
 import { board } from '@/types/boards';
 import { axiosInstance } from '@/utils/axios';
+import { focusToHighlight } from '@/utils/focusToHighlight';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -26,6 +27,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [isLogin] = useLogin();
   const [, setTitle] = useRecoilState(titleState);
   const { isHidden, setIsHidden } = useScroll();
+  const focusBottom = useRef<HTMLHeadingElement | null>(null);
 
   useEffect(() => {
     axiosInstance
@@ -43,6 +45,14 @@ export default function Personal({ params }: { params: { id: string } }) {
   useEffect(() => {
     if (!board.length) return;
     setTitle(board[0].title);
+    console.log('in here');
+    const after_add = localStorage.getItem('strcat_after_add') ?? '';
+    if (after_add !== '') {
+      focusToHighlight(focusBottom);
+      console.log('in here2');
+
+      localStorage.removeItem('strcat_after_add');
+    }
   }, [board]);
 
   const handleClickWrite = () => {
@@ -78,6 +88,7 @@ export default function Personal({ params }: { params: { id: string } }) {
               <NoneContent handleClickNoneContent={handleClickWrite} />
             )}
             <StrcatBoard board={board[0]} />
+            <div ref={focusBottom}></div>
           </>
         ) : (
           <Loading />

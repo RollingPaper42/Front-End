@@ -57,6 +57,9 @@ export default function Add({ params }: { params: { id: string } }) {
           `/boards/${params.id}/contents`,
           data,
         );
+        console.log('in her adde');
+
+        localStorage.setItem('strcat_after_add', 'true');
         router.push(`/personal/${params.id}`);
       } catch (err) {
         const error = err as AxiosError;
