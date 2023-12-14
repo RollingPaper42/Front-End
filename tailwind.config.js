@@ -83,6 +83,9 @@ module.exports = {
       animation: {
         slide: 'slide 0.7s linear',
         fadeIn: 'fadeIn 2s ease-in-out',
+        'pulse-custom1': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;',
+        'pulse-custom2': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 2) infinite;',
+        'pulse-custom3': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 3) infinite;',
       },
       fontSize: {
         'headline-size1': ['26px'],

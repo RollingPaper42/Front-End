@@ -1,35 +1,28 @@
+'use client';
+
 import { useRecoilState } from 'recoil';
 
-import { themeState } from '@/recoil/theme/theme';
-
-function LoadingLine({ width, height }: { width: string; height: string }) {
-  return (
-    <div className={`${height} ${width} bg-loading-gray`}>
-      <div className="h-full w-full bg-black bg-opacity-20" />
-    </div>
-  );
-}
+import { themeState } from '@/recoil/state';
+import Image from 'next/image';
 
 export default function Loading() {
   const [theme] = useRecoilState(themeState);
   return (
-    <div
-      className={`h-full w-full ${theme.bgTheme.background} px-[24px] pt-[96px]`}
-    >
-      <div className="w-full animate-pulse space-y-[7px]">
-        <div className="h-[30px] w-full bg-loading-gray" />
-        <LoadingLine width="w-[206px]" height="h-[30px]" />
-      </div>
-      <div className="mt-[84px] w-full animate-pulse space-y-[7px]">
-        <LoadingLine width="w-full" height="h-[26px]" />
-        <LoadingLine width="w-full" height="h-[26px]" />
-      </div>
-      <div className="mt-[36px] w-full animate-pulse space-y-[7px]">
-        <LoadingLine width="w-full" height="h-[26px]" />
-        <LoadingLine width="w-full" height="h-[26px]" />
-        <LoadingLine width="w-[88px]" height="h-[26px]" />
-        <LoadingLine width="w-full" height="h-[26px]" />
-        <LoadingLine width="w-[187px]" height="h-[26px]" />
+    <div className={`h-full w-full ${theme.bgTheme.background}`}>
+      <div className="flex flex-col h-full w-full justify-center items-center">
+        <div className="">
+          <Image
+            src="/StrcatIcon.svg"
+            width={42}
+            height={42}
+            alt="mainStrcatIcon"
+          />
+          <div className="mt-2 ml-[7px] flex flex-row w-[28px] gap-2">
+            <div className="basis-1/3 w-[4px] h-[4px] rounded  bg-strcat-bright-yellow animate-pulse-custom1"></div>
+            <div className="basis-1/3 w-[4px] h-[4px] rounded bg-strcat-bright-yellow animate-pulse-custom2"></div>
+            <div className="basis-1/3 w-[4px] h-[4px] rounded bg-strcat-bright-yellow animate-pulse-custom3"></div>
+          </div>
+        </div>
       </div>
     </div>
   );
