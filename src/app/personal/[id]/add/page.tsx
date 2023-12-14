@@ -31,10 +31,9 @@ export default function Add({ params }: { params: { id: string } }) {
 
   const handleClick = async () => {
     const isConfirmed = await confirm(
-      '글작성을 완료하시겠어요?',
-      '글을 써줘서 고마워요!',
       openModal,
       closeModal,
+      '글 작성을 완료하시겠어요?',
     );
     if (isConfirmed) {
       try {

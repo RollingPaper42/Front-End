@@ -10,10 +10,10 @@ export default function Modal() {
 
   const handleConfirm = async () => {
     const result = await confirm(
-      '완료하시겠어요?',
-      '제목과 테마는 수정할 수 없어요🐱',
       openModal,
       closeModal,
+      '완료하시겠어요?',
+      '제목과 테마는 수정할 수 없어요🐱',
     );
   };
 

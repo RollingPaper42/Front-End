@@ -4,10 +4,10 @@ import Confirm from '@/component/Modal/Confirm';
 import { modalComponent } from '@/types/modalComponent';
 
 export const confirm = (
-  mainContent: string,
-  subContent: string,
   openModal: (modalComponent: JSX.Element) => void,
   closeModal: () => void,
+  mainContent: string,
+  subContent?: string,
 ): Promise<boolean> => {
   return new Promise((resolve) => {
     openModal(
