@@ -36,6 +36,12 @@ module.exports = {
         'strcat-default-magenta': '#FF43A8',
         'strcat-default-white': '#FFFFFF',
         'strcat-default-black': '#212121',
+        'chris-bg': '#246F50',
+        'mas-bg': '#DE6565',
+        'night-bg': '#FDFFB0',
+        'peach-bg': '#FFC8B0',
+        'lilac-bg': '#D7C4FF',
+        'line-in': '#585858',
 
         'strcat-calm-orange': '#FFA857',
         'strcat-calm-cyan': '#ABC4FF',
@@ -73,10 +79,52 @@ module.exports = {
           '80%': { opacity: 0.5 },
           '100%': { opacity: 0 },
         },
-        fall: {
-          '0%': { opacity: 0 },
-          '10%': { opacity: 0.7 },
-          '100%': { transform: 'translateY(100vh)', opacity: 0 },
+        textFadeIn: {
+          '0%': { opacity: 0.15 },
+          '100%': { opacity: 1 },
+          fall: {
+            '0%': { opacity: 0 },
+            '10%': { opacity: 0.7 },
+            '100%': { transform: 'translateY(100vh)', opacity: 0 },
+          },
+        },
+        animation: {
+          slide: 'slide 0.7s linear',
+          fadeIn: 'fadeIn 2s ease-in-out',
+          textFadeIn: 'textFadeIn 0.35s ease-in-out',
+          fall: 'fall 14s ease-in infinite',
+        },
+        fontSize: {
+          'headline-size1': ['26px'],
+          'headline-size2': ['24px'],
+          'title-size1': ['22px'],
+          'title-size2': ['20px'],
+          'body-size1': ['18px'],
+          'body-size2': ['16px'],
+          'caption-size1': ['16px'],
+          'caption-size2': ['14px'],
+        },
+        letterSpacing: {
+          0: '0em',
+          1: '0.01em',
+          2: '0.02em',
+          3: '0.03em',
+          4: '0.04em',
+        },
+        lineHeight: {
+          16: 1.6,
+          15: 1.5,
+          14: 1.4,
+        },
+        zIndex: {
+          text: 5,
+          writer: 10,
+          button: 20,
+          drawer: 30,
+          modal: 99,
+        },
+        boxShadow: {
+          highlight: '0 1px 0 2px #feffb0',
         },
         drawerOpen: {
           from: { transform: 'translateX(110%)' },
@@ -135,10 +183,10 @@ module.exports = {
       },
       boxShadow: {
         highlight: '0 1px 0 2px #feffb0',
+        fontFamily: {
+          pretentdard: ['Pretendard'],
+        },
       },
-    },
-    fontFamily: {
-      pretentdard: ['Pretendard'],
     },
   },
   plugins: [require('tailwind-scrollbar')({ nocompatible: true })],
