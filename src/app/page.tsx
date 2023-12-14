@@ -1,10 +1,12 @@
 'use client';
 
+import { useRef } from 'react';
 import { useRecoilState } from 'recoil';
 
 import MainManStrcat from '@/component/MainManStrcat';
 import { useLogin } from '@/hooks/useLogin';
 import { themeState } from '@/recoil/theme/theme';
+import { focusToHighlight } from '@/utils/focusToHighlight';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -12,6 +14,7 @@ export default function Home() {
   const [isLogin] = useLogin();
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
+  const ref = useRef<HTMLHeadingElement | null>(null);
 
   const handleClickPersonal = () => {
     if (isLogin) router.push('create');
@@ -60,9 +63,11 @@ export default function Home() {
             width={30}
             height={21}
             alt="IconUnder"
+            onClick={() => focusToHighlight(ref)}
           />
         </div>
         <div className="pt-[100px] pb-[500px]">
+          <div ref={ref} />
           <MainManStrcat />
         </div>
       </div>
