@@ -3,6 +3,7 @@
 import { useRecoilState } from 'recoil';
 
 import { HamburgerMenu, LogoText } from '../Icon/Header';
+import Logo from '../Icon/Logo';
 import { drawerState, themeState } from '@/recoil/state';
 import Link from 'next/link';
 
@@ -17,7 +18,7 @@ export default function DefaultHeader() {
         id="catHeader"
       >
         <Link href="/" scroll={false}>
-          <LogoText color={'white'} />
+          <Logo />
         </Link>
         <div className="basis-4/6"></div>
         <div

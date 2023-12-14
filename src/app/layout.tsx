@@ -21,7 +21,7 @@ export default function RootLayout({
         <OpenGraph />
         <link rel="icon" href="/Favicon.png"></link>
       </head>
-      <body className="h-full overscroll-none">
+      <body className="h-full overscroll-none  bg-black/80">
         <div className="m-auto h-full max-w-md font-pretentdard">
           <InApp />
           <RecoilRoot>

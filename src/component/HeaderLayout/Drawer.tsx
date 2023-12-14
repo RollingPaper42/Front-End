@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 
 import BottomButton from '../BottomButton';
 import { Logout } from '../Icon/Drawer';
+import Logo from '../Icon/Logo';
 import DrawerClose from '../Icon/drawer/DrawerClose';
 import Home from '../Icon/drawer/Home';
 import DrawerItem from './DrawerItem';
@@ -18,6 +19,7 @@ import { usePathname, useRouter } from 'next/navigation';
 export default function Drawer() {
   const [isLogin, checkLogin, setIsLogin] = useLogin();
   const [drawer, setDrawer] = useRecoilState(drawerState);
+  const [drawerClosing, setDrawerClosing] = useState(false);
   const [personalList, setPersonalList] = useState<drawerBoard[]>([]);
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
@@ -32,6 +34,15 @@ export default function Drawer() {
       console.log(error);
     }
   }, [setPersonalList]);
+  const drawerSlowClose = () => {
+    setDrawerClosing(true);
+    setTimeout(() => {
+      setDrawer(false);
+      setDrawerClosing(false);
+    }, 200);
+    document.body.style.overflow = 'auto';
+  };
+
   const drawerClose = () => {
     setDrawer(false);
     document.body.style.overflow = 'auto';
@@ -71,21 +82,30 @@ export default function Drawer() {
   return (
     drawer && (
       <div
-        className="fixed  z-drawer h-full w-full max-w-md bg-black bg-opacity-80"
+        className={`fixed  z-drawer h-full w-full max-w-md bg-black bg-opacity-80 overflow-hidden ${
+          drawerClosing ? ' animate-drawerCloseBg' : 'animate-drawerOpenBg'
+        }`}
         onClick={(e) => {
-          handleBackground(e, () => setDrawer(false));
+          handleBackground(e, drawerSlowClose);
           if (e.target === e.currentTarget)
             document.body.style.overflow = 'auto';
         }}
       >
         <div
-          className={`absolute right-0 h-full w-[300px] ${theme.bgTheme.background} ${theme.textTheme.default}`}
+          className={`absolute right-0 h-full w-[300px] opacity-100 ${
+            theme.bgTheme.background
+          } ${theme.textTheme.default} ${
+            drawerClosing ? '  animate-drawerClose' : 'animate-drawerOpen'
+          }`}
         >
-          <div className="flex h-[70px] w-full justify-start px-[24px] py-[22px]">
+          <div className="flex h-[70px] w-full px-[24px] py-[22px]">
+            <div>
+              <Logo />
+            </div>
             <div className="absolute right-[24px]">
               <div
                 className="flex justify-center items-center w-[24px] h-[24px]"
-                onClick={() => setDrawer(false)}
+                onClick={drawerSlowClose}
               >
                 <DrawerClose />
               </div>
