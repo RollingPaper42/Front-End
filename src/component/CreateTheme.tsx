@@ -37,7 +37,7 @@ export default function CreateTheme({
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full w-[45px] flex flex-col items-center justify-center h-[45px] border-2 outline bg-chris-bg  outline-chris-bg border-chris-bg active:border-line-in active:outline-white focus:border-line-in focus:outline-white"
+                  className="rounded-full w-[45px] flex flex-col items-center justify-center h-[45px] border-2 outline bg-chris-bg  outline-chris-bg border-chris-bg  focus:border-line-in focus:outline-white"
                   onClick={onClickChris}
                 >
                   <Image
@@ -53,7 +53,7 @@ export default function CreateTheme({
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full flex flex-col items-center justify-center bg-mas-bg w-[45px] h-[45px] border-2 outline outline-mas-bg border-mas-bg active:border-line-in active:outline-white focus:border-line-in focus:outline-white  "
+                  className="rounded-full flex flex-col items-center justify-center bg-mas-bg w-[45px] h-[45px] border-2 outline outline-mas-bg border-mas-bg  focus:border-line-in focus:outline-white  "
                   onClick={onClickMas}
                 >
                   <Image
@@ -70,7 +70,7 @@ export default function CreateTheme({
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full bg-night-bg  w-[45px] h-[45px] border-2 outline outline-night-bg border-night-bg active:border-line-in active:outline-white focus:border-line-in focus:outline-white "
+                  className="rounded-full bg-night-bg  w-[45px] h-[45px] border-2 outline outline-night-bg border-night-bg  focus:border-line-in focus:outline-white "
                   onClick={onClickNight}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">
@@ -80,7 +80,7 @@ export default function CreateTheme({
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full bg-peach-bg  w-[45px] h-[45px] border-2 outline outline-peach-bg border-peach-bg active:border-line-in active:outline-white focus:border-line-in focus:outline-white "
+                  className="rounded-full bg-peach-bg  w-[45px] h-[45px] border-2 outline outline-peach-bg border-peach-bg  focus:border-line-in focus:outline-white "
                   onClick={onClickPeach}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">복숭아</div>
@@ -88,7 +88,7 @@ export default function CreateTheme({
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full bg-lilac-bg w-[45px] h-[45px] border-2 outline outline-lilac-bg border-lilac-bg active:border-line-in active:outline-white focus:border-line-in focus:outline-white  "
+                  className="rounded-full bg-lilac-bg w-[45px] h-[45px] border-2 outline outline-lilac-bg border-lilac-bg focus:border-line-in focus:outline-white  "
                   onClick={onClickLilac}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">라일락</div>
