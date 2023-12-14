@@ -3,6 +3,6 @@ import { content } from './content';
 export interface board {
   id: string;
   title: string;
-  theme: 'strcat' | 'calm' | 'green' | 'cyan';
+  theme: 'yellow' | 'peach' | 'lilac' | 'christ' | 'mas';
   contents: content[];
 }

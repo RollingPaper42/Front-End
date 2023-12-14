@@ -10,7 +10,7 @@ interface Props {
   title: string;
   content: content[] | undefined;
   exportTheme: string;
-  boardTheme: 'strcat' | 'calm' | 'green' | 'cyan' | undefined;
+  boardTheme: 'yellow' | 'peach' | 'lilac' | 'christ' | 'mas' | undefined;
 }
 
 export default function ExportBoard({
