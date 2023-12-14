@@ -31,8 +31,8 @@ export interface themeState {
   iconTheme: iconThemeState;
 }
 
-export const yellow: themeState = {
-  name: 'yellow',
+export const night: themeState = {
+  name: 'night',
   textTheme: strcatText,
   bgTheme: strcatBg,
   catTheme: strcatCat,
@@ -72,7 +72,7 @@ export const mas: themeState = {
 };
 
 export const themeObj = {
-  yellow: yellow,
+  night: night,
   peach: peach,
   lilac: lilac,
   christ: christ,
@@ -81,5 +81,5 @@ export const themeObj = {
 
 export const themeState = atom<themeState>({
   key: 'themeState',
-  default: yellow,
+  default: night,
 });
