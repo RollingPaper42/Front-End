@@ -36,6 +36,12 @@ module.exports = {
         'strcat-default-magenta': '#FF43A8',
         'strcat-default-white': '#FFFFFF',
         'strcat-default-black': '#212121',
+        'chris-bg': '#246F50',
+        'mas-bg': '#DE6565',
+        'night-bg': '#FDFFB0',
+        'peach-bg': '#FFC8B0',
+        'lilac-bg': '#D7C4FF',
+        'line-in': '#585858',
 
         'strcat-calm-orange': '#FFA857',
         'strcat-calm-cyan': '#ABC4FF',
