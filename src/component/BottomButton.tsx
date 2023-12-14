@@ -23,7 +23,7 @@ export default function BottomButton({
     <button
       className={` items-center justify-center font-bold ${
         bodyFont.category2
-      } ${textColor} rounded-[5px] relative mx-1 ${height} w-full ${width} ${
+      } ${textColor} rounded-[5px] relative ${height} w-full ${width} ${
         disabled ? 'bg-[#CCCCCC]' : color
       } `}
       onClick={onClickHandler}

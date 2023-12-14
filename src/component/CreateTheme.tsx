@@ -86,55 +86,35 @@ export default function CreateTheme({
             isPreview === '1' ? 'contents' : 'hidden'
           }`}
         >
-          <Image
-            src="/preview/chris.svg"
-            width={270}
-            height={398}
-            alt="kakao"
-          />
+          <Image src="/preview/chris.svg" width={270} height={398} alt="1" />
         </div>
         <div
           className={`w-full h-full  ${
             isPreview === '2' ? 'contents' : 'hidden'
           }`}
         >
-          <Image src="/preview/mas.svg" width={270} height={398} alt="kakao" />
+          <Image src="/preview/mas.svg" width={270} height={398} alt="2" />
         </div>
         <div
           className={`w-full h-full  ${
             isPreview === '3' ? 'contents' : 'hidden'
           }`}
         >
-          <Image
-            src="/preview/night.svg"
-            width={270}
-            height={398}
-            alt="kakao"
-          />
+          <Image src="/preview/night.svg" width={270} height={398} alt="3" />
         </div>
         <div
           className={`w-full h-full ${
             isPreview === '4' ? 'contents' : 'hidden'
           }`}
         >
-          <Image
-            src="/preview/peach.svg"
-            width={270}
-            height={398}
-            alt="kakao"
-          />
+          <Image src="/preview/peach.svg" width={270} height={398} alt="4" />
         </div>
         <div
           className={`w-full h-full ${
             isPreview === '5' ? 'contents' : 'hidden'
           }`}
         >
-          <Image
-            src="/preview/lilac.svg"
-            width={270}
-            height={398}
-            alt="kakao"
-          />
+          <Image src="/preview/lilac.svg" width={270} height={398} alt="5" />
         </div>
       </div>
       <div className="basis-2/12 mx-[24px]  flex  flex-col items-center justify-center">
