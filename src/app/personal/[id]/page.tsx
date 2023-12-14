@@ -72,10 +72,13 @@ export default function Personal({ params }: { params: { id: string } }) {
       >
         <SnowAnimation />
         {board.length ? (
-          <div className="z-text">
-            <div className="pt-[100px]" />
-            {board[0].contents.length !== 0 && <Summary id={params.id} />}
-            <div className="pt-[150px]" />
+          <div className="z-text relative">
+            {board[0].contents.length !== 0 && (
+              <div className="absolute top-[100px]">
+                <Summary id={params.id} />
+              </div>
+            )}
+            <div style={{ paddingTop: `${windowHeight * 0.4}px` }} />
             {board[0].contents.length === 0 && (
               <NoneContent handleClickNoneContent={handleClickWrite} />
             )}
@@ -84,7 +87,7 @@ export default function Personal({ params }: { params: { id: string } }) {
         ) : (
           <Loading />
         )}
-        <div style={{ minHeight: `${windowHeight}px` }}></div>
+        <div style={{ minHeight: `${windowHeight * 0.6}px` }}></div>
         {isOwner ? (
           <div
             className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
