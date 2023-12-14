@@ -73,10 +73,16 @@ module.exports = {
           '80%': { opacity: 0.5 },
           '100%': { opacity: 0 },
         },
+        fall: {
+          '0%': { opacity: 0 },
+          '10%': { opacity: 0.7 },
+          '100%': { transform: 'translateY(100vh)', opacity: 0 },
+        },
       },
       animation: {
         slide: 'slide 0.7s linear',
         fadeIn: 'fadeIn 2s ease-in-out',
+        fall: 'fall 14s ease-in infinite',
       },
       fontSize: {
         'headline-size1': ['26px'],
@@ -101,8 +107,9 @@ module.exports = {
         14: 1.4,
       },
       zIndex: {
-        writer: 5,
-        button: 10,
+        text: 5,
+        writer: 10,
+        button: 20,
         drawer: 30,
         modal: 99,
       },
