@@ -64,7 +64,7 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={`${theme.bgTheme.background} min-h-full`}>
+      <div
         className={`${theme.bgTheme.background} min-h-full`}
         onClick={() => {
           setIsHidden(!isHidden);
