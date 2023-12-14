@@ -36,6 +36,12 @@ module.exports = {
         'strcat-default-magenta': '#FF43A8',
         'strcat-default-white': '#FFFFFF',
         'strcat-default-black': '#212121',
+        'chris-bg': '#246F50',
+        'mas-bg': '#DE6565',
+        'night-bg': '#FDFFB0',
+        'peach-bg': '#FFC8B0',
+        'lilac-bg': '#D7C4FF',
+        'line-in': '#585858',
 
         'strcat-calm-orange': '#FFA857',
         'strcat-calm-cyan': '#ABC4FF',
@@ -120,11 +126,68 @@ module.exports = {
         boxShadow: {
           highlight: '0 1px 0 2px #feffb0',
         },
+        drawerOpen: {
+          from: { transform: 'translateX(110%)' },
+          to: { transform: 'translateX(0)' },
+        },
+        drawerOpenBg: {
+          from: { backgroundColor: 'rgba(0,0,0,0)' },
+          to: { backgroundColor: 'rgba(0,0,0,0.8)' },
+        },
+        drawerClose: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(110%)' },
+        },
+        drawerCloseBg: {
+          from: { backgroundColor: 'rgba(0,0,0,0.8)' },
+          to: { backgroundColor: 'rgba(0,0,0,0)' },
+        },
       },
-      fontFamily: {
-        pretentdard: ['Pretendard'],
+      animation: {
+        slide: 'slide 0.7s linear',
+        fadeIn: 'fadeIn 2s ease-in-out',
+        fall: 'fall 14s ease-in infinite',
+        drawerOpen: 'drawerOpen 0.2s ease-in',
+        drawerOpenBg: 'drawerOpenBg 0.2s ease-in',
+        drawerClose: 'drawerClose 0.2s ease-in',
+        drawerCloseBg: 'drawerCloseBg 0.2s ease-in',
+      },
+      fontSize: {
+        'headline-size1': ['26px'],
+        'headline-size2': ['24px'],
+        'title-size1': ['22px'],
+        'title-size2': ['20px'],
+        'body-size1': ['18px'],
+        'body-size2': ['16px'],
+        'caption-size1': ['16px'],
+        'caption-size2': ['14px'],
+      },
+      letterSpacing: {
+        0: '0em',
+        1: '0.01em',
+        2: '0.02em',
+        3: '0.03em',
+        4: '0.04em',
+      },
+      lineHeight: {
+        16: 1.6,
+        15: 1.5,
+        14: 1.4,
+      },
+      zIndex: {
+        text: 5,
+        writer: 10,
+        button: 20,
+        drawer: 30,
+        modal: 99,
+      },
+      boxShadow: {
+        highlight: '0 1px 0 2px #feffb0',
+        fontFamily: {
+          pretentdard: ['Pretendard'],
+        },
       },
     },
-    plugins: [require('tailwind-scrollbar')({ nocompatible: true })],
   },
+  plugins: [require('tailwind-scrollbar')({ nocompatible: true })],
 };
