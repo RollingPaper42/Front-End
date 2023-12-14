@@ -70,10 +70,15 @@ module.exports = {
           '80%': { opacity: 0.5 },
           '100%': { opacity: 0 },
         },
+        textFadeIn: {
+          '0%': { opacity: 0.15 },
+          '100%': { opacity: 1 },
+        },
       },
       animation: {
         slide: 'slide 0.7s linear',
         fadeIn: 'fadeIn 2s ease-in-out',
+        textFadeIn: 'textFadeIn 0.35s ease-in-out',
       },
       fontSize: {
         'headline-size1': ['26px'],

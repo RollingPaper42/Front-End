@@ -75,8 +75,8 @@ const ObserveContent = ({
         className={`inline pt-[3px] pb-[4px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium
       ${
         observe.contentId === content.id
-          ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} transition `
-          : `${theme.textTheme.default} opacity-[0.15]`
+          ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} animate-textFadeIn`
+          : `${theme.textTheme.default} ${theme.bgTheme.background} opacity-[0.15]`
       }
     `}
         onClick={() => focusToHighlight(ref)}
