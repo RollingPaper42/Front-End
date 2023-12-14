@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 
 import BottomButton from '../BottomButton';
 import { Logout } from '../Icon/Drawer';
+import Logo from '../Icon/Logo';
 import DrawerClose from '../Icon/drawer/DrawerClose';
 import Home from '../Icon/drawer/Home';
 import DrawerItem from './DrawerItem';
@@ -97,7 +98,10 @@ export default function Drawer() {
             drawerClosing ? '  animate-drawerClose' : 'animate-drawerOpen'
           }`}
         >
-          <div className="flex h-[70px] w-full justify-start px-[24px] py-[22px]">
+          <div className="flex h-[70px] w-full px-[24px] py-[22px]">
+            <div>
+              <Logo />
+            </div>
             <div className="absolute right-[24px]">
               <div
                 className="flex justify-center items-center w-[24px] h-[24px]"
