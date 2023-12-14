@@ -39,7 +39,7 @@ export default function Drawer() {
     setTimeout(() => {
       setDrawer(false);
       setDrawerClosing(false);
-    }, 400);
+    }, 200);
     document.body.style.overflow = 'auto';
   };
 
