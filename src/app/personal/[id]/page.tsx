@@ -7,8 +7,10 @@ import NoneContent from './NoneContent';
 import SnowAnimation from './SnowAnimation';
 import Summary from './Summary';
 import BottomButton from '@/component/BottomButton';
+import CatAnimation from '@/component/CatAnimation';
 import Loading from '@/component/Loading';
 import StrcatBoard from '@/component/StrcatBoard';
+import { useCat } from '@/hooks/useCat';
 import { useLogin } from '@/hooks/useLogin';
 import { useScroll } from '@/hooks/useScroll';
 import { themeState, titleState } from '@/recoil/state';
@@ -27,7 +29,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [isLogin] = useLogin();
   const [, setTitle] = useRecoilState(titleState);
   const { isHidden, setIsHidden } = useScroll();
-
+  const [runCatAnimation] = useCat();
   useEffect(() => {
     axiosInstance
       .get(`/boards/${params.id}`)
@@ -44,6 +46,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   useEffect(() => {
     if (!board.length) return;
     setTitle(board[0].title);
+    runCatAnimation('strcat_sit', 'sit', 0, 'strcat');
   }, [board]);
 
   const handleClickWrite = () => {
@@ -71,6 +74,7 @@ export default function Personal({ params }: { params: { id: string } }) {
         }}
       >
         <SnowAnimation />
+        <CatAnimation isHidden={isHidden} />
         {board.length ? (
           <div className="z-text">
             <div className="pt-[100px]" />
@@ -91,7 +95,10 @@ export default function Personal({ params }: { params: { id: string } }) {
               isHidden ? 'translate-y-full' : 'translate-y-0'
             }`}
           >
-            <div className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]">
+            <div
+              className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]"
+              id="strcat_sit"
+            >
               <div className="flex basis-1/12 items-center justify-center">
                 <div
                   className={`h-[46px] flex rounded-[5px] w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
@@ -131,7 +138,10 @@ export default function Personal({ params }: { params: { id: string } }) {
                 isHidden ? 'translate-y-full' : 'translate-y-0'
               }`}
             >
-              <div className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px] ">
+              <div
+                className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px] "
+                id="strcat_sit"
+              >
                 <BottomButton
                   textColor=" text-strcat-white2"
                   name="나도 만들기"
