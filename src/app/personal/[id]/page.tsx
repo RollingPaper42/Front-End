@@ -46,7 +46,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   useEffect(() => {
     if (!board.length) return;
     setTitle(board[0].title);
-    runCatAnimation('strcat_sit', 'sit', 0, 'strcat');
+    runCatAnimation('strcat_sit', 'sit', 0, board[0].theme);
   }, [board]);
 
   const handleClickWrite = () => {
