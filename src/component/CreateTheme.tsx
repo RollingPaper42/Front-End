@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-
 import BottomButton from './BottomButton';
 import Image from 'next/image';
 
@@ -26,8 +24,6 @@ export default function CreateTheme({
   isPreview,
   hidden,
 }: CreateThemeProps) {
-  const [isHidden, setIsHidden] = useState(false);
-  console.log({ isPreview });
   return (
     <div className={`flex flex-col w-full h-full ${hidden}`}>
       <div className="basis-1/12"></div>
