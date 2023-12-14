@@ -78,11 +78,31 @@ module.exports = {
           '10%': { opacity: 0.7 },
           '100%': { transform: 'translateY(100vh)', opacity: 0 },
         },
+        drawerOpen: {
+          from: { transform: 'translateX(110%)' },
+          to: { transform: 'translateX(0)' },
+        },
+        drawerOpenBg: {
+          from: { backgroundColor: 'rgba(0,0,0,0)' },
+          to: { backgroundColor: 'rgba(0,0,0,0.8)' },
+        },
+        drawerClose: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(110%)' },
+        },
+        drawerCloseBg: {
+          from: { backgroundColor: 'rgba(0,0,0,0.8)' },
+          to: { backgroundColor: 'rgba(0,0,0,0)' },
+        },
       },
       animation: {
         slide: 'slide 0.7s linear',
         fadeIn: 'fadeIn 2s ease-in-out',
         fall: 'fall 14s ease-in infinite',
+        drawerOpen: 'drawerOpen 0.4s ease-in',
+        drawerOpenBg: 'drawerOpenBg 0.4s ease-in',
+        drawerClose: 'drawerClose 0.4s ease-in',
+        drawerCloseBg: 'drawerCloseBg 0.4s ease-in',
       },
       fontSize: {
         'headline-size1': ['26px'],
