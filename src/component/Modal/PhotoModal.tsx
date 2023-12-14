@@ -26,7 +26,7 @@ export default function PhotoModal({ photoUrl, closeModal, text }: Props) {
       </button>
       <Photo photoUrl={photoUrl} />
       <div className="w-full h-[16px]"></div>
-      <div className=" overflow-y-scroll h-[204px] text-justify">
+      <div className=" overflow-y-scroll h-[204px] text-justify break-all justify-start">
         <p
           className={`${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} transition inline pt-[3px] pb-[4px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium`}
         >
