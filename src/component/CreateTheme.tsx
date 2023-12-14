@@ -36,22 +36,41 @@ export default function CreateTheme({
             <div className="flex flex-row w-full h-full">
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
-                  className="rounded-full w-[45px] h-[45px] bg-red-300  "
+                  tabIndex={0}
+                  className="rounded-full w-[45px] flex flex-col items-center justify-center h-[45px] border-2 outline bg-chris-bg  outline-chris-bg border-chris-bg active:border-line-in active:outline-white focus:border-line-in focus:outline-white"
                   onClick={onClickChris}
-                ></div>
-                <div className="mt-[12px] text-[12px] text-white">크리스</div>
+                >
+                  <Image
+                    src="/chrisCat.svg"
+                    width={42}
+                    height={43}
+                    alt="chrisCat"
+                    className="mt-3 ml-[1px] z-10"
+                  />
+                </div>
+                <div className="mt-[12px] text-[12px] text-white ">크리스</div>
               </div>
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
-                  className="rounded-full bg-red-300 w-[45px] h-[45px] "
+                  tabIndex={0}
+                  className="rounded-full flex flex-col items-center justify-center bg-mas-bg w-[45px] h-[45px] border-2 outline outline-mas-bg border-mas-bg active:border-line-in active:outline-white focus:border-line-in focus:outline-white  "
                   onClick={onClickMas}
-                ></div>
+                >
+                  <Image
+                    src="/masCat.svg"
+                    width={42}
+                    height={43}
+                    alt="chrisCat"
+                    className="mt-[10px] z-10"
+                  />
+                </div>
                 <div className="mt-[12px] text-[12px] text-white">마스</div>
               </div>
 
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
-                  className="rounded-full bg-red-300  w-[45px] h-[45px]"
+                  tabIndex={0}
+                  className="rounded-full bg-night-bg  w-[45px] h-[45px] border-2 outline outline-night-bg border-night-bg active:border-line-in active:outline-white focus:border-line-in focus:outline-white "
                   onClick={onClickNight}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">
@@ -60,14 +79,16 @@ export default function CreateTheme({
               </div>
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
-                  className="rounded-full bg-red-300  w-[45px] h-[45px]"
+                  tabIndex={0}
+                  className="rounded-full bg-peach-bg  w-[45px] h-[45px] border-2 outline outline-peach-bg border-peach-bg active:border-line-in active:outline-white focus:border-line-in focus:outline-white "
                   onClick={onClickPeach}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">복숭아</div>
               </div>
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
-                  className="rounded-full bg-red-300 w-[45px] h-[45px] "
+                  tabIndex={0}
+                  className="rounded-full bg-lilac-bg w-[45px] h-[45px] border-2 outline outline-lilac-bg border-lilac-bg active:border-line-in active:outline-white focus:border-line-in focus:outline-white  "
                   onClick={onClickLilac}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">라일락</div>
@@ -83,10 +104,11 @@ export default function CreateTheme({
           }`}
         >
           <Image
-            src="/preview/chris.svg"
+            src="/preview/christ.svg"
             width={270}
             height={398}
-            alt="kakao"
+            alt="1"
+            className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
           />
         </div>
         <div
@@ -94,7 +116,13 @@ export default function CreateTheme({
             isPreview === '2' ? 'contents' : 'hidden'
           }`}
         >
-          <Image src="/preview/mas.svg" width={270} height={398} alt="kakao" />
+          <Image
+            src="/preview/mas.svg"
+            width={270}
+            height={398}
+            alt="2"
+            className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
+          />
         </div>
         <div
           className={`w-full h-full  ${
@@ -105,7 +133,8 @@ export default function CreateTheme({
             src="/preview/night.svg"
             width={270}
             height={398}
-            alt="kakao"
+            alt="3"
+            className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
           />
         </div>
         <div
@@ -117,19 +146,21 @@ export default function CreateTheme({
             src="/preview/peach.svg"
             width={270}
             height={398}
-            alt="kakao"
+            alt="4"
+            className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
           />
         </div>
         <div
           className={`w-full h-full ${
             isPreview === '5' ? 'contents' : 'hidden'
-          }`}
+          } drop-shadow`}
         >
           <Image
             src="/preview/lilac.svg"
             width={270}
             height={398}
-            alt="kakao"
+            alt="5"
+            className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
           />
         </div>
       </div>
