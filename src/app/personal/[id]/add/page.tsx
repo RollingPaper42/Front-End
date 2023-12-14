@@ -71,9 +71,6 @@ export default function Add({ params }: { params: { id: string } }) {
       }
     }
   };
-  const handleTextChange = (newText: string) => {
-    setText(newText);
-  };
 
   return (
     <>
@@ -96,7 +93,9 @@ export default function Add({ params }: { params: { id: string } }) {
               placeholder="내용을 입력해주세요."
               textColor="text-white "
               maxLength={400}
-              onTextChange={handleTextChange}
+              text={text}
+              setText={setText}
+              maxheight="max-h-[300px]"
               handleFocus={() => {
                 setIsHidden(true);
               }}
