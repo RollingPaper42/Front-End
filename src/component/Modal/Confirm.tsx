@@ -18,10 +18,7 @@ export default function Confirm({ mainContent, subContent, yes, no }: Props) {
           {mainContent}
         </p>
         {subContent ?? (
-          <p
-            className={`text-center text-body-size2 text-strcat-white/50 mt-[12px]`}
-          >
-            {' '}
+          <p className="text-center text-body-size2 text-strcat-white/50 mt-[12px]">
             {subContent}
           </p>
         )}

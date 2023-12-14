@@ -76,7 +76,7 @@ const ObserveContent = ({
       ${
         observe.contentId === content.id
           ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} animate-textFadeIn`
-          : `${theme.textTheme.default} ${theme.bgTheme.background} opacity-[0.15]`
+          : `${theme.textTheme.default} opacity-[0.15]`
       }
     `}
         onClick={() => focusToHighlight(ref)}
