@@ -4,43 +4,40 @@ import BottomButton from '@/component/BottomButton';
 import { titleFont } from '@/recoil/font';
 
 interface Props {
-  content: string;
+  mainContent: string;
+  subContent?: string;
   yes: () => void;
   no: () => void;
 }
 
-export default function Confirm({ content, yes, no }: Props) {
+export default function Confirm({ mainContent, subContent, yes, no }: Props) {
   return (
-    <div className="relative h-[312px] w-[312px]">
-      <ModalBackground />
-      <div className="absolute top-0 h-[312px] w-[312px] items-center justify-center p-[16px]">
-        <div className="flex w-full justify-end">
-          <button onClick={no}>
-            <ModalClose />
-          </button>
-        </div>
-        <div className=" items-center justify-center">
-          <p
-            className={`absolute left-0 top-[97px] px-[24px] text-center ${titleFont.category1}`}
-          >
-            {content}
+    <div className="relative w-[280px] pt-[32px] pb-[16px] px-[16px] bg-strcat-textarea-bg rounded-[16px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.50)] font-medium">
+      <div className=" items-center justify-center">
+        <p className={`text-center text-body-size1 text-strcat-white`}>
+          {mainContent}
+        </p>
+        {subContent ?? (
+          <p className="text-center text-body-size2 text-strcat-white/50 mt-[12px]">
+            {subContent}
           </p>
-        </div>
-        <div className="absolute bottom-[16px] left-0 flex w-full justify-between px-[16px]">
+        )}
+        <div className="mt-[32px] flex">
           <BottomButton
-            textColor=""
+            textColor="text-strcat-white"
             height="h-[42px]"
-            color="bg-[#A6A6A6]"
-            name="아니요"
+            color="bg-strcat-gray2"
+            name="취소"
             width="basis-1/2"
             onClickHandler={no}
             disabled={false}
           />
+          <div className="w-[12px]"></div>
           <BottomButton
             textColor=""
             height="h-[42px]"
-            color="bg-[#7CED43]"
-            name="예"
+            color="bg-strcat-bright-yellow"
+            name="확인"
             width="basis-1/2"
             onClickHandler={yes}
             disabled={false}
