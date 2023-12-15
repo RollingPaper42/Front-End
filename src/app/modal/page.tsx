@@ -19,7 +19,11 @@ export default function Modal() {
 
   const handleError = () => {
     openModal(
-      <Error content="에러 모달 띄우기" handleModalClose={closeModal} />,
+      <Error
+        mainContent="에러 모달 띄우기"
+        subContent="에러모달어쩌구"
+        handleModalClose={closeModal}
+      />,
     );
   };
 
@@ -33,7 +37,7 @@ export default function Modal() {
   return (
     <div className="h-full w-full">
       <div>
-        <button onClick={handleError}>Modal click</button>
+        <button onClick={handleError}>Error click</button>
       </div>
       <div>
         <button onClick={handleConfirm}>Confirm Click</button>
