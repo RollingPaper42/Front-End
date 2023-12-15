@@ -30,6 +30,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [, setTitle] = useRecoilState(titleState);
   const { isHidden, setIsHidden } = useScroll();
   const [runCatAnimation] = useCat();
+
   useEffect(() => {
     axiosInstance
       .get(`/boards/${params.id}`)
@@ -96,17 +97,17 @@ export default function Personal({ params }: { params: { id: string } }) {
         <div style={{ minHeight: `${windowHeight * 0.6}px` }}></div>
         {isOwner ? (
           <div
-            className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
+            className={`fixed bottom-0 left-0 z-button flex w-full items-center justify-center pb-[12px] transition-transform duration-300 ${
               isHidden ? 'translate-y-full' : 'translate-y-0'
             }`}
           >
             <div
-              className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]"
+              className="flex w-full max-w-md items-center justify-center space-x-[12px] px-[24px]"
               id="strcat_sit"
             >
               <div className="flex basis-1/12 items-center justify-center">
                 <div
-                  className={`h-[46px] flex rounded-[5px] w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
+                  className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${theme.bgTheme.leftCTA}`}
                 >
                   <Image
                     src="/Download.svg"
@@ -139,12 +140,12 @@ export default function Personal({ params }: { params: { id: string } }) {
         ) : (
           <>
             <div
-              className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
+              className={`fixed bottom-0 left-0 z-button flex w-full items-center justify-center pb-[12px] transition-transform duration-300 ${
                 isHidden ? 'translate-y-full' : 'translate-y-0'
               }`}
             >
               <div
-                className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px] "
+                className="flex w-full max-w-md items-center justify-center space-x-[12px] px-[24px] "
                 id="strcat_sit"
               >
                 <BottomButton
