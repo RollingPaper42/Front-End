@@ -42,7 +42,6 @@ module.exports = {
         'peach-bg': '#FFC8B0',
         'lilac-bg': '#D7C4FF',
         'line-in': '#585858',
-
         'strcat-calm-orange': '#FFA857',
         'strcat-calm-cyan': '#ABC4FF',
         'strcat-calm-text-cyan': '#557FE4',
@@ -51,22 +50,46 @@ module.exports = {
         'strcat-calm-magenta': '#FF43A8',
         'strcat-calm-white': '#F0EEEA',
         'strcat-calm-black': '#463F3A',
-
         'strcat-green-black': '#212121',
         'strcat-green-cyan': '#8CD8ED',
         'strcat-green-yellow': '#FBFF36',
         'strcat-green-green': '#7CED43',
-
         'strcat-cyan-white': '#FFFFFF',
         'strcat-cyan-green': '#7CED43',
         'strcat-cyan-yellow': '#FBFF36',
         'strcat-cyan-magenta': '#FF43A8',
         'strcat-cyan-cyan': '#6CD8ED',
         'strcat-cyan-black': '#212121',
-
         'login-button-kakao': '#FEE500',
         'login-button-google': '#FFFFFF',
         'loading-gray': '#D9D9D9',
+
+        // 여기서부터 테마 정리 뉴 버전
+        'default-white': '#FFFFFFF',
+        'default-white2': '#E9E9E9',
+        'default-black': '#212121',
+        'default-black2': '#000000',
+        'default-gray': '#4D4D4D',
+        'default-gray2': '#BCBCBC',
+        'default-gray3': '#909090',
+        'kakao-bg': '#FEE500',
+        'google-bg': '#FFFFFF',
+        'textarea-bg': '#373737',
+
+        'night-highlight': '#FDFFB0',
+        'night-buttonbg': '#9D9D8C',
+
+        'peach-highlight': '#FFC8B0',
+        'peach-buttonbg': '#987A6F',
+
+        'lilac-highlight': '#D7C4FF',
+        'lilac-buttonbg': '#66697D',
+
+        'chris-highlight': '#246F50',
+        'chris-buttonbg': '#2A4C3E',
+
+        'mas-highlight': '#DE6565',
+        'chris-buttonbg': '#964E4E',
       },
       keyframes: {
         slide: {
