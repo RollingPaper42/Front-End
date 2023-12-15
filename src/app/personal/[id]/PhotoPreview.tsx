@@ -7,7 +7,7 @@ interface Props {
 
 export default function PhotoPreview({ photoUrl, handleClickPhoto }: Props) {
   return (
-    <div className="pb-[5px]">
+    <div className="absolute top-[-51px]">
       <div className="w-[44px] h-[46px] relative" onClick={handleClickPhoto}>
         <div className="w-[40px] h-[40px] absolute left-[2px]">
           <img
