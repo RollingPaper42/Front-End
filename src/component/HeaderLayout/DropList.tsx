@@ -16,7 +16,7 @@ export default function DropList({ list, category }: Props) {
         <h1 className="select-none text-body-size1 font-semibold">
           내 스트링캣
         </h1>
-        <div className=" cursor-default select-none text-caption-size2 font-medium text-gray-500">
+        <div className="cursor-default select-none text-caption-size2 font-medium text-gray-500">
           {list.length}
         </div>
       </div>

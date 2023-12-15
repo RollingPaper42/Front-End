@@ -8,9 +8,9 @@ interface Props {
 
 export default function Writer({ writer, handleWriter, setIsHidden }: Props) {
   return (
-    <div className="h-[51px] pl-[16px] w-full flex items-center justify-center rounded-lg bg-white/10">
+    <div className="flex h-[51px] w-full items-center justify-center rounded-lg bg-white/10 pl-[16px]">
       <input
-        className="text-body-size2 w-full h-full outline-none bg-transparent placeholder:text-white/50 text-white"
+        className="h-full w-full bg-transparent text-body-size2 text-white outline-none placeholder:text-white/50"
         maxLength={11}
         value={writer}
         onChange={handleWriter}
@@ -19,7 +19,7 @@ export default function Writer({ writer, handleWriter, setIsHidden }: Props) {
         onBlur={() => setIsHidden(false)}
       />
       <div
-        className={`pr-[16px] text-caption-size2 ${
+        className={`cursor-default select-none pr-[16px] text-caption-size2 ${
           writer.length > 10 ? 'text-[#DE6565]' : 'text-white/50'
         }`}
       >
