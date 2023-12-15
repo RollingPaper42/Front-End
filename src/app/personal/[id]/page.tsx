@@ -31,9 +31,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [, setTitle] = useRecoilState(titleState);
   const { isHidden, setIsHidden } = useScroll();
   const [runCatAnimation] = useCat();
-  const [downloadToast, setDownloadToast] = useState(false);
-  const [shareToast, setShareToast] = useState(false);
-  const [errorToast, setErrorToast] = useState(false);
+  const [toast, setToast] = useState('');
   useEffect(() => {
     axiosInstance
       .get(`/boards/${params.id}`)
@@ -69,22 +67,17 @@ export default function Personal({ params }: { params: { id: string } }) {
     }
   };
   const handleClickDownload = () => {
-    setShareToast(false);
-    setErrorToast(false);
-    setDownloadToast(true);
+    setToast('download');
   };
 
   const handleClickShare = async () => {
-    setDownloadToast(false);
     try {
       await navigator.clipboard.writeText(
         `https://strcat.me/personal/${params.id}`,
       );
-      setErrorToast(false);
-      setShareToast(true);
+      setToast('share');
     } catch {
-      setShareToast(false);
-      setErrorToast(true);
+      setToast('error');
     }
   };
 
@@ -196,13 +189,13 @@ export default function Personal({ params }: { params: { id: string } }) {
           </>
         )}
       </div>
-      {downloadToast && (
+      {toast === 'download' && (
         <Toast message="저장기능은 준비중이에요!" setToast={setDownloadToast} />
       )}
-      {shareToast && (
+      {toast === 'share' && (
         <Toast message="링크가 복사되었어요!" setToast={setShareToast} />
       )}
-      {errorToast && (
+      {toast === 'error' && (
         <Toast message="링크 복사에 실패했어요 🥲" setToast={setErrorToast} />
       )}
     </>

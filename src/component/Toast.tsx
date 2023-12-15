@@ -3,14 +3,13 @@ import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
   message: string;
-  setToast: Dispatch<SetStateAction<boolean>>;
+  setToast: Dispatch<SetStateAction<string>>;
 }
 
 export default function Toast({ message, setToast }: Props) {
   useEffect(() => {
-    console.log(message);
     let timer = setTimeout(() => {
-      setToast(false);
+      setToast('');
     }, 2100);
     return () => {
       clearTimeout(timer);
