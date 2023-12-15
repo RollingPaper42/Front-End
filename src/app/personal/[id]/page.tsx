@@ -65,7 +65,7 @@ export default function Personal({ params }: { params: { id: string } }) {
       );
       router.push('/login');
     } else {
-      router.push('/personal/${params.id}');
+      router.push(`/create`);
     }
   };
   const handleClickDownload = () => {
