@@ -57,7 +57,7 @@ export default function Drawer() {
 
   const handleNewStrcat = () => {
     drawerClose();
-    router.push('/create');
+    router.push('/create', { scroll: false });
   };
 
   const handleHome = () => {
@@ -84,8 +84,8 @@ export default function Drawer() {
   return (
     drawer && (
       <div
-        className={`fixed z-drawer h-full w-full max-w-md overflow-hidden bg-black bg-opacity-80 ${
-          drawerClosing ? 'animate-drawerCloseBg' : 'animate-drawerOpenBg'
+        className={`fixed  z-drawer h-full w-full max-w-md bg-black bg-opacity-80 overflow-hidden ${
+          drawerClosing ? ' animate-drawerCloseBg' : 'animate-drawerOpenBg'
         }`}
         onClick={(e) => {
           handleBackground(e, drawerSlowClose);
