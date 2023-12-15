@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
 
-import Back from '../Icon/Back';
+import { Back } from '../Icon/Header';
 import { bodyFont } from '@/recoil/font';
 import { themeState } from '@/recoil/theme/theme';
 import { useRouter } from 'next/navigation';

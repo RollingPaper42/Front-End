@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
 
-import PhotoClose from '../Icon/PhotoClose';
+import Close from '../Icon/Close';
 import Photo from '../Photo';
 import { themeState } from '@/recoil/state';
 import { handleBackground } from '@/utils/handleBackground';
@@ -22,19 +22,19 @@ export default function PhotoModal({
   return (
     <div
       onClick={(e) => handleBackground(e, closeModal)}
-      className="h-full w-full px-[24px] flex flex-col justify-center items-center bg-black/80"
+      className="flex h-full w-full flex-col items-center justify-center bg-black/80 px-[24px]"
     >
       <button
         onClick={closeModal}
-        className=" absolute top-[24px] w-full mb-[24px] flex justify-end px-[24px]"
+        className=" absolute top-[24px] mb-[24px] flex w-full justify-end px-[24px]"
       >
-        <PhotoClose />
+        <Close />
       </button>
       <Photo photoUrl={photoUrl} />
-      <div className="w-full h-[16px]"></div>
-      <div className="w-full overflow-y-scroll h-[204px] text-justify break-all justify-start  scrollbar-thumb-[#373737] scrollbar-thin">
+      <div className="h-[16px] w-full"></div>
+      <div className="h-[204px] w-full justify-start overflow-y-scroll break-all text-justify  scrollbar-thin scrollbar-thumb-[#373737]">
         <p
-          className={`${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} transition inline pt-[3px] pb-[4px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium`}
+          className={`${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} inline pb-[4px] pt-[3px] text-body-size1 font-medium leading-[31px] tracking-[-0.36px] transition`}
         >
           {text}
         </p>
