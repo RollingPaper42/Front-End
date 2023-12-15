@@ -8,6 +8,7 @@ interface Props {
 
 export default function Toast({ message, setToast }: Props) {
   useEffect(() => {
+    console.log(message);
     let timer = setTimeout(() => {
       setToast(false);
     }, 2100);
