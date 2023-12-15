@@ -31,7 +31,7 @@ export default function DropListItem({ list, category }: Props) {
     return (
       <div
         key={item.id}
-        className="flex h-[54px] w-full select-none items-center justify-between px-[24px]"
+        className="flex h-[54px] w-full cursor-pointer select-none items-center justify-between px-[24px]"
         onClick={() => {
           router.push(url);
           document.body.style.overflow = 'auto';
@@ -39,7 +39,7 @@ export default function DropListItem({ list, category }: Props) {
         }}
       >
         <div
-          className={`py-[12px] flex h-full w-full items-center text-body-size2 font-medium ${
+          className={`flex h-full w-full items-center py-[12px] text-body-size2 font-medium ${
             isActive ? `px-0 text-strcat-bright-yellow` : 'px-[24px]'
           }`}
         >

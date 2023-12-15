@@ -39,7 +39,7 @@ export default function TitleHeader() {
         className={`flex min-h-[52px] flex-row items-stretch justify-between py-[16px] ${theme.bgTheme.background} bg-opacity-80 px-[24px]`}
         id="titleHeader"
       >
-        <div className="flex items-center pr-[8px] text-headline-size2 font-bold leading-8 tracking-[-0.48px] text-white">
+        <div className="flex select-none items-center pr-[8px] text-headline-size2 font-bold leading-8 tracking-[-0.48px] text-white">
           {title}
         </div>
         {isAdd ? (

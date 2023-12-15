@@ -11,7 +11,7 @@ export default function SelectButton({
 }: SelectButtonProps) {
   return (
     <button
-      className={` ${width}  h-[40px] mb-2 rounded-[25px] border border-strcat-gray3 bg-strcat-black text-strcat-gray3 text-center text-[15px]`}
+      className={`${width} border-strcat-gray3 text-strcat-gray3 mb-2 h-[40px] cursor-pointer select-none rounded-[25px] border bg-strcat-black text-center text-[15px]`}
       onClick={onClickHandler}
     >
       {content}

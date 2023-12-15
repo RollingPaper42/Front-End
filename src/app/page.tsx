@@ -25,26 +25,26 @@ export default function Home() {
   };
 
   return (
-    <div className={` bg-strcat-black h-auto min-h-full`}>
-      <div className="flex flex-col pt-[152px] items-center justify-center">
+    <div className="h-auto min-h-full bg-strcat-black">
+      <div className="flex flex-col items-center justify-center pt-[152px]">
         <Image
           src="/StrcatIcon.svg"
           width={42}
           height={42}
           alt="mainStrcatIcon"
         />
-        <div className=" font-bold text-[28px] py-[11px] text-white">
+        <div className="py-[11px] text-[28px] font-bold text-white">
           스트링캣
         </div>
         <div className=" text-body-size2 text-white opacity-50">
           함께 문장을 이어가는 롤링페이퍼
         </div>
-        <div className="pt-[167px]  text-body-size2 text-white opacity-50 text-center">
+        <div className="pt-[167px] text-center text-body-size2 text-white opacity-50">
           내 롤링페이퍼에서 <br /> 친구들의 이야기를 듣고 싶다면
         </div>
-        <div className="flex flex-row mt-[16px] w-[252px] h-[44px] bg-strcat-bright-yellow rounded-[5px] justify-center items-center">
+        <div className="mt-[16px] flex h-[44px] w-[252px] cursor-pointer select-none flex-row items-center justify-center rounded-[5px] bg-strcat-bright-yellow">
           <div
-            className=" text-body-size2 font-bold"
+            className="text-body-size2 font-bold"
             onClick={handleClickPersonal}
           >
             스트링캣 시작하기
@@ -56,9 +56,9 @@ export default function Home() {
             alt="mainStrcatIcon"
           />
         </div>
-        <div className="pt-[54px]">
+        <div className="cursor-pointer select-none pt-[54px]">
           <Image
-            className="animate-bounce"
+            className="h-auto w-auto animate-bounce"
             src="/IconUnder.svg"
             width={30}
             height={21}
@@ -66,7 +66,7 @@ export default function Home() {
             onClick={() => focusToHighlight(ref)}
           />
         </div>
-        <div className="pt-[100px] pb-[500px]">
+        <div className="pb-[500px] pt-[100px]">
           <div ref={ref} />
           <MainManStrcat />
         </div>
