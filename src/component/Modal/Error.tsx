@@ -29,7 +29,7 @@ export default function Error({
             textColor="text-strcat-black"
             height="h-[42px]"
             color="bg-strcat-bright-yellow"
-            name="취소"
+            name="확인"
             width="w-full"
             onClickHandler={handleModalClose}
             disabled={false}
