@@ -4,6 +4,7 @@ import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
+import Writer from './Writer';
 import BottomButton from '@/component/BottomButton';
 import Error from '@/component/Modal/Error';
 import PhotoUpload from '@/component/PhotoUpload';
@@ -30,11 +31,7 @@ export default function Add({ params }: { params: { id: string } }) {
   });
 
   const handleClick = async () => {
-    const isConfirmed = await confirm(
-      openModal,
-      closeModal,
-      '글 작성을 완료하시겠어요?',
-    );
+    const isConfirmed = await confirm(openModal, closeModal, '완료하시겠어요?');
     if (isConfirmed) {
       try {
         let data = {
@@ -86,16 +83,15 @@ export default function Add({ params }: { params: { id: string } }) {
           </div>
         )}
         <div className={`px-[24px] ${theme.bgTheme.background}`}>
-          <div className="mt-[16px] flex justify-center items-center">
+          <div className="mt-[16px] flex items-center justify-center">
             <Textarea
               width="w-full"
-              height="h-[160px]"
+              maxHeight="max-h-[250px]"
               placeholder="내용을 입력해주세요."
               textColor="text-white "
-              maxLength={400}
               text={text}
               setText={setText}
-              maxheight="max-h-[300px]"
+              maxLength={400}
               handleFocus={() => {
                 setIsHidden(true);
               }}
@@ -104,7 +100,7 @@ export default function Add({ params }: { params: { id: string } }) {
               }}
             />
           </div>
-          <div className="mt-[20px] mb-[12px] text-body-size2 font-semibold text-[#BCBCBC] tracking-[-0.32px] ">
+          <div className="mb-[12px] mt-[20px] text-body-size2 font-semibold tracking-[-0.32px] text-[#BCBCBC] ">
             From
           </div>
           <div className="h-[51px] pl-[16px] w-full flex items-center justify-center rounded-lg bg-white/10">
@@ -134,7 +130,7 @@ export default function Add({ params }: { params: { id: string } }) {
         }`}
       >
         <div
-          className={`flex w-full max-w-md flex-row px-[24px] h-[70px] items-center space-x-[12px] ${theme.bgTheme.background}`}
+          className={`flex h-[70px] w-full max-w-md flex-row items-center space-x-[12px] px-[24px] ${theme.bgTheme.background}`}
         >
           <PhotoUpload setImage={setImage} setPreview={setPreview} />
           <BottomButton
