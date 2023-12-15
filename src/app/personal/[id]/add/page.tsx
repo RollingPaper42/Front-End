@@ -71,8 +71,8 @@ export default function Add({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={`w-full h-full ${theme.bgTheme.background}`}>
-        <div className="pt-[84px]" />
+      <div className={`h-full w-full ${theme.bgTheme.background}`}>
+        <div className="pt-[100px]" />
         {preview && (
           <div className="mb-[4px] mt-[16px]">
             <PreviewPhoto
