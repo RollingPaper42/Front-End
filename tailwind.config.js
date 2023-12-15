@@ -114,6 +114,9 @@ module.exports = {
         drawerOpenBg: 'drawerOpenBg 0.2s ease-in',
         drawerClose: 'drawerClose 0.2s ease-in',
         drawerCloseBg: 'drawerCloseBg 0.2s ease-in',
+        'pulse-custom1': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;',
+        'pulse-custom2': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 2) infinite;',
+        'pulse-custom3': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 3) infinite;',
       },
       fontSize: {
         'headline-size1': ['26px'],

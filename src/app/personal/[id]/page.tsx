@@ -89,7 +89,9 @@ export default function Personal({ params }: { params: { id: string } }) {
             <StrcatBoard board={board[0]} />
           </div>
         ) : (
-          <Loading />
+          <div style={{ height: `${windowHeight}px` }}>
+            <Loading />
+          </div>
         )}
         <div style={{ minHeight: `${windowHeight * 0.6}px` }}></div>
         {isOwner ? (
