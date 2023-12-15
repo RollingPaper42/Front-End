@@ -9,6 +9,7 @@ import { drawerState, themeState, titleState } from '@/recoil/state';
 import { usePathname, useRouter } from 'next/navigation';
 import useModal from '@/hooks/useModal';
 import { confirm } from '@/utils/confirm';
+import { drawerOpen } from '@/utils/drawerOpen';
 
 export default function TitleHeader() {
   const pathName = usePathname();
@@ -29,6 +30,10 @@ export default function TitleHeader() {
     if (isConfirmed) router.back();
   };
 
+  if (isAdd && title === '') {
+    router.push(pathName.substring(0, pathName.lastIndexOf('/')));
+  }
+
   return (
     <div
       className={`fixed top-0 z-10 w-full max-w-md transition-transform duration-300 ${
@@ -47,13 +52,7 @@ export default function TitleHeader() {
             <Close />
           </div>
         ) : (
-          <div
-            className="pt-[4px]"
-            onClick={() => {
-              setDrawer(true);
-              document.body.style.overflow = 'hidden';
-            }}
-          >
+          <div className="pt-[4px]" onClick={() => drawerOpen(setDrawer)}>
             <HamburgerMenu />
           </div>
         )}
