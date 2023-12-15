@@ -79,10 +79,41 @@ module.exports = {
           '80%': { opacity: 0.5 },
           '100%': { opacity: 0 },
         },
+        textFadeIn: {
+          '0%': { opacity: 0.15 },
+          '100%': { opacity: 1 },
+        },
+        fall: {
+          '0%': { opacity: 0 },
+          '10%': { opacity: 0.7 },
+          '100%': { transform: 'translateY(100vh)', opacity: 0 },
+        },
+        drawerOpen: {
+          from: { transform: 'translateX(110%)' },
+          to: { transform: 'translateX(0)' },
+        },
+        drawerOpenBg: {
+          from: { backgroundColor: 'rgba(0,0,0,0)' },
+          to: { backgroundColor: 'rgba(0,0,0,0.8)' },
+        },
+        drawerClose: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(110%)' },
+        },
+        drawerCloseBg: {
+          from: { backgroundColor: 'rgba(0,0,0,0.8)' },
+          to: { backgroundColor: 'rgba(0,0,0,0)' },
+        },
       },
       animation: {
         slide: 'slide 0.7s linear',
         fadeIn: 'fadeIn 2s ease-in-out',
+        textFadeIn: 'textFadeIn 0.35s ease-in-out',
+        fall: 'fall 14s ease-in infinite',
+        drawerOpen: 'drawerOpen 0.2s ease-in',
+        drawerOpenBg: 'drawerOpenBg 0.2s ease-in',
+        drawerClose: 'drawerClose 0.2s ease-in',
+        drawerCloseBg: 'drawerCloseBg 0.2s ease-in',
         'pulse-custom1': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;',
         'pulse-custom2': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 2) infinite;',
         'pulse-custom3': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 3) infinite;',
@@ -110,8 +141,9 @@ module.exports = {
         14: 1.4,
       },
       zIndex: {
-        writer: 5,
-        button: 10,
+        text: 5,
+        writer: 10,
+        button: 20,
         drawer: 30,
         modal: 99,
       },
