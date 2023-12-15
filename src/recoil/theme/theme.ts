@@ -55,8 +55,8 @@ export const lilac: themeState = {
   iconTheme: greenIcon,
 };
 
-export const christ: themeState = {
-  name: 'christ',
+export const chris: themeState = {
+  name: 'chris',
   textTheme: cyanText,
   bgTheme: cyanBg,
   catTheme: cyanCat,
@@ -75,7 +75,7 @@ export const themeObj = {
   night: night,
   peach: peach,
   lilac: lilac,
-  christ: christ,
+  chris: chris,
   mas: mas,
 };
 

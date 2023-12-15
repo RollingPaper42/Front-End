@@ -104,7 +104,7 @@ export default function CreateTheme({
           }`}
         >
           <Image
-            src="/preview/christ.svg"
+            src="/preview/chris.svg"
             width={270}
             height={398}
             alt="크리스"

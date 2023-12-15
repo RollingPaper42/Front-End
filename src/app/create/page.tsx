@@ -11,7 +11,7 @@ import SelectButton from '@/component/SelectButton';
 import Textarea from '@/component/Textarea';
 import useModal from '@/hooks/useModal';
 import {
-  christ,
+  chris,
   lilac,
   mas,
   night,
@@ -228,7 +228,7 @@ export default function Create() {
       </div>
       <CreateTheme
         hidden={isHidden ? '' : 'hidden'}
-        onClickChris={() => handlePreview(`1`, christ)}
+        onClickChris={() => handlePreview(`1`, chris)}
         onClickMas={() => handlePreview(`2`, mas)}
         onClickNight={() => handlePreview(`3`, night)}
         onClickPeach={() => handlePreview(`4`, peach)}
