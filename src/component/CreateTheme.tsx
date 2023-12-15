@@ -11,7 +11,6 @@ interface CreateThemeProps {
   onClickLilac: () => void;
   onClickComplete: () => void;
   isPreview: string;
-  hidden: string;
 }
 
 export default function CreateTheme({
@@ -22,22 +21,21 @@ export default function CreateTheme({
   onClickPeach,
   onClickLilac,
   isPreview,
-  hidden,
 }: CreateThemeProps) {
   return (
-    <div className={`flex flex-col w-full h-full ${hidden}`}>
+    <div className="flex h-full w-full flex-col">
       <div className="basis-1/12"></div>
       <div className="basis-3/12">
-        <div className=" w-full h-full">
+        <div className=" h-full w-full">
           <div className="mx-[24px] mt-3 ">
-            <div className="text-white text-[16px] mb-[16px] font-semibold">
+            <div className="mb-[16px] text-[16px] font-semibold text-white">
               테마
             </div>
-            <div className="flex flex-row w-full h-full">
-              <div className="basis-1/5 flex flex-col items-center justify-center">
+            <div className="flex h-full w-full flex-row">
+              <div className="flex basis-1/5 flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full w-[45px] flex flex-col items-center justify-center h-[45px] bg-chris-bg  ring-2 ring-offset-2 ring-strcat-black ring-offset-strcat-black  focus:ring-offset-strcat-black focus:ring-white"
+                  className="bg-chris-bg flex h-[45px] w-[45px] flex-col items-center justify-center rounded-full  ring-2 ring-strcat-black ring-offset-2 ring-offset-strcat-black  focus:ring-white focus:ring-offset-strcat-black"
                   onClick={onClickChris}
                 >
                   <Image
@@ -45,15 +43,15 @@ export default function CreateTheme({
                     width={42}
                     height={43}
                     alt="chrisCat"
-                    className="mt-3 ml-[1px] z-10"
+                    className="z-10 ml-[1px] mt-3"
                   />
                 </div>
                 <div className="mt-[12px] text-[12px] text-white ">크리스</div>
               </div>
-              <div className="basis-1/5 flex flex-col items-center justify-center">
+              <div className="flex basis-1/5 flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full flex flex-col items-center justify-center bg-mas-bg w-[45px] h-[45px] ring-2 ring-offset-2 ring-strcat-black ring-offset-strcat-black  focus:ring-offset-strcat-black focus:ring-white"
+                  className="bg-mas-bg flex h-[45px] w-[45px] flex-col items-center justify-center rounded-full ring-2 ring-strcat-black ring-offset-2 ring-offset-strcat-black  focus:ring-white focus:ring-offset-strcat-black"
                   onClick={onClickMas}
                 >
                   <Image
@@ -61,34 +59,34 @@ export default function CreateTheme({
                     width={42}
                     height={43}
                     alt="chrisCat"
-                    className="mt-[10px] z-10"
+                    className="z-10 mt-[10px]"
                   />
                 </div>
                 <div className="mt-[12px] text-[12px] text-white">마스</div>
               </div>
 
-              <div className="basis-1/5 flex flex-col items-center justify-center">
+              <div className="flex basis-1/5 flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full bg-night-bg  w-[45px] h-[45px] border-2 outline ring-2 ring-offset-2 ring-strcat-black ring-offset-strcat-black  focus:ring-offset-strcat-black focus:ring-white"
+                  className="bg-night-bg h-[45px]  w-[45px] rounded-full border-2 outline ring-2 ring-strcat-black ring-offset-2 ring-offset-strcat-black  focus:ring-white focus:ring-offset-strcat-black"
                   onClick={onClickNight}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">
                   고요한 밤
                 </div>
               </div>
-              <div className="basis-1/5 flex flex-col items-center justify-center">
+              <div className="flex basis-1/5 flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full bg-peach-bg  w-[45px] h-[45px] ring-2 ring-offset-2 ring-strcat-black ring-offset-strcat-black  focus:ring-offset-strcat-black focus:ring-white"
+                  className="bg-peach-bg h-[45px]  w-[45px] rounded-full ring-2 ring-strcat-black ring-offset-2 ring-offset-strcat-black  focus:ring-white focus:ring-offset-strcat-black"
                   onClick={onClickPeach}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">복숭아</div>
               </div>
-              <div className="basis-1/5 flex flex-col items-center justify-center">
+              <div className="flex basis-1/5 flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full bg-lilac-bg w-[45px] h-[45px] ring-2 ring-offset-2 ring-strcat-black ring-offset-strcat-black  focus:ring-offset-strcat-black focus:ring-white"
+                  className="bg-lilac-bg h-[45px] w-[45px] rounded-full ring-2 ring-strcat-black ring-offset-2 ring-offset-strcat-black  focus:ring-white focus:ring-offset-strcat-black"
                   onClick={onClickLilac}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">라일락</div>
@@ -97,9 +95,9 @@ export default function CreateTheme({
           </div>
         </div>
       </div>
-      <div className="basis-6/12 flex flex-col items-center justify-center">
+      <div className="flex basis-6/12 flex-col items-center justify-center">
         <div
-          className={`w-full h-full  ${
+          className={`h-full w-full  ${
             isPreview === '1' ? 'contents' : 'hidden'
           }`}
         >
@@ -108,11 +106,11 @@ export default function CreateTheme({
             width={270}
             height={398}
             alt="크리스"
-            className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
+            className="h-[398px] w-[270px] drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)]"
           />
         </div>
         <div
-          className={`w-full h-full  ${
+          className={`h-full w-full  ${
             isPreview === '2' ? 'contents' : 'hidden'
           }`}
         >
@@ -121,11 +119,11 @@ export default function CreateTheme({
             width={270}
             height={398}
             alt="마스"
-            className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
+            className="h-[398px] w-[270px] drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)]"
           />
         </div>
         <div
-          className={`w-full h-full  ${
+          className={`h-full w-full  ${
             isPreview === '3' ? 'contents' : 'hidden'
           }`}
         >
@@ -134,11 +132,11 @@ export default function CreateTheme({
             width={270}
             height={398}
             alt="고요한밤"
-            className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
+            className="h-[398px] w-[270px] drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)]"
           />
         </div>
         <div
-          className={`w-full h-full ${
+          className={`h-full w-full ${
             isPreview === '4' ? 'contents' : 'hidden'
           }`}
         >
@@ -147,11 +145,11 @@ export default function CreateTheme({
             width={270}
             height={398}
             alt="복숭아"
-            className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
+            className="h-[398px] w-[270px] drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)]"
           />
         </div>
         <div
-          className={`w-full h-full ${
+          className={`h-full w-full ${
             isPreview === '5' ? 'contents' : 'hidden'
           } drop-shadow`}
         >
@@ -160,11 +158,11 @@ export default function CreateTheme({
             width={270}
             height={398}
             alt="라일락"
-            className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
+            className="h-[398px] w-[270px] drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)]"
           />
         </div>
       </div>
-      <div className="basis-2/12 mx-[24px]  flex  flex-col items-center justify-center">
+      <div className="mx-[24px] flex  basis-2/12  flex-col items-center justify-center">
         <BottomButton
           name="완료"
           width="w-full"
