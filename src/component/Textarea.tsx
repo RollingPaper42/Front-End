@@ -3,24 +3,22 @@ import { SetStateAction } from 'react';
 interface TextareaProps {
   width: string;
   maxLength: number;
-  height: string;
   textColor: string;
   placeholder: string;
   handleFocus?: () => void;
   handleBlur?: () => void;
   text: string;
   setText: React.Dispatch<SetStateAction<string>>;
-  maxheight: string;
+  maxHeight: string;
 }
 export default function Textarea({
   width,
   maxLength,
   placeholder,
   textColor,
-  height,
   handleFocus,
   handleBlur,
-  maxheight,
+  maxHeight,
   text,
   setText,
 }: TextareaProps) {
@@ -43,14 +41,14 @@ export default function Textarea({
   };
   return (
     <div
-      className={`flex flex-col ${width} ${height} rounded bg-strcat-textarea-bg`}
+      className={`flex flex-col ${width} h-auto rounded-[8px] bg-strcat-textarea-bg`}
     >
       <div>
         <textarea
           id="TextMessage"
           rows={1}
           value={text}
-          className={`w-full px-[16px] resize-none mt-[16px] basis-5/6 text-[16px] ${maxheight} rounded ${textColor} outline-none  bg-strcat-textarea-bg  placeholder:text-strcat-textarea-text`}
+          className={`mt-[16px] w-full basis-5/6 resize-none px-[16px] text-[16px] ${maxHeight} rounded ${textColor} bg-strcat-textarea-bg  outline-none  placeholder:text-strcat-textarea-text`}
           placeholder={placeholder}
           maxLength={maxLength + 1}
           onChange={(e) => handleChangeText(e)}
@@ -60,7 +58,7 @@ export default function Textarea({
         />
       </div>
       <div
-        className={` text-right text-[14px] h-[17px] mb-[16px] basis-1/6  mx-[16px]  ${
+        className={` mx-[16px] mb-[16px] h-[16px] basis-1/6 text-right  text-[14px]  ${
           text.length > maxLength
             ? 'text-strcat-red'
             : 'text-strcat-textarea-text'

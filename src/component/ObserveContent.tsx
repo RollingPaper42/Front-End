@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import React from 'react';
 
 import PhotoModal from './Modal/PhotoModal';
@@ -26,7 +26,6 @@ const ObserveContent = ({
   closeModal,
 }: props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
-
   const handleClickPhoto = () => {
     openModal(
       <PhotoModal
@@ -64,7 +63,7 @@ const ObserveContent = ({
   }, []);
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="relative">
       {observe.contentId === content.id && observe.photoUrl !== '' && (
         <PhotoPreview
           photoUrl={content.photoUrl}
@@ -75,7 +74,7 @@ const ObserveContent = ({
         className={`inline pt-[3px] pb-[4px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium
       ${
         observe.contentId === content.id
-          ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} transition `
+          ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} animate-textFadeIn`
           : `${theme.textTheme.default} opacity-[0.15]`
       }
     `}

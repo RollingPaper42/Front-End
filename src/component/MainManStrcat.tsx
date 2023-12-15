@@ -4,7 +4,7 @@ import StrcatBoard from './StrcatBoard';
 const board: board = {
     id: 'string',
     title: 'Sample Board',
-    theme: 'strcat',
+    theme: 'night',
     contents: [
       {
         id: 1,

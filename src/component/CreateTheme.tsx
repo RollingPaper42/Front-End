@@ -37,7 +37,7 @@ export default function CreateTheme({
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full w-[45px] flex flex-col items-center justify-center h-[45px] border-2 outline bg-chris-bg  outline-chris-bg border-chris-bg  focus:border-line-in focus:outline-white"
+                  className="rounded-full w-[45px] flex flex-col items-center justify-center h-[45px] bg-chris-bg  ring-2 ring-offset-2 ring-strcat-black ring-offset-strcat-black  focus:ring-offset-strcat-black focus:ring-white"
                   onClick={onClickChris}
                 >
                   <Image
@@ -53,7 +53,7 @@ export default function CreateTheme({
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full flex flex-col items-center justify-center bg-mas-bg w-[45px] h-[45px] border-2 outline outline-mas-bg border-mas-bg  focus:border-line-in focus:outline-white  "
+                  className="rounded-full flex flex-col items-center justify-center bg-mas-bg w-[45px] h-[45px] ring-2 ring-offset-2 ring-strcat-black ring-offset-strcat-black  focus:ring-offset-strcat-black focus:ring-white"
                   onClick={onClickMas}
                 >
                   <Image
@@ -70,7 +70,7 @@ export default function CreateTheme({
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full bg-night-bg  w-[45px] h-[45px] border-2 outline outline-night-bg border-night-bg  focus:border-line-in focus:outline-white "
+                  className="rounded-full bg-night-bg  w-[45px] h-[45px] border-2 outline ring-2 ring-offset-2 ring-strcat-black ring-offset-strcat-black  focus:ring-offset-strcat-black focus:ring-white"
                   onClick={onClickNight}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">
@@ -80,7 +80,7 @@ export default function CreateTheme({
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full bg-peach-bg  w-[45px] h-[45px] border-2 outline outline-peach-bg border-peach-bg  focus:border-line-in focus:outline-white "
+                  className="rounded-full bg-peach-bg  w-[45px] h-[45px] ring-2 ring-offset-2 ring-strcat-black ring-offset-strcat-black  focus:ring-offset-strcat-black focus:ring-white"
                   onClick={onClickPeach}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">복숭아</div>
@@ -88,7 +88,7 @@ export default function CreateTheme({
               <div className="basis-1/5 flex flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="rounded-full bg-lilac-bg w-[45px] h-[45px] border-2 outline outline-lilac-bg border-lilac-bg focus:border-line-in focus:outline-white  "
+                  className="rounded-full bg-lilac-bg w-[45px] h-[45px] ring-2 ring-offset-2 ring-strcat-black ring-offset-strcat-black  focus:ring-offset-strcat-black focus:ring-white"
                   onClick={onClickLilac}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">라일락</div>
@@ -104,10 +104,10 @@ export default function CreateTheme({
           }`}
         >
           <Image
-            src="/preview/christ.svg"
+            src="/preview/chris.svg"
             width={270}
             height={398}
-            alt="1"
+            alt="크리스"
             className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
           />
         </div>
@@ -120,7 +120,7 @@ export default function CreateTheme({
             src="/preview/mas.svg"
             width={270}
             height={398}
-            alt="2"
+            alt="마스"
             className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
           />
         </div>
@@ -133,7 +133,7 @@ export default function CreateTheme({
             src="/preview/night.svg"
             width={270}
             height={398}
-            alt="3"
+            alt="고요한밤"
             className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
           />
         </div>
@@ -146,7 +146,7 @@ export default function CreateTheme({
             src="/preview/peach.svg"
             width={270}
             height={398}
-            alt="4"
+            alt="복숭아"
             className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
           />
         </div>
@@ -159,7 +159,7 @@ export default function CreateTheme({
             src="/preview/lilac.svg"
             width={270}
             height={398}
-            alt="5"
+            alt="라일락"
             className="drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)] w-[270px] h-[398px]"
           />
         </div>
