@@ -19,7 +19,7 @@ export default function Modal() {
 
   const handleError = () => {
     openModal(
-      <Error content="에러 모달 띄우기" handleModalClose={closeModal} />,
+      <Error mainContent="에러 모달 띄우기" handleModalClose={closeModal} />,
     );
   };
 
