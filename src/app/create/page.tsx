@@ -10,7 +10,14 @@ import Confirm from '@/component/Modal/Confirm';
 import SelectButton from '@/component/SelectButton';
 import Textarea from '@/component/Textarea';
 import useModal from '@/hooks/useModal';
-import { strcat, themeState } from '@/recoil/theme/theme';
+import {
+  chris,
+  lilac,
+  mas,
+  night,
+  peach,
+  themeState,
+} from '@/recoil/theme/theme';
 import { axiosInstance } from '@/utils/axios';
 import { useRouter } from 'next/navigation';
 
@@ -221,11 +228,11 @@ export default function Create() {
       </div>
       <CreateTheme
         hidden={isHidden ? '' : 'hidden'}
-        onClickChris={() => handlePreview(`1`, strcat)}
-        onClickMas={() => handlePreview(`2`, strcat)}
-        onClickNight={() => handlePreview(`3`, strcat)}
-        onClickPeach={() => handlePreview(`4`, strcat)}
-        onClickLilac={() => handlePreview(`5`, strcat)}
+        onClickChris={() => handlePreview(`1`, chris)}
+        onClickMas={() => handlePreview(`2`, mas)}
+        onClickNight={() => handlePreview(`3`, night)}
+        onClickPeach={() => handlePreview(`4`, peach)}
+        onClickLilac={() => handlePreview(`5`, lilac)}
         onClickComplete={() => handleConfirm()}
         isPreview={isPreview}
       />
