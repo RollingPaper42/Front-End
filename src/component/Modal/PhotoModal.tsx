@@ -9,9 +9,15 @@ interface Props {
   photoUrl: string;
   closeModal: () => void;
   text: string;
+  writer: string;
 }
 
-export default function PhotoModal({ photoUrl, closeModal, text }: Props) {
+export default function PhotoModal({
+  photoUrl,
+  closeModal,
+  text,
+  writer,
+}: Props) {
   const [theme, setTheme] = useRecoilState(themeState);
   return (
     <div
@@ -26,12 +32,15 @@ export default function PhotoModal({ photoUrl, closeModal, text }: Props) {
       </button>
       <Photo photoUrl={photoUrl} />
       <div className="w-full h-[16px]"></div>
-      <div className=" overflow-y-scroll h-[204px] text-justify">
+      <div className="w-full overflow-y-scroll h-[204px] text-justify break-all justify-start  scrollbar-thumb-[#373737] scrollbar-thin">
         <p
           className={`${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} transition inline pt-[3px] pb-[4px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium`}
         >
           {text}
         </p>
+        <div
+          className={`text-right transition-all ${theme.textTheme.writer} text-body-size2`}
+        >{`From: ${writer.length ? writer : '익명의 스트링캣'} `}</div>
       </div>
     </div>
   );

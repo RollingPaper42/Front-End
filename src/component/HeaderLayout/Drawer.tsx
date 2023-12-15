@@ -137,7 +137,7 @@ export default function Drawer() {
                     <br />
                     나만의 스트링캣을 만들고
                     <br />
-                    관리할 수 있어요
+                    관리할 수 있어요.
                   </p>
                 </div>
                 <div className="w-full px-[24px] mt-[12px]">
