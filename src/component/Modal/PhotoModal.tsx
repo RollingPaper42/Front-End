@@ -32,7 +32,7 @@ export default function PhotoModal({
       </button>
       <Photo photoUrl={photoUrl} />
       <div className="w-full h-[16px]"></div>
-      <div className="w-full overflow-y-scroll h-[204px] text-justify break-all justify-start  scrollbar-thumb-white/30 scrollbar-thin">
+      <div className="w-full overflow-y-scroll h-[204px] text-justify break-all justify-start  scrollbar-thumb-[#373737] scrollbar-thin">
         <p
           className={`${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} transition inline pt-[3px] pb-[4px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium`}
         >
