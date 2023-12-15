@@ -1,16 +1,17 @@
-export default function Back({ color }: { color: string }) {
+export default function Back() {
   return (
     <svg
       width="24"
       height="24"
       viewBox="0 0 24 24"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M16 3H14V4H13V5H12V6H11V7H10V8H9V9H8V10H7V11H6V13H7V14H8V15H9V16H10V17H11V18H12V19H13V20H14V21H16V19H15V18H14V17H13V16H12V15H11V14H10V13H9V12V11H10V10H11V9H12V8H13V7H14V6H15V5H16V3Z"
-        fill={color}
+        d="M4.31338 11.2729L13.3134 2.77295L14.6866 4.22698L6.4564 12L14.6866 19.7729L13.3134 21.227L4.31338 12.727C4.11335 12.5381 4 12.2751 4 12C4 11.7248 4.11335 11.4619 4.31338 11.2729Z"
+        fill="white"
       />
     </svg>
   );
