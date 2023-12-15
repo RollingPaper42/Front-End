@@ -7,6 +7,8 @@ import { HamburgerMenu } from '../Icon/Header';
 import { useScroll } from '@/hooks/useScroll';
 import { drawerState, themeState, titleState } from '@/recoil/state';
 import { usePathname, useRouter } from 'next/navigation';
+import useModal from '@/hooks/useModal';
+import { confirm } from '@/utils/confirm';
 
 export default function TitleHeader() {
   const pathName = usePathname();
@@ -16,6 +18,16 @@ export default function TitleHeader() {
   const [, setDrawer] = useRecoilState(drawerState);
   const [theme] = useRecoilState(themeState);
   const { isHidden } = useScroll({ scrollEvent: !isAdd });
+  const [openModal, closeModal] = useModal();
+
+  const handleAddClose = async () => {
+    const isConfirmed = await confirm(
+      openModal,
+      closeModal,
+      '글 작성을 취소하시겠어요?',
+    );
+    if (isConfirmed) router.back();
+  };
 
   return (
     <div
@@ -24,14 +36,14 @@ export default function TitleHeader() {
       }`}
     >
       <div
-        className={`flex min-h-[52px] py-[10px] flex-row items-stretch justify-between ${theme.bgTheme.background} px-[24px]`}
+        className={`flex min-h-[52px] flex-row items-stretch justify-between py-[16px] ${theme.bgTheme.background} bg-opacity-80 px-[24px]`}
         id="titleHeader"
       >
-        <div className="text-white pr-[8px] text-headline-size2 font-bold flex items-center leading-8 tracking-[-0.48px]">
+        <div className="flex items-center pr-[8px] text-headline-size2 font-bold leading-8 tracking-[-0.48px] text-white">
           {title}
         </div>
         {isAdd ? (
-          <div className="pt-[4px]" onClick={() => router.back()}>
+          <div className="pt-[4px]" onClick={handleAddClose}>
             <Close />
           </div>
         ) : (

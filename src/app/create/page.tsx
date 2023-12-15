@@ -83,12 +83,11 @@ export default function Create() {
         <div className="basis-1/12"></div>
         <div className="basis-2/12">
           <div className=" mx-[24p] mt-[10px] w-full  px-[24px]">
-            <div className="text-[16px] text-white text-left mb-[15px] ml-1">
+            <div className="mb-[15px] ml-1 text-left text-[16px] text-white">
               제목
             </div>
             <Textarea
-              height="h-auto"
-              maxheight="max-h-[49px]"
+              maxHeight="max-h-[49px]"
               width="w-full"
               placeholder="스트링캣 주제를 입력해주세요."
               textColor="text-white"
@@ -98,8 +97,8 @@ export default function Create() {
             />
           </div>
         </div>
-        <div className="basis-1/12 w-full ">
-          <div className="flex overflow-x-scroll  space-x-[12px] m-6">
+        <div className="w-full basis-1/12 ">
+          <div className="m-6 flex  space-x-[12px] overflow-x-scroll">
             <MiddleButton
               width="w-[128px]"
               onClickHandler={() => handleSwitch('1')}
@@ -134,7 +133,7 @@ export default function Create() {
         </div>
         <div className="basis-6/12 items-center">
           <div
-            className={`flex flex-col mx-[24px] ${
+            className={`mx-[24px] flex flex-col ${
               isOff == '1' ? 'content' : 'hidden'
             }`}
           >
@@ -159,7 +158,7 @@ export default function Create() {
             />
           </div>
           <div
-            className={`flex flex-col mx-[24px] ${
+            className={`mx-[24px] flex flex-col ${
               isOff == '2' ? 'content' : 'hidden'
             }`}
           >
@@ -186,7 +185,7 @@ export default function Create() {
             />
           </div>
           <div
-            className={`flex flex-col mx-[24px] ${
+            className={`mx-[24px] flex flex-col ${
               isOff == '3' ? 'content' : 'hidden'
             }`}
           >
