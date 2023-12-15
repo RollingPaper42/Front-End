@@ -33,6 +33,7 @@ const ObserveContent = ({
         photoUrl={content.photoUrl}
         closeModal={closeModal}
         text={content.text}
+        writer={content.writer}
       />,
     );
   };
