@@ -190,13 +190,13 @@ export default function Personal({ params }: { params: { id: string } }) {
         )}
       </div>
       {toast === 'download' && (
-        <Toast message="저장기능은 준비중이에요!" setToast={setDownloadToast} />
+        <Toast message="저장기능은 준비중이에요!" setToast={setToast} />
       )}
       {toast === 'share' && (
-        <Toast message="링크가 복사되었어요!" setToast={setShareToast} />
+        <Toast message="링크가 복사되었어요!" setToast={setToast} />
       )}
       {toast === 'error' && (
-        <Toast message="링크 복사에 실패했어요 🥲" setToast={setErrorToast} />
+        <Toast message="링크 복사에 실패했어요 🥲" setToast={setToast} />
       )}
     </>
   );
