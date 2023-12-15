@@ -35,7 +35,11 @@ export default function CreateTheme({
               <div className="flex basis-1/5 flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="bg-chris-bg flex h-[45px] w-[45px] flex-col items-center justify-center rounded-full  ring-2 ring-strcat-black ring-offset-2 ring-offset-strcat-black  focus:ring-white focus:ring-offset-strcat-black"
+                  className={`bg-chris-bg flex h-[45px] w-[45px] flex-col items-center justify-center rounded-full ${
+                    isPreview === '1'
+                      ? 'ring-white ring-offset-strcat-black ring-2  ring-offset-2'
+                      : ''
+                  }`}
                   onClick={onClickChris}
                 >
                   <Image
@@ -51,7 +55,11 @@ export default function CreateTheme({
               <div className="flex basis-1/5 flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="bg-mas-bg flex h-[45px] w-[45px] flex-col items-center justify-center rounded-full ring-2 ring-strcat-black ring-offset-2 ring-offset-strcat-black  focus:ring-white focus:ring-offset-strcat-black"
+                  className={`bg-mas-bg flex h-[45px] w-[45px] flex-col items-center justify-center rounded-full  ${
+                    isPreview === '2'
+                      ? 'ring-white ring-offset-strcat-black ring-2  ring-offset-2'
+                      : ''
+                  }`}
                   onClick={onClickMas}
                 >
                   <Image
@@ -68,7 +76,11 @@ export default function CreateTheme({
               <div className="flex basis-1/5 flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="bg-night-bg h-[45px]  w-[45px] rounded-full border-2 outline ring-2 ring-strcat-black ring-offset-2 ring-offset-strcat-black  focus:ring-white focus:ring-offset-strcat-black"
+                  className={`bg-night-bg h-[45px]  w-[45px] rounded-full  ${
+                    isPreview === '3'
+                      ? 'ring-white ring-offset-strcat-black ring-2  ring-offset-2'
+                      : ''
+                  }`}
                   onClick={onClickNight}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">
@@ -78,7 +90,11 @@ export default function CreateTheme({
               <div className="flex basis-1/5 flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="bg-peach-bg h-[45px]  w-[45px] rounded-full ring-2 ring-strcat-black ring-offset-2 ring-offset-strcat-black  focus:ring-white focus:ring-offset-strcat-black"
+                  className={`bg-peach-bg h-[45px]  w-[45px] rounded-full ${
+                    isPreview === '4'
+                      ? 'ring-white ring-offset-strcat-black ring-2  ring-offset-2'
+                      : ''
+                  }`}
                   onClick={onClickPeach}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">복숭아</div>
@@ -86,7 +102,11 @@ export default function CreateTheme({
               <div className="flex basis-1/5 flex-col items-center justify-center">
                 <div
                   tabIndex={0}
-                  className="bg-lilac-bg h-[45px] w-[45px] rounded-full ring-2 ring-strcat-black ring-offset-2 ring-offset-strcat-black  focus:ring-white focus:ring-offset-strcat-black"
+                  className={`bg-lilac-bg h-[45px] w-[45px] rounded-full ${
+                    isPreview === '5'
+                      ? 'ring-white ring-offset-strcat-black ring-2  ring-offset-2'
+                      : ''
+                  }`}
                   onClick={onClickLilac}
                 ></div>
                 <div className="mt-[12px] text-[12px] text-white">라일락</div>
