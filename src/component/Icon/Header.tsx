@@ -1,4 +1,5 @@
 import HamburgerMenu from './header/HamburgerMenu';
-import LogoText from './header/LogoText';
+import Logo from './header/Logo';
+import Back from './header/Back';
 
-export { LogoText, HamburgerMenu };
+export { HamburgerMenu, Logo, Back };
