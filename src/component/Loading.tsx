@@ -1,9 +1,6 @@
 'use client';
 
-import { useRecoilState } from 'recoil';
-
 import { defaultState } from '@/recoil/newtheme/default';
-import { themeState } from '@/recoil/state';
 import Image from 'next/image';
 
 export default function Loading() {
