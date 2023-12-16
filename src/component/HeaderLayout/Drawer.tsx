@@ -52,6 +52,7 @@ export default function Drawer() {
     drawerClose();
     localStorage.removeItem('strcat_token');
     setIsLogin(false);
+    window.location.reload();
   };
 
   const handleNewStrcat = () => {
