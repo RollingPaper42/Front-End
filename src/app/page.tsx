@@ -65,13 +65,9 @@ export default function Home() {
           </div>
           <div
             className={`mt-[16px] flex h-[44px] w-[252px] flex-row items-center justify-center rounded-[5px] ${defaultState.MiddleButton}`}
+            onClick={handleClickPersonal}
           >
-            <div
-              className=" text-body-size2 font-bold"
-              onClick={handleClickPersonal}
-            >
-              스트링캣 시작하기
-            </div>
+            <div className=" text-body-size2 font-bold">스트링캣 시작하기</div>
             <Image
               src="/IconNext.svg"
               width={24}
