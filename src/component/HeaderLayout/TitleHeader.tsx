@@ -21,17 +21,19 @@ export default function TitleHeader() {
   const { isHidden } = useScroll({ scrollEvent: !isAdd });
   const [openModal, closeModal] = useModal();
 
+  const backUrl = pathName.substring(0, pathName.lastIndexOf('/'));
   const handleAddClose = async () => {
     const isConfirmed = await confirm(
       openModal,
       closeModal,
       '글 작성을 취소하시겠어요?',
     );
-    if (isConfirmed) router.back();
+    if (isConfirmed) router.push(backUrl);
+    //수정
   };
 
   if (isAdd && title === '') {
-    router.push(pathName.substring(0, pathName.lastIndexOf('/')));
+    router.push(backUrl);
   }
 
   return (
