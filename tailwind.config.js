@@ -177,6 +177,7 @@ module.exports = {
     },
     fontFamily: {
       pretentdard: ['Pretendard'],
+      sniglet: ['Sniglet'],
     },
   },
   plugins: [require('tailwind-scrollbar')({ nocompatible: true })],
