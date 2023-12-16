@@ -7,17 +7,42 @@ interface Props {
 }
 
 export default function PhotoUpload({ setImage, setPreview }: Props) {
+  const heicToJpeg = async (file: File) => {
+    const heic2any = require('heic2any');
+    const convertedBlob = await heic2any({
+      blob: file,
+      toType: 'image/jpeg',
+      quality: 0.5,
+    });
+    return new File(
+      [convertedBlob as BlobPart],
+      file.name.split('.')[0] + '.jpeg',
+      {
+        type: 'image/jpeg',
+      },
+    );
+  };
+
+  const compressFile = async (file: File) => {
+    const options = {
+      maxSizeMB: 1,
+      alwaysKeepResolution: true,
+      useWebWorker: true,
+    };
+    return await imageCompression(file, options);
+  };
+
   const handleChangeImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files === null) return;
     let file = e.target?.files[0];
     try {
+      if (file.type === 'image/heic') {
+        //heic파일을 png로 변환
+        file = await heicToJpeg(file);
+      }
       if (file.size > 1024) {
         //1mb 이상이면 압축
-        const options = {
-          maxSizeMB: 1,
-          alwaysKeepResolution: true,
-        };
-        file = await imageCompression(file, options);
+        file = await compressFile(file);
       }
       setImage(file);
       // 이미지를 프리뷰로 띄우기 위해 base64로 변환
@@ -42,7 +67,7 @@ export default function PhotoUpload({ setImage, setPreview }: Props) {
       </label>
       <input
         type="file"
-        accept="image/png, image/jpeg, image/jpg"
+        accept="image/png, image/jpeg, image/jpg, image/heic"
         id="imgFile"
         onChange={handleChangeImage}
         className="img-input hidden"
