@@ -56,7 +56,7 @@ export default function Home() {
           <div className="pt-[167px]  text-center text-body-size2 text-white opacity-50">
             내 롤링페이퍼에서 <br /> 친구들의 이야기를 듣고 싶다면
           </div>
-          <div className="mt-[16px] flex h-[44px] w-[252px] flex-row items-center justify-center rounded-[5px] bg-strcat-bright-yellow">
+          <div className="mt-[16px] select-none cursor-pointer flex h-[44px] w-[252px] flex-row items-center justify-center rounded-[5px] bg-strcat-bright-yellow">
             <div
               className=" text-body-size2 font-bold"
               onClick={handleClickPersonal}
