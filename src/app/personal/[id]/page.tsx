@@ -79,10 +79,14 @@ export default function Personal({ params }: { params: { id: string } }) {
       await navigator.clipboard.writeText(`${shortUrl.data}`);
       setToast('share');
     } catch {
-      await navigator.clipboard.writeText(
-        `https://strcat.me/personal/${params.id}`,
-      );
-      setToast('error');
+      try {
+        await navigator.clipboard.writeText(
+          `https://strcat.me/personal/${params.id}`,
+        );
+        setToast('share');
+      } catch {
+        setToast('error');
+      }
     }
   };
 
