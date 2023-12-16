@@ -3,14 +3,13 @@ import MiddleButton from '@/component/MiddleButton';
 import SelectButton from '@/component/SelectButton';
 import Textarea from '@/component/Textarea';
 import { defaultState } from '@/recoil/newtheme/default';
-import { themeState } from '@/recoil/newtheme/theme';
 
 interface Props {
   title: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   isOff: string;
   handleSwitch: (value: string) => void;
-  setIsNext: React.Dispatch<React.SetStateAction<boolean>>;
+  onClickComplete: () => void;
 }
 
 export default function TitleSelect({
@@ -18,16 +17,15 @@ export default function TitleSelect({
   setTitle,
   isOff,
   handleSwitch,
-  setIsNext,
+  onClickComplete,
 }: Props) {
   return (
-    <div className="flex h-full w-full flex-col ">
-      <div className="basis-1/12"></div>
-      <div className="basis-2/12">
-        <div className=" mx-[24p] mt-[10px] w-full  px-[24px]">
-          <div
-            className={`mb-[15px] ml-1 text-left text-[16px] text-default-gray2`}
-          >
+    <div className="flex h-screen w-full flex-col ">
+      <div className="basis-[56px]"></div>
+      <div className="basis-[16px]"></div>
+      <div className="basis-[107px]">
+        <div className=" mx-[24p] w-full px-[24px]">
+          <div className="text-left pb-[12px] text-[16px] font-semibold text-white">
             제목
           </div>
           <Textarea
@@ -41,8 +39,9 @@ export default function TitleSelect({
           />
         </div>
       </div>
+      <div className="basis-[20px]"></div>
       <div className="w-full basis-1/12 ">
-        <div className="m-6 flex  space-x-[12px] overflow-x-scroll">
+        <div className="ml-6 flex  space-x-[12px] overflow-x-scroll">
           <MiddleButton
             width="w-[128px]"
             onClickHandler={() => handleSwitch('1')}
@@ -144,9 +143,9 @@ export default function TitleSelect({
         <BottomButton
           textColor={`${defaultState.highLightText}`}
           height="h-[42px]"
-          name="다음"
+          name="완료"
           width="w-full"
-          onClickHandler={() => setIsNext(true)}
+          onClickHandler={onClickComplete}
           disabled={title === ' ' || title.length >= 26 || title.length <= 0}
           color={`${defaultState.bottomButton}`}
         />

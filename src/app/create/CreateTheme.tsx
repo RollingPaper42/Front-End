@@ -1,6 +1,6 @@
 'use client';
 
-import BottomButton from './BottomButton';
+import BottomButton from '../../component/BottomButton';
 import { defaultState } from '@/recoil/newtheme/default';
 import Image from 'next/image';
 
@@ -10,12 +10,12 @@ interface CreateThemeProps {
   onClickNight: () => void;
   onClickPeach: () => void;
   onClickLilac: () => void;
-  onClickComplete: () => void;
   isPreview: string;
+  setIsNext: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function CreateTheme({
-  onClickComplete,
+  setIsNext,
   onClickChris,
   onClickMas,
   onClickNight,
@@ -24,18 +24,18 @@ export default function CreateTheme({
   isPreview,
 }: CreateThemeProps) {
   return (
-    <div className="flex h-full w-full flex-col">
-      <div className="basis-1/12"></div>
-      <div className="basis-3/12">
+    <div className="flex w-full h-screen flex-col">
+      <div className="basis-[56px]"></div>
+      <div className="basis-[16px]"></div>
+      <div className="basis-[107px]">
         <div className=" h-full w-full">
-          <div className="mx-[24px] mt-3 ">
-            <div
-              className={`mb-[16px] text-[16px] font-semibold ${defaultState.activateText}`}
-            >
+          <div className="mx-[24px]">
+            <div className={`text-[16px] pb-[16px] font-semibold text-white`}>
               테마
             </div>
+
             <div className="flex h-full w-full flex-row">
-              <div className="flex basis-1/5 flex-col items-center justify-center">
+              <div className="flex basis-1/5 flex-col items-center">
                 <div
                   tabIndex={0}
                   className={`bg-chris-bg flex h-[45px] w-[45px] flex-col items-center justify-center rounded-full ${
@@ -136,7 +136,8 @@ export default function CreateTheme({
           </div>
         </div>
       </div>
-      <div className="flex basis-6/12 flex-col items-center justify-center">
+      <div className="basis-[40px]"></div>
+      <div className="flex basis-[485px] flex-col items-center">
         <div
           className={`h-full w-full  ${
             isPreview === '1' ? 'contents' : 'hidden'
@@ -203,11 +204,12 @@ export default function CreateTheme({
           />
         </div>
       </div>
-      <div className="mx-[24px] flex  basis-2/12  flex-col items-center justify-center">
+      <div className=" basis-auto" />
+      <div className="fixed bottom-5 flex w-full max-w-md items-center justify-center px-[24px]">
         <BottomButton
-          name="완료"
+          name="다음"
           width="w-full"
-          onClickHandler={onClickComplete}
+          onClickHandler={() => setIsNext(true)}
           disabled={false}
           color={`${defaultState.MiddleButton}`}
           height="h-[46px]"
