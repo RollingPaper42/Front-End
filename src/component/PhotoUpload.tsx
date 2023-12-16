@@ -4,9 +4,14 @@ import React, { Dispatch } from 'react';
 interface Props {
   setImage: Dispatch<React.SetStateAction<File | null>>;
   setPreview: Dispatch<React.SetStateAction<string>>;
+  setIsLoading: Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function PhotoUpload({ setImage, setPreview }: Props) {
+export default function PhotoUpload({
+  setImage,
+  setPreview,
+  setIsLoading,
+}: Props) {
   const heicToJpeg = async (file: File) => {
     const heic2any = require('heic2any');
     const convertedBlob = await heic2any({
@@ -33,6 +38,8 @@ export default function PhotoUpload({ setImage, setPreview }: Props) {
   };
 
   const handleChangeImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsLoading(true);
+    setPreview('');
     if (e.target.files === null) return;
     let file = e.target?.files[0];
     try {
@@ -51,6 +58,7 @@ export default function PhotoUpload({ setImage, setPreview }: Props) {
       reader.onloadend = () => {
         setPreview(reader.result as string);
       };
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
