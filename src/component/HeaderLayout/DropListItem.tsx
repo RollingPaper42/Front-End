@@ -2,6 +2,7 @@ import { useRecoilState } from 'recoil';
 
 import { Check } from '../Icon/Drawer';
 import { drawerState } from '@/recoil/drawer';
+import { defaultState } from '@/recoil/newtheme/default';
 import { themeState } from '@/recoil/theme/theme';
 import { drawerBoard } from '@/types/drawerBoard';
 import { usePathname, useRouter } from 'next/navigation';
@@ -40,7 +41,7 @@ export default function DropListItem({ list, category }: Props) {
       >
         <div
           className={`py-[12px] flex h-full w-full items-center text-body-size2 font-medium ${
-            isActive ? `px-0 text-strcat-bright-yellow` : 'pl-[24px]'
+            isActive ? `px-0 ${defaultState.bottomButtonText}` : 'pl-[24px]'
           }`}
         >
           {isActive && <Check />}

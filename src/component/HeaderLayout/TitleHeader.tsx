@@ -4,12 +4,13 @@ import { useRecoilState } from 'recoil';
 
 import Close from '../Icon/Close';
 import { HamburgerMenu } from '../Icon/Header';
-import { useScroll } from '@/hooks/useScroll';
-import { drawerState, themeState, titleState } from '@/recoil/state';
-import { usePathname, useRouter } from 'next/navigation';
 import useModal from '@/hooks/useModal';
+import { useScroll } from '@/hooks/useScroll';
+import { defaultState } from '@/recoil/newtheme/default';
+import { drawerState, themeState, titleState } from '@/recoil/state';
 import { confirm } from '@/utils/confirm';
 import { drawerOpen } from '@/utils/drawerOpen';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function TitleHeader() {
   const pathName = usePathname();
@@ -41,10 +42,12 @@ export default function TitleHeader() {
       }`}
     >
       <div
-        className={`flex min-h-[52px] flex-row items-stretch justify-between py-[16px] ${theme.bgTheme.background} bg-opacity-80 px-[24px]`}
+        className={`flex min-h-[52px] flex-row items-stretch justify-between py-[16px] ${defaultState.background} bg-opacity-80 px-[24px]`}
         id="titleHeader"
       >
-        <div className="flex items-center pr-[8px] text-headline-size2 font-bold leading-8 tracking-[-0.48px] text-white">
+        <div
+          className={`flex items-center pr-[8px] text-headline-size2 font-bold leading-8 tracking-[-0.48px] ${defaultState.activateText}`}
+        >
           {title}
         </div>
         {isAdd ? (
