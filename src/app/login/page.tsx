@@ -8,11 +8,15 @@ import { useRouter } from 'next/navigation';
 export default function Login() {
   const router = useRouter();
   const handleClickKaKao = () => {
-    location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/kakao`;
+    router.replace(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/kakao`,
+    );
   };
 
   const handleClickGoogle = () => {
-    location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/google`;
+    router.replace(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/google`,
+    );
   };
   return (
     <div className={`h-full w-full ${defaultState.background}`}>
@@ -22,7 +26,7 @@ export default function Login() {
       >
         <Close />
       </div>
-      <div className="flex w-full flex-col items-center pt-[191px] ">
+      <div className="flex w-full flex-col items-center pt-[25%]">
         <Image
           src="/StrcatIcon.svg"
           width={42}

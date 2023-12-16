@@ -52,8 +52,8 @@ export default function Drawer() {
   const handleLogout = () => {
     drawerClose();
     localStorage.removeItem('strcat_token');
-    // router.push('/');
     setIsLogin(false);
+    window.location.reload();
   };
 
   const handleNewStrcat = () => {

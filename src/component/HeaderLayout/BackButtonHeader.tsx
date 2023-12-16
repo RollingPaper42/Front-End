@@ -13,11 +13,9 @@ interface Props {
 export default function BackButtonHeader({ isNext, setIsNext }: Props) {
   const router = useRouter();
   const [theme] = useRecoilState(themeState);
-
   const handleClickBack = () => {
-    if (isNext) {
-      setIsNext(false);
-    } else router.back();
+    if (isNext) setIsNext(false);
+    else router.back();
   };
 
   return (
