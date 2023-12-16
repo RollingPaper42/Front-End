@@ -18,7 +18,9 @@ export default function DefaultHeader() {
         id="catHeader"
       >
         <Link href="/" scroll={false}>
-          <Logo />
+          <div className="font-sniglet font-extrabold text-[24px] leading-[32px] tracking-[-2%] text-white">
+            STRCAT
+          </div>
         </Link>
         <div className="basis-4/6"></div>
         <div onClick={() => drawerOpen(setDrawer)}>
