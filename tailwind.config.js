@@ -66,7 +66,7 @@ module.exports = {
         'loading-gray': '#D9D9D9',
 
         // 여기서부터 테마 정리 뉴 버전
-        'default-white': '#FFFFFFF',
+        'default-white': '#FFFFFF',
         'default-white2': '#E9E9E9',
         'default-black': '#212121',
         'default-black2': '#000000',
