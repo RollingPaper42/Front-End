@@ -31,55 +31,46 @@ export interface themeState {
   iconTheme: iconThemeState;
 }
 
-export const night: themeState = {
-  name: 'night',
+export const strcat: themeState = {
+  name: 'strcat',
   textTheme: strcatText,
   bgTheme: strcatBg,
   catTheme: strcatCat,
   iconTheme: strcatIcon,
 };
 
-export const peach: themeState = {
-  name: 'peach',
+export const calm: themeState = {
+  name: 'calm',
   bgTheme: calmBg,
   catTheme: calmCat,
   textTheme: calmText,
   iconTheme: calmIcon,
 };
 
-export const lilac: themeState = {
-  name: 'lilac',
+export const green: themeState = {
+  name: 'green',
   textTheme: greenText,
   catTheme: greenCat,
   bgTheme: greenBg,
   iconTheme: greenIcon,
 };
 
-export const chris: themeState = {
-  name: 'chris',
+export const cyan: themeState = {
+  name: 'cyan',
   textTheme: cyanText,
   bgTheme: cyanBg,
   catTheme: cyanCat,
   iconTheme: cyanIcon,
 };
 
-export const mas: themeState = {
-  name: 'mas',
-  textTheme: strcatText,
-  bgTheme: strcatBg,
-  catTheme: strcatCat,
-  iconTheme: strcatIcon,
-};
-
 export const themeObj = {
-  night: night,
-  peach: peach,
-  lilac: lilac,
-  chris: chris,
-  mas: mas,
+  strcat: strcat,
+  calm: calm,
+  green: green,
+  cyan: cyan,
 };
 
 export const themeState = atom<themeState>({
   key: 'themeState',
-  default: night,
+  default: strcat,
 });

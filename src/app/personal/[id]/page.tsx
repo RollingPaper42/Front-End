@@ -14,7 +14,9 @@ import Toast from '@/component/Toast';
 import { useCat } from '@/hooks/useCat';
 import { useLogin } from '@/hooks/useLogin';
 import { useScroll } from '@/hooks/useScroll';
-import { themeState, titleState } from '@/recoil/state';
+import { defaultState } from '@/recoil/newtheme/default';
+import { themeState } from '@/recoil/newtheme/theme';
+import { titleState } from '@/recoil/state';
 import { board } from '@/types/boards';
 import { axiosInstance } from '@/utils/axios';
 import Image from 'next/image';
@@ -25,13 +27,13 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [windowHeight, setWindowHeight] = useState(0);
-  const [theme] = useRecoilState(themeState);
   const router = useRouter();
   const [isLogin] = useLogin();
   const [, setTitle] = useRecoilState(titleState);
   const { isHidden, setIsHidden } = useScroll();
   const [runCatAnimation] = useCat();
   const [toast, setToast] = useState('');
+  const [theme] = useRecoilState(themeState);
   useEffect(() => {
     axiosInstance
       .get(`/boards/${params.id}`)
@@ -83,7 +85,7 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={`${theme.bgTheme.background} min-h-full`}>
+      <div className={`${defaultState.background} min-h-full`}>
         <div
           onClick={() => {
             setIsHidden(!isHidden);
@@ -126,7 +128,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                 onClick={handleClickDownload}
               >
                 <div
-                  className={`h-[46px] flex rounded-[5px] w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
+                  className={`h-[46px] flex rounded-[5px] w-[46px] justify-center items-center ${defaultState.btnLeftCTA}`}
                 >
                   <Image
                     src="/Download.svg"
@@ -137,16 +139,16 @@ export default function Personal({ params }: { params: { id: string } }) {
                 </div>
               </div>
               <BottomButton
-                textColor="text-strcat-bright-yellow"
+                textColor={`${defaultState.explainLeftCTA}`}
                 name="공유하기"
                 height="h-[46px]"
                 width="basis-5/12"
                 onClickHandler={handleClickShare}
                 disabled={false}
-                color={`${theme.bgTheme.leftCTA}`}
+                color={`${defaultState.btnLeftCTA}`}
               />
               <BottomButton
-                textColor="text-strcat-bright-yellow"
+                textColor={`${theme.textTheme.rightCTA}`}
                 name="글쓰기"
                 height="h-[46px]"
                 width="basis-5/12"
@@ -168,16 +170,16 @@ export default function Personal({ params }: { params: { id: string } }) {
                 id="strcat_sit"
               >
                 <BottomButton
-                  textColor=" text-strcat-white2"
+                  textColor={`${defaultState.explainLeftCTA}`}
                   name="나도 만들기"
                   width="basis-1/3"
                   height="h-[46px]"
                   onClickHandler={handleClickCreate}
                   disabled={false}
-                  color={`${theme.bgTheme.leftCTA}`}
+                  color={`${defaultState.btnLeftCTA}`}
                 />
                 <BottomButton
-                  textColor=" text-strcat-bright-yellow"
+                  textColor={`${theme.textTheme.rightCTA}`}
                   name="글쓰기"
                   width="basis-2/3"
                   height="h-[46px]"

@@ -38,6 +38,7 @@ export const defaultState = {
   textareaBg: 'bg-textarea-bg',
   MiddleButton: 'bg-night-highlight',
   bottomButton: 'bg-night-highlight',
+  btnLeftCTA: 'bg-default-gray',
   middleDisable: 'bg-default-gray',
   bottomDisalbe: 'bg-default-gray3',
 };
