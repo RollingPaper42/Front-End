@@ -1,20 +1,18 @@
 'use client';
 
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
 
 import Writer from './Writer';
 import BottomButton from '@/component/BottomButton';
+import Loading from '@/component/Loading';
 import Error from '@/component/Modal/Error';
 import PhotoUpload from '@/component/PhotoUpload';
 import PreviewPhoto from '@/component/PreviewPhoto';
 import Textarea from '@/component/Textarea';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
-import { useScroll } from '@/hooks/useScroll';
 import { defaultState } from '@/recoil/newtheme/default';
-import { themeState } from '@/recoil/newtheme/theme';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { useRouter } from 'next/navigation';
@@ -23,11 +21,11 @@ export default function Add({ params }: { params: { id: string } }) {
   const [text, setText] = useState('');
   const [writer, , handleWriter] = useInput('');
   const [openModal, closeModal] = useModal();
-  const [theme] = useRecoilState(themeState);
   const [image, setImage] = useInput<File | null>(null);
   const [preview, setPreview] = useState<string>('');
   const router = useRouter();
   const [isFixed, setIsFixed] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
     const postPictures = async () => {
@@ -76,34 +74,34 @@ export default function Add({ params }: { params: { id: string } }) {
   };
 
   return (
-    <>
-      <div className={`h-full w-full ${defaultState.background}`}>
-        <div className="pt-[100px]" />
-        {preview && (
-          <div className="mb-[4px] mt-[16px]">
-            <PreviewPhoto
-              preview={preview}
-              setPreview={setPreview}
-              setImage={setImage}
-            />
-          </div>
-        )}
-        <div className={`px-[24px] ${defaultState.background}`}>
-          <div className="mt-[16px] flex items-center justify-center">
-            <Textarea
-              width="w-full"
-              maxHeight="max-h-[250px]"
-              placeholder="내용을 입력해주세요."
-              textColor="text-white "
-              text={text}
-              setText={setText}
-              maxLength={400}
+    <div className={`h-full w-full ${defaultState.background}`}>
+      <div className="pt-[100px]" />
+      {isLoading && <Loading />}
+      {preview && (
+        <div className="mb-[4px] mt-[16px]">
+          <PreviewPhoto
+            preview={preview}
+            setPreview={setPreview}
+            setImage={setImage}
+          />
+        </div>
+      )}
+      <div className={`px-[24px] ${defaultState.background}`}>
+        <div className="mt-[16px] flex items-center justify-center">
+          <Textarea
+            width="w-full"
+            maxHeight="max-h-[250px]"
+            placeholder="내용을 입력해주세요."
+            textColor="text-white "
+            text={text}
+            setText={setText}
+            maxLength={400}
             handleFocus={() => setIsFixed(true)}
-            />
-          </div>
-          <div className="mb-[12px] mt-[20px] cursor-default select-none text-body-size2 font-semibold tracking-[-0.32px] text-[#BCBCBC] ">
-            From
-          </div>
+          />
+        </div>
+        <div className="mb-[12px] mt-[20px] cursor-default select-none text-body-size2 font-semibold tracking-[-0.32px] text-[#BCBCBC] ">
+          From
+        </div>
         <Writer
           writer={writer}
           handleWriter={handleWriter}
@@ -120,7 +118,11 @@ export default function Add({ params }: { params: { id: string } }) {
         <div
           className={`flex h-[70px] w-full max-w-md flex-row items-center space-x-[12px] px-[24px]`}
         >
-          <PhotoUpload setImage={setImage} setPreview={setPreview} />
+          <PhotoUpload
+            setImage={setImage}
+            setPreview={setPreview}
+            setIsLoading={setIsLoading}
+          />
           <BottomButton
             textColor=""
             height="h-[42px]"
@@ -132,6 +134,6 @@ export default function Add({ params }: { params: { id: string } }) {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
