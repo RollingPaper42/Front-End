@@ -35,8 +35,8 @@ export default function PhotoUpload({ setImage, setPreview }: Props) {
     <form className="flex h-[42px] basis-1/2 items-center justify-center">
       <label
         htmlFor="imgFile"
-        className={`h-full w-full flex items-center justify-center rounded relative
-           text-white/90 bg-[#4D4D4D] text-body-size2`}
+        className={`relative flex h-full w-full cursor-pointer select-none items-center justify-center
+           rounded-[5px] bg-[#4D4D4D] text-body-size2 font-bold text-white/90`}
       >
         사진 첨부
       </label>

@@ -98,9 +98,7 @@ export default function Personal({ params }: { params: { id: string } }) {
               </div>
             )}
             <div style={{ paddingTop: `${windowHeight * 0.4}px` }} />
-            {board[0].contents.length === 0 && (
-              <NoneContent handleClickNoneContent={handleClickWrite} />
-            )}
+            {board[0].contents.length === 0 && <NoneContent />}
             <StrcatBoard board={board[0]} />
           </div>
         ) : (
@@ -117,9 +115,7 @@ export default function Personal({ params }: { params: { id: string } }) {
         >
           <BottomImage themeName={theme.name} />
           <div
-            className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]"
-            id="strcat_sit"
-          >
+            className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]">
             {isOwner ? (
               <>
                 <div
@@ -127,8 +123,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                   onClick={handleClickDownload}
                 >
                   <div
-                    className={`h-[46px] flex rounded-[5px] w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
-                  >
+                    className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${theme.bgTheme.leftCTA}`}>
                     <Image
                       src="/Download.svg"
                       width={24}

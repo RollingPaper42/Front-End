@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import TitleSelect from './TitleSelect';
 import CreateTheme from '@/component/CreateTheme';
 import HeaderLayout from '@/component/HeaderLayout';
+import Error from '@/component/Modal/Error';
 import useModal from '@/hooks/useModal';
 import {
   chris,
@@ -59,8 +60,23 @@ export default function Create() {
         router.push(`/personal/${data.data}`);
       })
       .catch((err) => {
+        if (err.response.status === 401) {
+          openModal(
+            <Error
+              mainContent="앗! 로그인이 만료되었어요."
+              subContent="다시 로그인 해주세요."
+              handleModalClose={closeModal}
+            />,
+          );
+        }
         if (err.response.status === 406) {
-          alert('올바르지 않은 입력입니다. 다시 작성해주세요.');
+          openModal(
+            <Error
+              mainContent="일시적으로 문제가 발생했어요 🥲"
+              subContent="잠시 후 다시 시도해주세요."
+              handleModalClose={closeModal}
+            />,
+          );
         }
       });
     closeModal();

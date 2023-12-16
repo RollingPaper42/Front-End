@@ -30,12 +30,23 @@ export default function Home() {
       <HeaderLayout />
       <div className={` h-auto min-h-full bg-strcat-black`}>
         <div className="flex flex-col items-center justify-center pt-[152px]">
-          <Image
-            src="/StrcatIcon.svg"
-            width={42}
-            height={42}
-            alt="mainStrcatIcon"
-          />
+          <div className="relative">
+            <Image
+              src="/MainImage.png"
+              width={153}
+              height={153}
+              alt="mainStrcatIcon"
+            />
+            <div className="absolute top-0">
+              <Image
+                src="/SnowAnimation.gif"
+                alt="snowAnimation"
+                width={153}
+                height={153}
+                className="rounded-full"
+              />
+            </div>
+          </div>
           <div className=" py-[11px] text-[28px] font-bold text-white">
             스트링캣
           </div>
@@ -59,9 +70,9 @@ export default function Home() {
               alt="mainStrcatIcon"
             />
           </div>
-          <div className="pt-[54px]">
+          <div className="cursor-pointer select-none pt-[54px]">
             <Image
-              className="animate-bounce"
+              className="h-auto w-auto animate-bounce"
               src="/IconUnder.svg"
               width={30}
               height={21}

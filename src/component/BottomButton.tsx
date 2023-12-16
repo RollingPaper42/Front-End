@@ -19,8 +19,8 @@ export default function BottomButton({
 }: BottomButtonProps) {
   return (
     <button
-      className={`items-center justify-center font-bold tracking-[0.32px] leading-[28px] text-body-size2 
-      rounded-[5px] relative ${height} w-full ${width} ${
+      className={`relative cursor-pointer select-none items-center justify-center rounded-[5px] text-body-size2 font-bold 
+      leading-[28px] tracking-[0.32px] ${height} w-full ${width} ${
         disabled ? 'bg-[#909090] text-[#BCBCBC]' : `${color} ${textColor}`
       }`}
       onClick={onClickHandler}
