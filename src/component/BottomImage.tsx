@@ -9,7 +9,7 @@ export default function BottomAnimationImage({
 }) {
   return (
     <div className={`absolute z-[15]  max-w-md w-full`}>
-      <div className=" absolute  bottom-[24px] right-[24px]">
+      <div className=" absolute  bottom-[23px] right-[24px]">
         <Image
           alt={`${themeName} sit`}
           src={`/cats/${themeName}/sit.gif`}
@@ -18,7 +18,7 @@ export default function BottomAnimationImage({
         />
       </div>
       {themeName === 'chris' && (
-        <div className=" absolute bottom-[24px] left-[24px]">
+        <div className=" absolute bottom-[23px] left-[24px]">
           <Image
             alt="chris Image"
             src={`/theme/chris.svg`}
@@ -28,7 +28,7 @@ export default function BottomAnimationImage({
         </div>
       )}
       {themeName === 'mas' && (
-        <div className=" absolute bottom-[24px] left-[24px]">
+        <div className=" absolute bottom-[23px] left-[24px]">
           <Image
             alt="mas Image"
             src={`/theme/mas.svg`}
