@@ -8,6 +8,7 @@ interface Props {
   isNext?: boolean;
   setIsNext?: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 export default function HeaderLayout({ isNext, setIsNext }: Props) {
   const pathname = usePathname();
   const defaultHeaderCheck = pathname === '/';
@@ -24,7 +25,7 @@ export default function HeaderLayout({ isNext, setIsNext }: Props) {
           <BackButtonHeader isNext={isNext} setIsNext={setIsNext} />
         )}
       {titleHeaderCheck && <TitleHeader />}
-      <Drawer />
+      {!backButtonHeaderCheck && <Drawer />}
     </>
   );
 }
