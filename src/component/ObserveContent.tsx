@@ -3,7 +3,8 @@ import React from 'react';
 
 import PhotoModal from './Modal/PhotoModal';
 import PhotoPreview from '@/app/personal/[id]/PhotoPreview';
-import { themeState } from '@/recoil/state';
+import { defaultState } from '@/recoil/newtheme/default';
+import { themeState } from '@/recoil/newtheme/theme';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
 import { focusToHighlight } from '@/utils/focusToHighlight';
@@ -75,8 +76,8 @@ const ObserveContent = ({
         className={`inline pt-[3px] pb-[4px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium
       ${
         observe.contentId === content.id
-          ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} animate-textFadeIn`
-          : `${theme.textTheme.default} opacity-[0.15]`
+          ? `${theme.bgTheme.highlight} ${theme.textTheme.highlight} animate-textFadeIn`
+          : `${defaultState.descriptionText} opacity-[0.15]`
       }
     `}
         onClick={() => focusToHighlight(ref)}
