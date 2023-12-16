@@ -1,11 +1,17 @@
-import Image from 'next/image';
+import PhotoPreviewIcon from '@/component/Icon/PhotoPreview';
 
 interface Props {
   photoUrl: string;
+  color: string;
   handleClickPhoto: () => void;
 }
 
-export default function PhotoPreview({ photoUrl, handleClickPhoto }: Props) {
+export default function PhotoPreview({
+  photoUrl,
+  color,
+  handleClickPhoto,
+}: Props) {
+  console.log(color);
   return (
     <div className="absolute top-[-51px]">
       <div className="w-[44px] h-[46px] relative" onClick={handleClickPhoto}>
@@ -16,12 +22,9 @@ export default function PhotoPreview({ photoUrl, handleClickPhoto }: Props) {
             alt="photo preview"
           />
         </div>
-        <Image
-          className="absolute rounded-[10px]"
-          src={'/PhotoPreview.svg'}
-          fill
-          alt="photo preview"
-        ></Image>
+        <div className="absolute">
+          <PhotoPreviewIcon color={color} />
+        </div>
       </div>
     </div>
   );

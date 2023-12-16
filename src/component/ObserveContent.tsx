@@ -69,6 +69,7 @@ const ObserveContent = ({
       {observe.contentId === content.id && observe.photoUrl !== '' && (
         <PhotoPreview
           photoUrl={content.photoUrl}
+          color={theme.bgTheme.highlight}
           handleClickPhoto={handleClickPhoto}
         />
       )}
