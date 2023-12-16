@@ -23,7 +23,7 @@ export default function Drawer() {
   const [personalList, setPersonalList] = useState<drawerBoard[]>([]);
   const [theme] = useRecoilState(themeState);
   const router = useRouter();
-  const pathName = usePathname();
+  const pathname = usePathname();
 
   const fetchData = useCallback(async () => {
     try {
@@ -67,7 +67,7 @@ export default function Drawer() {
 
   const handleLogin = () => {
     drawerClose();
-    localStorage.setItem('strcat_login_success_url', pathName);
+    localStorage.setItem('strcat_login_success_url', pathname);
     router.push('/login');
   };
 

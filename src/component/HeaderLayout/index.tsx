@@ -9,11 +9,11 @@ interface Props {
   setIsNext?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export default function HeaderLayout({ isNext, setIsNext }: Props) {
-  const pathName = usePathname();
-  const defaultHeaderCheck = pathName === '/';
-  const backButtonHeaderCheck = pathName.indexOf('/create') === 0;
+  const pathname = usePathname();
+  const defaultHeaderCheck = pathname === '/';
+  const backButtonHeaderCheck = pathname.indexOf('/create') === 0;
   const titleHeaderCheck =
-    pathName.endsWith('/add') || pathName.indexOf('/personal') === 0;
+    pathname.endsWith('/add') || pathname.indexOf('/personal') === 0;
 
   return (
     <>
