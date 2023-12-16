@@ -13,8 +13,10 @@ import StrcatBoard from '@/component/StrcatBoard';
 import Toast from '@/component/Toast';
 import { useLogin } from '@/hooks/useLogin';
 import { useScroll } from '@/hooks/useScroll';
-import { themeState, titleState } from '@/recoil/state';
-import { chris, lilac, mas, night, peach } from '@/recoil/theme/theme';
+import { defaultState } from '@/recoil/newtheme/default';
+import { themeState } from '@/recoil/newtheme/theme';
+import { chris, lilac, mas, night, peach } from '@/recoil/newtheme/theme';
+import { titleState } from '@/recoil/state';
 import { board } from '@/types/boards';
 import { axiosInstance } from '@/utils/axios';
 import Image from 'next/image';
@@ -25,18 +27,19 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [windowHeight, setWindowHeight] = useState(0);
-  const [theme, setTheme] = useRecoilState(themeState);
   const router = useRouter();
   const [isLogin] = useLogin();
   const [, setTitle] = useRecoilState(titleState);
   const { isHidden, setIsHidden } = useScroll();
   const [toast, setToast] = useState('');
+  const [theme, setTheme] = useRecoilState(themeState);
   useEffect(() => {
     axiosInstance
       .get(`/boards/${params.id}`)
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
+        console.log(data);
       })
       .catch((err) => {
         if (err.response.status === 406) router.push('/not-found');
@@ -81,7 +84,7 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={`${theme.bgTheme.background} min-h-full`}>
+      <div className={`${defaultState.background} min-h-full`}>
         <div
           onClick={() => {
             setIsHidden(!isHidden);
@@ -121,7 +124,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                   onClick={handleClickDownload}
                 >
                   <div
-                    className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${theme.bgTheme.leftCTA}`}
+                    className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${defaultState.btnLeftCTA}`}
                   >
                     <Image
                       src="/Download.svg"
@@ -132,16 +135,16 @@ export default function Personal({ params }: { params: { id: string } }) {
                   </div>
                 </div>
                 <BottomButton
-                  textColor="text-strcat-bright-yellow"
+                  textColor={`${defaultState.explainLeftCTA}`}
                   name="공유하기"
                   height="h-[46px]"
                   width="basis-5/12"
                   onClickHandler={handleClickShare}
                   disabled={false}
-                  color={`${theme.bgTheme.leftCTA}`}
+                  color={`${defaultState.btnLeftCTA}`}
                 />
                 <BottomButton
-                  textColor="text-strcat-bright-yellow"
+                  textColor={`${theme.textTheme.rightCTA}`}
                   name="글쓰기"
                   height="h-[46px]"
                   width="basis-5/12"
@@ -153,16 +156,16 @@ export default function Personal({ params }: { params: { id: string } }) {
             ) : (
               <>
                 <BottomButton
-                  textColor=" text-strcat-white2"
+                  textColor={`${defaultState.explainLeftCTA}`}
                   name="나도 만들기"
                   width="basis-1/3"
                   height="h-[46px]"
                   onClickHandler={handleClickCreate}
                   disabled={false}
-                  color={`${theme.bgTheme.leftCTA}`}
+                  color={`${defaultState.btnLeftCTA}`}
                 />
                 <BottomButton
-                  textColor=" text-strcat-bright-yellow"
+                  textColor={`${theme.textTheme.rightCTA}`}
                   name="글쓰기"
                   width="basis-2/3"
                   height="h-[46px]"
@@ -193,6 +196,6 @@ const getTheme = (themeName: string): themeState => {
   if (themeName === 'mas') return mas;
   if (themeName === 'night') return night;
   if (themeName === 'peach') return peach;
-  if (themeName === 'liiac') return lilac;
+  if (themeName === 'lilac') return lilac;
   return night;
 };

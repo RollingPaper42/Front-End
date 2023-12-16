@@ -1,7 +1,8 @@
 import { useRecoilState } from 'recoil';
 
 import { Back } from '../Icon/Header';
-import { themeState } from '@/recoil/theme/theme';
+import { defaultState } from '@/recoil/newtheme/default';
+import { themeState } from '@/recoil/newtheme/theme';
 import { useRouter } from 'next/navigation';
 
 interface Props {
@@ -27,7 +28,7 @@ export default function BackButtonHeader({ isNext, setIsNext }: Props) {
           <Back />
         </div>
         <div
-          className={`${theme.textTheme.title} flex basis-4/6 items-center justify-center text-center text-[16px] font-bold`}
+          className={`${defaultState.activateText} flex basis-4/6 items-center justify-center text-center text-[16px] font-bold`}
         >
           스트링캣 만들기
         </div>

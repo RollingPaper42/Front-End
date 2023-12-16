@@ -1,6 +1,7 @@
 'use client';
 
 import BottomButton from './BottomButton';
+import { defaultState } from '@/recoil/newtheme/default';
 import Image from 'next/image';
 
 interface CreateThemeProps {
@@ -28,7 +29,9 @@ export default function CreateTheme({
       <div className="basis-3/12">
         <div className=" h-full w-full">
           <div className="mx-[24px] mt-3 ">
-            <div className="mb-[16px] text-[16px] font-semibold text-white">
+            <div
+              className={`mb-[16px] text-[16px] font-semibold ${defaultState.activateText}`}
+            >
               테마
             </div>
             <div className="flex h-full w-full flex-row">
@@ -50,7 +53,11 @@ export default function CreateTheme({
                     className="z-10 ml-[1px] mt-3"
                   />
                 </div>
-                <div className="mt-[12px] text-[12px] text-white ">크리스</div>
+                <div
+                  className={`mt-[12px] text-[12px] ${defaultState.activateText}`}
+                >
+                  크리스
+                </div>
               </div>
               <div className="flex basis-1/5 flex-col items-center justify-center">
                 <div
@@ -70,7 +77,11 @@ export default function CreateTheme({
                     className="z-10 mt-[10px]"
                   />
                 </div>
-                <div className="mt-[12px] text-[12px] text-white">마스</div>
+                <div
+                  className={`mt-[12px] text-[12px] ${defaultState.activateText}`}
+                >
+                  마스
+                </div>
               </div>
 
               <div className="flex basis-1/5 flex-col items-center justify-center">
@@ -83,7 +94,9 @@ export default function CreateTheme({
                   }`}
                   onClick={onClickNight}
                 ></div>
-                <div className="mt-[12px] text-[12px] text-white">
+                <div
+                  className={`mt-[12px] text-[12px] ${defaultState.activateText}`}
+                >
                   고요한 밤
                 </div>
               </div>
@@ -97,7 +110,11 @@ export default function CreateTheme({
                   }`}
                   onClick={onClickPeach}
                 ></div>
-                <div className="mt-[12px] text-[12px] text-white">복숭아</div>
+                <div
+                  className={`mt-[12px] text-[12px] ${defaultState.activateText}`}
+                >
+                  복숭아
+                </div>
               </div>
               <div className="flex basis-1/5 flex-col items-center justify-center">
                 <div
@@ -109,7 +126,11 @@ export default function CreateTheme({
                   }`}
                   onClick={onClickLilac}
                 ></div>
-                <div className="mt-[12px] text-[12px] text-white">라일락</div>
+                <div
+                  className={`mt-[12px] text-[12px] ${defaultState.activateText}`}
+                >
+                  라일락
+                </div>
               </div>
             </div>
           </div>
@@ -188,9 +209,9 @@ export default function CreateTheme({
           width="w-full"
           onClickHandler={onClickComplete}
           disabled={false}
-          color="bg-strcat-bright-yellow"
+          color={`${defaultState.MiddleButton}`}
           height="h-[46px]"
-          textColor="text-strcat-black"
+          textColor={`${defaultState.highLightText}`}
         />
       </div>
     </div>
