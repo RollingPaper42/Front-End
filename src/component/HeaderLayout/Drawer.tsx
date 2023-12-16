@@ -32,7 +32,6 @@ export default function Drawer() {
       setPersonalList(personal.data);
     } catch (err) {
       const error = err as AxiosError;
-      console.log(error);
     }
   }, [setPersonalList]);
 

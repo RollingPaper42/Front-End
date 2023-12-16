@@ -11,7 +11,6 @@ export default function PhotoPreview({
   color,
   handleClickPhoto,
 }: Props) {
-  console.log(color);
   return (
     <div className="absolute top-[-51px]">
       <div className="w-[44px] h-[46px] relative" onClick={handleClickPhoto}>

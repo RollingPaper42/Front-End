@@ -40,7 +40,6 @@ export default function Personal({ params }: { params: { id: string } }) {
       .then((data) => {
         setBoard([data.data.board]);
         setIsOwner(data.data.isOwner);
-        console.log(data);
       })
       .catch((err) => {
         if (err.response.status === 406) router.push('/not-found');
