@@ -33,7 +33,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const { isHidden, setIsHidden } = useScroll();
   const [runCatAnimation] = useCat();
   const [toast, setToast] = useState('');
-  const [theme] = useRecoilState(themeState);
+  const [theme, setTheme] = useRecoilState(themeState);
   useEffect(() => {
     axiosInstance
       .get(`/boards/${params.id}`)

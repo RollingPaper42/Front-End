@@ -18,7 +18,6 @@ export default function TitleHeader() {
   const isAdd = pathName.endsWith('/add');
   const [title] = useRecoilState(titleState);
   const [, setDrawer] = useRecoilState(drawerState);
-  const [theme] = useRecoilState(themeState);
   const { isHidden } = useScroll({ scrollEvent: !isAdd });
   const [openModal, closeModal] = useModal();
 

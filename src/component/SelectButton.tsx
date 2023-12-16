@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { defaultState } from '@/recoil/newtheme/default';
+
 interface SelectButtonProps {
   width: string;
   setContent: React.Dispatch<React.SetStateAction<string>>;
@@ -16,7 +18,7 @@ export default function SelectButton({
   };
   return (
     <button
-      className={` ${width}  border-strcat-gray3 text-strcat-gray3 mb-2 h-[40px] rounded-[25px] border bg-strcat-black text-center text-[15px]`}
+      className={` ${width}  border-strcat-gray3 text-strcat-gray3 mb-2 h-[40px] rounded-[25px] border ${defaultState.background} text-center text-[15px]`}
       onClick={onClickHandler}
     >
       {content}

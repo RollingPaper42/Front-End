@@ -1,11 +1,12 @@
-import { catAction, catAnimation } from '@/types/animation';
 import { atom } from 'recoil';
+
+import { catAction, catAnimation } from '@/types/animation';
 
 const defaultCat: catAnimation = {
   src: '',
   catAction: catAction.none,
-  bottom: 0,
-  left: 0,
+  y: 0,
+  x: 0,
   width: 0,
   height: 0,
 };

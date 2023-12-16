@@ -13,7 +13,8 @@ import Textarea from '@/component/Textarea';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
-import { themeState } from '@/recoil/theme/theme';
+import { defaultState } from '@/recoil/newtheme/default';
+import { themeState } from '@/recoil/newtheme/theme';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { useRouter } from 'next/navigation';
@@ -72,7 +73,7 @@ export default function Add({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={`h-full w-full ${theme.bgTheme.background}`}>
+      <div className={`h-full w-full ${defaultState.background}`}>
         <div className="pt-[100px]" />
         {preview && (
           <div className="mb-[4px] mt-[16px]">
@@ -83,7 +84,7 @@ export default function Add({ params }: { params: { id: string } }) {
             />
           </div>
         )}
-        <div className={`px-[24px] ${theme.bgTheme.background}`}>
+        <div className={`px-[24px] ${defaultState.background}`}>
           <div className="mt-[16px] flex items-center justify-center">
             <Textarea
               width="w-full"
@@ -118,13 +119,13 @@ export default function Add({ params }: { params: { id: string } }) {
         }`}
       >
         <div
-          className={`flex h-[70px] w-full max-w-md flex-row items-center space-x-[12px] px-[24px] ${theme.bgTheme.background}`}
+          className={`flex h-[70px] w-full max-w-md flex-row items-center space-x-[12px] px-[24px]`}
         >
           <PhotoUpload setImage={setImage} setPreview={setPreview} />
           <BottomButton
-            textColor="text-[#212121]"
+            textColor={`${theme.textTheme.addRightCTA}`}
             height="h-[42px]"
-            color="bg-[#FDFFB0]"
+            color={`${theme.bgTheme.addRightCTA}`}
             name="완료"
             width="basis-1/2"
             onClickHandler={handleClick}

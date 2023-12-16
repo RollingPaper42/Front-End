@@ -2,6 +2,8 @@ import BottomButton from '@/component/BottomButton';
 import MiddleButton from '@/component/MiddleButton';
 import SelectButton from '@/component/SelectButton';
 import Textarea from '@/component/Textarea';
+import { defaultState } from '@/recoil/newtheme/default';
+import { themeState } from '@/recoil/newtheme/theme';
 
 interface Props {
   title: string;
@@ -23,14 +25,16 @@ export default function TitleSelect({
       <div className="basis-1/12"></div>
       <div className="basis-2/12">
         <div className=" mx-[24p] mt-[10px] w-full  px-[24px]">
-          <div className="mb-[15px] ml-1 text-left text-[16px] text-white">
+          <div
+            className={`mb-[15px] ml-1 text-left text-[16px] text-default-gray2`}
+          >
             제목
           </div>
           <Textarea
             maxHeight="max-h-[49px]"
             width="w-full"
             placeholder="스트링캣 주제를 입력해주세요."
-            textColor="text-white"
+            textColor={`${defaultState.activateText}`}
             text={title}
             setText={setTitle}
             maxLength={25}
@@ -45,8 +49,8 @@ export default function TitleSelect({
             content="# 한사람을 위한"
             color={`${
               isOff == '1'
-                ? 'bg-strcat-bright-yellow text-strcat-gray2'
-                : 'bg-strcat-gray2 text-strcat-bright-yellow'
+                ? `${defaultState.MiddleButton} ${defaultState.middleButtonText}`
+                : `${defaultState.middleDisable} ${defaultState.middleDisableText}`
             }`}
           />
           <MiddleButton
@@ -55,8 +59,8 @@ export default function TitleSelect({
             content="# 함께 마무리하는"
             color={`${
               isOff == '2'
-                ? 'bg-strcat-bright-yellow text-strcat-gray2'
-                : 'bg-strcat-gray2 text-strcat-bright-yellow'
+                ? `${defaultState.MiddleButton} ${defaultState.middleButtonText}`
+                : `${defaultState.middleDisable} ${defaultState.middleDisableText}`
             }`}
           />
           <MiddleButton
@@ -65,8 +69,8 @@ export default function TitleSelect({
             content="# 서로의 생각을 나누는"
             color={`${
               isOff == '3'
-                ? 'bg-strcat-bright-yellow text-strcat-gray2'
-                : 'bg-strcat-gray2 text-strcat-bright-yellow'
+                ? `${defaultState.MiddleButton} ${defaultState.middleButtonText}`
+                : `${defaultState.middleDisable} ${defaultState.middleDisableText}`
             }`}
           />
         </div>
@@ -139,13 +143,13 @@ export default function TitleSelect({
       <div className="basis-2/12" />
       <div className="fixed bottom-5 flex w-full max-w-md items-center justify-center px-[24px]">
         <BottomButton
-          textColor=""
+          textColor={`${defaultState.highLightText}`}
           height="h-[42px]"
           name="다음"
           width="w-full"
           onClickHandler={() => setIsNext(true)}
           disabled={title === ' ' || title.length >= 26 || title.length <= 0}
-          color=" bg-strcat-bright-yellow"
+          color={`${defaultState.bottomButton}`}
         />
       </div>
     </div>

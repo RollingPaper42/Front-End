@@ -8,6 +8,7 @@ import CreateTheme from '@/component/CreateTheme';
 import HeaderLayout from '@/component/HeaderLayout';
 import Error from '@/component/Modal/Error';
 import useModal from '@/hooks/useModal';
+import { defaultState } from '@/recoil/newtheme/default';
 import {
   chris,
   lilac,
@@ -15,7 +16,7 @@ import {
   night,
   peach,
   themeState,
-} from '@/recoil/theme/theme';
+} from '@/recoil/newtheme/theme';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { useRouter } from 'next/navigation';
@@ -85,7 +86,7 @@ export default function Create() {
   return (
     <>
       <HeaderLayout isNext={isNext} setIsNext={setIsNext} />
-      <div className={`${theme.bgTheme.background} h-full w-full`}>
+      <div className={`${defaultState.background} h-full w-full`}>
         {isNext ? (
           <CreateTheme
             onClickChris={() => handlePreview(`1`, chris)}
