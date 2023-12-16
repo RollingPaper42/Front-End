@@ -89,7 +89,7 @@ export default function Personal({ params }: { params: { id: string } }) {
           setIsHidden(!isHidden);
         }}
       >
-        <SnowAnimation />
+        <SnowAnimation themeName={theme.name} />
         {board.length ? (
           <div className="z-text relative">
             {board[0].contents.length !== 0 && (

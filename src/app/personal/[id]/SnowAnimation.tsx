@@ -39,13 +39,14 @@ const makeSnowFlakes = () => {
   });
 };
 
-export default function SnowAnimation() {
+export default function SnowAnimation({ themeName }: { themeName: string }) {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     setLoaded(true);
   }, [setLoaded]);
   const snowflakes = useMemo(() => makeSnowFlakes(), []);
 
+  if (themeName !== 'chris' && themeName !== 'mas') return;
   return (
     loaded && (
       <div className="fixed flex h-full w-full max-w-md select-none justify-between">
