@@ -25,7 +25,7 @@ export default function Login() {
       >
         <Close />
       </div>
-      <div className="flex w-full flex-col items-center pt-[191px] ">
+      <div className="flex w-full flex-col items-center pt-[25%]">
         <Image
           src="/StrcatIcon.svg"
           width={42}
