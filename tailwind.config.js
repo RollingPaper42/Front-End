@@ -66,7 +66,7 @@ module.exports = {
         'loading-gray': '#D9D9D9',
 
         // 여기서부터 테마 정리 뉴 버전
-        'default-white': '#FFFFFFF',
+        'default-white': '#FFFFFF',
         'default-white2': '#E9E9E9',
         'default-black': '#212121',
         'default-black2': '#000000',
@@ -76,6 +76,8 @@ module.exports = {
         'kakao-bg': '#FEE500',
         'google-bg': '#FFFFFF',
         'textarea-bg': '#373737',
+        'drawer-scrollbar': '#373737',
+        'drawerlist-bg': '#1D1D1D',
 
         'night-highlight': '#FDFFB0',
         'night-buttonbg': '#9D9D8C',
@@ -90,7 +92,7 @@ module.exports = {
         'chris-buttonbg': '#2A4C3E',
 
         'mas-highlight': '#DE6565',
-        'chris-buttonbg': '#964E4E',
+        'mas-buttonbg': '#964E4E',
       },
       keyframes: {
         slide: {
@@ -177,6 +179,7 @@ module.exports = {
     },
     fontFamily: {
       pretentdard: ['Pretendard'],
+      sniglet: ['Sniglet'],
     },
   },
   plugins: [require('tailwind-scrollbar')({ nocompatible: true })],

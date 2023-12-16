@@ -1,14 +1,11 @@
 'use client';
 
-import { useRecoilState } from 'recoil';
-
-import { themeState } from '@/recoil/state';
+import { defaultState } from '@/recoil/newtheme/default';
 import Image from 'next/image';
 
 export default function Loading() {
-  const [theme] = useRecoilState(themeState);
   return (
-    <div className={`h-full w-full ${theme.bgTheme.background}`}>
+    <div className={`h-full w-full ${defaultState.background}`}>
       <div className="flex flex-col h-full w-full justify-center items-center">
         <div className="">
           <Image

@@ -10,6 +10,7 @@ import Home from '../Icon/drawer/Home';
 import DrawerItem from './DrawerItem';
 import DropList from './DropList';
 import { useLogin } from '@/hooks/useLogin';
+import { defaultState } from '@/recoil/newtheme/default';
 import { drawerState, themeState } from '@/recoil/state';
 import { drawerBoard } from '@/types/drawerBoard';
 import { axiosInstance } from '@/utils/axios';
@@ -95,8 +96,8 @@ export default function Drawer() {
       >
         <div
           className={`absolute right-0 h-full w-[300px] opacity-100 ${
-            theme.bgTheme.background
-          } ${theme.textTheme.default} ${
+            defaultState.background
+          } ${defaultState.activateText} ${
             drawerClosing ? 'animate-drawerClose' : 'animate-drawerOpen'
           }`}
         >
@@ -113,9 +114,7 @@ export default function Drawer() {
               </div>
             </div>
           </div>
-          <div
-            className={`flex flex-col items-center ${theme.textTheme.default}`}
-          >
+          <div className={`flex flex-col items-center`}>
             {isLogin ? (
               <>
                 <DropList list={personalList} category="personal" />
@@ -125,8 +124,8 @@ export default function Drawer() {
                     width="w-full"
                     onClickHandler={handleNewStrcat}
                     disabled={false}
-                    color={`bg-strcat-bright-yellow`}
-                    textColor="text-strcat-black"
+                    color={`${defaultState.MiddleButton}`}
+                    textColor={`${defaultState.highLightText}`}
                     height="h-[44px]"
                   />
                 </div>
@@ -148,15 +147,15 @@ export default function Drawer() {
                     width="w-full"
                     onClickHandler={handleLogin}
                     disabled={false}
-                    color={`bg-strcat-bright-yellow`}
-                    textColor="text-strcat-black"
+                    color={`${defaultState.MiddleButton}`}
+                    textColor={`${defaultState.highLightText}`}
                     height="h-[44px]"
                   />
                 </div>
               </>
             )}
             <div
-              className={`absolute bottom-0 w-full ${theme.bgTheme.background} px-[24px]`}
+              className={`absolute bottom-0 w-full ${defaultState.background} px-[24px]`}
             >
               <div className="h-[54px] w-full" onClick={handleHome}>
                 <DrawerItem title="홈으로" icon={<Home />} />
