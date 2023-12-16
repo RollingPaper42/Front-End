@@ -115,9 +115,8 @@ export default function Personal({ params }: { params: { id: string } }) {
               <Loading />
             </div>
           )}
+          <div style={{ minHeight: `${windowHeight * 0.7}px` }} />
         </div>
-        <div style={{ minHeight: `${windowHeight * 0.7}px` }}></div>
-
         <div
           className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
             isHidden ? 'translate-y-full' : 'translate-y-0'
