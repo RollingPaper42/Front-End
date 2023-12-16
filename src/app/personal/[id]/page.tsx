@@ -73,12 +73,20 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   const handleClickShare = async () => {
     try {
-      await navigator.clipboard.writeText(
-        `https://strcat.me/personal/${params.id}`,
+      const shortUrl = await axiosInstance.get(
+        `/share?url=https://strcat.me/personal/${params.id}`,
       );
+      await navigator.clipboard.writeText(`${shortUrl.data}`);
       setToast('share');
     } catch {
-      setToast('error');
+      try {
+        await navigator.clipboard.writeText(
+          `https://strcat.me/personal/${params.id}`,
+        );
+        setToast('share');
+      } catch {
+        setToast('error');
+      }
     }
   };
 
