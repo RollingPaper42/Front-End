@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useEffect, useState } from 'react';
 
 import TitleSelect from './TitleSelect';
 import CreateTheme from '@/component/CreateTheme';
@@ -9,20 +8,12 @@ import HeaderLayout from '@/component/HeaderLayout';
 import Error from '@/component/Modal/Error';
 import useModal from '@/hooks/useModal';
 import { defaultState } from '@/recoil/newtheme/default';
-import {
-  chris,
-  lilac,
-  mas,
-  night,
-  peach,
-  themeState,
-} from '@/recoil/newtheme/theme';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { useRouter } from 'next/navigation';
 
 export default function Create() {
-  const [theme, setTheme] = useRecoilState(themeState);
+  const [themeName, setThemeName] = useState('chris');
   const [openModal, closeModal] = useModal();
   const router = useRouter();
   const [title, setTitle] = useState('');
@@ -30,8 +21,8 @@ export default function Create() {
   const [isPreview, setIsPreview] = useState('1');
   const [isNext, setIsNext] = useState(false);
 
-  const handlePreview = (value: string, newTheme: themeState) => {
-    setTheme(newTheme);
+  const handlePreview = (value: string, newTheme: string) => {
+    setThemeName(newTheme);
     if (value !== isPreview)
       setIsPreview((prevIsPreview) => (prevIsPreview === value ? '' : value));
   };
@@ -52,9 +43,10 @@ export default function Create() {
 
   const handleClick = () => {
     const data = {
-      theme: theme.name,
+      theme: themeName,
       title: `${title}`,
     };
+    console.log(themeName, 'theme name is ');
     axiosInstance
       .post(`/boards`, data)
       .then((data) => {
@@ -89,11 +81,11 @@ export default function Create() {
       <div className={`${defaultState.background} h-full w-full`}>
         {isNext ? (
           <CreateTheme
-            onClickChris={() => handlePreview(`1`, chris)}
-            onClickMas={() => handlePreview(`2`, mas)}
-            onClickNight={() => handlePreview(`3`, night)}
-            onClickPeach={() => handlePreview(`4`, peach)}
-            onClickLilac={() => handlePreview(`5`, lilac)}
+            onClickChris={() => handlePreview(`1`, 'chris')}
+            onClickMas={() => handlePreview(`2`, 'mas')}
+            onClickNight={() => handlePreview(`3`, 'night')}
+            onClickPeach={() => handlePreview(`4`, 'peach')}
+            onClickLilac={() => handlePreview(`5`, 'lilac')}
             onClickComplete={() => handleConfirm()}
             isPreview={isPreview}
           />
