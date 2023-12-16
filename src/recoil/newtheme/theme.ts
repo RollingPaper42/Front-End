@@ -6,6 +6,7 @@ import {
   lilacBg,
   masBg,
   nightBg,
+  noneBg,
   peachBg,
 } from './bgTheme';
 import {
@@ -13,6 +14,7 @@ import {
   lilacText,
   masText,
   nightText,
+  noneText,
   peachText,
   textThemeState,
 } from './textTheme';
@@ -51,6 +53,12 @@ export const lilac: themeState = {
   name: 'lilac',
   textTheme: lilacText,
   bgTheme: lilacBg,
+};
+
+export const noneTheme: themeState = {
+  name: '',
+  textTheme: noneText,
+  bgTheme: noneBg,
 };
 
 export const themeObj = {

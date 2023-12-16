@@ -14,7 +14,7 @@ import Toast from '@/component/Toast';
 import { useLogin } from '@/hooks/useLogin';
 import { useScroll } from '@/hooks/useScroll';
 import { defaultState } from '@/recoil/newtheme/default';
-import { themeState } from '@/recoil/newtheme/theme';
+import { noneTheme, themeState } from '@/recoil/newtheme/theme';
 import { chris, lilac, mas, night, peach } from '@/recoil/newtheme/theme';
 import { titleState } from '@/recoil/state';
 import { board } from '@/types/boards';
@@ -34,6 +34,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [toast, setToast] = useState('');
   const [theme, setTheme] = useRecoilState(themeState);
   useEffect(() => {
+    if (window) setWindowHeight(window.innerHeight);
     axiosInstance
       .get(`/boards/${params.id}`)
       .then((data) => {
@@ -44,7 +45,6 @@ export default function Personal({ params }: { params: { id: string } }) {
       .catch((err) => {
         if (err.response.status === 406) router.push('/not-found');
       });
-    if (window) setWindowHeight(window.innerHeight);
   }, [params.id]);
 
   useEffect(() => {
@@ -91,12 +91,14 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   if (!board.length) {
+    setTheme(noneTheme);
     return (
       <div className=" w-full h-full">
         <Loading />
       </div>
     );
   }
+
   return (
     <>
       <div className={`${defaultState.background} min-h-full`}>
