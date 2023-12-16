@@ -8,14 +8,14 @@ export default function Check() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
+
   useEffect(() => {
     localStorage.setItem('strcat_token', token ?? '');
-    const url = localStorage.getItem('strcat_login_success_url');
+    const url = localStorage.getItem('login_success_url');
     if (url) {
-      router.push(url);
-      // localStorage.removeItem('strcat_login_success_url');
+      router.replace(url);
     } else {
-      router.push('/');
+      router.replace('/');
     }
-  }, [router]);
+  }, []);
 }

@@ -1,26 +1,23 @@
 'use client';
 
 import { useRef } from 'react';
-import { useRecoilState } from 'recoil';
 
 import HeaderLayout from '@/component/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
 import { useLogin } from '@/hooks/useLogin';
-import { themeState } from '@/recoil/theme/theme';
 import { focusToHighlight } from '@/utils/focusToHighlight';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [isLogin] = useLogin();
-  const [theme] = useRecoilState(themeState);
   const router = useRouter();
   const ref = useRef<HTMLHeadingElement | null>(null);
 
   const handleClickPersonal = () => {
     if (isLogin) router.push('create', { scroll: false });
     else {
-      localStorage.setItem('strcat_login_success_url', '/create');
+      localStorage.setItem('login_success_url', '/create');
       router.push('/login');
     }
   };

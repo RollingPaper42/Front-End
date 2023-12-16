@@ -57,15 +57,13 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   const handleClickCreate = () => {
     if (!isLogin) {
-      localStorage.setItem(
-        'strcat_login_success_url',
-        `/personal/${params.id}`,
-      );
+      localStorage.setItem('login_success_url', '/create');
       router.push('/login');
     } else {
-      router.push(`/create`);
+      router.push('/create');
     }
   };
+
   const handleClickDownload = () => {
     setToast('download');
   };
