@@ -3,13 +3,13 @@
 import { useRef } from 'react';
 import { useRecoilState } from 'recoil';
 
+import HeaderLayout from '@/component/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
 import { useLogin } from '@/hooks/useLogin';
 import { themeState } from '@/recoil/theme/theme';
 import { focusToHighlight } from '@/utils/focusToHighlight';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import HeaderLayout from '@/component/HeaderLayout';
 
 export default function Home() {
   const [isLogin] = useLogin();
@@ -30,12 +30,23 @@ export default function Home() {
       <HeaderLayout />
       <div className={` h-auto min-h-full bg-strcat-black`}>
         <div className="flex flex-col items-center justify-center pt-[152px]">
-          <Image
-            src="/StrcatIcon.svg"
-            width={42}
-            height={42}
-            alt="mainStrcatIcon"
-          />
+          <div className="relative">
+            <Image
+              src="/MainImage.png"
+              width={153}
+              height={153}
+              alt="mainStrcatIcon"
+            />
+            <div className="absolute top-0">
+              <Image
+                src="/SnowAnimation.gif"
+                alt="snowAnimation"
+                width={153}
+                height={153}
+                className="rounded-full"
+              />
+            </div>
+          </div>
           <div className=" py-[11px] text-[28px] font-bold text-white">
             스트링캣
           </div>

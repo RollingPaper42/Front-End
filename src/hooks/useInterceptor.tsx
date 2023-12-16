@@ -1,8 +1,9 @@
-import { axiosInstance } from '@/utils/axios';
+import { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { useEffect } from 'react';
+
 import useModal from './useModal';
 import Error from '@/component/Modal/Error';
-import { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { axiosInstance } from '@/utils/axios';
 import { useRouter } from 'next/navigation';
 
 export const useInterceptor = () => {
@@ -24,7 +25,11 @@ export const useInterceptor = () => {
   const errorHandler = (errorStatus: number) => {
     if (errorStatus === 500) {
       openModal(
-        <Error content="500 에러 발생 " handleModalClose={closeModal} />,
+        <Error
+          mainContent="일시적으로 문제가 발생했어요 🥲"
+          subContent="잠시 후 다시 시도해주세요."
+          handleModalClose={closeModal}
+        />,
       );
     }
     // if (errorStatus === 401) {

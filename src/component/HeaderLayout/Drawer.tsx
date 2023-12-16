@@ -101,7 +101,7 @@ export default function Drawer() {
           }`}
         >
           <div className="flex h-[70px] w-full px-[24px] py-[22px]">
-            <div>
+            <div onClick={handleHome}>
               <Logo />
             </div>
             <div className="absolute right-[24px]">
