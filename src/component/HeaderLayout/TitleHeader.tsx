@@ -4,34 +4,35 @@ import { useRecoilState } from 'recoil';
 
 import Close from '../Icon/Close';
 import { HamburgerMenu } from '../Icon/Header';
+import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
 import { drawerState, themeState, titleState } from '@/recoil/state';
-import { usePathname, useRouter } from 'next/navigation';
-import useModal from '@/hooks/useModal';
 import { confirm } from '@/utils/confirm';
 import { drawerOpen } from '@/utils/drawerOpen';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function TitleHeader() {
-  const pathName = usePathname();
+  const pathname = usePathname();
   const router = useRouter();
-  const isAdd = pathName.endsWith('/add');
+  const isAdd = pathname.endsWith('/add');
   const [title] = useRecoilState(titleState);
   const [, setDrawer] = useRecoilState(drawerState);
   const [theme] = useRecoilState(themeState);
   const { isHidden } = useScroll({ scrollEvent: !isAdd });
   const [openModal, closeModal] = useModal();
 
+  const backUrl = pathname.substring(0, pathname.lastIndexOf('/'));
   const handleAddClose = async () => {
     const isConfirmed = await confirm(
       openModal,
       closeModal,
       '글 작성을 취소하시겠어요?',
     );
-    if (isConfirmed) router.back();
+    if (isConfirmed) router.push(backUrl);
   };
 
   if (isAdd && title === '') {
-    router.push(pathName.substring(0, pathName.lastIndexOf('/')));
+    router.push(backUrl);
   }
 
   return (

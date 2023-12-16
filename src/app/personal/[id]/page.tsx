@@ -57,15 +57,13 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   const handleClickCreate = () => {
     if (!isLogin) {
-      localStorage.setItem(
-        'strcat_login_success_url',
-        `/personal/${params.id}`,
-      );
+      localStorage.setItem('strcat_login_success_url', '/create');
       router.push('/login');
     } else {
-      router.push(`/create`);
+      router.push('/create');
     }
   };
+
   const handleClickDownload = () => {
     setToast('download');
   };
@@ -83,29 +81,30 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div
-        className={`${theme.bgTheme.background} min-h-full`}
-        onClick={() => {
-          setIsHidden(!isHidden);
-        }}
-      >
-        <SnowAnimation themeName={theme.name} />
-        {board.length ? (
-          <div className="z-text relative">
-            {board[0].contents.length !== 0 && (
-              <div className="absolute top-[100px]">
-                <Summary id={params.id} />
-              </div>
-            )}
-            <div style={{ paddingTop: `${windowHeight * 0.4}px` }} />
-            {board[0].contents.length === 0 && <NoneContent />}
-            <StrcatBoard board={board[0]} />
-          </div>
-        ) : (
-          <div style={{ height: `${windowHeight}px` }}>
-            <Loading />
-          </div>
-        )}
+      <div className={`${theme.bgTheme.background} min-h-full`}>
+        <div
+          onClick={() => {
+            setIsHidden(!isHidden);
+          }}
+        >
+          <SnowAnimation themeName={theme.name} />
+          {board.length ? (
+            <div className="z-text relative">
+              {board[0].contents.length !== 0 && (
+                <div className="absolute top-[100px]">
+                  <Summary id={params.id} />
+                </div>
+              )}
+              <div style={{ paddingTop: `${windowHeight * 0.4}px` }} />
+              {board[0].contents.length === 0 && <NoneContent />}
+              <StrcatBoard board={board[0]} />
+            </div>
+          ) : (
+            <div style={{ height: `${windowHeight}px` }}>
+              <Loading />
+            </div>
+          )}
+        </div>
         <div style={{ minHeight: `${windowHeight * 0.6}px` }}></div>
 
         <div
@@ -114,8 +113,7 @@ export default function Personal({ params }: { params: { id: string } }) {
           }`}
         >
           <BottomImage themeName={theme.name} />
-          <div
-            className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]">
+          <div className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]">
             {isOwner ? (
               <>
                 <div
@@ -123,7 +121,8 @@ export default function Personal({ params }: { params: { id: string } }) {
                   onClick={handleClickDownload}
                 >
                   <div
-                    className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${theme.bgTheme.leftCTA}`}>
+                    className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${theme.bgTheme.leftCTA}`}
+                  >
                     <Image
                       src="/Download.svg"
                       width={24}
