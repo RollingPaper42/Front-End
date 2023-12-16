@@ -32,6 +32,9 @@ export default function Textarea({
     if (byteLength <= (maxLength + 1) * 3) {
       setText(e.target.value);
     }
+    if (e.target.value.trim() === '') {
+      setText('');
+    }
   };
 
   const handleKeyDownText = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
