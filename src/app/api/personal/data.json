@@ -3,7 +3,7 @@
   "board": {
     "id": 1,
     "title": "Sample Board",
-    "theme": "cyan",
+    "theme": "night",
     "contents": [
       {
         "id": 1,

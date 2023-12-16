@@ -10,6 +10,7 @@ import BottomButton from '@/component/BottomButton';
 import CatAnimation from '@/component/CatAnimation';
 import Loading from '@/component/Loading';
 import StrcatBoard from '@/component/StrcatBoard';
+import Toast from '@/component/Toast';
 import { useCat } from '@/hooks/useCat';
 import { useLogin } from '@/hooks/useLogin';
 import { useScroll } from '@/hooks/useScroll';
@@ -30,6 +31,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [, setTitle] = useRecoilState(titleState);
   const { isHidden, setIsHidden } = useScroll();
   const [runCatAnimation] = useCat();
+  const [toast, setToast] = useState('');
   useEffect(() => {
     axiosInstance
       .get(`/boards/${params.id}`)
@@ -61,7 +63,21 @@ export default function Personal({ params }: { params: { id: string } }) {
       );
       router.push('/login');
     } else {
-      router.push('/personal/${params.id}');
+      router.push(`/create`);
+    }
+  };
+  const handleClickDownload = () => {
+    setToast('download');
+  };
+
+  const handleClickShare = async () => {
+    try {
+      await navigator.clipboard.writeText(
+        `https://strcat.me/personal/${params.id}`,
+      );
+      setToast('share');
+    } catch {
+      setToast('error');
     }
   };
 
@@ -104,7 +120,10 @@ export default function Personal({ params }: { params: { id: string } }) {
               className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]"
               id="strcat_sit"
             >
-              <div className="flex basis-1/12 items-center justify-center">
+              <div
+                className="flex basis-1/12 items-center justify-center"
+                onClick={handleClickDownload}
+              >
                 <div
                   className={`h-[46px] flex rounded-[5px] w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
                 >
@@ -121,7 +140,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                 name="공유하기"
                 height="h-[46px]"
                 width="basis-5/12"
-                onClickHandler={() => router.push(`${params.id}/summary`)}
+                onClickHandler={handleClickShare}
                 disabled={false}
                 color={`${theme.bgTheme.leftCTA}`}
               />
@@ -170,6 +189,15 @@ export default function Personal({ params }: { params: { id: string } }) {
           </>
         )}
       </div>
+      {toast === 'download' && (
+        <Toast message="저장기능은 준비중이에요!" setToast={setToast} />
+      )}
+      {toast === 'share' && (
+        <Toast message="링크가 복사되었어요!" setToast={setToast} />
+      )}
+      {toast === 'error' && (
+        <Toast message="링크 복사에 실패했어요 🥲" setToast={setToast} />
+      )}
     </>
   );
 }

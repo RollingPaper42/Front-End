@@ -1,7 +1,4 @@
-import { SetterOrUpdater } from 'recoil';
-
 import Confirm from '@/component/Modal/Confirm';
-import { modalComponent } from '@/types/modalComponent';
 
 export const confirm = (
   openModal: (modalComponent: JSX.Element) => void,

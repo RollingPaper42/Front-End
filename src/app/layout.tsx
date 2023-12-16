@@ -5,7 +5,6 @@ import { RecoilRoot } from 'recoil';
 import InApp from './InApp';
 import './globals.css';
 import AxiosInterceptor from '@/component/AxiosInterceptor';
-import HeaderLayout from '@/component/HeaderLayout';
 import Modal from '@/component/Modal';
 import OpenGraph from '@/component/OpenGraph';
 
@@ -27,7 +26,6 @@ export default function RootLayout({
           <RecoilRoot>
             <AxiosInterceptor />
             <Modal />
-            <HeaderLayout />
             {children}
           </RecoilRoot>
         </div>
