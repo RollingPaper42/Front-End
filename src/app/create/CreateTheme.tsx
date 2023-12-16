@@ -144,11 +144,12 @@ export default function CreateTheme({
           }`}
         >
           <Image
-            src="/preview/chris.svg"
+            src="/preview/chris.png"
             width={270}
             height={398}
             alt="크리스"
             className="h-[398px] w-[270px] drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)]"
+            loading="eager"
           />
         </div>
         <div
@@ -157,11 +158,12 @@ export default function CreateTheme({
           }`}
         >
           <Image
-            src="/preview/mas.svg"
+            src="/preview/mas.png"
             width={270}
             height={398}
             alt="마스"
             className="h-[398px] w-[270px] drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)]"
+            loading="eager"
           />
         </div>
         <div
@@ -170,11 +172,12 @@ export default function CreateTheme({
           }`}
         >
           <Image
-            src="/preview/night.svg"
+            src="/preview/night.png"
             width={270}
             height={398}
             alt="고요한밤"
             className="h-[398px] w-[270px] drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)]"
+            loading="eager"
           />
         </div>
         <div
@@ -183,11 +186,12 @@ export default function CreateTheme({
           }`}
         >
           <Image
-            src="/preview/peach.svg"
+            src="/preview/peach.png"
             width={270}
             height={398}
             alt="복숭아"
             className="h-[398px] w-[270px] drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)]"
+            loading="eager"
           />
         </div>
         <div
@@ -196,11 +200,12 @@ export default function CreateTheme({
           } drop-shadow`}
         >
           <Image
-            src="/preview/lilac.svg"
+            src="/preview/lilac.png"
             width={270}
             height={398}
             alt="라일락"
             className="h-[398px] w-[270px] drop-shadow-[0px_0px_15px_rgba(255,255,255,0.3)]"
+            loading="eager"
           />
         </div>
       </div>
