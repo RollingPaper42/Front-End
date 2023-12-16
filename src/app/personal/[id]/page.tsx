@@ -7,7 +7,6 @@ import NoneContent from './NoneContent';
 import SnowAnimation from './SnowAnimation';
 import Summary from './Summary';
 import BottomButton from '@/component/BottomButton';
-import CatAnimation from '@/component/CatAnimation';
 import Loading from '@/component/Loading';
 import StrcatBoard from '@/component/StrcatBoard';
 import Toast from '@/component/Toast';
@@ -90,7 +89,7 @@ export default function Personal({ params }: { params: { id: string } }) {
         }}
       >
         <SnowAnimation />
-        <CatAnimation isHidden={isHidden} />
+
         {board.length ? (
           <div className="z-text relative">
             {board[0].contents.length !== 0 && (
@@ -110,62 +109,54 @@ export default function Personal({ params }: { params: { id: string } }) {
           </div>
         )}
         <div style={{ minHeight: `${windowHeight * 0.6}px` }}></div>
-        {isOwner ? (
+
+        <div
+          className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
+            isHidden ? 'translate-y-full' : 'translate-y-0'
+          }`}
+        >
           <div
-            className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
-              isHidden ? 'translate-y-full' : 'translate-y-0'
-            }`}
+            className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]"
+            id="strcat_sit"
           >
-            <div
-              className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]"
-              id="strcat_sit"
-            >
-              <div
-                className="flex basis-1/12 items-center justify-center"
-                onClick={handleClickDownload}
-              >
+            {isOwner ? (
+              <>
                 <div
-                  className={`h-[46px] flex rounded-[5px] w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
+                  className="flex basis-1/12 items-center justify-center"
+                  onClick={handleClickDownload}
                 >
-                  <Image
-                    src="/Download.svg"
-                    width={24}
-                    height={24}
-                    alt="Download"
-                  />
+                  <div
+                    className={`h-[46px] flex rounded-[5px] w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
+                  >
+                    <Image
+                      src="/Download.svg"
+                      width={24}
+                      height={24}
+                      alt="Download"
+                    />
+                  </div>
                 </div>
-              </div>
-              <BottomButton
-                textColor="text-strcat-bright-yellow"
-                name="공유하기"
-                height="h-[46px]"
-                width="basis-5/12"
-                onClickHandler={handleClickShare}
-                disabled={false}
-                color={`${theme.bgTheme.leftCTA}`}
-              />
-              <BottomButton
-                textColor="text-strcat-bright-yellow"
-                name="글쓰기"
-                height="h-[46px]"
-                width="basis-5/12"
-                onClickHandler={handleClickWrite}
-                disabled={false}
-                color={`${theme.bgTheme.rightCTA}`}
-              />
-            </div>
-          </div>
-        ) : (
-          <>
-            <div
-              className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
-                isHidden ? 'translate-y-full' : 'translate-y-0'
-              }`}
-            >
-              <div
-                className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px] "
-                id="strcat_sit"
-              >
+                <BottomButton
+                  textColor="text-strcat-bright-yellow"
+                  name="공유하기"
+                  height="h-[46px]"
+                  width="basis-5/12"
+                  onClickHandler={handleClickShare}
+                  disabled={false}
+                  color={`${theme.bgTheme.leftCTA}`}
+                />
+                <BottomButton
+                  textColor="text-strcat-bright-yellow"
+                  name="글쓰기"
+                  height="h-[46px]"
+                  width="basis-5/12"
+                  onClickHandler={handleClickWrite}
+                  disabled={false}
+                  color={`${theme.bgTheme.rightCTA}`}
+                />
+              </>
+            ) : (
+              <>
                 <BottomButton
                   textColor=" text-strcat-white2"
                   name="나도 만들기"
@@ -184,10 +175,10 @@ export default function Personal({ params }: { params: { id: string } }) {
                   disabled={false}
                   color={`${theme.bgTheme.rightCTA}`}
                 />
-              </div>
-            </div>
-          </>
-        )}
+              </>
+            )}
+          </div>
+        </div>
       </div>
       {toast === 'download' && (
         <Toast message="저장기능은 준비중이에요!" setToast={setToast} />
