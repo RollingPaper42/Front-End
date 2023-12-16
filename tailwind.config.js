@@ -76,6 +76,7 @@ module.exports = {
         'kakao-bg': '#FEE500',
         'google-bg': '#FFFFFF',
         'textarea-bg': '#373737',
+        'drawer-scrollbar': '#373737',
         'drawerlist-bg': '#1D1D1D',
 
         'night-highlight': '#FDFFB0',
