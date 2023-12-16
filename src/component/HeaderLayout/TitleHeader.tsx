@@ -29,7 +29,6 @@ export default function TitleHeader() {
       '글 작성을 취소하시겠어요?',
     );
     if (isConfirmed) router.push(backUrl);
-    //수정
   };
 
   if (isAdd && title === '') {
