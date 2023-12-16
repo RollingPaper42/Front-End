@@ -32,7 +32,7 @@ export default function PhotoUpload({ setImage, setPreview }: Props) {
   };
 
   return (
-    <form className="flex h-[42px] basis-1/2 items-center justify-center">
+    <form className="flex h-[46px] basis-1/2 items-center justify-center">
       <label
         htmlFor="imgFile"
         className={`relative flex h-full w-full cursor-pointer select-none items-center justify-center

@@ -123,9 +123,8 @@ export default function Add({ params }: { params: { id: string } }) {
         >
           <PhotoUpload setImage={setImage} setPreview={setPreview} />
           <BottomButton
-            textColor={`${theme.textTheme.addRightCTA}`}
-            height="h-[42px]"
-            color={`${theme.bgTheme.addRightCTA}`}
+            textColor=""
+            color="bg-strcat-bright-yellow"
             name="완료"
             width="basis-1/2"
             onClickHandler={handleClick}

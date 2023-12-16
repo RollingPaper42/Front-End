@@ -214,11 +214,9 @@ export default function CreateTheme({
         <BottomButton
           name="다음"
           width="w-full"
-          onClickHandler={() => setIsNext(true)}
-          disabled={false}
           color={`${defaultState.MiddleButton}`}
-          height="h-[46px]"
           textColor={`${defaultState.highLightText}`}
+          onClickHandler={() => setIsNext(true)}
         />
       </div>
     </div>

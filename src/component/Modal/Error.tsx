@@ -26,13 +26,11 @@ export default function Error({
         )}
         <div className="mt-[32px] flex">
           <BottomButton
-            textColor="text-strcat-black"
-            height="h-[42px]"
-            color="bg-strcat-bright-yellow"
             name="확인"
             width="w-full"
+            textColor="text-strcat-black"
+            color="bg-strcat-bright-yellow"
             onClickHandler={handleModalClose}
-            disabled={false}
           />
         </div>
       </div>

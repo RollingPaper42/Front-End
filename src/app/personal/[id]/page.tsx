@@ -145,20 +145,16 @@ export default function Personal({ params }: { params: { id: string } }) {
                 <BottomButton
                   textColor={`${defaultState.explainLeftCTA}`}
                   name="공유하기"
-                  height="h-[46px]"
                   width="basis-5/12"
                   onClickHandler={handleClickShare}
-                  disabled={false}
                   color={`${defaultState.btnLeftCTA}`}
                   isShadow={true}
                 />
                 <BottomButton
                   textColor={`${theme.textTheme.rightCTA}`}
                   name="글쓰기"
-                  height="h-[46px]"
                   width="basis-5/12"
                   onClickHandler={handleClickWrite}
-                  disabled={false}
                   color={`${theme.bgTheme.rightCTA}`}
                   isShadow={true}
                 />
@@ -169,9 +165,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                   textColor={`${defaultState.explainLeftCTA}`}
                   name="나도 만들기"
                   width="basis-1/3"
-                  height="h-[46px]"
                   onClickHandler={handleClickCreate}
-                  disabled={false}
                   color={`${defaultState.btnLeftCTA}`}
                   isShadow={true}
                 />
@@ -179,9 +173,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                   textColor={`${theme.textTheme.rightCTA}`}
                   name="글쓰기"
                   width="basis-2/3"
-                  height="h-[46px]"
                   onClickHandler={handleClickWrite}
-                  disabled={false}
                   color={`${theme.bgTheme.rightCTA}`}
                   isShadow={true}
                 />

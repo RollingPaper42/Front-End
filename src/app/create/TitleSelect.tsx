@@ -139,15 +139,14 @@ export default function TitleSelect({
           />
         </div>
       </div>
-      <div className="basis-2/12 bottom-5 flex w-full max-w-md items-center justify-center px-[24px]">
+      <div className="fixed bottom-5 flex w-full max-w-md items-center justify-center px-[24px]">
         <BottomButton
-          textColor={`${defaultState.highLightText}`}
-          height="h-[42px]"
           name="완료"
           width="w-full"
+          textColor={`${defaultState.highLightText}`}
+          color={`${defaultState.bottomButton}`}
           onClickHandler={onClickComplete}
           disabled={title === ' ' || title.length >= 26 || title.length <= 0}
-          color={`${defaultState.bottomButton}`}
         />
       </div>
     </div>
