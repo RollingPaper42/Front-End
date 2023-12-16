@@ -5,8 +5,6 @@ interface TextareaProps {
   maxLength: number;
   textColor: string;
   placeholder: string;
-  handleFocus?: () => void;
-  handleBlur?: () => void;
   text: string;
   setText: React.Dispatch<SetStateAction<string>>;
   maxHeight: string;
@@ -16,8 +14,6 @@ export default function Textarea({
   maxLength,
   placeholder,
   textColor,
-  handleFocus,
-  handleBlur,
   maxHeight,
   text,
   setText,
@@ -56,8 +52,6 @@ export default function Textarea({
           maxLength={maxLength + 1}
           onChange={(e) => handleChangeText(e)}
           onKeyDown={(e) => handleKeyDownText(e)}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
         />
       </div>
       <div
