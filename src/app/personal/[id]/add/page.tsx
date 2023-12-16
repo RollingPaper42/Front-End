@@ -60,7 +60,8 @@ export default function Add({ params }: { params: { id: string } }) {
         if (error.response?.status === 406) {
           openModal(
             <Error
-              content="올바르지 않은 입력입니다. 다시 작성해주세요."
+              mainContent="일시적으로 문제가 발생했어요 🥲"
+              subContent="잠시 후 다시 시도해주세요."
               handleModalClose={closeModal}
             />,
           );
