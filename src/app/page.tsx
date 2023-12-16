@@ -27,7 +27,12 @@ export default function Home() {
     <>
       <HeaderLayout />
       <div className={` h-auto min-h-full ${defaultState.background}`}>
-        <div className="flex flex-col items-center justify-center pt-[64px] pl-[24px]">
+        <div
+          className={`flex text-body-size2 ${defaultState.descriptionText} pl-[24px] pt-[64px]`}
+        >
+          함께 문장을 이어가는 롤링페이퍼
+        </div>
+        <div className="flex flex-col items-center justify-center pt-[64px]">
           <div className="relative">
             <Image
               src="/MainImage.svg"
@@ -44,14 +49,6 @@ export default function Home() {
                 className="rounded-full"
               />
             </div>
-          </div>
-          <div
-            className={`py-[11px] text-[28px] font-bold ${defaultState.activateText}`}
-          >
-            스트링캣
-          </div>
-          <div className={`text-body-size2 ${defaultState.descriptionText}`}>
-            함께 문장을 이어가는 롤링페이퍼
           </div>
           <div
             className={`pt-[60px]  text-center text-body-size2 ${defaultState.descriptionText}`}
