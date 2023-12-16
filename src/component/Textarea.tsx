@@ -58,7 +58,7 @@ export default function Textarea({
         />
       </div>
       <div
-        className={` mx-[16px] mb-[16px] h-[16px] basis-1/6 text-right  text-[14px]  ${
+        className={`mx-[16px] mb-[16px] h-[16px] basis-1/6 cursor-default select-none text-right text-[14px] ${
           text.length > maxLength
             ? 'text-strcat-red'
             : 'text-strcat-textarea-text'

@@ -8,7 +8,7 @@ export default function CatAnimation({ isHidden }: { isHidden: boolean }) {
 
   return (
     <div
-      className={`fixed z-[15] transition-transform ${
+      className={`fixed z-[15] select-none transition-transform ${
         isHidden ? 'translate-y-[0]' : '-translate-y-[104px]'
       }`}
       style={{

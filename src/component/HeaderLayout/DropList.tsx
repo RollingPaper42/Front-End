@@ -13,11 +13,11 @@ interface Props {
 export default function DropList({ list, category }: Props) {
   return (
     <>
-      <div className="flex py-[12px] w-full items-center justify-between px-[24px]">
-        <h1 className="text-body-size1 font-semibold select-none">
+      <div className="flex w-full items-center justify-between px-[24px] py-[12px]">
+        <h1 className="select-none text-body-size1 font-semibold">
           내 스트링캣
         </h1>
-        <div className=" text-gray-500 text-caption-size2 font-medium">
+        <div className="cursor-default select-none text-caption-size2 font-medium text-gray-500">
           {list.length}
         </div>
       </div>

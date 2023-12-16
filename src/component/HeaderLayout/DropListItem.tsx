@@ -32,7 +32,7 @@ export default function DropListItem({ list, category }: Props) {
     return (
       <div
         key={item.id}
-        className="flex h-[54px] w-full select-none items-center justify-between px-[24px]"
+        className="flex h-[54px] w-full cursor-pointer select-none items-center justify-between px-[24px]"
         onClick={() => {
           router.push(url);
           document.body.style.overflow = 'auto';

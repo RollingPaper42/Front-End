@@ -37,7 +37,7 @@ export default function Login() {
         <div className={`text-body-size2 ${defaultState.descriptionText}`}>
           함께 문장을 이어가는 롤링페이퍼
         </div>
-        <div className="fixed bottom-[12px] w-full max-w-md px-[24px] ">
+        <div className="fixed bottom-[12px] w-full max-w-md px-[24px]">
           <button
             className={`flex h-[46px] w-full flex-row items-center justify-center rounded-[6px] text-body-size2 font-medium ${defaultState.kakaoButtonBg}`}
             onClick={handleClickKaKao}

@@ -102,7 +102,7 @@ export default function Add({ params }: { params: { id: string } }) {
               }}
             />
           </div>
-          <div className="mb-[12px] mt-[20px] text-body-size2 font-semibold tracking-[-0.32px] text-[#BCBCBC] ">
+          <div className="mb-[12px] mt-[20px] cursor-default select-none text-body-size2 font-semibold tracking-[-0.32px] text-[#BCBCBC] ">
             From
           </div>
           <Writer
