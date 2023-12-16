@@ -81,30 +81,31 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div
-        className={`${theme.bgTheme.background} min-h-full`}
-        onClick={() => {
-          setIsHidden(!isHidden);
-        }}
-      >
-        <SnowAnimation />
-        <CatAnimation isHidden={isHidden} />
-        {board.length ? (
-          <div className="z-text relative">
-            {board[0].contents.length !== 0 && (
-              <div className="absolute top-[100px]">
-                <Summary id={params.id} />
-              </div>
-            )}
-            <div style={{ paddingTop: `${windowHeight * 0.4}px` }} />
-            {board[0].contents.length === 0 && <NoneContent />}
-            <StrcatBoard board={board[0]} />
-          </div>
-        ) : (
-          <div style={{ height: `${windowHeight}px` }}>
-            <Loading />
-          </div>
-        )}
+      <div className={`${theme.bgTheme.background} min-h-full`}>
+        <div
+          onClick={() => {
+            setIsHidden(!isHidden);
+          }}
+        >
+          <SnowAnimation />
+          <CatAnimation isHidden={isHidden} />
+          {board.length ? (
+            <div className="z-text relative">
+              {board[0].contents.length !== 0 && (
+                <div className="absolute top-[100px]">
+                  <Summary id={params.id} />
+                </div>
+              )}
+              <div style={{ paddingTop: `${windowHeight * 0.4}px` }} />
+              {board[0].contents.length === 0 && <NoneContent />}
+              <StrcatBoard board={board[0]} />
+            </div>
+          ) : (
+            <div style={{ height: `${windowHeight}px` }}>
+              <Loading />
+            </div>
+          )}
+        </div>
         <div style={{ minHeight: `${windowHeight * 0.6}px` }}></div>
         {isOwner ? (
           <div
