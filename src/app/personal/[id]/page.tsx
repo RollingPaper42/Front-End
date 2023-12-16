@@ -7,13 +7,14 @@ import NoneContent from './NoneContent';
 import SnowAnimation from './SnowAnimation';
 import Summary from './Summary';
 import BottomButton from '@/component/BottomButton';
+import BottomImage from '@/component/BottomImage';
 import Loading from '@/component/Loading';
 import StrcatBoard from '@/component/StrcatBoard';
 import Toast from '@/component/Toast';
-import { useCat } from '@/hooks/useCat';
 import { useLogin } from '@/hooks/useLogin';
 import { useScroll } from '@/hooks/useScroll';
 import { themeState, titleState } from '@/recoil/state';
+import { chris, lilac, mas, night, peach } from '@/recoil/theme/theme';
 import { board } from '@/types/boards';
 import { axiosInstance } from '@/utils/axios';
 import Image from 'next/image';
@@ -24,12 +25,11 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [board, setBoard] = useState<board[]>([]);
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [windowHeight, setWindowHeight] = useState(0);
-  const [theme] = useRecoilState(themeState);
+  const [theme, setTheme] = useRecoilState(themeState);
   const router = useRouter();
   const [isLogin] = useLogin();
   const [, setTitle] = useRecoilState(titleState);
   const { isHidden, setIsHidden } = useScroll();
-  const [runCatAnimation] = useCat();
   const [toast, setToast] = useState('');
   useEffect(() => {
     axiosInstance
@@ -47,7 +47,8 @@ export default function Personal({ params }: { params: { id: string } }) {
   useEffect(() => {
     if (!board.length) return;
     setTitle(board[0].title);
-    runCatAnimation('strcat_sit', 'sit', 0, board[0].theme);
+    const boardTheme = getTheme(board[0].theme);
+    setTheme(boardTheme);
   }, [board]);
 
   const handleClickWrite = () => {
@@ -89,7 +90,6 @@ export default function Personal({ params }: { params: { id: string } }) {
         }}
       >
         <SnowAnimation />
-
         {board.length ? (
           <div className="z-text relative">
             {board[0].contents.length !== 0 && (
@@ -115,6 +115,7 @@ export default function Personal({ params }: { params: { id: string } }) {
             isHidden ? 'translate-y-full' : 'translate-y-0'
           }`}
         >
+          <BottomImage themeName={theme.name} />
           <div
             className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]"
             id="strcat_sit"
@@ -192,3 +193,12 @@ export default function Personal({ params }: { params: { id: string } }) {
     </>
   );
 }
+
+const getTheme = (themeName: string): themeState => {
+  if (themeName === 'chris') return chris;
+  if (themeName === 'mas') return mas;
+  if (themeName === 'night') return night;
+  if (themeName === 'peach') return peach;
+  if (themeName === 'liiac') return lilac;
+  return night;
+};

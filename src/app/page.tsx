@@ -3,13 +3,13 @@
 import { useRef } from 'react';
 import { useRecoilState } from 'recoil';
 
+import HeaderLayout from '@/component/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
 import { useLogin } from '@/hooks/useLogin';
 import { themeState } from '@/recoil/theme/theme';
 import { focusToHighlight } from '@/utils/focusToHighlight';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import HeaderLayout from '@/component/HeaderLayout';
 
 export default function Home() {
   const [isLogin] = useLogin();
