@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil';
 
 import { Back } from '../Icon/Header';
 import { defaultState } from '@/recoil/newtheme/default';
-import { themeState } from '@/recoil/theme/theme';
+import { themeState } from '@/recoil/newtheme/theme';
 import { useRouter } from 'next/navigation';
 
 interface Props {

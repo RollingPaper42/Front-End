@@ -91,7 +91,7 @@ module.exports = {
         'chris-buttonbg': '#2A4C3E',
 
         'mas-highlight': '#DE6565',
-        'chris-buttonbg': '#964E4E',
+        'mas-buttonbg': '#964E4E',
       },
       keyframes: {
         slide: {

@@ -144,7 +144,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                   color={`${defaultState.btnLeftCTA}`}
                 />
                 <BottomButton
-                  textColor="text-strcat-bright-yellow"
+                  textColor={`${theme.textTheme.rightCTA}`}
                   name="글쓰기"
                   height="h-[46px]"
                   width="basis-5/12"
@@ -196,6 +196,6 @@ const getTheme = (themeName: string): themeState => {
   if (themeName === 'mas') return mas;
   if (themeName === 'night') return night;
   if (themeName === 'peach') return peach;
-  if (themeName === 'liiac') return lilac;
+  if (themeName === 'lilac') return lilac;
   return night;
 };

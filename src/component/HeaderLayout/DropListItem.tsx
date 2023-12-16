@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { Check } from '../Icon/Drawer';
 import { drawerState } from '@/recoil/drawer';
 import { defaultState } from '@/recoil/newtheme/default';
-import { themeState } from '@/recoil/theme/theme';
+import { themeState } from '@/recoil/newtheme/theme';
 import { drawerBoard } from '@/types/drawerBoard';
 import { usePathname, useRouter } from 'next/navigation';
 

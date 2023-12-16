@@ -2,7 +2,6 @@ import { useRecoilState } from 'recoil';
 
 import DropListItem from './DropListItem';
 import { defaultState } from '@/recoil/newtheme/default';
-import { themeState } from '@/recoil/theme/theme';
 import { drawerBoard } from '@/types/drawerBoard';
 
 interface Props {
