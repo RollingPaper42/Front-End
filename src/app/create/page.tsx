@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
+import CreateTheme from './CreateTheme';
 import TitleSelect from './TitleSelect';
-import CreateTheme from '@/component/CreateTheme';
 import HeaderLayout from '@/component/HeaderLayout';
 import Error from '@/component/Modal/Error';
 import useModal from '@/hooks/useModal';
@@ -85,24 +85,24 @@ export default function Create() {
   return (
     <>
       <HeaderLayout isNext={isNext} setIsNext={setIsNext} />
-      <div className={`${theme.bgTheme.background} h-full w-full`}>
+      <div className={`${theme.bgTheme.background} h-screen w-full`}>
         {isNext ? (
+          <TitleSelect
+            title={title}
+            setTitle={setTitle}
+            isOff={isOff}
+            handleSwitch={handleSwitch}
+            onClickComplete={() => handleConfirm()}
+          />
+        ) : (
           <CreateTheme
             onClickChris={() => handlePreview(`1`, chris)}
             onClickMas={() => handlePreview(`2`, mas)}
             onClickNight={() => handlePreview(`3`, night)}
             onClickPeach={() => handlePreview(`4`, peach)}
             onClickLilac={() => handlePreview(`5`, lilac)}
-            onClickComplete={() => handleConfirm()}
-            isPreview={isPreview}
-          />
-        ) : (
-          <TitleSelect
-            title={title}
-            setTitle={setTitle}
-            isOff={isOff}
-            handleSwitch={handleSwitch}
             setIsNext={setIsNext}
+            isPreview={isPreview}
           />
         )}
       </div>
