@@ -1,6 +1,6 @@
 'use client';
 
-import { AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -32,29 +32,35 @@ export default function Add({ params }: { params: { id: string } }) {
   });
 
   const handleClick = async () => {
+    const postPictures = async () => {
+      return await axiosInstance.post(
+        `/boards/${params.id}/contents/pictures`,
+        { picture: image },
+      );
+    };
+
+    const postContents = async (photoUrl: string) => {
+      return await axiosInstance.post(`/boards/${params.id}/contents`, {
+        text: text,
+        writer: writer,
+        photoUrl: photoUrl,
+      });
+    };
+
+    const changeAxiosHeader = (type: string) => {
+      axiosInstance.defaults.headers.common['Content-Type'] = type;
+    };
+
     const isConfirmed = await confirm(openModal, closeModal, '완료하시겠어요?');
     if (isConfirmed) {
       try {
-        let data = {
-          text: text,
-          writer: writer,
-          photoUrl: '',
-        };
+        let photoRes = { data: '' };
         if (image !== null) {
-          axiosInstance.defaults.headers.common['Content-Type'] =
-            'multipart/form-data';
-          const photoRes = await axiosInstance.post(
-            `/boards/${params.id}/contents/pictures`,
-            { picture: image },
-          );
-          data = { ...data, photoUrl: photoRes.data };
+          changeAxiosHeader('multipart/form-data');
+          photoRes = await postPictures();
         }
-        axiosInstance.defaults.headers.common['Content-Type'] =
-          'application/json';
-        const contentRes = await axiosInstance.post(
-          `/boards/${params.id}/contents`,
-          data,
-        );
+        changeAxiosHeader('application/json');
+        await postContents(photoRes.data);
         router.push(`/personal/${params.id}`);
       } catch (err) {
         const error = err as AxiosError;
@@ -94,30 +100,16 @@ export default function Add({ params }: { params: { id: string } }) {
               text={text}
               setText={setText}
               maxLength={400}
-              handleFocus={() => {
-                setIsHidden(true);
-              }}
-              handleBlur={() => {
-                setIsHidden(false);
-              }}
             />
           </div>
           <div className="mb-[12px] mt-[20px] cursor-default select-none text-body-size2 font-semibold tracking-[-0.32px] text-[#BCBCBC] ">
             From
           </div>
-          <Writer
-            writer={writer}
-            handleWriter={handleWriter}
-            setIsHidden={setIsHidden}
-          />
+          <Writer writer={writer} handleWriter={handleWriter} />
           <div className="pb-[154px]" />
         </div>
       </div>
-      <div
-        className={`fixed bottom-0 left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
-          isHidden ? 'translate-y-full' : 'translate-y-0'
-        }`}
-      >
+      <div className="fixed bottom-0 left-0 z-button flex w-full items-center justify-center">
         <div
           className={`flex h-[70px] w-full max-w-md flex-row items-center space-x-[12px] px-[24px]`}
         >
