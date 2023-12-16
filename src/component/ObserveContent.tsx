@@ -72,7 +72,7 @@ const ObserveContent = ({
         />
       )}
       <div
-        className={`inline pt-[3px] pb-[4px] leading-[31px] text-body-size1 tracking-[-0.36px] font-medium
+        className={`inline cursor-pointer select-none pb-[4px] pt-[3px] text-body-size1 font-medium leading-[31px] tracking-[-0.36px]
       ${
         observe.contentId === content.id
           ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} animate-textFadeIn`
@@ -85,7 +85,7 @@ const ObserveContent = ({
       </div>
       {observe.contentId === content.id && (
         <div
-          className={`text-right transition-all ${theme.textTheme.writer} text-body-size2`}
+          className={`cursor-default select-none text-right transition-all ${theme.textTheme.writer} text-body-size2`}
         >{`From: ${
           observe.writer.length ? observe.writer : '익명의 스트링캣'
         } `}</div>

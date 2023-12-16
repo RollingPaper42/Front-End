@@ -83,42 +83,39 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div className={`${theme.bgTheme.background} min-h-full`}>
-        <div
-          onClick={() => {
-            setIsHidden(!isHidden);
-          }}
-        >
-          <SnowAnimation />
-          <CatAnimation isHidden={isHidden} />
-          {board.length ? (
-            <div className="z-text relative">
-              {board[0].contents.length !== 0 && (
-                <div className="absolute top-[100px]">
-                  <Summary id={params.id} />
-                </div>
-              )}
-              <div style={{ paddingTop: `${windowHeight * 0.4}px` }} />
-              {board[0].contents.length === 0 && (
-                <NoneContent handleClickNoneContent={handleClickWrite} />
-              )}
-              <StrcatBoard board={board[0]} />
-            </div>
-          ) : (
-            <div style={{ height: `${windowHeight}px` }}>
-              <Loading />
-            </div>
-          )}
-        </div>
+      <div
+        className={`${theme.bgTheme.background} min-h-full`}
+        onClick={() => {
+          setIsHidden(!isHidden);
+        }}
+      >
+        <SnowAnimation />
+        <CatAnimation isHidden={isHidden} />
+        {board.length ? (
+          <div className="z-text relative">
+            {board[0].contents.length !== 0 && (
+              <div className="absolute top-[100px]">
+                <Summary id={params.id} />
+              </div>
+            )}
+            <div style={{ paddingTop: `${windowHeight * 0.4}px` }} />
+            {board[0].contents.length === 0 && <NoneContent />}
+            <StrcatBoard board={board[0]} />
+          </div>
+        ) : (
+          <div style={{ height: `${windowHeight}px` }}>
+            <Loading />
+          </div>
+        )}
         <div style={{ minHeight: `${windowHeight * 0.6}px` }}></div>
         {isOwner ? (
           <div
-            className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
+            className={`fixed bottom-0 left-0 z-button flex w-full items-center justify-center pb-[12px] transition-transform duration-300 ${
               isHidden ? 'translate-y-full' : 'translate-y-0'
             }`}
           >
             <div
-              className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]"
+              className="flex w-full max-w-md items-center justify-center space-x-[12px] px-[24px]"
               id="strcat_sit"
             >
               <div
@@ -126,7 +123,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                 onClick={handleClickDownload}
               >
                 <div
-                  className={`h-[46px] flex rounded-[5px] w-[46px] justify-center items-center ${theme.bgTheme.leftCTA}`}
+                  className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${theme.bgTheme.leftCTA}`}
                 >
                   <Image
                     src="/Download.svg"
@@ -159,12 +156,12 @@ export default function Personal({ params }: { params: { id: string } }) {
         ) : (
           <>
             <div
-              className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
+              className={`fixed bottom-0 left-0 z-button flex w-full items-center justify-center pb-[12px] transition-transform duration-300 ${
                 isHidden ? 'translate-y-full' : 'translate-y-0'
               }`}
             >
               <div
-                className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px] "
+                className="flex w-full max-w-md items-center justify-center space-x-[12px] px-[24px] "
                 id="strcat_sit"
               >
                 <BottomButton

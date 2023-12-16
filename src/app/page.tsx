@@ -70,9 +70,9 @@ export default function Home() {
               alt="mainStrcatIcon"
             />
           </div>
-          <div className="pt-[54px]">
+          <div className="cursor-pointer select-none pt-[54px]">
             <Image
-              className="animate-bounce"
+              className="h-auto w-auto animate-bounce"
               src="/IconUnder.svg"
               width={30}
               height={21}
