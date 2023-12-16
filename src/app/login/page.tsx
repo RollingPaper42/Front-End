@@ -1,8 +1,11 @@
 'use client';
 
+import Close from '@/component/Icon/Close';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
+  const router = useRouter();
   const handleClickKaKao = () => {
     location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/kakao`;
   };
@@ -12,7 +15,13 @@ export default function Login() {
   };
   return (
     <div className={`h-full w-full bg-strcat-black `}>
-      <div className="flex h-full w-full flex-col items-center pt-[190px]">
+      <div
+        className="flex h-[72px] w-full items-center justify-end pr-[24px]"
+        onClick={() => router.back()}
+      >
+        <Close />
+      </div>
+      <div className="flex w-full flex-col items-center pt-[190px] ">
         <Image
           src="/StrcatIcon.svg"
           width={42}

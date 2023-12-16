@@ -2,9 +2,9 @@
 
 import { useRecoilState } from 'recoil';
 
-import { HamburgerMenu, LogoText } from '../Icon/Header';
-import Logo from '../Icon/Logo';
+import { HamburgerMenu, Logo } from '../Icon/Header';
 import { drawerState, themeState } from '@/recoil/state';
+import { drawerOpen } from '@/utils/drawerOpen';
 import Link from 'next/link';
 
 export default function DefaultHeader() {
@@ -21,12 +21,7 @@ export default function DefaultHeader() {
           <Logo />
         </Link>
         <div className="basis-4/6"></div>
-        <div
-          onClick={() => {
-            setDrawer(true);
-            document.body.style.overflow = 'hidden';
-          }}
-        >
+        <div onClick={() => drawerOpen(setDrawer)}>
           <HamburgerMenu />
         </div>
       </div>

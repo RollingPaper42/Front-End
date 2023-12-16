@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 
 import BottomButton from '../BottomButton';
 import { Logout } from '../Icon/Drawer';
-import Logo from '../Icon/Logo';
+import { Logo } from '../Icon/Header';
 import DrawerClose from '../Icon/drawer/DrawerClose';
 import Home from '../Icon/drawer/Home';
 import DrawerItem from './DrawerItem';
@@ -34,6 +34,7 @@ export default function Drawer() {
       console.log(error);
     }
   }, [setPersonalList]);
+
   const drawerSlowClose = () => {
     setDrawerClosing(true);
     setTimeout(() => {
@@ -56,7 +57,7 @@ export default function Drawer() {
 
   const handleNewStrcat = () => {
     drawerClose();
-    router.push('/create');
+    router.push('/create', { scroll: false });
   };
 
   const handleHome = () => {
@@ -69,6 +70,7 @@ export default function Drawer() {
     localStorage.setItem('strcat_login_success_url', pathname);
     router.push('/login');
   };
+
   useEffect(() => {
     checkLogin();
   }, [checkLogin]);
@@ -95,7 +97,7 @@ export default function Drawer() {
           className={`absolute right-0 h-full w-[300px] opacity-100 ${
             theme.bgTheme.background
           } ${theme.textTheme.default} ${
-            drawerClosing ? '  animate-drawerClose' : 'animate-drawerOpen'
+            drawerClosing ? 'animate-drawerClose' : 'animate-drawerOpen'
           }`}
         >
           <div className="flex h-[70px] w-full px-[24px] py-[22px]">
@@ -104,7 +106,7 @@ export default function Drawer() {
             </div>
             <div className="absolute right-[24px]">
               <div
-                className="flex justify-center items-center w-[24px] h-[24px]"
+                className="flex h-[24px] w-[24px] items-center justify-center"
                 onClick={drawerSlowClose}
               >
                 <DrawerClose />
@@ -117,7 +119,7 @@ export default function Drawer() {
             {isLogin ? (
               <>
                 <DropList list={personalList} category="personal" />
-                <div className="w-full px-[24px] mt-[12px]">
+                <div className="mt-[12px] w-full px-[24px]">
                   <BottomButton
                     name="새 스트링캣 만들기"
                     width="w-full"
@@ -131,7 +133,7 @@ export default function Drawer() {
               </>
             ) : (
               <>
-                <div className="flex justify-start w-full px-[24px] text-body-size1 font-semibold">
+                <div className="flex w-full justify-start px-[24px] text-body-size1 font-semibold">
                   <p>
                     로그인을 하면
                     <br />
@@ -140,7 +142,7 @@ export default function Drawer() {
                     관리할 수 있어요.
                   </p>
                 </div>
-                <div className="w-full px-[24px] mt-[12px]">
+                <div className="mt-[12px] w-full px-[24px]">
                   <BottomButton
                     name="로그인"
                     width="w-full"

@@ -1,14 +1,19 @@
+import React from 'react';
+
 interface SelectButtonProps {
   width: string;
-  onClickHandler: () => void;
+  setContent: React.Dispatch<React.SetStateAction<string>>;
   content: string;
 }
 
 export default function SelectButton({
   width,
-  onClickHandler,
+  setContent,
   content,
 }: SelectButtonProps) {
+  const onClickHandler = () => {
+    setContent(content);
+  };
   return (
     <button
       className={`${width} border-strcat-gray3 text-strcat-gray3 mb-2 h-[40px] cursor-pointer select-none rounded-[25px] border bg-strcat-black text-center text-[15px]`}

@@ -21,6 +21,7 @@ module.exports = {
         'strcat-gray': '#BCBCBC',
         'strcat-gray2': '#4D4D4D',
         'strcat-gray3': '#828282',
+        'strcat-gray-500': '#909090',
         'strcat-red': '#DE6565',
         'strcat-textarea-bg': '#373737',
         'strcat-textarea-text': '#909090',
@@ -85,7 +86,7 @@ module.exports = {
         },
         fall: {
           '0%': { opacity: 0 },
-          '10%': { opacity: 0.7 },
+          '10%': { opacity: 0.5 },
           '100%': { transform: 'translateY(100vh)', opacity: 0 },
         },
         drawerOpen: {
@@ -109,7 +110,7 @@ module.exports = {
         slide: 'slide 0.7s linear',
         fadeIn: 'fadeIn 2s ease-in-out',
         textFadeIn: 'textFadeIn 0.35s ease-in-out',
-        fall: 'fall 14s ease-in infinite',
+        fall: 'fall 14s ease-in-out infinite',
         drawerOpen: 'drawerOpen 0.2s ease-in',
         drawerOpenBg: 'drawerOpenBg 0.2s ease-in',
         drawerClose: 'drawerClose 0.2s ease-in',
