@@ -19,7 +19,6 @@ export default function NotFound() {
         </div>
         <div
           className={`flex flex-col mt-[32px] h-[46px] w-[150px] rounded-[5px] text-center justify-center ${defaultState.middleDisable}`}
-          style={{ background: `${defaultState.MiddleButton}` }}
         >
           <button className={`font-bold ${defaultState.activateText}`}>
             <Link href={'/'}>홈으로</Link>
