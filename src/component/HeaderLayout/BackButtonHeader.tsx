@@ -20,7 +20,9 @@ export default function BackButtonHeader({ isNext, setIsNext }: Props) {
 
   return (
     <div className="fixed z-button flex w-full max-w-md flex-col">
-      <div className="flex h-[56px] w-full ">
+      <div
+        className={`flex h-[56px] w-full ${defaultState.background} bg-opacity-80`}
+      >
         <div
           className="flex basis-1/6 items-center pl-[24px]"
           onClick={handleClickBack}
