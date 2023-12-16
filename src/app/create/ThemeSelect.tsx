@@ -18,7 +18,7 @@ interface Props {
 
 export default function ThemeSelect({ cats, isPreview, defaultState }: Props) {
   return (
-    <div className="flex h-full w-full flex-row">
+    <div className="flex w-full flex-row">
       {cats.map((cat) => (
         <div
           key={cat.id}

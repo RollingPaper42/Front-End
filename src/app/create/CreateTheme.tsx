@@ -51,26 +51,19 @@ export default function CreateTheme({
   ];
 
   return (
-    <div className="flex w-full h-screen flex-col">
-      <div className="basis-[56px]"></div>
-      <div className="basis-[16px]"></div>
-      <div className="basis-[107px]">
-        <div className=" h-full w-full">
-          <div className="mx-[24px]">
-            <div className={`text-[16px] pb-[16px] font-semibold text-white`}>
-              테마
-            </div>
-            <ThemeSelect
-              cats={cats}
-              isPreview={isPreview}
-              defaultState={defaultState}
-            />
-          </div>
+    <div className="flex w-full h-full flex-col">
+      <div className="basis-[52px] mb-[16px]" />
+      <div className="basis-[107px] w-full px-[24px]">
+        <div className={`text-[16px] pb-[16px] font-semibold text-white`}>
+          테마
         </div>
+        <ThemeSelect
+          cats={cats}
+          isPreview={isPreview}
+          defaultState={defaultState}
+        />
       </div>
-      <div className="basis-[40px]"></div>
       <PreviewTheme isPreview={isPreview} />
-      <div className=" basis-auto" />
       <div className="fixed bottom-5 flex w-full max-w-md items-center justify-center px-[24px]">
         <BottomButton
           name="다음"

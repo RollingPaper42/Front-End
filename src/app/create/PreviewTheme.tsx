@@ -14,16 +14,14 @@ export default function PreviewTheme({ isPreview }: { isPreview: string }) {
   }
 
   return (
-    <div className="flex basis-[485px] flex-col items-center">
-      <div key={selectedImage.id} className="h-full w-full contents">
-        <Image
-          src={selectedImage.src}
-          width={270}
-          height={398}
-          alt={selectedImage.alt}
-          loading="eager"
-        />
-      </div>
+    <div className="flex mt-[16px] pb-[70px] h-full w-full flex-col items-center">
+      <Image
+        src={selectedImage.src}
+        width={270}
+        height={398}
+        alt={selectedImage.alt}
+        loading="eager"
+      />
     </div>
   );
 }
