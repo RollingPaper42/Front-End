@@ -136,8 +136,7 @@ export default function TitleSelect({
           />
         </div>
       </div>
-      <div className="basis-2/12" />
-      <div className="fixed bottom-5 flex w-full max-w-md items-center justify-center px-[24px]">
+      <div className="basis-2/12 bottom-5 flex w-full max-w-md items-center justify-center px-[24px]">
         <BottomButton
           textColor=""
           height="h-[42px]"
