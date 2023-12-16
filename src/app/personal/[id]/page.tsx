@@ -50,7 +50,7 @@ export default function Personal({ params }: { params: { id: string } }) {
     if (!board.length) return;
     setTitle(board[0].title);
     const boardTheme = getTheme(board[0].theme);
-    setTheme(boardTheme);
+    setTheme(() => boardTheme);
   }, [board]);
 
   const handleClickWrite = () => {
@@ -90,7 +90,6 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   if (!board.length) {
-    setTheme(noneTheme);
     return (
       <div className=" w-full h-full">
         <Loading />

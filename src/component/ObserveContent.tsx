@@ -13,6 +13,8 @@ interface props {
   content: content;
   observe: observeContent;
   theme: themeState;
+  addContent: number;
+  setAddContent: Dispatch<SetStateAction<number>>;
   setObserve: Dispatch<SetStateAction<observeContent>>;
   openModal: (modalComponent: JSX.Element) => void;
   closeModal: () => void;
@@ -23,6 +25,8 @@ const ObserveContent = ({
   observe,
   setObserve,
   theme,
+  addContent,
+  setAddContent,
   openModal,
   closeModal,
 }: props) => {
@@ -37,6 +41,13 @@ const ObserveContent = ({
       />,
     );
   };
+
+  useEffect(() => {
+    if (addContent === content.id) {
+      focusToHighlight(ref);
+      setAddContent(0);
+    }
+  }, [addContent]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

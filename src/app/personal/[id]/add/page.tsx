@@ -13,6 +13,7 @@ import Textarea from '@/component/Textarea';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
+import { addContentState } from '@/recoil/content';
 import { defaultState } from '@/recoil/newtheme/default';
 import { themeState } from '@/recoil/newtheme/theme';
 import { axiosInstance } from '@/utils/axios';
@@ -24,6 +25,7 @@ export default function Add({ params }: { params: { id: string } }) {
   const [writer, , handleWriter] = useInput('');
   const [openModal, closeModal] = useModal();
   const [theme] = useRecoilState(themeState);
+  const [, setAddContent] = useRecoilState(addContentState);
   const [image, setImage] = useInput<File | null>(null);
   const [preview, setPreview] = useState<string>('');
   const router = useRouter();
@@ -55,6 +57,7 @@ export default function Add({ params }: { params: { id: string } }) {
           `/boards/${params.id}/contents`,
           data,
         );
+        setAddContent(contentRes.data);
         router.push(`/personal/${params.id}`);
       } catch (err) {
         const error = err as AxiosError;
