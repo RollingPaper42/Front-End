@@ -150,6 +150,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                   onClickHandler={handleClickShare}
                   disabled={false}
                   color={`${defaultState.btnLeftCTA}`}
+                  isShadow={true}
                 />
                 <BottomButton
                   textColor={`${theme.textTheme.rightCTA}`}
@@ -159,6 +160,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                   onClickHandler={handleClickWrite}
                   disabled={false}
                   color={`${theme.bgTheme.rightCTA}`}
+                  isShadow={true}
                 />
               </>
             ) : (
@@ -171,6 +173,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                   onClickHandler={handleClickCreate}
                   disabled={false}
                   color={`${defaultState.btnLeftCTA}`}
+                  isShadow={true}
                 />
                 <BottomButton
                   textColor={`${theme.textTheme.rightCTA}`}
@@ -180,6 +183,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                   onClickHandler={handleClickWrite}
                   disabled={false}
                   color={`${theme.bgTheme.rightCTA}`}
+                  isShadow={true}
                 />
               </>
             )}
