@@ -1,27 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
 
 import CreateTheme from './CreateTheme';
 import TitleSelect from './TitleSelect';
 import HeaderLayout from '@/component/HeaderLayout';
 import Error from '@/component/Modal/Error';
 import useModal from '@/hooks/useModal';
-import {
-  chris,
-  lilac,
-  mas,
-  night,
-  peach,
-  themeState,
-} from '@/recoil/theme/theme';
+import { defaultState } from '@/recoil/newtheme/default';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { useRouter } from 'next/navigation';
 
 export default function Create() {
-  const [theme, setTheme] = useRecoilState(themeState);
+  const [themeName, setThemeName] = useState('chris');
   const [openModal, closeModal] = useModal();
   const router = useRouter();
   const [title, setTitle] = useState('');
@@ -29,8 +21,8 @@ export default function Create() {
   const [isPreview, setIsPreview] = useState('1');
   const [isNext, setIsNext] = useState(false);
 
-  const handlePreview = (value: string, newTheme: themeState) => {
-    setTheme(newTheme);
+  const handlePreview = (value: string, newTheme: string) => {
+    setThemeName(newTheme);
     if (value !== isPreview)
       setIsPreview((prevIsPreview) => (prevIsPreview === value ? '' : value));
   };
@@ -51,9 +43,10 @@ export default function Create() {
 
   const handleClick = () => {
     const data = {
-      theme: theme.name,
+      theme: themeName,
       title: `${title}`,
     };
+    console.log(themeName, 'theme name is ');
     axiosInstance
       .post(`/boards`, data)
       .then((data) => {
@@ -85,7 +78,7 @@ export default function Create() {
   return (
     <>
       <HeaderLayout isNext={isNext} setIsNext={setIsNext} />
-      <div className={`${theme.bgTheme.background} h-screen w-full`}>
+      <div className={`${defaultState.background} h-screen w-full`}>
         {isNext ? (
           <TitleSelect
             title={title}
@@ -96,11 +89,11 @@ export default function Create() {
           />
         ) : (
           <CreateTheme
-            onClickChris={() => handlePreview(`1`, chris)}
-            onClickMas={() => handlePreview(`2`, mas)}
-            onClickNight={() => handlePreview(`3`, night)}
-            onClickPeach={() => handlePreview(`4`, peach)}
-            onClickLilac={() => handlePreview(`5`, lilac)}
+            onClickChris={() => handlePreview(`1`, 'chris')}
+            onClickMas={() => handlePreview(`2`, 'mas')}
+            onClickNight={() => handlePreview(`3`, 'night')}
+            onClickPeach={() => handlePreview(`4`, 'peach')}
+            onClickLilac={() => handlePreview(`5`, 'lilac')}
             setIsNext={setIsNext}
             isPreview={isPreview}
           />

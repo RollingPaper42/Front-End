@@ -23,6 +23,7 @@ export interface defaultState {
 export const defaultState = {
   activateText: 'text-default-white',
   descriptionText: 'text-default-white opacity-50',
+  highLightText: 'text-default-black2',
   addExplainLeftCTA: 'text-default-white2',
   unHighlightText: 'text-default-white opacity-15',
   explainLeftCTA: 'text-default-white2',
@@ -38,6 +39,8 @@ export const defaultState = {
   textareaBg: 'bg-textarea-bg',
   MiddleButton: 'bg-night-highlight',
   bottomButton: 'bg-night-highlight',
+  btnLeftCTA: 'bg-default-gray',
   middleDisable: 'bg-default-gray',
   bottomDisalbe: 'bg-default-gray3',
+  drawerList: 'bg-drawerlist-bg',
 };
