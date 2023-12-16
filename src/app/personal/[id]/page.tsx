@@ -57,7 +57,7 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   const handleClickCreate = () => {
     if (!isLogin) {
-      localStorage.setItem('login_success_url', '/create');
+      localStorage.setItem('strcat_login_success_url', '/create');
       router.push('/login');
     } else {
       router.push('/create');

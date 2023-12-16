@@ -67,7 +67,7 @@ export default function Drawer() {
 
   const handleLogin = () => {
     drawerClose();
-    localStorage.setItem('login_success_url', pathName);
+    localStorage.setItem('strcat_login_success_url', pathName);
     router.push('/login');
   };
 

@@ -11,7 +11,7 @@ export default function Check() {
 
   useEffect(() => {
     localStorage.setItem('strcat_token', token ?? '');
-    const url = localStorage.getItem('login_success_url');
+    const url = localStorage.getItem('strcat_login_success_url');
     if (url) {
       router.replace(url);
     } else {

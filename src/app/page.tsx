@@ -17,7 +17,7 @@ export default function Home() {
   const handleClickPersonal = () => {
     if (isLogin) router.push('create', { scroll: false });
     else {
-      localStorage.setItem('login_success_url', '/create');
+      localStorage.setItem('strcat_login_success_url', '/create');
       router.push('/login');
     }
   };
