@@ -7,8 +7,10 @@ interface Props {
 }
 
 export default function Writer({ writer, handleWriter, setIsHidden }: Props) {
-  const handleWriterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.currentTarget.value.trim() === '') return;
+  const handleWriterInput = (e: React.FormEvent<HTMLInputElement>) => {
+    if (e.currentTarget.value.trim() === '') {
+      e.currentTarget.value = '';
+    }
     handleWriter(e);
   };
   return (
@@ -17,7 +19,7 @@ export default function Writer({ writer, handleWriter, setIsHidden }: Props) {
         className="h-full w-full bg-transparent text-body-size2 text-white outline-none placeholder:text-white/50"
         maxLength={11}
         value={writer}
-        onChange={handleWriterChange}
+        onInput={handleWriterInput}
         placeholder="익명의 스트링캣"
         onFocus={() => setIsHidden(true)}
         onBlur={() => setIsHidden(false)}
