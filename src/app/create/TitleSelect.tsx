@@ -23,9 +23,9 @@ export default function TitleSelect({
     <div className="flex h-screen w-full flex-col ">
       <div className="basis-[56px]"></div>
       <div className="basis-[16px]"></div>
-      <div className="basis-[105px]">
+      <div className="basis-[107px]">
         <div className=" mx-[24p] w-full px-[24px]">
-          <div className="text-left pb-[12px] text-[16px] font-semibold text-default-gray2">
+          <div className="text-left pb-[12px] text-[16px] font-semibold text-white">
             제목
           </div>
           <Textarea

@@ -30,9 +30,7 @@ export default function CreateTheme({
       <div className="basis-[107px]">
         <div className=" h-full w-full">
           <div className="mx-[24px]">
-            <div
-              className={`text-[16px] pb-[16px] font-semibold ${defaultState.activateText}`}
-            >
+            <div className={`text-[16px] pb-[16px] font-semibold text-white`}>
               테마
             </div>
 
