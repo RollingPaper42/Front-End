@@ -64,7 +64,7 @@ export default function CreateTheme({
         />
       </div>
       <PreviewTheme isPreview={isPreview} />
-      <div className="fixed bottom-5 flex w-full max-w-md items-center justify-center px-[24px]">
+      <div className="fixed bottom-[12px] flex w-full max-w-md items-center justify-center px-[24px]">
         <BottomButton
           name="다음"
           width="w-full"

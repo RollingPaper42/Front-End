@@ -139,7 +139,7 @@ export default function TitleSelect({
           />
         </div>
       </div>
-      <div className="fixed bottom-5 flex w-full max-w-md items-center justify-center px-[24px]">
+      <div className="fixed bottom-[12px] flex w-full max-w-md items-center justify-center px-[24px]">
         <BottomButton
           name="완료"
           width="w-full"
