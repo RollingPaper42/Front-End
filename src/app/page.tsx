@@ -6,10 +6,10 @@ import { useRecoilState } from 'recoil';
 import HeaderLayout from '@/component/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
 import { useLogin } from '@/hooks/useLogin';
-import { defaultState } from '@/recoil/newtheme/default';
 import { themeObj } from '@/recoil/newtheme/theme';
 import { themeState } from '@/recoil/state';
 import { focusToHighlight } from '@/utils/focusToHighlight';
+import { defaultState } from '@/utils/theme/default';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 

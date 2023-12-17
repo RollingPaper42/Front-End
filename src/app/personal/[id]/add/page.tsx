@@ -13,10 +13,10 @@ import Textarea from '@/component/Textarea';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
-import { defaultState } from '@/recoil/newtheme/default';
 import { themeState } from '@/recoil/newtheme/theme';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
+import { defaultState } from '@/utils/theme/default';
 import { useRouter } from 'next/navigation';
 
 export default function Add({ params }: { params: { id: string } }) {

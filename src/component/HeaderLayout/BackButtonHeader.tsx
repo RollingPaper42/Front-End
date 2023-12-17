@@ -1,8 +1,8 @@
 import { useRecoilState } from 'recoil';
 
 import { Back } from '../Icon/Header';
-import { defaultState } from '@/recoil/newtheme/default';
 import { themeState } from '@/recoil/newtheme/theme';
+import { defaultState } from '@/utils/theme/default';
 import { useRouter } from 'next/navigation';
 
 interface Props {

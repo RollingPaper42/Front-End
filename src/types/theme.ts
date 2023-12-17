@@ -7,7 +7,7 @@ import {
   masBg,
   nightBg,
   peachBg,
-} from '../../utils/theme/bgTheme';
+} from '@/utils/theme/bgTheme';
 import {
   chrisText,
   lilacText,
@@ -15,7 +15,7 @@ import {
   nightText,
   peachText,
   textThemeState,
-} from '../../utils/theme/textTheme';
+} from '@/utils/theme/textTheme';
 
 export interface themeState {
   name: string;
