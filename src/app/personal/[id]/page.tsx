@@ -13,7 +13,7 @@ import StrcatBoard from '@/component/StrcatBoard';
 import Toast from '@/component/Toast';
 import { useLogin } from '@/hooks/useLogin';
 import { useScroll } from '@/hooks/useScroll';
-import { themeState } from '@/recoil/newtheme/theme';
+import { noneTheme, themeState } from '@/recoil/newtheme/theme';
 import { chris, lilac, mas, night, peach } from '@/recoil/newtheme/theme';
 import { titleState } from '@/recoil/state';
 import { board } from '@/types/boards';
