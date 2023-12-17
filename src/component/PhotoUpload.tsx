@@ -17,7 +17,7 @@ export default function PhotoUpload({
     const convertedBlob = await heic2any({
       blob: file,
       toType: 'image/jpeg',
-      quality: 0.5,
+      quality: 0.1,
     });
     return new File(
       [convertedBlob as BlobPart],
@@ -33,6 +33,8 @@ export default function PhotoUpload({
       maxSizeMB: 1,
       alwaysKeepResolution: true,
       useWebWorker: true,
+      maxIteration: 3,
+      initialQuality: 0.5,
     };
     return await imageCompression(file, options);
   };
@@ -47,7 +49,7 @@ export default function PhotoUpload({
         //heic파일을 png로 변환
         file = await heicToJpeg(file);
       }
-      if (file.size > 1024) {
+      if (file.size > 1024 * 1024) {
         //1mb 이상이면 압축
         file = await compressFile(file);
       }
