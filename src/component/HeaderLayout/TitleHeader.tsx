@@ -38,7 +38,7 @@ export default function TitleHeader() {
   return (
     <div
       className={`fixed top-0 z-10 w-full max-w-md transition-transform duration-300 ${
-        isHidden ? '-translate-y-full' : 'translate-y-0'
+        isHidden && !isAdd ? '-translate-y-full' : 'translate-y-0'
       }`}
     >
       <div
