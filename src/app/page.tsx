@@ -5,6 +5,9 @@ import { useRef } from 'react';
 import HeaderLayout from '@/component/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
 import { useLogin } from '@/hooks/useLogin';
+import { bodyFont } from '@/recoil/font';
+import { bodyFontState } from '@/recoil/font/body';
+import { titleFontState } from '@/recoil/font/title';
 import { focusToHighlight } from '@/utils/focusToHighlight';
 import { defaultState } from '@/utils/theme/default';
 import Image from 'next/image';
@@ -28,7 +31,7 @@ export default function Home() {
       <HeaderLayout />
       <div className={` h-auto min-h-full ${defaultState.background}`}>
         <div
-          className={`flex text-body-size2 ${defaultState.descriptionText} pl-[24px] pt-[64px]`}
+          className={`flex ${bodyFontState.serviceBody}  ${defaultState.descriptionText} pl-[24px] pt-[64px]`}
         >
           함께 문장을 이어가는 롤링페이퍼
         </div>
@@ -51,7 +54,7 @@ export default function Home() {
             </div>
           </div>
           <div
-            className={`pt-[60px]  text-center text-body-size2 ${defaultState.descriptionText}`}
+            className={`pt-[60px] ${bodyFontState.serviceBody}  text-center  ${defaultState.descriptionText}`}
           >
             내 롤링페이퍼에서 <br /> 친구들의 이야기를 듣고 싶다면
           </div>
@@ -59,7 +62,9 @@ export default function Home() {
             className={`mt-[16px] flex h-[44px] w-[252px] flex-row items-center select-none cursor-pointer justify-center rounded-[5px] ${defaultState.MiddleButton}`}
             onClick={handleClickPersonal}
           >
-            <div className=" text-body-size2 font-bold">스트링캣 시작하기</div>
+            <div className={`${titleFontState.buttonLabel}`}>
+              스트링캣 시작하기
+            </div>
             <Image
               src="/IconNext.svg"
               width={24}
@@ -91,11 +96,15 @@ export default function Home() {
               }
             >
               <Image src="/LongCat.svg" width={32} height={24} alt="LongCat" />
-              <div className=" text-strcat-bright-yellow">
+              <div
+                className={`${bodyFontState.serviceBody}text-strcat-bright-yellow`}
+              >
                 스트링캣 방명록 남기기
               </div>
             </button>
-            <div className="text-white/50 text-[14px] pt-[12px]">
+            <div
+              className={`${bodyFontState.serviceSubBody} text-white/50 pt-[12px]`}
+            >
               자유롭게 글을 남겨주세요!
             </div>
           </div>

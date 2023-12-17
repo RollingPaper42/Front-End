@@ -1,6 +1,9 @@
 'use client';
 
 import Close from '@/component/Icon/Close';
+import { bodyFontState } from '@/recoil/font/body';
+import { headlineFontState } from '@/recoil/font/headline';
+import { titleFontState } from '@/recoil/font/title';
 import { defaultState } from '@/utils/theme/default';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -34,16 +37,18 @@ export default function Login() {
           alt="mainStrcatIcon"
         />
         <div
-          className={`py-[11px] text-[28px] font-bold ${defaultState.activateText}`}
+          className={`py-[11px] ${headlineFontState.headline} font-bold ${defaultState.activateText}`}
         >
           스트링캣
         </div>
-        <div className={`text-body-size2 ${defaultState.descriptionText}`}>
+        <div
+          className={`${bodyFontState.serviceBody} ${defaultState.descriptionText}`}
+        >
           함께 문장을 이어가는 롤링페이퍼
         </div>
         <div className="fixed bottom-[12px] w-full max-w-md px-[24px]">
           <button
-            className={`flex h-[46px] w-full flex-row items-center justify-center rounded-[6px] text-body-size2 font-medium ${defaultState.kakaoButtonBg}`}
+            className={`flex h-[46px] w-full flex-row items-center justify-center rounded-[6px] ${titleFontState.buttonLabel} font-medium ${defaultState.kakaoButtonBg}`}
             onClick={handleClickKaKao}
           >
             <Image src="/kakao.svg" width={35} height={35} alt="kakao" />
@@ -51,7 +56,7 @@ export default function Login() {
           </button>
           <div className="pt-[14px]"></div>
           <button
-            className={`flex h-[46px] w-full flex-row items-center justify-center rounded-[6px] text-body-size2 font-medium ${defaultState.googleButtonBg}`}
+            className={`flex h-[46px] w-full flex-row items-center justify-center rounded-[6px] ${titleFontState.buttonLabel} font-medium ${defaultState.googleButtonBg}`}
             onClick={handleClickGoogle}
           >
             <Image src="/Google.svg" width={35} height={35} alt="google" />
