@@ -27,8 +27,8 @@ export default function Add({ params }: { params: { id: string } }) {
   const [image, setImage] = useInput<File | null>(null);
   const [preview, setPreview] = useState<string>('');
   const router = useRouter();
-  const [isFixed, setIsFixed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
   const handleClick = async () => {
     const postPictures = async () => {
       return await axiosInstance.post(
@@ -102,24 +102,16 @@ export default function Add({ params }: { params: { id: string } }) {
             text={text}
             setText={setText}
             maxLength={400}
-            handleFocus={() => setIsFixed(true)}
           />
         </div>
         <div className="mb-[12px] mt-[20px] cursor-default select-none text-body-size2 font-semibold tracking-[-0.32px] text-[#BCBCBC] ">
           From
         </div>
-        <Writer
-          writer={writer}
-          handleWriter={handleWriter}
-          setIsFixed={setIsFixed}
-        />
+        <Writer writer={writer} handleWriter={handleWriter} />
+        <div className="pb-[82px] "></div>
       </div>
       <div
-        className={`${
-          isFixed
-            ? `relative mt-[50px] ${defaultState.background}`
-            : 'fixed bottom-0 left-0'
-        } z-button flex w-full items-center justify-center`}
+        className={`z-button fixed w-full items-center justify-center bottom-[0px] max-w-md ${defaultState.background}`}
       >
         <div
           className={`flex h-[70px] w-full max-w-md flex-row items-center space-x-[12px] px-[24px]`}
