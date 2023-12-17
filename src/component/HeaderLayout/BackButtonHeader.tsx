@@ -1,4 +1,5 @@
 import { Back } from '../Icon/Header';
+import { headlineFontState } from '@/recoil/font/headline';
 import { defaultState } from '@/utils/theme/default';
 import { useRouter } from 'next/navigation';
 
@@ -26,7 +27,7 @@ export default function BackButtonHeader({ isNext, setIsNext }: Props) {
           <Back />
         </div>
         <div
-          className={`${defaultState.activateText} flex basis-4/6 items-center justify-center text-center text-[16px] font-bold`}
+          className={`${defaultState.activateText} flex basis-4/6 items-center justify-center text-center ${headlineFontState.subHeader}`}
         >
           스트링캣 만들기
         </div>

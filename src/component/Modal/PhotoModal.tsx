@@ -2,6 +2,8 @@ import { useRecoilState } from 'recoil';
 
 import Close from '../Icon/Close';
 import Photo from '../Photo';
+import { bodyFontState } from '@/recoil/font/body';
+import { captionFontState } from '@/recoil/font/caption';
 import { themeState } from '@/recoil/newtheme/theme';
 import { handleBackground } from '@/utils/handleBackground';
 
@@ -34,12 +36,12 @@ export default function PhotoModal({
       <div className="h-[16px] w-full"></div>
       <div className="h-[204px] w-full justify-start overflow-y-scroll break-all text-justify  scrollbar-thin scrollbar-thumb-drawer-scrollbar">
         <p
-          className={`${theme.bgTheme.highlight} ${theme.textTheme.highlight} inline pb-[4px] pt-[3px] text-body-size1 font-medium leading-[31px] tracking-[-0.36px] transition`}
+          className={`${theme.bgTheme.highlight} ${theme.textTheme.highlight} inline pb-[4px] pt-[3px] ${bodyFontState.boardBody} leading-[31px] tracking-[-0.36px] transition`}
         >
           {text}
         </p>
         <div
-          className={`text-right transition-all ${theme.textTheme.writer} text-body-size2`}
+          className={`text-right transition-all ${theme.textTheme.writer} ${captionFontState.writer}`}
         >{`From: ${writer.length ? writer : '익명의 스트링캣'} `}</div>
       </div>
     </div>

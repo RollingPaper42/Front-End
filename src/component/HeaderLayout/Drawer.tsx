@@ -10,6 +10,7 @@ import Home from '../Icon/drawer/Home';
 import DrawerItem from './DrawerItem';
 import DropList from './DropList';
 import { useLogin } from '@/hooks/useLogin';
+import { titleFontState } from '@/recoil/font/title';
 import { drawerState } from '@/recoil/state';
 import { drawerBoard } from '@/types/drawerBoard';
 import { axiosInstance } from '@/utils/axios';
@@ -129,7 +130,9 @@ export default function Drawer() {
               </>
             ) : (
               <>
-                <div className="flex w-full justify-start px-[24px] text-body-size1 font-semibold">
+                <div
+                  className={`"flex w-full justify-start px-[24px] ${titleFontState.titleLabel}`}
+                >
                   <p>
                     로그인을 하면
                     <br />

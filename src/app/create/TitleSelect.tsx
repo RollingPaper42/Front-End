@@ -2,6 +2,7 @@ import BottomButton from '@/component/BottomButton';
 import MiddleButton from '@/component/MiddleButton';
 import SelectButton from '@/component/SelectButton';
 import Textarea from '@/component/Textarea';
+import { titleFontState } from '@/recoil/font/title';
 import { defaultState } from '@/utils/theme/default';
 
 interface Props {
@@ -25,7 +26,9 @@ export default function TitleSelect({
       <div className="basis-[16px]"></div>
       <div className="basis-[107px]">
         <div className=" mx-[24p] w-full px-[24px]">
-          <div className="text-left pb-[12px] text-[16px] font-semibold text-white">
+          <div
+            className={`text-left pb-[12px] ${titleFontState.inputLabel} text-white`}
+          >
             제목
           </div>
           <Textarea
