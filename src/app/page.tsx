@@ -1,10 +1,9 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import HeaderLayout from '@/component/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
-import PageView from '@/component/PageView';
 import { useLogin } from '@/hooks/useLogin';
 import { bodyFontState } from '@/recoil/font/body';
 import { titleFontState } from '@/recoil/font/title';
@@ -31,6 +30,10 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    MixpanelLogging.getInstance().pageViewEvent('show_main', setProperties({}));
+  }, []);
+
   const handleClickStart = () => {
     MixpanelLogging.getInstance().clickEvent(
       'click_guestbook',
@@ -43,7 +46,6 @@ export default function Home() {
 
   return (
     <>
-      <PageView pageViewName="show_main" />
       <HeaderLayout />
       <div className={` h-auto min-h-full ${defaultState.background}`}>
         <div
