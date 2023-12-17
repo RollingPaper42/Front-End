@@ -8,7 +8,7 @@ import PageView from '@/component/PageView';
 import { useLogin } from '@/hooks/useLogin';
 import { bodyFontState } from '@/recoil/font/body';
 import { titleFontState } from '@/recoil/font/title';
-import { MixpanelTracking } from '@/services/mixpanel';
+import { MixpanelLogging, setProperties } from '@/services/mixpanel';
 import { focusToHighlight } from '@/utils/focusToHighlight';
 import { defaultState } from '@/utils/theme/default';
 import Image from 'next/image';
@@ -20,7 +20,10 @@ export default function Home() {
   const ref = useRef<HTMLHeadingElement | null>(null);
 
   const handleClickPersonal = () => {
-    MixpanelTracking.getInstance().clickEvent('click_create_board', {});
+    MixpanelLogging.getInstance().clickEvent(
+      'click_create_board',
+      setProperties({}),
+    );
     if (isLogin) router.push('create', { scroll: false });
     else {
       localStorage.setItem('strcat_login_success_url', '/create');
@@ -29,7 +32,10 @@ export default function Home() {
   };
 
   const handleClickStart = () => {
-    MixpanelTracking.getInstance().clickEvent('click_guestbook', {});
+    MixpanelLogging.getInstance().clickEvent(
+      'click_guestbook',
+      setProperties({}),
+    );
     router.push(
       '/personal/WIncoOMTdNFI0LCNpLfVT0RF3juZV1jsIi-G58nut0yB-kfIRam-XP1JH2Hz9fWU',
     );

@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
 
-import { MixpanelTracking } from '@/services/mixpanel';
+import { MixpanelLogging, setProperties } from '@/services/mixpanel';
 
 export default function PageView({ pageViewName }: { pageViewName: string }) {
   useEffect(() => {
-    MixpanelTracking.getInstance().pageViewEvent(pageViewName, {});
+    MixpanelLogging.getInstance().pageViewEvent(
+      pageViewName,
+      setProperties({}),
+    );
   }, []);
   return <></>;
 }

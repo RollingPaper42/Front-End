@@ -1,18 +1,18 @@
 import mixpanel from 'mixpanel-browser';
 
-export class MixpanelTracking {
-  private static _instance: MixpanelTracking;
+export class MixpanelLogging {
+  private static _instance: MixpanelLogging;
 
-  public static getInstance(): MixpanelTracking {
+  public static getInstance(): MixpanelLogging {
     // instance 비교문 == 으로 해야함.. === 아니라 왓?
-    if (MixpanelTracking._instance == null) {
-      return (MixpanelTracking._instance = new MixpanelTracking());
+    if (MixpanelLogging._instance == null) {
+      return (MixpanelLogging._instance = new MixpanelLogging());
     }
     return this._instance;
   }
 
   public constructor() {
-    if (MixpanelTracking._instance) {
+    if (MixpanelLogging._instance) {
       throw new Error('Error: already instance ');
     }
     mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN || '', {
@@ -34,3 +34,12 @@ export class MixpanelTracking {
     this.track(eventName, properties);
   }
 }
+
+export const setProperties = (data: object): object => {
+  if (!window || !document) return {};
+  return {
+    current: window.location.href,
+    entry: document.referrer,
+    data,
+  };
+};
