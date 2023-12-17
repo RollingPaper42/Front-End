@@ -13,12 +13,12 @@ import StrcatBoard from '@/component/StrcatBoard';
 import Toast from '@/component/Toast';
 import { useLogin } from '@/hooks/useLogin';
 import { useScroll } from '@/hooks/useScroll';
-import { defaultState } from '@/recoil/newtheme/default';
-import { noneTheme, themeState } from '@/recoil/newtheme/theme';
+import { themeState } from '@/recoil/newtheme/theme';
 import { chris, lilac, mas, night, peach } from '@/recoil/newtheme/theme';
 import { titleState } from '@/recoil/state';
 import { board } from '@/types/boards';
 import { axiosInstance } from '@/utils/axios';
+import { defaultState } from '@/utils/theme/default';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 

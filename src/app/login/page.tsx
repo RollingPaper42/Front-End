@@ -1,7 +1,7 @@
 'use client';
 
 import Close from '@/component/Icon/Close';
-import { defaultState } from '@/recoil/newtheme/default';
+import { defaultState } from '@/utils/theme/default';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 

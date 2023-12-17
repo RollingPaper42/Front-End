@@ -4,11 +4,10 @@ import { useRecoilState } from 'recoil';
 
 import ObserveContent from './ObserveContent';
 import useModal from '@/hooks/useModal';
-import { addContentState } from '@/recoil/content';
-import { themeState } from '@/recoil/newtheme/theme';
 import { board } from '@/types/boards';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
+import { themeState } from '@/types/theme';
 
 interface Props {
   board: board;

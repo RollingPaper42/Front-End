@@ -10,11 +10,11 @@ import Home from '../Icon/drawer/Home';
 import DrawerItem from './DrawerItem';
 import DropList from './DropList';
 import { useLogin } from '@/hooks/useLogin';
-import { defaultState } from '@/recoil/newtheme/default';
 import { drawerState } from '@/recoil/state';
 import { drawerBoard } from '@/types/drawerBoard';
 import { axiosInstance } from '@/utils/axios';
 import { handleBackground } from '@/utils/handleBackground';
+import { defaultState } from '@/utils/theme/default';
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function Drawer() {

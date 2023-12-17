@@ -4,11 +4,4 @@ import { loginState } from './login';
 import { modalState } from './modal';
 import { titleState } from './title';
 
-export {
-  drawerState,
-  loginState,
-  modalState,
-  observeState,
-  addContentState,
-  titleState,
-};
+export { drawerState, loginState, modalState, observeState, titleState };

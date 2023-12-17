@@ -7,9 +7,9 @@ import TitleSelect from './TitleSelect';
 import HeaderLayout from '@/component/HeaderLayout';
 import Error from '@/component/Modal/Error';
 import useModal from '@/hooks/useModal';
-import { defaultState } from '@/recoil/newtheme/default';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
+import { defaultState } from '@/utils/theme/default';
 import { useRouter } from 'next/navigation';
 
 export default function Create() {

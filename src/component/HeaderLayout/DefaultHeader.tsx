@@ -3,9 +3,9 @@
 import { useRecoilState } from 'recoil';
 
 import { HamburgerMenu } from '../Icon/Header';
-import { defaultState } from '@/recoil/newtheme/default';
 import { drawerState } from '@/recoil/state';
 import { drawerOpen } from '@/utils/drawerOpen';
+import { defaultState } from '@/utils/theme/default';
 
 export default function DefaultHeader() {
   const [, setDrawer] = useRecoilState(drawerState);

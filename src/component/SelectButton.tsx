@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { defaultState } from '@/recoil/newtheme/default';
+import { defaultState } from '@/utils/theme/default';
 
 interface SelectButtonProps {
   width: string;

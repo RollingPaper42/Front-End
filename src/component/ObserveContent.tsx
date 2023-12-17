@@ -3,11 +3,11 @@ import React from 'react';
 
 import PhotoModal from './Modal/PhotoModal';
 import PhotoPreview from '@/app/personal/[id]/PhotoPreview';
-import { defaultState } from '@/recoil/newtheme/default';
 import { themeState } from '@/recoil/newtheme/theme';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
 import { focusToHighlight } from '@/utils/focusToHighlight';
+import { defaultState } from '@/utils/theme/default';
 
 interface props {
   content: content;
