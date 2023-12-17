@@ -15,7 +15,7 @@ export default function Confirm({ mainContent, subContent, yes, no }: Props) {
           {mainContent}
         </p>
         {subContent && (
-          <p className="mt-[12px] text-center text-body-size2 text-strcat-white/50">
+          <p className="mt-[12px] text-center text-body-size2 text-strcat-gray-500">
             {subContent}
           </p>
         )}

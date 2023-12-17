@@ -101,8 +101,8 @@ module.exports = {
         },
         fadeIn: {
           '0%': { opacity: 0 },
-          '20%': { opacity: 0.5 },
-          '80%': { opacity: 0.5 },
+          '20%': { opacity: 1 },
+          '80%': { opacity: 1 },
           '100%': { opacity: 0 },
         },
         textFadeIn: {
