@@ -89,9 +89,15 @@ export default function Personal({ params }: { params: { id: string } }) {
     }
   };
 
+  useEffect(() => {
+    setIsHidden(false);
+  }, []);
+
   if (!board.length) {
     return (
-      <div className=" w-full h-full">
+      <div
+        className={`fixed flex items-center justify-center h-screen max-w-md w-full z-[99] ${defaultState.background}`}
+      >
         <Loading />
       </div>
     );
@@ -100,13 +106,6 @@ export default function Personal({ params }: { params: { id: string } }) {
   return (
     <>
       <div className={`${defaultState.background} min-h-full`}>
-        {board.length === 0 && (
-          <div
-            className={`fixed flex items-center justify-center h-screen max-w-md w-full z-[99] ${defaultState.background}`}
-          >
-            <Loading />
-          </div>
-        )}
         <div
           onClick={() => {
             setIsHidden(!isHidden);
