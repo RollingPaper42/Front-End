@@ -5,6 +5,7 @@ import { RecoilRoot } from 'recoil';
 import InApp from './InApp';
 import './globals.css';
 import AxiosInterceptor from '@/component/AxiosInterceptor';
+import Description from '@/component/Description';
 import Modal from '@/component/Modal';
 import OpenGraph from '@/component/OpenGraph';
 import Script from 'next/script';
@@ -29,6 +30,7 @@ export default function RootLayout({
         </Script>
         <title>strcat : 글을 이어 만드는 롤링페이퍼</title>
         <OpenGraph />
+        <Description />
         <link rel="icon" href="/Favicon.png"></link>
         <meta
           key="naver"

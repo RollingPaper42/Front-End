@@ -87,11 +87,13 @@ export default function Personal({ params }: { params: { id: string } }) {
       await navigator.clipboard.writeText(url);
       setToast('share');
     } catch (error) {
+      alert('android');
       setToast('error');
     }
   };
 
   const handleShare = async (url: string) => {
+    console.log(url);
     if (navigator.share) {
       try {
         await navigator.share({
@@ -100,6 +102,7 @@ export default function Personal({ params }: { params: { id: string } }) {
           url: url,
         });
       } catch (err) {
+        alert('ios');
         setToast('error');
       }
     } else {
