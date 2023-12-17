@@ -1,4 +1,5 @@
 import StrcatBoard from './StrcatBoard';
+import { night } from '@/recoil/newtheme/theme';
 import { board } from '@/types/boards';
 
 const MainBoard: board = {
@@ -59,7 +60,7 @@ const MainBoard: board = {
 export default function MainManStrcat() {
   return (
     <div>
-      <StrcatBoard board={MainBoard} />
+      <StrcatBoard board={MainBoard} theme={night} />
     </div>
   );
 }

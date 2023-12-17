@@ -5,15 +5,17 @@ import { useRecoilState } from 'recoil';
 import ObserveContent from './ObserveContent';
 import useModal from '@/hooks/useModal';
 import { addContentState } from '@/recoil/content';
+import { themeState } from '@/recoil/newtheme/theme';
 import { board } from '@/types/boards';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
 
 interface Props {
   board: board;
+  theme: themeState;
 }
 
-const StrcatBoard = ({ board }: Props) => {
+const StrcatBoard = ({ board, theme }: Props) => {
   const [observe, setObserve] = useState<observeContent>({
     contentId: 0,
     photoUrl: '',

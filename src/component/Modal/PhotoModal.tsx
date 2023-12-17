@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil';
 
 import Close from '../Icon/Close';
 import Photo from '../Photo';
-import { themeState } from '@/recoil/state';
+import { themeState } from '@/recoil/newtheme/theme';
 import { handleBackground } from '@/utils/handleBackground';
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
   closeModal: () => void;
   text: string;
   writer: string;
+  theme: themeState;
 }
 
 export default function PhotoModal({
@@ -17,8 +18,8 @@ export default function PhotoModal({
   closeModal,
   text,
   writer,
+  theme,
 }: Props) {
-  const [theme] = useRecoilState(themeState);
   return (
     <div
       onClick={(e) => handleBackground(e, closeModal)}

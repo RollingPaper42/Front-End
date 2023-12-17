@@ -38,11 +38,15 @@ export default function Add({ params }: { params: { id: string } }) {
     };
 
     const postContents = async (photoUrl: string) => {
-      return await axiosInstance.post(`/boards/${params.id}/contents`, {
-        text: text,
-        writer: writer,
-        photoUrl: photoUrl,
-      });
+      return await axiosInstance
+        .post(`/boards/${params.id}/contents`, {
+          text: text,
+          writer: writer,
+          photoUrl: photoUrl,
+        })
+        .then((res) => {
+          setAddContent(res.data);
+        });
     };
 
     const changeAxiosHeader = (type: string) => {
@@ -57,7 +61,6 @@ export default function Add({ params }: { params: { id: string } }) {
           changeAxiosHeader('multipart/form-data');
           photoRes = await postPictures();
         }
-        setAddContent(contentRes.data);
         changeAxiosHeader('application/json');
         await postContents(photoRes.data);
         router.push(`/personal/${params.id}`);

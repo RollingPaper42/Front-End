@@ -38,6 +38,7 @@ const ObserveContent = ({
         closeModal={closeModal}
         text={content.text}
         writer={content.writer}
+        theme={theme}
       />,
     );
   };
