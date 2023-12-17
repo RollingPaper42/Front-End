@@ -93,13 +93,20 @@ export default function Personal({ params }: { params: { id: string } }) {
   return (
     <>
       <div className={`${defaultState.background} min-h-full`}>
+        {board.length === 0 && (
+          <div
+            className={`fixed flex items-center justify-center h-screen max-w-md w-full z-[99] ${defaultState.background}`}
+          >
+            <Loading />
+          </div>
+        )}
         <div
           onClick={() => {
             setIsHidden(!isHidden);
           }}
         >
           <SnowAnimation themeName={theme.name} />
-          {board.length ? (
+          {board.length && (
             <div className="z-text relative">
               {board[0].contents.length !== 0 && (
                 <div className="absolute top-[100px]">
@@ -110,14 +117,9 @@ export default function Personal({ params }: { params: { id: string } }) {
               {board[0].contents.length === 0 && <NoneContent />}
               <StrcatBoard board={board[0]} />
             </div>
-          ) : (
-            <div style={{ height: `${windowHeight}px` }}>
-              <Loading />
-            </div>
           )}
+          <div style={{ minHeight: `${windowHeight * 0.7}px` }} />
         </div>
-        <div style={{ minHeight: `${windowHeight * 0.7}px` }}></div>
-
         <div
           className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
             isHidden ? 'translate-y-full' : 'translate-y-0'

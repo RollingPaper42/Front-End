@@ -12,6 +12,7 @@
     "axios": "^1.6.0",
     "browser-image-compression": "^2.0.2",
     "file-saver": "^2.0.5",
+    "heic2any": "^0.0.4",
     "html2canvas": "^1.4.1",
     "intersection-observer": "^0.12.2",
     "next": "13.5.6",
