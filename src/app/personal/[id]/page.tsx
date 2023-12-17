@@ -139,7 +139,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                         className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${defaultState.btnLeftCTA}`}
                       >
                         <Image
-                          src="/Download.svg"
+                          src="/personal/Download.svg"
                           width={24}
                           height={24}
                           alt="Download"
@@ -147,22 +147,18 @@ export default function Personal({ params }: { params: { id: string } }) {
                       </div>
                     </div>
                     <BottomButton
-                      textColor={`${defaultState.explainLeftCTA}`}
                       name="공유하기"
-                      height="h-[46px]"
                       width="basis-5/12"
                       onClickHandler={handleClickShare}
-                      disabled={false}
+                      textColor={`${defaultState.explainLeftCTA}`}
                       color={`${defaultState.btnLeftCTA}`}
                       isShadow={true}
                     />
                     <BottomButton
-                      textColor={`${theme.textTheme.rightCTA}`}
                       name="글쓰기"
-                      height="h-[46px]"
                       width="basis-5/12"
                       onClickHandler={handleClickWrite}
-                      disabled={false}
+                      textColor={`${theme.textTheme.rightCTA}`}
                       color={`${theme.bgTheme.rightCTA}`}
                       isShadow={true}
                     />
@@ -170,22 +166,18 @@ export default function Personal({ params }: { params: { id: string } }) {
                 ) : (
                   <>
                     <BottomButton
-                      textColor={`${defaultState.explainLeftCTA}`}
                       name="나도 만들기"
                       width="basis-1/3"
-                      height="h-[46px]"
                       onClickHandler={handleClickCreate}
-                      disabled={false}
+                      textColor={`${defaultState.explainLeftCTA}`}
                       color={`${defaultState.btnLeftCTA}`}
                       isShadow={true}
                     />
                     <BottomButton
-                      textColor={`${theme.textTheme.rightCTA}`}
                       name="글쓰기"
                       width="basis-2/3"
-                      height="h-[46px]"
                       onClickHandler={handleClickWrite}
-                      disabled={false}
+                      textColor={`${theme.textTheme.rightCTA}`}
                       color={`${theme.bgTheme.rightCTA}`}
                       isShadow={true}
                     />
