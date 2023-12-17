@@ -25,16 +25,16 @@ export default function PhotoModal({
   return (
     <div
       onClick={(e) => handleBackground(e, closeModal)}
-      className="flex h-full w-full flex-col items-center justify-center bg-black/80 px-[24px]"
+      className="flex h-full w-full flex-col items-center justify-center bg-black/80"
     >
-      <div className="flex justify-end w-full h-[24px] mb-[24px]">
+      <div className="flex justify-end w-full h-[24px] mb-[24px] px-[24px]">
         <button onClick={closeModal} className="px-[24px]">
           <Close />
         </button>
       </div>
       <Photo photoUrl={photoUrl} />
       <div className="h-[16px] w-full"></div>
-      <div className="h-[204px] w-full justify-start overflow-y-scroll break-all text-justify  scrollbar-thin scrollbar-thumb-drawer-scrollbar">
+      <div className="h-[204px] w-full justify-start overflow-y-scroll break-all text-justify  scrollbar-thin scrollbar-thumb-drawer-scrollbar  px-[24px]">
         <p
           className={`${theme.bgTheme.highlight} ${theme.textTheme.highlight} inline pb-[4px] pt-[3px] ${bodyFontState.boardBody} leading-[31px] tracking-[-0.36px] transition`}
         >
