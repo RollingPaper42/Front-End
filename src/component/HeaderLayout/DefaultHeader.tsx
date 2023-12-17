@@ -2,8 +2,8 @@
 
 import { useRecoilState } from 'recoil';
 
-import { HamburgerMenu, Logo } from '../Icon/Header';
-import { drawerState, themeState } from '@/recoil/state';
+import { HamburgerMenu } from '../Icon/Header';
+import { drawerState } from '@/recoil/state';
 import { drawerOpen } from '@/utils/drawerOpen';
 import { defaultState } from '@/utils/theme/default';
 import Link from 'next/link';

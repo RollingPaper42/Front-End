@@ -1,7 +1,4 @@
-import { useRecoilState } from 'recoil';
-
 import { Back } from '../Icon/Header';
-import { themeState } from '@/recoil/newtheme/theme';
 import { defaultState } from '@/utils/theme/default';
 import { useRouter } from 'next/navigation';
 

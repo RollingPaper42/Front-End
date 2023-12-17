@@ -2,7 +2,6 @@
 
 import { AxiosError } from 'axios';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
 
 import Writer from './Writer';
 import BottomButton from '@/component/BottomButton';
@@ -13,7 +12,6 @@ import Textarea from '@/component/Textarea';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
-import { themeState } from '@/recoil/newtheme/theme';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
@@ -23,7 +21,6 @@ export default function Add({ params }: { params: { id: string } }) {
   const [text, setText] = useState('');
   const [writer, , handleWriter] = useInput('');
   const [openModal, closeModal] = useModal();
-  const [theme] = useRecoilState(themeState);
   const [image, setImage] = useInput<File | null>(null);
   const [preview, setPreview] = useState<string>('');
   const router = useRouter();

@@ -6,7 +6,7 @@ import Close from '../Icon/Close';
 import { HamburgerMenu } from '../Icon/Header';
 import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
-import { drawerState, themeState, titleState } from '@/recoil/state';
+import { drawerState, titleState } from '@/recoil/state';
 import { confirm } from '@/utils/confirm';
 import { drawerOpen } from '@/utils/drawerOpen';
 import { defaultState } from '@/utils/theme/default';
