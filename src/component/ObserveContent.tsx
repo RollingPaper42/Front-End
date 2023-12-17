@@ -3,6 +3,8 @@ import React from 'react';
 
 import PhotoModal from './Modal/PhotoModal';
 import PhotoPreview from '@/app/personal/[id]/PhotoPreview';
+import { bodyFontState } from '@/recoil/font/body';
+import { captionFontState } from '@/recoil/font/caption';
 import { themeState } from '@/recoil/newtheme/theme';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
@@ -86,7 +88,9 @@ const ObserveContent = ({
         />
       )}
       <div
-        className={`inline cursor-pointer select-none pb-[4px] pt-[3px] text-body-size1 font-medium leading-[31px] tracking-[-0.36px]
+        className={`inline cursor-pointer select-none pb-[4px] pt-[3px] ${
+          bodyFontState.boardBody
+        } leading-[31px] tracking-[-0.36px]
       ${
         observe.contentId === content.id
           ? `${theme.bgTheme.highlight} ${theme.textTheme.highlight} animate-textFadeIn`
@@ -99,7 +103,7 @@ const ObserveContent = ({
       </div>
       {observe.contentId === content.id && (
         <div
-          className={`cursor-default select-none text-right transition-all ${theme.textTheme.writer} text-body-size2`}
+          className={`cursor-default select-none text-right transition-all ${theme.textTheme.writer} ${captionFontState.writer}`}
         >{`From: ${
           observe.writer.length ? observe.writer : '익명의 스트링캣'
         } `}</div>

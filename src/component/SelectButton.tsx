@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { bodyFontState } from '@/recoil/font/body';
 import { defaultState } from '@/utils/theme/default';
 
 interface SelectButtonProps {
@@ -18,7 +19,7 @@ export default function SelectButton({
   };
   return (
     <button
-      className={` ${width}  border-strcat-gray3 text-strcat-gray3 mb-2 h-[40px] rounded-[25px] border ${defaultState.background} cursor-pointer select-none text-center text-[15px]`}
+      className={` ${width}  border-strcat-gray3 text-strcat-gray3 mb-2 h-[40px] rounded-[25px] border ${defaultState.background} cursor-pointer select-none text-center ${bodyFontState.serviceSubBody}`}
       onClick={onClickHandler}
     >
       {content}

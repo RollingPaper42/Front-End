@@ -1,5 +1,7 @@
 import { SetStateAction } from 'react';
 
+import { captionFontState } from '@/recoil/font/caption';
+
 interface TextareaProps {
   width: string;
   maxLength: number;
@@ -49,7 +51,7 @@ export default function Textarea({
           id="TextMessage"
           rows={1}
           value={text}
-          className={`mt-[16px] w-full basis-5/6 resize-none px-[16px] text-[16px] ${maxHeight} rounded ${textColor} bg-strcat-textarea-bg  outline-none  placeholder:text-strcat-textarea-text`}
+          className={`mt-[16px] w-full basis-5/6 resize-none px-[16px] ${captionFontState.textField} ${maxHeight} rounded ${textColor} bg-strcat-textarea-bg  outline-none  placeholder:text-strcat-textarea-text`}
           placeholder={placeholder}
           maxLength={maxLength + 1}
           onChange={(e) => handleChangeText(e)}
@@ -58,7 +60,9 @@ export default function Textarea({
         />
       </div>
       <div
-        className={`mx-[16px] mb-[16px] h-[16px] basis-1/6 cursor-default select-none text-right text-[14px] ${
+        className={`mx-[16px] mb-[16px] h-[16px] basis-1/6 cursor-default select-none text-right ${
+          captionFontState.countIndicator
+        } ${
           text.length > maxLength
             ? 'text-strcat-red'
             : 'text-strcat-textarea-text'

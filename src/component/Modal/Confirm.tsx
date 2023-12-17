@@ -1,4 +1,6 @@
 import BottomButton from '@/component/BottomButton';
+import { bodyFontState } from '@/recoil/font/body';
+import { titleFontState } from '@/recoil/font/title';
 
 interface Props {
   mainContent: string;
@@ -11,11 +13,15 @@ export default function Confirm({ mainContent, subContent, yes, no }: Props) {
   return (
     <div className="relative w-[280px] rounded-[16px] bg-strcat-textarea-bg px-[16px] pb-[16px] pt-[32px] font-medium shadow-[0px_4px_20px_0px_rgba(0,0,0,0.50)]">
       <div className=" items-center justify-center">
-        <p className={`text-center text-body-size1 text-strcat-white`}>
+        <p
+          className={`text-center ${titleFontState.titleLabel} text-strcat-white`}
+        >
           {mainContent}
         </p>
         {subContent && (
-          <p className="mt-[12px] text-center text-body-size2 text-strcat-gray-500">
+          <p
+            className={`mt-[12px] text-center ${bodyFontState.serviceBody}  text-strcat-gray-500`}
+          >
             {subContent}
           </p>
         )}

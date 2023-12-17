@@ -9,42 +9,47 @@ interface ThemeArray {
 }
 
 interface Props {
-  cats: ThemeArray[];
+  themes: ThemeArray[];
   isPreview: string;
   defaultState: {
     activateText: string;
   };
 }
 
-export default function ThemeSelect({ cats, isPreview, defaultState }: Props) {
+export default function ThemeSelect({
+  themes,
+  isPreview,
+  defaultState,
+}: Props) {
   return (
     <div className="flex w-full flex-row">
-      {cats.map((cat) => (
+      {themes.map((theme) => (
         <div
-          key={cat.id}
-          className={`flex basis-1/5 flex-col items-center justify-center`}
+          key={theme.id}
+          className="flex basis-1/5 flex-col items-center justify-center"
         >
           <div
-            tabIndex={0}
-            className={`${cat.bgStyle} h-[45px] w-[45px] rounded-full ${
-              isPreview === cat.id
+            className={`${theme.bgStyle} h-[45px] w-[45px] rounded-full ${
+              isPreview === theme.id
                 ? 'ring-white ring-offset-strcat-black ring-2 ring-offset-2'
                 : ''
             }`}
-            onClick={cat.onClick}
+            onClick={theme.onClick}
           >
-            {cat.image && (
-              <Image
-                src={cat.image}
-                width={42}
-                height={43}
-                alt={`${cat.name}Cat`}
-                className="z-10 mt-[10px]"
-              />
-            )}
+            <div className="flex justify-center items-center pt-[5px]">
+              {theme.image && (
+                <Image
+                  src={theme.image}
+                  width={42}
+                  height={43}
+                  alt={theme.name}
+                  className="z-10"
+                />
+              )}
+            </div>
           </div>
           <div className={`mt-[12px] text-[12px] ${defaultState.activateText}`}>
-            {cat.name}
+            {theme.name}
           </div>
         </div>
       ))}
