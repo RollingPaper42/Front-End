@@ -70,18 +70,6 @@ export default function Personal({ params }: { params: { id: string } }) {
     setToast('download');
   };
 
-  const handleClickShare = async () => {
-    try {
-      const shortUrl = await axiosInstance.get(
-        `/share?url=https://strcat.me/personal/${params.id}`,
-      );
-      const url = `${shortUrl.data}`;
-      await handleShare(url);
-    } catch {
-      handleShare(`https://strcat.me/personal/${params.id}`);
-    }
-  };
-
   const handleCopyClipBoard = async (url: string) => {
     try {
       await navigator.clipboard.writeText(url);
@@ -91,7 +79,8 @@ export default function Personal({ params }: { params: { id: string } }) {
     }
   };
 
-  const handleShare = async (url: string) => {
+  const handleShare = async () => {
+    const url = `https://strcat.me/personal/${params.id}`;
     if (navigator.share) {
       try {
         await navigator.share({
@@ -99,9 +88,7 @@ export default function Personal({ params }: { params: { id: string } }) {
           text: '더 많은 글을 써서 strcat을 끊임없이 달아주세요!',
           url: url,
         });
-      } catch (err) {
-        setToast('error');
-      }
+      } catch (err) {}
     } else {
       handleCopyClipBoard(url);
     }
@@ -169,7 +156,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                       name="공유하기"
                       height="h-[46px]"
                       width="basis-5/12"
-                      onClickHandler={handleClickShare}
+                      onClickHandler={handleShare}
                       disabled={false}
                       color={`${defaultState.btnLeftCTA}`}
                       isShadow={true}
