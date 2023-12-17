@@ -87,13 +87,11 @@ export default function Personal({ params }: { params: { id: string } }) {
       await navigator.clipboard.writeText(url);
       setToast('share');
     } catch (error) {
-      alert('android');
       setToast('error');
     }
   };
 
   const handleShare = async (url: string) => {
-    console.log(url);
     if (navigator.share) {
       try {
         await navigator.share({
@@ -101,10 +99,7 @@ export default function Personal({ params }: { params: { id: string } }) {
           text: '더 많은 글을 써서 strcat을 끊임없이 달아주세요!',
           url: url,
         });
-      } catch (err) {
-        alert('ios');
-        setToast('error');
-      }
+      } catch (err) {}
     } else {
       handleCopyClipBoard(url);
     }
