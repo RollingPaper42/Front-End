@@ -2,8 +2,8 @@ import { useRecoilState } from 'recoil';
 
 import { Check } from '../Icon/Drawer';
 import { drawerState } from '@/recoil/drawer';
-import { themeState } from '@/recoil/theme/theme';
 import { drawerBoard } from '@/types/drawerBoard';
+import { defaultState } from '@/utils/theme/default';
 import { usePathname, useRouter } from 'next/navigation';
 
 interface Props {
@@ -15,7 +15,6 @@ export default function DropListItem({ list, category }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const [, setDrawer] = useRecoilState(drawerState);
-  const [theme] = useRecoilState(themeState);
 
   const truncateTitle = (title: string) => {
     if (title.length <= 17) {
@@ -39,8 +38,8 @@ export default function DropListItem({ list, category }: Props) {
         }}
       >
         <div
-          className={`flex h-full w-full items-center py-[12px] text-body-size2 font-medium ${
-            isActive ? `px-0 text-strcat-bright-yellow` : 'pl-[24px]'
+          className={`py-[12px] flex h-full w-full items-center text-body-size2 font-medium ${
+            isActive ? `px-0 ${defaultState.bottomButtonText}` : 'pl-[24px]'
           }`}
         >
           {isActive && <Check />}

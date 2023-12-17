@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil';
 
 import Photo from './Photo';
 import useModal from '@/hooks/useModal';
-import { observeState } from '@/recoil/observe';
+import { observeState } from '@/recoil/content';
 
 export default function ContentPhoto() {
   const [openModal] = useModal();

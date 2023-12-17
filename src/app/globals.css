@@ -12,6 +12,14 @@
     url('/fonts/PretendardVariable.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Sniglet';
+  src: url('/fonts/Sniglet-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   -ms-overflow-style: none;
 }

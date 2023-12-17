@@ -20,19 +20,17 @@ export default function Error({
           {mainContent}
         </p>
         {subContent && (
-          <p className="text-center text-body-size2 text-strcat-white/50 mt-[12px]">
+          <p className="text-center text-body-size2 text-strcat-gray-500 mt-[12px]">
             {subContent}
           </p>
         )}
         <div className="mt-[32px] flex">
           <BottomButton
-            textColor="text-strcat-black"
-            height="h-[42px]"
-            color="bg-strcat-bright-yellow"
             name="확인"
             width="w-full"
+            textColor="text-strcat-black"
+            color="bg-strcat-bright-yellow"
             onClickHandler={handleModalClose}
-            disabled={false}
           />
         </div>
       </div>

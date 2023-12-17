@@ -10,10 +10,11 @@ import Home from '../Icon/drawer/Home';
 import DrawerItem from './DrawerItem';
 import DropList from './DropList';
 import { useLogin } from '@/hooks/useLogin';
-import { drawerState, themeState } from '@/recoil/state';
+import { drawerState } from '@/recoil/state';
 import { drawerBoard } from '@/types/drawerBoard';
 import { axiosInstance } from '@/utils/axios';
 import { handleBackground } from '@/utils/handleBackground';
+import { defaultState } from '@/utils/theme/default';
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function Drawer() {
@@ -21,7 +22,6 @@ export default function Drawer() {
   const [drawer, setDrawer] = useRecoilState(drawerState);
   const [drawerClosing, setDrawerClosing] = useState(false);
   const [personalList, setPersonalList] = useState<drawerBoard[]>([]);
-  const [theme] = useRecoilState(themeState);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -31,7 +31,6 @@ export default function Drawer() {
       setPersonalList(personal.data);
     } catch (err) {
       const error = err as AxiosError;
-      console.log(error);
     }
   }, [setPersonalList]);
 
@@ -95,8 +94,8 @@ export default function Drawer() {
       >
         <div
           className={`absolute right-0 h-full w-[300px] opacity-100 ${
-            theme.bgTheme.background
-          } ${theme.textTheme.default} ${
+            defaultState.background
+          } ${defaultState.activateText} ${
             drawerClosing ? 'animate-drawerClose' : 'animate-drawerOpen'
           }`}
         >
@@ -113,21 +112,18 @@ export default function Drawer() {
               </div>
             </div>
           </div>
-          <div
-            className={`flex flex-col items-center ${theme.textTheme.default}`}
-          >
+          <div className={`flex flex-col items-center`}>
             {isLogin ? (
               <>
                 <DropList list={personalList} category="personal" />
                 <div className="mt-[12px] w-full px-[24px]">
                   <BottomButton
                     name="새 스트링캣 만들기"
+                    height="h-[44px]"
                     width="w-full"
                     onClickHandler={handleNewStrcat}
-                    disabled={false}
-                    color={`bg-strcat-bright-yellow`}
-                    textColor="text-strcat-black"
-                    height="h-[44px]"
+                    color={`${defaultState.MiddleButton}`}
+                    textColor={`${defaultState.highLightText}`}
                   />
                 </div>
               </>
@@ -145,18 +141,17 @@ export default function Drawer() {
                 <div className="mt-[12px] w-full px-[24px]">
                   <BottomButton
                     name="로그인"
+                    height="h-[44px]"
                     width="w-full"
                     onClickHandler={handleLogin}
-                    disabled={false}
-                    color={`bg-strcat-bright-yellow`}
-                    textColor="text-strcat-black"
-                    height="h-[44px]"
+                    color={`${defaultState.MiddleButton}`}
+                    textColor={`${defaultState.highLightText}`}
                   />
                 </div>
               </>
             )}
             <div
-              className={`absolute bottom-0 w-full ${theme.bgTheme.background} px-[24px]`}
+              className={`absolute bottom-0 w-full ${defaultState.background} px-[24px]`}
             >
               <div className="h-[54px] w-full" onClick={handleHome}>
                 <DrawerItem title="홈으로" icon={<Home />} />

@@ -6,9 +6,10 @@ import Close from '../Icon/Close';
 import { HamburgerMenu } from '../Icon/Header';
 import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
-import { drawerState, themeState, titleState } from '@/recoil/state';
+import { drawerState, titleState } from '@/recoil/state';
 import { confirm } from '@/utils/confirm';
 import { drawerOpen } from '@/utils/drawerOpen';
+import { defaultState } from '@/utils/theme/default';
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function TitleHeader() {
@@ -17,7 +18,6 @@ export default function TitleHeader() {
   const isAdd = pathname.endsWith('/add');
   const [title] = useRecoilState(titleState);
   const [, setDrawer] = useRecoilState(drawerState);
-  const [theme] = useRecoilState(themeState);
   const { isHidden } = useScroll({ scrollEvent: !isAdd });
   const [openModal, closeModal] = useModal();
 
@@ -42,10 +42,12 @@ export default function TitleHeader() {
       }`}
     >
       <div
-        className={`flex min-h-[52px] flex-row items-stretch justify-between py-[16px] ${theme.bgTheme.background} bg-opacity-80 px-[24px]`}
+        className={`flex min-h-[52px] flex-row items-stretch justify-between py-[16px] ${defaultState.background} bg-opacity-80 px-[24px]`}
         id="titleHeader"
       >
-        <div className="flex select-none items-center pr-[8px] text-headline-size2 font-bold leading-8 tracking-[-0.48px] text-white">
+        <div
+          className={`flex items-center pr-[8px] text-headline-size2 font-bold leading-8 tracking-[-0.48px] ${defaultState.activateText}`}
+        >
           {title}
         </div>
         {isAdd ? (

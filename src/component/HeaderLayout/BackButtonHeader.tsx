@@ -1,7 +1,5 @@
-import { useRecoilState } from 'recoil';
-
 import { Back } from '../Icon/Header';
-import { themeState } from '@/recoil/theme/theme';
+import { defaultState } from '@/utils/theme/default';
 import { useRouter } from 'next/navigation';
 
 interface Props {
@@ -11,7 +9,6 @@ interface Props {
 
 export default function BackButtonHeader({ isNext, setIsNext }: Props) {
   const router = useRouter();
-  const [theme] = useRecoilState(themeState);
   const handleClickBack = () => {
     if (isNext) setIsNext(false);
     else router.back();
@@ -19,7 +16,9 @@ export default function BackButtonHeader({ isNext, setIsNext }: Props) {
 
   return (
     <div className="fixed z-button flex w-full max-w-md flex-col">
-      <div className="flex h-[56px] w-full ">
+      <div
+        className={`flex h-[56px] w-full ${defaultState.background} bg-opacity-80`}
+      >
         <div
           className="flex basis-1/6 items-center pl-[24px]"
           onClick={handleClickBack}
@@ -27,7 +26,7 @@ export default function BackButtonHeader({ isNext, setIsNext }: Props) {
           <Back />
         </div>
         <div
-          className={`${theme.textTheme.title} flex basis-4/6 items-center justify-center text-center text-[16px] font-bold`}
+          className={`${defaultState.activateText} flex basis-4/6 items-center justify-center text-center text-[16px] font-bold`}
         >
           스트링캣 만들기
         </div>

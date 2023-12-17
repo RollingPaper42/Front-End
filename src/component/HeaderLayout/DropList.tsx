@@ -1,8 +1,6 @@
-import { useRecoilState } from 'recoil';
-
 import DropListItem from './DropListItem';
-import { themeState } from '@/recoil/theme/theme';
 import { drawerBoard } from '@/types/drawerBoard';
+import { defaultState } from '@/utils/theme/default';
 
 interface Props {
   list: drawerBoard[];
@@ -21,7 +19,9 @@ export default function DropList({ list, category }: Props) {
         </div>
       </div>
       {list.length ? (
-        <div className="flex h-full max-h-[280px] w-full flex-col overflow-scroll bg-[#1D1D1D] scrollbar-thin scrollbar-thumb-[#373737] scrollbar-thumb-rounded-[7px] ">
+        <div
+          className={`flex max-h-[280px] h-full ${defaultState.drawerList} w-full flex-col overflow-scroll scrollbar-thumb-textarea-bg scrollbar-thin scrollbar-thumb-rounded-[7px]`}
+        >
           <DropListItem list={list} category={category} />
         </div>
       ) : null}

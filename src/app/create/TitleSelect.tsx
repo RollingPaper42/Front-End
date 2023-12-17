@@ -2,13 +2,14 @@ import BottomButton from '@/component/BottomButton';
 import MiddleButton from '@/component/MiddleButton';
 import SelectButton from '@/component/SelectButton';
 import Textarea from '@/component/Textarea';
+import { defaultState } from '@/utils/theme/default';
 
 interface Props {
   title: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   isOff: string;
   handleSwitch: (value: string) => void;
-  setIsNext: React.Dispatch<React.SetStateAction<boolean>>;
+  onClickComplete: () => void;
 }
 
 export default function TitleSelect({
@@ -16,37 +17,39 @@ export default function TitleSelect({
   setTitle,
   isOff,
   handleSwitch,
-  setIsNext,
+  onClickComplete,
 }: Props) {
   return (
-    <div className="flex h-full w-full flex-col ">
-      <div className="basis-1/12"></div>
-      <div className="basis-2/12">
-        <div className=" mx-[24p] mt-[10px] w-full  px-[24px]">
-          <div className="mb-[15px] ml-1 text-left text-[16px] text-white">
+    <div className="flex h-screen w-full flex-col ">
+      <div className="basis-[56px]"></div>
+      <div className="basis-[16px]"></div>
+      <div className="basis-[107px]">
+        <div className=" mx-[24p] w-full px-[24px]">
+          <div className="text-left pb-[12px] text-[16px] font-semibold text-white">
             제목
           </div>
           <Textarea
             maxHeight="max-h-[49px]"
             width="w-full"
             placeholder="스트링캣 주제를 입력해주세요."
-            textColor="text-white"
+            textColor={`${defaultState.activateText}`}
             text={title}
             setText={setTitle}
             maxLength={25}
           />
         </div>
       </div>
+      <div className="basis-[20px]"></div>
       <div className="w-full basis-1/12 ">
-        <div className="m-6 flex  space-x-[12px] overflow-x-scroll">
+        <div className="mx-6 flex  space-x-[12px] overflow-x-scroll">
           <MiddleButton
             width="w-[128px]"
             onClickHandler={() => handleSwitch('1')}
             content="# 한사람을 위한"
             color={`${
               isOff == '1'
-                ? 'bg-strcat-bright-yellow text-strcat-gray2'
-                : 'bg-strcat-gray2 text-strcat-bright-yellow'
+                ? `${defaultState.MiddleButton} ${defaultState.middleButtonText}`
+                : `${defaultState.middleDisable} ${defaultState.middleDisableText}`
             }`}
           />
           <MiddleButton
@@ -55,8 +58,8 @@ export default function TitleSelect({
             content="# 함께 마무리하는"
             color={`${
               isOff == '2'
-                ? 'bg-strcat-bright-yellow text-strcat-gray2'
-                : 'bg-strcat-gray2 text-strcat-bright-yellow'
+                ? `${defaultState.MiddleButton} ${defaultState.middleButtonText}`
+                : `${defaultState.middleDisable} ${defaultState.middleDisableText}`
             }`}
           />
           <MiddleButton
@@ -65,8 +68,8 @@ export default function TitleSelect({
             content="# 서로의 생각을 나누는"
             color={`${
               isOff == '3'
-                ? 'bg-strcat-bright-yellow text-strcat-gray2'
-                : 'bg-strcat-gray2 text-strcat-bright-yellow'
+                ? `${defaultState.MiddleButton} ${defaultState.middleButtonText}`
+                : `${defaultState.middleDisable} ${defaultState.middleDisableText}`
             }`}
           />
         </div>
@@ -136,16 +139,14 @@ export default function TitleSelect({
           />
         </div>
       </div>
-      <div className="basis-2/12" />
-      <div className="fixed bottom-5 flex w-full max-w-md items-center justify-center px-[24px]">
+      <div className="fixed bottom-[12px] flex w-full max-w-md items-center justify-center px-[24px]">
         <BottomButton
-          textColor=""
-          height="h-[42px]"
-          name="다음"
+          name="완료"
           width="w-full"
-          onClickHandler={() => setIsNext(true)}
+          textColor={`${defaultState.highLightText}`}
+          color={`${defaultState.bottomButton}`}
+          onClickHandler={onClickComplete}
           disabled={title === ' ' || title.length >= 26 || title.length <= 0}
-          color=" bg-strcat-bright-yellow"
         />
       </div>
     </div>

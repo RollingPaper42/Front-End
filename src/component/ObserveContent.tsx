@@ -3,15 +3,18 @@ import React from 'react';
 
 import PhotoModal from './Modal/PhotoModal';
 import PhotoPreview from '@/app/personal/[id]/PhotoPreview';
-import { themeState } from '@/recoil/state';
+import { themeState } from '@/recoil/newtheme/theme';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
 import { focusToHighlight } from '@/utils/focusToHighlight';
+import { defaultState } from '@/utils/theme/default';
 
 interface props {
   content: content;
   observe: observeContent;
   theme: themeState;
+  addContent: number;
+  setAddContent: Dispatch<SetStateAction<number>>;
   setObserve: Dispatch<SetStateAction<observeContent>>;
   openModal: (modalComponent: JSX.Element) => void;
   closeModal: () => void;
@@ -22,6 +25,8 @@ const ObserveContent = ({
   observe,
   setObserve,
   theme,
+  addContent,
+  setAddContent,
   openModal,
   closeModal,
 }: props) => {
@@ -33,9 +38,17 @@ const ObserveContent = ({
         closeModal={closeModal}
         text={content.text}
         writer={content.writer}
+        theme={theme}
       />,
     );
   };
+
+  useEffect(() => {
+    if (addContent === content.id) {
+      focusToHighlight(ref);
+      setAddContent(0);
+    }
+  }, [addContent]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -68,6 +81,7 @@ const ObserveContent = ({
       {observe.contentId === content.id && observe.photoUrl !== '' && (
         <PhotoPreview
           photoUrl={content.photoUrl}
+          color={theme.bgTheme.highlight}
           handleClickPhoto={handleClickPhoto}
         />
       )}
@@ -75,8 +89,8 @@ const ObserveContent = ({
         className={`inline cursor-pointer select-none pb-[4px] pt-[3px] text-body-size1 font-medium leading-[31px] tracking-[-0.36px]
       ${
         observe.contentId === content.id
-          ? `${theme.bgTheme.contentContainer} ${theme.textTheme.highlight} animate-textFadeIn`
-          : `${theme.textTheme.default} opacity-[0.15]`
+          ? `${theme.bgTheme.highlight} ${theme.textTheme.highlight} animate-textFadeIn`
+          : `${defaultState.descriptionText} opacity-[0.15]`
       }
     `}
         onClick={() => focusToHighlight(ref)}
