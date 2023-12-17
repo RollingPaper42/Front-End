@@ -1,5 +1,3 @@
-import { atom } from 'recoil';
-
 import {
   bgThemeState,
   chrisBg,
@@ -60,8 +58,3 @@ export const themeObj = {
   chris: chris,
   mas: mas,
 };
-
-export const themeState = atom<themeState>({
-  key: 'themeState',
-  default: night,
-});
