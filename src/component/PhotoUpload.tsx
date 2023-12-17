@@ -17,7 +17,7 @@ export default function PhotoUpload({
     const convertedBlob = await heic2any({
       blob: file,
       toType: 'image/jpeg',
-      quality: 0.5,
+      quality: 0.1,
     });
     return new File(
       [convertedBlob as BlobPart],
