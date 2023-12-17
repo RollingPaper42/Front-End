@@ -18,11 +18,12 @@ export default function Home() {
   const router = useRouter();
   const ref = useRef<HTMLHeadingElement | null>(null);
 
+  useEffect(() => {
+    logging('show_main');
+  }, []);
+
   const handleClickPersonal = () => {
-    MixpanelLogging.getInstance().clickEvent(
-      'click_create_board',
-      setProperties({}),
-    );
+    logging('click_create_board');
     if (isLogin) router.push('create', { scroll: false });
     else {
       localStorage.setItem('strcat_login_success_url', '/create');
@@ -30,15 +31,8 @@ export default function Home() {
     }
   };
 
-  useEffect(() => {
-    MixpanelLogging.getInstance().pageViewEvent('show_main', setProperties({}));
-  }, []);
-
   const handleClickStart = () => {
-    MixpanelLogging.getInstance().clickEvent(
-      'click_guestbook',
-      setProperties({}),
-    );
+    logging('click_guestbook');
     router.push(
       '/personal/WIncoOMTdNFI0LCNpLfVT0RF3juZV1jsIi-G58nut0yB-kfIRam-XP1JH2Hz9fWU',
     );
@@ -127,3 +121,7 @@ export default function Home() {
     </>
   );
 }
+
+const logging = (eventName: string) => {
+  MixpanelLogging.getInstance().event(eventName, setProperties({}));
+};

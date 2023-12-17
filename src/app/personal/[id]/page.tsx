@@ -242,7 +242,7 @@ export default function Personal({ params }: { params: { id: string } }) {
 }
 
 const logging = (eventName: string, loggingProp: personalPage | undefined) => {
-  MixpanelLogging.getInstance().pageViewEvent(
+  MixpanelLogging.getInstance().event(
     eventName,
     setProperties({
       ...loggingProp,

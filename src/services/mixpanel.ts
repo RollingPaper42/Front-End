@@ -26,11 +26,7 @@ export class MixpanelLogging {
     mixpanel.track(eventName, properties);
   }
 
-  public pageViewEvent(eventName: string, properties: object) {
-    this.track(eventName, properties);
-  }
-
-  public clickEvent(eventName: string, properties: object) {
+  public event(eventName: string, properties: object) {
     this.track(eventName, properties);
   }
 }
