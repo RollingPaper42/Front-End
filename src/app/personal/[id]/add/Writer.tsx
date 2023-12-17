@@ -3,10 +3,10 @@ import { SetStateAction } from 'react';
 interface Props {
   writer: string;
   handleWriter: (e: any) => void;
-  setIsHidden: React.Dispatch<SetStateAction<boolean>>;
+  setIsFixed: React.Dispatch<SetStateAction<boolean>>;
 }
 
-export default function Writer({ writer, handleWriter, setIsHidden }: Props) {
+export default function Writer({ writer, handleWriter, setIsFixed }: Props) {
   const handleWriterInput = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.value.trim() === '') {
       e.currentTarget.value = '';
@@ -21,8 +21,7 @@ export default function Writer({ writer, handleWriter, setIsHidden }: Props) {
         value={writer}
         onInput={handleWriterInput}
         placeholder="익명의 스트링캣"
-        onFocus={() => setIsHidden(true)}
-        onBlur={() => setIsHidden(false)}
+        onFocus={() => setIsFixed(true)}
       />
       <div
         className={`cursor-default select-none pr-[16px] text-caption-size2 ${

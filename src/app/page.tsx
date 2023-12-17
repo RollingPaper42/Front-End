@@ -57,7 +57,7 @@ export default function Home() {
             내 롤링페이퍼에서 <br /> 친구들의 이야기를 듣고 싶다면
           </div>
           <div
-            className={`mt-[16px] flex h-[44px] w-[252px] flex-row items-center justify-center rounded-[5px] ${defaultState.MiddleButton}`}
+            className={`mt-[16px] flex h-[44px] w-[252px] flex-row items-center select-none cursor-pointer justify-center rounded-[5px] ${defaultState.MiddleButton}`}
             onClick={handleClickPersonal}
           >
             <div className=" text-body-size2 font-bold">스트링캣 시작하기</div>

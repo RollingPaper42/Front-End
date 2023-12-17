@@ -78,7 +78,7 @@ export default function Create() {
   return (
     <>
       <HeaderLayout isNext={isNext} setIsNext={setIsNext} />
-      <div className={`${defaultState.background} h-screen w-full`}>
+      <div className={`${defaultState.background} h-auto min-h-full w-full`}>
         {isNext ? (
           <TitleSelect
             title={title}

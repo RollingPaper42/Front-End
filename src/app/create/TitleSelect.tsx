@@ -41,7 +41,7 @@ export default function TitleSelect({
       </div>
       <div className="basis-[20px]"></div>
       <div className="w-full basis-1/12 ">
-        <div className="ml-6 flex  space-x-[12px] overflow-x-scroll">
+        <div className="mx-6 flex  space-x-[12px] overflow-x-scroll">
           <MiddleButton
             width="w-[128px]"
             onClickHandler={() => handleSwitch('1')}

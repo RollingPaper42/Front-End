@@ -8,13 +8,14 @@ interface Props {
   isNext?: boolean;
   setIsNext?: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 export default function HeaderLayout({ isNext, setIsNext }: Props) {
   const pathname = usePathname();
   const defaultHeaderCheck = pathname === '/';
   const backButtonHeaderCheck = pathname.indexOf('/create') === 0;
   const titleHeaderCheck =
     pathname.endsWith('/add') || pathname.indexOf('/personal') === 0;
-
+  const isAdd = pathname.endsWith('/add');
   return (
     <>
       {defaultHeaderCheck && <DefaultHeader />}
@@ -24,7 +25,7 @@ export default function HeaderLayout({ isNext, setIsNext }: Props) {
           <BackButtonHeader isNext={isNext} setIsNext={setIsNext} />
         )}
       {titleHeaderCheck && <TitleHeader />}
-      <Drawer />
+      {!backButtonHeaderCheck && !isAdd && <Drawer />}
     </>
   );
 }
