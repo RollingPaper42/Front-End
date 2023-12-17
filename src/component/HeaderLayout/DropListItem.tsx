@@ -2,7 +2,6 @@ import { useRecoilState } from 'recoil';
 
 import { Check } from '../Icon/Drawer';
 import { drawerState } from '@/recoil/drawer';
-import { themeState } from '@/recoil/newtheme/theme';
 import { drawerBoard } from '@/types/drawerBoard';
 import { defaultState } from '@/utils/theme/default';
 import { usePathname, useRouter } from 'next/navigation';
@@ -16,7 +15,6 @@ export default function DropListItem({ list, category }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const [, setDrawer] = useRecoilState(drawerState);
-  const [theme] = useRecoilState(themeState);
 
   const truncateTitle = (title: string) => {
     if (title.length <= 17) {

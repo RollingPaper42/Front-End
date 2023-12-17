@@ -1,5 +1,3 @@
-import { useRecoilState } from 'recoil';
-
 import DropListItem from './DropListItem';
 import { drawerBoard } from '@/types/drawerBoard';
 import { defaultState } from '@/utils/theme/default';
