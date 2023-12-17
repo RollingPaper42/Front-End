@@ -21,23 +21,19 @@ export default function Confirm({ mainContent, subContent, yes, no }: Props) {
         )}
         <div className="mt-[32px] flex">
           <BottomButton
-            textColor="text-strcat-white"
-            height="h-[42px]"
-            color="bg-strcat-gray2"
             name="취소"
             width="basis-1/2"
+            textColor="text-strcat-white"
+            color="bg-strcat-gray2"
             onClickHandler={no}
-            disabled={false}
           />
           <div className="w-[12px]"></div>
           <BottomButton
-            textColor=""
-            height="h-[42px]"
-            color="bg-strcat-bright-yellow"
             name="확인"
             width="basis-1/2"
+            textColor=""
+            color="bg-strcat-bright-yellow"
             onClickHandler={yes}
-            disabled={false}
           />
         </div>
       </div>
