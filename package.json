@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/mixpanel": "^2.14.8",
     "axios": "^1.6.0",
     "browser-image-compression": "^2.0.2",
     "file-saver": "^2.0.5",
