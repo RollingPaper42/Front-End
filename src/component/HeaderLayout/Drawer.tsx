@@ -11,7 +11,7 @@ import DrawerItem from './DrawerItem';
 import DropList from './DropList';
 import { useLogin } from '@/hooks/useLogin';
 import { defaultState } from '@/recoil/newtheme/default';
-import { drawerState, themeState } from '@/recoil/state';
+import { drawerState } from '@/recoil/state';
 import { drawerBoard } from '@/types/drawerBoard';
 import { axiosInstance } from '@/utils/axios';
 import { handleBackground } from '@/utils/handleBackground';
@@ -22,7 +22,6 @@ export default function Drawer() {
   const [drawer, setDrawer] = useRecoilState(drawerState);
   const [drawerClosing, setDrawerClosing] = useState(false);
   const [personalList, setPersonalList] = useState<drawerBoard[]>([]);
-  const [theme] = useRecoilState(themeState);
   const router = useRouter();
   const pathname = usePathname();
 

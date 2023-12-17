@@ -1,5 +1,5 @@
-import { board } from '@/types/boards';
 import StrcatBoard from './StrcatBoard';
+import { board } from '@/types/boards';
 
 const MainBoard: board = {
   id: 'string',
@@ -50,7 +50,7 @@ const MainBoard: board = {
     },
     {
       id: 8,
-      text: '문의사항 및 신고: strcat@gmail.com',
+      text: '문의사항 및 신고: strcat42@gmail.com',
       writer: 'seongjki',
       photoUrl: '',
     },

@@ -32,7 +32,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [, setTitle] = useRecoilState(titleState);
   const { isHidden, setIsHidden } = useScroll();
   const [toast, setToast] = useState('');
-  const [theme, setTheme] = useRecoilState(themeState);
+  const [theme, setTheme] = useState<themeState>(noneTheme);
   useEffect(() => {
     if (window) setWindowHeight(window.innerHeight);
     axiosInstance
@@ -100,6 +100,13 @@ export default function Personal({ params }: { params: { id: string } }) {
   return (
     <>
       <div className={`${defaultState.background} min-h-full`}>
+        {board.length === 0 && (
+          <div
+            className={`fixed flex items-center justify-center h-screen max-w-md w-full z-[99] ${defaultState.background}`}
+          >
+            <Loading />
+          </div>
+        )}
         <div
           onClick={() => {
             setIsHidden(!isHidden);

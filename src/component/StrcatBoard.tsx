@@ -5,7 +5,6 @@ import { useRecoilState } from 'recoil';
 import ObserveContent from './ObserveContent';
 import useModal from '@/hooks/useModal';
 import { addContentState } from '@/recoil/content';
-import { themeState } from '@/recoil/state';
 import { board } from '@/types/boards';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
@@ -22,7 +21,6 @@ const StrcatBoard = ({ board }: Props) => {
   });
   const [content, setContent] = useState<content[]>([]);
   const [addContent, setAddContent] = useRecoilState(addContentState);
-  const [theme] = useRecoilState(themeState);
   const [openModal, closeModal] = useModal();
 
   useEffect(() => {

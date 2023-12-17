@@ -7,7 +7,7 @@ import { HamburgerMenu } from '../Icon/Header';
 import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
 import { defaultState } from '@/recoil/newtheme/default';
-import { drawerState, themeState, titleState } from '@/recoil/state';
+import { drawerState, titleState } from '@/recoil/state';
 import { confirm } from '@/utils/confirm';
 import { drawerOpen } from '@/utils/drawerOpen';
 import { usePathname, useRouter } from 'next/navigation';
