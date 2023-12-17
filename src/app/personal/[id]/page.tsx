@@ -75,17 +75,35 @@ export default function Personal({ params }: { params: { id: string } }) {
       const shortUrl = await axiosInstance.get(
         `/share?url=https://strcat.me/personal/${params.id}`,
       );
-      await navigator.clipboard.writeText(`${shortUrl.data}`);
-      setToast('share');
+      const url = `${shortUrl.data}`;
+      await handleShare(url);
     } catch {
+      handleShare(`https://strcat.me/personal/${params.id}`);
+    }
+  };
+
+  const handleCopyClipBoard = async (url: string) => {
+    try {
+      await navigator.clipboard.writeText(url);
+      setToast('share');
+    } catch (error) {
+      setToast('error');
+    }
+  };
+
+  const handleShare = async (url: string) => {
+    if (navigator.share) {
       try {
-        await navigator.clipboard.writeText(
-          `https://strcat.me/personal/${params.id}`,
-        );
-        setToast('share');
-      } catch {
+        await navigator.share({
+          title: 'strcat',
+          text: '더 많은 글을 써서 strcat을 끊임없이 달아주세요!',
+          url: url,
+        });
+      } catch (err) {
         setToast('error');
       }
+    } else {
+      handleCopyClipBoard(url);
     }
   };
 
