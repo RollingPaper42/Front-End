@@ -3,8 +3,7 @@
 import BottomButton from '../../component/BottomButton';
 import PreviewTheme from './PreviewTheme';
 import ThemeSelect from './ThemeSelect';
-import { defaultState } from '@/recoil/newtheme/default';
-import Image from 'next/image';
+import { defaultState } from '@/utils/theme/default';
 
 interface CreateThemeProps {
   onClickChris: () => void;

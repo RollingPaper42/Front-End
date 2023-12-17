@@ -2,7 +2,7 @@ import BottomButton from '@/component/BottomButton';
 import MiddleButton from '@/component/MiddleButton';
 import SelectButton from '@/component/SelectButton';
 import Textarea from '@/component/Textarea';
-import { defaultState } from '@/recoil/newtheme/default';
+import { defaultState } from '@/utils/theme/default';
 
 interface Props {
   title: string;

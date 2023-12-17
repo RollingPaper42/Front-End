@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil';
 
 import Close from '../Icon/Close';
 import Photo from '../Photo';
-import { themeState } from '@/recoil/state';
+import { themeState } from '@/recoil/newtheme/theme';
 import { handleBackground } from '@/utils/handleBackground';
 
 interface Props {

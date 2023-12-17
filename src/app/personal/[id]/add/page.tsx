@@ -12,9 +12,9 @@ import PreviewPhoto from '@/component/PreviewPhoto';
 import Textarea from '@/component/Textarea';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
-import { defaultState } from '@/recoil/newtheme/default';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
+import { defaultState } from '@/utils/theme/default';
 import { useRouter } from 'next/navigation';
 
 export default function Add({ params }: { params: { id: string } }) {
