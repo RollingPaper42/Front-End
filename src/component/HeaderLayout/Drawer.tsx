@@ -7,6 +7,7 @@ import { Logout } from '../Icon/Drawer';
 import { Logo } from '../Icon/Header';
 import DrawerClose from '../Icon/drawer/DrawerClose';
 import Home from '../Icon/drawer/Home';
+import Inquiry from '../Icon/drawer/Inquiry';
 import DrawerItem from './DrawerItem';
 import DropList from './DropList';
 import { useLogin } from '@/hooks/useLogin';
@@ -16,6 +17,7 @@ import { drawerBoard } from '@/types/drawerBoard';
 import { axiosInstance } from '@/utils/axios';
 import { handleBackground } from '@/utils/handleBackground';
 import { defaultState } from '@/utils/theme/default';
+import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function Drawer() {
@@ -158,6 +160,11 @@ export default function Drawer() {
             >
               <div className="h-[54px] w-full" onClick={handleHome}>
                 <DrawerItem title="홈으로" icon={<Home />} />
+              </div>
+              <div className="h-[54px] w-full">
+                <Link href={'https://forms.gle/A21VjqrLnQH3XxCAA'}>
+                  <DrawerItem title="문의하기" icon={<Inquiry />} />
+                </Link>
               </div>
               {isLogin ? (
                 <div className="h-[54px] w-full" onClick={handleLogout}>

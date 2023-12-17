@@ -71,6 +71,16 @@ export default function Home() {
               alt="mainStrcatIcon"
             />
           </div>
+          <div className="mt-[30px] px-[24px] text-white/30 text-[12px]">
+            반드시 &nbsp;
+            <button
+              onClick={() => router.push('/terms')}
+              className="text-white/40 font-semiboldbold underline"
+            >
+              서비스 이용약관
+            </button>
+            을 읽고 이에 동의하시는 경우에만 서비스를 이용하시길 바랍니다.
+          </div>
           <div className="cursor-pointer select-none pt-[54px]">
             <Image
               className="h-auto w-auto animate-bounce"
