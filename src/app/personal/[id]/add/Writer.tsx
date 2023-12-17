@@ -1,5 +1,7 @@
 import { SetStateAction } from 'react';
 
+import { captionFontState } from '@/recoil/font/caption';
+
 interface Props {
   writer: string;
   handleWriter: (e: any) => void;
@@ -16,7 +18,7 @@ export default function Writer({ writer, handleWriter, setIsFixed }: Props) {
   return (
     <div className="flex h-[51px] w-full items-center justify-center rounded-lg bg-white/10 pl-[16px]">
       <input
-        className="h-full w-full bg-transparent text-body-size2 text-white outline-none placeholder:text-white/50"
+        className={`h-full w-full bg-transparent  text-white ${captionFontState.textField} outline-none placeholder:text-white/50`}
         maxLength={11}
         value={writer}
         onInput={handleWriterInput}
@@ -24,9 +26,9 @@ export default function Writer({ writer, handleWriter, setIsFixed }: Props) {
         onFocus={() => setIsFixed(true)}
       />
       <div
-        className={`cursor-default select-none pr-[16px] text-caption-size2 ${
-          writer.length > 10 ? 'text-[#DE6565]' : 'text-white/50'
-        }`}
+        className={`cursor-default select-none pr-[16px] ${
+          captionFontState.countIndicator
+        } ${writer.length > 10 ? 'text-[#DE6565]' : 'text-white/50'}`}
       >
         {writer.length}/10
       </div>

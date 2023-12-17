@@ -5,7 +5,6 @@ import { useRef } from 'react';
 import HeaderLayout from '@/component/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
 import { useLogin } from '@/hooks/useLogin';
-import { bodyFont } from '@/recoil/font';
 import { bodyFontState } from '@/recoil/font/body';
 import { titleFontState } from '@/recoil/font/title';
 import { focusToHighlight } from '@/utils/focusToHighlight';

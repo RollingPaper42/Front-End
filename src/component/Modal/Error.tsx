@@ -1,4 +1,6 @@
 import BottomButton from '../BottomButton';
+import { bodyFontState } from '@/recoil/font/body';
+import { titleFontState } from '@/recoil/font/title';
 
 interface Props {
   mainContent: string;
@@ -15,12 +17,14 @@ export default function Error({
     <div className="relative w-[280px] pt-[32px] pb-[16px] px-[16px] bg-strcat-textarea-bg rounded-[16px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.50)] font-medium">
       <div className=" items-center justify-center">
         <p
-          className={`text-center text-body-size1 text-strcat-white font-semibold`}
+          className={`text-center ${titleFontState.titleLabel} text-strcat-white`}
         >
           {mainContent}
         </p>
         {subContent && (
-          <p className="text-center text-body-size2 text-strcat-gray-500 mt-[12px]">
+          <p
+            className={`text-center ${bodyFontState.serviceBody} text-strcat-gray-500 mt-[12px]`}
+          >
             {subContent}
           </p>
         )}
