@@ -4,7 +4,7 @@ import { titleFontState } from '@/recoil/font/title';
 
 interface Props {
   mainContent: string;
-  subContent: string;
+  subContent?: string;
   handleModalClose: () => void;
 }
 

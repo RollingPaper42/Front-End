@@ -1,6 +1,9 @@
 import imageCompression from 'browser-image-compression';
 import React, { Dispatch } from 'react';
 
+import Error from './Modal/Error';
+import useModal from '@/hooks/useModal';
+
 interface Props {
   setImage: Dispatch<React.SetStateAction<File | null>>;
   setPreview: Dispatch<React.SetStateAction<string>>;
@@ -12,6 +15,8 @@ export default function PhotoUpload({
   setPreview,
   setIsLoading,
 }: Props) {
+  const [openModal, closeModal] = useModal();
+
   const heicToJpeg = async (file: File) => {
     const heic2any = require('heic2any');
     const convertedBlob = await heic2any({
@@ -52,6 +57,16 @@ export default function PhotoUpload({
       if (file.size > 1024 * 1024) {
         //1mb 이상이면 압축
         file = await compressFile(file);
+        if (file.size > 1024 * 1024) {
+          //1mb 이상이면 에러모달
+          openModal(
+            <Error
+              mainContent="1MB 이하의 사진을 올려주세요"
+              handleModalClose={closeModal}
+            />,
+          );
+          return;
+        }
       }
       setImage(file);
       // 이미지를 프리뷰로 띄우기 위해 base64로 변환
