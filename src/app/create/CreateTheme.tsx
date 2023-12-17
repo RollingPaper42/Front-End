@@ -24,7 +24,7 @@ export default function CreateTheme({
   onClickLilac,
   isPreview,
 }: CreateThemeProps) {
-  const cats = [
+  const themes = [
     {
       id: '1',
       name: '크리스',
@@ -57,7 +57,7 @@ export default function CreateTheme({
           테마
         </div>
         <ThemeSelect
-          cats={cats}
+          themes={themes}
           isPreview={isPreview}
           defaultState={defaultState}
         />
