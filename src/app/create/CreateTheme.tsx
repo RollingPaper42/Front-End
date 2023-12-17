@@ -28,14 +28,14 @@ export default function CreateTheme({
     {
       id: '1',
       name: '크리스',
-      image: '/chrisCat.svg',
+      image: '/create/chrisCat.svg',
       onClick: onClickChris,
       bgStyle: 'bg-chris-bg',
     },
     {
       id: '2',
       name: '마스',
-      image: '/masCat.svg',
+      image: '/create/masCat.svg',
       onClick: onClickMas,
       bgStyle: 'bg-mas-bg',
     },
