@@ -4,9 +4,11 @@ import { useRef } from 'react';
 
 import HeaderLayout from '@/component/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
+import PageView from '@/component/PageView';
 import { useLogin } from '@/hooks/useLogin';
 import { bodyFontState } from '@/recoil/font/body';
 import { titleFontState } from '@/recoil/font/title';
+import { MixpanelTracking } from '@/services/mixpanel';
 import { focusToHighlight } from '@/utils/focusToHighlight';
 import { defaultState } from '@/utils/theme/default';
 import Image from 'next/image';
@@ -18,6 +20,7 @@ export default function Home() {
   const ref = useRef<HTMLHeadingElement | null>(null);
 
   const handleClickPersonal = () => {
+    MixpanelTracking.getInstance().clickEvent('click_create_board', {});
     if (isLogin) router.push('create', { scroll: false });
     else {
       localStorage.setItem('strcat_login_success_url', '/create');
@@ -25,8 +28,16 @@ export default function Home() {
     }
   };
 
+  const handleClickStart = () => {
+    MixpanelTracking.getInstance().clickEvent('click_guestbook', {});
+    router.push(
+      '/personal/WIncoOMTdNFI0LCNpLfVT0RF3juZV1jsIi-G58nut0yB-kfIRam-XP1JH2Hz9fWU',
+    );
+  };
+
   return (
     <>
+      <PageView pageViewName="show_main" />
       <HeaderLayout />
       <div className={` h-auto min-h-full ${defaultState.background}`}>
         <div
@@ -88,11 +99,7 @@ export default function Home() {
           <div className="pb-[100px] flex flex-col items-center justify-center">
             <button
               className="space-x-[8px] bg-strcat-sub w-[231px] h-[52px] rounded-[5px] select-none flex flex-row items-center justify-center"
-              onClick={() =>
-                router.push(
-                  '/personal/WIncoOMTdNFI0LCNpLfVT0RF3juZV1jsIi-G58nut0yB-kfIRam-XP1JH2Hz9fWU',
-                )
-              }
+              onClick={handleClickStart}
             >
               <Image src="/LongCat.svg" width={32} height={24} alt="LongCat" />
               <div

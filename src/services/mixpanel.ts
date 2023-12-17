@@ -15,7 +15,6 @@ export class MixpanelTracking {
     if (MixpanelTracking._instance) {
       throw new Error('Error: already instance ');
     }
-    console.log('Mixpnael Tracking in strcat');
     mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN || '', {
       debug: true,
       track_pageview: true,

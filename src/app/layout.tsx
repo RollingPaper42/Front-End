@@ -3,7 +3,6 @@
 import { RecoilRoot } from 'recoil';
 
 import InApp from './InApp';
-import MixPanel from './MixPanel';
 import './globals.css';
 import AxiosInterceptor from '@/component/AxiosInterceptor';
 import Modal from '@/component/Modal';
@@ -40,7 +39,6 @@ export default function RootLayout({
       <body className="h-full overscroll-none  bg-black/80">
         <div className="m-auto h-full max-w-md font-pretentdard">
           <InApp />
-          <MixPanel />
           <RecoilRoot>
             <AxiosInterceptor />
             <Modal />
