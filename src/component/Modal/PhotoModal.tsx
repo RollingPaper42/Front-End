@@ -10,6 +10,7 @@ interface Props {
   closeModal: () => void;
   text: string;
   writer: string;
+  theme: themeState;
 }
 
 export default function PhotoModal({
@@ -17,8 +18,8 @@ export default function PhotoModal({
   closeModal,
   text,
   writer,
+  theme,
 }: Props) {
-  const [theme] = useRecoilState(themeState);
   return (
     <div
       onClick={(e) => handleBackground(e, closeModal)}

@@ -9,3 +9,8 @@ export const observeState = atom({
     writer: '',
   },
 });
+
+export const addContentState = atom({
+  key: 'addContentState',
+  default: 0,
+});

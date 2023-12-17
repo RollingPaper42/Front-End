@@ -46,7 +46,6 @@ export default function Create() {
       theme: themeName,
       title: `${title}`,
     };
-    console.log(themeName, 'theme name is ');
     axiosInstance
       .post(`/boards`, data)
       .then((data) => {

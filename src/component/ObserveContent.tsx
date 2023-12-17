@@ -13,6 +13,8 @@ interface props {
   content: content;
   observe: observeContent;
   theme: themeState;
+  addContent: number;
+  setAddContent: Dispatch<SetStateAction<number>>;
   setObserve: Dispatch<SetStateAction<observeContent>>;
   openModal: (modalComponent: JSX.Element) => void;
   closeModal: () => void;
@@ -23,6 +25,8 @@ const ObserveContent = ({
   observe,
   setObserve,
   theme,
+  addContent,
+  setAddContent,
   openModal,
   closeModal,
 }: props) => {
@@ -34,9 +38,17 @@ const ObserveContent = ({
         closeModal={closeModal}
         text={content.text}
         writer={content.writer}
+        theme={theme}
       />,
     );
   };
+
+  useEffect(() => {
+    if (addContent === content.id) {
+      focusToHighlight(ref);
+      setAddContent(0);
+    }
+  }, [addContent]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -69,6 +81,7 @@ const ObserveContent = ({
       {observe.contentId === content.id && observe.photoUrl !== '' && (
         <PhotoPreview
           photoUrl={content.photoUrl}
+          color={theme.bgTheme.highlight}
           handleClickPhoto={handleClickPhoto}
         />
       )}

@@ -33,3 +33,9 @@ export const chrisBg: bgThemeState = {
   rightCTA: 'bg-chris-buttonbg',
   addRightCTA: 'bg-chris-highlight',
 };
+
+export const noneBg: bgThemeState = {
+  highlight: '',
+  rightCTA: '',
+  addRightCTA: '',
+};

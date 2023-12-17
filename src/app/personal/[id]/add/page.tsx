@@ -2,6 +2,7 @@
 
 import { AxiosError } from 'axios';
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 
 import Writer from './Writer';
 import BottomButton from '@/component/BottomButton';
@@ -12,6 +13,7 @@ import PreviewPhoto from '@/component/PreviewPhoto';
 import Textarea from '@/component/Textarea';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
+import { addContentState } from '@/recoil/content';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
@@ -21,12 +23,12 @@ export default function Add({ params }: { params: { id: string } }) {
   const [text, setText] = useState('');
   const [writer, , handleWriter] = useInput('');
   const [openModal, closeModal] = useModal();
+  const [, setAddContent] = useRecoilState(addContentState);
   const [image, setImage] = useInput<File | null>(null);
   const [preview, setPreview] = useState<string>('');
   const router = useRouter();
   const [isFixed, setIsFixed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const handleClick = async () => {
     const postPictures = async () => {
       return await axiosInstance.post(
@@ -36,11 +38,15 @@ export default function Add({ params }: { params: { id: string } }) {
     };
 
     const postContents = async (photoUrl: string) => {
-      return await axiosInstance.post(`/boards/${params.id}/contents`, {
-        text: text,
-        writer: writer,
-        photoUrl: photoUrl,
-      });
+      return await axiosInstance
+        .post(`/boards/${params.id}/contents`, {
+          text: text,
+          writer: writer,
+          photoUrl: photoUrl,
+        })
+        .then((res) => {
+          setAddContent(res.data);
+        });
     };
 
     const changeAxiosHeader = (type: string) => {

@@ -39,3 +39,10 @@ export const masText: textThemeState = {
   highlight: 'text-default-white',
   rightCTA: 'text-default-white',
 };
+
+export const noneText: textThemeState = {
+  writer: '',
+  addRightCTA: '',
+  highlight: '',
+  rightCTA: '',
+};
