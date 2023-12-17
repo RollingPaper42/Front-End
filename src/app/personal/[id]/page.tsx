@@ -46,6 +46,8 @@ export default function Personal({ params }: { params: { id: string } }) {
       .then((data) => {
         const resData = data.data;
         setBoard([resData.board]);
+        setTitle(resData.board.title);
+        setTheme(getTheme(resData.board.theme));
         setIsOwner(resData.isOwner);
         setLoggingProp({
           boardId: resData.board.id,
@@ -61,11 +63,13 @@ export default function Personal({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   useEffect(() => {
-    if (!board.length) return;
-    setTitle(board[0].title);
-    const boardTheme = getTheme(board[0].theme);
-    setTheme(() => boardTheme);
-  }, [board]);
+    setIsHidden(false);
+  }, []);
+
+  useEffect(() => {
+    if (!loggingProp) return;
+    logging('show_read_board', loggingProp);
+  }, [loggingProp]);
 
   const handleClickWrite = () => {
     logging('click_add_content', loggingProp);
@@ -124,15 +128,6 @@ export default function Personal({ params }: { params: { id: string } }) {
       handleCopyClipBoard(url);
     }
   };
-
-  useEffect(() => {
-    setIsHidden(false);
-  }, []);
-
-  useEffect(() => {
-    if (!loggingProp) return;
-    logging('show_read_board', loggingProp);
-  }, [loggingProp]);
 
   if (!board.length) {
     return (
