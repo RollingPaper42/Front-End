@@ -124,7 +124,9 @@ export default function Personal({ params }: { params: { id: string } }) {
               </div>
             )}
             <div style={{ paddingTop: `${windowHeight * 0.4}px` }} />
-            {board[0].contents.length === 0 && <NoneContent />}
+            {board[0].contents.length === 0 && (
+              <NoneContent handleClickWrite={handleClickWrite} />
+            )}
             <StrcatBoard board={board[0]} theme={theme} />
             <div style={{ minHeight: `${windowHeight * 0.7}px` }}></div>
             <div
