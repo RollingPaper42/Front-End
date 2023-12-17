@@ -18,8 +18,8 @@ export default function Toast({ message, setToast }: Props) {
   return (
     <div className="flex w-full max-w-md items-center justify-center">
       <div
-        className={`animate-fadeIn fixed bottom-[82px] z-20 flex w-fit items-center  justify-center rounded-[5px] bg-black px-[40px] py-[4px] font-[14px] text-white
-        opacity-0`}
+        className="fixed bottom-[82px] z-20 flex w-fit items-center justify-center rounded-[5px]
+         bg-black/50 px-[40px] py-[4px] font-[14px] text-white"
         role="alert"
       >
         {message}

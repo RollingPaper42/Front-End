@@ -20,7 +20,7 @@ export default function Error({
           {mainContent}
         </p>
         {subContent && (
-          <p className="text-center text-body-size2 text-strcat-white/50 mt-[12px]">
+          <p className="text-center text-body-size2 text-strcat-gray-500 mt-[12px]">
             {subContent}
           </p>
         )}
