@@ -125,7 +125,6 @@ export default function Add({ params }: { params: { id: string } }) {
           />
           <BottomButton
             textColor=""
-            height="h-[42px]"
             color="bg-strcat-bright-yellow"
             name="완료"
             width="basis-1/2"

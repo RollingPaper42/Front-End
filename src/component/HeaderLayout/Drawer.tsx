@@ -120,12 +120,11 @@ export default function Drawer() {
                 <div className="mt-[12px] w-full px-[24px]">
                   <BottomButton
                     name="새 스트링캣 만들기"
+                    height="h-[44px]"
                     width="w-full"
                     onClickHandler={handleNewStrcat}
-                    disabled={false}
                     color={`${defaultState.MiddleButton}`}
                     textColor={`${defaultState.highLightText}`}
-                    height="h-[44px]"
                   />
                 </div>
               </>
@@ -143,12 +142,11 @@ export default function Drawer() {
                 <div className="mt-[12px] w-full px-[24px]">
                   <BottomButton
                     name="로그인"
+                    height="h-[44px]"
                     width="w-full"
                     onClickHandler={handleLogin}
-                    disabled={false}
                     color={`${defaultState.MiddleButton}`}
                     textColor={`${defaultState.highLightText}`}
-                    height="h-[44px]"
                   />
                 </div>
               </>
