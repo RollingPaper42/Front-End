@@ -3,6 +3,7 @@ import React, { Dispatch } from 'react';
 
 import Error from './Modal/Error';
 import useModal from '@/hooks/useModal';
+import { MixpanelLogging, setProperties } from '@/services/mixpanel';
 
 interface Props {
   setImage: Dispatch<React.SetStateAction<File | null>>;
@@ -46,6 +47,7 @@ export default function PhotoUpload({
   };
 
   const handleChangeImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    logging('click_add_image');
     setIsLoading(true);
     setPreview('');
     if (e.target.files === null) return;
@@ -60,6 +62,7 @@ export default function PhotoUpload({
         file = await compressFile(file);
         if (file.size > 2048 * 1024) {
           //2mb 이상이면 에러모달
+          logging('show_image_size_error');
           openModal(
             <Error
               mainContent="2MB 이하의 사진을 올려주세요"
@@ -102,3 +105,7 @@ export default function PhotoUpload({
     </form>
   );
 }
+
+const logging = (eventName: string) => {
+  MixpanelLogging.getInstance().event(eventName, setProperties({}));
+};
