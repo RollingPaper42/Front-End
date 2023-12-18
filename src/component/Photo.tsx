@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface Props {
   photoUrl: string;
 }
@@ -5,12 +7,12 @@ interface Props {
 export default function Photo({ photoUrl }: Props) {
   return (
     <div className="relative flex max-h-[280px] w-full flex-col items-center justify-center">
-      <img
+      <Image
         src={photoUrl}
         alt="사진"
         width={innerWidth}
         height={innerHeight}
-        className="h-auto max-h-[280px] w-auto "
+        className="h-auto max-h-[280px] w-auto"
       />
     </div>
   );
