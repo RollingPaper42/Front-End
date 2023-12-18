@@ -105,8 +105,7 @@ export default function Personal({ params }: { params: { id: string } }) {
     if (navigator.share) {
       await navigator.share({
         title: 'strcat',
-        text: `[${title}]📮\n\n함께 롤링페이퍼를 끊임없이 이어주세요!`,
-        url: url,
+        text: `[${title}]📮\n\n함께 롤링페이퍼를 끊임없이 이어주세요!\n${url}`
       });
     } else {
       handleCopyClipBoard(url);
