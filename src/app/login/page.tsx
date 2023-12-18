@@ -62,7 +62,7 @@ export default function Login() {
             <Image src="/Google.svg" width={35} height={35} alt="google" />
             <div className="">구글 로그인</div>
           </button>
-          <div className="mt-[30px] px-[24px] text-white/50 text-[12px] text-center">
+          <div className="mt-[24px] mb-[16px] px-[24px] text-white/50 text-[12px] text-center">
             로그인을 하시면&nbsp;
             <button
               onClick={() => router.push('/privacy')}
