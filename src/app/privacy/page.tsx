@@ -15,7 +15,7 @@ export default function Privacy() {
         >
           <Close />
         </div>
-        <div className="flex w-full h-full flex-col text-white p-[24px] select-none">
+        <div className="flex w-full h-full flex-col text-white p-[24px]">
           <h1 className="text-[24px]">개인정보처리방침</h1>
           <br />
           <br />
@@ -102,6 +102,9 @@ export default function Privacy() {
             &nbsp;&nbsp;2) 이용자 권리의 중대한 변경이 발생할 때에는 최소 30일
             전에 미리 알려드리겠습니다.
           </p>
+          <br />
+          <p>공고일자 : 2023.12.18.</p>
+          <p>시행일자 : 2023.12.18.</p>
         </div>
       </div>
     </>

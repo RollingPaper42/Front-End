@@ -2,6 +2,7 @@
 
 import Close from '@/component/Icon/Close';
 import { bodyFontState } from '@/recoil/font/body';
+import { captionFontState } from '@/recoil/font/caption';
 import { headlineFontState } from '@/recoil/font/headline';
 import { titleFontState } from '@/recoil/font/title';
 import { defaultState } from '@/utils/theme/default';
@@ -62,19 +63,18 @@ export default function Login() {
             <Image src="/Google.svg" width={35} height={35} alt="google" />
             <div className="">구글 로그인</div>
           </button>
-          <div className="mt-[24px] mb-[16px] px-[24px] text-white/50 text-[12px] text-center">
+          <div
+            className={`mt-[24px] mb-[16px] px-[24px] ${defaultState.descriptionText} ${captionFontState.themeOption} text-center`}
+          >
             로그인을 하시면&nbsp;
             <button
               onClick={() => router.push('/privacy')}
-              className="font-semiboldbold underline"
+              className="underline"
             >
               개인정보처리방침
             </button>
             과 &nbsp;
-            <button
-              onClick={() => router.push('/terms')}
-              className="font-semiboldbold underline"
-            >
+            <button onClick={() => router.push('/terms')} className="underline">
               서비스 이용약관
             </button>
             에 동의하시는 것으로 간주됩니다.
