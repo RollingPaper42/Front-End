@@ -24,18 +24,18 @@ export default function CreateTheme({
   onClickLilac,
   isPreview,
 }: CreateThemeProps) {
-  const cats = [
+  const themes = [
     {
       id: '1',
       name: '크리스',
-      image: '/chrisCat.svg',
+      image: '/create/chrisCat.svg',
       onClick: onClickChris,
       bgStyle: 'bg-chris-bg',
     },
     {
       id: '2',
       name: '마스',
-      image: '/masCat.svg',
+      image: '/create/masCat.svg',
       onClick: onClickMas,
       bgStyle: 'bg-mas-bg',
     },
@@ -57,7 +57,7 @@ export default function CreateTheme({
           테마
         </div>
         <ThemeSelect
-          cats={cats}
+          themes={themes}
           isPreview={isPreview}
           defaultState={defaultState}
         />

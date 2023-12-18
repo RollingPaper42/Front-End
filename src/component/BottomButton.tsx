@@ -1,4 +1,3 @@
-import { titleFont } from '@/recoil/font';
 import { titleFontState } from '@/recoil/font/title';
 
 interface Props {

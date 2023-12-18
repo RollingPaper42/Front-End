@@ -1,3 +1,5 @@
+import { bodyFontState } from '@/recoil/font/body';
+
 interface Props {
   handleClickWrite: () => void;
 }
@@ -5,7 +7,7 @@ interface Props {
 export default function NoneContent({ handleClickWrite }: Props) {
   return (
     <div
-      className="select-none px-[24px] text-body-size1"
+      className={`select-none px-[24px] ${bodyFontState.boardBody}`}
       style={{ color: '#FFFFFF80' }}
     >
       <div

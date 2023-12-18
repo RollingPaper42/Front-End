@@ -146,7 +146,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                         className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${defaultState.btnLeftCTA}`}
                       >
                         <Image
-                          src="/Download.svg"
+                          src="/personal/Download.svg"
                           width={24}
                           height={24}
                           alt="Download"

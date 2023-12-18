@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
+import { bodyFontState } from '@/recoil/font/body';
 import { axiosInstance } from '@/utils/axios';
 
 function formatNumberWithCommas(inputText: number) {
@@ -22,7 +23,10 @@ export default function Summary({ id }: { id: string }) {
   }, []);
 
   return (
-    <div className="text-body-size1 px-[24px]" style={{ color: '#FFFFFF80' }}>
+    <div
+      className={` ${bodyFontState.serviceBody} px-[24px]`}
+      style={{ color: '#FFFFFF80' }}
+    >
       {`${contentCount}개의 마음이
       ${formatNumberWithCommas(contentTextCount)}자 이어졌어요!`}
     </div>
