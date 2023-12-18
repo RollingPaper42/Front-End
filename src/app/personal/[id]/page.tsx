@@ -16,7 +16,9 @@ import { useScroll } from '@/hooks/useScroll';
 import { noneTheme, themeState } from '@/recoil/newtheme/theme';
 import { chris, lilac, mas, night, peach } from '@/recoil/newtheme/theme';
 import { titleState } from '@/recoil/state';
+import { MixpanelLogging, setProperties } from '@/services/mixpanel';
 import { board } from '@/types/boards';
+import { personalPage } from '@/types/mixpanel';
 import { axiosInstance } from '@/utils/axios';
 import { defaultState } from '@/utils/theme/default';
 import Image from 'next/image';
@@ -29,17 +31,31 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [windowHeight, setWindowHeight] = useState(0);
   const router = useRouter();
   const [isLogin] = useLogin();
-  const [, setTitle] = useRecoilState(titleState);
+  const [title, setTitle] = useRecoilState(titleState);
   const { isHidden, setIsHidden } = useScroll();
   const [toast, setToast] = useState('');
   const [theme, setTheme] = useState<themeState>(noneTheme);
+  const [loggingProp, setLoggingProp] = useState<personalPage | undefined>(
+    undefined,
+  );
+
   useEffect(() => {
     if (window) setWindowHeight(window.innerHeight);
     axiosInstance
       .get(`/boards/${params.id}`)
       .then((data) => {
-        setBoard([data.data.board]);
-        setIsOwner(data.data.isOwner);
+        const resData = data.data;
+        setBoard([resData.board]);
+        setTitle(resData.board.title);
+        setTheme(getTheme(resData.board.theme));
+        setIsOwner(resData.isOwner);
+        setLoggingProp({
+          boardId: resData.board.id,
+          isOwner: resData.isOwner,
+          contentCount: resData.board.contents.length,
+          totalLength: resData.board.contents.length,
+          theme: resData.board.theme,
+        });
       })
       .catch((err) => {
         if (err.response.status === 406) router.push('/not-found');
@@ -47,17 +63,21 @@ export default function Personal({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   useEffect(() => {
-    if (!board.length) return;
-    setTitle(board[0].title);
-    const boardTheme = getTheme(board[0].theme);
-    setTheme(() => boardTheme);
-  }, [board]);
+    setIsHidden(false);
+  }, []);
+
+  useEffect(() => {
+    if (!loggingProp) return;
+    logging('show_read_board', loggingProp);
+  }, [loggingProp]);
 
   const handleClickWrite = () => {
+    logging('click_add_content', loggingProp);
     router.push(`${params.id}/add`);
   };
 
   const handleClickCreate = () => {
+    logging('click_create_board', loggingProp);
     if (!isLogin) {
       localStorage.setItem('strcat_login_success_url', '/create');
       router.push('/login');
@@ -67,6 +87,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   const handleClickDownload = () => {
+    logging('click_download', loggingProp);
     setToast('download');
   };
 
@@ -82,21 +103,15 @@ export default function Personal({ params }: { params: { id: string } }) {
   const handleShare = async () => {
     const url = `https://strcat.me/personal/${params.id}`;
     if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'strcat',
-          text: '더 많은 글을 써서 strcat을 끊임없이 달아주세요!',
-          url: url,
-        });
-      } catch (err) {}
+      await navigator.share({
+        title: 'strcat',
+        text: `[${title}]📮\n\n함께 롤링페이퍼를 끊임없이 이어주세요!`,
+        url: url,
+      });
     } else {
       handleCopyClipBoard(url);
     }
   };
-
-  useEffect(() => {
-    setIsHidden(false);
-  }, []);
 
   if (!board.length) {
     return (
@@ -215,6 +230,15 @@ export default function Personal({ params }: { params: { id: string } }) {
     </>
   );
 }
+
+const logging = (eventName: string, loggingProp: personalPage | undefined) => {
+  MixpanelLogging.getInstance().event(
+    eventName,
+    setProperties({
+      ...loggingProp,
+    }),
+  );
+};
 
 const getTheme = (themeName: string): themeState => {
   if (themeName === 'chris') return chris;
