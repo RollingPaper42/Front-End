@@ -28,7 +28,7 @@ export default function RootLayout({
           gtag('config', 'G-NT9VXJJDMB');
         `}
         </Script>
-        <title>strcat : 글을 이어 만드는 롤링페이퍼</title>
+        <title>STRCAT : 글을 이어 만드는 롤링페이퍼</title>
         <OpenGraph />
         <Description />
         <link rel="icon" href="/Favicon.png"></link>
