@@ -10,6 +10,7 @@ export default function Loading() {
         width={42}
         height={42}
         alt="mainStrcatIcon"
+        priority
       />
       <div className="mt-2 ml-[7px] flex flex-row w-[28px] gap-2">
         <div className="basis-1/3 w-[4px] h-[4px] rounded  bg-strcat-bright-yellow animate-pulse-custom1"></div>

@@ -54,6 +54,7 @@ export default function Home() {
               width={153}
               height={153}
               alt="mainStrcatIcon"
+              priority
             />
             <div className="absolute top-0">
               <Image
@@ -103,7 +104,7 @@ export default function Home() {
               className="space-x-[8px] bg-strcat-sub w-[231px] h-[52px] rounded-[5px] select-none flex flex-row items-center justify-center"
               onClick={handleClickStart}
             >
-              <Image src="/LongCat.svg" width={32} height={24} alt="LongCat" />
+              <Image src="/LongCat.svg" width={33} height={24} alt="LongCat" />
               <div
                 className={`${defaultState.bottomButtonText} ${bodyFontState.serviceBody}text-strcat-bright-yellow`}
               >

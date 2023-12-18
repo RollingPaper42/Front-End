@@ -21,6 +21,8 @@ export default function PreviewTheme({ isPreview }: { isPreview: string }) {
         height={398}
         alt={selectedImage.alt}
         loading="eager"
+        priority
+        className="w-auto h-auto"
       />
     </div>
   );
