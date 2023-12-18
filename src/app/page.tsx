@@ -71,7 +71,6 @@ export default function Home() {
               alt="mainStrcatIcon"
             />
           </div>
-
           <div className="cursor-pointer select-none pt-[54px]">
             <Image
               className="h-auto w-auto animate-bounce"

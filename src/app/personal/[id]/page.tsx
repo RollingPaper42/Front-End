@@ -93,13 +93,11 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   const handleShare = async (url: string) => {
     if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'strcat',
-          text: '더 많은 글을 써서 strcat을 끊임없이 달아주세요!',
-          url: url,
-        });
-      } catch (err) {}
+      await navigator.share({
+        title: 'strcat',
+        text: '더 많은 글을 써서 strcat을 끊임없이 달아주세요!',
+        url: url,
+      });
     } else {
       handleCopyClipBoard(url);
     }
