@@ -16,7 +16,9 @@ import { useScroll } from '@/hooks/useScroll';
 import { noneTheme, themeState } from '@/recoil/newtheme/theme';
 import { chris, lilac, mas, night, peach } from '@/recoil/newtheme/theme';
 import { titleState } from '@/recoil/state';
+import { MixpanelLogging, setProperties } from '@/services/mixpanel';
 import { board } from '@/types/boards';
+import { personalPage } from '@/types/mixpanel';
 import { axiosInstance } from '@/utils/axios';
 import { defaultState } from '@/utils/theme/default';
 import Image from 'next/image';
@@ -33,13 +35,27 @@ export default function Personal({ params }: { params: { id: string } }) {
   const { isHidden, setIsHidden } = useScroll();
   const [toast, setToast] = useState('');
   const [theme, setTheme] = useState<themeState>(noneTheme);
+  const [loggingProp, setLoggingProp] = useState<personalPage | undefined>(
+    undefined,
+  );
+
   useEffect(() => {
     if (window) setWindowHeight(window.innerHeight);
     axiosInstance
       .get(`/boards/${params.id}`)
       .then((data) => {
-        setBoard([data.data.board]);
-        setIsOwner(data.data.isOwner);
+        const resData = data.data;
+        setBoard([resData.board]);
+        setTitle(resData.board.title);
+        setTheme(getTheme(resData.board.theme));
+        setIsOwner(resData.isOwner);
+        setLoggingProp({
+          boardId: resData.board.id,
+          isOwner: resData.isOwner,
+          contentCount: resData.board.contents.length,
+          totalLength: resData.board.contents.length,
+          theme: resData.board.theme,
+        });
       })
       .catch((err) => {
         if (err.response.status === 406) router.push('/not-found');
@@ -47,17 +63,21 @@ export default function Personal({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   useEffect(() => {
-    if (!board.length) return;
-    setTitle(board[0].title);
-    const boardTheme = getTheme(board[0].theme);
-    setTheme(() => boardTheme);
-  }, [board]);
+    setIsHidden(false);
+  }, []);
+
+  useEffect(() => {
+    if (!loggingProp) return;
+    logging('show_read_board', loggingProp);
+  }, [loggingProp]);
 
   const handleClickWrite = () => {
+    logging('click_add_content', loggingProp);
     router.push(`${params.id}/add`);
   };
 
   const handleClickCreate = () => {
+    logging('click_create_board', loggingProp);
     if (!isLogin) {
       localStorage.setItem('strcat_login_success_url', '/create');
       router.push('/login');
@@ -67,19 +87,8 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   const handleClickDownload = () => {
+    logging('click_download', loggingProp);
     setToast('download');
-  };
-
-  const handleClickShare = async () => {
-    try {
-      const shortUrl = await axiosInstance.get(
-        `/share?url=https://strcat.me/personal/${params.id}`,
-      );
-      const url = `${shortUrl.data}`;
-      await handleShare(url);
-    } catch {
-      handleShare(`https://strcat.me/personal/${params.id}`);
-    }
   };
 
   const handleCopyClipBoard = async (url: string) => {
@@ -91,7 +100,8 @@ export default function Personal({ params }: { params: { id: string } }) {
     }
   };
 
-  const handleShare = async (url: string) => {
+  const handleShare = async () => {
+    const url = `https://strcat.me/personal/${params.id}`;
     if (navigator.share) {
       await navigator.share({
         title: 'strcat',
@@ -102,10 +112,6 @@ export default function Personal({ params }: { params: { id: string } }) {
       handleCopyClipBoard(url);
     }
   };
-
-  useEffect(() => {
-    setIsHidden(false);
-  }, []);
 
   if (!board.length) {
     return (
@@ -133,76 +139,82 @@ export default function Personal({ params }: { params: { id: string } }) {
               </div>
             )}
             <div style={{ paddingTop: `${windowHeight * 0.4}px` }} />
-            {board[0].contents.length === 0 && <NoneContent />}
+            {board[0].contents.length === 0 && (
+              <NoneContent handleClickWrite={handleClickWrite} />
+            )}
             <StrcatBoard board={board[0]} theme={theme} />
             <div style={{ minHeight: `${windowHeight * 0.7}px` }}></div>
-          </div>
-        </div>
-        <div
-          className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
-            isHidden ? 'translate-y-full' : 'translate-y-0'
-          }`}
-        >
-          <BottomImage themeName={theme.name} />
-          <div className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]">
-            {isOwner ? (
-              <>
-                <div
-                  className="flex basis-1/12 items-center justify-center"
-                  onClick={handleClickDownload}
-                >
-                  <div
-                    className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${defaultState.btnLeftCTA}`}
-                  >
-                    <Image
-                      src="/personal/Download.svg"
-                      width={24}
-                      height={24}
-                      alt="Download"
+            <div
+              className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
+                isHidden ? 'translate-y-full' : 'translate-y-0'
+              }`}
+            >
+              <BottomImage themeName={theme.name} />
+              <div className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]">
+                {isOwner ? (
+                  <>
+                    <div
+                      className="flex basis-1/12 items-center justify-center"
+                      onClick={handleClickDownload}
+                    >
+                      <div
+                        className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${defaultState.btnLeftCTA}`}
+                      >
+                        <Image
+                          src="/personal/Download.svg"
+                          width={24}
+                          height={24}
+                          alt="Download"
+                        />
+                      </div>
+                    </div>
+                    <BottomButton
+                      textColor={`${defaultState.explainLeftCTA}`}
+                      name="공유하기"
+                      height="h-[46px]"
+                      width="basis-5/12"
+                      onClickHandler={handleShare}
+                      disabled={false}
+                      color={`${defaultState.btnLeftCTA}`}
+                      isShadow={true}
                     />
-                  </div>
-                </div>
-                <BottomButton
-                  textColor={`${defaultState.explainLeftCTA}`}
-                  name="공유하기"
-                  height="h-[46px]"
-                  width="basis-5/12"
-                  onClickHandler={handleClickShare}
-                  color={`${defaultState.btnLeftCTA}`}
-                  isShadow={true}
-                />
-                <BottomButton
-                  textColor={`${theme.textTheme.rightCTA}`}
-                  name="글쓰기"
-                  height="h-[46px]"
-                  width="basis-5/12"
-                  onClickHandler={handleClickWrite}
-                  color={`${theme.bgTheme.rightCTA}`}
-                  isShadow={true}
-                />
-              </>
-            ) : (
-              <>
-                <BottomButton
-                  textColor={`${defaultState.explainLeftCTA}`}
-                  name="나도 만들기"
-                  width="basis-1/3"
-                  height="h-[46px]"
-                  onClickHandler={handleClickCreate}
-                  color={`${defaultState.btnLeftCTA}`}
-                  isShadow={true}
-                />
-                <BottomButton
-                  textColor={`${theme.textTheme.rightCTA}`}
-                  name="글쓰기"
-                  width="basis-2/3"
-                  height="h-[46px]"
-                  onClickHandler={handleClickWrite}
-                  color={`${theme.bgTheme.rightCTA}`}
-                  isShadow={true}
-                />
-              </>
-            )}
+                    <BottomButton
+                      textColor={`${theme.textTheme.rightCTA}`}
+                      name="글쓰기"
+                      height="h-[46px]"
+                      width="basis-5/12"
+                      onClickHandler={handleClickWrite}
+                      disabled={false}
+                      color={`${theme.bgTheme.rightCTA}`}
+                      isShadow={true}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <BottomButton
+                      textColor={`${defaultState.explainLeftCTA}`}
+                      name="나도 만들기"
+                      width="basis-1/3"
+                      height="h-[46px]"
+                      onClickHandler={handleClickCreate}
+                      disabled={false}
+                      color={`${defaultState.btnLeftCTA}`}
+                      isShadow={true}
+                    />
+                    <BottomButton
+                      textColor={`${theme.textTheme.rightCTA}`}
+                      name="글쓰기"
+                      width="basis-2/3"
+                      height="h-[46px]"
+                      onClickHandler={handleClickWrite}
+                      disabled={false}
+                      color={`${theme.bgTheme.rightCTA}`}
+                      isShadow={true}
+                    />
+                  </>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -218,6 +230,15 @@ export default function Personal({ params }: { params: { id: string } }) {
     </>
   );
 }
+
+const logging = (eventName: string, loggingProp: personalPage | undefined) => {
+  MixpanelLogging.getInstance().event(
+    eventName,
+    setProperties({
+      ...loggingProp,
+    }),
+  );
+};
 
 const getTheme = (themeName: string): themeState => {
   if (themeName === 'chris') return chris;

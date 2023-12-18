@@ -1,12 +1,13 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import HeaderLayout from '@/component/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
 import { useLogin } from '@/hooks/useLogin';
 import { bodyFontState } from '@/recoil/font/body';
 import { titleFontState } from '@/recoil/font/title';
+import { MixpanelLogging, setProperties } from '@/services/mixpanel';
 import { focusToHighlight } from '@/utils/focusToHighlight';
 import { defaultState } from '@/utils/theme/default';
 import Image from 'next/image';
@@ -17,12 +18,24 @@ export default function Home() {
   const router = useRouter();
   const ref = useRef<HTMLHeadingElement | null>(null);
 
+  useEffect(() => {
+    logging('show_main');
+  }, []);
+
   const handleClickPersonal = () => {
+    logging('click_create_board');
     if (isLogin) router.push('create', { scroll: false });
     else {
       localStorage.setItem('strcat_login_success_url', '/create');
       router.push('/login');
     }
+  };
+
+  const handleClickStart = () => {
+    logging('click_guestbook');
+    router.push(
+      '/personal/WIncoOMTdNFI0LCNpLfVT0RF3juZV1jsIi-G58nut0yB-kfIRam-XP1JH2Hz9fWU',
+    );
   };
 
   return (
@@ -88,15 +101,11 @@ export default function Home() {
           <div className="pb-[100px] flex flex-col items-center justify-center">
             <button
               className="space-x-[8px] bg-strcat-sub w-[231px] h-[52px] rounded-[5px] select-none flex flex-row items-center justify-center"
-              onClick={() =>
-                router.push(
-                  '/personal/WIncoOMTdNFI0LCNpLfVT0RF3juZV1jsIi-G58nut0yB-kfIRam-XP1JH2Hz9fWU',
-                )
-              }
+              onClick={handleClickStart}
             >
               <Image src="/LongCat.svg" width={32} height={24} alt="LongCat" />
               <div
-                className={`${bodyFontState.serviceBody}text-strcat-bright-yellow`}
+                className={`${defaultState.bottomButtonText} ${bodyFontState.serviceBody}text-strcat-bright-yellow`}
               >
                 스트링캣 방명록 남기기
               </div>
@@ -112,3 +121,7 @@ export default function Home() {
     </>
   );
 }
+
+const logging = (eventName: string) => {
+  MixpanelLogging.getInstance().event(eventName, setProperties({}));
+};
