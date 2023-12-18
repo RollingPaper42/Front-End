@@ -105,7 +105,7 @@ export default function Home() {
             >
               <Image src="/LongCat.svg" width={32} height={24} alt="LongCat" />
               <div
-                className={`${bodyFontState.serviceBody}text-strcat-bright-yellow`}
+                className={`${defaultState.bottomButtonText} ${bodyFontState.serviceBody}text-strcat-bright-yellow`}
               >
                 스트링캣 방명록 남기기
               </div>

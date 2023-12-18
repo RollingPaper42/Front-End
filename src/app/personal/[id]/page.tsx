@@ -91,19 +91,6 @@ export default function Personal({ params }: { params: { id: string } }) {
     setToast('download');
   };
 
-  const handleClickShare = async () => {
-    logging('click_share', loggingProp);
-    try {
-      const shortUrl = await axiosInstance.get(
-        `/share?url=https://strcat.me/personal/${params.id}`,
-      );
-      const url = `${shortUrl.data}`;
-      await handleShare(url);
-    } catch {
-      handleShare(`https://strcat.me/personal/${params.id}`);
-    }
-  };
-
   const handleCopyClipBoard = async (url: string) => {
     try {
       await navigator.clipboard.writeText(url);
@@ -113,7 +100,8 @@ export default function Personal({ params }: { params: { id: string } }) {
     }
   };
 
-  const handleShare = async (url: string) => {
+  const handleShare = async () => {
+    const url = `https://strcat.me/personal/${params.id}`;
     if (navigator.share) {
       try {
         await navigator.share({
@@ -121,9 +109,7 @@ export default function Personal({ params }: { params: { id: string } }) {
           text: '더 많은 글을 써서 strcat을 끊임없이 달아주세요!',
           url: url,
         });
-      } catch (err) {
-        setToast('error');
-      }
+      } catch (err) {}
     } else {
       handleCopyClipBoard(url);
     }
@@ -155,76 +141,82 @@ export default function Personal({ params }: { params: { id: string } }) {
               </div>
             )}
             <div style={{ paddingTop: `${windowHeight * 0.4}px` }} />
-            {board[0].contents.length === 0 && <NoneContent />}
+            {board[0].contents.length === 0 && (
+              <NoneContent handleClickWrite={handleClickWrite} />
+            )}
             <StrcatBoard board={board[0]} theme={theme} />
             <div style={{ minHeight: `${windowHeight * 0.7}px` }}></div>
-          </div>
-        </div>
-        <div
-          className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
-            isHidden ? 'translate-y-full' : 'translate-y-0'
-          }`}
-        >
-          <BottomImage themeName={theme.name} />
-          <div className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]">
-            {isOwner ? (
-              <>
-                <div
-                  className="flex basis-1/12 items-center justify-center"
-                  onClick={handleClickDownload}
-                >
-                  <div
-                    className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${defaultState.btnLeftCTA}`}
-                  >
-                    <Image
-                      src="/personal/Download.svg"
-                      width={24}
-                      height={24}
-                      alt="Download"
+            <div
+              className={`fixed bottom-0 pb-[12px] left-0 z-button flex w-full items-center justify-center transition-transform duration-300 ${
+                isHidden ? 'translate-y-full' : 'translate-y-0'
+              }`}
+            >
+              <BottomImage themeName={theme.name} />
+              <div className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]">
+                {isOwner ? (
+                  <>
+                    <div
+                      className="flex basis-1/12 items-center justify-center"
+                      onClick={handleClickDownload}
+                    >
+                      <div
+                        className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${defaultState.btnLeftCTA}`}
+                      >
+                        <Image
+                          src="/personal/Download.svg"
+                          width={24}
+                          height={24}
+                          alt="Download"
+                        />
+                      </div>
+                    </div>
+                    <BottomButton
+                      textColor={`${defaultState.explainLeftCTA}`}
+                      name="공유하기"
+                      height="h-[46px]"
+                      width="basis-5/12"
+                      onClickHandler={handleShare}
+                      disabled={false}
+                      color={`${defaultState.btnLeftCTA}`}
+                      isShadow={true}
                     />
-                  </div>
-                </div>
-                <BottomButton
-                  textColor={`${defaultState.explainLeftCTA}`}
-                  name="공유하기"
-                  height="h-[46px]"
-                  width="basis-5/12"
-                  onClickHandler={handleClickShare}
-                  color={`${defaultState.btnLeftCTA}`}
-                  isShadow={true}
-                />
-                <BottomButton
-                  textColor={`${theme.textTheme.rightCTA}`}
-                  name="글쓰기"
-                  height="h-[46px]"
-                  width="basis-5/12"
-                  onClickHandler={handleClickWrite}
-                  color={`${theme.bgTheme.rightCTA}`}
-                  isShadow={true}
-                />
-              </>
-            ) : (
-              <>
-                <BottomButton
-                  textColor={`${defaultState.explainLeftCTA}`}
-                  name="나도 만들기"
-                  width="basis-1/3"
-                  height="h-[46px]"
-                  onClickHandler={handleClickCreate}
-                  color={`${defaultState.btnLeftCTA}`}
-                  isShadow={true}
-                />
-                <BottomButton
-                  textColor={`${theme.textTheme.rightCTA}`}
-                  name="글쓰기"
-                  width="basis-2/3"
-                  height="h-[46px]"
-                  onClickHandler={handleClickWrite}
-                  color={`${theme.bgTheme.rightCTA}`}
-                  isShadow={true}
-                />
-              </>
-            )}
+                    <BottomButton
+                      textColor={`${theme.textTheme.rightCTA}`}
+                      name="글쓰기"
+                      height="h-[46px]"
+                      width="basis-5/12"
+                      onClickHandler={handleClickWrite}
+                      disabled={false}
+                      color={`${theme.bgTheme.rightCTA}`}
+                      isShadow={true}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <BottomButton
+                      textColor={`${defaultState.explainLeftCTA}`}
+                      name="나도 만들기"
+                      width="basis-1/3"
+                      height="h-[46px]"
+                      onClickHandler={handleClickCreate}
+                      disabled={false}
+                      color={`${defaultState.btnLeftCTA}`}
+                      isShadow={true}
+                    />
+                    <BottomButton
+                      textColor={`${theme.textTheme.rightCTA}`}
+                      name="글쓰기"
+                      width="basis-2/3"
+                      height="h-[46px]"
+                      onClickHandler={handleClickWrite}
+                      disabled={false}
+                      color={`${theme.bgTheme.rightCTA}`}
+                      isShadow={true}
+                    />
+                  </>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
