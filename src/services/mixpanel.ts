@@ -15,7 +15,6 @@ export class MixpanelLogging {
       throw new Error('Error: already instance ');
     }
     mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN || '', {
-      track_pageview: true,
       persistence: 'localStorage',
     });
   }
