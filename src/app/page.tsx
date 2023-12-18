@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import HeaderLayout from '@/component/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
@@ -17,9 +17,11 @@ export default function Home() {
   const [isLogin] = useLogin();
   const router = useRouter();
   const ref = useRef<HTMLHeadingElement | null>(null);
+  const [windowHeight, setWindowHeight] = useState(0);
 
   useEffect(() => {
     logging('show_main');
+    if (window) setWindowHeight(window.innerHeight);
   }, []);
 
   const handleClickPersonal = () => {
@@ -95,10 +97,11 @@ export default function Home() {
               onClick={() => focusToHighlight(ref)}
             />
           </div>
-          <div className="pb-[312px] pt-[100px]">
+          <div className="pt-[100px]">
             <div ref={ref} />
             <MainManStrcat />
           </div>
+          <div style={{ paddingBottom: `${windowHeight * 0.5}px` }}></div>
           <div className="pb-[100px] flex flex-col items-center justify-center">
             <button
               className="space-x-[8px] bg-strcat-sub w-[231px] h-[52px] rounded-[5px] select-none flex flex-row items-center justify-center"
