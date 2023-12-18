@@ -14,8 +14,8 @@ export default function BottomAnimationImage({
           alt={`sit${themeName}`}
           src={`/cats/${themeName}/sit.gif`}
           width={33}
-          height={34}
-          className="w-auto h-auto"
+          height={43}
+          className="w-[33px] h-[43px]"
           priority
         />
       </div>
@@ -25,8 +25,7 @@ export default function BottomAnimationImage({
             alt="chrisImage"
             src="/personal/chrisSnowman.svg"
             width={30}
-            height={50}
-            className="w-[30px] h-[50px]"
+            height={58}
             priority
           />
         )}
@@ -35,8 +34,7 @@ export default function BottomAnimationImage({
             alt="masImage"
             src="/personal/masTree.svg"
             width={71}
-            height={46}
-            className="w-[71px] h-[46px]"
+            height={45}
             priority
           />
         )}
