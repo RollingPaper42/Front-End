@@ -20,6 +20,13 @@ export default function RootLayout({
     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", ${process.env.NEXT_PUBLIC_CLARITY_ID});`;
 
+  const googleAnalyticsCode = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE_ID});
+  `;
+
   return (
     <html className="h-full">
       <head>
@@ -29,14 +36,7 @@ export default function RootLayout({
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ID}`}
         />
-        <Script id="google-analytics">
-          {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE_ID});
-        `}
-        </Script>
+        <Script id="google-analytics">{googleAnalyticsCode}</Script>
         <title>strcat : 글을 이어 만드는 롤링페이퍼</title>
         <OpenGraph />
         <Description />
