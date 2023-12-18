@@ -15,7 +15,7 @@ export default function Privacy() {
         >
           <Close />
         </div>
-        <div className="flex w-full h-full flex-col text-white p-[24px]">
+        <div className="flex w-full h-full flex-col text-white p-[24px] select-none">
           <h1 className="text-[24px]">개인정보처리방침</h1>
           <br />
           <br />
@@ -95,7 +95,7 @@ export default function Privacy() {
             개인정보 처리방침을 수정할 수 있습니다.
           </p>
           <p>
-            &nbsp;&nbsp;1)개인정보 처리방침이 변경되는 경우 최소 7일 전 변경
+            &nbsp;&nbsp;1) 개인정보 처리방침이 변경되는 경우 최소 7일 전 변경
             사항을 사전에 안내 하겠습니다.
           </p>
           <p>
