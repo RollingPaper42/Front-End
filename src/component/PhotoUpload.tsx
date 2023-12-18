@@ -39,8 +39,9 @@ export default function PhotoUpload({
       alwaysKeepResolution: true,
       useWebWorker: true,
       maxIteration: 3,
-      initialQuality: 0.5,
+      initialQuality: 0.1,
     };
+    // 1/10 -> 1/100 -> 1/1000로 압축 진행
     return await imageCompression(file, options);
   };
 
@@ -51,20 +52,21 @@ export default function PhotoUpload({
     let file = e.target?.files[0];
     try {
       if (file.type === 'image/heic') {
-        //heic파일을 png로 변환
+        //heic파일을 jpeg로 변환
         file = await heicToJpeg(file);
       }
       if (file.size > 1024 * 1024) {
         //1mb 이상이면 압축
         file = await compressFile(file);
-        if (file.size > 1024 * 1024) {
-          //1mb 이상이면 에러모달
+        if (file.size > 2048 * 1024) {
+          //2mb 이상이면 에러모달
           openModal(
             <Error
-              mainContent="1MB 이하의 사진을 올려주세요"
+              mainContent="2MB 이하의 사진을 올려주세요"
               handleModalClose={closeModal}
             />,
           );
+          setIsLoading(false);
           return;
         }
       }
