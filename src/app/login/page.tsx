@@ -46,6 +46,16 @@ export default function Login() {
         >
           함께 문장을 이어가는 롤링페이퍼
         </div>
+        <div className="mt-[30px] px-[24px] text-white/30 text-[12px] text-center">
+          로그인을 하시면 개인정보처리방침과&nbsp;
+          <button
+            onClick={() => router.push('/terms')}
+            className="text-white/40 font-semiboldbold underline"
+          >
+            서비스 이용약관
+          </button>
+          에 동의하시는 것으로 간주됩니다.
+        </div>
         <div className="fixed bottom-[12px] w-full max-w-md px-[24px]">
           <button
             className={`flex h-[46px] w-full flex-row items-center justify-center rounded-[6px] ${titleFontState.buttonLabel} font-medium ${defaultState.kakaoButtonBg}`}
