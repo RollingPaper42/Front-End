@@ -71,7 +71,7 @@ export default function Home() {
               alt="mainStrcatIcon"
             />
           </div>
-          <div className="mt-[30px] px-[24px] text-white/30 text-[12px]">
+          <div className="mt-[30px] px-[24px] text-white/30 text-[12px] text-center">
             반드시 &nbsp;
             <button
               onClick={() => router.push('/terms')}
