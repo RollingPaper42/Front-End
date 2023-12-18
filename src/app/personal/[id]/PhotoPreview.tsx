@@ -14,8 +14,8 @@ export default function PhotoPreview({
 }: Props) {
   return (
     <div className="absolute top-[-51px]">
-      <div className="w-[44px] h-[46px] relative" onClick={handleClickPhoto}>
-        <div className="w-[40px] h-[40px] absolute left-[2px]">
+      <div className="w-[44px] h-[50px] relative" onClick={handleClickPhoto}>
+        <div className="w-[42px] h-[42px] absolute left-[1px] top-[1px]">
           <Image
             src={photoUrl}
             width={innerWidth}
