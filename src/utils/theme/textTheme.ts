@@ -8,7 +8,7 @@ export interface textThemeState {
 export const nightText: textThemeState = {
   highlight: 'text-default-black',
   addRightCTA: 'text-default-black',
-  rightCTA: 'text-night-highlight',
+  rightCTA: 'text-default-black',
   writer: 'text-night-highlight',
 };
 
@@ -16,14 +16,14 @@ export const peachText: textThemeState = {
   writer: 'text-peach-highlight',
   addRightCTA: 'text-default-black',
   highlight: 'text-default-black',
-  rightCTA: 'text-peach-highlight',
+  rightCTA: 'text-default-black',
 };
 
 export const lilacText: textThemeState = {
   writer: 'text-lilac-highlight',
   addRightCTA: 'text-default-black',
   highlight: 'text-default-black',
-  rightCTA: 'text-lilac-highlight',
+  rightCTA: 'text-default-black',
 };
 
 export const chrisText: textThemeState = {
