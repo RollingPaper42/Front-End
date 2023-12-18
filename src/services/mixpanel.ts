@@ -4,7 +4,6 @@ export class MixpanelLogging {
   private static _instance: MixpanelLogging;
 
   public static getInstance(): MixpanelLogging {
-    // instance 비교문 == 으로 해야함.. === 아니라 왓?
     if (MixpanelLogging._instance == null) {
       return (MixpanelLogging._instance = new MixpanelLogging());
     }
@@ -16,7 +15,6 @@ export class MixpanelLogging {
       throw new Error('Error: already instance ');
     }
     mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN || '', {
-      debug: true,
       track_pageview: true,
       persistence: 'localStorage',
     });
