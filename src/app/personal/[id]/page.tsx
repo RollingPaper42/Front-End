@@ -31,7 +31,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [windowHeight, setWindowHeight] = useState(0);
   const router = useRouter();
   const [isLogin] = useLogin();
-  const [, setTitle] = useRecoilState(titleState);
+  const [title, setTitle] = useRecoilState(titleState);
   const { isHidden, setIsHidden } = useScroll();
   const [toast, setToast] = useState('');
   const [theme, setTheme] = useState<themeState>(noneTheme);
@@ -103,13 +103,11 @@ export default function Personal({ params }: { params: { id: string } }) {
   const handleShare = async () => {
     const url = `https://strcat.me/personal/${params.id}`;
     if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'strcat',
-          text: '더 많은 글을 써서 strcat을 끊임없이 달아주세요!',
-          url: url,
-        });
-      } catch (err) {}
+      await navigator.share({
+        title: 'strcat',
+        text: `[${title}]📮\n\n함께 롤링페이퍼를 끊임없이 이어주세요!`,
+        url: url,
+      });
     } else {
       handleCopyClipBoard(url);
     }

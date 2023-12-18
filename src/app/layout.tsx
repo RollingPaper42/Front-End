@@ -37,7 +37,7 @@ export default function RootLayout({
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ID}`}
         />
         <Script id="google-analytics">{googleAnalyticsCode}</Script>
-        <title>strcat : 글을 이어 만드는 롤링페이퍼</title>
+        <title>STRCAT : 글을 이어 만드는 롤링페이퍼</title>
         <OpenGraph />
         <Description />
         <link rel="icon" href="/Favicon.png"></link>
