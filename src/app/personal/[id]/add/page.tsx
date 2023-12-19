@@ -15,7 +15,7 @@ import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 import { addContentState } from '@/recoil/content';
 import { titleFontState } from '@/recoil/font/title';
-import { MixpanelLogging, setProperties } from '@/services/mixpanel';
+import { MixpanelLogging, logging, setProperties } from '@/services/mixpanel';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
