@@ -5,6 +5,7 @@ import { bodyFontState } from '@/recoil/font/body';
 import { captionFontState } from '@/recoil/font/caption';
 import { headlineFontState } from '@/recoil/font/headline';
 import { titleFontState } from '@/recoil/font/title';
+import { logging } from '@/services/mixpanel';
 import { defaultState } from '@/utils/theme/default';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -12,12 +13,14 @@ import { useRouter } from 'next/navigation';
 export default function Login() {
   const router = useRouter();
   const handleClickKaKao = () => {
+    logging('click_kakao_login');
     router.replace(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/kakao`,
     );
   };
 
   const handleClickGoogle = () => {
+    logging('click_google_login');
     router.replace(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/google`,
     );

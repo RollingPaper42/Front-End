@@ -7,7 +7,7 @@ import MainManStrcat from '@/component/MainManStrcat';
 import { useLogin } from '@/hooks/useLogin';
 import { bodyFontState } from '@/recoil/font/body';
 import { titleFontState } from '@/recoil/font/title';
-import { MixpanelLogging, setProperties } from '@/services/mixpanel';
+import { logging } from '@/services/mixpanel';
 import { focusToHighlight } from '@/utils/focusToHighlight';
 import { defaultState } from '@/utils/theme/default';
 import Image from 'next/image';
@@ -125,7 +125,3 @@ export default function Home() {
     </>
   );
 }
-
-const logging = (eventName: string) => {
-  MixpanelLogging.getInstance().event(eventName, setProperties({}));
-};

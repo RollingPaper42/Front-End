@@ -16,7 +16,7 @@ import { useScroll } from '@/hooks/useScroll';
 import { noneTheme, themeState } from '@/recoil/newtheme/theme';
 import { chris, lilac, mas, night, peach } from '@/recoil/newtheme/theme';
 import { titleState } from '@/recoil/state';
-import { MixpanelLogging, setProperties } from '@/services/mixpanel';
+import { logging } from '@/services/mixpanel';
 import { board } from '@/types/boards';
 import { personalPage } from '@/types/mixpanel';
 import { axiosInstance } from '@/utils/axios';
@@ -230,15 +230,6 @@ export default function Personal({ params }: { params: { id: string } }) {
     </>
   );
 }
-
-const logging = (eventName: string, loggingProp: personalPage | undefined) => {
-  MixpanelLogging.getInstance().event(
-    eventName,
-    setProperties({
-      ...loggingProp,
-    }),
-  );
-};
 
 const getTheme = (themeName: string): themeState => {
   if (themeName === 'chris') return chris;
