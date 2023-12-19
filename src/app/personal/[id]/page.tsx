@@ -16,7 +16,7 @@ import { useScroll } from '@/hooks/useScroll';
 import { noneTheme, themeState } from '@/recoil/newtheme/theme';
 import { chris, lilac, mas, night, peach } from '@/recoil/newtheme/theme';
 import { titleState } from '@/recoil/state';
-import { MixpanelLogging, setProperties } from '@/services/mixpanel';
+import { logging } from '@/services/mixpanel';
 import { board } from '@/types/boards';
 import { personalPage } from '@/types/mixpanel';
 import { axiosInstance } from '@/utils/axios';
@@ -68,16 +68,16 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     if (!loggingProp) return;
-    logging('show_read_board', loggingProp);
+    logging('show_read_board', 'personal', loggingProp);
   }, [loggingProp]);
 
   const handleClickWrite = () => {
-    logging('click_add_content', loggingProp);
+    logging('click_add_content', 'personal', loggingProp);
     router.push(`${params.id}/add`);
   };
 
   const handleClickCreate = () => {
-    logging('click_create_board', loggingProp);
+    logging('click_create_board', 'personal', loggingProp);
     if (!isLogin) {
       localStorage.setItem('strcat_login_success_url', '/create');
       router.push('/login');
@@ -87,7 +87,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   const handleClickDownload = () => {
-    logging('click_download', loggingProp);
+    logging('click_download', 'personal', loggingProp);
     setToast('download');
   };
 
@@ -230,15 +230,6 @@ export default function Personal({ params }: { params: { id: string } }) {
     </>
   );
 }
-
-const logging = (eventName: string, loggingProp: personalPage | undefined) => {
-  MixpanelLogging.getInstance().event(
-    eventName,
-    setProperties({
-      ...loggingProp,
-    }),
-  );
-};
 
 const getTheme = (themeName: string): themeState => {
   if (themeName === 'chris') return chris;

@@ -1,5 +1,7 @@
 import mixpanel from 'mixpanel-browser';
 
+import { personalPage } from '@/types/mixpanel';
+
 export class MixpanelLogging {
   private static _instance: MixpanelLogging;
 
@@ -28,11 +30,38 @@ export class MixpanelLogging {
   }
 }
 
+export function logging(eventName: string, currentPage: string): void;
+export function logging(
+  eventName: string,
+  currentPage: string,
+  loggingProp: personalPage | undefined,
+): void;
+
+export function logging(
+  eventName: string,
+  currentPage: string,
+  loggingProp?: personalPage | undefined,
+) {
+  if (arguments.length === 2) {
+    MixpanelLogging.getInstance().event(
+      eventName,
+      setProperties({ current: currentPage }),
+    );
+  }
+
+  if (arguments.length === 3) {
+    MixpanelLogging.getInstance().event(
+      eventName,
+      setProperties({ ...loggingProp, current: currentPage }),
+    );
+  }
+}
+
 export const setProperties = (data: object): object => {
-  if (!window || !document) return {};
+  if (!document) return {};
+
   return {
-    current: window.location.href,
     entry: document.referrer,
-    data,
+    ...data,
   };
 };

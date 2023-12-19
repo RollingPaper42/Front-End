@@ -15,7 +15,7 @@ import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 import { addContentState } from '@/recoil/content';
 import { titleFontState } from '@/recoil/font/title';
-import { MixpanelLogging, setProperties } from '@/services/mixpanel';
+import { MixpanelLogging, logging, setProperties } from '@/services/mixpanel';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
@@ -40,7 +40,7 @@ export default function Add({ params }: { params: { id: string } }) {
     };
 
     const postContents = async (photoUrl: string) => {
-      logging('click_post_add_content');
+      logging('click_post_add_content', 'add');
       return await axiosInstance
         .post(`/boards/${params.id}/contents`, {
           text: text,
@@ -139,7 +139,3 @@ export default function Add({ params }: { params: { id: string } }) {
     </div>
   );
 }
-
-const logging = (eventName: string) => {
-  MixpanelLogging.getInstance().event(eventName, setProperties({}));
-};
