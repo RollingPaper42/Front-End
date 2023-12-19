@@ -17,13 +17,11 @@ export class MixpanelLogging {
       throw new Error('Error: already instance ');
     }
     mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN || '', {
-      debug: true,
       persistence: 'localStorage',
     });
   }
 
   protected track(eventName: string, properties: object) {
-    console.log('send message');
     mixpanel.track(eventName, properties);
   }
 
@@ -32,33 +30,38 @@ export class MixpanelLogging {
   }
 }
 
-export function logging(eventName: string): void;
+export function logging(eventName: string, currentPage: string): void;
 export function logging(
   eventName: string,
+  currentPage: string,
   loggingProp: personalPage | undefined,
 ): void;
 
 export function logging(
   eventName: string,
+  currentPage: string,
   loggingProp?: personalPage | undefined,
 ) {
-  if (arguments.length === 1) {
-    MixpanelLogging.getInstance().event(eventName, setProperties({}));
-  }
-
   if (arguments.length === 2) {
     MixpanelLogging.getInstance().event(
       eventName,
-      setProperties({ ...loggingProp }),
+      setProperties({ current: currentPage }),
+    );
+  }
+
+  if (arguments.length === 3) {
+    MixpanelLogging.getInstance().event(
+      eventName,
+      setProperties({ ...loggingProp, current: currentPage }),
     );
   }
 }
 
 export const setProperties = (data: object): object => {
-  if (!window || !document) return {};
+  if (!document) return {};
+
   return {
-    current: window.location.href,
     entry: document.referrer,
-    data,
+    ...data,
   };
 };

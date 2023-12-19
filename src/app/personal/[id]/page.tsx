@@ -68,16 +68,16 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     if (!loggingProp) return;
-    logging('show_read_board', loggingProp);
+    logging('show_read_board', 'personal', loggingProp);
   }, [loggingProp]);
 
   const handleClickWrite = () => {
-    logging('click_add_content', loggingProp);
+    logging('click_add_content', 'personal', loggingProp);
     router.push(`${params.id}/add`);
   };
 
   const handleClickCreate = () => {
-    logging('click_create_board', loggingProp);
+    logging('click_create_board', 'personal', loggingProp);
     if (!isLogin) {
       localStorage.setItem('strcat_login_success_url', '/create');
       router.push('/login');
@@ -87,7 +87,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   const handleClickDownload = () => {
-    logging('click_download', loggingProp);
+    logging('click_download', 'personal', loggingProp);
     setToast('download');
   };
 

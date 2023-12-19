@@ -13,14 +13,14 @@ import { useRouter } from 'next/navigation';
 export default function Login() {
   const router = useRouter();
   const handleClickKaKao = () => {
-    logging('click_kakao_login');
+    logging('click_kakao_login', 'login');
     router.replace(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/kakao`,
     );
   };
 
   const handleClickGoogle = () => {
-    logging('click_google_login');
+    logging('click_google_login', 'login');
     router.replace(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/oauth2/authorization/google`,
     );

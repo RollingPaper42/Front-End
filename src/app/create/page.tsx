@@ -43,7 +43,7 @@ export default function Create() {
   };
 
   const handleClick = () => {
-    logging('click_submit_board_confirm');
+    logging('click_submit_board_confirm', 'create');
     const data = {
       theme: themeName,
       title: `${title}`,
