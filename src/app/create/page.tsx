@@ -7,6 +7,7 @@ import TitleSelect from './TitleSelect';
 import HeaderLayout from '@/component/HeaderLayout';
 import Error from '@/component/Modal/Error';
 import useModal from '@/hooks/useModal';
+import { logging } from '@/services/mixpanel';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
@@ -42,6 +43,7 @@ export default function Create() {
   };
 
   const handleClick = () => {
+    logging('click_submit_board_confirm');
     const data = {
       theme: themeName,
       title: `${title}`,
