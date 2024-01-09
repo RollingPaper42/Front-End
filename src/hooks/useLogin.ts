@@ -1,7 +1,8 @@
-import { loginState } from '@/recoil/login';
-import { axiosInstance } from '@/utils/axios';
 import { Dispatch } from 'react';
 import { useRecoilState } from 'recoil';
+
+import { loginState } from '@/recoil/login';
+import { axiosGetLoginCheck } from '@/utils/apiInterface';
 
 export const useLogin = (): [
   boolean,
@@ -10,8 +11,7 @@ export const useLogin = (): [
 ] => {
   const [isLogin, setIsLogin] = useRecoilState(loginState);
   const checkLogin = () => {
-    axiosInstance
-      .get('/login/check')
+    axiosGetLoginCheck()
       .then((res) => {
         setIsLogin(res.data.login);
       })

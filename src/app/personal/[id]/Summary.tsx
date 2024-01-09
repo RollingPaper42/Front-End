@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import { bodyFontState } from '@/recoil/font/body';
-import { axiosInstance } from '@/utils/axios';
+import { axiosGetBoardSummaries } from '@/utils/apiInterface';
 
 function formatNumberWithCommas(inputText: number) {
   return inputText.toLocaleString();
@@ -13,8 +13,7 @@ export default function Summary({ id }: { id: string }) {
   const [contentCount, setContentCount] = useState(0);
   const [contentTextCount, setContentTextCount] = useState(0);
   useEffect(() => {
-    axiosInstance
-      .get(`/boards/${id}/summaries`)
+    axiosGetBoardSummaries(id)
       .then((res) => {
         setContentCount(res.data.contentCount);
         setContentTextCount(res.data.contentTextCount);

@@ -19,7 +19,7 @@ import { titleState } from '@/recoil/state';
 import { logging } from '@/services/mixpanel';
 import { board } from '@/types/boards';
 import { personalPage } from '@/types/mixpanel';
-import { axiosInstance } from '@/utils/axios';
+import { axiosGetBoard } from '@/utils/apiInterface';
 import { defaultState } from '@/utils/theme/default';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -41,8 +41,7 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     if (window) setWindowHeight(window.innerHeight);
-    axiosInstance
-      .get(`/boards/${params.id}`)
+    axiosGetBoard(params.id)
       .then((data) => {
         const resData = data.data;
         setBoard([resData.board]);
