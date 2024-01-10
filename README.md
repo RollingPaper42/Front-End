@@ -41,6 +41,7 @@
 - TailwindCSS <img style="vertical-align:top" src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=flat-square&logo=Tailwind CSS&logoColor=white"/>
 - Typescript <img style="vertical-align:top" src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=Typescript&logoColor=white"/>
 - Recoil <img style="vertical-align:top" src="https://img.shields.io/badge/Recoil-3578E5?style=flat-square&logo=recoil&logoColor=white" />
+- Vercel Deploy <img style="vertical-align:top" src="https://vercelbadge.vercel.app/api/arkingco/42_rolling_Front-End"/>
 
 ## 🧑‍💻 멤버
 
