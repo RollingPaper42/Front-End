@@ -1,9 +1,5 @@
 import { axiosInstance } from './axios';
 
-export const axiosGetError = () => {
-  return axiosInstance.get('/api/error');
-};
-
 export const axiosGetBoard = (id: string) => {
   return axiosInstance.get(`/boards/${id}`);
 };
@@ -13,7 +9,7 @@ export const axiosGetBoardSummaries = (id: string) => {
 };
 
 export const axiosGetUserBoard = () => {
-  return axiosInstance.get(`/users/board`);
+  return axiosInstance.get(`/users/boards`);
 };
 
 export const axiosGetLoginCheck = () => {
