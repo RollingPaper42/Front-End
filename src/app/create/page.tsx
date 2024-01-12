@@ -2,16 +2,17 @@
 
 import { useState } from 'react';
 
-import CreateTheme from './CreateTheme';
-import TitleSelect from './TitleSelect';
-import HeaderLayout from '@/component/HeaderLayout';
-import Error from '@/component/Modal/Error';
+import { useRouter } from 'next/navigation';
+
+import HeaderLayout from '@/component/Common/HeaderLayout';
+import Error from '@/component/Common/Modal/Error';
+import CreateTheme from '@/component/Create/CreateTheme';
+import TitleSelect from '@/component/Create/TitleSelect';
 import useModal from '@/hooks/useModal';
 import { logging } from '@/services/mixpanel';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
-import { useRouter } from 'next/navigation';
 
 export default function Create() {
   const [themeName, setThemeName] = useState('chris');

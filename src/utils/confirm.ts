@@ -1,4 +1,4 @@
-import Confirm from '@/component/Modal/Confirm';
+import Confirm from '@/component/Common/Modal/Confirm';
 
 export const confirm = (
   openModal: (modalComponent: JSX.Element) => void,

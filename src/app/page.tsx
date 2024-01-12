@@ -2,7 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import HeaderLayout from '@/component/HeaderLayout';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
+import HeaderLayout from '@/component/Common/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
 import { useLogin } from '@/hooks/useLogin';
 import { bodyFontState } from '@/recoil/font/body';
@@ -10,8 +13,6 @@ import { titleFontState } from '@/recoil/font/title';
 import { logging } from '@/services/mixpanel';
 import { focusToHighlight } from '@/utils/focusToHighlight';
 import { defaultState } from '@/utils/theme/default';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [isLogin] = useLogin();

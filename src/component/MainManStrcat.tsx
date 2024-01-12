@@ -1,5 +1,5 @@
-import StrcatBoard from './StrcatBoard';
-import { night } from '@/recoil/newtheme/theme';
+import StrcatBoard from './Common/StrcatBoard';
+import { night } from '@/recoil/theme';
 import { board } from '@/types/boards';
 
 const MainBoard: board = {

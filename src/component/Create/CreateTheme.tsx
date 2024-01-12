@@ -1,6 +1,6 @@
 'use client';
 
-import BottomButton from '../../component/BottomButton';
+import BottomButton from '../Common/BottomButton';
 import PreviewTheme from './PreviewTheme';
 import ThemeSelect from './ThemeSelect';
 import { defaultState } from '@/utils/theme/default';

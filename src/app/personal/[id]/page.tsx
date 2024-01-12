@@ -3,26 +3,29 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import NoneContent from './NoneContent';
-import SnowAnimation from './SnowAnimation';
-import Summary from './Summary';
-import BottomButton from '@/component/BottomButton';
-import BottomImage from '@/component/BottomImage';
-import Loading from '@/component/Loading';
-import StrcatBoard from '@/component/StrcatBoard';
-import Toast from '@/component/Toast';
+import { useRouter } from 'next/navigation';
+
+import Loading from '@/component/Common/Loading';
+import StrcatBoard from '@/component/Common/StrcatBoard';
+import Toast from '@/component/Common/Toast';
+import {
+  BottomAnimationImage,
+  NoneContent,
+  OwnerButtonLayer,
+  SnowAnimation,
+  Summary,
+  WriterButtonLayer,
+} from '@/component/Personal';
 import { useLogin } from '@/hooks/useLogin';
 import { useScroll } from '@/hooks/useScroll';
-import { noneTheme, themeState } from '@/recoil/newtheme/theme';
-import { chris, lilac, mas, night, peach } from '@/recoil/newtheme/theme';
 import { titleState } from '@/recoil/state';
+import { noneTheme, themeState } from '@/recoil/theme';
+import { chris, lilac, mas, night, peach } from '@/recoil/theme';
 import { logging } from '@/services/mixpanel';
 import { board } from '@/types/boards';
 import { personalPage } from '@/types/mixpanel';
 import { axiosInstance } from '@/utils/axios';
 import { defaultState } from '@/utils/theme/default';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 require('intersection-observer');
 export default function Personal({ params }: { params: { id: string } }) {
@@ -100,7 +103,7 @@ export default function Personal({ params }: { params: { id: string } }) {
     }
   };
 
-  const handleShare = async () => {
+  const handleClickShare = async () => {
     const url = `https://strcat.me/personal/${params.id}`;
     if (navigator.share) {
       await navigator.share({
@@ -151,69 +154,21 @@ export default function Personal({ params }: { params: { id: string } }) {
             isHidden ? 'translate-y-full' : 'translate-y-0'
           }`}
         >
-          <BottomImage themeName={theme.name} />
+          <BottomAnimationImage themeName={theme.name} />
           <div className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]">
             {isOwner ? (
-              <>
-                <div
-                  className="flex basis-1/12 items-center justify-center"
-                  onClick={handleClickDownload}
-                >
-                  <div
-                    className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${defaultState.btnLeftCTA}`}
-                  >
-                    <Image
-                      src="/personal/Download.svg"
-                      width={24}
-                      height={24}
-                      alt="Download"
-                    />
-                  </div>
-                </div>
-                <BottomButton
-                  textColor={`${defaultState.explainLeftCTA}`}
-                  name="공유하기"
-                  height="h-[46px]"
-                  width="basis-5/12"
-                  onClickHandler={handleShare}
-                  disabled={false}
-                  color={`${defaultState.btnLeftCTA}`}
-                  isShadow={true}
-                />
-                <BottomButton
-                  textColor={`${theme.textTheme.rightCTA}`}
-                  name="글쓰기"
-                  height="h-[46px]"
-                  width="basis-5/12"
-                  onClickHandler={handleClickWrite}
-                  disabled={false}
-                  color={`${theme.bgTheme.rightCTA}`}
-                  isShadow={true}
-                />
-              </>
+              <OwnerButtonLayer
+                handleClickDownload={handleClickDownload}
+                handleClickShare={handleClickShare}
+                handleClickWrite={handleClickWrite}
+                theme={theme}
+              />
             ) : (
-              <>
-                <BottomButton
-                  textColor={`${defaultState.explainLeftCTA}`}
-                  name="나도 만들기"
-                  width="basis-1/3"
-                  height="h-[46px]"
-                  onClickHandler={handleClickCreate}
-                  disabled={false}
-                  color={`${defaultState.btnLeftCTA}`}
-                  isShadow={true}
-                />
-                <BottomButton
-                  textColor={`${theme.textTheme.rightCTA}`}
-                  name="글쓰기"
-                  width="basis-2/3"
-                  height="h-[46px]"
-                  onClickHandler={handleClickWrite}
-                  disabled={false}
-                  color={`${theme.bgTheme.rightCTA}`}
-                  isShadow={true}
-                />
-              </>
+              <WriterButtonLayer
+                handleClickCreate={handleClickCreate}
+                handleClickWrite={handleClickWrite}
+                theme={theme}
+              />
             )}
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { MutableRefObject } from 'react';
+
 import { board } from '@/types/boards';
 
 export const scrollToAdd = (
