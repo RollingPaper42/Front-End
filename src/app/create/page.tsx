@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import { useRouter } from 'next/navigation';
+
 import HeaderLayout from '@/component/Common/HeaderLayout';
 import Error from '@/component/Common/Modal/Error';
 import CreateTheme from '@/component/Create/CreateTheme';
@@ -11,7 +13,6 @@ import { logging } from '@/services/mixpanel';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
-import { useRouter } from 'next/navigation';
 
 export default function Create() {
   const [themeName, setThemeName] = useState('chris');

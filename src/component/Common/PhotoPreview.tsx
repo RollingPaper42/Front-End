@@ -1,5 +1,6 @@
-import PhotoPreviewIcon from '@/component/Common/Icon/PhotoPreview';
 import Image from 'next/image';
+
+import PhotoPreviewIcon from './Icon/PhotoPreview';
 
 interface Props {
   photoUrl: string;

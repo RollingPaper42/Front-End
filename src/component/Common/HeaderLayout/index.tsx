@@ -1,8 +1,9 @@
+import { usePathname } from 'next/navigation';
+
 import BackButtonHeader from './BackButtonHeader';
 import DefaultHeader from './DefaultHeader';
 import Drawer from './Drawer';
 import TitleHeader from './TitleHeader';
-import { usePathname } from 'next/navigation';
 
 interface Props {
   isNext?: boolean;

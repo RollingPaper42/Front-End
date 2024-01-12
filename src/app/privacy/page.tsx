@@ -1,8 +1,9 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import Close from '@/component/Common/Icon/Close';
 import { defaultState } from '@/utils/theme/default';
-import { useRouter } from 'next/navigation';
 
 export default function Privacy() {
   const router = useRouter();

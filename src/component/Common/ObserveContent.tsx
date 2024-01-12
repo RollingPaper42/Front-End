@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import React from 'react';
 
-import PhotoModal from '@/component/Common/Modal/PhotoModal';
-import PhotoPreview from '@/component/Personal/PhotoPreview';
+import PhotoModal from './Modal/PhotoModal';
+import PhotoPreview from './PhotoPreview';
 import { bodyFontState } from '@/recoil/font/body';
 import { captionFontState } from '@/recoil/font/caption';
-import { themeState } from '@/recoil/newtheme/theme';
+import { themeState } from '@/recoil/theme';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
 import { focusToHighlight } from '@/utils/focusToHighlight';

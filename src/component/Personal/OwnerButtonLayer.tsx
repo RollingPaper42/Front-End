@@ -1,7 +1,8 @@
+import Image from 'next/image';
+
 import BottomButton from '@/component/Common/BottomButton';
 import { themeState } from '@/types/theme';
 import { defaultState } from '@/utils/theme/default';
-import Image from 'next/image';
 
 interface Props {
   handleClickDownload: () => void;

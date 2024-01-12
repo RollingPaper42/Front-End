@@ -1,10 +1,11 @@
 import { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { useEffect } from 'react';
 
+import { useRouter } from 'next/navigation';
+
 import useModal from './useModal';
 import Error from '@/component/Common/Modal/Error';
 import { axiosInstance } from '@/utils/axios';
-import { useRouter } from 'next/navigation';
 
 export const useInterceptor = () => {
   const route = useRouter();
