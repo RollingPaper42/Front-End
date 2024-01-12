@@ -1,5 +1,3 @@
-import { atom } from 'recoil';
-
 import {
   bgThemeState,
   chrisBg,
