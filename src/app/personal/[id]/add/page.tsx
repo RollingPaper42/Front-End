@@ -4,13 +4,13 @@ import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
+import { useRouter } from 'next/navigation';
+
 import BottomButton from '@/component/Common/BottomButton';
 import Loading from '@/component/Common/Loading';
 import Error from '@/component/Common/Modal/Error';
 import Textarea from '@/component/Common/Textarea';
-import PhotoUpload from '@/component/Personal/Add/PhotoUpload';
-import PreviewPhoto from '@/component/Personal/Add/PreviewPhoto';
-import Writer from '@/component/Personal/Add/Writer';
+import { PhotoUpload, PreviewPhoto, Writer } from '@/component/Personal/Add';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 import { addContentState } from '@/recoil/content';
@@ -19,7 +19,6 @@ import { logging } from '@/services/mixpanel';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
-import { useRouter } from 'next/navigation';
 
 export default function Add({ params }: { params: { id: string } }) {
   const [text, setText] = useState('');

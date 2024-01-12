@@ -3,26 +3,29 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
+import { useRouter } from 'next/navigation';
+
 import Loading from '@/component/Common/Loading';
 import StrcatBoard from '@/component/Common/StrcatBoard';
 import Toast from '@/component/Common/Toast';
-import BottomImage from '@/component/Personal/BottomImage';
-import NoneContent from '@/component/Personal/NoneContent';
-import OwnerButtonLayer from '@/component/Personal/OwnerButtonLayer';
-import SnowAnimation from '@/component/Personal/SnowAnimation';
-import Summary from '@/component/Personal/Summary';
-import WriterButtonLayer from '@/component/Personal/WriterButtonLayer';
+import {
+  BottomAnimationImage,
+  NoneContent,
+  OwnerButtonLayer,
+  SnowAnimation,
+  Summary,
+  WriterButtonLayer,
+} from '@/component/Personal';
 import { useLogin } from '@/hooks/useLogin';
 import { useScroll } from '@/hooks/useScroll';
-import { noneTheme, themeState } from '@/recoil/newtheme/theme';
-import { chris, lilac, mas, night, peach } from '@/recoil/newtheme/theme';
 import { titleState } from '@/recoil/state';
+import { noneTheme, themeState } from '@/recoil/theme';
+import { chris, lilac, mas, night, peach } from '@/recoil/theme';
 import { logging } from '@/services/mixpanel';
 import { board } from '@/types/boards';
 import { personalPage } from '@/types/mixpanel';
 import { axiosInstance } from '@/utils/axios';
 import { defaultState } from '@/utils/theme/default';
-import { useRouter } from 'next/navigation';
 
 require('intersection-observer');
 export default function Personal({ params }: { params: { id: string } }) {
@@ -151,7 +154,7 @@ export default function Personal({ params }: { params: { id: string } }) {
             isHidden ? 'translate-y-full' : 'translate-y-0'
           }`}
         >
-          <BottomImage themeName={theme.name} />
+          <BottomAnimationImage themeName={theme.name} />
           <div className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]">
             {isOwner ? (
               <OwnerButtonLayer
