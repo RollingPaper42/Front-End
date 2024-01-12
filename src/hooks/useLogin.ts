@@ -11,11 +11,9 @@ export const useLogin = (): [
 ] => {
   const [isLogin, setIsLogin] = useRecoilState(loginState);
   const checkLogin = () => {
-    axiosGetLoginCheck()
-      .then((res) => {
-        setIsLogin(res.data.login);
-      })
-      .catch((err) => {});
+    axiosGetLoginCheck().then((res) => {
+      setIsLogin(res.data.login);
+    });
   };
 
   return [isLogin, checkLogin, setIsLogin];

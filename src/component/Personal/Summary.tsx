@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
+import { useRouter } from 'next/navigation';
+
 import { bodyFontState } from '@/recoil/font/body';
 import { axiosGetBoardSummaries } from '@/utils/apiInterface';
 
@@ -12,13 +14,20 @@ function formatNumberWithCommas(inputText: number) {
 export default function Summary({ id }: { id: string }) {
   const [contentCount, setContentCount] = useState(0);
   const [contentTextCount, setContentTextCount] = useState(0);
+  const router = useRouter();
+
   useEffect(() => {
     axiosGetBoardSummaries(id)
       .then((res) => {
         setContentCount(res.data.contentCount);
         setContentTextCount(res.data.contentTextCount);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        if (err.response.status === 406) {
+          router.push('/not-found');
+          return;
+        }
+      });
   }, []);
 
   return (

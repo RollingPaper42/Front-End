@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
 
 import Loading from '@/component/Common/Loading';
+import Error from '@/component/Common/Modal/Error';
 import StrcatBoard from '@/component/Common/StrcatBoard';
 import Toast from '@/component/Common/Toast';
 import {
@@ -17,6 +18,7 @@ import {
   WriterButtonLayer,
 } from '@/component/Personal';
 import { useLogin } from '@/hooks/useLogin';
+import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
 import { titleState } from '@/recoil/state';
 import { noneTheme, themeState } from '@/recoil/theme';
@@ -60,7 +62,10 @@ export default function Personal({ params }: { params: { id: string } }) {
         });
       })
       .catch((err) => {
-        if (err.response.status === 406) router.push('/not-found');
+        if (err.response.status === 406) {
+          router.push('/not-found');
+          return;
+        }
       });
   }, [params.id]);
 
