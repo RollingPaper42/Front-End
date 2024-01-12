@@ -1,5 +1,3 @@
-import { atom } from 'recoil';
-
 import {
   bgThemeState,
   chrisBg,
@@ -8,7 +6,7 @@ import {
   nightBg,
   noneBg,
   peachBg,
-} from '../../utils/theme/bgTheme';
+} from '@/utils/theme/bgTheme';
 import {
   chrisText,
   lilacText,
@@ -17,7 +15,7 @@ import {
   noneText,
   peachText,
   textThemeState,
-} from '../../utils/theme/textTheme';
+} from '@/utils/theme/textTheme';
 
 export interface themeState {
   name: string;

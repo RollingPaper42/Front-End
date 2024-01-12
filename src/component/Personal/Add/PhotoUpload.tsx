@@ -1,9 +1,9 @@
 import imageCompression from 'browser-image-compression';
 import React, { Dispatch } from 'react';
 
-import Error from './Modal/Error';
+import Error from '@/component/Common/Modal/Error';
 import useModal from '@/hooks/useModal';
-import { MixpanelLogging, logging, setProperties } from '@/services/mixpanel';
+import { logging } from '@/services/mixpanel';
 
 interface Props {
   setImage: Dispatch<React.SetStateAction<File | null>>;

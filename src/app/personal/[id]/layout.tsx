@@ -1,7 +1,8 @@
 'use client';
 
-import HeaderLayout from '@/component/HeaderLayout';
 import React from 'react';
+
+import HeaderLayout from '@/component/Common/HeaderLayout';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

@@ -1,7 +1,7 @@
-import BottomButton from '@/component/BottomButton';
-import MiddleButton from '@/component/MiddleButton';
-import SelectButton from '@/component/SelectButton';
-import Textarea from '@/component/Textarea';
+import BottomButton from '@/component/Common/BottomButton';
+import Textarea from '@/component/Common/Textarea';
+import MiddleButton from '@/component/Create/MiddleButton';
+import SelectButton from '@/component/Create/SelectButton';
 import { titleFontState } from '@/recoil/font/title';
 import { defaultState } from '@/utils/theme/default';
 

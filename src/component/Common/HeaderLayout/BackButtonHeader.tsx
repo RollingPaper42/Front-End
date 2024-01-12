@@ -1,7 +1,8 @@
+import { useRouter } from 'next/navigation';
+
 import { Back } from '../Icon/Header';
 import { headlineFontState } from '@/recoil/font/headline';
 import { defaultState } from '@/utils/theme/default';
-import { useRouter } from 'next/navigation';
 
 interface Props {
   isNext: boolean;

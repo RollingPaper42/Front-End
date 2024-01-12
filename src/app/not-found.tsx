@@ -1,8 +1,9 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { bodyFontState } from '@/recoil/font/body';
 import { titleFontState } from '@/recoil/font/title';
 import { defaultState } from '@/utils/theme/default';
-import Image from 'next/image';
-import Link from 'next/link';
 
 export default function NotFound() {
   return (

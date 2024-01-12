@@ -4,13 +4,13 @@ import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import Writer from './Writer';
-import BottomButton from '@/component/BottomButton';
-import Loading from '@/component/Loading';
-import Error from '@/component/Modal/Error';
-import PhotoUpload from '@/component/PhotoUpload';
-import PreviewPhoto from '@/component/PreviewPhoto';
-import Textarea from '@/component/Textarea';
+import { useRouter } from 'next/navigation';
+
+import BottomButton from '@/component/Common/BottomButton';
+import Loading from '@/component/Common/Loading';
+import Error from '@/component/Common/Modal/Error';
+import Textarea from '@/component/Common/Textarea';
+import { PhotoUpload, PreviewPhoto, Writer } from '@/component/Personal/Add';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
 import { addContentState } from '@/recoil/content';
@@ -23,7 +23,6 @@ import {
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
-import { useRouter } from 'next/navigation';
 
 export default function Add({ params }: { params: { id: string } }) {
   const [text, setText] = useState('');
