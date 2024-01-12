@@ -1,6 +1,6 @@
 'use client';
 
-import Close from '@/component/Icon/Close';
+import Close from '@/component/Common/Icon/Close';
 import { bodyFontState } from '@/recoil/font/body';
 import { captionFontState } from '@/recoil/font/caption';
 import { headlineFontState } from '@/recoil/font/headline';

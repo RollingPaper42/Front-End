@@ -1,4 +1,4 @@
-import PhotoPreviewIcon from '@/component/Icon/PhotoPreview';
+import PhotoPreviewIcon from '@/component/Common/Icon/PhotoPreview';
 import Image from 'next/image';
 
 interface Props {

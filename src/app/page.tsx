@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import HeaderLayout from '@/component/HeaderLayout';
+import HeaderLayout from '@/component/Common/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
 import { useLogin } from '@/hooks/useLogin';
 import { bodyFontState } from '@/recoil/font/body';

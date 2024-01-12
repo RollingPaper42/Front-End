@@ -1,4 +1,4 @@
-import StrcatBoard from './Common/StrcatBoard';
+import StrcatBoard from '@/component/Common/StrcatBoard';
 import { night } from '@/recoil/newtheme/theme';
 import { board } from '@/types/boards';
 

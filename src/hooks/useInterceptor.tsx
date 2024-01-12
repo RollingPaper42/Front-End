@@ -2,7 +2,7 @@ import { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { useEffect } from 'react';
 
 import useModal from './useModal';
-import Error from '@/component/Modal/Error';
+import Error from '@/component/Common/Modal/Error';
 import { axiosInstance } from '@/utils/axios';
 import { useRouter } from 'next/navigation';
 

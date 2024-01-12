@@ -1,6 +1,6 @@
 'use client';
 
-import Close from '@/component/Icon/Close';
+import Close from '@/component/Common/Icon/Close';
 import { defaultState } from '@/utils/theme/default';
 import { useRouter } from 'next/navigation';
 

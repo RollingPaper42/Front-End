@@ -1,5 +1,3 @@
-import { SetStateAction } from 'react';
-
 import { captionFontState } from '@/recoil/font/caption';
 
 interface Props {

@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import React from 'react';
 
-import PhotoModal from './Modal/PhotoModal';
-import PhotoPreview from '@/app/personal/[id]/PhotoPreview';
+import PhotoModal from '@/component/Common/Modal/PhotoModal';
+import PhotoPreview from '@/component/Personal/PhotoPreview';
 import { bodyFontState } from '@/recoil/font/body';
 import { captionFontState } from '@/recoil/font/caption';
 import { themeState } from '@/recoil/newtheme/theme';

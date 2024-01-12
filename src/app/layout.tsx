@@ -4,10 +4,10 @@ import { RecoilRoot } from 'recoil';
 
 import InApp from './InApp';
 import './globals.css';
-import AxiosInterceptor from '@/component/AxiosInterceptor';
-import Description from '@/component/Description';
-import Modal from '@/component/Modal';
-import OpenGraph from '@/component/OpenGraph';
+import AxiosInterceptor from '@/component/Common/AxiosInterceptor';
+import Description from '@/component/Common/Description';
+import Modal from '@/component/Common/Modal';
+import OpenGraph from '@/component/Common/OpenGraph';
 import Script from 'next/script';
 
 export default function RootLayout({

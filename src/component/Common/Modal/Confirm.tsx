@@ -1,4 +1,4 @@
-import BottomButton from '@/component/BottomButton';
+import BottomButton from '@/component/Common/BottomButton';
 import { bodyFontState } from '@/recoil/font/body';
 import { titleFontState } from '@/recoil/font/title';
 

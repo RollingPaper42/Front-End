@@ -1,6 +1,6 @@
 'use client';
 
-import Error from '@/component/Modal/Error';
+import Error from '@/component/Common/Modal/Error';
 import useModal from '@/hooks/useModal';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';

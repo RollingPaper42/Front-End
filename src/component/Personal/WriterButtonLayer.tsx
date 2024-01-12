@@ -1,4 +1,4 @@
-import BottomButton from '@/component/BottomButton';
+import BottomButton from '@/component/Common/BottomButton';
 import { themeState } from '@/types/theme';
 import { defaultState } from '@/utils/theme/default';
 

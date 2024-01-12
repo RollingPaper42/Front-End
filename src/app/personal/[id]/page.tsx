@@ -3,15 +3,15 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import NoneContent from './NoneContent';
-import OwnerButtonLayer from './OwnerButtonLayer';
-import SnowAnimation from './SnowAnimation';
-import Summary from './Summary';
-import WriterButtonLayer from './WriterButtonLayer';
-import BottomImage from '@/component/BottomImage';
-import Loading from '@/component/Loading';
-import StrcatBoard from '@/component/StrcatBoard';
-import Toast from '@/component/Toast';
+import Loading from '@/component/Common/Loading';
+import StrcatBoard from '@/component/Common/StrcatBoard';
+import Toast from '@/component/Common/Toast';
+import BottomImage from '@/component/Personal/BottomImage';
+import NoneContent from '@/component/Personal/NoneContent';
+import OwnerButtonLayer from '@/component/Personal/OwnerButtonLayer';
+import SnowAnimation from '@/component/Personal/SnowAnimation';
+import Summary from '@/component/Personal/Summary';
+import WriterButtonLayer from '@/component/Personal/WriterButtonLayer';
 import { useLogin } from '@/hooks/useLogin';
 import { useScroll } from '@/hooks/useScroll';
 import { noneTheme, themeState } from '@/recoil/newtheme/theme';
