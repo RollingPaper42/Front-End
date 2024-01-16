@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
 
 import Loading from '@/component/Common/Loading';
+import Error from '@/component/Common/Modal/Error';
 import StrcatBoard from '@/component/Common/StrcatBoard';
 import Toast from '@/component/Common/Toast';
 import {
@@ -17,6 +18,7 @@ import {
   WriterButtonLayer,
 } from '@/component/Personal';
 import { useLogin } from '@/hooks/useLogin';
+import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
 import { titleState } from '@/recoil/state';
 import { noneTheme, themeState } from '@/recoil/theme';
@@ -24,7 +26,7 @@ import { chris, lilac, mas, night, peach } from '@/recoil/theme';
 import { logging } from '@/services/mixpanel';
 import { board } from '@/types/boards';
 import { personalPage } from '@/types/mixpanel';
-import { axiosInstance } from '@/utils/axios';
+import { axiosGetBoard } from '@/utils/apiInterface';
 import { defaultState } from '@/utils/theme/default';
 
 require('intersection-observer');
@@ -44,8 +46,7 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     if (window) setWindowHeight(window.innerHeight);
-    axiosInstance
-      .get(`/boards/${params.id}`)
+    axiosGetBoard(params.id)
       .then((data) => {
         const resData = data.data;
         setBoard([resData.board]);
@@ -61,7 +62,10 @@ export default function Personal({ params }: { params: { id: string } }) {
         });
       })
       .catch((err) => {
-        if (err.response.status === 406) router.push('/not-found');
+        if (err.response.status === 406) {
+          router.push('/not-found');
+          return;
+        }
       });
   }, [params.id]);
 

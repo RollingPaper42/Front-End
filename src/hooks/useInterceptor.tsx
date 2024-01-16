@@ -33,9 +33,6 @@ export const useInterceptor = () => {
         />,
       );
     }
-    // if (errorStatus === 401) {
-    //   route.push('/login');
-    // }
   };
 
   const requestInterceptor =

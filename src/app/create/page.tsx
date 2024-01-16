@@ -10,7 +10,7 @@ import CreateTheme from '@/component/Create/CreateTheme';
 import TitleSelect from '@/component/Create/TitleSelect';
 import useModal from '@/hooks/useModal';
 import { logging } from '@/services/mixpanel';
-import { axiosInstance } from '@/utils/axios';
+import { axiosPostBoard } from '@/utils/apiInterface';
 import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
 
@@ -49,8 +49,7 @@ export default function Create() {
       theme: themeName,
       title: `${title}`,
     };
-    axiosInstance
-      .post(`/boards`, data)
+    axiosPostBoard(data)
       .then((data) => {
         router.push(`/personal/${data.data}`);
       })

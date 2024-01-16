@@ -17,7 +17,7 @@ import { useLogin } from '@/hooks/useLogin';
 import { titleFontState } from '@/recoil/font/title';
 import { drawerState } from '@/recoil/state';
 import { drawerBoard } from '@/types/drawerBoard';
-import { axiosInstance } from '@/utils/axios';
+import { axiosGetUserBoard } from '@/utils/apiInterface';
 import { handleBackground } from '@/utils/handleBackground';
 import { defaultState } from '@/utils/theme/default';
 
@@ -31,7 +31,7 @@ export default function Drawer() {
 
   const fetchData = useCallback(async () => {
     try {
-      const personal = await axiosInstance.get('/users/boards');
+      const personal = await axiosGetUserBoard();
       setPersonalList(personal.data);
     } catch (err) {
       const error = err as AxiosError;

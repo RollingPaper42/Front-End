@@ -16,6 +16,10 @@ import useModal from '@/hooks/useModal';
 import { addContentState } from '@/recoil/content';
 import { titleFontState } from '@/recoil/font/title';
 import { logging } from '@/services/mixpanel';
+import {
+  axiosPostBoardContent,
+  axiosPostBoardContentPicture,
+} from '@/utils/apiInterface';
 import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
@@ -32,23 +36,18 @@ export default function Add({ params }: { params: { id: string } }) {
 
   const handleClick = async () => {
     const postPictures = async () => {
-      return await axiosInstance.post(
-        `/boards/${params.id}/contents/pictures`,
-        { picture: image },
-      );
+      return await axiosPostBoardContentPicture(params.id, { picture: image });
     };
 
     const postContents = async (photoUrl: string) => {
       logging('click_post_add_content', 'add');
-      return await axiosInstance
-        .post(`/boards/${params.id}/contents`, {
-          text: text,
-          writer: writer,
-          photoUrl: photoUrl,
-        })
-        .then((res) => {
-          setAddContent(res.data);
-        });
+      return await axiosPostBoardContent(params.id, {
+        text: text,
+        writer: writer,
+        photoUrl: photoUrl,
+      }).then((res) => {
+        setAddContent(res.data);
+      });
     };
 
     const changeAxiosHeader = (type: string) => {
