@@ -38,7 +38,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [isLogin] = useLogin();
   const [title, setTitle] = useRecoilState(titleState);
   const { isHidden, setIsHidden } = useScroll();
-  const [toast, setToast] = useState('');
+  const [toastMessage, setToastMessage] = useState('');
   const [theme, setTheme] = useState<themeState>(noneTheme);
   const [loggingProp, setLoggingProp] = useState<personalPage | undefined>(
     undefined,
@@ -95,15 +95,15 @@ export default function Personal({ params }: { params: { id: string } }) {
 
   const handleClickDownload = () => {
     logging('click_download', 'personal', loggingProp);
-    setToast('download');
+    setToastMessage('저장기능은 준비중이에요!');
   };
 
   const handleCopyClipBoard = async (url: string) => {
     try {
       await navigator.clipboard.writeText(url);
-      setToast('share');
+      setToastMessage('링크가 복사되었어요!');
     } catch (error) {
-      setToast('error');
+      setToastMessage('링크 복사에 실패했어요 🥲');
     }
   };
 
@@ -177,14 +177,8 @@ export default function Personal({ params }: { params: { id: string } }) {
           </div>
         </div>
       </div>
-      {toast === 'download' && (
-        <Toast message="저장기능은 준비중이에요!" setToast={setToast} />
-      )}
-      {toast === 'share' && (
-        <Toast message="링크가 복사되었어요!" setToast={setToast} />
-      )}
-      {toast === 'error' && (
-        <Toast message="링크 복사에 실패했어요 🥲" setToast={setToast} />
+      {toastMessage !== '' && (
+        <Toast message={toastMessage} setToast={setToastMessage} />
       )}
     </>
   );
