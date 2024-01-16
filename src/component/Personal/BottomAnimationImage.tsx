@@ -9,13 +9,13 @@ export default function BottomAnimationImage({
 }) {
   return (
     <div className="absolute z-[15] max-w-md w-full">
-      <div className="absolute bottom-[23px] right-[24px]">
+      <div className="absolute bottom-[22px] right-[24px]">
         <Image
           alt={`sit${themeName}`}
           src={`/cats/${themeName}/sit.gif`}
-          width={33}
-          height={43}
-          className="w-[33px] h-[43px]"
+          width={35}
+          height={41}
+          className="w-[35px] h-[41px]"
           priority
         />
       </div>
