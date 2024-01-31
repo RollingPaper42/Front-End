@@ -6,19 +6,16 @@ import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
 
 import Loading from '@/component/Common/Loading';
-import Error from '@/component/Common/Modal/Error';
 import StrcatBoard from '@/component/Common/StrcatBoard';
 import Toast from '@/component/Common/Toast';
 import {
   BottomAnimationImage,
-  NoneContent,
   OwnerButtonLayer,
   SnowAnimation,
-  Summary,
   WriterButtonLayer,
 } from '@/component/Personal';
+import FirstContent from '@/component/Personal/FirstContent';
 import { useLogin } from '@/hooks/useLogin';
-import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
 import { titleState } from '@/recoil/state';
 import { noneTheme, themeState } from '@/recoil/theme';
@@ -31,45 +28,15 @@ import { defaultState } from '@/utils/theme/default';
 
 require('intersection-observer');
 export default function Personal({ params }: { params: { id: string } }) {
-  const [board, setBoard] = useState<board[]>([]);
-  const [isOwner, setIsOwner] = useState<boolean>(false);
-  const [windowHeight, setWindowHeight] = useState(0);
+  const [board, isOwner, title, theme, loggingProp, error] = useData(params.id);
   const router = useRouter();
   const [isLogin] = useLogin();
-  const [title, setTitle] = useRecoilState(titleState);
   const { isHidden, setIsHidden } = useScroll();
+  const [windowHeight, setWindowHeight] = useState(0);
   const [toastMessage, setToastMessage] = useState('');
-  const [theme, setTheme] = useState<themeState>(noneTheme);
-  const [loggingProp, setLoggingProp] = useState<personalPage | undefined>(
-    undefined,
-  );
 
   useEffect(() => {
     if (window) setWindowHeight(window.innerHeight);
-    axiosGetBoard(params.id)
-      .then((data) => {
-        const resData = data.data;
-        setBoard([resData.board]);
-        setTitle(resData.board.title);
-        setTheme(getTheme(resData.board.theme));
-        setIsOwner(resData.isOwner);
-        setLoggingProp({
-          boardId: resData.board.id,
-          isOwner: resData.isOwner,
-          contentCount: resData.board.contents.length,
-          totalLength: resData.board.contents.length,
-          theme: resData.board.theme,
-        });
-      })
-      .catch((err) => {
-        if (err.response.status === 406) {
-          router.push('/not-found');
-          return;
-        }
-      });
-  }, [params.id]);
-
-  useEffect(() => {
     setIsHidden(false);
   }, []);
 
@@ -107,6 +74,10 @@ export default function Personal({ params }: { params: { id: string } }) {
     }
   };
 
+  const handleClickBackground = () => {
+    setIsHidden(!isHidden);
+  };
+
   const handleClickShare = async () => {
     const url = `https://strcat.me/personal/${params.id}`;
     if (navigator.share) {
@@ -119,6 +90,10 @@ export default function Personal({ params }: { params: { id: string } }) {
       handleCopyClipBoard(url);
     }
   };
+
+  if (error === 406) {
+    router.push('/not-found');
+  }
 
   if (!board.length) {
     return (
@@ -133,22 +108,15 @@ export default function Personal({ params }: { params: { id: string } }) {
   return (
     <>
       <div className={`${defaultState.background} min-h-full`}>
-        <div
-          onClick={() => {
-            setIsHidden(!isHidden);
-          }}
-        >
+        <div onClick={handleClickBackground}>
           <SnowAnimation themeName={theme.name} />
           <div className="z-text relative">
-            {board[0].contents.length !== 0 && (
-              <div className="absolute top-[100px]">
-                <Summary id={params.id} />
-              </div>
-            )}
-            <div style={{ paddingTop: `${windowHeight * 0.4}px` }} />
-            {board[0].contents.length === 0 && (
-              <NoneContent handleClickWrite={handleClickWrite} />
-            )}
+            <FirstContent
+              boardLength={board[0].contents.length}
+              windowHeight={windowHeight}
+              id={params.id}
+              handleClickNonContent={handleClickWrite}
+            />
             <StrcatBoard board={board[0]} theme={theme} />
             <div style={{ minHeight: `${windowHeight * 0.7}px` }}></div>
           </div>
@@ -183,6 +151,50 @@ export default function Personal({ params }: { params: { id: string } }) {
     </>
   );
 }
+
+const useData = (
+  id: string,
+): [
+  board: board[],
+  isOwner: boolean,
+  title: any,
+  theme: themeState,
+  loggingProp: personalPage | undefined,
+  error: number,
+] => {
+  const [board, setBoard] = useState<board[]>([]);
+  const [isOwner, setIsOwner] = useState<boolean>(false);
+  const [title, setTitle] = useRecoilState(titleState);
+  const [theme, setTheme] = useState<themeState>(noneTheme);
+  const [loggingProp, setLoggingProp] = useState<personalPage | undefined>(
+    undefined,
+  );
+  const [error, setError] = useState<number>(0);
+  useEffect(() => {
+    axiosGetBoard(id)
+      .then((data) => {
+        const resData = data.data;
+        setBoard([resData.board]);
+        setTitle(resData.board.title);
+        setTheme(getTheme(resData.board.theme));
+        setIsOwner(resData.isOwner);
+        setLoggingProp({
+          boardId: resData.board.id,
+          isOwner: resData.isOwner,
+          contentCount: resData.board.contents.length,
+          totalLength: resData.board.contents.length,
+          theme: resData.board.theme,
+        });
+      })
+      .catch((err) => {
+        if (err.response.status === 406) {
+          setError(406);
+        }
+      });
+  }, []);
+
+  return [board, isOwner, title, theme, loggingProp, error];
+};
 
 const getTheme = (themeName: string): themeState => {
   if (themeName === 'chris') return chris;
