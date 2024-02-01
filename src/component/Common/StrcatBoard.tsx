@@ -13,9 +13,10 @@ import { themeState } from '@/types/theme';
 interface Props {
   board: board;
   theme: themeState;
+  isEdit: boolean;
 }
 
-const StrcatBoard = ({ board, theme }: Props) => {
+const StrcatBoard = ({ board, theme, isEdit }: Props) => {
   const [observe, setObserve] = useState<observeContent>({
     contentId: 0,
     photoUrl: '',
@@ -42,6 +43,7 @@ const StrcatBoard = ({ board, theme }: Props) => {
         content.map((content: content) => {
           return (
             <ObserveContent
+              isEdit={isEdit}
               key={content.id}
               observe={observe}
               setObserve={setObserve}

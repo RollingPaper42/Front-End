@@ -5,51 +5,69 @@ import { themeState } from '@/types/theme';
 import { defaultState } from '@/utils/theme/default';
 
 interface Props {
-  handleClickDownload: () => void;
+  handleClickEdit: () => void;
   handleClickShare: () => void;
   handleClickWrite: () => void;
   theme: themeState;
+  isEdit: boolean;
 }
 
 export default function OwnerButtonLayer({
-  handleClickDownload,
+  handleClickEdit,
   handleClickShare,
   handleClickWrite,
   theme,
+  isEdit,
 }: Props) {
   return (
     <>
-      <div
-        className="flex basis-1/12 items-center justify-center"
-        onClick={handleClickDownload}
-      >
-        <div
-          className={`flex h-[46px] w-[46px] cursor-pointer select-none items-center justify-center rounded-[5px] ${defaultState.btnLeftCTA}`}
-        >
-          <Image
-            src="/personal/Download.svg"
-            width={24}
-            height={24}
-            alt="Download"
+      {isEdit ? (
+        <>
+          <BottomButton
+            textColor={`${defaultState.explainLeftCTA}`}
+            name="취소"
+            width="basis-2/12"
+            onClickHandler={handleClickEdit}
+            color={`${defaultState.btnLeftCTA}`}
+            isShadow={true}
           />
-        </div>
-      </div>
-      <BottomButton
-        textColor={`${defaultState.explainLeftCTA}`}
-        name="공유하기"
-        width="basis-5/12"
-        onClickHandler={handleClickShare}
-        color={`${defaultState.btnLeftCTA}`}
-        isShadow={true}
-      />
-      <BottomButton
-        textColor={`${theme.textTheme.rightCTA}`}
-        name="글쓰기"
-        width="basis-5/12"
-        onClickHandler={handleClickWrite}
-        color={`${theme.bgTheme.rightCTA}`}
-        isShadow={true}
-      />
+          <BottomButton
+            textColor={`${defaultState.explainLeftCTA}`}
+            name="선택 삭제"
+            width="basis-10/12"
+            onClickHandler={handleClickShare}
+            color={`${defaultState.bottomDisalbe}`}
+            isShadow={true}
+          />
+        </>
+      ) : (
+        <>
+          <BottomButton
+            textColor={`${defaultState.explainLeftCTA}`}
+            name="편집"
+            width="basis-2/12"
+            onClickHandler={handleClickEdit}
+            color={`${defaultState.btnLeftCTA}`}
+            isShadow={true}
+          />
+          <BottomButton
+            textColor={`${defaultState.explainLeftCTA}`}
+            name="공유하기"
+            width="basis-5/12"
+            onClickHandler={handleClickShare}
+            color={`${defaultState.btnLeftCTA}`}
+            isShadow={true}
+          />
+          <BottomButton
+            textColor={`${theme.textTheme.rightCTA}`}
+            name="글쓰기"
+            width="basis-5/12"
+            onClickHandler={handleClickWrite}
+            color={`${theme.bgTheme.rightCTA}`}
+            isShadow={true}
+          />
+        </>
+      )}
     </>
   );
 }

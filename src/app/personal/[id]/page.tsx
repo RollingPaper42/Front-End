@@ -31,9 +31,10 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [board, isOwner, title, theme, loggingProp, error] = useData(params.id);
   const router = useRouter();
   const [isLogin] = useLogin();
-  const { isHidden, setIsHidden } = useScroll();
   const [windowHeight, setWindowHeight] = useState(0);
   const [toastMessage, setToastMessage] = useState('');
+  const [isEdit, setIsEdit] = useState(false);
+  const { isHidden, setIsHidden } = useScroll(isEdit);
 
   useEffect(() => {
     if (window) setWindowHeight(window.innerHeight);
@@ -60,9 +61,9 @@ export default function Personal({ params }: { params: { id: string } }) {
     }
   };
 
-  const handleClickDownload = () => {
-    logging('click_download', 'personal', loggingProp);
-    setToastMessage('저장기능은 준비중이에요!');
+  const handleClickEdit = () => {
+    setIsEdit((prev) => !prev);
+    setIsHidden(() => false);
   };
 
   const handleCopyClipBoard = async (url: string) => {
@@ -75,7 +76,9 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   const handleClickBackground = () => {
-    setIsHidden(!isHidden);
+    if (!isEdit) {
+      setIsHidden(!isHidden);
+    }
   };
 
   const handleClickShare = async () => {
@@ -117,7 +120,7 @@ export default function Personal({ params }: { params: { id: string } }) {
               id={params.id}
               handleClickNonContent={handleClickWrite}
             />
-            <StrcatBoard board={board[0]} theme={theme} />
+            <StrcatBoard board={board[0]} theme={theme} isEdit={isEdit} />
             <div style={{ minHeight: `${windowHeight * 0.7}px` }}></div>
           </div>
         </div>
@@ -130,9 +133,10 @@ export default function Personal({ params }: { params: { id: string } }) {
           <div className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]">
             {isOwner ? (
               <OwnerButtonLayer
-                handleClickDownload={handleClickDownload}
+                handleClickEdit={handleClickEdit}
                 handleClickShare={handleClickShare}
                 handleClickWrite={handleClickWrite}
+                isEdit={isEdit}
                 theme={theme}
               />
             ) : (
