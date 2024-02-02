@@ -17,12 +17,12 @@ import {
 import FirstContent from '@/component/Personal/FirstContent';
 import { useLogin } from '@/hooks/useLogin';
 import { useScroll } from '@/hooks/useScroll';
-import { titleState } from '@/recoil/state';
-import { noneTheme, themeState } from '@/recoil/theme';
-import { chris, lilac, mas, night, peach, sul } from '@/recoil/theme';
+import { titleState } from '@/recoil/title';
 import { logging } from '@/services/mixpanel';
 import { board } from '@/types/boards';
 import { personalPage } from '@/types/mixpanel';
+import { noneTheme, themeState } from '@/types/theme';
+import { chris, lilac, mas, night, peach, sul } from '@/types/theme';
 import { axiosGetBoard } from '@/utils/apiInterface';
 import { defaultState } from '@/utils/theme/default';
 

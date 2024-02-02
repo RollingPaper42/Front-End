@@ -1,6 +1,6 @@
 import StrcatBoard from './Common/StrcatBoard';
-import { night } from '@/recoil/theme';
 import { board } from '@/types/boards';
+import { night } from '@/types/theme';
 
 const MainBoard: board = {
   id: 'string',

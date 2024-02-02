@@ -4,6 +4,7 @@ import {
   lilacBg,
   masBg,
   nightBg,
+  noneBg,
   peachBg,
   sulBg,
 } from '@/utils/theme/bgTheme';
@@ -12,6 +13,7 @@ import {
   lilacText,
   masText,
   nightText,
+  noneText,
   peachText,
   sulText,
   textThemeState,
@@ -57,6 +59,12 @@ export const sul: themeState = {
   name: 'sul',
   textTheme: sulText,
   bgTheme: sulBg,
+};
+
+export const noneTheme: themeState = {
+  name: '',
+  textTheme: noneText,
+  bgTheme: noneBg,
 };
 
 export const themeObj = {

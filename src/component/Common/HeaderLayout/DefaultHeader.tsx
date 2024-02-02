@@ -3,7 +3,7 @@
 import { useRecoilState } from 'recoil';
 
 import { HamburgerMenu } from '../Icon/Header';
-import { drawerState } from '@/recoil/state';
+import { drawerState } from '@/recoil/drawer';
 import { drawerOpen } from '@/utils/drawerOpen';
 import { defaultState } from '@/utils/theme/default';
 
