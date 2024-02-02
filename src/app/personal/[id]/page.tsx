@@ -19,7 +19,7 @@ import { useLogin } from '@/hooks/useLogin';
 import { useScroll } from '@/hooks/useScroll';
 import { titleState } from '@/recoil/state';
 import { noneTheme, themeState } from '@/recoil/theme';
-import { chris, lilac, mas, night, peach } from '@/recoil/theme';
+import { chris, lilac, mas, night, peach, sul } from '@/recoil/theme';
 import { logging } from '@/services/mixpanel';
 import { board } from '@/types/boards';
 import { personalPage } from '@/types/mixpanel';
@@ -202,5 +202,6 @@ const getTheme = (themeName: string): themeState => {
   if (themeName === 'night') return night;
   if (themeName === 'peach') return peach;
   if (themeName === 'lilac') return lilac;
+  if (themeName === 'sul') return sul;
   return night;
 };

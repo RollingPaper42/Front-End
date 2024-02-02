@@ -36,12 +36,12 @@ export default function ThemeSelect({
             }`}
             onClick={theme.onClick}
           >
-            <div className="flex justify-center items-center pt-[5px]">
+            <div className="flex justify-center items-center h-[43px] pt-[5px]">
               {theme.image && (
                 <Image
                   src={theme.image}
-                  width={42}
-                  height={43}
+                  width={theme.name === '설날' ? 19 : 42}
+                  height={theme.name === '설날' ? 21 : 43}
                   alt={theme.name}
                   className="z-10"
                 />

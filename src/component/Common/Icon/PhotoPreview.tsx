@@ -24,9 +24,10 @@ export default function PhotoPreviewIcon({ color }: { color: string }) {
 }
 
 const getColor = (color: string) => {
-  if (color === 'bg-night-highlight') return '#FDFFB0';
-  if (color === 'bg-peach-highlight') return '#FFC8B0';
-  if (color === 'bg-lilac-highlight') return '#D7C4FF';
-  if (color === 'bg-chris-highlight') return '#246F50';
-  if (color === 'bg-mas-highlight') return '#DE6565';
+  if (color === 'bg-strcat-sul') return '#82CBFF';
+  if (color === 'bg-strcat-night') return '#FDFFB0';
+  if (color === 'bg-strcat-peach') return '#FFC8B0';
+  if (color === 'bg-strcat-lilac') return '#D7C4FF';
+  if (color === 'bg-strcat-chris') return '#246F50';
+  if (color === 'bg-strcat-mas') return '#DE6565';
 };
