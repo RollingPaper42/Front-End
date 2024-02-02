@@ -21,6 +21,8 @@ interface props {
   openModal: (modalComponent: JSX.Element) => void;
   closeModal: () => void;
   isEdit: boolean;
+  checkedSet: Set<unknown>;
+  setCheckedSet: React.Dispatch<React.SetStateAction<Set<unknown>>>;
 }
 
 const ObserveContent = ({
@@ -33,8 +35,11 @@ const ObserveContent = ({
   openModal,
   closeModal,
   isEdit,
+  checkedSet,
+  setCheckedSet,
 }: props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
+  const [isChecked, setIscChecked] = useState(false);
   const handleClickPhoto = () => {
     openModal(
       <PhotoModal
@@ -80,6 +85,17 @@ const ObserveContent = ({
     };
   }, []);
 
+  const handleCheckbox = (id: number) => {
+    setCheckedSet((prev) => {
+      const set = new Set(prev);
+      if (!set.has(id)) {
+        set.add(id);
+      } else {
+        set.delete(id);
+      }
+      return set;
+    });
+  };
   return (
     <div ref={ref} className={`flex w-full`}>
       {isEdit ? (
@@ -89,6 +105,7 @@ const ObserveContent = ({
               className="mr-[15px] mt-[5px] appearance-none w-[18px] h-[18px] bg-transparent border-2 border-strcat-unhighlighted  checked:bg-[url('/personal/checkboxTrue.svg')] checked:bg-no-repeat checked:bg-center checked:border-none rounded-sm "
               type="checkbox"
               id={`${content.id}`}
+              onChange={() => handleCheckbox(content.id)}
             ></input>
           </div>
         </>

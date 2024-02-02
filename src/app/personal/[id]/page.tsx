@@ -35,6 +35,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [toastMessage, setToastMessage] = useState('');
   const [isEdit, setIsEdit] = useState(false);
   const { isHidden, setIsHidden } = useScroll(isEdit);
+  const [checkedSet, setCheckedSet] = useState(new Set());
 
   useEffect(() => {
     if (window) setWindowHeight(window.innerHeight);
@@ -120,7 +121,13 @@ export default function Personal({ params }: { params: { id: string } }) {
               id={params.id}
               handleClickNonContent={handleClickWrite}
             />
-            <StrcatBoard board={board[0]} theme={theme} isEdit={isEdit} />
+            <StrcatBoard
+              board={board[0]}
+              theme={theme}
+              isEdit={isEdit}
+              checkedSet={checkedSet}
+              setCheckedSet={setCheckedSet}
+            />
             <div style={{ minHeight: `${windowHeight * 0.7}px` }}></div>
           </div>
         </div>

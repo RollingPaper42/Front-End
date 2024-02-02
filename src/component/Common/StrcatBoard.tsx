@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
+import { Dispatch } from 'react';
+import { SetStateAction } from 'react';
 import { useRecoilState } from 'recoil';
 
 import ObserveContent from './ObserveContent';
@@ -14,9 +16,17 @@ interface Props {
   board: board;
   theme: themeState;
   isEdit: boolean;
+  checkedSet: Set<unknown>;
+  setCheckedSet: Dispatch<SetStateAction<Set<unknown>>>;
 }
 
-const StrcatBoard = ({ board, theme, isEdit }: Props) => {
+const StrcatBoard = ({
+  board,
+  theme,
+  isEdit,
+  checkedSet,
+  setCheckedSet,
+}: Props) => {
   const [observe, setObserve] = useState<observeContent>({
     contentId: 0,
     photoUrl: '',
@@ -53,6 +63,8 @@ const StrcatBoard = ({ board, theme, isEdit }: Props) => {
               theme={theme}
               openModal={openModal}
               closeModal={closeModal}
+              checkedSet={checkedSet}
+              setCheckedSet={setCheckedSet}
             />
           );
         })}
