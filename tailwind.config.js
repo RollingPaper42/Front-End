@@ -33,20 +33,11 @@ module.exports = {
         'drawer-scrollbar': '#373737',
         'drawerlist-bg': '#1D1D1D',
 
-        'night-highlight': '#FDFFB0',
-        'night-buttonbg': '#9D9D8C',
-
-        'peach-highlight': '#FFC8B0',
-        'peach-buttonbg': '#987A6F',
-
-        'lilac-highlight': '#D7C4FF',
-        'lilac-buttonbg': '#66697D',
-
-        'chris-highlight': '#246F50',
-        'chris-buttonbg': '#2A4C3E',
-
-        'mas-highlight': '#DE6565',
-        'mas-buttonbg': '#964E4E',
+        'strcat-night': '#FDFFB0',
+        'strcat-peach': '#FFC8B0',
+        'strcat-lilac': '#D7C4FF',
+        'strcat-chris': '#246F50',
+        'strcat-mas': '#DE6565',
         'strcat-sul': '#82CBFF',
       },
       keyframes: {

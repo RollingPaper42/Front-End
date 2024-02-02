@@ -1,48 +1,55 @@
 export interface textThemeState {
-  highlight: string;
-  addRightCTA: string;
   writer: string;
+  highlight: string;
   rightCTA: string;
+  addRightCTA: string;
 }
 
 export const nightText: textThemeState = {
+  writer: 'text-strcat-night',
   highlight: 'text-default-black',
-  addRightCTA: 'text-default-black',
   rightCTA: 'text-default-black',
-  writer: 'text-night-highlight',
+  addRightCTA: 'text-default-black',
 };
 
 export const peachText: textThemeState = {
-  writer: 'text-peach-highlight',
-  addRightCTA: 'text-default-black',
+  writer: 'text-strcat-peach',
   highlight: 'text-default-black',
   rightCTA: 'text-default-black',
+  addRightCTA: 'text-default-black',
 };
 
 export const lilacText: textThemeState = {
-  writer: 'text-lilac-highlight',
-  addRightCTA: 'text-default-black',
+  writer: 'text-strcat-lilac',
   highlight: 'text-default-black',
   rightCTA: 'text-default-black',
+  addRightCTA: 'text-default-black',
 };
 
 export const chrisText: textThemeState = {
-  writer: 'text-chris-highlight',
-  addRightCTA: 'text-default-white',
+  writer: 'text-strcat-chris',
   highlight: 'text-default-white',
   rightCTA: 'text-default-white',
+  addRightCTA: 'text-default-white',
 };
 
 export const masText: textThemeState = {
-  writer: 'text-mas-highlight',
-  addRightCTA: 'text-default-white',
+  writer: 'text-strcat-mas',
   highlight: 'text-default-white',
   rightCTA: 'text-default-white',
+  addRightCTA: 'text-default-white',
+};
+
+export const sulText: textThemeState = {
+  writer: 'text-strcat-sul',
+  highlight: 'text-default-black',
+  rightCTA: 'text-default-black',
+  addRightCTA: 'text-default-black',
 };
 
 export const noneText: textThemeState = {
   writer: '',
-  addRightCTA: '',
   highlight: '',
   rightCTA: '',
+  addRightCTA: '',
 };
