@@ -15,9 +15,9 @@ import { themeState } from '@/types/theme';
 interface Props {
   board: board;
   theme: themeState;
-  isEdit: boolean;
-  checkedSet: Set<unknown>;
-  setCheckedSet: Dispatch<SetStateAction<Set<unknown>>>;
+  isEdit?: boolean;
+  checkedSet?: Set<unknown>;
+  setCheckedSet?: Dispatch<SetStateAction<Set<unknown>>>;
 }
 
 const StrcatBoard = ({

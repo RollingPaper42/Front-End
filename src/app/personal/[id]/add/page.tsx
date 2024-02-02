@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 
 import BottomButton from '@/component/Common/BottomButton';
 import Loading from '@/component/Common/Loading';
-import Error from '@/component/Common/Modal/Error';
+import Introduce from '@/component/Common/Modal/Introduce';
 import Textarea from '@/component/Common/Textarea';
 import { PhotoUpload, PreviewPhoto, Writer } from '@/component/Personal/Add';
 import useInput from '@/hooks/useInput';
@@ -69,7 +69,7 @@ export default function Add({ params }: { params: { id: string } }) {
         const error = err as AxiosError;
         if (error.response?.status === 406) {
           openModal(
-            <Error
+            <Introduce
               mainContent="일시적으로 문제가 발생했어요 🥲"
               subContent="잠시 후 다시 시도해주세요."
               handleModalClose={closeModal}

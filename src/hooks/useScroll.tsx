@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 
 import { hiddenState } from '@/recoil/layoutHidden';
 
-export const useScroll = (isEdit: boolean, options = { scrollEvent: true }) => {
+export const useScroll = (options = { scrollEvent: true }) => {
   const [isHidden, setIsHidden] = useRecoilState(hiddenState);
   const [lastScrollTop, setLastScrollTop] = useState(0);
 
@@ -16,7 +16,7 @@ export const useScroll = (isEdit: boolean, options = { scrollEvent: true }) => {
       if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
         return;
       }
-      if (!isEdit && currentScrollTop > lastScrollTop + 10) {
+      if (currentScrollTop > lastScrollTop + 10) {
         setIsHidden(true);
       } else if (currentScrollTop < lastScrollTop - 15) {
         setIsHidden(false);

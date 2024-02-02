@@ -20,9 +20,9 @@ interface props {
   setObserve: Dispatch<SetStateAction<observeContent>>;
   openModal: (modalComponent: JSX.Element) => void;
   closeModal: () => void;
-  isEdit: boolean;
-  checkedSet: Set<unknown>;
-  setCheckedSet: React.Dispatch<React.SetStateAction<Set<unknown>>>;
+  isEdit?: boolean;
+  checkedSet?: Set<unknown>;
+  setCheckedSet?: React.Dispatch<React.SetStateAction<Set<unknown>>>;
 }
 
 const ObserveContent = ({
@@ -35,11 +35,9 @@ const ObserveContent = ({
   openModal,
   closeModal,
   isEdit,
-  checkedSet,
   setCheckedSet,
 }: props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
-  const [isChecked, setIscChecked] = useState(false);
   const handleClickPhoto = () => {
     openModal(
       <PhotoModal
@@ -86,15 +84,17 @@ const ObserveContent = ({
   }, []);
 
   const handleCheckbox = (id: number) => {
-    setCheckedSet((prev) => {
-      const set = new Set(prev);
-      if (!set.has(id)) {
-        set.add(id);
-      } else {
-        set.delete(id);
-      }
-      return set;
-    });
+    if (setCheckedSet) {
+      setCheckedSet((prev) => {
+        const set = new Set(prev);
+        if (!set.has(id)) {
+          set.add(id);
+        } else {
+          set.delete(id);
+        }
+        return set;
+      });
+    }
   };
   return (
     <div ref={ref} className={`flex w-full`}>

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import HeaderLayout from '@/component/Common/HeaderLayout';
-import Error from '@/component/Common/Modal/Error';
+import Introduce from '@/component/Common/Modal/Introduce';
 import CreateTheme from '@/component/Create/CreateTheme';
 import TitleSelect from '@/component/Create/TitleSelect';
 import useModal from '@/hooks/useModal';
@@ -56,7 +56,7 @@ export default function Create() {
       .catch((err) => {
         if (err.response.status === 401) {
           openModal(
-            <Error
+            <Introduce
               mainContent="앗! 로그인이 만료되었어요."
               subContent="다시 로그인 해주세요."
               handleModalClose={closeModal}
@@ -65,7 +65,7 @@ export default function Create() {
         }
         if (err.response.status === 406) {
           openModal(
-            <Error
+            <Introduce
               mainContent="일시적으로 문제가 발생했어요 🥲"
               subContent="잠시 후 다시 시도해주세요."
               handleModalClose={closeModal}
