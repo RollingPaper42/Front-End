@@ -5,6 +5,7 @@ import {
   masBg,
   nightBg,
   peachBg,
+  sulBg,
 } from '@/utils/theme/bgTheme';
 import {
   chrisText,
@@ -12,6 +13,7 @@ import {
   masText,
   nightText,
   peachText,
+  sulText,
   textThemeState,
 } from '@/utils/theme/textTheme';
 
@@ -51,10 +53,17 @@ export const lilac: themeState = {
   bgTheme: lilacBg,
 };
 
+export const sul: themeState = {
+  name: 'sul',
+  textTheme: sulText,
+  bgTheme: sulBg,
+};
+
 export const themeObj = {
   night: night,
   peach: peach,
   lilac: lilac,
   chris: chris,
   mas: mas,
+  sul: sul,
 };

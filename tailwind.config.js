@@ -47,6 +47,7 @@ module.exports = {
 
         'mas-highlight': '#DE6565',
         'mas-buttonbg': '#964E4E',
+        'strcat-sul': '#82CBFF',
       },
       keyframes: {
         slide: {
