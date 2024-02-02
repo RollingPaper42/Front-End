@@ -8,6 +8,7 @@ interface Props {
   handleClickEdit: () => void;
   handleClickShare: () => void;
   handleClickWrite: () => void;
+  handleClickDelete: () => void;
   theme: themeState;
   isEdit: boolean;
 }
@@ -18,6 +19,7 @@ export default function OwnerButtonLayer({
   handleClickWrite,
   theme,
   isEdit,
+  handleClickDelete,
 }: Props) {
   return (
     <>
@@ -35,7 +37,7 @@ export default function OwnerButtonLayer({
             textColor={`${defaultState.explainLeftCTA}`}
             name="선택 삭제"
             width="basis-10/12"
-            onClickHandler={handleClickShare}
+            onClickHandler={handleClickDelete}
             color={`${defaultState.bottomDisalbe}`}
             isShadow={true}
           />

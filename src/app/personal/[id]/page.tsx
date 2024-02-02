@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
 
 import Loading from '@/component/Common/Loading';
+import Error from '@/component/Common/Modal/Error';
 import StrcatBoard from '@/component/Common/StrcatBoard';
 import Toast from '@/component/Common/Toast';
 import {
@@ -16,6 +17,7 @@ import {
 } from '@/component/Personal';
 import FirstContent from '@/component/Personal/FirstContent';
 import { useLogin } from '@/hooks/useLogin';
+import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
 import { titleState } from '@/recoil/state';
 import { noneTheme, themeState } from '@/recoil/theme';
@@ -23,7 +25,8 @@ import { chris, lilac, mas, night, peach } from '@/recoil/theme';
 import { logging } from '@/services/mixpanel';
 import { board } from '@/types/boards';
 import { personalPage } from '@/types/mixpanel';
-import { axiosGetBoard } from '@/utils/apiInterface';
+import { axiosGetBoard, axoisDeleteContents } from '@/utils/apiInterface';
+import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
 
 require('intersection-observer');
@@ -36,6 +39,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   const [isEdit, setIsEdit] = useState(false);
   const { isHidden, setIsHidden } = useScroll(isEdit);
   const [checkedSet, setCheckedSet] = useState(new Set());
+  const [openModal, closeModal] = useModal();
 
   useEffect(() => {
     if (window) setWindowHeight(window.innerHeight);
@@ -95,6 +99,39 @@ export default function Personal({ params }: { params: { id: string } }) {
     }
   };
 
+  const handleClickDelete = async () => {
+    const isConfirmed = await confirm(
+      openModal,
+      closeModal,
+      '선택하신 글을 삭제하시겠어요?',
+      '삭제한 글은 다시 볼 수 없게 돼요.',
+    );
+    if (isConfirmed) {
+      const deleteArray = Array.from(checkedSet);
+      const requestData = { data: deleteArray };
+      axoisDeleteContents(params.id, requestData)
+        .then((data) => {
+          openModal(
+            <Error
+              mainContent="삭제가 완료되었습니다."
+              handleModalClose={closeModal}
+            />,
+          );
+        })
+        .catch((error) => {
+          if (error.response?.status === 406) {
+            openModal(
+              <Error
+                mainContent="일시적으로 문제가 발생했어요 🥲"
+                subContent="잠시 후 다시 시도해주세요."
+                handleModalClose={closeModal}
+              />,
+            );
+          }
+        });
+    }
+  };
+
   if (error === 406) {
     router.push('/not-found');
   }
@@ -144,6 +181,7 @@ export default function Personal({ params }: { params: { id: string } }) {
                 handleClickShare={handleClickShare}
                 handleClickWrite={handleClickWrite}
                 isEdit={isEdit}
+                handleClickDelete={handleClickDelete}
                 theme={theme}
               />
             ) : (
