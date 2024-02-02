@@ -31,7 +31,7 @@ export default function ThemeSelect({
           <div
             className={`${theme.bgStyle} h-[45px] w-[45px] rounded-full ${
               isPreview === theme.id
-                ? 'ring-white ring-offset-strcat-black ring-2 ring-offset-2'
+                ? 'ring-white ring-offset-default-black ring-2 ring-offset-2'
                 : ''
             }`}
             onClick={theme.onClick}
