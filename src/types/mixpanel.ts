@@ -3,5 +3,5 @@ export interface personalPage {
   isOwner: boolean;
   contentCount: number;
   totalLength: number;
-  theme: 'night' | 'peach' | 'lilac' | 'chris' | 'mas';
+  theme: 'night' | 'peach' | 'lilac' | 'chris' | 'mas' | 'sul';
 }

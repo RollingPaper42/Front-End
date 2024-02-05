@@ -5,33 +5,39 @@ export interface bgThemeState {
 }
 
 export const nightBg: bgThemeState = {
-  highlight: 'bg-night-highlight',
-  rightCTA: 'bg-night-highlight',
-  addRightCTA: 'bg-night-highlight',
+  highlight: 'bg-strcat-night',
+  rightCTA: 'bg-strcat-night',
+  addRightCTA: 'bg-strcat-night',
 };
 
 export const peachBg: bgThemeState = {
-  highlight: 'bg-peach-highlight',
-  rightCTA: 'bg-peach-highlight',
-  addRightCTA: 'bg-peach-highlight',
+  highlight: 'bg-strcat-peach',
+  rightCTA: 'bg-strcat-peach',
+  addRightCTA: 'bg-strcat-peach',
 };
 
 export const lilacBg: bgThemeState = {
-  highlight: 'bg-lilac-highlight',
-  rightCTA: 'bg-lilac-highlight',
-  addRightCTA: 'bg-lilac-highlight',
+  highlight: 'bg-strcat-lilac',
+  rightCTA: 'bg-strcat-lilac',
+  addRightCTA: 'bg-strcat-lilac',
 };
 
 export const masBg: bgThemeState = {
-  highlight: 'bg-mas-highlight',
-  rightCTA: 'bg-mas-highlight',
-  addRightCTA: 'bg-mas-highlight',
+  highlight: 'bg-strcat-mas',
+  rightCTA: 'bg-strcat-mas',
+  addRightCTA: 'bg-strcat-mas',
 };
 
 export const chrisBg: bgThemeState = {
-  highlight: 'bg-chris-highlight',
-  rightCTA: 'bg-chris-highlight',
-  addRightCTA: 'bg-chris-highlight',
+  highlight: 'bg-strcat-chris',
+  rightCTA: 'bg-strcat-chris',
+  addRightCTA: 'bg-strcat-chris',
+};
+
+export const sulBg: bgThemeState = {
+  highlight: 'bg-strcat-sul',
+  rightCTA: 'bg-strcat-sul',
+  addRightCTA: 'bg-strcat-sul',
 };
 
 export const noneBg: bgThemeState = {

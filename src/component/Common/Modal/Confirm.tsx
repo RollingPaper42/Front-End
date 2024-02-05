@@ -14,13 +14,13 @@ export default function Confirm({ mainContent, subContent, yes, no }: Props) {
     <div className="relative w-[280px] rounded-[16px] bg-strcat-textarea-bg px-[16px] pb-[16px] pt-[32px] font-medium shadow-[0px_4px_20px_0px_rgba(0,0,0,0.50)]">
       <div className=" items-center justify-center">
         <p
-          className={`text-center ${titleFontState.titleLabel} text-strcat-white`}
+          className={`text-center ${titleFontState.titleLabel} text-default-white`}
         >
           {mainContent}
         </p>
         {subContent && (
           <p
-            className={`mt-[12px] text-center ${bodyFontState.serviceBody}  text-strcat-gray-500`}
+            className={`mt-[12px] text-center ${bodyFontState.serviceBody}  text-default-gray3`}
           >
             {subContent}
           </p>
@@ -29,8 +29,8 @@ export default function Confirm({ mainContent, subContent, yes, no }: Props) {
           <BottomButton
             name="취소"
             width="basis-1/2"
-            textColor="text-strcat-white"
-            color="bg-strcat-gray2"
+            textColor="text-default-white2"
+            color="bg-default-gray"
             onClickHandler={no}
           />
           <div className="w-[12px]"></div>

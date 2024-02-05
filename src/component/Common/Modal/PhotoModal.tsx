@@ -2,7 +2,7 @@ import Close from '../Icon/Close';
 import Photo from './Photo';
 import { bodyFontState } from '@/recoil/font/body';
 import { captionFontState } from '@/recoil/font/caption';
-import { themeState } from '@/recoil/theme';
+import { themeState } from '@/types/theme';
 import { handleBackground } from '@/utils/handleBackground';
 
 interface Props {
