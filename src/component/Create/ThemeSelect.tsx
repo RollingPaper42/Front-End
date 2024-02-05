@@ -1,26 +1,16 @@
 import Image from 'next/image';
 
-interface ThemeArray {
-  id: string;
-  name: string;
-  image?: string;
-  onClick: () => void;
-  bgStyle: string;
-}
+import { ThemeArray } from '@/types/ThemeArray';
 
 interface Props {
   themes: ThemeArray[];
-  isPreview: string;
+  preview: number;
   defaultState: {
     activateText: string;
   };
 }
 
-export default function ThemeSelect({
-  themes,
-  isPreview,
-  defaultState,
-}: Props) {
+export default function ThemeSelect({ themes, preview, defaultState }: Props) {
   return (
     <div className="flex w-full flex-row">
       {themes.map((theme) => (
@@ -30,7 +20,7 @@ export default function ThemeSelect({
         >
           <div
             className={`${theme.bgStyle} h-[45px] w-[45px] rounded-full ${
-              isPreview === theme.id
+              preview === theme.id
                 ? 'ring-white ring-offset-default-black ring-2 ring-offset-2'
                 : ''
             }`}
