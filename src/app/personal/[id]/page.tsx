@@ -107,8 +107,8 @@ export default function Personal({ params }: { params: { id: string } }) {
       '삭제한 글은 다시 볼 수 없게 돼요.',
     );
     if (isConfirmed) {
-      const deleteArray = Array.from(checkedSet);
-      const requestData = { data: deleteArray };
+      const contentIds = Array.from(checkedSet);
+      const requestData = { data: { contentIds } };
       axoisDeleteContents(params.id, requestData)
         .then((data) => {
           openModal(
@@ -119,6 +119,7 @@ export default function Personal({ params }: { params: { id: string } }) {
           );
         })
         .catch((error) => {
+          console.log(requestData);
           if (error.response?.status === 406) {
             openModal(
               <Introduce

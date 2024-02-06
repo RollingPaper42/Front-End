@@ -29,5 +29,5 @@ export const axiosPostBoardContentPicture = (id: string, requestData: any) => {
 };
 
 export const axoisDeleteContents = (id: string, requestData: any) => {
-  return axiosInstance.delete(`/boards/${id}/contents`, requestData);
+  return axiosInstance.delete(`boards/${id}/contents`, requestData);
 };

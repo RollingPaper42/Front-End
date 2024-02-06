@@ -110,7 +110,7 @@ const ObserveContent = ({
           </div>
         </>
       ) : null}
-      <div className={`${isEdit ? 'pb-[8px]' : ''} relative w-full`}>
+      <div className={`relative w-full`}>
         {observe.contentId === content.id && observe.photoUrl !== '' && (
           <PhotoPreview
             photoUrl={content.photoUrl}
