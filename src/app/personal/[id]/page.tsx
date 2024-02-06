@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Console } from 'console';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { useRouter } from 'next/navigation';
@@ -31,13 +32,15 @@ import { defaultState } from '@/utils/theme/default';
 
 require('intersection-observer');
 export default function Personal({ params }: { params: { id: string } }) {
-  const [board, isOwner, title, theme, loggingProp, error] = useData(params.id);
+  const [board, setBoard, isOwner, title, theme, loggingProp, error] = useData(
+    params.id,
+  );
   const router = useRouter();
   const [isLogin] = useLogin();
   const [windowHeight, setWindowHeight] = useState(0);
   const [toastMessage, setToastMessage] = useState('');
   const [isEdit, setIsEdit] = useState(false);
-  const { isHidden, setIsHidden } = useScroll({ scrollEvent: isEdit });
+  const { isHidden, setIsHidden } = useScroll();
   const [checkedSet, setCheckedSet] = useState(new Set());
   const [openModal, closeModal] = useModal();
 
@@ -81,9 +84,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   const handleClickBackground = () => {
-    if (!isEdit) {
-      setIsHidden(!isHidden);
-    }
+    setIsHidden(!isHidden);
   };
 
   const handleClickShare = async () => {
@@ -106,20 +107,24 @@ export default function Personal({ params }: { params: { id: string } }) {
       '선택하신 글을 삭제하시겠어요?',
       '삭제한 글은 다시 볼 수 없게 돼요.',
     );
+    const handleClickDeleteSuccess = () => {
+      setIsEdit(false);
+      closeModal();
+    };
     if (isConfirmed) {
       const contentIds = Array.from(checkedSet);
       const requestData = { data: { contentIds } };
       axoisDeleteContents(params.id, requestData)
         .then((data) => {
+          setBoard([data.data.board]);
           openModal(
             <Introduce
               mainContent="삭제가 완료되었습니다."
-              handleModalClose={closeModal}
+              handleModalClose={handleClickDeleteSuccess}
             />,
           );
         })
         .catch((error) => {
-          console.log(requestData);
           if (error.response?.status === 406) {
             openModal(
               <Introduce
@@ -206,6 +211,7 @@ const useData = (
   id: string,
 ): [
   board: board[],
+  setBoard: Dispatch<SetStateAction<board[]>>,
   isOwner: boolean,
   title: any,
   theme: themeState,
@@ -243,7 +249,7 @@ const useData = (
       });
   }, []);
 
-  return [board, isOwner, title, theme, loggingProp, error];
+  return [board, setBoard, isOwner, title, theme, loggingProp, error];
 };
 
 const getTheme = (themeName: string): themeState => {
