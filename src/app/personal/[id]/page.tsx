@@ -1,6 +1,5 @@
 'use client';
 
-import { Console } from 'console';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -84,7 +83,9 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   const handleClickBackground = () => {
-    setIsHidden(!isHidden);
+    if (!isEdit) {
+      setIsHidden(!isHidden);
+    }
   };
 
   const handleClickShare = async () => {
@@ -107,7 +108,8 @@ export default function Personal({ params }: { params: { id: string } }) {
       '선택하신 글을 삭제하시겠어요?',
       '삭제한 글은 다시 볼 수 없게 돼요.',
     );
-    const handleClickDeleteSuccess = () => {
+    const handleClickDeleteSuccess = (board: board[]) => {
+      setBoard(board);
       setIsEdit(false);
       closeModal();
     };
@@ -116,11 +118,12 @@ export default function Personal({ params }: { params: { id: string } }) {
       const requestData = { data: { contentIds } };
       axoisDeleteContents(params.id, requestData)
         .then((data) => {
-          setBoard([data.data.board]);
           openModal(
             <Introduce
               mainContent="삭제가 완료되었습니다."
-              handleModalClose={handleClickDeleteSuccess}
+              handleModalClose={() =>
+                handleClickDeleteSuccess([data.data.board])
+              }
             />,
           );
         })
