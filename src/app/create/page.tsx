@@ -90,11 +90,12 @@ export default function Create() {
           />
         ) : (
           <CreateTheme
-            onClickChris={() => handlePreview(`1`, 'chris')}
-            onClickMas={() => handlePreview(`2`, 'mas')}
-            onClickNight={() => handlePreview(`3`, 'night')}
-            onClickPeach={() => handlePreview(`4`, 'peach')}
-            onClickLilac={() => handlePreview(`5`, 'lilac')}
+            onClickSul={() => handlePreview(`1`, `sul`)}
+            onClickNight={() => handlePreview(`2`, 'night')}
+            onClickPeach={() => handlePreview(`3`, 'peach')}
+            onClickLilac={() => handlePreview(`4`, 'lilac')}
+            onClickChris={() => handlePreview(`5`, 'chris')}
+            onClickMas={() => handlePreview(`6`, 'mas')}
             setIsNext={setIsNext}
             isPreview={isPreview}
           />

@@ -5,9 +5,9 @@ import PhotoModal from './Modal/PhotoModal';
 import PhotoPreview from './PhotoPreview';
 import { bodyFontState } from '@/recoil/font/body';
 import { captionFontState } from '@/recoil/font/caption';
-import { themeState } from '@/recoil/theme';
 import { content } from '@/types/content';
 import { observeContent } from '@/types/observe';
+import { themeState } from '@/types/theme';
 import { focusToHighlight } from '@/utils/focusToHighlight';
 import { defaultState } from '@/utils/theme/default';
 

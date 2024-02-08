@@ -6,47 +6,66 @@ import ThemeSelect from './ThemeSelect';
 import { defaultState } from '@/utils/theme/default';
 
 interface CreateThemeProps {
-  onClickChris: () => void;
-  onClickMas: () => void;
+  onClickSul: () => void;
   onClickNight: () => void;
   onClickPeach: () => void;
   onClickLilac: () => void;
+  onClickChris: () => void;
+  onClickMas: () => void;
   isPreview: string;
   setIsNext: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function CreateTheme({
   setIsNext,
-  onClickChris,
-  onClickMas,
+  onClickSul,
   onClickNight,
   onClickPeach,
   onClickLilac,
+  onClickChris,
+  onClickMas,
   isPreview,
 }: CreateThemeProps) {
   const themes = [
     {
       id: '1',
-      name: '크리스',
-      image: '/create/chrisCat.svg',
-      onClick: onClickChris,
-      bgStyle: 'bg-chris-bg',
+      name: '설날',
+      image: '/create/sulHat.svg',
+      onClick: onClickSul,
+      bgStyle: 'bg-strcat-sul',
     },
     {
       id: '2',
-      name: '마스',
-      image: '/create/masCat.svg',
-      onClick: onClickMas,
-      bgStyle: 'bg-mas-bg',
+      name: '고요한 밤',
+      onClick: onClickNight,
+      bgStyle: 'bg-strcat-night',
     },
     {
       id: '3',
-      name: '고요한 밤',
-      onClick: onClickNight,
-      bgStyle: 'bg-night-bg',
+      name: '복숭아',
+      onClick: onClickPeach,
+      bgStyle: 'bg-strcat-peach',
     },
-    { id: '4', name: '복숭아', onClick: onClickPeach, bgStyle: 'bg-peach-bg' },
-    { id: '5', name: '라일락', onClick: onClickLilac, bgStyle: 'bg-lilac-bg' },
+    {
+      id: '4',
+      name: '라일락',
+      onClick: onClickLilac,
+      bgStyle: 'bg-strcat-lilac',
+    },
+    {
+      id: '5',
+      name: '크리스',
+      image: '/create/chrisCat.svg',
+      onClick: onClickChris,
+      bgStyle: 'bg-strcat-chris',
+    },
+    {
+      id: '6',
+      name: '마스',
+      image: '/create/masCat.svg',
+      onClick: onClickMas,
+      bgStyle: 'bg-strcat-mas',
+    },
   ];
 
   return (

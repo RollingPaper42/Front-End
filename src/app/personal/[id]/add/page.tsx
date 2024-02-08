@@ -13,7 +13,7 @@ import Textarea from '@/component/Common/Textarea';
 import { PhotoUpload, PreviewPhoto, Writer } from '@/component/Personal/Add';
 import useInput from '@/hooks/useInput';
 import useModal from '@/hooks/useModal';
-import { addContentState } from '@/recoil/content';
+import { addContentState } from '@/recoil/addContent';
 import { titleFontState } from '@/recoil/font/title';
 import { logging } from '@/services/mixpanel';
 import {

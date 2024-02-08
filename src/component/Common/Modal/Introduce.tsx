@@ -17,13 +17,13 @@ export default function Introduce({
     <div className="relative w-[280px] pt-[32px] pb-[16px] px-[16px] bg-strcat-textarea-bg rounded-[16px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.50)] font-medium">
       <div className=" items-center justify-center">
         <p
-          className={`text-center ${titleFontState.titleLabel} text-strcat-white`}
+          className={`text-center ${titleFontState.titleLabel} text-default-white`}
         >
           {mainContent}
         </p>
         {subContent && (
           <p
-            className={`text-center ${bodyFontState.serviceBody} text-strcat-gray-500 mt-[12px]`}
+            className={`text-center ${bodyFontState.serviceBody} text-default-gray3 mt-[12px]`}
           >
             {subContent}
           </p>
@@ -32,7 +32,7 @@ export default function Introduce({
           <BottomButton
             name="확인"
             width="w-full"
-            textColor="text-strcat-black"
+            textColor="text-default-black"
             color="bg-strcat-bright-yellow"
             onClickHandler={handleModalClose}
           />
