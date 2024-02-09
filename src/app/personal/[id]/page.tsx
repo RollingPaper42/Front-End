@@ -128,6 +128,15 @@ export default function Personal({ params }: { params: { id: string } }) {
           );
         })
         .catch((error) => {
+          if (error.response.status === 401) {
+            openModal(
+              <Introduce
+                mainContent="앗! 로그인이 만료되었어요."
+                subContent="다시 로그인 해주세요."
+                handleModalClose={closeModal}
+              />,
+            );
+          }
           if (error.response?.status === 406) {
             openModal(
               <Introduce
