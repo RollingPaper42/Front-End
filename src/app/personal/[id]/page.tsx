@@ -35,16 +35,14 @@ export default function Personal({ params }: { params: { id: string } }) {
   const { isHidden, setIsHidden } = useScroll();
   const [windowHeight, setWindowHeight] = useState(0);
   const [toastMessage, setToastMessage] = useState('');
+ 
+  const addHistory = ()=>{
+    const timestamp = () => {
+      var now = new Date();
+      now.setHours(now.getHours() + 9);
+      return now.toISOString().replace('T', ' ').substring(0, 19);
+    };
 
-  const timestamp = () => {
-    var now = new Date();
-    now.setHours(now.getHours() + 9);
-    return now.toISOString().replace('T', ' ').substring(0, 19);
-  };
-
-  useEffect(() => {
-    const token = localStorage.getItem('strcat_token');
-    if (token) return;
     const history = localStorage.getItem('history');
     let historyArray: History[] = history ? JSON.parse(history) : [];
     if (history) {
@@ -64,7 +62,13 @@ export default function Personal({ params }: { params: { id: string } }) {
       title: title,
     });
     localStorage.setItem('history', JSON.stringify(historyArray));
-  }, [params.id, title]);
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('strcat_token');
+    if (token) return;
+    addHistory();
+  }, []);
 
   useEffect(() => {
     if (window) setWindowHeight(window.innerHeight);
