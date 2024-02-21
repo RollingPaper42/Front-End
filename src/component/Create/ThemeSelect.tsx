@@ -5,12 +5,18 @@ import { ThemeArray } from '@/types/ThemeArray';
 interface Props {
   themes: ThemeArray[];
   preview: number;
+  setPreview: React.Dispatch<React.SetStateAction<number>>;
   defaultState: {
     activateText: string;
   };
 }
 
-export default function ThemeSelect({ themes, preview, defaultState }: Props) {
+export default function ThemeSelect({
+  themes,
+  preview,
+  setPreview,
+  defaultState,
+}: Props) {
   return (
     <div className="flex w-full flex-row">
       {themes.map((theme) => (
@@ -24,7 +30,7 @@ export default function ThemeSelect({ themes, preview, defaultState }: Props) {
                 ? 'ring-white ring-offset-default-black ring-2 ring-offset-2'
                 : ''
             }`}
-            onClick={theme.onClick}
+            onClick={() => setPreview(theme.id)}
           >
             <div className="flex justify-center items-center h-[43px] pt-[5px]">
               {theme.image && (

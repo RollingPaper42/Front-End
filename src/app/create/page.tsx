@@ -15,12 +15,14 @@ import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
 
 export default function Create() {
-  const [themeName, setThemeName] = useState('sul');
   const [openModal, closeModal] = useModal();
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [isOff, setIsOff] = useState('');
   const [isNext, setIsNext] = useState(false);
+  const [preview, setPreview] = useState(1);
+
+  const themelist = ['sul', 'night', 'peach', 'lilac', 'chris', 'mas'];
 
   const handleTitleSwitch = (value: string) => {
     setIsOff((prevIsOff) => (prevIsOff === value ? '' : value));
@@ -36,7 +38,7 @@ export default function Create() {
     if (isConfirmed) {
       logging('click_submit_board_confirm', 'create');
       const data = {
-        theme: themeName,
+        theme: themelist[preview - 1],
         title: `${title}`,
       };
       axiosPostBoard(data)
@@ -79,7 +81,12 @@ export default function Create() {
             onClickComplete={handleConfirm}
           />
         ) : (
-          <CreateTheme setIsNext={setIsNext} setThemeName={setThemeName} />
+          <CreateTheme
+            preview={preview}
+            setPreview={setPreview}
+            setIsNext={setIsNext}
+            themelist={themelist}
+          />
         )}
       </div>
     </>

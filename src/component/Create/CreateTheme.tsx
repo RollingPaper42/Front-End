@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-
 import BottomButton from '../Common/BottomButton';
 import PreviewTheme from './PreviewTheme';
 import ThemeSelect from './ThemeSelect';
@@ -10,28 +8,18 @@ import { defaultState } from '@/utils/theme/default';
 
 interface CreateThemeProps {
   setIsNext: React.Dispatch<React.SetStateAction<boolean>>;
-  setThemeName: React.Dispatch<React.SetStateAction<string>>;
+  preview: number;
+  setPreview: React.Dispatch<React.SetStateAction<number>>;
+  themelist: string[];
 }
 
 export default function CreateTheme({
   setIsNext,
-  setThemeName,
+  preview,
+  setPreview,
+  themelist,
 }: CreateThemeProps) {
-  const [preview, setPreview] = useState(1);
-
-  const handlePreview = (value: number, newTheme: string) => {
-    setThemeName(newTheme);
-    setPreview(value);
-  };
-
-  const themes = getThemes(
-    () => handlePreview(1, 'sul'),
-    () => handlePreview(2, 'night'),
-    () => handlePreview(3, 'peach'),
-    () => handlePreview(4, 'lilac'),
-    () => handlePreview(5, 'chris'),
-    () => handlePreview(6, 'mas'),
-  );
+  const themes = getThemes(...themelist);
 
   return (
     <div className="flex w-full h-full flex-col">
@@ -43,6 +31,7 @@ export default function CreateTheme({
         <ThemeSelect
           themes={themes}
           preview={preview}
+          setPreview={setPreview}
           defaultState={defaultState}
         />
       </div>
