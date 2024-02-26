@@ -23,10 +23,10 @@ export default function PhotoModal({
   return (
     <div
       onClick={(e) => handleBackground(e, closeModal)}
-      className="flex h-full w-full flex-col items-center justify-center bg-black/80"
+      className="flex w-full h-full flex-col items-center justify-center bg-black/80"
     >
-      <div className="flex justify-end w-full h-[24px] mb-[24px] px-[24px]">
-        <button onClick={closeModal} className="px-[24px]">
+      <div className="absolute top-[24px] right-0 h-[24px] mb-[24px] px-[24px]">
+        <button onClick={closeModal} className="">
           <Close />
         </button>
       </div>

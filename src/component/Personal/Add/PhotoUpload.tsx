@@ -1,7 +1,7 @@
 import imageCompression from 'browser-image-compression';
 import React, { Dispatch } from 'react';
 
-import Error from '@/component/Common/Modal/Error';
+import Introduce from '@/component/Common/Modal/Introduce';
 import useModal from '@/hooks/useModal';
 import { logging } from '@/services/mixpanel';
 
@@ -64,7 +64,7 @@ export default function PhotoUpload({
           //2mb 이상이면 에러모달
           logging('show_image_size_error', 'add');
           openModal(
-            <Error
+            <Introduce
               mainContent="2MB 이하의 사진을 올려주세요"
               handleModalClose={closeModal}
             />,
