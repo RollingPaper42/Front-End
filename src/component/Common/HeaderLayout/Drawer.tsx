@@ -2,7 +2,6 @@ import { AxiosError } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
 import BottomButton from '../BottomButton';
@@ -11,7 +10,7 @@ import { Logo } from '../Icon/Header';
 import DrawerClose from '../Icon/drawer/DrawerClose';
 import Home from '../Icon/drawer/Home';
 import Inquiry from '../Icon/drawer/Inquiry';
-import DrawerItem from './DrawerItem';
+import DrawerSection from './DrawerSection';
 import DropList from './DropList';
 import { useLogin } from '@/hooks/useLogin';
 import { drawerState } from '@/recoil/drawer';
@@ -77,7 +76,7 @@ export default function Drawer() {
 
   useEffect(() => {
     checkLogin();
-  }, []);
+  }, [checkLogin]);
 
   useEffect(() => {
     if (isLogin) {
@@ -85,17 +84,22 @@ export default function Drawer() {
     }
   }, [fetchData, isLogin]);
 
+  const handleClickBacground = (e: any) => {
+    handleBackground(e, drawerSlowClose);
+    if (e.target === e.currentTarget) document.body.style.overflow = 'auto';
+  };
+
+  const handleClickInquiry = () => {
+    window.open('https://forms.gle/A21VjqrLnQH3XxCAA');
+  };
+
   return (
     drawer && (
       <div
         className={`fixed  z-drawer h-full w-full max-w-md bg-black bg-opacity-80 overflow-hidden ${
           drawerClosing ? ' animate-drawerCloseBg' : 'animate-drawerOpenBg'
         }`}
-        onClick={(e) => {
-          handleBackground(e, drawerSlowClose);
-          if (e.target === e.currentTarget)
-            document.body.style.overflow = 'auto';
-        }}
+        onClick={handleClickBacground}
       >
         <div
           className={`absolute right-0 h-full w-[300px] opacity-100 ${
@@ -160,19 +164,23 @@ export default function Drawer() {
             <div
               className={`absolute bottom-0 w-full ${defaultState.background} px-[24px]`}
             >
-              <div className="h-[54px] w-full" onClick={handleHome}>
-                <DrawerItem title="홈으로" icon={<Home />} />
-              </div>
-              <div className="h-[54px] w-full">
-                <Link href={'https://forms.gle/A21VjqrLnQH3XxCAA'}>
-                  <DrawerItem title="문의하기" icon={<Inquiry />} />
-                </Link>
-              </div>
-              {isLogin ? (
-                <div className="h-[54px] w-full" onClick={handleLogout}>
-                  <DrawerItem title="로그아웃" icon={<Logout />} />
-                </div>
-              ) : null}
+              <DrawerSection
+                items={[
+                  { title: '홈으로', icon: <Home />, onClick: handleHome },
+                  {
+                    title: '문의하기',
+                    icon: <Inquiry />,
+                    onClick: () => handleClickInquiry,
+                  },
+                  isLogin
+                    ? {
+                        title: '로그아웃',
+                        icon: <Logout />,
+                        onClick: handleLogout,
+                      }
+                    : { title: '', icon: <></>, onClick: () => {} },
+                ]}
+              />
             </div>
           </div>
         </div>
