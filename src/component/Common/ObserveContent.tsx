@@ -20,6 +20,9 @@ interface props {
   setObserve: Dispatch<SetStateAction<observeContent>>;
   openModal: (modalComponent: JSX.Element) => void;
   closeModal: () => void;
+  isEdit?: boolean;
+  checkedSet?: Set<unknown>;
+  setCheckedSet?: React.Dispatch<React.SetStateAction<Set<unknown>>>;
 }
 
 const ObserveContent = ({
@@ -31,6 +34,8 @@ const ObserveContent = ({
   setAddContent,
   openModal,
   closeModal,
+  isEdit,
+  setCheckedSet,
 }: props) => {
   const ref = useRef<HTMLHeadingElement | null>(null);
   const handleClickPhoto = () => {
@@ -78,36 +83,63 @@ const ObserveContent = ({
     };
   }, []);
 
+  const handleCheckbox = (id: number) => {
+    if (setCheckedSet) {
+      setCheckedSet((prev) => {
+        const set = new Set(prev);
+        if (!set.has(id)) {
+          set.add(id);
+        } else {
+          set.delete(id);
+        }
+        return set;
+      });
+    }
+  };
   return (
-    <div ref={ref} className="relative">
-      {observe.contentId === content.id && observe.photoUrl !== '' && (
-        <PhotoPreview
-          photoUrl={content.photoUrl}
-          color={theme.bgTheme.highlight}
-          handleClickPhoto={handleClickPhoto}
-        />
-      )}
-      <div
-        className={`inline cursor-pointer select-none pb-[4px] pt-[3px] ${
-          bodyFontState.boardBody
-        } leading-[31px] tracking-[-0.36px]
+    <div ref={ref} className={`flex w-full`}>
+      {isEdit ? (
+        <>
+          <div>
+            <input
+              className="mr-[15px] mt-[5px] appearance-none w-[18px] h-[18px] bg-transparent border-2 border-strcat-unhighlighted  checked:bg-[url('/personal/checkboxTrue.svg')] checked:bg-no-repeat checked:bg-center checked:border-none rounded-sm "
+              type="checkbox"
+              id={`${content.id}`}
+              onChange={() => handleCheckbox(content.id)}
+            ></input>
+          </div>
+        </>
+      ) : null}
+      <div className={`relative w-full`}>
+        {observe.contentId === content.id && observe.photoUrl !== '' && (
+          <PhotoPreview
+            photoUrl={content.photoUrl}
+            color={theme.bgTheme.highlight}
+            handleClickPhoto={handleClickPhoto}
+          />
+        )}
+        <div
+          className={`inline cursor-pointer select-none pb-[4px] pt-[3px] ${
+            bodyFontState.boardBody
+          } leading-[31px] tracking-[-0.36px]
       ${
         observe.contentId === content.id
           ? `${theme.bgTheme.highlight} ${theme.textTheme.highlight} animate-textFadeIn`
-          : `${defaultState.descriptionText} opacity-[0.15]`
+          : `${defaultState.descriptionText} opacty-[0.15]`
       }
     `}
-        onClick={() => focusToHighlight(ref)}
-      >
-        {content.text}
+          onClick={() => focusToHighlight(ref)}
+        >
+          {content.text}
+        </div>
+        {observe.contentId === content.id && (
+          <div
+            className={`cursor-default select-none text-right transition-all ${theme.textTheme.writer} ${captionFontState.writer}`}
+          >{`From: ${
+            observe.writer.length ? observe.writer : '익명의 스트링캣'
+          } `}</div>
+        )}
       </div>
-      {observe.contentId === content.id && (
-        <div
-          className={`cursor-default select-none text-right transition-all ${theme.textTheme.writer} ${captionFontState.writer}`}
-        >{`From: ${
-          observe.writer.length ? observe.writer : '익명의 스트링캣'
-        } `}</div>
-      )}
     </div>
   );
 };

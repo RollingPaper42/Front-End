@@ -17,7 +17,9 @@ import { useLogin } from '@/hooks/useLogin';
 import { drawerState } from '@/recoil/drawer';
 import { titleFontState } from '@/recoil/font/title';
 import { drawerBoard } from '@/types/drawerBoard';
+import { History } from '@/types/history';
 import { axiosGetUserBoard } from '@/utils/apiInterface';
+import { axiosGetUserHistory } from '@/utils/apiInterface';
 import { handleBackground } from '@/utils/handleBackground';
 import { defaultState } from '@/utils/theme/default';
 
@@ -26,6 +28,7 @@ export default function Drawer() {
   const [drawer, setDrawer] = useRecoilState(drawerState);
   const [drawerClosing, setDrawerClosing] = useState(false);
   const [personalList, setPersonalList] = useState<drawerBoard[]>([]);
+  const [historyList, setHistoryList] = useState<History[]>([]);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -33,10 +36,13 @@ export default function Drawer() {
     try {
       const personal = await axiosGetUserBoard();
       setPersonalList(personal.data);
+      const history = await axiosGetUserHistory();
+      setHistoryList(history.data);
+      // history 뷰는 아직 구현 안함
     } catch (err) {
       const error = err as AxiosError;
     }
-  }, [setPersonalList]);
+  }, [setPersonalList, setHistoryList]);
 
   const drawerSlowClose = () => {
     setDrawerClosing(true);
