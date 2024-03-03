@@ -22,6 +22,7 @@ import { useScroll } from '@/hooks/useScroll';
 import { titleState } from '@/recoil/title';
 import { logging } from '@/services/mixpanel';
 import { board } from '@/types/boards';
+import { History } from '@/types/history';
 import { personalPage } from '@/types/mixpanel';
 import { noneTheme, themeState } from '@/types/theme';
 import { chris, lilac, mas, night, peach, sul } from '@/types/theme';
@@ -42,6 +43,40 @@ export default function Personal({ params }: { params: { id: string } }) {
   const { isHidden, setIsHidden } = useScroll();
   const [checkedSet, setCheckedSet] = useState(new Set());
   const [openModal, closeModal] = useModal();
+ 
+  const addHistory = ()=>{
+    const timestamp = () => {
+      var now = new Date();
+      now.setHours(now.getHours() + 9);
+      return now.toISOString().replace('T', ' ').substring(0, 19);
+    };
+
+    const history = localStorage.getItem('history');
+    let historyArray: History[] = history ? JSON.parse(history) : [];
+    if (history) {
+      const existingIndex = historyArray.findIndex(
+        (history) => history.encryptedBoardId === params.id,
+      );
+      if (existingIndex !== -1) {
+        historyArray.splice(existingIndex, 1);
+      }
+      while (historyArray.length >= 10) {
+        historyArray.shift();
+      }
+    }
+    historyArray.push({
+      visitTime: timestamp(),
+      encryptedBoardId: params.id,
+      title: title,
+    });
+    localStorage.setItem('history', JSON.stringify(historyArray));
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('strcat_token');
+    if (token) return;
+    addHistory();
+  }, []);
 
   useEffect(() => {
     if (window) setWindowHeight(window.innerHeight);
