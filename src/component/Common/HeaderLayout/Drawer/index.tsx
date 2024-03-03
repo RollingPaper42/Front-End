@@ -4,12 +4,13 @@ import { useRecoilState } from 'recoil';
 
 import { usePathname, useRouter } from 'next/navigation';
 
-import BottomButton from '../BottomButton';
-import { Logout } from '../Icon/Drawer';
-import { Logo } from '../Icon/Header';
-import DrawerClose from '../Icon/drawer/DrawerClose';
-import Home from '../Icon/drawer/Home';
-import Inquiry from '../Icon/drawer/Inquiry';
+import BottomButton from '../../BottomButton';
+import { Logout } from '../../Icon/Drawer';
+import { Logo } from '../../Icon/Header';
+import DrawerClose from '../../Icon/drawer/DrawerClose';
+import Home from '../../Icon/drawer/Home';
+import Inquiry from '../../Icon/drawer/Inquiry';
+import { DrawerHeader } from './DrawerHeader';
 import DrawerSection from './DrawerSection';
 import DropList from './DropList';
 import { useLogin } from '@/hooks/useLogin';
@@ -108,19 +109,12 @@ export default function Drawer() {
             drawerClosing ? 'animate-drawerClose' : 'animate-drawerOpen'
           }`}
         >
-          <div className="flex h-[70px] w-full px-[24px] py-[22px]">
-            <div onClick={handleHome}>
-              <Logo />
-            </div>
-            <div className="absolute right-[24px]">
-              <div
-                className="flex h-[24px] w-[24px] items-center justify-center"
-                onClick={drawerSlowClose}
-              >
-                <DrawerClose />
-              </div>
-            </div>
-          </div>
+          <DrawerHeader
+            Logo={Logo}
+            handleHome={handleHome}
+            DrawerClose={DrawerClose}
+            drawerSlowClose={drawerSlowClose}
+          />
           <div className={`flex flex-col items-center`}>
             {isLogin ? (
               <>
