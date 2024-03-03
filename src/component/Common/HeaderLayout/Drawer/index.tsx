@@ -28,7 +28,7 @@ export default function Drawer() {
   const [drawer, setDrawer] = useRecoilState(drawerState);
   const [drawerClosing, setDrawerClosing] = useState(false);
   const [personalList, setPersonalList] = useState<drawerBoard[]>([]);
-  const [historyList, setHistoryList] = useState<History[]>([]);
+  const [historyList, setHistoryList] = useState<drawerBoard[]>([]);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -37,8 +37,15 @@ export default function Drawer() {
       const personal = await axiosGetUserBoard();
       setPersonalList(personal.data);
       const history = await axiosGetUserHistory();
-      setHistoryList(history.data);
-      // history 뷰는 아직 구현 안함
+      console.log(history.data);
+      setHistoryList(
+        history.data.history.map((history: History) => {
+          return {
+            id: history.encryptedBoardId,
+            title: history.title,
+          };
+        }),
+      );
     } catch (err) {
       const error = err as AxiosError;
     }
@@ -81,16 +88,6 @@ export default function Drawer() {
     router.push('/login');
   };
 
-  useEffect(() => {
-    checkLogin();
-  }, [checkLogin]);
-
-  useEffect(() => {
-    if (isLogin) {
-      fetchData();
-    }
-  }, [fetchData, isLogin]);
-
   const handleClickBacground = (e: any) => {
     handleBackground(e, drawerSlowClose);
     if (e.target === e.currentTarget) document.body.style.overflow = 'auto';
@@ -99,6 +96,28 @@ export default function Drawer() {
   const handleClickInquiry = () => {
     window.open('https://forms.gle/A21VjqrLnQH3XxCAA');
   };
+
+  useEffect(() => {
+    checkLogin();
+  }, [checkLogin]);
+
+  useEffect(() => {
+    if (isLogin) {
+      fetchData();
+      return;
+    }
+    const history = localStorage.getItem('history');
+    if (history) {
+      setHistoryList(
+        JSON.parse(history).map((history: History) => {
+          return {
+            id: history.encryptedBoardId,
+            title: history.title,
+          };
+        }),
+      );
+    }
+  }, [fetchData, isLogin]);
 
   return (
     drawer && (
@@ -127,6 +146,11 @@ export default function Drawer() {
                 <DropList
                   title={'내 스트링캣'}
                   list={personalList}
+                  category="personal"
+                />
+                <DropList
+                  title={'최근 방문한 스트링캣'}
+                  list={historyList}
                   category="personal"
                 />
                 <div className="mt-[12px] w-full px-[24px]">
@@ -165,7 +189,7 @@ export default function Drawer() {
                 </div>
                 <DropList
                   title={'최근 방문한 스트링캣'}
-                  list={personalList}
+                  list={historyList}
                   category="personal"
                 />
               </>
