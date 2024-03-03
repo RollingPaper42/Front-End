@@ -5,17 +5,16 @@ import { drawerBoard } from '@/types/drawerBoard';
 import { defaultState } from '@/utils/theme/default';
 
 interface Props {
+  title: string;
   list: drawerBoard[];
   category: string;
 }
 
-export default function DropList({ list, category }: Props) {
+export default function DropList({ title, list, category }: Props) {
   return (
     <>
       <div className="flex w-full items-center justify-between px-[24px] py-[12px]">
-        <h1 className={`select-none ${titleFontState.titleLabel}`}>
-          내 스트링캣
-        </h1>
+        <h1 className={`select-none ${titleFontState.titleLabel}`}>{title}</h1>
         <div
           className={`cursor-default select-none ${bodyFontState.serviceBody}   text-gray-500`}
         >
