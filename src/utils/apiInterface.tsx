@@ -34,4 +34,8 @@ export const axiosPostBoardContentPicture = (id: string, requestData: any) => {
 
 export const axiosPostUserHistory = (requestData: any) => {
   return axiosInstance.post('/users/history', requestData);
+}
+
+export const axoisDeleteContents = (id: string, requestData: any) => {
+  return axiosInstance.delete(`boards/${id}/contents`, requestData);
 };

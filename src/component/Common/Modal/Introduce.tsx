@@ -8,7 +8,7 @@ interface Props {
   handleModalClose: () => void;
 }
 
-export default function Error({
+export default function Introduce({
   mainContent,
   subContent,
   handleModalClose,
