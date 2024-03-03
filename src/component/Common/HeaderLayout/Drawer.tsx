@@ -51,6 +51,7 @@ export default function Drawer() {
     setDrawer(false);
     document.body.style.overflow = 'auto';
   };
+
   const handleLogout = () => {
     drawerClose();
     localStorage.removeItem('strcat_token');
@@ -76,7 +77,7 @@ export default function Drawer() {
 
   useEffect(() => {
     checkLogin();
-  }, [checkLogin]);
+  }, []);
 
   useEffect(() => {
     if (isLogin) {
