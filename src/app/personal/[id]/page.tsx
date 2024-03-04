@@ -43,8 +43,8 @@ export default function Personal({ params }: { params: { id: string } }) {
   const { isHidden, setIsHidden } = useScroll();
   const [checkedSet, setCheckedSet] = useState(new Set());
   const [openModal, closeModal] = useModal();
- 
-  const addHistory = ()=>{
+
+  const addHistory = () => {
     const timestamp = () => {
       var now = new Date();
       now.setHours(now.getHours() + 9);
@@ -70,13 +70,7 @@ export default function Personal({ params }: { params: { id: string } }) {
       title: title,
     });
     localStorage.setItem('history', JSON.stringify(historyArray));
-  }
-
-  useEffect(() => {
-    const token = localStorage.getItem('strcat_token');
-    if (token) return;
-    addHistory();
-  }, []);
+  };
 
   useEffect(() => {
     if (window) setWindowHeight(window.innerHeight);
@@ -86,6 +80,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   useEffect(() => {
     if (!loggingProp) return;
     logging('show_read_board', 'personal', loggingProp);
+    addHistory();
   }, [loggingProp]);
 
   const handleClickWrite = () => {
