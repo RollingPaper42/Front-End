@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { useRouter } from 'next/navigation';
 
 import Loading from '@/component/Common/Loading';
+import Introduce from '@/component/Common/Modal/Introduce';
 import StrcatBoard from '@/component/Common/StrcatBoard';
 import Toast from '@/component/Common/Toast';
 import {
@@ -16,24 +17,66 @@ import {
 } from '@/component/Personal';
 import FirstContent from '@/component/Personal/FirstContent';
 import { useLogin } from '@/hooks/useLogin';
+import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
 import { titleState } from '@/recoil/title';
 import { logging } from '@/services/mixpanel';
 import { board } from '@/types/boards';
+import { History } from '@/types/history';
 import { personalPage } from '@/types/mixpanel';
 import { noneTheme, themeState } from '@/types/theme';
 import { chris, lilac, mas, night, peach, sul } from '@/types/theme';
-import { axiosGetBoard } from '@/utils/apiInterface';
+import { axiosGetBoard, axoisDeleteContents } from '@/utils/apiInterface';
+import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
 
 require('intersection-observer');
 export default function Personal({ params }: { params: { id: string } }) {
-  const [board, isOwner, title, theme, loggingProp, error] = useData(params.id);
+  const [board, setBoard, isOwner, title, theme, loggingProp, error] = useData(
+    params.id,
+  );
   const router = useRouter();
   const [isLogin] = useLogin();
-  const { isHidden, setIsHidden } = useScroll();
   const [windowHeight, setWindowHeight] = useState(0);
   const [toastMessage, setToastMessage] = useState('');
+  const [isEdit, setIsEdit] = useState(false);
+  const { isHidden, setIsHidden } = useScroll();
+  const [checkedSet, setCheckedSet] = useState(new Set());
+  const [openModal, closeModal] = useModal();
+ 
+  const addHistory = ()=>{
+    const timestamp = () => {
+      var now = new Date();
+      now.setHours(now.getHours() + 9);
+      return now.toISOString().replace('T', ' ').substring(0, 19);
+    };
+
+    const history = localStorage.getItem('history');
+    let historyArray: History[] = history ? JSON.parse(history) : [];
+    if (history) {
+      const existingIndex = historyArray.findIndex(
+        (history) => history.encryptedBoardId === params.id,
+      );
+      if (existingIndex !== -1) {
+        historyArray.splice(existingIndex, 1);
+      }
+      while (historyArray.length >= 10) {
+        historyArray.shift();
+      }
+    }
+    historyArray.push({
+      visitTime: timestamp(),
+      encryptedBoardId: params.id,
+      title: title,
+    });
+    localStorage.setItem('history', JSON.stringify(historyArray));
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('strcat_token');
+    if (token) return;
+    addHistory();
+  }, []);
 
   useEffect(() => {
     if (window) setWindowHeight(window.innerHeight);
@@ -60,9 +103,9 @@ export default function Personal({ params }: { params: { id: string } }) {
     }
   };
 
-  const handleClickDownload = () => {
-    logging('click_download', 'personal', loggingProp);
-    setToastMessage('저장기능은 준비중이에요!');
+  const handleClickEdit = () => {
+    setIsEdit((prev) => !prev);
+    setIsHidden(() => false);
   };
 
   const handleCopyClipBoard = async (url: string) => {
@@ -75,7 +118,9 @@ export default function Personal({ params }: { params: { id: string } }) {
   };
 
   const handleClickBackground = () => {
-    setIsHidden(!isHidden);
+    if (!isEdit) {
+      setIsHidden(!isHidden);
+    }
   };
 
   const handleClickShare = async () => {
@@ -88,6 +133,55 @@ export default function Personal({ params }: { params: { id: string } }) {
       });
     } else {
       handleCopyClipBoard(url);
+    }
+  };
+
+  const handleClickDelete = async () => {
+    const isConfirmed = await confirm(
+      openModal,
+      closeModal,
+      '선택하신 글을 삭제하시겠어요?',
+      '삭제한 글은 다시 볼 수 없게 돼요.',
+    );
+    const handleClickDeleteSuccess = (board: board[]) => {
+      setBoard(board);
+      setIsEdit(false);
+      closeModal();
+    };
+    if (isConfirmed) {
+      const contentIds = Array.from(checkedSet);
+      const requestData = { data: { contentIds } };
+      axoisDeleteContents(params.id, requestData)
+        .then((data) => {
+          openModal(
+            <Introduce
+              mainContent="삭제가 완료되었습니다."
+              handleModalClose={() =>
+                handleClickDeleteSuccess([data.data.board])
+              }
+            />,
+          );
+        })
+        .catch((error) => {
+          if (error.response.status === 401) {
+            openModal(
+              <Introduce
+                mainContent="앗! 로그인이 만료되었어요."
+                subContent="다시 로그인 해주세요."
+                handleModalClose={closeModal}
+              />,
+            );
+          }
+          if (error.response?.status === 406) {
+            openModal(
+              <Introduce
+                mainContent="일시적으로 문제가 발생했어요 🥲"
+                subContent="잠시 후 다시 시도해주세요."
+                handleModalClose={closeModal}
+              />,
+            );
+          }
+        });
     }
   };
 
@@ -117,7 +211,13 @@ export default function Personal({ params }: { params: { id: string } }) {
               id={params.id}
               handleClickNonContent={handleClickWrite}
             />
-            <StrcatBoard board={board[0]} theme={theme} />
+            <StrcatBoard
+              board={board[0]}
+              theme={theme}
+              isEdit={isEdit}
+              checkedSet={checkedSet}
+              setCheckedSet={setCheckedSet}
+            />
             <div style={{ minHeight: `${windowHeight * 0.7}px` }}></div>
           </div>
         </div>
@@ -130,9 +230,11 @@ export default function Personal({ params }: { params: { id: string } }) {
           <div className="flex w-full max-w-md items-center justify-center px-[24px] space-x-[12px]">
             {isOwner ? (
               <OwnerButtonLayer
-                handleClickDownload={handleClickDownload}
+                handleClickEdit={handleClickEdit}
                 handleClickShare={handleClickShare}
                 handleClickWrite={handleClickWrite}
+                isEdit={isEdit}
+                handleClickDelete={handleClickDelete}
                 theme={theme}
               />
             ) : (
@@ -156,6 +258,7 @@ const useData = (
   id: string,
 ): [
   board: board[],
+  setBoard: Dispatch<SetStateAction<board[]>>,
   isOwner: boolean,
   title: any,
   theme: themeState,
@@ -193,7 +296,7 @@ const useData = (
       });
   }, []);
 
-  return [board, isOwner, title, theme, loggingProp, error];
+  return [board, setBoard, isOwner, title, theme, loggingProp, error];
 };
 
 const getTheme = (themeName: string): themeState => {
