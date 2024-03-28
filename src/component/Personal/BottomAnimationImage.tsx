@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 
+import { AnimationVideo } from '../Common/AnimationVideo';
+
 export default function BottomAnimationImage({
   themeName,
 }: {
@@ -10,13 +12,10 @@ export default function BottomAnimationImage({
   return (
     <div className="absolute z-[15] max-w-md w-full">
       <div className="absolute bottom-[22px] right-[24px]">
-        <Image
-          alt={`sit${themeName}`}
-          src={`/cats/${themeName}/sit.gif`}
+        <AnimationVideo
           width={35}
           height={41}
-          className="w-[35px] h-[41px]"
-          priority
+          src={`/cats/${themeName}/sit.webm`}
         />
       </div>
       <div className="absolute bottom-[23px] left-[24px]">
