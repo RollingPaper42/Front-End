@@ -60,13 +60,7 @@ export default function Home() {
               priority
             />
             <div className="absolute top-0">
-              <Image
-                src="/SnowAnimation.gif"
-                alt="snowAnimation"
-                width={153}
-                height={153}
-                className="rounded-full"
-              />
+              <SnowAnimationVideo />
             </div>
           </div>
           <div
@@ -126,3 +120,23 @@ export default function Home() {
     </>
   );
 }
+
+const SnowAnimationVideo = () => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  return isMounted ? (
+    <video
+      width={153}
+      height={153}
+      autoPlay // 자동 재생
+      muted // 음소거 chrome 에선 이 옵션이 없으면 실행 안됨
+      loop // 반복 재생
+    >
+      <source src="/SnowAnimation.webm" type="video/webm" />
+    </video>
+  ) : null;
+};
