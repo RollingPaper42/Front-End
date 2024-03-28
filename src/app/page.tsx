@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
+import { AnimationVideo } from '@/component/Common/AnimationVideo';
 import HeaderLayout from '@/component/Common/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
 import { useLogin } from '@/hooks/useLogin';
@@ -60,7 +61,11 @@ export default function Home() {
               priority
             />
             <div className="absolute top-0">
-              <SnowAnimationVideo />
+              <AnimationVideo
+                src="/SnowAnimation.webm"
+                width={153}
+                height={153}
+              />
             </div>
           </div>
           <div
@@ -120,23 +125,3 @@ export default function Home() {
     </>
   );
 }
-
-const SnowAnimationVideo = () => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  return isMounted ? (
-    <video
-      width={153}
-      height={153}
-      autoPlay // 자동 재생
-      muted // 음소거 chrome 에선 이 옵션이 없으면 실행 안됨
-      loop // 반복 재생
-    >
-      <source src="/SnowAnimation.webm" type="video/webm" />
-    </video>
-  ) : null;
-};
