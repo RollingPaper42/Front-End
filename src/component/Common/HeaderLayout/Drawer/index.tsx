@@ -88,7 +88,7 @@ export default function Drawer() {
     router.push('/login');
   };
 
-  const handleClickBacground = (e: any) => {
+  const handleClickBackground = (e: any) => {
     handleBackground(e, drawerSlowClose);
     if (e.target === e.currentTarget) document.body.style.overflow = 'auto';
   };
@@ -125,7 +125,7 @@ export default function Drawer() {
         className={`fixed  z-drawer h-full w-full max-w-md bg-black bg-opacity-80 overflow-hidden ${
           drawerClosing ? ' animate-drawerCloseBg' : 'animate-drawerOpenBg'
         }`}
-        onClick={handleClickBacground}
+        onClick={handleClickBackground}
       >
         <div
           className={`absolute right-0 h-full w-[300px] opacity-100 ${
