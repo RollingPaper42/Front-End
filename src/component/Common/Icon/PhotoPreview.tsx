@@ -30,4 +30,5 @@ const getColor = (color: string) => {
   if (color === 'bg-strcat-lilac') return '#D7C4FF';
   if (color === 'bg-strcat-chris') return '#246F50';
   if (color === 'bg-strcat-mas') return '#DE6565';
+  if (color === 'bg-strcat-spring') return '#FFBACF';
 };

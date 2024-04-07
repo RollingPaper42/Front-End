@@ -13,9 +13,9 @@ export default function BottomAnimationImage({
         <Image
           alt={`sit${themeName}`}
           src={`/cats/${themeName}/sit.gif`}
-          width={35}
+          width={themeName === 'spring' ? 60.73 : 35}
           height={41}
-          className="w-[35px] h-[41px]"
+          className="min-w-[35px] h-[41px]"
           priority
         />
       </div>

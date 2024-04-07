@@ -306,5 +306,6 @@ const getTheme = (themeName: string): themeState => {
   if (themeName === 'peach') return peach;
   if (themeName === 'lilac') return lilac;
   if (themeName === 'sul') return sul;
+  if (themeName === 'spring') return spring;
   return night;
 };
