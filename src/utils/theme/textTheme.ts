@@ -47,6 +47,13 @@ export const sulText: textThemeState = {
   addRightCTA: 'text-default-black',
 };
 
+export const springText: textThemeState = {
+  writer: 'text-strcat-spring',
+  highlight: 'text-default-black',
+  rightCTA: 'text-default-black',
+  addRightCTA: 'text-default-black',
+};
+
 export const noneText: textThemeState = {
   writer: '',
   highlight: '',

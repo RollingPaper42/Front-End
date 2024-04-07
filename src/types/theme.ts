@@ -6,6 +6,7 @@ import {
   nightBg,
   noneBg,
   peachBg,
+  springBg,
   sulBg,
 } from '@/utils/theme/bgTheme';
 import {
@@ -15,6 +16,7 @@ import {
   nightText,
   noneText,
   peachText,
+  springText,
   sulText,
   textThemeState,
 } from '@/utils/theme/textTheme';
@@ -61,6 +63,12 @@ export const sul: themeState = {
   bgTheme: sulBg,
 };
 
+export const spring: themeState = {
+  name: 'spring',
+  textTheme: springText,
+  bgTheme: springBg,
+};
+
 export const noneTheme: themeState = {
   name: '',
   textTheme: noneText,
@@ -74,4 +82,5 @@ export const themeObj = {
   chris: chris,
   mas: mas,
   sul: sul,
+  spring: spring,
 };

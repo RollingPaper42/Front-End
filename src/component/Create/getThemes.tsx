@@ -9,6 +9,12 @@ interface Theme {
 
 export const getThemes = (...themelist: string[]): ThemeArray[] => {
   const allThemes: Record<string, Theme> = {
+    spring: {
+      name: '봄',
+      image: '/create/springCat.svg',
+      bgStyle: 'bg-strcat-spring',
+      preview: '/preview/spring.png',
+    },
     sul: {
       name: '설날',
       image: '/create/sulHat.svg',

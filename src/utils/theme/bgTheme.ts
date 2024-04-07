@@ -40,6 +40,12 @@ export const sulBg: bgThemeState = {
   addRightCTA: 'bg-strcat-sul',
 };
 
+export const springBg: bgThemeState = {
+  highlight: 'bg-strcat-spring',
+  rightCTA: 'bg-strcat-spring',
+  addRightCTA: 'bg-strcat-spring',
+};
+
 export const noneBg: bgThemeState = {
   highlight: '',
   rightCTA: '',
