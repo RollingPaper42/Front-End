@@ -22,7 +22,7 @@ export default function Create() {
   const [isNext, setIsNext] = useState(false);
   const [preview, setPreview] = useState(1);
 
-  const themelist = ['sul', 'night', 'peach', 'lilac', 'chris', 'mas'];
+  const themelist = ['spring', 'night', 'peach', 'lilac', 'sul'];
 
   const handleTitleSwitch = (value: string) => {
     setIsOff((prevIsOff) => (prevIsOff === value ? '' : value));
@@ -40,6 +40,8 @@ export default function Create() {
       const data = {
         theme: themelist[preview - 1],
         title: `${title}`,
+        public: false,
+        // 백엔드와 규격을 맞추기위해 임시로 넣어둔 값
       };
       axiosPostBoard(data)
         .then((res) => {

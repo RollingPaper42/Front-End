@@ -11,7 +11,7 @@ export const getThemes = (...themelist: string[]): ThemeArray[] => {
   const allThemes: Record<string, Theme> = {
     spring: {
       name: '봄',
-      image: '/create/springCat.svg',
+      image: '/create/springFlower.svg',
       bgStyle: 'bg-strcat-spring',
       preview: '/preview/spring.png',
     },

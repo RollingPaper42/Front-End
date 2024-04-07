@@ -18,11 +18,11 @@ export default function ThemeSelect({
   defaultState,
 }: Props) {
   return (
-    <div className="flex w-full flex-row">
+    <div className="flex w-full items-center justify-between">
       {themes.map((theme) => (
         <div
           key={theme.id}
-          className="flex basis-1/5 flex-col items-center justify-center"
+          className="flex flex-col items-center justify-center"
         >
           <div
             className={`${theme.bgStyle} h-[45px] w-[45px] rounded-full ${
@@ -32,14 +32,14 @@ export default function ThemeSelect({
             }`}
             onClick={() => setPreview(theme.id)}
           >
-            <div className="flex justify-center items-center h-[43px] pt-[5px]">
+            <div className="flex justify-center items-center h-[43px]">
               {theme.image && (
                 <Image
                   src={theme.image}
                   width={theme.name === '설날' ? 19 : 42}
                   height={theme.name === '설날' ? 21 : 43}
                   alt={theme.name}
-                  className="z-10"
+                  className={`${theme.name === '봄' ? '' : 'mt-[5px]'} z-10`}
                 />
               )}
             </div>
