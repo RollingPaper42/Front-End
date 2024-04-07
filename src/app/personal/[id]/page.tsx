@@ -25,7 +25,7 @@ import { board } from '@/types/boards';
 import { History } from '@/types/history';
 import { personalPage } from '@/types/mixpanel';
 import { noneTheme, themeState } from '@/types/theme';
-import { chris, lilac, mas, night, peach, sul } from '@/types/theme';
+import { chris, lilac, mas, night, peach, spring, sul } from '@/types/theme';
 import { axiosGetBoard, axoisDeleteContents } from '@/utils/apiInterface';
 import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
