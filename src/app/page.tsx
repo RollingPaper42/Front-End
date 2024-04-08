@@ -7,17 +7,19 @@ import { useRouter } from 'next/navigation';
 
 import HeaderLayout from '@/component/Common/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
-import OpenStrcat from '@/component/OpenStrcat';
+import OpenStrcatBoard from '@/component/OpenStrcatBoard';
 import { useLogin } from '@/hooks/useLogin';
 import { bodyFontState } from '@/recoil/font/body';
 import { titleFontState } from '@/recoil/font/title';
 import { logging } from '@/services/mixpanel';
+import { axiosGetPublicBoard } from '@/utils/apiInterface';
 import { focusToHighlight } from '@/utils/focusToHighlight';
 import { defaultState } from '@/utils/theme/default';
 
 export default function Home() {
   const [isLogin] = useLogin();
   const router = useRouter();
+  const [openBoard, setOpenBoard] = useState([]);
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [windowHeight, setWindowHeight] = useState(0);
 
@@ -26,6 +28,11 @@ export default function Home() {
     if (window) setWindowHeight(window.innerHeight);
   }, []);
 
+  useEffect(() => {
+    axiosGetPublicBoard().then((res) => {
+      setOpenBoard(res.data);
+    });
+  }, []);
   const handleClickPersonal = () => {
     logging('click_create_board', 'main');
     if (isLogin) router.push('create', { scroll: false });
@@ -34,6 +41,7 @@ export default function Home() {
       router.push('/login');
     }
   };
+  console.log(openBoard);
 
   const handleClickStart = () => {
     logging('click_guestbook', 'main');
@@ -53,12 +61,7 @@ export default function Home() {
         </div>
         <div className="text-[16px] px-[24px] pt-[32px] text-default-white ">
           다른 사람이 공개한 스트링켓이에요
-          <div className="w-full flex flex-row overflow-x-scroll pt-[14px] gap-[12px]">
-            <OpenStrcat />
-            <OpenStrcat />
-            <OpenStrcat />
-            <OpenStrcat />
-          </div>
+          <OpenStrcatBoard openBoard={openBoard} />
         </div>
 
         <div className="flex flex-col items-center justify-center">

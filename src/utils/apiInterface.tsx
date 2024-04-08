@@ -1,7 +1,13 @@
+import axios from 'axios';
+
 import { axiosInstance } from './axios';
 
 export const axiosGetBoard = (id: string) => {
   return axiosInstance.get(`/boards/${id}`);
+};
+
+export const axiosGetPublicBoard = () => {
+  return axios.get(`/api/public`);
 };
 
 export const axiosGetBoardSummaries = (id: string) => {
@@ -34,7 +40,7 @@ export const axiosPostBoardContentPicture = (id: string, requestData: any) => {
 
 export const axiosPostUserHistory = (requestData: any) => {
   return axiosInstance.post('/users/history', requestData);
-}
+};
 
 export const axoisDeleteContents = (id: string, requestData: any) => {
   return axiosInstance.delete(`boards/${id}/contents`, requestData);
