@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { AnimationVideo } from '@/component/Common/AnimationVideo';
 import HeaderLayout from '@/component/Common/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
+import OpenStrcat from '@/component/OpenStrcat';
 import { useLogin } from '@/hooks/useLogin';
 import { bodyFontState } from '@/recoil/font/body';
 import { titleFontState } from '@/recoil/font/title';
@@ -51,25 +51,19 @@ export default function Home() {
         >
           함께 문장을 이어가는 롤링페이퍼
         </div>
-        <div className="flex flex-col items-center justify-center pt-[64px]">
-          <div className="relative">
-            <Image
-              src="/MainImage.svg"
-              width={153}
-              height={153}
-              alt="mainStrcatIcon"
-              priority
-            />
-            <div className="absolute top-0">
-              <AnimationVideo
-                src="/SnowAnimation.webm"
-                width={153}
-                height={153}
-              />
-            </div>
+        <div className="text-[16px] px-[24px] pt-[32px] text-default-white ">
+          다른 사람이 공개한 스트링켓이에요
+          <div className="w-full flex flex-row overflow-x-scroll pt-[14px] gap-[12px]">
+            <OpenStrcat />
+            <OpenStrcat />
+            <OpenStrcat />
+            <OpenStrcat />
           </div>
+        </div>
+
+        <div className="flex flex-col items-center justify-center">
           <div
-            className={`pt-[60px] ${bodyFontState.serviceBody}  text-center  ${defaultState.descriptionText}`}
+            className={`pt-[56px] ${bodyFontState.serviceBody}  text-center  ${defaultState.descriptionText}`}
           >
             내 롤링페이퍼에서 <br /> 친구들의 이야기를 듣고 싶다면
           </div>
