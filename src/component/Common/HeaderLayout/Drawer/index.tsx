@@ -143,16 +143,8 @@ export default function Drawer() {
           <div className={`flex flex-col items-center`}>
             {isLogin ? (
               <>
-                <DropList
-                  title={'내 스트링캣'}
-                  list={personalList}
-                  category="personal"
-                />
-                <DropList
-                  title={'최근 방문한 스트링캣'}
-                  list={historyList}
-                  category="personal"
-                />
+                <DropList title={'내 스트링캣'} list={personalList} />
+                <DropList title={'최근 방문한 스트링캣'} list={historyList} />
                 <div className="mt-[12px] w-full px-[24px]">
                   <BottomButton
                     name="새 스트링캣 만들기"
@@ -187,11 +179,7 @@ export default function Drawer() {
                     textColor={`${defaultState.highLightText}`}
                   />
                 </div>
-                <DropList
-                  title={'최근 방문한 스트링캣'}
-                  list={historyList}
-                  category="personal"
-                />
+                <DropList title={'최근 방문한 스트링캣'} list={historyList} />
               </>
             )}
             <div

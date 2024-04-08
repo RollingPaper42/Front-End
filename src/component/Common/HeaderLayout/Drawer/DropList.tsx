@@ -11,10 +11,9 @@ import { defaultState } from '@/utils/theme/default';
 interface Props {
   title: string;
   list: drawerBoard[];
-  category: string;
 }
 
-export default function DropList({ title, list, category }: Props) {
+export default function DropList({ title, list }: Props) {
   const [dropList, setDropList] = useState<boolean>(false);
 
   return (
@@ -35,7 +34,7 @@ export default function DropList({ title, list, category }: Props) {
           defaultState.drawerList
         } w-full  scrollbar-thumb-textarea-bg scrollbar-thin scrollbar-thumb-rounded-[7px] `}
       >
-        <DropListItem list={list} category={category} />
+        <DropListItem list={list} category={'personal'} />
       </div>
     </>
   );
