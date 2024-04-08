@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
+import { AnimationVideo } from '@/component/Common/AnimationVideo';
 import HeaderLayout from '@/component/Common/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
 import { useLogin } from '@/hooks/useLogin';
@@ -60,12 +61,10 @@ export default function Home() {
               priority
             />
             <div className="absolute top-0">
-              <Image
-                src="/SnowAnimation.gif"
-                alt="snowAnimation"
+              <AnimationVideo
+                src="/SnowAnimation.webm"
                 width={153}
                 height={153}
-                className="rounded-full"
               />
             </div>
           </div>
