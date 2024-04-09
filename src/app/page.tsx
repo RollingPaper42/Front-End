@@ -59,14 +59,14 @@ export default function Home() {
         >
           함께 문장을 이어가는 롤링페이퍼
         </div>
-        <div className="text-[16px] px-[24px] pt-[32px] text-default-white ">
+        <div className="px-[24px] pt-[32px] text-default-white ">
           다른 사람이 공개한 스트링켓이에요
           <OpenStrcatBoard openBoard={openBoard} />
         </div>
 
         <div className="flex flex-col items-center justify-center">
           <div
-            className={`pt-[56px] ${bodyFontState.serviceBody}  text-center  ${defaultState.descriptionText}`}
+            className={`pt-[56px] ${bodyFontState.serviceBody} text-center ${defaultState.descriptionText}`}
           >
             내 롤링페이퍼에서 <br /> 친구들의 이야기를 듣고 싶다면
           </div>
