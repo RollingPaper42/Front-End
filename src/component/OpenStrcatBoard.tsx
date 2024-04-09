@@ -13,7 +13,7 @@ export default function OpenStrcatBoard({ openBoard }: Props) {
     'strcat-chris',
     'strcat-mas',
     'strcat-sul',
-    'strcat-string',
+    'strcat-spring',
   ];
   const colorList = Array.from(
     { length: 10 },

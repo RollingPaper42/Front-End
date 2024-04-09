@@ -21,18 +21,20 @@ export default function OpenStrcat({
 }: Props) {
   console.log(bgColor, borderColor, timeTextColor);
   return (
-    <div
-      className={`flex flex-none w-[150px] h-[192px] px-[16px] pt-[20px] font-medium pb-[14px] flex-col rounded-[6px justify-between border-[1px] ${borderColor} rounded-[6px] ${bgColor}`}
-    >
-      <div className="flex flex-col gap-[12px]">
-        <div className="font-semibold text-[16px] text-white">{title}</div>
-        <div className="font-medium text-[14px] mb-[12px] text-white opacity-70">
-          {description}
+    <div className="flex-none ">
+      <div
+        className={`flex w-[150px] h-[192px] px-[16px] pt-[20px] pb-[14px] flex-col rounded-[6px]  justify-between border-[1px] ${borderColor} ${bgColor}`}
+      >
+        <div className="flex flex-col gap-[12px] font-medium">
+          <div className="font-semibold text-[16px] text-white">{title}</div>
+          <div className="font-medium text-[14px] mb-[12px] text-white opacity-70">
+            {description}
+          </div>
         </div>
-      </div>
-      <div>
-        <div className={`font-medium text-[12px] text-right ${timeTextColor}`}>
-          {time}
+        <div>
+          <div className={`text-[12px] text-right ${timeTextColor}`}>
+            {time}
+          </div>
         </div>
       </div>
     </div>

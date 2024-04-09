@@ -39,7 +39,7 @@ module.exports = {
         'strcat-chris': '#246F50',
         'strcat-mas': '#DE6565',
         'strcat-sul': '#82CBFF',
-        'strcat-string': '#FFBACF',
+        'strcat-spring': '#FFBACF',
       },
       keyframes: {
         slide: {
