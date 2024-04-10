@@ -16,6 +16,7 @@ import {
   WriterButtonLayer,
 } from '@/component/Personal';
 import FirstContent from '@/component/Personal/FirstContent';
+import SakuraAnimation from '@/component/Personal/SakuraAnimation';
 import { useLogin } from '@/hooks/useLogin';
 import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
@@ -43,8 +44,8 @@ export default function Personal({ params }: { params: { id: string } }) {
   const { isHidden, setIsHidden } = useScroll();
   const [checkedSet, setCheckedSet] = useState(new Set());
   const [openModal, closeModal] = useModal();
- 
-  const addHistory = ()=>{
+
+  const addHistory = () => {
     const timestamp = () => {
       var now = new Date();
       now.setHours(now.getHours() + 9);
@@ -70,7 +71,7 @@ export default function Personal({ params }: { params: { id: string } }) {
       title: title,
     });
     localStorage.setItem('history', JSON.stringify(historyArray));
-  }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('strcat_token');
@@ -202,8 +203,9 @@ export default function Personal({ params }: { params: { id: string } }) {
   return (
     <>
       <div className={`${defaultState.background} min-h-full`}>
-        <div onClick={handleClickBackground}>
+        <div onClick={handleClickBackground} className="h-full w-full">
           <SnowAnimation themeName={theme.name} />
+          <SakuraAnimation themeName={theme.name} />
           <div className="z-text relative">
             <FirstContent
               boardLength={board[0].contents.length}

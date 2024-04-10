@@ -77,8 +77,44 @@ module.exports = {
           from: { backgroundColor: 'rgba(0,0,0,0.8)' },
           to: { backgroundColor: 'rgba(0,0,0,0)' },
         },
+        sakuraSway1: {
+          '0%': { transform: 'rotate(-5deg))' },
+          '40%': { transform: 'rotate(28deg)' },
+          '100%': { transform: 'rotate(3deg)' },
+        },
+        sakuraSway2: {
+          '0%': { transform: 'rotate(10deg))' },
+          '40%': { transform: 'rotate(43deg)' },
+          '100%': { transform: 'rotate(15deg)' },
+        },
+        sakuraFalling1: {
+          '0%': {
+            opacity: 0,
+            top: '-10%',
+            transform: 'translateX(0) rotate(0deg)',
+          },
+          '10%': { opacity: 1 },
+          '100%': {
+            opacity: 1,
+            top: '100%',
+            transform: 'translateX(210px) rotateX(180deg) rotateY(360deg)',
+          },
+        },
+        sakuraFalling2: {
+          '0%': { opacity: 0, top: '-10%', transform: 'translateX(0)' },
+          '10%': { opacity: 1 },
+          '100%': {
+            opacity: 1,
+            top: '100%',
+            transform: 'translateX(-210px) rotateX(180deg) rotateY(360deg)',
+          },
+        },
       },
       animation: {
+        sakura1:
+          'sakuraSway1 2s linear 0s infinite, sakuraFalling1 10s 0s linear infinite',
+        sakura2:
+          'sakuraSway2 2s linear 0s infinite, sakuraFalling2 10s 0s linear infinite',
         slide: 'slide 0.7s linear',
         fadeIn: 'fadeIn 2s ease-in-out',
         textFadeIn: 'textFadeIn 0.35s ease-in-out',
