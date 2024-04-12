@@ -13,6 +13,7 @@ import { logging } from '@/services/mixpanel';
 import { axiosPostBoard } from '@/utils/apiInterface';
 import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
+import { toggleDialog } from '@/utils/toggleDialo';
 
 export default function Create() {
   const [openModal, closeModal] = useModal();
@@ -29,6 +30,12 @@ export default function Create() {
   };
 
   const handleConfirm = async () => {
+    const isPublic = await toggleDialog(
+      openModal,
+      closeModal,
+      '잠깐! 🙌',
+      '공개하기를 선택하면 내가 만든\n 스트링캣이 랜덤으로 홈에 공개돼요!',
+    );
     const isConfirmed = await confirm(
       openModal,
       closeModal,
@@ -38,6 +45,7 @@ export default function Create() {
     if (isConfirmed) {
       logging('click_submit_board_confirm', 'create');
       const data = {
+        public: isPublic,
         theme: themelist[preview - 1],
         title: `${title}`,
       };
