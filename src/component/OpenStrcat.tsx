@@ -2,8 +2,7 @@ import { openBoard } from '@/types/openBoard';
 
 interface Props {
   id: string;
-  bgColor: string;
-  borderColor: string;
+  bgAndBorderColor: string;
   timeTextColor: string;
   title: string;
   description: string;
@@ -12,18 +11,16 @@ interface Props {
 
 export default function OpenStrcat({
   id,
-  bgColor,
-  borderColor,
+  bgAndBorderColor,
   timeTextColor,
   title,
   description,
   time,
 }: Props) {
-  console.log(bgColor, borderColor, timeTextColor);
   return (
     <div className="flex-none ">
       <div
-        className={`flex w-[150px] h-[192px] px-[16px] pt-[20px] pb-[14px] flex-col rounded-[6px]  justify-between border-[1px] ${borderColor} ${bgColor}`}
+        className={`flex w-[150px] h-[192px] px-[16px] pt-[20px] pb-[14px] flex-col rounded-[6px]  justify-between border-[1px] ${bgAndBorderColor}`}
       >
         <div className="flex flex-col gap-[12px] font-medium">
           <div className="font-semibold text-[16px] text-white">{title}</div>
