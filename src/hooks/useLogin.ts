@@ -5,9 +5,9 @@ import { loginState } from '@/recoil/login';
 import { axiosGetLoginCheck } from '@/utils/apiInterface';
 
 export const useLogin = (): [
-  boolean,
+  boolean | undefined,
   () => void,
-  Dispatch<React.SetStateAction<boolean>>,
+  Dispatch<React.SetStateAction<boolean | undefined>>,
 ] => {
   const [isLogin, setIsLogin] = useRecoilState(loginState);
   const checkLogin = () => {

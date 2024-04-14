@@ -80,8 +80,11 @@ export default function Personal({ params }: { params: { id: string } }) {
   useEffect(() => {
     if (!loggingProp) return;
     logging('show_read_board', 'personal', loggingProp);
-    addHistory();
   }, [loggingProp]);
+
+  useEffect(() => {
+    if (isLogin === false && title) addHistory();
+  }, [isLogin, title]);
 
   const handleClickWrite = () => {
     logging('click_add_content', 'personal', loggingProp);

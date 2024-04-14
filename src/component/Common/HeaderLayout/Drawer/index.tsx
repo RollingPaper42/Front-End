@@ -37,7 +37,6 @@ export default function Drawer() {
       const personal = await axiosGetUserBoard();
       setPersonalList(personal.data);
       const history = await axiosGetUserHistory();
-      console.log(history.data);
       setHistoryList(
         history.data.history.map((history: History) => {
           return {
@@ -102,11 +101,13 @@ export default function Drawer() {
   }, [checkLogin]);
 
   useEffect(() => {
+    if (isLogin === undefined) return;
     if (isLogin) {
       fetchData();
       return;
     }
     const history = localStorage.getItem('history');
+
     if (history) {
       setHistoryList(
         JSON.parse(history).map((history: History) => {
