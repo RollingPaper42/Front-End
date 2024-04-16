@@ -2,45 +2,24 @@
 
 import { useRecoilState } from 'recoil';
 
-import { usePathname, useRouter } from 'next/navigation';
-
-import Close from '../Icon/Close';
 import { HamburgerMenu } from '../Icon/Header';
-import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
 import { drawerState } from '@/recoil/drawer';
-import { titleState } from '@/recoil/title';
-import { confirm } from '@/utils/confirm';
 import { drawerOpen } from '@/utils/drawerOpen';
 import { defaultState } from '@/utils/theme/default';
 
-export default function TitleHeader() {
-  const pathname = usePathname();
-  const router = useRouter();
-  const isAdd = pathname.endsWith('/add');
-  const [title] = useRecoilState(titleState);
+interface Props {
+  title: string;
+}
+
+export default function TitleHeader({ title }: Props) {
   const [, setDrawer] = useRecoilState(drawerState);
-  const { isHidden } = useScroll({ scrollEvent: !isAdd });
-  const [openModal, closeModal] = useModal();
-
-  const backUrl = pathname.substring(0, pathname.lastIndexOf('/'));
-  const handleAddClose = async () => {
-    const isConfirmed = await confirm(
-      openModal,
-      closeModal,
-      '글 작성을 취소하시겠어요?',
-    );
-    if (isConfirmed) router.push(backUrl);
-  };
-
-  if (isAdd && title === '') {
-    router.push(backUrl);
-  }
+  const { isHidden } = useScroll();
 
   return (
     <div
       className={`fixed top-0 z-10 w-full max-w-md transition-transform duration-300 ${
-        isHidden && !isAdd ? '-translate-y-full' : 'translate-y-0'
+        isHidden ? '-translate-y-full' : 'translate-y-0'
       }`}
     >
       <div
@@ -52,15 +31,9 @@ export default function TitleHeader() {
         >
           {title}
         </div>
-        {isAdd ? (
-          <div className="pt-[4px]" onClick={handleAddClose}>
-            <Close />
-          </div>
-        ) : (
-          <div className="pt-[4px]" onClick={() => drawerOpen(setDrawer)}>
-            <HamburgerMenu />
-          </div>
-        )}
+        <div className="pt-[4px]" onClick={() => drawerOpen(setDrawer)}>
+          <HamburgerMenu />
+        </div>
       </div>
     </div>
   );

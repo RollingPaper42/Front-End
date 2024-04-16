@@ -7,6 +7,8 @@ import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
 
 import BottomButton from '@/component/Common/BottomButton';
+import AddTitleHeader from '@/component/Common/HeaderLayout/AddTitleHeader';
+import TitleHeader from '@/component/Common/HeaderLayout/TitleHeader';
 import Loading from '@/component/Common/Loading';
 import Introduce from '@/component/Common/Modal/Introduce';
 import Textarea from '@/component/Common/Textarea';
@@ -24,7 +26,11 @@ import { axiosInstance } from '@/utils/axios';
 import { confirm } from '@/utils/confirm';
 import { defaultState } from '@/utils/theme/default';
 
-export default function Add({ params }: { params: { id: string } }) {
+export default function Add({
+  params,
+}: {
+  params: { id: string; title: string };
+}) {
   const [text, setText] = useState('');
   const [writer, , handleWriter] = useInput('');
   const [openModal, closeModal] = useModal();
@@ -82,6 +88,7 @@ export default function Add({ params }: { params: { id: string } }) {
 
   return (
     <div className={`h-full w-full ${defaultState.background}`}>
+      <AddTitleHeader id={params.id} title={decodeURIComponent(params.title)} />
       <div className="pt-[100px]" />
       {isLoading && <Loading />}
       {preview && (

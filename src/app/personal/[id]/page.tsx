@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 
 import { useRouter } from 'next/navigation';
 
+import TitleHeader from '@/component/Common/HeaderLayout/TitleHeader';
 import Loading from '@/component/Common/Loading';
 import Introduce from '@/component/Common/Modal/Introduce';
 import StrcatBoard from '@/component/Common/StrcatBoard';
@@ -19,7 +20,6 @@ import FirstContent from '@/component/Personal/FirstContent';
 import { useLogin } from '@/hooks/useLogin';
 import useModal from '@/hooks/useModal';
 import { useScroll } from '@/hooks/useScroll';
-import { titleState } from '@/recoil/title';
 import { logging } from '@/services/mixpanel';
 import { board } from '@/types/boards';
 import { History } from '@/types/history';
@@ -87,8 +87,9 @@ export default function Personal({ params }: { params: { id: string } }) {
   }, [isLogin, title]);
 
   const handleClickWrite = () => {
+    if (!title) return;
     logging('click_add_content', 'personal', loggingProp);
-    router.push(`${params.id}/add`);
+    router.push(`${params.id}/add/${title}`);
   };
 
   const handleClickCreate = () => {
@@ -200,6 +201,7 @@ export default function Personal({ params }: { params: { id: string } }) {
   return (
     <>
       <div className={`${defaultState.background} min-h-full`}>
+        <TitleHeader title={title} />
         <div onClick={handleClickBackground}>
           <SnowAnimation themeName={theme.name} />
           <div className="z-text relative">
@@ -265,7 +267,7 @@ const useData = (
 ] => {
   const [board, setBoard] = useState<board[]>([]);
   const [isOwner, setIsOwner] = useState<boolean>(false);
-  const [title, setTitle] = useRecoilState(titleState);
+  const [title, setTitle] = useState<string>('');
   const [theme, setTheme] = useState<themeState>(noneTheme);
   const [loggingProp, setLoggingProp] = useState<personalPage | undefined>(
     undefined,

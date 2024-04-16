@@ -14,7 +14,7 @@ export default function PublicBadge() {
         height="21"
         rx="3.5"
         fill="white"
-        fill-opacity="0.2"
+        fillOpacity="0.2"
       />
       <rect x="0.5" y="0.5" width="30" height="21" rx="3.5" stroke="#FDFFB0" />
       <path
