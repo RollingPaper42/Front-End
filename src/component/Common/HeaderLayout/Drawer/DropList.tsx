@@ -3,7 +3,6 @@ import { useState } from 'react';
 import DownArrow from '../../Icon/drawer/DownArrow';
 import UpArrow from '../../Icon/drawer/UpArrow';
 import DropListItem from './DropListItem';
-import { bodyFontState } from '@/recoil/font/body';
 import { titleFontState } from '@/recoil/font/title';
 import { drawerBoard } from '@/types/drawerBoard';
 import { defaultState } from '@/utils/theme/default';
@@ -11,9 +10,10 @@ import { defaultState } from '@/utils/theme/default';
 interface Props {
   title: string;
   list: drawerBoard[];
+  type: 'personal' | 'history';
 }
 
-export default function DropList({ title, list }: Props) {
+export default function DropList({ title, list, type }: Props) {
   const [dropList, setDropList] = useState<boolean>(false);
 
   return (
@@ -34,7 +34,7 @@ export default function DropList({ title, list }: Props) {
           defaultState.drawerList
         } w-full  scrollbar-thumb-textarea-bg scrollbar-thin scrollbar-thumb-rounded-[7px] `}
       >
-        <DropListItem list={list} category={'personal'} />
+        <DropListItem list={list} type={type} />
       </div>
     </>
   );
