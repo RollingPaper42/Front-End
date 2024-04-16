@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import HeaderLayout from '@/component/Common/HeaderLayout';
+import BackButtonHeader from '@/component/Common/HeaderLayout/BackButtonHeader';
 import Introduce from '@/component/Common/Modal/Introduce';
 import CreateTheme from '@/component/Create/CreateTheme';
 import TitleSelect from '@/component/Create/TitleSelect';
@@ -78,7 +78,7 @@ export default function Create() {
 
   return (
     <>
-      <HeaderLayout isNext={isNext} setIsNext={setIsNext} />
+      <BackButtonHeader isNext={isNext} setIsNext={setIsNext} />
       <div className={`${defaultState.background} h-auto min-h-full w-full`}>
         {isNext ? (
           <TitleSelect

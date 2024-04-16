@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import HeaderLayout from '@/component/Common/HeaderLayout';
+import DefaultHeader from '@/component/Common/HeaderLayout/DefaultHeader';
 import MainManStrcat from '@/component/MainManStrcat';
 import OpenStrcatBoard from '@/component/OpenStrcatBoard';
 import { useLogin } from '@/hooks/useLogin';
@@ -33,6 +33,7 @@ export default function Home() {
       setOpenBoard(res.data);
     });
   }, []);
+
   const handleClickPersonal = () => {
     logging('click_create_board', 'main');
     if (isLogin) router.push('create', { scroll: false });
@@ -41,7 +42,6 @@ export default function Home() {
       router.push('/login');
     }
   };
-  console.log(openBoard);
 
   const handleClickStart = () => {
     logging('click_guestbook', 'main');
@@ -52,7 +52,7 @@ export default function Home() {
 
   return (
     <>
-      <HeaderLayout />
+      <DefaultHeader />
       <div className={` h-auto min-h-full ${defaultState.background}`}>
         <div
           className={`flex ${bodyFontState.serviceBody}  ${defaultState.descriptionText} pl-[24px] pt-[64px]`}

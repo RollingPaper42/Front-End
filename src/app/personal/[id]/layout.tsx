@@ -2,12 +2,12 @@
 
 import React from 'react';
 
-import HeaderLayout from '@/component/Common/HeaderLayout';
+import TitleHeader from '@/component/Common/HeaderLayout/TitleHeader';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <HeaderLayout />
+      <TitleHeader />
       {children}
     </>
   );

@@ -7,6 +7,7 @@ import Script from 'next/script';
 import './globals.css';
 import AxiosInterceptor from '@/component/Common/AxiosInterceptor';
 import Description from '@/component/Common/Description';
+import Drawer from '@/component/Common/HeaderLayout/Drawer';
 import Modal from '@/component/Common/Modal';
 import OpenGraph from '@/component/Common/OpenGraph';
 import InApp from '@/component/InApp';
@@ -49,6 +50,7 @@ export default function RootLayout({
           <RecoilRoot>
             <AxiosInterceptor />
             <Modal />
+            <Drawer />
             {children}
           </RecoilRoot>
         </div>
