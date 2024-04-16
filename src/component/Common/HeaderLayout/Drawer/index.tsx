@@ -2,16 +2,16 @@ import { AxiosError } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
-import BottomButton from '../BottomButton';
-import { Logout } from '../Icon/Drawer';
-import { Logo } from '../Icon/Header';
-import DrawerClose from '../Icon/drawer/DrawerClose';
-import Home from '../Icon/drawer/Home';
-import Inquiry from '../Icon/drawer/Inquiry';
-import DrawerItem from './DrawerItem';
+import BottomButton from '../../BottomButton';
+import { Logout } from '../../Icon/Drawer';
+import { Logo } from '../../Icon/Header';
+import DrawerClose from '../../Icon/drawer/DrawerClose';
+import Home from '../../Icon/drawer/Home';
+import Inquiry from '../../Icon/drawer/Inquiry';
+import { DrawerHeader } from './DrawerHeader';
+import DrawerSection from './DrawerSection';
 import DropList from './DropList';
 import { useLogin } from '@/hooks/useLogin';
 import { drawerState } from '@/recoil/drawer';
@@ -28,7 +28,7 @@ export default function Drawer() {
   const [drawer, setDrawer] = useRecoilState(drawerState);
   const [drawerClosing, setDrawerClosing] = useState(false);
   const [personalList, setPersonalList] = useState<drawerBoard[]>([]);
-  const [historyList, setHistoryList] = useState<History[]>([]);
+  const [historyList, setHistoryList] = useState<drawerBoard[]>([]);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -37,8 +37,14 @@ export default function Drawer() {
       const personal = await axiosGetUserBoard();
       setPersonalList(personal.data);
       const history = await axiosGetUserHistory();
-      setHistoryList(history.data);
-      // history 뷰는 아직 구현 안함
+      setHistoryList(
+        history.data.history.map((history: History) => {
+          return {
+            id: history.encryptedBoardId,
+            title: history.title,
+          };
+        }),
+      );
     } catch (err) {
       const error = err as AxiosError;
     }
@@ -57,6 +63,7 @@ export default function Drawer() {
     setDrawer(false);
     document.body.style.overflow = 'auto';
   };
+
   const handleLogout = () => {
     drawerClose();
     localStorage.removeItem('strcat_token');
@@ -80,13 +87,36 @@ export default function Drawer() {
     router.push('/login');
   };
 
+  const handleClickBackground = (e: any) => {
+    handleBackground(e, drawerSlowClose);
+    if (e.target === e.currentTarget) document.body.style.overflow = 'auto';
+  };
+
+  const handleClickInquiry = () => {
+    window.open('https://forms.gle/A21VjqrLnQH3XxCAA');
+  };
+
   useEffect(() => {
     checkLogin();
   }, [checkLogin]);
 
   useEffect(() => {
+    if (isLogin === undefined) return;
     if (isLogin) {
       fetchData();
+      return;
+    }
+    const history = localStorage.getItem('history');
+
+    if (history) {
+      setHistoryList(
+        JSON.parse(history).map((history: History) => {
+          return {
+            id: history.encryptedBoardId,
+            title: history.title,
+          };
+        }),
+      );
     }
   }, [fetchData, isLogin]);
 
@@ -96,11 +126,7 @@ export default function Drawer() {
         className={`fixed  z-drawer h-full w-full max-w-md bg-black bg-opacity-80 overflow-hidden ${
           drawerClosing ? ' animate-drawerCloseBg' : 'animate-drawerOpenBg'
         }`}
-        onClick={(e) => {
-          handleBackground(e, drawerSlowClose);
-          if (e.target === e.currentTarget)
-            document.body.style.overflow = 'auto';
-        }}
+        onClick={handleClickBackground}
       >
         <div
           className={`absolute right-0 h-full w-[300px] opacity-100 ${
@@ -109,23 +135,17 @@ export default function Drawer() {
             drawerClosing ? 'animate-drawerClose' : 'animate-drawerOpen'
           }`}
         >
-          <div className="flex h-[70px] w-full px-[24px] py-[22px]">
-            <div onClick={handleHome}>
-              <Logo />
-            </div>
-            <div className="absolute right-[24px]">
-              <div
-                className="flex h-[24px] w-[24px] items-center justify-center"
-                onClick={drawerSlowClose}
-              >
-                <DrawerClose />
-              </div>
-            </div>
-          </div>
+          <DrawerHeader
+            Logo={Logo}
+            handleHome={handleHome}
+            DrawerClose={DrawerClose}
+            drawerSlowClose={drawerSlowClose}
+          />
           <div className={`flex flex-col items-center`}>
             {isLogin ? (
               <>
-                <DropList list={personalList} category="personal" />
+                <DropList title={'내 스트링캣'} list={personalList} />
+                <DropList title={'최근 방문한 스트링캣'} list={historyList} />
                 <div className="mt-[12px] w-full px-[24px]">
                   <BottomButton
                     name="새 스트링캣 만들기"
@@ -160,24 +180,29 @@ export default function Drawer() {
                     textColor={`${defaultState.highLightText}`}
                   />
                 </div>
+                <DropList title={'최근 방문한 스트링캣'} list={historyList} />
               </>
             )}
             <div
               className={`absolute bottom-0 w-full ${defaultState.background} px-[24px]`}
             >
-              <div className="h-[54px] w-full" onClick={handleHome}>
-                <DrawerItem title="홈으로" icon={<Home />} />
-              </div>
-              <div className="h-[54px] w-full">
-                <Link href={'https://forms.gle/A21VjqrLnQH3XxCAA'}>
-                  <DrawerItem title="문의하기" icon={<Inquiry />} />
-                </Link>
-              </div>
-              {isLogin ? (
-                <div className="h-[54px] w-full" onClick={handleLogout}>
-                  <DrawerItem title="로그아웃" icon={<Logout />} />
-                </div>
-              ) : null}
+              <DrawerSection
+                items={[
+                  { title: '홈으로', icon: <Home />, onClick: handleHome },
+                  {
+                    title: '문의하기',
+                    icon: <Inquiry />,
+                    onClick: () => handleClickInquiry,
+                  },
+                  isLogin
+                    ? {
+                        title: '로그아웃',
+                        icon: <Logout />,
+                        onClick: handleLogout,
+                      }
+                    : { title: '', icon: <></>, onClick: () => {} },
+                ]}
+              />
             </div>
           </div>
         </div>
