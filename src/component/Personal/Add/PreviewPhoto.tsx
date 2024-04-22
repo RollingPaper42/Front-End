@@ -15,7 +15,7 @@ export default function PreviewPhoto({
         <Image
           id="preview"
           src={preview}
-          alt="사진"
+          alt="photo"
           width={innerWidth}
           height={innerHeight}
           className="relative w-auto max-h-[280px]"
