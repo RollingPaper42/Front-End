@@ -7,7 +7,7 @@ export default function OpenGraph() {
         content="함께 문장을 이어 롤링페이퍼를 완성해보세요! : STRCAT"
       />
       <meta property="og:url" content="https://strcat.me" />
-      <meta property="og:image" content="/OG.png" />
+      <meta property="og:image" content="https://strcat.me/OG.png" />
       <meta property="og:type" content="website" />
       <meta name="twitter:title" content="STRCAT" />
       <meta name="twitter:creator" content="@strcat_me" />
@@ -17,7 +17,7 @@ export default function OpenGraph() {
         name="twitter:description"
         content="함께 문장을 이어 롤링페이퍼를 완성해보세요!"
       />
-      <meta name="twitter:image" content="/OG.png" />
+      <meta name="twitter:image" content="https://strcat.me/OG.png" />
     </>
   );
 }
