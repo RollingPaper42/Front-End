@@ -9,7 +9,7 @@ export default function Photo({ photoUrl }: Props) {
     <div className="relative flex max-h-[280px] w-full flex-col items-center justify-center">
       <Image
         src={photoUrl}
-        alt="사진"
+        alt="photo"
         width={innerWidth}
         height={innerHeight}
         className="h-auto max-h-[280px] w-auto"
