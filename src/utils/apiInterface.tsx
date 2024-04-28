@@ -7,7 +7,7 @@ export const axiosGetBoard = (id: string) => {
 };
 
 export const axiosGetPublicBoard = () => {
-  return axios.get(`/api/public`);
+  return axiosInstance.get(`/boards/public`);
 };
 
 export const axiosGetBoardSummaries = (id: string) => {
