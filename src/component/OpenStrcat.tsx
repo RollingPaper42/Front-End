@@ -21,7 +21,7 @@ export default function OpenStrcat({
   lastContentCreatedAt,
 }: Props) {
   const truncatedTitle = truncateText(title, 19);
-  const contentText = `${contentCount}개의 마음이 ${contentTextCount}자 이어졌어요!`;
+  const contentText = `${contentCount}개의 마음이, ${contentTextCount}자 이어졌어요!`;
   const truncatedContentText = truncateText(contentText, 37);
 
   return (
