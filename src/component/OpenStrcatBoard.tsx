@@ -22,32 +22,34 @@ export default function OpenStrcatBoard({ openBoard }: Props) {
     night: 'text-strcat-night',
     peach: 'text-strcat-peach',
     lilac: 'text-strcat-lilac',
-    chris: 'text-white',
-    mas: 'text-white',
+    chris: 'text-white/70',
+    mas: 'text-white/70',
     sul: 'text-strcat-sul',
     spring: 'text-strcat-spring',
   };
 
   return (
-    <div className="w-full flex flex-row  overflow-x-scroll pt-[14px] gap-[12px]">
-      {openBoard.map((item, i) => {
-        return (
-          <div key={'openBoard' + item.title}>
-            <Link href={`/personal/${item.id}`}>
-              <OpenStrcat
-                id={item.id}
-                bgAndBorderColor={`${bgAndBorderColor[item.theme]}`}
-                timeTextColor={`${textColor[item.theme]}`}
-                title={item.title}
-                contentCount={item.contentCount}
-                contentTextCount={item.contentTextCount}
-                lastContentCreatedAt={item.lastContentCreatedAt}
-                theme={item.theme}
-              />
-            </Link>
-          </div>
-        );
-      })}
+    <div className="w-full flex flex-row overflow-x-scroll pt-[14px] gap-[12px]">
+      {openBoard
+        .sort(() => 0.5 - Math.random())
+        .map((item, i) => {
+          return (
+            <div key={'openBoard' + item.title + item.id}>
+              <Link href={`/personal/${item.id}`}>
+                <OpenStrcat
+                  id={item.id}
+                  bgAndBorderColor={`${bgAndBorderColor[item.theme]}`}
+                  timeTextColor={`${textColor[item.theme]}`}
+                  title={item.title}
+                  contentCount={item.contentCount}
+                  contentTextCount={item.contentTextCount}
+                  lastContentCreatedAt={item.lastContentCreatedAt}
+                  theme={item.theme}
+                />
+              </Link>
+            </div>
+          );
+        })}
     </div>
   );
 }
