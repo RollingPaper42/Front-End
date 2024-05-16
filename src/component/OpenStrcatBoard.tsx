@@ -29,7 +29,7 @@ export default function OpenStrcatBoard({ openBoard }: Props) {
   };
 
   return (
-    <div className="w-full flex flex-row overflow-x-scroll pt-[14px] gap-[12px]">
+    <div className="w-full flex flex-row overflow-x-scroll pt-[14px] gap-[12px] scrollbar-thin scrollbar-track-strcat-textarea-bg scrollbar-thumb-strcat-bright-yellow">
       {openBoard
         .sort(() => 0.5 - Math.random())
         .map((item, i) => {
