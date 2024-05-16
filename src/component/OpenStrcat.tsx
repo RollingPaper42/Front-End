@@ -1,7 +1,7 @@
 interface Props {
   id: string;
-  bgAndBorderColor: string;
-  timeTextColor: string;
+  OpenBoardThemeColor: string;
+  OpenBoardTextColor: string;
   theme: string;
   contentCount: string;
   contentTextCount: string;
@@ -11,8 +11,8 @@ interface Props {
 
 export default function OpenStrcat({
   id,
-  bgAndBorderColor,
-  timeTextColor,
+  OpenBoardThemeColor,
+  OpenBoardTextColor,
   title,
   contentCount,
   contentTextCount,
@@ -25,7 +25,7 @@ export default function OpenStrcat({
   return (
     <div className="flex-none">
       <div
-        className={`flex w-[150px] h-[192px] px-[16px] pt-[20px] pb-[14px] flex-col rounded-[6px]  justify-between border-[1px] ${bgAndBorderColor}`}
+        className={`flex w-[150px] h-[192px] px-[16px] pt-[20px] pb-[14px] flex-col rounded-[6px]  justify-between border-[1px] ${OpenBoardThemeColor}`}
       >
         <div className="flex flex-col gap-[12px]">
           <div className="h-[40px] font-medium leading-5 text-[16px] tracking-[-0.32px] text-white">
@@ -36,7 +36,7 @@ export default function OpenStrcat({
           </div>
         </div>
         <div>
-          <div className={`text-[12px] text-right ${timeTextColor}`}>
+          <div className={`text-[12px] text-right ${OpenBoardTextColor}`}>
             {timeString(lastContentCreatedAt)}
           </div>
         </div>
