@@ -1,5 +1,3 @@
-import { openBoard } from '@/types/openBoard';
-
 interface Props {
   id: string;
   bgAndBorderColor: string;
