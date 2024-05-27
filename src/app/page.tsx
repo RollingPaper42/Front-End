@@ -61,8 +61,8 @@ export default function Home() {
         </div>
         <div className="px-[24px] pt-[32px] text-default-white ">
           다른 사람이 공개한 스트링켓이에요
-          <OpenStrcatBoard openBoard={openBoard} />
         </div>
+        <OpenStrcatBoard openBoard={openBoard} />
 
         <div className="flex flex-col items-center justify-center">
           <div

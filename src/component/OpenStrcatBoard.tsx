@@ -15,25 +15,26 @@ interface Props {
 export default function OpenStrcatBoard({ openBoard }: Props) {
   return (
     <div className="w-full flex flex-row overflow-x-scroll pt-[14px] no-padding">
-      <Swiper width={162}>
+      <Swiper width={186} style={{ paddingLeft: '24px' }}>
         {openBoard.map((item, i) => {
           return (
-            <div key={'openBoard' + item.title + item.id}>
-              <SwiperSlide>
-                <Link href={`/personal/${item.id}`}>
-                  <OpenStrcat
-                    id={item.id}
-                    OpenBoardThemeColor={`${OpenBoardThemeColor[item.theme]}`}
-                    OpenBoardTextColor={`${OpenBoardTextColor[item.theme]}`}
-                    title={item.title}
-                    contentCount={item.contentCount}
-                    contentTextCount={item.contentTextCount}
-                    lastContentCreatedAt={item.lastContentCreatedAt}
-                    theme={item.theme}
-                  />
-                </Link>
-              </SwiperSlide>
-            </div>
+            <SwiperSlide>
+              <Link
+                href={`/personal/${item.id}`}
+                key={'openBoard' + item.title + item.id}
+              >
+                <OpenStrcat
+                  id={item.id}
+                  OpenBoardThemeColor={`${OpenBoardThemeColor[item.theme]}`}
+                  OpenBoardTextColor={`${OpenBoardTextColor[item.theme]}`}
+                  title={item.title}
+                  contentCount={item.contentCount}
+                  contentTextCount={item.contentTextCount}
+                  lastContentCreatedAt={item.lastContentCreatedAt}
+                  theme={item.theme}
+                />
+              </Link>
+            </SwiperSlide>
           );
         })}
       </Swiper>
