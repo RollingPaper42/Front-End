@@ -51,7 +51,7 @@ export default function ToggleDialog({
                   }`}
                 ></div>
                 <div
-                  className={`dot absolute left-1 top-1 w-[20px] h-[20px]  bg-gray-900 rounded-full transition ${
+                  className={`dot absolute left-1 top-1 w-[20px] h-[20px]  bg-strcat-textarea-bg rounded-full transition ${
                     isPublic ? 'transform translate-x-full' : ''
                   }`}
                 ></div>
