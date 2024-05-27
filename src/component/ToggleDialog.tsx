@@ -19,7 +19,7 @@ export default function ToggleDialog({
 }: Props) {
   const [isPublic, setIsPublic] = useState(false);
   return (
-    <div className="relative w-[280px] rounded-[16px] bg-strcat-textarea-bg px-[16px] pb-[16px] pt-[32px] font-medium shadow-[0px_4px_20px_0px_rgba(0,0,0,0.50)]">
+    <div className="relative w-[280px] rounded-[16px] bg-strcat-textarea-bg px-[16px] pb-[16px] pt-[32px] font-medium">
       <div className=" items-center justify-center">
         <p
           className={`text-center ${titleFontState.titleLabel} text-default-white`}
