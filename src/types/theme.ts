@@ -75,3 +75,23 @@ export const themeObj = {
   mas: mas,
   sul: sul,
 };
+
+export const OpenBoardThemeColor: Record<string, string> = {
+  night: 'bg-strcat-night/50 border-strcat-night',
+  peach: 'bg-strcat-peach/50 border-strcat-peach',
+  lilac: 'bg-strcat-lilac/50 border-strcat-lilac',
+  chris: 'bg-strcat-chris/50 border-strcat-chris',
+  mas: 'bg-strcat-mas/50 border-strcat-mas',
+  sul: 'bg-strcat-sul/50 border-strcat-sul',
+  spring: 'bg-strcat-spring/50 border-strcat-spring',
+};
+
+export const OpenBoardTextColor: Record<string, string> = {
+  night: 'text-strcat-night',
+  peach: 'text-strcat-peach',
+  lilac: 'text-strcat-lilac',
+  chris: 'text-white/70',
+  mas: 'text-white/70',
+  sul: 'text-strcat-sul',
+  spring: 'text-strcat-spring',
+};

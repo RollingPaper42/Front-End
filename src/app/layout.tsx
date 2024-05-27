@@ -1,7 +1,3 @@
-'use client';
-
-import { RecoilRoot } from 'recoil';
-
 import Script from 'next/script';
 
 import './globals.css';
@@ -10,6 +6,7 @@ import Description from '@/component/Common/Description';
 import Modal from '@/component/Common/Modal';
 import OpenGraph from '@/component/Common/OpenGraph';
 import InApp from '@/component/InApp';
+import RecoilWrapper from '@/component/RecoilWrapper';
 
 export default function RootLayout({
   children,
@@ -46,11 +43,11 @@ export default function RootLayout({
       <body className="h-full overscroll-none  bg-black/80">
         <div className="m-auto h-full max-w-md font-pretentdard">
           <InApp />
-          <RecoilRoot>
+          <RecoilWrapper>
             <AxiosInterceptor />
             <Modal />
             {children}
-          </RecoilRoot>
+          </RecoilWrapper>
         </div>
       </body>
     </html>

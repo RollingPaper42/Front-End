@@ -5,19 +5,21 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { AnimationVideo } from '@/component/Common/AnimationVideo';
 import HeaderLayout from '@/component/Common/HeaderLayout';
 import MainManStrcat from '@/component/MainManStrcat';
+import OpenStrcatBoard from '@/component/OpenStrcatBoard';
 import { useLogin } from '@/hooks/useLogin';
 import { bodyFontState } from '@/recoil/font/body';
 import { titleFontState } from '@/recoil/font/title';
 import { logging } from '@/services/mixpanel';
+import { axiosGetPublicBoard } from '@/utils/apiInterface';
 import { focusToHighlight } from '@/utils/focusToHighlight';
 import { defaultState } from '@/utils/theme/default';
 
 export default function Home() {
   const [isLogin] = useLogin();
   const router = useRouter();
+  const [openBoard, setOpenBoard] = useState([]);
   const ref = useRef<HTMLHeadingElement | null>(null);
   const [windowHeight, setWindowHeight] = useState(0);
 
@@ -26,6 +28,11 @@ export default function Home() {
     if (window) setWindowHeight(window.innerHeight);
   }, []);
 
+  useEffect(() => {
+    axiosGetPublicBoard().then((res) => {
+      setOpenBoard(res.data);
+    });
+  }, []);
   const handleClickPersonal = () => {
     logging('click_create_board', 'main');
     if (isLogin) router.push('create', { scroll: false });
@@ -51,25 +58,14 @@ export default function Home() {
         >
           함께 문장을 이어가는 롤링페이퍼
         </div>
-        <div className="flex flex-col items-center justify-center pt-[64px]">
-          <div className="relative">
-            <Image
-              src="/MainImage.svg"
-              width={153}
-              height={153}
-              alt="mainStrcatIcon"
-              priority
-            />
-            <div className="absolute top-0">
-              <AnimationVideo
-                src="/SnowAnimation.webm"
-                width={153}
-                height={153}
-              />
-            </div>
-          </div>
+        <div className="px-[24px] pt-[32px] text-default-white ">
+          다른 사람이 공개한 스트링켓이에요
+        </div>
+        <OpenStrcatBoard openBoard={openBoard} />
+
+        <div className="flex flex-col items-center justify-center">
           <div
-            className={`pt-[60px] ${bodyFontState.serviceBody}  text-center  ${defaultState.descriptionText}`}
+            className={`pt-[56px] ${bodyFontState.serviceBody} text-center ${defaultState.descriptionText}`}
           >
             내 롤링페이퍼에서 <br /> 친구들의 이야기를 듣고 싶다면
           </div>
