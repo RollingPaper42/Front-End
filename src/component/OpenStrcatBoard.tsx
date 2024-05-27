@@ -18,11 +18,8 @@ export default function OpenStrcatBoard({ openBoard }: Props) {
       <Swiper width={186} style={{ paddingLeft: '24px' }}>
         {openBoard.map((item, i) => {
           return (
-            <SwiperSlide>
-              <Link
-                href={`/personal/${item.id}`}
-                key={'openBoard' + item.title + item.id}
-              >
+            <SwiperSlide key={'openBoard' + item.title + item.id}>
+              <Link href={`/personal/${item.id}`}>
                 <OpenStrcat
                   id={item.id}
                   OpenBoardThemeColor={`${OpenBoardThemeColor[item.theme]}`}

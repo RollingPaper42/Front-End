@@ -41,7 +41,6 @@ export default function Home() {
       router.push('/login');
     }
   };
-  console.log(openBoard);
 
   const handleClickStart = () => {
     logging('click_guestbook', 'main');
