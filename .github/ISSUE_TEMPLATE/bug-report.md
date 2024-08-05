@@ -2,7 +2,7 @@
 name: Bug report
 about: 버그 발생 시 작성하는 템플릿
 title: "[Bug] "
-labels: bug
+labels: ''
 assignees: ''
 
 ---
@@ -19,4 +19,4 @@ assignees: ''
 - 
 
 # To do
-- [ ] 
+- [ ]

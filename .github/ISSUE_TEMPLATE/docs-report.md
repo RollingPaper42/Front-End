@@ -2,7 +2,7 @@
 name: Docs report
 about: 구현과 버그가 아닌 기록을 위한 템플릿
 title: "[Docs] "
-labels: documentation
+labels: ''
 assignees: ''
 
 ---
@@ -19,4 +19,4 @@ assignees: ''
 - 
 
 # To do
-- [ ] 
+- [ ]

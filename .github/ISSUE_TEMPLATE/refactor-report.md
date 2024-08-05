@@ -2,7 +2,7 @@
 name: Refactor report
 about: 리팩토링 시 작성하는 템플릿
 title: "[Refactor] "
-labels: refactor
+labels: "♻️ refactor"
 assignees: ''
 
 ---
@@ -19,4 +19,4 @@ assignees: ''
 - 
 
 # To do
-- [ ] 
+- [ ]

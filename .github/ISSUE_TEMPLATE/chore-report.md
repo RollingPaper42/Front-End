@@ -2,7 +2,7 @@
 name: Chore report
 about: Update packages(include managers), build files, templates or position of files
 title: "[Chore] "
-labels: chore
+labels: ''
 assignees: ''
 
 ---
@@ -19,4 +19,4 @@ assignees: ''
 - 
 
 # To do
-- [ ] 
+- [ ]
